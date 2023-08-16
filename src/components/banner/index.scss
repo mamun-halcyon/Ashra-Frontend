@@ -1,0 +1,19 @@
+@import './../../styles/index.scss';
+.banner {
+  ul {
+    margin-bottom: 50px;
+    li {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: $tertiary-color;
+
+      button {
+        opacity: 0;
+      }
+    }
+    .slick-active {
+      background: $primary-color;
+    }
+  }
+}
