@@ -1,8 +1,24 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const Gotham = localFont({
+  src: [
+    {
+      path: '../fonts/Gotham-Book.otf',
+      weight: '400',
+      style: 'book',
+    },
+    {
+      path: '../fonts/Gotham-Thin.otf',
+      weight: '400',
+      style: '300',
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   title: 'Gazi Home Appliance',

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main>
       <section>
-        <div className="w-4/5 mx-auto">
+        <div className="container ">
           <TopHeader />
         </div>
         <Banner />

@@ -5,7 +5,7 @@ import { AiFillBell } from 'react-icons/ai';
 
 const TopHeader = () => {
   return (
-    <div className=" flex justify-between items-center py-4">
+    <div className="flex justify-between items-center">
       <div className="flex  items-center">
         <span className=" mr-2 text-primary">
           <BiSolidPhone />
