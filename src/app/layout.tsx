@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import 'react-tabs/style/react-tabs.css';
 import './globals.css';
 
 const Gotham = localFont({
