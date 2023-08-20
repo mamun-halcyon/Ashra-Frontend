@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     colors: {
       white: '#F9F9F9',
-      primary: '#1E9CD8',
+      primary: '#164194',
       secondary: '#F1F1F1',
     },
     extend: {
@@ -20,6 +20,9 @@ const config: Config = {
       },
       container: {
         center: true,
+      },
+      fontFamily: {
+        gotham: ['var(--font-gotham)'],
       },
     },
   },

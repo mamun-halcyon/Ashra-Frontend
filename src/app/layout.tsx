@@ -1,9 +1,7 @@
-import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
-
-const inter = Inter({ subsets: ['latin'] });
+import 'react-tabs/style/react-tabs.css';
+import './globals.css';
 
 const Gotham = localFont({
   src: [
@@ -14,10 +12,21 @@ const Gotham = localFont({
     },
     {
       path: '../fonts/Gotham-Thin.otf',
-      weight: '400',
-      style: '300',
+      weight: '100',
+      style: 'thin',
+    },
+    {
+      path: '../fonts/Gotham-Bold.otf',
+      weight: '700',
+      style: 'bold',
+    },
+    {
+      path: '../fonts/Gotham-Light.otf',
+      weight: '300',
+      style: 'light',
     },
   ],
+  variable: '--font-gotham',
 });
 
 export const metadata: Metadata = {
@@ -32,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={Gotham.variable}>{children}</body>
     </html>
   );
 }
