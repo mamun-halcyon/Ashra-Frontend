@@ -1,5 +1,8 @@
 @import './../../styles/index.scss';
 .banner {
+  img {
+    width: 100%;
+  }
   ul {
     margin-bottom: 50px;
     li {

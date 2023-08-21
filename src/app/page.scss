@@ -12,3 +12,52 @@
     color: #555555;
   }
 }
+
+.popular-product {
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  .react-tabs__tab-list {
+    display: flex;
+
+    .react-tabs__tab {
+      &:focus-visible {
+        outline: none;
+      }
+      &--selected {
+        border-bottom: 3px solid $primary-color;
+      }
+    }
+  }
+
+  .product-card {
+    border-right: 1px solid $border-color;
+    &:nth-child(4n) {
+      border: 0;
+    }
+  }
+}
+
+.promotion {
+  img {
+    width: 100%;
+  }
+}
+
+.category-products {
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  .product-card {
+    border-right: 1px solid $border-color;
+    &:nth-child(5n) {
+      border: 0;
+    }
+  }
+}
+
+.review-video {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: $quaternary-color;
+}

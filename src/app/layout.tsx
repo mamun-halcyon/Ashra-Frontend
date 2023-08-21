@@ -10,6 +10,11 @@ const Gotham = localFont({
       style: 'book',
     },
     {
+      path: '../fonts/Gotham-Medium.otf',
+      weight: '500',
+      style: 'medium',
+    },
+    {
       path: '../fonts/Gotham-Thin.otf',
       weight: '100',
       style: 'thin',
