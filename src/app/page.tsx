@@ -146,13 +146,17 @@ export default function Home() {
             width={1300}
             height={500}
           />
-          <h2 className=" uppercase font-gotham font-normal text-3xl text-center py-12">
+          <h2 className=" uppercase font-gotham font-normal text-3xl text-center py-12 text-black">
             PRODUCT REVIEWS & UNBOXING VIDEOS
           </h2>
           <div className="grid grid-cols-3 gap-4">
-            <VideoCard />
-            <VideoCard />
-            <VideoCard />
+            {[...Array(3)].map((vide, index) => (
+              <VideoCard
+                key={index}
+                url="https://youtube.com/embed/6FxZnI01JCs"
+                title=" Gazi Smiss Gas Stove | EG 750S | Gazi Home Appliance"
+              />
+            ))}
           </div>
         </div>
       </section>
