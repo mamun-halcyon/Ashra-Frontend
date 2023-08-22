@@ -154,18 +154,19 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className=" mt-12 py-3 bg-primary">
+      <div className=" mt-12 py-4 bg-primary">
         <div className="container">
           <div className="flex justify-between items-center">
             <div>
-              <h4>
+              <h4 className=" font-gotham font-normal text-base text-white">
                 © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
               </h4>
             </div>
             <div>
               <Image
+                className=" h-6 bottom-image"
                 src={'/assets/images/footer/payment.png'}
-                width={500}
+                width={400}
                 height={50}
                 alt="payment"
               />
