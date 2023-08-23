@@ -1,0 +1,286 @@
+.container-fluid {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-1 {
+  flex-basis: 8.33%;
+  max-width: 8.33%;
+}
+
+.col-md-2 {
+  flex-basis: 16.67%;
+  max-width: 16.67%;
+}
+
+.col-md-3 {
+  flex-basis: 25%;
+  max-width: 25%;
+}
+
+.col-md-4 {
+  flex-basis: 33.33%;
+  max-width: 33.33%;
+}
+
+.col-md-5 {
+  flex-basis: 41.67%;
+  max-width: 41.67%;
+}
+
+.col-md-6 {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.col-md-7 {
+  flex-basis: 58.33%;
+  max-width: 58.33%;
+}
+
+.col-md-8 {
+  flex-basis: 66.67%;
+  max-width: 66.67%;
+}
+
+.col-md-9 {
+  flex-basis: 75%;
+  max-width: 75%;
+}
+
+.col-md-10 {
+  flex-basis: 83.33%;
+  max-width: 83.33%;
+}
+
+.col-md-11 {
+  flex-basis: 91.67%;
+  max-width: 91.67%;
+}
+
+.col-md-12 {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+/* Define column sizes for xl screens */
+@media (min-width: 1200px) {
+  .col-xl-1 {
+    flex-basis: 8.33%;
+    max-width: 8.33%;
+  }
+  .col-xl-2 {
+    flex-basis: 16.67%;
+    max-width: 16.67%;
+  }
+  .col-xl-3 {
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+  .col-xl-4 {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+  }
+  .col-xl-5 {
+    flex-basis: 41.67%;
+    max-width: 41.67%;
+  }
+  .col-xl-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .col-xl-7 {
+    flex-basis: 58.33%;
+    max-width: 58.33%;
+  }
+  .col-xl-8 {
+    flex-basis: 66.67%;
+    max-width: 66.67%;
+  }
+  .col-xl-9 {
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+  .col-xl-10 {
+    flex-basis: 83.33%;
+    max-width: 83.33%;
+  }
+  .col-xl-11 {
+    flex-basis: 91.67%;
+    max-width: 91.67%;
+  }
+  .col-xl-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+/* Define column sizes for lg screens */
+/* Define column sizes for sm screens */
+@media (min-width: 576px) {
+  .col-sm-1 {
+    flex-basis: 8.33%;
+    max-width: 8.33%;
+  }
+  .col-sm-2 {
+    flex-basis: 16.67%;
+    max-width: 16.67%;
+  }
+  .col-sm-3 {
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+  .col-sm-4 {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+  }
+  .col-sm-5 {
+    flex-basis: 41.67%;
+    max-width: 41.67%;
+  }
+  .col-sm-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .col-sm-7 {
+    flex-basis: 58.33%;
+    max-width: 58.33%;
+  }
+  .col-sm-8 {
+    flex-basis: 66.67%;
+    max-width: 66.67%;
+  }
+  .col-sm-9 {
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+  .col-sm-10 {
+    flex-basis: 83.33%;
+    max-width: 83.33%;
+  }
+  .col-sm-11 {
+    flex-basis: 91.67%;
+    max-width: 91.67%;
+  }
+  .col-sm-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  scroll-behavior: smooth;
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+button:not(:disabled),
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled) {
+  cursor: pointer;
+}
+
+.service {
+  background: #f9f9f9;
+  margin-top: -6px;
+}
+
+.explore {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.explore h2 {
+  color: #555555;
+}
+
+.popular-product {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.popular-product .react-tabs__tab-list {
+  display: flex;
+}
+.popular-product .react-tabs__tab-list .react-tabs__tab:focus-visible {
+  outline: none;
+}
+.popular-product .react-tabs__tab-list .react-tabs__tab--selected {
+  border-bottom: 3px solid #164194;
+}
+.popular-product .product-card {
+  border-right: 1px solid #cccccc;
+}
+.popular-product .product-card:nth-child(4n) {
+  border: 0;
+}
+
+.promotion img {
+  width: 100%;
+}
+
+.category-products {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.category-products .product-card {
+  border-right: 1px solid #cccccc;
+}
+.category-products .product-card:nth-child(5n) {
+  border: 0;
+}
+
+.review-video {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: #f9f9f9;
+}

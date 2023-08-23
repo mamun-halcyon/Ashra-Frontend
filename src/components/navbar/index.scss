@@ -1,0 +1,16 @@
+@import '../../styles/index.scss';
+
+.navbar {
+  background-color: $quaternary-color;
+
+  .select-categories {
+    background: $tertiary-color;
+  }
+  .absolute-item {
+    background: $octonary-color;
+  }
+  .logo {
+    width: 150px;
+    height: auto;
+  }
+}

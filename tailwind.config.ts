@@ -24,6 +24,7 @@ const config: Config = {
       },
       fontFamily: {
         gotham: ['var(--font-gotham)'],
+        poppins: ['var(--font-poppins)'],
       },
     },
   },

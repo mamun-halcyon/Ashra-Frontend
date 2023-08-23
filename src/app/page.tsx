@@ -11,6 +11,7 @@ import TopHeader from '@/components/header';
 import Banner from '@/components/banner';
 import ServiceCard from '@/components/service-card';
 import Navbar from '@/components/navbar';
+import MegaMenu from '@/components/megamenu';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
@@ -24,8 +25,9 @@ export default function Home() {
         <section>
           <div className="container ">
             <TopHeader />
-            <Navbar />
           </div>
+          <Navbar />
+          <MegaMenu />
         </section>
         <section>
           <Banner />
