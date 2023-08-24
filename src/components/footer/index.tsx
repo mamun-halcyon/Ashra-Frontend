@@ -83,13 +83,14 @@ const Footer = () => {
             </p>
             <div className="flex">
               <Image
-                className="mr-2"
+                className="mr-2 download-apps"
                 src="/assets/images/service/playstore.png"
                 alt="app-store"
                 width={500}
                 height={45}
               />
               <Image
+                className="download-apps"
                 src="/assets/images/service/appstore.png"
                 alt="app-store"
                 width={500}

@@ -4,6 +4,7 @@ import { BiUserCircle } from 'react-icons/Bi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
@@ -11,13 +12,15 @@ const Navbar = () => {
       <div className="container">
         <div className=" flex justify-between items-center py-5">
           <div className=" w-[33%]">
-            <Image
-              className="logo"
-              src={'/assets/images/logo/Logo.png'}
-              width={154}
-              height={80}
-              alt="gazi group logo"
-            />
+            <Link href={'/'}>
+              <Image
+                className="logo"
+                src={'/assets/images/logo/Logo.png'}
+                width={154}
+                height={80}
+                alt="gazi group logo"
+              />
+            </Link>
           </div>
           <div className=" flex-grow">
             <form className="flex items-center justify-center ">

@@ -1,8 +1,6 @@
 'use client';
 import React from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import './index.scss';
 
@@ -11,6 +9,7 @@ const settings = {
   infinite: true,
   arrows: false,
   speed: 500,
+  autoplay: true,
   slidesToShow: 1,
   slidesToScroll: 1,
 };

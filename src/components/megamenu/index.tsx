@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import Link from 'next/link';

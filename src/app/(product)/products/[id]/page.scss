@@ -1,0 +1,47 @@
+@import '../../../../styles/index.scss';
+
+.product-details {
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 50px;
+  .product-item {
+    padding: 4px;
+    img {
+      border: 1px solid $border-color;
+    }
+  }
+
+  .view-image {
+    border: 1px solid $border-color;
+  }
+
+  .slick-arrow {
+    height: 35px;
+    width: 35px;
+  }
+
+  .slick-prev {
+    left: -30px;
+    color: $tertiary-color;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .slick-next {
+    right: -35px;
+    color: $tertiary-color;
+    margin-left: 30px;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .price-area {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+  }
+  .r-price {
+    color: $border-color;
+  }
+}
