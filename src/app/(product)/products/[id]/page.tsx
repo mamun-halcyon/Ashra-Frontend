@@ -18,6 +18,7 @@ function PageDetails() {
   const handleViewImage = (url: string) => {
     setViewImag(url);
   };
+
   const settings = {
     dots: false,
     infinite: false,
