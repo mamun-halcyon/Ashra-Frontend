@@ -3,7 +3,7 @@
 .product-details {
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
   .product-item {
     padding: 4px;
     img {
@@ -43,5 +43,8 @@
   }
   .r-price {
     color: $border-color;
+  }
+  .emi {
+    border-bottom: 1px solid $border-color;
   }
 }

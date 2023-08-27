@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import './index.scss';
-import { BiUserCircle } from 'react-icons/Bi';
+import { BiUserCircle } from 'react-icons/bi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { HiOutlineShoppingBag } from 'react-icons/hi';

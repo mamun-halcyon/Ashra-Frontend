@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { BiSolidPhone } from 'react-icons/Bi';
+import { BiSolidPhone } from 'react-icons/bi';
 import { AiFillBell } from 'react-icons/ai';
 
 const TopHeader = () => {
