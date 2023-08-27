@@ -48,3 +48,32 @@
     border-bottom: 1px solid $border-color;
   }
 }
+
+.description {
+  .desc {
+    margin-top: 10px;
+    border: 1px solid $border-color;
+    .react-tabs__tab-list {
+      display: flex;
+      background: $secondary-color;
+      font-family: $primary-font;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .react-tabs__tab {
+      cursor: pointer;
+      padding: 13px 20px;
+
+      &--selected {
+        color: $primary-color;
+      }
+    }
+
+    .tab-panel {
+      padding: 12px;
+      font-family: $primary-font;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+}
