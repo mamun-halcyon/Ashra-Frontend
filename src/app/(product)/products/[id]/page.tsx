@@ -262,130 +262,133 @@ function PageDetails() {
         </div>
       </div>
 
-      <div className="container">
-        <div className="description">
-          <div className="desc">
-            <Tabs>
-              <TabList>
-                <Tab>Specification</Tab>
-                <Tab>Reviews</Tab>
-                <Tab>Video</Tab>
-                <Tab>Question</Tab>
-              </TabList>
+      <div className="more-details">
+        <div className="container">
+          <div className="description">
+            <div className="desc">
+              <Tabs>
+                <TabList>
+                  <Tab>Specification</Tab>
+                  <Tab>Reviews</Tab>
+                  <Tab>Video</Tab>
+                  <Tab>Question</Tab>
+                </TabList>
 
-              <div className="tab-panel">
-                <TabPanel>
-                  <div>
-                    <p>
-                      <strong>Model</strong>: SH-285GL
-                    </p>
-                    <p>
-                      <strong>Brand</strong>: Gazi
-                    </p>
-                    <p>
-                      <strong>Material</strong>: Ceramic
-                    </p>
-                    <p>
-                      <strong>Installation Type</strong>: Floor Mounted
-                    </p>
-                    <p>
-                      <strong>Flushing Button Type</strong>: Upper-Pressing
-                      Two-end Type
-                    </p>
-                    <p>
-                      <strong>Feature</strong>: Dual-Flush
-                    </p>
-                    <p>
-                      <strong>Drainage Pattern</strong>: S-trap
-                    </p>
-                    <p>
-                      <strong>Siphonic/S-trap</strong>: 12 inch Roughing-in
-                    </p>
-                    <p>
-                      <strong>Design Style</strong>: Modern
-                    </p>
-                    <p>
-                      <strong>Toilet Bowl Shape</strong>: D- Shape&nbsp;
-                    </p>
-                    <p>
-                      <strong>Size</strong>: 27x15.5x29 inch&nbsp;&nbsp;
-                    </p>
-                    <p>
-                      <strong>Cover Plate</strong>: Quality PP Cover &amp; WDI
-                      Fittings
-                    </p>
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <div>
-                    <p>
-                      <strong>Model</strong>: SH-285GL
-                    </p>
-                    <p>
-                      <strong>Brand</strong>: Gazi
-                    </p>
-                    <p>
-                      <strong>Material</strong>: Ceramic
-                    </p>
-                    <p>
-                      <strong>Installation Type</strong>: Floor Mounted
-                    </p>
-                    <p>
-                      <strong>Flushing Button Type</strong>: Upper-Pressing
-                      Two-end Type
-                    </p>
-                    <p>
-                      <strong>Feature</strong>: Dual-Flush
-                    </p>
-                    <p>
-                      <strong>Drainage Pattern</strong>: S-trap
-                    </p>
-                    <p>
-                      <strong>Siphonic/S-trap</strong>: 12 inch Roughing-in
-                    </p>
-                    <p>
-                      <strong>Design Style</strong>: Modern
-                    </p>
-                    <p>
-                      <strong>Toilet Bowl Shape</strong>: D- Shape&nbsp;
-                    </p>
-                    <p>
-                      <strong>Size</strong>: 27x15.5x29 inch&nbsp;&nbsp;
-                    </p>
-                    <p>
-                      <strong>Cover Plate</strong>: Quality PP Cover &amp; WDI
-                      Fittings
-                    </p>
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <h2>Any content 3</h2>
-                </TabPanel>
-                <TabPanel>
-                  <h2>Any content 4</h2>
-                </TabPanel>
-              </div>
-            </Tabs>
+                <div className="tab-panel">
+                  <TabPanel>
+                    <div>
+                      <p>
+                        <strong>Model</strong>: SH-285GL
+                      </p>
+                      <p>
+                        <strong>Brand</strong>: Gazi
+                      </p>
+                      <p>
+                        <strong>Material</strong>: Ceramic
+                      </p>
+                      <p>
+                        <strong>Installation Type</strong>: Floor Mounted
+                      </p>
+                      <p>
+                        <strong>Flushing Button Type</strong>: Upper-Pressing
+                        Two-end Type
+                      </p>
+                      <p>
+                        <strong>Feature</strong>: Dual-Flush
+                      </p>
+                      <p>
+                        <strong>Drainage Pattern</strong>: S-trap
+                      </p>
+                      <p>
+                        <strong>Siphonic/S-trap</strong>: 12 inch Roughing-in
+                      </p>
+                      <p>
+                        <strong>Design Style</strong>: Modern
+                      </p>
+                      <p>
+                        <strong>Toilet Bowl Shape</strong>: D- Shape&nbsp;
+                      </p>
+                      <p>
+                        <strong>Size</strong>: 27x15.5x29 inch&nbsp;&nbsp;
+                      </p>
+                      <p>
+                        <strong>Cover Plate</strong>: Quality PP Cover &amp; WDI
+                        Fittings
+                      </p>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div>
+                      <p>
+                        <strong>Model</strong>: SH-285GL
+                      </p>
+                      <p>
+                        <strong>Brand</strong>: Gazi
+                      </p>
+                      <p>
+                        <strong>Material</strong>: Ceramic
+                      </p>
+                      <p>
+                        <strong>Installation Type</strong>: Floor Mounted
+                      </p>
+                      <p>
+                        <strong>Flushing Button Type</strong>: Upper-Pressing
+                        Two-end Type
+                      </p>
+                      <p>
+                        <strong>Feature</strong>: Dual-Flush
+                      </p>
+                      <p>
+                        <strong>Drainage Pattern</strong>: S-trap
+                      </p>
+                      <p>
+                        <strong>Siphonic/S-trap</strong>: 12 inch Roughing-in
+                      </p>
+                      <p>
+                        <strong>Design Style</strong>: Modern
+                      </p>
+                      <p>
+                        <strong>Toilet Bowl Shape</strong>: D- Shape&nbsp;
+                      </p>
+                      <p>
+                        <strong>Size</strong>: 27x15.5x29 inch&nbsp;&nbsp;
+                      </p>
+                      <p>
+                        <strong>Cover Plate</strong>: Quality PP Cover &amp; WDI
+                        Fittings
+                      </p>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <h2>Any content 3</h2>
+                  </TabPanel>
+                  <TabPanel>
+                    <h2>Any content 4</h2>
+                  </TabPanel>
+                </div>
+              </Tabs>
+            </div>
           </div>
-        </div>
 
-        <div className="related-products mt-12">
-          <Title title="Related Products" />
-          <div className="grid grid-cols-5">
-            {[...productsData].splice(0, 5).map((product, i) => (
-              <ProductCard key={i} product={product} />
-            ))}
+          <div className="related-products mt-12">
+            <Title title="Related Products" />
+            <div className="grid grid-cols-5">
+              {[...productsData].splice(0, 5).map((product, i) => (
+                <ProductCard key={i} product={product} />
+              ))}
+            </div>
+          </div>
+
+          <div className=" pt-7 pb-24">
+            <Image
+              src={'/assets/images/ads/Group 9.png'}
+              alt="ads"
+              width={1300}
+              height={500}
+            />
           </div>
         </div>
       </div>
-      <section className="promotion">
-        <Image
-          src={'/assets/images/ads/Promotion Banners.png'}
-          alt="promotion banner"
-          width={1800}
-          height={500}
-        />
-      </section>
     </section>
   );
 }
