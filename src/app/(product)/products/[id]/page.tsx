@@ -360,7 +360,14 @@ function PageDetails() {
                     </div>
                   </TabPanel>
                   <TabPanel>
-                    <h2>Any content 3</h2>
+                    <iframe
+                      className=" w-full"
+                      height="315"
+                      src="https://www.youtube.com/embed/6FxZnI01JCs?si=EJKq6KG6nCYOFdff"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
                   </TabPanel>
                   <TabPanel>
                     <h2>Any content 4</h2>
