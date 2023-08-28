@@ -24,9 +24,14 @@ const Navbar = () => {
           </div>
           <div className=" flex-grow">
             <form className="flex items-center justify-center ">
-              <select className="select-categories px-3 h-9  focus:outline-none font-gotham font-normal text-lg text-black">
-                <option>All Categories</option>
-              </select>
+              <div
+                className="select-categories text-center
+              flex justify-center items-center  h-9 w-[165px]"
+              >
+                <h3 className=" font-gotham font-normal text-lg">
+                  All Categories
+                </h3>
+              </div>
               <input
                 type="text"
                 className="px-3 h-9 focus:outline-none w-[365px] font-gotham font-normal text-lg"
