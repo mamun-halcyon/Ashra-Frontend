@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="grid grid-cols-3 gap-4">
           <div className="basic-info">
             <Image
-              className=" mb-7"
+              className=" mb-5"
               src={'/assets/images/logo/Logo.png'}
               width={154}
               height={80}
@@ -23,7 +23,7 @@ const Footer = () => {
               <span className="mr-4">
                 <GrLocation className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-lg text-black">
+              <p className=" font-gotham font-normal text-base text-black w-[260px]">
                 37/2, Pritom Zaman Tower, Bir Protik Gazi Dastagir Road, Dhaka
                 1000
               </p>
@@ -32,7 +32,7 @@ const Footer = () => {
               <span className="mr-4">
                 <BsHeadphones className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-lg text-black">
+              <p className=" font-gotham font-normal text-base text-black">
                 +880 1766 688820
               </p>
             </div>
@@ -40,19 +40,19 @@ const Footer = () => {
               <span className="mr-4">
                 <PiEnvelopeThin className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-lg text-black">
+              <p className=" font-gotham font-normal text-base text-black">
                 info@gazihomeappliance.com
               </p>
             </div>
           </div>
           <div>
-            <h3 className="font-gotham font-bold text-2xl text-black mb-5">
+            <h3 className="font-gotham font-bold text-xl text-black mb-4">
               {customerServiceData.title}
             </h3>
             <ul>
               {customerServiceData.items.map((item, index) => (
                 <li
-                  className="font-gotham font-normal text-lg text-black mb-1"
+                  className="font-gotham font-normal text-base text-black mb-1"
                   key={index}
                 >
                   <Link href={item.href}> {item.name}</Link>
@@ -61,13 +61,13 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-gotham font-bold text-2xl text-black mb-5">
+            <h3 className="font-gotham font-bold text-xl text-black mb-4">
               {applianceData.title}
             </h3>
             <ul>
               {customerServiceData.items.map((item, index) => (
                 <li
-                  className="font-gotham font-normal text-lg text-black mb-1"
+                  className="font-gotham font-normal text-base text-black mb-1"
                   key={index}
                 >
                   <Link href={item.href}> {item.name}</Link>
@@ -155,11 +155,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className=" mt-12 py-4 bg-primary">
+      <div className=" mt-12 py-2 bg-primary">
         <div className="container">
           <div className="flex justify-between items-center">
             <div>
-              <h4 className=" font-gotham font-normal text-base text-white">
+              <h4 className=" font-gotham font-normal text-sm text-white">
                 © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
               </h4>
             </div>
