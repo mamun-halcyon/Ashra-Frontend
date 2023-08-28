@@ -51,6 +51,7 @@ export default function Home() {
                 <ExploreCard
                   className="w-1/6  mb-4 text-center  p-2"
                   key={i}
+                  href={`/category/${item.title}`}
                   item={item}
                 />
               ))}
@@ -121,7 +122,7 @@ export default function Home() {
         <section className="category-products">
           <div className="container">
             <div className="mb-12">
-              <Title title="Gas Stove" href="/" />
+              <Title title="Gas Stove" href="/category/gas-stove" />
               <div className="grid grid-cols-5 gap-4">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
@@ -129,7 +130,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mb-12">
-              <Title title="Kitchen Hood" href="/" />
+              <Title title="Kitchen Hood" href="/category/kitchen-hood" />
               <div className="grid grid-cols-5 gap-4">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
@@ -137,7 +138,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mb-12">
-              <Title title="Digital Scale" href="/" />
+              <Title title="Digital Scale" href="/category/digital-scale" />
               <div className="grid grid-cols-5 gap-4">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
