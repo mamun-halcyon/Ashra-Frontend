@@ -25,9 +25,7 @@ const Navbar = () => {
           <div className=" flex-grow">
             <form className="flex items-center justify-center ">
               <select className="select-categories px-3 h-9  focus:outline-none font-gotham font-normal text-lg text-black">
-                <option value="">All Categories</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option>All Categories</option>
               </select>
               <input
                 type="text"
@@ -41,22 +39,22 @@ const Navbar = () => {
           </div>
           <div className="w-[33%]">
             <div className="flex flex-row-reverse">
-              <div className=" relative ml-5">
+              <div className=" relative ml-6">
                 <BiUserCircle className=" text-2xl text-primary" />
               </div>
-              <div className=" relative ml-5">
+              <div className=" relative ml-6">
                 <AiOutlineHeart className=" text-2xl text-primary" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
                   0
                 </div>
               </div>
-              <div className=" relative ml-5">
+              <div className=" relative ml-6">
                 <HiOutlineShoppingBag className=" text-2xl text-primary" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
                   0
                 </div>
               </div>
-              <div className=" relative ml-5">
+              <div className=" relative ml-6">
                 <BsArrowRepeat className=" text-2xl text-primary" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
                   0
