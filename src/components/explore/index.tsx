@@ -26,7 +26,7 @@ const ExploreCard: React.FC<IProps> = ({
           alt="explore"
         />
       </Link>
-      <p className=" mt-10 text-lg font-gotham font-normal">{item.title}</p>
+      <p className=" mt-5 text-lg font-gotham font-normal">{item.title}</p>
     </div>
   );
 };
