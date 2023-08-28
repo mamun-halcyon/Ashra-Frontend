@@ -36,7 +36,7 @@ const Footer = () => {
                 +880 1766 688820
               </p>
             </div>
-            <div className="flex mb-3">
+            <div className="flex">
               <span className="mr-4">
                 <PiEnvelopeThin className=" w-5 h-5 text-black mt-1" />
               </span>
@@ -100,15 +100,15 @@ const Footer = () => {
           </div>
           <div>
             <p className=" font-gotham font-normal text-base text-black mb-2">
-              Get In Touch
+              Followers
             </p>
             <div className="flex">
               <Link href={'/'}>
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/001-facebook.png"
-                  width={20}
-                  height={20}
+                  width={15}
+                  height={15}
                   alt="social-icon"
                 />
               </Link>
@@ -116,8 +116,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/03.Instagram.png"
-                  width={20}
-                  height={20}
+                  width={15}
+                  height={15}
                   alt="social-icon"
                 />
               </Link>
@@ -125,8 +125,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/004-linkedin.png"
-                  width={20}
-                  height={20}
+                  width={15}
+                  height={15}
                   alt="social-icon"
                 />
               </Link>
@@ -134,8 +134,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/02.YouTube.png"
-                  width={20}
-                  height={20}
+                  width={15}
+                  height={15}
                   alt="social-icon"
                 />
               </Link>

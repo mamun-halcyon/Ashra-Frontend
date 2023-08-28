@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
+    <nav className="navbar shadow">
       <div className="container">
         <div className=" flex justify-between items-center py-5">
           <div className=" w-[33%]">
@@ -35,7 +35,7 @@ const Navbar = () => {
               <input
                 type="text"
                 className="px-3 h-9 focus:outline-none w-[365px] font-gotham font-normal text-lg"
-                placeholder="Search for products..."
+                placeholder="Search for Products..."
               />
               <button className="button bg-primary h-9  px-6 font-gotham font-medium text-lg text-white">
                 Search

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import './index.scss';
+import Link from 'next/link';
 
 interface IService {
   title: string;
@@ -11,19 +12,25 @@ interface IProps {
 }
 const ServiceCard: React.FC<IProps> = ({ service }) => {
   return (
-    <div className={`service-card flex justify-center items-center py-[50px]`}>
-      <Image
-        className="mr-2.5"
-        src={`/assets/images/service/service${service.image}.png`}
-        width={44}
-        height={53}
-        alt="service"
-      />
-      <div>
-        <h4 className=" font-gotham font-bold text-xl">{service.title}</h4>
-        <h6 className=" font-gotham font-bold text-base">{service.subTitle}</h6>
+    <Link href={'/'}>
+      <div
+        className={`service-card flex justify-center items-center my-[50px]`}
+      >
+        <Image
+          className="mr-2.5"
+          src={`/assets/images/service/service${service.image}.png`}
+          width={44}
+          height={53}
+          alt="service"
+        />
+        <div>
+          <h4 className=" font-gotham font-bold text-xl">{service.title}</h4>
+          <h6 className=" font-gotham font-bold text-base">
+            {service.subTitle}
+          </h6>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

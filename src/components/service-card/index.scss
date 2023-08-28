@@ -1,6 +1,9 @@
 @import '../../styles/index.scss';
 
 .service-card {
+  border: 2px solid transparent;
+  padding: 5px;
+  transition: all linear 0.3s;
   img {
     object-fit: cover;
     width: auto;
@@ -11,5 +14,8 @@
   }
   h6 {
     color: $black-color;
+  }
+  &:hover {
+    border: 2px solid $primary-color;
   }
 }
