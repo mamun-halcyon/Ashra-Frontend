@@ -5,10 +5,11 @@
     img {
       width: 70%;
       margin: 0 auto;
+      transition: all linear 0.3s;
     }
-    transition: all linear 0.3s;
     p {
       color: $black-color;
+      transition: all linear 0.3s;
     }
     &:hover {
       img {
