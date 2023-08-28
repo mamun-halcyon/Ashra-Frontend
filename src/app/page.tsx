@@ -49,7 +49,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center  ">
               {exploreData.map((item, i) => (
                 <ExploreCard
-                  className="w-1/6  card-explore text-center  p-2"
+                  className="w-1/6   text-center  p-2"
                   key={i}
                   href={`/category/${item.title}`}
                   item={item}
@@ -137,7 +137,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="mb-12">
+            <div>
               <Title title="Digital Scale" href="/category/digital-scale" />
               <div className="grid grid-cols-5 gap-4">
                 {[...productsData].slice(0, 5).map((product, i) => (
