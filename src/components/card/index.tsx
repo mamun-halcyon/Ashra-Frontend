@@ -36,11 +36,11 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
             ৳ {product.regularPrice}
           </span>
         </p>
-        <div className="text-center">
-          <Button className="font-gotham font-medium py-2 px-4 text-xs mr-2">
+        <div className="flex justify-center">
+          <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]">
             Buy Now
           </Button>
-          <Button className="font-gotham font-medium py-2 px-4 text-xs">
+          <Button className="font-gotham font-medium py-2 text-xs w-[102px]">
             Add to Cart
           </Button>
         </div>
