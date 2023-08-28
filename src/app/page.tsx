@@ -49,7 +49,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center  ">
               {exploreData.map((item, i) => (
                 <ExploreCard
-                  className="w-1/6  mb-4 text-center  p-2"
+                  className="w-1/6  card-explore text-center  p-2"
                   key={i}
                   href={`/category/${item.title}`}
                   item={item}
