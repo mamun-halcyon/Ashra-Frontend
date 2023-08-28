@@ -24,19 +24,19 @@ const TopHeader = () => {
       </div>
       <div>
         <Link
-          className="mr-2 text-primary font-gotham font-normal text-sm"
+          className="ml-6 text-primary font-gotham font-normal text-sm"
           href={'/abut'}
         >
           Help
         </Link>
         <Link
-          className="mr-2 text-primary font-gotham font-normal text-sm"
+          className="ml-6 text-primary font-gotham font-normal text-sm"
           href={'/'}
         >
           Login
         </Link>
         <Link
-          className="mr-2 text-primary font-gotham font-normal text-sm"
+          className="ml-6 text-primary font-gotham font-normal text-sm"
           href={'/'}
         >
           Registration
