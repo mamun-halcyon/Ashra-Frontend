@@ -46,12 +46,12 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
         </div>
       </div>
       <div className=" absolute top-0 left-2">
-        <li className=" list-none inline-block font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+        <span className=" sudo inline-block font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
           -12%
-        </li>
-        <li className=" list-none inline-block font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+        </span>
+        <span className=" sudo inline-block font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
           New
-        </li>
+        </span>
       </div>
       <div className=" absolute feature top-0 right-2">
         <div className="mb-1 cursor-pointer action-item">
