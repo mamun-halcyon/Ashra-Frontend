@@ -1,6 +1,6 @@
 export const exploreData = [
   {
-    image: 'image.png',
+    image: 'image1.png',
     title: 'Gas Stove',
   },
   {

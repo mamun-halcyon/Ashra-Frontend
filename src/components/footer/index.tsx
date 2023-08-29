@@ -107,8 +107,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/001-facebook.png"
-                  width={15}
-                  height={15}
+                  width={20}
+                  height={20}
                   alt="social-icon"
                 />
               </Link>
@@ -116,8 +116,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/03.Instagram.png"
-                  width={15}
-                  height={15}
+                  width={20}
+                  height={20}
                   alt="social-icon"
                 />
               </Link>
@@ -125,8 +125,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/004-linkedin.png"
-                  width={15}
-                  height={15}
+                  width={20}
+                  height={20}
                   alt="social-icon"
                 />
               </Link>

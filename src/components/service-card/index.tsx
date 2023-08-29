@@ -14,7 +14,7 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
   return (
     <Link href={'/'}>
       <div
-        className={`service-card flex justify-center items-center my-[50px]`}
+        className={`service-card flex justify-center items-center my-[40px]`}
       >
         <Image
           className="mr-2.5"
