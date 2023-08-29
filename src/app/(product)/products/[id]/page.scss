@@ -9,6 +9,9 @@
     img {
       border: 1px solid $border-color;
     }
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   .view-image {
