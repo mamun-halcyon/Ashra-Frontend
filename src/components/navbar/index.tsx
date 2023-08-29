@@ -26,18 +26,18 @@ const Navbar = () => {
             <form className="flex items-center justify-center ">
               <div
                 className="select-categories text-center
-              flex justify-center items-center  h-9 w-[165px]"
+              flex justify-center items-center  h-9 w-[145px]"
               >
-                <h3 className=" font-gotham font-normal text-lg">
+                <h3 className=" font-gotham font-normal text-sm">
                   All Categories
                 </h3>
               </div>
               <input
                 type="text"
-                className="px-3 h-9 focus:outline-none w-[365px] font-gotham font-normal text-lg"
+                className="px-3 h-9 focus:outline-none w-[365px] font-gotham font-normal text-sm"
                 placeholder="Search for Products..."
               />
-              <button className="button bg-primary h-9  px-6 font-gotham font-medium text-lg text-white">
+              <button className="button bg-primary h-9  px-6 font-gotham font-medium text-sm text-white">
                 Search
               </button>
             </form>
