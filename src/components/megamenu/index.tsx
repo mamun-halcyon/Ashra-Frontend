@@ -16,7 +16,7 @@ const MegaMenu = () => {
               <div key={i}>
                 <div className="mr-2 text-left md:cursor-pointer group">
                   <div
-                    className="py-1 px-5 font-gotham font-medium text-base flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-primary transition-all duration-75"
+                    className="py-1 px-5 font-gotham font-medium text-base flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-primary transition-all"
                     onClick={() => {
                       heading !== link.name
                         ? setHeading(link.name)
