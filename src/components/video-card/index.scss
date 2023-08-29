@@ -1,5 +1,15 @@
+@import '../../styles/index.scss';
+
 .video-card {
   iframe {
     width: 100%;
+  }
+  .video-title {
+    transition: all linear 0.3s;
+  }
+  &:hover {
+    .video-title {
+      color: $primary-color;
+    }
   }
 }

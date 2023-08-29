@@ -3,3 +3,12 @@
 .category-title {
   border-bottom: 2px solid $border-color;
 }
+
+.view {
+  transition: all linear 0.3s;
+
+  &:hover {
+    background: $primary-color;
+    color: $white-color;
+  }
+}

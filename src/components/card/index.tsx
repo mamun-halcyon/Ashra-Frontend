@@ -25,7 +25,7 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
       </Link>
 
       <div className="text ">
-        <p className=" font-gotham font-normal text-center text-sm">
+        <p className=" font-gotham product-title font-normal text-center text-sm">
           {product.title}
         </p>
         <p className=" mb-2 text-center text-sm">
@@ -46,10 +46,10 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
         </div>
       </div>
       <div className=" absolute top-0 left-2">
-        <span className=" sudo inline-block font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+        <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
           -12%
         </span>
-        <span className=" sudo inline-block font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+        <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
           New
         </span>
       </div>

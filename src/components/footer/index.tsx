@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="container">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-12">
           <div className="basic-info">
             <Image
               className=" mb-5"
@@ -23,7 +23,7 @@ const Footer = () => {
               <span className="mr-4">
                 <GrLocation className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-base text-black w-[260px]">
+              <p className=" font-gotham font-normal text-base text-black ">
                 37/2, Pritom Zaman Tower, Bir Protik Gazi Dastagir Road, Dhaka
                 1000
               </p>
@@ -46,7 +46,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h3 className="font-gotham font-bold text-xl text-black mb-4">
+            <h3 className="font-gotham font-bold text-base text-black mb-4">
               {customerServiceData.title}
             </h3>
             <ul>
@@ -61,7 +61,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-gotham font-bold text-xl text-black mb-4">
+            <h3 className="font-gotham font-bold text-base text-black mb-4">
               {applianceData.title}
             </h3>
             <ul>
@@ -106,7 +106,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <Image
                   className=" rounded w-8 h-8 mx-1"
-                  src="/assets/images/icon/001-facebook.png"
+                  src="/assets/images/icon/facebook.png"
                   width={20}
                   height={20}
                   alt="social-icon"
@@ -115,7 +115,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <Image
                   className=" rounded w-8 h-8 mx-1"
-                  src="/assets/images/icon/03.Instagram.png"
+                  src="/assets/images/icon/instagram.png"
                   width={20}
                   height={20}
                   alt="social-icon"
@@ -124,7 +124,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <Image
                   className=" rounded w-8 h-8 mx-1"
-                  src="/assets/images/icon/004-linkedin.png"
+                  src="/assets/images/icon/linkedin.png"
                   width={20}
                   height={20}
                   alt="social-icon"
@@ -133,7 +133,7 @@ const Footer = () => {
               <Link href={'/'}>
                 <Image
                   className=" rounded w-8 h-8 mx-1"
-                  src="/assets/images/icon/02.YouTube.png"
+                  src="/assets/images/icon/youtube.png"
                   width={15}
                   height={15}
                   alt="social-icon"

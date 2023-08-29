@@ -22,11 +22,31 @@
     visibility: hidden;
     transition: all linear 0.3s;
   }
+  .product-title {
+    transition: all linear 0.3s;
+  }
+  .discount {
+    transition: all linear 0.3s;
+  }
+  .new {
+    transition: all linear 0.3s;
+  }
   &:hover {
     .feature {
       transform: translateX(0px);
       opacity: 1;
       visibility: visible;
+    }
+    .discount {
+      background: $primary-color;
+      color: $white-color;
+    }
+    .new {
+      background: $primary-color;
+      color: $white-color;
+    }
+    .product-title {
+      color: $primary-color;
     }
   }
 }

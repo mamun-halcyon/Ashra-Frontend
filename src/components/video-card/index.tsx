@@ -15,7 +15,7 @@ const VideoCard: React.FC<IProps> = ({ url, title }) => {
         allowFullScreen={true}
         loading="lazy"
       ></iframe>
-      <h3 className=" font-gotham font-bold text-lg text-black text-center mt-8">
+      <h3 className="video-title font-gotham font-bold text-base text-black text-center mt-8">
         {title}
       </h3>
     </div>
