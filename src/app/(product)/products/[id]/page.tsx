@@ -161,15 +161,21 @@ function PageDetails() {
                 <div className="action">
                   <div className="flex py-5 font-gotham font-medium ">
                     <div className="mr-2 flex items-center text-primary border">
-                      <div className="p-2 cursor-pointer" onClick={decrement}>
+                      <div
+                        className="quantity cursor-pointer"
+                        onClick={decrement}
+                      >
                         <button>
                           <AiOutlineMinus />
                         </button>
                       </div>
-                      <div className="p-2 border-x-[1px] border-x-primary">
+                      <div className="quantity border-x-[1px] border-x-primary">
                         {quantity}
                       </div>
-                      <div className="p-2 cursor-pointer" onClick={increment}>
+                      <div
+                        className="quantity cursor-pointer"
+                        onClick={increment}
+                      >
                         <button>
                           <AiOutlinePlus />
                         </button>
@@ -373,7 +379,7 @@ function PageDetails() {
                   <TabPanel>
                     <iframe
                       className=" w-full"
-                      height="315"
+                      height="700px"
                       src="https://www.youtube.com/embed/6FxZnI01JCs?si=EJKq6KG6nCYOFdff"
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

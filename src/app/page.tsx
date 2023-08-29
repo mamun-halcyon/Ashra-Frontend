@@ -23,9 +23,7 @@ export default function Home() {
     <>
       <main>
         <section>
-          <div className="container ">
-            <TopHeader />
-          </div>
+          <TopHeader />
           <Navbar />
           <MegaMenu />
         </section>

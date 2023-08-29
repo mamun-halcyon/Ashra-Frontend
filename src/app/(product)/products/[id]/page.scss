@@ -55,6 +55,15 @@
   .emi {
     border-bottom: 1px solid $border-color;
   }
+  .action {
+    .quantity {
+      width: 33px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
 }
 
 .more-details {
@@ -73,9 +82,13 @@
       .react-tabs__tab {
         cursor: pointer;
         padding: 13px 20px;
+        font-size: 14px;
 
         &--selected {
           color: $primary-color;
+        }
+        &:focus-visible {
+          outline: none;
         }
       }
 
