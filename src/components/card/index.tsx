@@ -17,7 +17,7 @@ interface IProps {
 }
 const ProductCard: React.FC<IProps> = ({ product }) => {
   return (
-    <div className="product-card relative p-2 pb-0 mt-2">
+    <div className="product-card  relative p-2 pb-0 mt-2">
       <Link href={'/products/1'}>
         <div className="flex justify-center items-center pt-10 pb-5 px-6 image">
           <Image src={product.image} width={300} height={300} alt="product" />
@@ -53,7 +53,7 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
           New
         </li>
       </div>
-      <div className=" absolute top-0 right-2">
+      <div className=" absolute feature top-0 right-2">
         <div className="mb-1 cursor-pointer action-item">
           <AiOutlineHeart />
         </div>

@@ -16,4 +16,17 @@
   .action-item {
     color: #707070;
   }
+  .feature {
+    transform: translateX(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all linear 0.3s;
+  }
+  &:hover {
+    .feature {
+      transform: translateX(0px);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
