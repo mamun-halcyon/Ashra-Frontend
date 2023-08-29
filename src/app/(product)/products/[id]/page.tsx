@@ -48,7 +48,7 @@ function PageDetails() {
     infinite: false,
     speed: 500,
     arrows: true,
-    prevArrow: <IoIosArrowBack className="text-lg" />,
+    prevArrow: <IoIosArrowBack className="text-base" />,
     nextArrow: <IoIosArrowForward />,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -97,12 +97,6 @@ function PageDetails() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <div className="view-image">
-                  {/*  <Image
-                    src={viewImage}
-                    width={300}
-                    height={300}
-                    alt="product"
-                  /> */}
                   <ZoomImage image={viewImage} />
                 </div>
                 <div className="px-5 mt-5 products">
@@ -134,8 +128,8 @@ function PageDetails() {
                 </h2>
                 <div className="flex items-center text-primary font-gotham mt-1">
                   <div className=" ml-2 flex items-center">
-                    <StarRating rating={3.5} />
-                    <span className="ml-1"> Review</span>
+                    <StarRating rating={2.5} />
+                    <span className="ml-1 font-gotham text-xs"> Review</span>
                   </div>
                 </div>
 
@@ -150,17 +144,19 @@ function PageDetails() {
                   </div>
                   <div className="flex items-center">
                     <h3 className=" font-gotham font-normal text-xs text-black mr-3">
-                      Regular Price:
+                      Discount Price:
                     </h3>
-                    <h2 className="font-gotham font-normal text-2xl text-black">
+                    <h2 className="font-gotham  text-2xl text-primary font-bold">
                       ৳25,200.00
                     </h2>
                   </div>
                 </div>
                 <div className="emi">
-                  <h3 className=" font-gotham font-bold text-lg text-primary py-3">
-                    Avail Bank EMI | EMI From 1,890 Tk/month
-                  </h3>
+                  <Link href={'/'}>
+                    <h3 className=" font-gotham font-bold text-base text-primary py-3">
+                      Avail Bank EMI | EMI From 1,890 Tk/month
+                    </h3>
+                  </Link>
                 </div>
                 <div className="action">
                   <div className="flex py-5 font-gotham font-medium ">
@@ -216,10 +212,10 @@ function PageDetails() {
                       alt="service"
                     />
                     <div className="details ml-2">
-                      <h3 className=" font-gotham font-bold text-bold text-lg text-primary">
+                      <h3 className=" font-gotham font-bold text-bold text-base text-primary">
                         Cash on Delivery
                       </h3>
-                      <h4 className=" font-gotham font-bold text-bold text-sm text-black">
+                      <h4 className=" font-gotham font-bold text-bold text-xs text-black">
                         Installation Service
                       </h4>
                     </div>
@@ -232,10 +228,10 @@ function PageDetails() {
                       alt="service"
                     />
                     <div className="details ml-2">
-                      <h3 className=" font-gotham font-bold text-bold text-lg text-primary">
+                      <h3 className=" font-gotham font-bold text-bold text-base text-primary">
                         Free Home Delivery
                       </h3>
-                      <h4 className=" font-gotham font-bold text-bold text-sm text-black">
+                      <h4 className=" font-gotham font-bold text-bold text-xs text-black">
                         3 - 7 Working Days
                       </h4>
                     </div>
@@ -248,19 +244,28 @@ function PageDetails() {
                       alt="service"
                     />
                     <div className="details ml-2">
-                      <h3 className=" font-gotham font-bold text-bold text-lg text-primary">
+                      <h3 className=" font-gotham font-bold text-bold text-base text-primary">
                         Contact Us
                       </h3>
-                      <h4 className=" font-gotham font-bold text-bold text-sm text-black">
+                      <h4 className=" font-gotham font-bold text-bold text-xs text-black">
                         8801766688840
                       </h4>
                     </div>
                   </div>
                 </div>
 
-                <OutlineButton className="flex items-center font-gotham font-bold text-primary">
-                  <AiOutlineHeart className="mr-1 " /> 7 Days Replacement & 12
-                  Month Free Service
+                <OutlineButton className="flex items-center font-gotham font-bold text-primary text-xs">
+                  <span className="mr-2">
+                    <Image
+                      src={
+                        '/assets/images/icon/7 Days Replacement & 12 Month Free Service Icon.svg'
+                      }
+                      width={20}
+                      height={20}
+                      alt="icon"
+                    />
+                  </span>
+                  7 Days Replacement & 12 Month Free Service
                 </OutlineButton>
               </div>
             </div>

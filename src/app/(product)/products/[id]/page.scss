@@ -4,6 +4,11 @@
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
   padding-bottom: 50px;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
   .product-item {
     padding: 4px;
     img {

@@ -28,9 +28,11 @@ const Navbar = () => {
                 className="select-categories text-center
               flex justify-center items-center  h-9 w-[145px]"
               >
-                <h3 className=" font-gotham font-normal text-sm">
-                  All Categories
-                </h3>
+                <Link href={'/products'}>
+                  <h3 className=" font-gotham font-normal text-sm">
+                    All Categories
+                  </h3>
+                </Link>
               </div>
               <input
                 type="text"
