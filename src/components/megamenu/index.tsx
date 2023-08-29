@@ -26,10 +26,10 @@ const MegaMenu = () => {
                   >
                     {link.name}
                     <span className=" text-xs md:hidden inline">
-                      <BsChevronDown />
+                      <BsChevronDown className=" text-[5px]" />
                     </span>
                     <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
-                      <BsChevronDown className=" text-xs" />
+                      <BsChevronDown className=" text-[9px]" />
                     </span>
                   </div>
                   {link.submenu && (
