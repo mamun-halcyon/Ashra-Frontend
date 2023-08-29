@@ -55,10 +55,10 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
       </div>
       <div className=" absolute  feature top-2 right-2">
         <div className="mb-1 cursor-pointer action-item">
-          <AiOutlineHeart />
+          <AiOutlineHeart className=" hover:text-primary" />
         </div>
         <div className="mb-1 cursor-pointer action-item">
-          <BsArrowRepeat />
+          <BsArrowRepeat className=" hover:text-primary" />
         </div>
       </div>
     </div>
