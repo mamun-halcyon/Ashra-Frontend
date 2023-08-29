@@ -46,34 +46,39 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h3 className="font-gotham font-bold text-base text-black mb-4">
-              {customerServiceData.title}
-            </h3>
-            <ul>
-              {customerServiceData.items.map((item, index) => (
-                <li
-                  className="font-gotham font-normal text-base text-black mb-1"
-                  key={index}
-                >
-                  <Link href={item.href}> {item.name}</Link>
-                </li>
-              ))}
-            </ul>
+            <div className="w-[60%] mx-auto">
+              <h3 className="font-gotham font-bold text-base text-black mb-4">
+                {customerServiceData.title}
+              </h3>
+              <ul className=" mx-auto">
+                {customerServiceData.items.map((item, index) => (
+                  <li
+                    className="font-gotham font-normal text-base text-black mb-1"
+                    key={index}
+                  >
+                    <Link href={item.href}> {item.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+
           <div>
-            <h3 className="font-gotham font-bold text-base text-black mb-4">
-              {applianceData.title}
-            </h3>
-            <ul>
-              {customerServiceData.items.map((item, index) => (
-                <li
-                  className="font-gotham font-normal text-base text-black mb-1"
-                  key={index}
-                >
-                  <Link href={item.href}> {item.name}</Link>
-                </li>
-              ))}
-            </ul>
+            <div className="w-[60%] mx-auto">
+              <h3 className="font-gotham font-bold text-base text-black mb-4">
+                {applianceData.title}
+              </h3>
+              <ul className="mx-auto">
+                {customerServiceData.items.map((item, index) => (
+                  <li
+                    className="font-gotham font-normal text-base text-black mb-1"
+                    key={index}
+                  >
+                    <Link href={item.href}> {item.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-4 mt-7">
