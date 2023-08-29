@@ -134,8 +134,8 @@ const Footer = () => {
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/youtube.png"
-                  width={15}
-                  height={15}
+                  width={20}
+                  height={20}
                   alt="social-icon"
                 />
               </Link>
