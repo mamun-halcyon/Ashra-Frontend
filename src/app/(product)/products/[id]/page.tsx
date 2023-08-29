@@ -26,7 +26,7 @@ import { productsData } from '@/static/products';
 function PageDetails() {
   const [quantity, setQuantity] = useState<number>(1);
   const [viewImage, setViewImag] = useState<string>(
-    'https://i.ibb.co/gPzcHH1/product.png'
+    '/assets/images/products/product.png'
   );
 
   const handleViewImage = (url: string) => {
@@ -97,6 +97,12 @@ function PageDetails() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <div className="view-image">
+                  {/*  <Image
+                    src={viewImage}
+                    width={300}
+                    height={300}
+                    alt="product"
+                  /> */}
                   <ZoomImage image={viewImage} />
                 </div>
                 <div className="px-5 mt-5 products">
