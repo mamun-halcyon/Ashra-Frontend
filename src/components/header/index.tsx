@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { BiSolidPhone } from 'react-icons/bi';
 import { AiFillBell } from 'react-icons/ai';
+import { BsChevronDown } from 'react-icons/bs';
 import './index.scss';
 
 const TopHeader = () => {
@@ -30,6 +31,9 @@ const TopHeader = () => {
             href={'/abut'}
           >
             Help
+            <span>
+              <BsChevronDown className="inline text-[9px] font-bold ml-1" />
+            </span>
           </Link>
           <div className="absolute opacity-0 invisible  group-hover:visible help-item sibling w-[150px] p-2 top-8  z-10 left-0">
             <ul className="   bg-[#fff] font-gotham font-normal text-sm text-black">

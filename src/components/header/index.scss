@@ -2,10 +2,6 @@
 
 .sub-link {
   transition: all linear 0.3s;
-
-  &:hover {
-    color: $senary-color;
-  }
 }
 .help-item {
   opacity: 1;
