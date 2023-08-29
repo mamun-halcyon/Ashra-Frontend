@@ -115,13 +115,13 @@ const MegaMenu = () => {
           </div>
           <div>
             <Link
-              className=" font-gotham font-medium text-base text-black hover:text-primary "
+              className=" font-gotham font-medium text-xs text-black hover:text-primary "
               href={'/videos'}
             >
               Videos
             </Link>
             <Link
-              className=" font-gotham font-medium text-base text-black hover:text-primary ml-14"
+              className=" font-gotham font-medium text-xs text-black hover:text-primary ml-14"
               href={'/blogs'}
             >
               Blogs
