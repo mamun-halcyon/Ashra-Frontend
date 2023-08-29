@@ -103,7 +103,7 @@ const Footer = () => {
               Followers
             </p>
             <div className="flex">
-              <Link href={'/'}>
+              <Link href={'https://www.facebook.com'} target="_blank">
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/facebook.png"
@@ -112,7 +112,7 @@ const Footer = () => {
                   alt="social-icon"
                 />
               </Link>
-              <Link href={'/'}>
+              <Link href={'/'} target="_blank">
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/instagram.png"
@@ -121,7 +121,7 @@ const Footer = () => {
                   alt="social-icon"
                 />
               </Link>
-              <Link href={'/'}>
+              <Link href={'/'} target="_blank">
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/linkedin.png"
@@ -130,7 +130,7 @@ const Footer = () => {
                   alt="social-icon"
                 />
               </Link>
-              <Link href={'/'}>
+              <Link href={'/'} target="_blank">
                 <Image
                   className=" rounded w-8 h-8 mx-1"
                   src="/assets/images/icon/youtube.png"
