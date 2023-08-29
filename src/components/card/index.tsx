@@ -17,7 +17,7 @@ interface IProps {
 }
 const ProductCard: React.FC<IProps> = ({ product }) => {
   return (
-    <div className="product-card group relative p-2  mt-2">
+    <div className="product-card group relative p-3  mt-2">
       <Link href={'/products/1'}>
         <div className="flex justify-center items-center pt-10 pb-5 px-6 image">
           <Image src={product.image} width={300} height={300} alt="product" />
