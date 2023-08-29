@@ -100,7 +100,7 @@ const Footer = () => {
           </div>
           <div>
             <p className=" font-gotham font-normal text-base text-black mb-2">
-              Followers
+              Follow Us
             </p>
             <div className="flex">
               <Link href={'https://www.facebook.com'} target="_blank">
