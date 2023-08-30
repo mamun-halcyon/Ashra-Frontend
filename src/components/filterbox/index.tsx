@@ -9,10 +9,10 @@ interface IProps {
 const FilterBox: React.FC<IProps> = ({ title, children }) => {
   return (
     <div className="filter-box mb-3">
-      <div className="title pl-5 py-2">
+      <div className="title px-5 py-2">
         <h2 className=" font-gotham font-medium text-sm ">{title}</h2>
       </div>
-      <div className="pl-5">{children}</div>
+      <div className="px-5 py-3">{children}</div>
     </div>
   );
 };
