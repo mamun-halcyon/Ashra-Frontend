@@ -7,9 +7,4 @@
   .video-title {
     transition: all linear 0.3s;
   }
-  &:hover {
-    .video-title {
-      color: $primary-color;
-    }
-  }
 }

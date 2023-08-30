@@ -1,0 +1,9 @@
+@import '../../styles/index.scss';
+
+.filter-box {
+  border: 1px solid $border-color;
+
+  .title {
+    border-bottom: 1px solid $border-color;
+  }
+}
