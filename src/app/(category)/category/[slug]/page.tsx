@@ -14,6 +14,11 @@ function Category() {
           </div>
         </div>
       </section>
+      <section>
+        <div className="grid grid-cols-6 gap-4">
+          <div className="col-span-5"></div>
+        </div>
+      </section>
     </main>
   );
 }
