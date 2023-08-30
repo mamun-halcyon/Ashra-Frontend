@@ -121,7 +121,7 @@ export default function Home() {
           <div className="container">
             <div className="mb-12">
               <Title title="Gas Stove" href="/category/gas-stove" />
-              <div className="grid grid-cols-5 gap-4">
+              <div className="grid grid-cols-5 gap-5">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -129,7 +129,7 @@ export default function Home() {
             </div>
             <div className="mb-12">
               <Title title="Kitchen Hood" href="/category/kitchen-hood" />
-              <div className="grid grid-cols-5 gap-4">
+              <div className="grid grid-cols-5 gap-5">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
             <div>
               <Title title="Digital Scale" href="/category/digital-scale" />
-              <div className="grid grid-cols-5 gap-4">
+              <div className="grid grid-cols-5 gap-5">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
