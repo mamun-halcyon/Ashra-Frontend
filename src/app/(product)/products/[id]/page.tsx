@@ -89,9 +89,9 @@ function PageDetails() {
             <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-5">
               <Link href={'/'}>Home</Link>
               <RiArrowDropRightLine className=" text-xl" />
-              <Link href={'/bathware'}> Bathware </Link>
+              <Link href={'/category/bathware'}> Bathware </Link>
               <RiArrowDropRightLine className=" text-xl" />
-              <Link href={'/Commode'}> Commode </Link>
+              <Link href={'/subcagory/Commode'}> Commode </Link>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

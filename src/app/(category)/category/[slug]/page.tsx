@@ -32,7 +32,7 @@ function Category() {
                   <li>
                     <Link
                       className=" font-gotham font-normal text-xs"
-                      href={'/category/gas-stove'}
+                      href={'/category/kitchen-hod'}
                     >
                       Kitchen Hood
                     </Link>
@@ -40,7 +40,7 @@ function Category() {
                   <li>
                     <Link
                       className=" font-gotham font-normal text-xs"
-                      href={'/category/gas-stove'}
+                      href={'/category/cookware'}
                     >
                       Cookware
                     </Link>
@@ -48,7 +48,7 @@ function Category() {
                   <li>
                     <Link
                       className=" font-gotham font-normal text-xs"
-                      href={'/category/gas-stove'}
+                      href={'/category/digital-scale'}
                     >
                       Digital Scale
                     </Link>
