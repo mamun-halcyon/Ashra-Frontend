@@ -1,0 +1,14 @@
+@import '../../styles/index.scss';
+
+.from-group {
+  .form-input {
+    border: 1px solid $border-color;
+    padding: 10px 5px;
+    &::placeholder {
+      font-style: italic;
+    }
+    &:focus-visible {
+      outline: $border-color;
+    }
+  }
+}

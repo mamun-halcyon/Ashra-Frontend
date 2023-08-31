@@ -1,0 +1,23 @@
+@import '../../styles/index.scss';
+
+.box {
+  border: 1px solid $border-color;
+  .header {
+    padding: 10px 20px;
+    border-bottom: 1px solid $border-color;
+    .step {
+      width: 20px;
+      height: 20px;
+      background: $primary-color;
+      color: $white-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+  .content {
+    padding: 10px 20px;
+  }
+}

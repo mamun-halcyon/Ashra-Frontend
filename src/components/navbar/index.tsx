@@ -49,24 +49,30 @@ const Navbar = () => {
               <div className=" relative ml-6">
                 <BiUserCircle className=" text-2xl text-primary" />
               </div>
-              <div className=" relative ml-6">
-                <AiOutlineHeart className=" text-2xl text-primary" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
-                  0
+              <Link href={'/wishlist'}>
+                <div className=" relative ml-6">
+                  <AiOutlineHeart className=" text-2xl text-primary" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
+                    0
+                  </div>
                 </div>
-              </div>
-              <div className=" relative ml-6">
-                <HiOutlineShoppingBag className=" text-2xl text-primary" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
-                  0
+              </Link>
+              <Link href={'/cart'}>
+                <div className=" relative ml-6">
+                  <HiOutlineShoppingBag className=" text-2xl text-primary" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
+                    0
+                  </div>
                 </div>
-              </div>
-              <div className=" relative ml-6">
-                <BsArrowRepeat className=" text-2xl text-primary" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
-                  0
+              </Link>
+              <Link href={'/compare'}>
+                <div className=" relative ml-6">
+                  <BsArrowRepeat className=" text-2xl text-primary" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
+                    0
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
