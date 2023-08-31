@@ -23,7 +23,11 @@ function Checkout() {
           <form>
             <div className="grid grid-cols-3 gap-4">
               <div className=" col-span-1">
-                <Box step="1" title="Customer Information">
+                <Box
+                  className=" text-primary"
+                  step="1"
+                  title="Customer Information"
+                >
                   <FormGrout
                     className="mb-1"
                     title="Full Name*"
@@ -32,6 +36,7 @@ function Checkout() {
                   />
                   <FormGrout
                     className="mb-1"
+                    type="email"
                     title="Email*"
                     placeholder="Type your e-mail*"
                     required
@@ -50,7 +55,9 @@ function Checkout() {
                   />
                 </Box>
               </div>
-              <div className=" col-span-2">fdfas</div>
+              <div className=" col-span-2">
+                <button type="submit">Submit</button>
+              </div>
             </div>
           </form>
         </div>
