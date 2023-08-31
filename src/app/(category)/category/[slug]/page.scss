@@ -84,3 +84,12 @@
     }
   }
 }
+
+.bottom-filter {
+  .action-area {
+    border: 1px solid $border-color;
+  }
+  .active {
+    border: 1px solid $border-color;
+  }
+}

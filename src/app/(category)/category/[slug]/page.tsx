@@ -305,7 +305,7 @@ function Category() {
                 </div>
               </div>
 
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mt-5 bottom-filter">
                 <div>
                   <ActionButton title={showTitle}>
                     <ul>
