@@ -6,9 +6,43 @@ import { RiArrowDropRightLine } from 'react-icons/ri';
 import ReactSlider from 'react-slider';
 import './page.scss';
 import Image from 'next/image';
+import { AiOutlineBars } from 'react-icons/ai';
+import { PiDotsNineBold } from 'react-icons/pi';
+import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
+import ActionButton from '@/components/action';
+import { productsData } from '@/static/products';
+import ProductCard from '@/components/card';
 
 function Category() {
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
+  const [page, setPage] = useState(1);
+  const [isRow, setIsRow] = useState<boolean>(true);
+  const [showItem, setShowItem] = useState<number>(12);
+  const [showTitle, setShowTitle] = useState<string>('Show');
+  const [filter, setFilter] = useState<string>('Sort by');
+  const [filterTitle, setFilterTitle] = useState<string>('Sort by');
+
+  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const clickedElement = event.target as HTMLLIElement;
+    const innerText = clickedElement.innerText;
+    setShowTitle(`Show ${innerText}`);
+  };
+
+  const handleFilter = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const clickedElement = event.target as HTMLLIElement;
+    const innerText = clickedElement.innerText;
+    setFilterTitle(innerText);
+  };
+
+  const incrementPage = () => {
+    setPage(page + 1);
+  };
+
+  const decrementPage = () => {
+    if (page !== 0) {
+      setPage(page - 1);
+    }
+  };
 
   const handlePriceChange = (newValue: [number, number]) => {
     setPriceRange(newValue);
@@ -131,7 +165,7 @@ function Category() {
                     trackClassName="example-track"
                     value={priceRange}
                     min={0}
-                    max={8000}
+                    max={50000}
                     step={1} // Adjust step size as needed
                     minDistance={500}
                     onChange={handlePriceChange}
@@ -154,7 +188,7 @@ function Category() {
               </FilterBox>
             </div>
             <div className="col-span-5">
-              <div className="category-banner">
+              <div className="category-banner mb-5">
                 <Image
                   className="w-full"
                   src={'/assets/images/banner/categorybanner.png'}
@@ -162,6 +196,161 @@ function Category() {
                   height={300}
                   alt="gazi category-banner"
                 />
+              </div>
+              <div className="flex justify-between items-center filter-bar py-3 px-5 mb-5">
+                <div className=" flex items-center">
+                  <span
+                    className={`${isRow ? 'active' : null} p-1 mr-2 `}
+                    onClick={() => setIsRow(true)}
+                  >
+                    <PiDotsNineBold className="text-xl icon" />
+                  </span>
+                  <span
+                    className={`${!isRow ? 'active' : null} p-1 `}
+                    onClick={() => setIsRow(false)}
+                  >
+                    <AiOutlineBars className="text-xl icon" />
+                  </span>
+                </div>
+                <div className="action flex items-center">
+                  <div>
+                    <ActionButton title={filterTitle}>
+                      <ul>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleFilter}
+                        >
+                          Newest
+                        </li>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleFilter}
+                        >
+                          Oldest
+                        </li>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleFilter}
+                        >
+                          Price low to high
+                        </li>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleFilter}
+                        >
+                          Price high to low
+                        </li>
+                      </ul>
+                    </ActionButton>
+                  </div>
+
+                  <div className="ml-2">
+                    <ActionButton title={showTitle}>
+                      <ul>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleShow}
+                        >
+                          12
+                        </li>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleShow}
+                        >
+                          16
+                        </li>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleShow}
+                        >
+                          20
+                        </li>
+                        <li
+                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                          onClick={handleShow}
+                        >
+                          24
+                        </li>
+                      </ul>
+                    </ActionButton>
+                  </div>
+                  <div className="flex items-center ml-2">
+                    <div
+                      className=" cursor-pointer p-1"
+                      onClick={decrementPage}
+                    >
+                      <IoMdArrowDropleft />
+                    </div>
+                    <div className=" font-gotham font-normal text-xs flex items-center">
+                      <div className="active w-5 h-5 flex items-center justify-center ">
+                        {page}
+                      </div>
+                      <p>of 2</p>
+                    </div>
+                    <div
+                      className=" cursor-pointer p-1"
+                      onClick={incrementPage}
+                    >
+                      <IoMdArrowDropright />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="filter-products">
+                <div className="grid grid-cols-4 gap-4 mb-5">
+                  {[...productsData].slice(0, 8).map((product, i) => (
+                    <ProductCard key={i} product={product} />
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <div>
+                  <ActionButton title={showTitle}>
+                    <ul>
+                      <li
+                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                        onClick={handleShow}
+                      >
+                        12
+                      </li>
+                      <li
+                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                        onClick={handleShow}
+                      >
+                        16
+                      </li>
+                      <li
+                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                        onClick={handleShow}
+                      >
+                        20
+                      </li>
+                      <li
+                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                        onClick={handleShow}
+                      >
+                        24
+                      </li>
+                    </ul>
+                  </ActionButton>
+                </div>
+
+                <div className="flex items-center">
+                  <div className=" cursor-pointer p-1" onClick={decrementPage}>
+                    <IoMdArrowDropleft />
+                  </div>
+                  <div className=" font-gotham font-normal text-xs flex items-center">
+                    <div className="active w-5 h-5 flex items-center justify-center ">
+                      {page}
+                    </div>
+                    <p>of 2</p>
+                  </div>
+                  <div className=" cursor-pointer p-1" onClick={incrementPage}>
+                    <IoMdArrowDropright />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

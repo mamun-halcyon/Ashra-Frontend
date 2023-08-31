@@ -1,0 +1,28 @@
+@import '../../styles//index.scss';
+
+.action-area {
+  padding: 7px 11px;
+  min-width: 70px;
+  background: $white-color;
+  .action-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    right: 0;
+    top: 40px;
+    background: $white-color;
+    transition: all linear 0.3s;
+    z-index: 1;
+  }
+  &:hover {
+    .action-wrapper {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  .action-item {
+    &:hover {
+      background: $secondary-color;
+    }
+  }
+}
