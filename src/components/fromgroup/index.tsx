@@ -11,7 +11,7 @@ interface IProps {
   className: string;
   type?: string;
 }
-const FormGrout: FC<IProps> = ({
+const FormGroup: FC<IProps> = ({
   className,
   name,
   id,
@@ -41,4 +41,4 @@ const FormGrout: FC<IProps> = ({
   );
 };
 
-export default FormGrout;
+export default FormGroup;
