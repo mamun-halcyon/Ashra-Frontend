@@ -1,11 +1,29 @@
+'use client';
+
 import Box from '@/components/box';
 import FormGroup from '@/components/fromgroup';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 
 function Checkout() {
+  const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+
+  const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedPaymentValue = event.target.name;
+
+    if (selectedPayment === selectedPaymentValue) {
+      setSelectedPayment(null);
+    } else {
+      setSelectedPayment(selectedPaymentValue);
+    }
+  };
+
+  const handleOrder = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <main>
       <section>
@@ -21,7 +39,7 @@ function Checkout() {
       </section>
       <section>
         <div className="container">
-          <form>
+          <form onSubmit={handleOrder}>
             <div className="grid grid-cols-3 gap-4">
               <div className=" col-span-1">
                 <Box
@@ -78,6 +96,38 @@ function Checkout() {
                     <p className=" font-gotham font-normal text-xs text-black">
                       Select a payment method
                     </p>
+                    <div className="py-2">
+                      <div className="flex  items-center">
+                        <input
+                          type="checkbox"
+                          name="cashOnDelivery"
+                          id="cashOnDelivery"
+                          checked={selectedPayment === 'cashOnDelivery'}
+                          onChange={handlePaymentChange}
+                        />
+                        <label
+                          className="font-gotham font-normal text-xs text-black ml-1"
+                          htmlFor="cash"
+                        >
+                          Cash on Delivery
+                        </label>
+                      </div>
+                      <div>
+                        <input
+                          type="checkbox"
+                          name="onlinePayment"
+                          id="onlinePayment"
+                          checked={selectedPayment === 'onlinePayment'}
+                          onChange={handlePaymentChange}
+                        />
+                        <label
+                          className="font-gotham font-normal text-xs text-black ml-1"
+                          htmlFor="online"
+                        >
+                          Online Payment
+                        </label>
+                      </div>
+                    </div>
                     <p className=" font-gotham font-normal text-xs text-black">
                       We Accept
                     </p>
@@ -99,6 +149,7 @@ function Checkout() {
                 </div>
               </div>
             </div>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </section>
