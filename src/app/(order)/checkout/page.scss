@@ -34,8 +34,33 @@
   }
   .content {
     padding: 9px 15px;
+    border: 1px solid $border-color;
+    border-top: 0;
     .text {
       color: $octonary-color;
     }
+  }
+}
+
+.order-summery {
+  .content {
+    padding: 0;
+  }
+  .heading-table {
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    &:last-child {
+      border-right: 0;
+    }
+  }
+  .sub-border {
+    border-top: 1px solid $border-color;
+  }
+}
+
+.accepted {
+  border-bottom: 1px solid $border-color;
+  .sudo {
+    color: $octonary-color;
   }
 }

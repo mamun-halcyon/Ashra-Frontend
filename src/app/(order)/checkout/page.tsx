@@ -222,14 +222,14 @@ function Checkout() {
                     </div>
                   </div>
                 </div>
-                <div className="wearing mt-6">
+                <div className="wearing mt-6 ">
                   <Tabs>
                     <TabList>
                       <Tab className="font-gotham font-bold text-xs mr-9 pr-5 pb-2 react-tabs__tab cursor-pointer">
-                        Top Sales
+                        Cash on Delivery
                       </Tab>
                       <Tab className="font-gotham font-bold text-xs mr-9 pr-5 pb-2 react-tabs__tab cursor-pointer">
-                        New Arrivals
+                        Online Payment
                       </Tab>
                     </TabList>
                     <TabPanel>
@@ -255,30 +255,89 @@ function Checkout() {
                     </TabPanel>
                   </Tabs>
                 </div>
-                <Box className="mt-6" step="4" title="Order Summary">
-                  <table className="caption-top hover:caption-bottom">
-                    <thead>
-                      <tr>
-                        <th>Wrestler</th>
-                        <th>Signature Move(s)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{'Stone Cold'} Steve Austin</td>
-                        <td>Stone Cold Stunner, Lou Thesz Press</td>
-                      </tr>
-                      <tr>
-                        <td>Bret {'The Hitman'} Hart</td>
-                        <td>The Sharpshooter</td>
-                      </tr>
-                      <tr>
-                        <td>Razor Ramon</td>
-                        <td>Razor's Edge, Fallaway Slam</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <Box
+                  className="mt-6 order-summery"
+                  step="4"
+                  title="Order Summary"
+                >
+                  <div className="summery-table w-full h-full">
+                    <div className="grid grid-cols-5">
+                      <div className="heading-table col-span-3 p-3 font-gotham font-normal text-xs text-black">
+                        Product Name
+                      </div>
+                      <div className="heading-table p-3 font-gotham font-normal text-xs text-black">
+                        Price
+                      </div>
+                      <div className="heading-table p-3 font-gotham font-normal text-xs text-black">
+                        Total
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-5">
+                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black">
+                        HY-955 - Gazi Smiss Kitchen Hood
+                      </div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        ৳24,000.00 x 1
+                      </div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        ৳24,000.00
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-5 sub-border">
+                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        Sub-Total :
+                      </div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        ৳24,000.00
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-5 sub-border">
+                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        Home Delivery :
+                      </div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        ৳0.00
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-5 sub-border">
+                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        Total :
+                      </div>
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                        ৳24,000.00
+                      </div>
+                    </div>
+                  </div>
                 </Box>
+                <div className="accepted">
+                  <div className="py-6">
+                    <div className="flex">
+                      <input
+                        className="mr-2"
+                        type="checkbox"
+                        name="accept"
+                        id="accept"
+                        required
+                      />
+                      <label
+                        htmlFor="accept"
+                        className=" font-gotham font-normal text-xs"
+                      >
+                        I have read and agree to the{' '}
+                        <span className="sudo">
+                          {' '}
+                          Terms and Conditions, Privacy Policy
+                        </span>{' '}
+                        and{' '}
+                        <span className="sudo">Refund and Return Policy</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="text-right mt-6">
                   <Button
                     className="font-gotham font-medium py-2 text-xs w-[142px] button"
