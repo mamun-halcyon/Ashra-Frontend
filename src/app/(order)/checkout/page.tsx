@@ -215,7 +215,10 @@ function Checkout() {
                           type="text"
                           placeholder="Promo Code"
                         />
-                        <Button className="font-gotham font-medium py-2 text-xs  w-1/4 button">
+                        <Button
+                          type="button"
+                          className="font-gotham font-medium py-2 text-xs  w-1/4 button"
+                        >
                           Apply Promo
                         </Button>
                       </div>
@@ -272,7 +275,7 @@ function Checkout() {
                         Total
                       </div>
                     </div>
-                    <div className="grid grid-cols-5">
+                    <div className="grid grid-cols-5 pb-5">
                       <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black">
                         HY-955 - Gazi Smiss Kitchen Hood
                       </div>
@@ -285,28 +288,28 @@ function Checkout() {
                     </div>
                     <div className="grid grid-cols-5 sub-border">
                       <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham  text-xs text-primary font-medium">
                         Sub-Total :
                       </div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham  text-xs text-primary font-medium">
                         ৳24,000.00
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
                       <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham text-xs text-primary font-medium">
                         Home Delivery :
                       </div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham text-xs text-primary font-medium">
                         ৳0.00
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="col-span-3 p-3 font-gotham text-xs text-primary font-medium"></div>
+                      <div className="p-3 font-gotham text-xs text-primary font-medium">
                         Total :
                       </div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham text-xs text-primary font-medium">
                         ৳24,000.00
                       </div>
                     </div>
