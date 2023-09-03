@@ -1,5 +1,4 @@
 'use client';
-
 import Box from '@/components/box';
 import FormGroup from '@/components/fromgroup';
 import { toast } from 'react-toastify';
@@ -7,6 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
+import Button from '@/components/button';
+import './page.scss';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
@@ -157,58 +159,136 @@ function Checkout() {
                     </p>
                     <Image
                       src={'/assets/images/service/card-logo.png'}
-                      className="w-9/12"
+                      className="w-9/12 mt-2"
                       width={200}
                       height={100}
                       alt="logo"
                     />
                   </Box>
-                  <Box
-                    className=" text-primary"
-                    step="2"
-                    title="Payment Method"
-                  >
-                    <p>Select a delivery method</p>
+                  <div>
+                    <Box
+                      className=" text-primary"
+                      step="3"
+                      title="Delivery Method"
+                    >
+                      <p>Select a delivery method</p>
 
-                    <div className="py-2">
-                      <div className="flex  items-center">
-                        <input
-                          type="checkbox"
-                          name="homeDelivery"
-                          id="homeDelivery"
-                          checked={
-                            selectedPaymentDeliveryStatus === 'homeDelivery'
-                          }
-                          onChange={handlePaymentStatusChange}
-                        />
-                        <label
-                          className="font-gotham font-normal text-xs text-black ml-1"
-                          htmlFor="homeDelivery"
-                        >
-                          Home Delivery
-                        </label>
+                      <div className="py-2">
+                        <div className="flex  items-center">
+                          <input
+                            type="checkbox"
+                            name="homeDelivery"
+                            id="homeDelivery"
+                            checked={
+                              selectedPaymentDeliveryStatus === 'homeDelivery'
+                            }
+                            onChange={handlePaymentStatusChange}
+                          />
+                          <label
+                            className="font-gotham font-normal text-xs text-black ml-1"
+                            htmlFor="homeDelivery"
+                          >
+                            Home Delivery
+                          </label>
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            name="pickup"
+                            id="pickup"
+                            checked={selectedPaymentDeliveryStatus === 'pickup'}
+                            onChange={handlePaymentStatusChange}
+                          />
+                          <label
+                            className="font-gotham font-normal text-xs text-black ml-1"
+                            htmlFor="online"
+                          >
+                            Pickup
+                          </label>
+                        </div>
                       </div>
-                      <div>
+                    </Box>
+                    <div className="mt-4">
+                      <div className="flex">
                         <input
-                          type="checkbox"
-                          name="pickup"
-                          id="pickup"
-                          checked={selectedPaymentDeliveryStatus === 'pickup'}
-                          onChange={handlePaymentStatusChange}
+                          className="w-3/4 block form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs text-black promo-box"
+                          type="text"
+                          placeholder="Promo Code"
                         />
-                        <label
-                          className="font-gotham font-normal text-xs text-black ml-1"
-                          htmlFor="online"
-                        >
-                          Pickup
-                        </label>
+                        <Button className="font-gotham font-medium py-2 text-xs  w-1/4 button">
+                          Apply Promo
+                        </Button>
                       </div>
                     </div>
-                  </Box>
+                  </div>
+                </div>
+                <div className="wearing mt-6">
+                  <Tabs>
+                    <TabList>
+                      <Tab className="font-gotham font-bold text-xs mr-9 pr-5 pb-2 react-tabs__tab cursor-pointer">
+                        Top Sales
+                      </Tab>
+                      <Tab className="font-gotham font-bold text-xs mr-9 pr-5 pb-2 react-tabs__tab cursor-pointer">
+                        New Arrivals
+                      </Tab>
+                    </TabList>
+                    <TabPanel>
+                      <div className="content">
+                        <p className="text font-gotham font-normal bold text-xs">
+                          ধন্যবাদ আপনার অর্ডারের জন্য। আমাদের অফিশিয়াল ফোন কল না
+                          পাওয়া পর্যন্ত আপনার অর্ডারটি পেন্ডিং -এ থাকবে। (Thank
+                          you for your order. Your order is pending until the
+                          official phone call confirmation)
+                        </p>
+                      </div>
+                    </TabPanel>
+                    <TabPanel>
+                      <div className="content">
+                        <p className="text font-gotham font-normal bold text-xs">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Ipsum illum sint laudantium nesciunt rerum, esse
+                          quod assumenda repellendus accusamus velit optio quo
+                          odit, dolor rem laboriosam commodi deserunt dolorem
+                          illo?
+                        </p>
+                      </div>
+                    </TabPanel>
+                  </Tabs>
+                </div>
+                <Box className="mt-6" step="4" title="Order Summary">
+                  <table className="caption-top hover:caption-bottom">
+                    <thead>
+                      <tr>
+                        <th>Wrestler</th>
+                        <th>Signature Move(s)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{'Stone Cold'} Steve Austin</td>
+                        <td>Stone Cold Stunner, Lou Thesz Press</td>
+                      </tr>
+                      <tr>
+                        <td>Bret {'The Hitman'} Hart</td>
+                        <td>The Sharpshooter</td>
+                      </tr>
+                      <tr>
+                        <td>Razor Ramon</td>
+                        <td>Razor's Edge, Fallaway Slam</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </Box>
+                <div className="text-right mt-6">
+                  <Button
+                    className="font-gotham font-medium py-2 text-xs w-[142px] button"
+                    type="submit"
+                  >
+                    Confirm Order
+                  </Button>
                 </div>
               </div>
             </div>
-            <button type="submit">Submit</button>
           </form>
         </div>
       </section>
