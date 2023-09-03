@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { ToastContainer } from 'react-toastify';
 import { Poppins } from 'next/font/google';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -56,6 +57,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${Gotham.variable} ${poppins.variable}`}>
         {children}
+        <ToastContainer />
       </body>
     </html>
   );

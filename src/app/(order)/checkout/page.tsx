@@ -2,6 +2,7 @@
 
 import Box from '@/components/box';
 import FormGroup from '@/components/fromgroup';
+import { toast } from 'react-toastify';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -9,6 +10,8 @@ import { RiArrowDropRightLine } from 'react-icons/ri';
 
 function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+  const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
+    useState<string | null>(null);
 
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedPaymentValue = event.target.name;
@@ -19,9 +22,30 @@ function Checkout() {
       setSelectedPayment(selectedPaymentValue);
     }
   };
+  const handlePaymentStatusChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const selectedPaymentDeliveryStatusValue = event.target.name;
+
+    if (selectedPayment === selectedPaymentDeliveryStatusValue) {
+      setSelectedPaymentDeliveryStatus(null);
+    } else {
+      setSelectedPaymentDeliveryStatus(selectedPaymentDeliveryStatusValue);
+    }
+  };
 
   const handleOrder = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!selectedPayment) {
+      toast.error('Please Select payment method');
+      return;
+    }
+    if (!selectedPaymentDeliveryStatus) {
+      toast.error('Please Select delivery method');
+    }
+    console.log(selectedPayment);
+    console.log(setSelectedPaymentDeliveryStatus);
   };
 
   return (
@@ -145,6 +169,41 @@ function Checkout() {
                     title="Payment Method"
                   >
                     <p>Select a delivery method</p>
+
+                    <div className="py-2">
+                      <div className="flex  items-center">
+                        <input
+                          type="checkbox"
+                          name="homeDelivery"
+                          id="homeDelivery"
+                          checked={
+                            selectedPaymentDeliveryStatus === 'homeDelivery'
+                          }
+                          onChange={handlePaymentStatusChange}
+                        />
+                        <label
+                          className="font-gotham font-normal text-xs text-black ml-1"
+                          htmlFor="homeDelivery"
+                        >
+                          Home Delivery
+                        </label>
+                      </div>
+                      <div>
+                        <input
+                          type="checkbox"
+                          name="pickup"
+                          id="pickup"
+                          checked={selectedPaymentDeliveryStatus === 'pickup'}
+                          onChange={handlePaymentStatusChange}
+                        />
+                        <label
+                          className="font-gotham font-normal text-xs text-black ml-1"
+                          htmlFor="online"
+                        >
+                          Pickup
+                        </label>
+                      </div>
+                    </div>
                   </Box>
                 </div>
               </div>
