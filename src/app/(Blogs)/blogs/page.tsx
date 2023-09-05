@@ -20,7 +20,7 @@ function Blogs() {
 
       <section className="blog">
         <div className="container">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-6">
             {BlogData.map((blog, index) => (
               <BlogCard key={index} blog={blog} />
             ))}
