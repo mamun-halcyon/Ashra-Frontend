@@ -1,7 +1,12 @@
 import React from 'react';
+import styles from './loading.module.scss';
 
 const Loader = () => {
-  return <div>Loading...</div>;
+  return (
+    <div className={styles.loadingContainer}>
+      <div className={styles.loadingSpinner}></div>
+    </div>
+  );
 };
 
 export default Loader;
