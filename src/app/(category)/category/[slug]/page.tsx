@@ -74,8 +74,8 @@ function Category() {
       </section>
       <section>
         <div className="container">
-          <div className="grid grid-cols-6 gap-4">
-            <div>
+          <div className="grid grid-cols-8 gap-4">
+            <div className="col-span-2">
               <FilterBox title="Category">
                 <ul>
                   <li>
@@ -173,7 +173,7 @@ function Category() {
                 </div>
                 <div className="flex w-full justify-between mt-2">
                   <input
-                    className="price-input font-gotham f"
+                    className="price-input font-gotham font-medium text-xs"
                     type="number"
                     value={priceRange[0]}
                     onChange={handleMinPrice}
@@ -187,7 +187,7 @@ function Category() {
                 </div>
               </FilterBox>
             </div>
-            <div className="col-span-5">
+            <div className="col-span-6">
               <div className="category-banner mb-5">
                 <Image
                   className="w-full"
@@ -197,7 +197,7 @@ function Category() {
                   alt="gazi category-banner"
                 />
               </div>
-              <div className="flex justify-between items-center filter-bar py-3 px-5 mb-5">
+              <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5">
                 <div className=" flex items-center">
                   <span
                     className={`${isRow ? 'active' : null} p-1 mr-2 `}
