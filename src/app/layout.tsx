@@ -35,12 +35,14 @@ const Gotham = localFont({
     },
   ],
   variable: '--font-gotham',
+  preload: true,
 });
 
 const poppins = Poppins({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-poppins',
+  preload: true,
 });
 
 export const metadata: Metadata = {
