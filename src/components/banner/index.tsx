@@ -3,6 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import './index.scss';
+import Link from 'next/link';
 
 const settings = {
   dots: true,
@@ -19,40 +20,48 @@ const Banner = () => {
     <div className="banner">
       <Slider {...settings}>
         <div className="outline-none">
-          <Image
-            src="/assets/images/banner/BG.png"
-            width={2400}
-            height={500}
-            alt="banner"
-            priority={true}
-          />
+          <Link href={'/category/some'}>
+            <Image
+              src="/assets/images/banner/BG.png"
+              width={2400}
+              height={500}
+              alt="banner"
+              priority={true}
+            />
+          </Link>
         </div>
         <div className="outline-none">
-          <Image
-            src="/assets/images/banner/BG.png"
-            width={2400}
-            height={500}
-            alt="banner"
-            priority={true}
-          />
+          <Link href={'/category/some'}>
+            <Image
+              src="/assets/images/banner/BG.png"
+              width={2400}
+              height={500}
+              alt="banner"
+              priority={true}
+            />
+          </Link>
         </div>
         <div className="outline-none">
-          <Image
-            src="/assets/images/banner/BG.png"
-            width={2400}
-            height={500}
-            alt="banner"
-            priority={true}
-          />
+          <Link href={'/category/some'}>
+            <Image
+              src="/assets/images/banner/BG.png"
+              width={2400}
+              height={500}
+              alt="banner"
+              priority={true}
+            />
+          </Link>
         </div>
         <div className="outline-none">
-          <Image
-            src="/assets/images/banner/BG.png"
-            width={2400}
-            height={500}
-            alt="banner"
-            priority={true}
-          />
+          <Link href={'/category/some'}>
+            <Image
+              src="/assets/images/banner/BG.png"
+              width={2400}
+              height={500}
+              alt="banner"
+              priority={true}
+            />
+          </Link>
         </div>
       </Slider>
     </div>
