@@ -1,4 +1,5 @@
 'use client';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import FilterBox from '@/components/filterbox';
 import Link from 'next/link';
@@ -11,7 +12,7 @@ import { PiDotsNineBold } from 'react-icons/pi';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 import ActionButton from '@/components/action';
 import { productsData } from '@/static/products';
-import ProductCard from '@/components/card';
+const ProductCard = dynamic(() => import('@/components/card'));
 
 function Category() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);

@@ -1,4 +1,5 @@
-import BlogCard from '@/components/blog-card';
+import dynamic from 'next/dynamic';
+const BlogCard = dynamic(() => import('@/components/blog-card'));
 import { BlogData } from '@/static/BlogData';
 import Link from 'next/link';
 import React from 'react';
