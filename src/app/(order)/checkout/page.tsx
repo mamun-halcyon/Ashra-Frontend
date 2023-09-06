@@ -46,8 +46,6 @@ function Checkout() {
     if (!selectedPaymentDeliveryStatus) {
       toast.error('Please Select delivery method');
     }
-    console.log(selectedPayment);
-    console.log(setSelectedPaymentDeliveryStatus);
   };
 
   return (
