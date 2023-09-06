@@ -157,7 +157,7 @@ export default function Home() {
               PRODUCT REVIEWS & UNBOXING VIDEOS
             </h2>
             <div className="grid grid-cols-3 gap-4">
-              {videoData.map((video, index) => (
+              {[...videoData].splice(0, 3).map((video, index) => (
                 <VideoCard key={index} url={video.url} title={video.title} />
               ))}
             </div>
