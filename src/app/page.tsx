@@ -100,7 +100,7 @@ export default function Home() {
                       className=" h-[100%]"
                       src={`/assets/images/ads/Banner.png`}
                       width={300}
-                      height={500}
+                      height={650}
                       alt="ads"
                     />
                   </div>
