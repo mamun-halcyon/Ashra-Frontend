@@ -71,6 +71,9 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
             <div className="shadow mt-5 p-4">
+              <h3 className=" font-gotham font-normal text-base text-black mb-3">
+                Write a comment
+              </h3>
               <form>
                 <div className="grid grid-cols-2 gap-4">
                   <FormGroup title="Name" className="mb-2 " />
