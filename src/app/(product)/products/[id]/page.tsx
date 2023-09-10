@@ -86,7 +86,7 @@ function PageDetails() {
       <div className="product-details">
         <div className="container">
           <div className="product-specification">
-            <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-5">
+            <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
               <Link href={'/'}>Home</Link>
               <RiArrowDropRightLine className=" text-xl" />
               <Link href={'/category/bathware'}> Bathware </Link>

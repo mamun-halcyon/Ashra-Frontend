@@ -66,7 +66,7 @@ function Category() {
     <main>
       <section>
         <div className="container">
-          <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-5">
+          <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
             <Link href={'/'}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
             <Link href={'/bathware'}> Home Appliance </Link>

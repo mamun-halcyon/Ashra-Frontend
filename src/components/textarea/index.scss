@@ -5,6 +5,7 @@
     border: 1px solid $border-color;
     min-height: 120px;
     padding: 10px 5px;
+    resize: none;
     &::placeholder {
       font-style: italic;
     }
