@@ -70,7 +70,7 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
             </div>
             <div className="shadow mt-5 p-4">
               <form action="">
-                <div className="gird grid-cols-2n gap-4">
+                <div className="gird grid-cols-2 gap-4">
                   <FormGroup title="Name" className=" " />
                   <FormGroup title="Email" className=" " />
                 </div>
