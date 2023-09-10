@@ -14,5 +14,20 @@
     height: 30px;
     border-radius: 50%;
     border: 1px solid $border-color;
+    padding: 5px;
+    transition: all linear 0.3s;
+    background: transparent;
+
+    svg {
+      color: $black-color;
+    }
+
+    &:hover {
+      background: $primary-color;
+
+      svg {
+        color: $white-color;
+      }
+    }
   }
 }

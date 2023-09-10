@@ -5,7 +5,7 @@ import BlogSideCard from '@/components/blog-side-card';
 import { BiLogoFacebook } from 'react-icons/bi';
 import { FiInstagram } from 'react-icons/fi';
 import Link from 'next/link';
-import { BsLinkedin } from 'react-icons/bs';
+import { BiLogoLinkedin } from 'react-icons/bi';
 import { AiOutlineTwitter } from 'react-icons/ai';
 
 const BlogDetails = ({ params }: { params: { id: string } }) => {
@@ -43,7 +43,7 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
                       </div>
                       <div className="social-item flex justify-center items-center mr-1">
                         <Link href={'/'}>
-                          <BsLinkedin />
+                          <BiLogoLinkedin />
                         </Link>
                       </div>
                       <div className="social-item flex justify-center items-center mr-1">
