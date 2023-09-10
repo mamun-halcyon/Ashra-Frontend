@@ -1,12 +1,8 @@
-import dynamic from 'next/dynamic';
-const BlogCard = dynamic(() => import('@/components/blog-card'));
-import { BlogData } from '@/static/BlogData';
 import Link from 'next/link';
 import React from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
-import './page.scss';
 
-function Blogs() {
+function Login() {
   return (
     <main>
       <section>
@@ -18,22 +14,13 @@ function Blogs() {
           </div>
         </div>
       </section>
-
       <section>
-        <div className="container">
-          <div className="grid grid-cols-3 gap-6">
-            {BlogData.map((blog, index) => (
-              <BlogCard key={index} blog={blog} />
-            ))}
-          </div>
+        <div className="w">
+          <h2>Login to your account.</h2>
         </div>
-      </section>
-
-      <section className="blog">
-        <div className="container">Pagination</div>
       </section>
     </main>
   );
 }
 
-export default Blogs;
+export default Login;
