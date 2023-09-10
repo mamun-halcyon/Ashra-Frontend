@@ -1,0 +1,15 @@
+@import '../../styles/index.scss';
+
+.from-group {
+  .area-input {
+    border: 1px solid $border-color;
+    min-height: 120px;
+    padding: 10px 5px;
+    &::placeholder {
+      font-style: italic;
+    }
+    &:focus-visible {
+      outline: $border-color;
+    }
+  }
+}

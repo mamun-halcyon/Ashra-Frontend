@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { BiLogoLinkedin } from 'react-icons/bi';
 import { AiOutlineTwitter } from 'react-icons/ai';
 import FormGroup from '@/components/fromgroup';
+import TextAreaGroup from '@/components/textarea';
+import Button from '@/components/button';
 
 const BlogDetails = ({ params }: { params: { id: string } }) => {
   const data = BlogData.filter((blog) => blog.id === params.id);
@@ -69,11 +71,19 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
             <div className="shadow mt-5 p-4">
-              <form action="">
-                <div className="gird grid-cols-2 gap-4">
-                  <FormGroup title="Name" className=" " />
-                  <FormGroup title="Email" className=" " />
+              <form>
+                <div className="grid grid-cols-2 gap-4">
+                  <FormGroup title="Name" className="mb-2 " />
+                  <FormGroup title="Email" className=" mb-2" />
                 </div>
+                <TextAreaGroup title="Your Comment" />
+
+                <Button
+                  type="submit"
+                  className="px-3 py-1 font-gotham font-normal text-sm mt-2"
+                >
+                  Summit
+                </Button>
               </form>
             </div>
           </div>
