@@ -7,3 +7,12 @@
 .border-area {
   border-bottom: 1px solid $border-color;
 }
+
+.social {
+  .social-item {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid $border-color;
+  }
+}
