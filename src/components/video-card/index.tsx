@@ -11,7 +11,7 @@ const VideoCard: React.FC<IProps> = ({ url, title }) => {
   const handlePlay = () => setVideUrl(`${url}?autoplay=1`);
 
   return (
-    <div className="video-card">
+    <div className="video-card shadow">
       <iframe
         height="200"
         src={videUrl}
@@ -20,12 +20,14 @@ const VideoCard: React.FC<IProps> = ({ url, title }) => {
         allowFullScreen={true}
         loading="lazy"
       ></iframe>
-      <h3
-        className="video-title font-gotham font-bold text-base text-black text-center mt-8"
-        onClick={handlePlay}
-      >
-        {title}
-      </h3>
+      <div className="p-4">
+        <h3
+          className="video-title font-bold font-gotham text-[15px] text-black mt-4"
+          onClick={handlePlay}
+        >
+          {title}
+        </h3>
+      </div>
     </div>
   );
 };

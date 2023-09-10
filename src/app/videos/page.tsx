@@ -9,7 +9,7 @@ function Videos() {
     <div className="videos-section mt-6">
       <section>
         <div className="container">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             {videoData.map((video, index) => (
               <VideoCard url={video.url} title={video.title} key={index} />
             ))}
