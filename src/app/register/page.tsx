@@ -18,7 +18,7 @@ function Login() {
       </section>
       <section className="flex justify-center items-center">
         <div className="w-[400px]">
-          <h2 className=" font-gotham font-normal text-base text-black">
+          <h2 className=" font-gotham font-normal text-xl text-black">
             Create an Account
           </h2>
           <form>
@@ -48,12 +48,15 @@ function Login() {
             />
             <Button className="w-full py-1 mt-3">Register</Button>
           </form>
-          <h3 className="font-gotham font-normal text-base text-black">
+          <h3 className="font-gotham font-normal text-sm text-black my-2 text-center relative">
             Already have an account?
           </h3>
-          <h3 className="font-gotham font-normal text-base text-black">
+          <h3 className="font-gotham font-normal text-sm text-black">
             If you already have an account with us, please login at the{' '}
-            <Link href={'/login'}>login page</Link>.
+            <Link className="text-primary" href={'/login'}>
+              login page
+            </Link>
+            .
           </h3>
         </div>
       </section>
