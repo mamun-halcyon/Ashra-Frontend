@@ -8,7 +8,7 @@ const MegaMenu = () => {
   const [heading, setHeading] = useState('');
   const [subHeading, setSubHeading] = useState('');
   return (
-    <div className="py-2">
+    <div className="py-2 shadow">
       <div className="container">
         <div className="flex justify-between items-center ">
           <div className="flex">
