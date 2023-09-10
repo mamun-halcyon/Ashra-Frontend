@@ -7,6 +7,7 @@ import { FiInstagram } from 'react-icons/fi';
 import Link from 'next/link';
 import { BiLogoLinkedin } from 'react-icons/bi';
 import { AiOutlineTwitter } from 'react-icons/ai';
+import FormGroup from '@/components/fromgroup';
 
 const BlogDetails = ({ params }: { params: { id: string } }) => {
   const data = BlogData.filter((blog) => blog.id === params.id);
@@ -66,6 +67,14 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
                   }}
                 />
               </div>
+            </div>
+            <div className="shadow mt-5 p-4">
+              <form action="">
+                <div className="gird grid-cols-2n gap-4">
+                  <FormGroup title="Name" className=" " />
+                  <FormGroup title="Email" className=" " />
+                </div>
+              </form>
             </div>
           </div>
           <div className=" col-span-2">

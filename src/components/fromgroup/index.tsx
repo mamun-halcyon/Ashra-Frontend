@@ -8,7 +8,7 @@ interface IProps {
   placeholder?: string;
   required?: boolean;
   title: string;
-  className: string;
+  className?: string;
   type?: string;
 }
 const FormGroup: FC<IProps> = ({
