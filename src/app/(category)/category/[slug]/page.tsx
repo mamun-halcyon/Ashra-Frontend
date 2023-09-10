@@ -81,7 +81,7 @@ function Category() {
                 <ul>
                   <li>
                     <Link
-                      className=" font-gotham font-normal text-xs"
+                      className=" font-gotham font-normal text-sm"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -89,7 +89,7 @@ function Category() {
                   </li>
                   <li>
                     <Link
-                      className=" font-gotham font-normal text-xs"
+                      className=" font-gotham font-normal text-sm"
                       href={'/category/kitchen-hod'}
                     >
                       Kitchen Hood
@@ -97,7 +97,7 @@ function Category() {
                   </li>
                   <li>
                     <Link
-                      className=" font-gotham font-normal text-xs"
+                      className=" font-gotham font-normal text-sm"
                       href={'/category/cookware'}
                     >
                       Cookware
@@ -105,7 +105,7 @@ function Category() {
                   </li>
                   <li>
                     <Link
-                      className=" font-gotham font-normal text-xs"
+                      className=" font-gotham font-normal text-sm"
                       href={'/category/digital-scale'}
                     >
                       Digital Scale
@@ -113,7 +113,7 @@ function Category() {
                   </li>
                   <li>
                     <Link
-                      className=" font-gotham font-normal text-xs"
+                      className=" font-gotham font-normal text-sm"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Appliance
@@ -121,7 +121,7 @@ function Category() {
                   </li>
                   <li>
                     <Link
-                      className=" font-gotham font-normal text-xs"
+                      className=" font-gotham font-normal text-sm"
                       href={'/category/gas-stove'}
                     >
                       Cooker
@@ -133,7 +133,7 @@ function Category() {
                 <div className="flex mb-2">
                   <input type="checkbox" name="stock" id="stock" />
                   <label
-                    className="ml-2 font-gotham font-normal text-xs"
+                    className="ml-2 font-gotham font-normal text-sm"
                     htmlFor="stock"
                   >
                     In Stock
@@ -142,7 +142,7 @@ function Category() {
                 <div className="flex mb-2">
                   <input type="checkbox" name="stock-out" id="stockout" />
                   <label
-                    className="ml-2 font-gotham font-normal text-xs"
+                    className="ml-2 font-gotham font-normal text-sm"
                     htmlFor="stockout"
                   >
                     Out of Stock
@@ -151,7 +151,7 @@ function Category() {
                 <div className="flex">
                   <input type="checkbox" name="instock" id="upcoming" />
                   <label
-                    className="ml-2 font-gotham font-normal text-xs"
+                    className="ml-2 font-gotham font-normal text-sm"
                     htmlFor="upcoming"
                   >
                     Up Coming
