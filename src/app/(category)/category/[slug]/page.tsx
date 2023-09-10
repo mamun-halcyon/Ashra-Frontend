@@ -75,7 +75,7 @@ function Category() {
       </section>
       <section>
         <div className="container">
-          <div className="grid grid-cols-8 gap-4">
+          <div className="grid grid-cols-10 gap-4">
             <div className="col-span-2">
               <FilterBox title="Category">
                 <ul>
@@ -188,7 +188,7 @@ function Category() {
                 </div>
               </FilterBox>
             </div>
-            <div className="col-span-6">
+            <div className="col-span-8">
               <div className="category-banner mb-5">
                 <Image
                   className="w-full"
