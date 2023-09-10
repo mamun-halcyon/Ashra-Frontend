@@ -19,11 +19,16 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
                 height={600}
                 alt="blog"
               />
-              <div className="p-4">
-                <h2 className="text-center font-gotham font-bold text-base mt-3 text-primary">
+              <div className="border-area p-4">
+                <h2 className="font-gotham font-bold text-base text-black">
                   {blogData.title}
                 </h2>
-
+                <div className="flex justify-between">
+                  <div>Icon</div>
+                  <div>28 Aug 2023</div>
+                </div>
+              </div>
+              <div>
                 <div
                   className="font-gotham font-normal text-xs mt-3"
                   dangerouslySetInnerHTML={{
