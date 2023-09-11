@@ -8,7 +8,7 @@ function ResetPassword() {
       <section className="flex justify-center items-center forget-page">
         <div className="w-[400px] forget-area px-4 py-6 ">
           <h2 className=" font-gotham font-normal text-xl text-black">
-            Forgot password?
+            Forgot Password?
           </h2>
           <p className="font-gotham font-light text-sm text-black mt-2">
             Enter your email address to recover your password.
