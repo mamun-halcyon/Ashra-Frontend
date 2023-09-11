@@ -7,9 +7,6 @@ function ConfirmPassword() {
     <main>
       <section className="flex justify-center items-center forget-page">
         <div className="w-[400px] forget-area p-4 ">
-          {/* <h2 className=" font-gotham font-normal text-xl text-black">
-            Confirm Password
-          </h2> */}
           <form>
             <FormGroup
               title="New password*"

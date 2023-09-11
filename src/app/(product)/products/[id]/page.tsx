@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -20,8 +20,8 @@ import {
 import OutlineButton from '@/components/outline-button';
 import { BsArrowRepeat } from 'react-icons/bs';
 import Title from '@/components/title';
-import ProductCard from '@/components/card';
 import { productsData } from '@/static/products';
+const ProductCard = dynamic(() => import('@/components/card'));
 
 function PageDetails() {
   const [quantity, setQuantity] = useState<number>(1);
