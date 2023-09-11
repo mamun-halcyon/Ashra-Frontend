@@ -1,5 +1,8 @@
 @import '../../styles/index.scss';
-
+.login-page {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
 .register-outline {
   background: transparent;
   border: 1px solid $primary-color;
