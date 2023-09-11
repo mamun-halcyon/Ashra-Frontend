@@ -1,0 +1,22 @@
+@import '../../styles/index.scss';
+
+.auth-border {
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 25%;
+    content: '';
+    height: 1px;
+    background: $border-color;
+  }
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 25%;
+    content: '';
+    height: 1px;
+    background: $border-color;
+  }
+}

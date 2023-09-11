@@ -63,7 +63,7 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
               </div>
               <div>
                 <div
-                  className="font-gotham font-normal text-xs mt-3 px-4"
+                  className="font-gotham font-normal text-xs px-4 pb-4"
                   dangerouslySetInnerHTML={{
                     __html: blogData.description ?? '',
                   }}

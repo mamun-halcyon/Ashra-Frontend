@@ -3,6 +3,7 @@ import FormGroup from '@/components/fromgroup';
 import Link from 'next/link';
 import React from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
+import './page.scss';
 
 function Login() {
   return (
@@ -46,9 +47,11 @@ function Login() {
               placeholder="Enter Password"
               required
             />
-            <Button className="w-full py-1 mt-3">Register</Button>
+            <Button className="w-full py-1 mt-3 font-gotham font-normal text-base">
+              Register
+            </Button>
           </form>
-          <h3 className="font-gotham font-normal text-sm text-black my-2 text-center relative">
+          <h3 className="font-gotham font-normal text-sm text-black my-2 text-center relative auth-border">
             Already have an account?
           </h3>
           <h3 className="font-gotham font-normal text-sm text-black">
