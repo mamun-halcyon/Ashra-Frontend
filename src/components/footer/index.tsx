@@ -23,7 +23,7 @@ const Footer = () => {
               <span className="mr-4">
                 <GrLocation className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-base text-black ">
+              <p className=" font-gotham font-normal text-sm text-black ">
                 37/2, Pritom Zaman Tower, Bir Protik Gazi Dastagir Road, Dhaka
                 1000
               </p>
@@ -32,7 +32,7 @@ const Footer = () => {
               <span className="mr-4">
                 <BsHeadphones className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-base text-black">
+              <p className=" font-gotham font-normal text-sm text-black">
                 +880 1766 688820
               </p>
             </div>
@@ -40,7 +40,7 @@ const Footer = () => {
               <span className="mr-4">
                 <PiEnvelopeThin className=" w-5 h-5 text-black mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-base text-black">
+              <p className=" font-gotham font-normal text-sm text-black">
                 info@gazihomeappliance.com
               </p>
             </div>
@@ -53,7 +53,7 @@ const Footer = () => {
               <ul className=" mx-auto">
                 {customerServiceData.items.map((item, index) => (
                   <li
-                    className="font-gotham font-normal text-base text-black mb-1"
+                    className="font-gotham font-normal text-sm text-black mb-1"
                     key={index}
                   >
                     <Link href={item.href}> {item.name}</Link>
@@ -71,7 +71,7 @@ const Footer = () => {
               <ul className="mx-auto">
                 {customerServiceData.items.map((item, index) => (
                   <li
-                    className="font-gotham font-normal text-base text-black mb-1"
+                    className="font-gotham font-normal text-sm text-black mb-1"
                     key={index}
                   >
                     <Link href={item.href}> {item.name}</Link>
@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
         <div className="grid grid-cols-3 gap-4 mt-7">
           <div>
-            <p className=" font-gotham font-normal text-base text-black mb-2 ">
+            <p className=" font-gotham font-normal text-sm text-black mb-2 ">
               Download our Mobile Apps
             </p>
             <div className="flex">
@@ -104,7 +104,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <p className=" font-gotham font-normal text-base text-black mb-2">
+            <p className=" font-gotham font-normal text-sm text-black mb-2">
               Follow Us
             </p>
             <div className="flex">
@@ -150,7 +150,7 @@ const Footer = () => {
             <form className="relative inline-block subscribe-form">
               <input
                 type="email"
-                className="px-3 py-2 border-b-2  focus:ring-0 focus:border-blue-500 outline-none placeholder:font-gotham  placeholder:font-light placeholder:text-base"
+                className="px-3 py-2 border-b-2  focus:ring-0 focus:border-blue-500 outline-none placeholder:font-gotham  placeholder:font-light placeholder:text-sm"
                 placeholder="Enter your email..."
               />
               <span className=" absolute top-[50%] translate-y-[-50%] right-0">

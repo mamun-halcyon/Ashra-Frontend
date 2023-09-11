@@ -18,7 +18,7 @@ function Login() {
         </div>
       </section>
       <section className="flex justify-center items-center register">
-        <div className="w-[400px] register-area px-4 py-6">
+        <div className="w-[470px] register-area p-8">
           <h2 className=" font-gotham font-normal text-xl text-black">
             Create an Account
           </h2>
@@ -40,7 +40,6 @@ function Login() {
               className="mt-2"
               title="Mobile (optional)"
               placeholder="Mobile Number"
-              required
             />
             <FormGroup
               type="password"
