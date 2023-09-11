@@ -49,7 +49,7 @@ function Login() {
               </div>
               <div>
                 <Link
-                  className="font-gotham font-normal text-sm text-black"
+                  className="font-gotham font-normal text-sm text-black hover:text-primary"
                   href={'/password/reset'}
                 >
                   Forget Password
