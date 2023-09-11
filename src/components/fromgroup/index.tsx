@@ -30,7 +30,7 @@ const FormGroup: FC<IProps> = ({
         {title}
       </label>
       <input
-        className="block form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs w-full text-black"
+        className="block mt-1 form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs w-full text-black"
         type={type ? type : 'text'}
         name={name}
         placeholder={placeholder}

@@ -23,7 +23,7 @@ function Login() {
           </h2>
           <form>
             <FormGroup
-              className="mt-2"
+              className="mt-2 "
               type="email"
               title="E-Mail*"
               placeholder="Your Email"

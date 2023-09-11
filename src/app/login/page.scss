@@ -4,6 +4,12 @@
   background: transparent;
   border: 1px solid $primary-color;
   color: black;
+  transition: all linear 0.3s;
+
+  &:hover {
+    background: $primary-color;
+    color: $white-color;
+  }
 }
 
 .login-area {
