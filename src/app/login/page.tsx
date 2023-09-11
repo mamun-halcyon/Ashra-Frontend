@@ -16,8 +16,8 @@ function Login() {
           </div>
         </div>
       </section>
-      <section className="flex justify-center items-center">
-        <div className="w-[400px]">
+      <section className="flex justify-center items-center ">
+        <div className="w-[400px] login-area px-4 py-6 my-12">
           <h2 className=" font-gotham font-normal text-xl text-black">
             Account Login
           </h2>
