@@ -31,6 +31,7 @@ function Login() {
             />
             <FormGroup
               className="mt-2"
+              type="email"
               title="E-Mail*"
               placeholder="Your Email"
               required
@@ -42,6 +43,7 @@ function Login() {
               required
             />
             <FormGroup
+              type="password"
               className="mt-2"
               title="Password*"
               placeholder="Enter Password"
