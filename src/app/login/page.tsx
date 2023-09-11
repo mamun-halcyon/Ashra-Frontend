@@ -37,6 +37,25 @@ function Login() {
               placeholder="Enter Password"
               required
             />
+            <div className="mt-3 flex justify-between items-center">
+              <div className="flex">
+                <input type="checkbox" name="check" id="check" />
+                <label
+                  className="font-gotham font-normal text-sm text-black ml-1"
+                  htmlFor="check"
+                >
+                  Remember Me
+                </label>
+              </div>
+              <div>
+                <Link
+                  className="font-gotham font-normal text-sm text-black"
+                  href={'/password/reset'}
+                >
+                  Forget Password
+                </Link>
+              </div>
+            </div>
             <Button className="w-full py-1 mt-3 font-gotham font-normal text-base">
               Login
             </Button>
