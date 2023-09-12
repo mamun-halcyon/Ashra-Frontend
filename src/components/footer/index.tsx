@@ -110,7 +110,7 @@ const Footer = () => {
             <div className="flex">
               <Link href={'https://www.facebook.com'} target="_blank">
                 <Image
-                  className=" rounded w-8 h-8 mx-1"
+                  className=" rounded w-6 h-6 mx-1"
                   src="/assets/images/icon/facebook.png"
                   width={20}
                   height={20}
@@ -119,7 +119,7 @@ const Footer = () => {
               </Link>
               <Link href={'/'} target="_blank">
                 <Image
-                  className=" rounded w-8 h-8 mx-1"
+                  className=" rounded w-6 h-6 mx-1"
                   src="/assets/images/icon/instagram.png"
                   width={20}
                   height={20}
@@ -128,7 +128,7 @@ const Footer = () => {
               </Link>
               <Link href={'/'} target="_blank">
                 <Image
-                  className=" rounded w-8 h-8 mx-1"
+                  className=" rounded w-6 h-6 mx-1"
                   src="/assets/images/icon/linkedin.png"
                   width={20}
                   height={20}
@@ -137,7 +137,7 @@ const Footer = () => {
               </Link>
               <Link href={'/'} target="_blank">
                 <Image
-                  className=" rounded w-8 h-8 mx-1"
+                  className=" rounded w-6 h-6 mx-1"
                   src="/assets/images/icon/youtube.png"
                   width={20}
                   height={20}
