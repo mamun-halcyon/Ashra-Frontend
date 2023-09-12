@@ -81,7 +81,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 mt-7">
+        <div className="grid grid-cols-3 gap-4 mt-5">
           <div>
             <p className=" font-gotham font-normal text-sm text-black mb-2 ">
               Download our Mobile Apps
@@ -160,11 +160,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className=" mt-12 py-2 bg-primary">
+      <div className=" mt-10 py-2 bg-primary">
         <div className="container">
           <div className="flex justify-between items-center">
             <div>
-              <h4 className=" font-gotham font-normal text-sm text-white">
+              <h4 className=" font-gotham font-light text-xs text-white">
                 © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
               </h4>
             </div>
