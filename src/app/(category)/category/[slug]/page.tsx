@@ -12,6 +12,7 @@ import { PiDotsNineBold } from 'react-icons/pi';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 import ActionButton from '@/components/action';
 import { productsData } from '@/static/products';
+import ListCard from '@/components/list-card';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 function Category() {
@@ -40,7 +41,7 @@ function Category() {
   };
 
   const decrementPage = () => {
-    if (page !== 0) {
+    if (page !== 1) {
       setPage(page - 1);
     }
   };
@@ -198,7 +199,7 @@ function Category() {
                   alt="gazi category-banner"
                 />
               </div>
-              <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5">
+              <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5 shadow-sm">
                 <div className=" flex items-center">
                   <span
                     className={`${isRow ? 'active' : null} p-1 mr-2 `}
@@ -299,6 +300,11 @@ function Category() {
               </div>
 
               <div className="filter-products">
+                <div className="grid grid-cols-1 mb-5">
+                  {[...productsData].slice(0, 12).map((product, i) => (
+                    <ListCard key={i} product={product} />
+                  ))}
+                </div>
                 <div className="grid grid-cols-4 gap-6 mb-5">
                   {[...productsData].slice(0, 12).map((product, i) => (
                     <ProductCard key={i} product={product} />
@@ -310,12 +316,6 @@ function Category() {
                 <div>
                   <ActionButton title={showTitle}>
                     <ul>
-                      <li
-                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                        onClick={handleShow}
-                      >
-                        12
-                      </li>
                       <li
                         className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
                         onClick={handleShow}
