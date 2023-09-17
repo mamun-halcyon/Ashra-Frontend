@@ -1,3 +1,4 @@
+'use client';
 import dynamic from 'next/dynamic';
 const BlogCard = dynamic(() => import('@/components/blog-card'));
 import { BlogData } from '@/static/BlogData';
@@ -5,6 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
+import Pagination from '@/components/pagination';
 
 function Blogs() {
   return (
@@ -27,10 +29,11 @@ function Blogs() {
             ))}
           </div>
         </div>
-      </section>
-
-      <section className="blog">
-        <div className="container">Pagination</div>
+        <section className="blog">
+          <div className="container">
+            <Pagination />
+          </div>
+        </section>
       </section>
     </main>
   );

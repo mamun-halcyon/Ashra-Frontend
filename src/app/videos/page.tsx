@@ -1,9 +1,11 @@
+'use client';
 import dynamic from 'next/dynamic';
 const VideoCard = dynamic(() => import('@/components/video-card'));
 import { videoData } from '@/static/video';
 import './page.scss';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
+import Pagination from '@/components/pagination';
 
 function Videos() {
   return (
@@ -25,6 +27,11 @@ function Videos() {
                 <VideoCard url={video.url} title={video.title} key={index} />
               ))}
             </div>
+          </div>
+        </section>
+        <section className=" mt-4">
+          <div className="container">
+            <Pagination />
           </div>
         </section>
       </div>
