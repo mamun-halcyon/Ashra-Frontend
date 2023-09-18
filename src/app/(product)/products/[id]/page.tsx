@@ -284,7 +284,7 @@ function PageDetails() {
           <div className="description">
             <div className="desc">
               <Tabs>
-                <TabList className={`react-tabs__tab-list shadow`}>
+                <TabList className={`react-tabs__tab-list`}>
                   <Tab>Specification</Tab>
                   <Tab>Reviews</Tab>
                   <Tab>Video</Tab>
