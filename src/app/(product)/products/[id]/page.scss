@@ -91,10 +91,12 @@
       }
       .react-tabs__tab {
         cursor: pointer;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         padding-right: 26px;
         padding-left: 26px;
+        font-family: $secondary-font;
+        font-size: 14px;
         // margin-right: 13px;
         border-right: 1px solid $white-color;
 
