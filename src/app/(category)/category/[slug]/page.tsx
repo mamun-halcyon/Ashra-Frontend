@@ -189,7 +189,7 @@ function Category() {
                 </div>
               </FilterBox>
             </div>
-            <div className="w-[905px]">
+            <div className="w-[925px]">
               <div className="category-banner mb-5">
                 <Image
                   className="w-full"
