@@ -76,8 +76,8 @@ function Category() {
       </section>
       <section>
         <div className="container">
-          <div className="grid grid-cols-10 gap-4">
-            <div className="col-span-2">
+          <div className="flex justify-between">
+            <div className="w-[250px]">
               <FilterBox title="Category">
                 <ul>
                   <li>
@@ -189,7 +189,7 @@ function Category() {
                 </div>
               </FilterBox>
             </div>
-            <div className="col-span-8">
+            <div className="w-[905px]">
               <div className="category-banner mb-5">
                 <Image
                   className="w-full"
