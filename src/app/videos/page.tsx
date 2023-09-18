@@ -29,11 +29,6 @@ function Videos() {
             </div>
           </div>
         </section>
-        <section className=" mt-4">
-          <div className="container">
-            <Pagination />
-          </div>
-        </section>
       </div>
     </main>
   );

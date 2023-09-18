@@ -1,13 +1,10 @@
 'use client';
-import { useState } from 'react';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { BsChevronDown } from 'react-icons/bs';
 import Link from 'next/link';
 import './index.scss';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 
 const MegaMenu = () => {
-  const [heading, setHeading] = useState('');
-  const [subHeading, setSubHeading] = useState('');
   return (
     <div className="py-2 shadow">
       <div className="container">
@@ -29,7 +26,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -38,30 +35,40 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -69,7 +76,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -78,30 +85,40 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -109,47 +126,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
-                      href={'/category/gas-stove'}
-                    >
-                      Kitchen Appliance
-                    </Link>
-                    <span>
-                      <RiArrowDropRightLine className=" text-xl" />
-                    </span>
-                    <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                {/* Heading item */}
-                <div>
-                  <div className=" relative flex justify-between items-center sub-item">
-                    <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Cookware
@@ -158,33 +135,94 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
+                {/* Heading item */}
+                <div>
+                  <div className=" relative flex justify-between items-center sub-item">
+                    <Link
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      href={'/category/gas-stove'}
+                    >
+                      Kitchen Hood
+                    </Link>
+                    <span>
+                      <RiArrowDropRightLine className=" text-xl" />
+                    </span>
+                    <div className=" absolute children-item shadow">
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* ======= */}
               </div>
             </div>
@@ -204,7 +242,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -213,30 +251,40 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -244,7 +292,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -253,30 +301,40 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -284,47 +342,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
-                      href={'/category/gas-stove'}
-                    >
-                      Kitchen Appliance
-                    </Link>
-                    <span>
-                      <RiArrowDropRightLine className=" text-xl" />
-                    </span>
-                    <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                {/* Heading item */}
-                <div>
-                  <div className=" relative flex justify-between items-center sub-item">
-                    <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Cookware
@@ -333,33 +351,94 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
+                {/* Heading item */}
+                <div>
+                  <div className=" relative flex justify-between items-center sub-item">
+                    <Link
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      href={'/category/gas-stove'}
+                    >
+                      Kitchen Hood
+                    </Link>
+                    <span>
+                      <RiArrowDropRightLine className=" text-xl" />
+                    </span>
+                    <div className=" absolute children-item shadow">
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* ======= */}
               </div>
             </div>
@@ -379,7 +458,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -388,30 +467,40 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -419,7 +508,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -428,30 +517,40 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -459,47 +558,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
-                      href={'/category/gas-stove'}
-                    >
-                      Kitchen Appliance
-                    </Link>
-                    <span>
-                      <RiArrowDropRightLine className=" text-xl" />
-                    </span>
-                    <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                {/* Heading item */}
-                <div>
-                  <div className=" relative flex justify-between items-center sub-item">
-                    <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black"
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Cookware
@@ -508,33 +567,94 @@ const MegaMenu = () => {
                       <RiArrowDropRightLine className=" text-xl" />
                     </span>
                     <div className=" absolute children-item shadow">
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        TEMPERED GLASS
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        STAINLESS STEEL
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        GST
-                      </Link>
-                      <Link
-                        className=" font-gotham font-normal text-sm my-1 text-black"
-                        href={'/category/gas-stove'}
-                      >
-                        SINGLE BURNER
-                      </Link>
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
+                {/* Heading item */}
+                <div>
+                  <div className=" relative flex justify-between items-center sub-item">
+                    <Link
+                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      href={'/category/gas-stove'}
+                    >
+                      Kitchen Hood
+                    </Link>
+                    <span>
+                      <RiArrowDropRightLine className=" text-xl" />
+                    </span>
+                    <div className=" absolute children-item shadow">
+                      <ul>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Tempered Glass
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Stainless Steel
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Gst
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className=" font-gotham font-normal text-sm  text-black"
+                            href={'/category/gas-stove'}
+                          >
+                            Single Burner
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* ======= */}
               </div>
             </div>

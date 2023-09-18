@@ -13,6 +13,9 @@ import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 import ActionButton from '@/components/action';
 import { productsData } from '@/static/products';
 import ListCard from '@/components/list-card';
+import { categoryData } from '@/static/category';
+import { ICategoryData } from '@/types/cagory';
+import CategoryFilter from '@/components/category-filter';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 function Category() {
@@ -23,6 +26,19 @@ function Category() {
   const [showTitle, setShowTitle] = useState<string>('Show');
   const [filter, setFilter] = useState<string>('Sort by');
   const [filterTitle, setFilterTitle] = useState<string>('Sort by');
+
+  /* Sidebar */
+  const [categoryFilterItems, setCategoryFilterItems] =
+    useState<ICategoryData[]>(categoryData);
+
+  const handleDropdownToggle = (clickedIndex: number) => {
+    const updatedSideLinks = categoryFilterItems.map((linkItem, index) => ({
+      ...linkItem,
+      isOpen: index === clickedIndex ? !linkItem.isOpen : false,
+    }));
+
+    setCategoryFilterItems(updatedSideLinks);
+  };
 
   const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedElement = event.target as HTMLLIElement;
@@ -79,56 +95,14 @@ function Category() {
           <div className="flex justify-between">
             <div className="w-[250px]">
               <FilterBox title="Category">
-                <ul>
-                  <li>
-                    <Link
-                      className=" font-gotham font-normal text-sm"
-                      href={'/category/gas-stove'}
-                    >
-                      Gas Stove
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className=" font-gotham font-normal text-sm"
-                      href={'/category/kitchen-hod'}
-                    >
-                      Kitchen Hood
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className=" font-gotham font-normal text-sm"
-                      href={'/category/cookware'}
-                    >
-                      Cookware
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className=" font-gotham font-normal text-sm"
-                      href={'/category/digital-scale'}
-                    >
-                      Digital Scale
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className=" font-gotham font-normal text-sm"
-                      href={'/category/gas-stove'}
-                    >
-                      Kitchen Appliance
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className=" font-gotham font-normal text-sm"
-                      href={'/category/gas-stove'}
-                    >
-                      Cooker
-                    </Link>
-                  </li>
-                </ul>
+                {categoryFilterItems.map((categoryItem, index) => (
+                  <CategoryFilter
+                    selectKey={index}
+                    key={index}
+                    categoryItem={categoryItem}
+                    onToggle={() => handleDropdownToggle(index)}
+                  />
+                ))}
               </FilterBox>
               <FilterBox title="Availability">
                 <div className="flex mb-2">

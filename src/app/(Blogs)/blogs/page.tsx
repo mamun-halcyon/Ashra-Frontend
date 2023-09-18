@@ -6,7 +6,6 @@ import Link from 'next/link';
 import React from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
-import Pagination from '@/components/pagination';
 
 function Blogs() {
   return (
@@ -21,7 +20,7 @@ function Blogs() {
         </div>
       </section>
 
-      <section>
+      <section className="blog">
         <div className="container">
           <div className="grid grid-cols-3 gap-6">
             {BlogData.map((blog, index) => (
@@ -29,11 +28,6 @@ function Blogs() {
             ))}
           </div>
         </div>
-        <section className="blog">
-          <div className="container">
-            <Pagination />
-          </div>
-        </section>
       </section>
     </main>
   );

@@ -5,7 +5,6 @@
     background: $white-color;
     width: 230px;
     top: 37px;
-    padding: 10px;
     left: 0;
     z-index: 10;
     opacity: 0;
@@ -13,21 +12,50 @@
     transition: all linear 0.3s;
 
     .sub-item {
+      cursor: pointer;
       .children-item {
         width: 220px;
         right: 0;
-        top: 0;
+        top: 0px;
         background: $white-color;
         transform: translateX(100%);
         padding: 10px;
         opacity: 0;
         visibility: hidden;
         transition: all linear 0.3s;
+        cursor: pointer;
+
+        li {
+          padding-top: 4px;
+          padding-bottom: 4px;
+          transition: all linear 0.3s;
+
+          a {
+            padding-left: 4px;
+            transition: all linear 0.3s;
+          }
+
+          &:hover {
+            background: $primary-color;
+            a {
+              color: $white-color;
+            }
+          }
+        }
+      }
+      .sub-element {
+        padding-left: 10px;
+        padding-right: 10px;
       }
       &:hover {
+        background: $primary-color;
+        color: $white-color;
         .children-item {
           opacity: 1;
           visibility: visible;
+        }
+        .sub-element {
+          color: $white-color;
         }
       }
     }
