@@ -146,8 +146,8 @@ function PageDetails() {
                     <h3 className=" font-gotham font-normal text-xs text-black mr-3">
                       Discount Price:
                     </h3>
-                    <h2 className="font-gotham  text-2xl text-primary font-bold">
-                      ৳25,200.00
+                    <h2 className="font-gotham  text-2xl text-primary font-bold d-price">
+                      ৳25,200.00 <span className="discount">Save ৳2,520</span>
                     </h2>
                   </div>
                 </div>
