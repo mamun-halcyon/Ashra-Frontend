@@ -300,16 +300,19 @@ function Category() {
               </div>
 
               <div className="filter-products">
-                <div className="grid grid-cols-1 mb-5">
-                  {[...productsData].slice(0, 12).map((product, i) => (
-                    <ListCard key={i} product={product} />
-                  ))}
-                </div>
-                <div className="grid grid-cols-4 gap-6 mb-5">
-                  {[...productsData].slice(0, 12).map((product, i) => (
-                    <ProductCard key={i} product={product} />
-                  ))}
-                </div>
+                {isRow ? (
+                  <div className="grid grid-cols-4 gap-6 mb-5">
+                    {[...productsData].slice(0, 12).map((product, i) => (
+                      <ProductCard key={i} product={product} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 mb-5">
+                    {[...productsData].slice(0, 12).map((product, i) => (
+                      <ListCard key={i} product={product} />
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-between items-center mt-5 bottom-filter">
