@@ -5,7 +5,6 @@ import { videoData } from '@/static/video';
 import './page.scss';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
-import Pagination from '@/components/pagination';
 
 function Videos() {
   return (
