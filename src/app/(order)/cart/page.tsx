@@ -8,6 +8,7 @@ import { RxCross2 } from 'react-icons/rx';
 import './page.scss';
 import Image from 'next/image';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import Button from '@/components/button';
 
 function Checkout() {
   return (
@@ -218,7 +219,30 @@ function Checkout() {
             </div>
             {/* summery */}
             <div className=" col-span-4">
-              <Link href={'/checkout'}>Continue to Shipping</Link>
+              <div className="py-11 px-9">
+                <h3>Cart Summery</h3>
+
+                <div className="flex justify-between items-center">
+                  <p className=" font-gotham font-normal text-xs text-black">
+                    Sub Total
+                  </p>
+                  <p className=" font-gotham font-normal text-xs text-black">
+                    ৳ 19000.00
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <p className=" font-gotham font-normal text-xs text-black">
+                    Shipping
+                  </p>
+                  <p className=" font-gotham font-normal text-xs text-black">
+                    Free Shipping
+                  </p>
+                </div>
+                <Link href={'/checkout'}>
+                  <Button className="w-full">Continue to Shipping</Button>
+                </Link>
+              </div>
             </div>
             <div></div>
           </div>
