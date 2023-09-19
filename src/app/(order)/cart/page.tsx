@@ -219,19 +219,21 @@ function Checkout() {
             </div>
             {/* summery */}
             <div className=" col-span-4">
-              <div className="py-11 px-9">
-                <h3>Cart Summery</h3>
+              <div className="py-11 px-9 cart-summery">
+                <h3 className="summery-border font-gotham font-bold text-base text-black pb-2">
+                  Cart Summery
+                </h3>
 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mt-14 summery-border pb-1">
                   <p className=" font-gotham font-normal text-xs text-black">
                     Sub Total
                   </p>
-                  <p className=" font-gotham font-normal text-xs text-black">
+                  <p className=" font-gotham font-normal text-xs text-primary">
                     ৳ 19000.00
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mt-3 summery-border pb-1">
                   <p className=" font-gotham font-normal text-xs text-black">
                     Shipping
                   </p>
@@ -239,8 +241,18 @@ function Checkout() {
                     Free Shipping
                   </p>
                 </div>
-                <Link href={'/checkout'}>
-                  <Button className="w-full">Continue to Shipping</Button>
+                <div className="flex justify-between items-center mt-1">
+                  <p className=" font-gotham font-normal text-sm text-black">
+                    Total
+                  </p>
+                  <p className=" font-gotham font-normal text-sm text-primary">
+                    ৳ 16070.00
+                  </p>
+                </div>
+                <Link className="mt-15" href={'/checkout'}>
+                  <Button className="w-full font-gotham font-bold text-lg">
+                    Continue to Shipping
+                  </Button>
                 </Link>
               </div>
             </div>

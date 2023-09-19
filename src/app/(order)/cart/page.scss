@@ -75,4 +75,12 @@
       }
     }
   }
+
+  .cart-summery {
+    border: 1px solid $decenary-color;
+
+    .summery-border {
+      border-bottom: 1px solid $decenary-color;
+    }
+  }
 }
