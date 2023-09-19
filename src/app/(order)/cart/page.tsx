@@ -9,6 +9,8 @@ import './page.scss';
 import Image from 'next/image';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import Button from '@/components/button';
+import { serviceCardData } from '@/static/serviceCard';
+import ServiceCard from '@/components/service-card';
 
 function Checkout() {
   return (
@@ -72,7 +74,7 @@ function Checkout() {
                 <div className="grid grid-cols-8 gap-4 items-center product-item">
                   <div className="col-span-4">
                     <div className="flex items-center">
-                      <div>
+                      <div className=" cursor-pointer">
                         <span>
                           <RxCross2 className="text-xs " />
                         </span>
@@ -121,7 +123,7 @@ function Checkout() {
                 <div className="grid grid-cols-8 gap-4 items-center product-item">
                   <div className="col-span-4">
                     <div className="flex items-center">
-                      <div>
+                      <div className=" cursor-pointer">
                         <span>
                           <RxCross2 className="text-xs " />
                         </span>
@@ -170,7 +172,7 @@ function Checkout() {
                 <div className="grid grid-cols-8 gap-4 items-center product-item">
                   <div className="col-span-4">
                     <div className="flex items-center">
-                      <div>
+                      <div className=" cursor-pointer">
                         <span>
                           <RxCross2 className="text-xs " />
                         </span>
@@ -256,10 +258,18 @@ function Checkout() {
                 </Link>
               </div>
             </div>
-            <div></div>
           </div>
         </div>
       </section>
+      {/*   <section className="cart-service">
+        <div className="container">
+          <div className="grid grid-cols-4 gap-4">
+            {serviceCardData.map((service, i) => (
+              <ServiceCard key={i} service={service} />
+            ))}
+          </div>
+        </div>
+      </section> */}
     </main>
   );
 }
