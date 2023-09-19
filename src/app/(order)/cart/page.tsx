@@ -250,7 +250,7 @@ function Checkout() {
                   </p>
                 </div>
                 <Link className=" mt-14 block" href={'/checkout'}>
-                  <Button className="w-full font-gotham font-bold text-lg">
+                  <Button className="w-full font-gotham font-bold text-lg py-2">
                     Continue to Shipping
                   </Button>
                 </Link>
