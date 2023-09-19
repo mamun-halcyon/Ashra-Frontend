@@ -225,31 +225,31 @@ function Checkout() {
                 </h3>
 
                 <div className="flex justify-between items-center mt-14 summery-border pb-1">
-                  <p className=" font-gotham font-normal text-xs text-black">
+                  <p className=" font-gotham font-medium text-xs text-black">
                     Sub Total
                   </p>
-                  <p className=" font-gotham font-normal text-xs text-primary">
+                  <p className=" font-gotham font-medium text-xs text-primary">
                     ৳ 19000.00
                   </p>
                 </div>
 
                 <div className="flex justify-between items-center mt-3 summery-border pb-1">
-                  <p className=" font-gotham font-normal text-xs text-black">
+                  <p className=" font-gotham font-medium text-xs text-black">
                     Shipping
                   </p>
-                  <p className=" font-gotham font-normal text-xs text-black">
+                  <p className=" font-gotham font-medium text-xs text-black">
                     Free Shipping
                   </p>
                 </div>
                 <div className="flex justify-between items-center mt-1">
-                  <p className=" font-gotham font-normal text-sm text-black">
+                  <p className=" font-gotham font-medium text-sm text-black">
                     Total
                   </p>
-                  <p className=" font-gotham font-normal text-sm text-primary">
+                  <p className=" font-gotham font-medium text-sm text-primary">
                     ৳ 16070.00
                   </p>
                 </div>
-                <Link className="mt-15" href={'/checkout'}>
+                <Link className=" mt-14 block" href={'/checkout'}>
                   <Button className="w-full font-gotham font-bold text-lg">
                     Continue to Shipping
                   </Button>
