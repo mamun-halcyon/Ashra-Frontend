@@ -1,0 +1,29 @@
+@import '../../styles/index.scss';
+
+.list-card {
+  border-bottom: 1px solid #e2e2e2;
+
+  .details {
+    .review {
+      svg {
+        color: $ash-color;
+      }
+      span {
+        color: $ash-color;
+      }
+    }
+  }
+
+  .sudo {
+    border: 1px solid $primary-color;
+    background: $primary-color;
+    color: $white-color;
+    margin: 0 5px;
+  }
+  .stock {
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .save-money {
+    color: $white-color;
+  }
+}

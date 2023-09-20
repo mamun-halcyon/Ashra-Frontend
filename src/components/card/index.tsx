@@ -25,9 +25,12 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
       </Link>
 
       <div className="text ">
-        <p className=" font-gotham product-title font-normal text-center text-sm">
+        <Link
+          href={'/products/1'}
+          className=" font-gotham product-title font-normal text-center text-sm"
+        >
           {product.title}
-        </p>
+        </Link>
         <p className=" mb-2 text-center text-sm">
           <span className=" mr-2 line-through font-normal text-xs">
             ৳ {product.discountPrice}
