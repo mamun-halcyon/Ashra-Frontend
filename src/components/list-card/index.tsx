@@ -83,7 +83,7 @@ const ListCard: FC<IProps> = ({ product }) => {
         </div>
       </div>
       <div className="image w-[20%] relative">
-        <h3 className="font-gotham font-normal stock pb-1 mb-4">Instock</h3>
+        <h3 className="font-gotham font-bold stock pb-1 mb-4">Instock</h3>
         <h4 className=" font-gotham font-normal text-xs line-through text-black">
           ৳ 2700
         </h4>
