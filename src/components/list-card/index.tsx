@@ -87,15 +87,15 @@ const ListCard: FC<IProps> = ({ product }) => {
         <h4 className=" font-gotham font-normal text-xs line-through text-black">
           ৳ 2700
         </h4>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <h3 className=" font-gotham font-bold text-base text-black">
             ৳ 2600
           </h3>
-          <span className=" font-gotham font-normal text-xs  p-2 bg-primary save-money">
+          <span className=" font-gotham font-normal text-xs  px-2 py-1 bg-primary save-money">
             Save ৳ 1000
           </span>
         </div>
-        <Button className="w-full font-gotham font-bold text-sm py-2 mt-4 product-btn">
+        <Button className="w-full font-gotham font-bold text-sm py-1 mt-4 product-btn">
           Buy Now
         </Button>
       </div>
