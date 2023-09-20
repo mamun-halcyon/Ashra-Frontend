@@ -3,6 +3,10 @@
 .list-card {
   border-bottom: 1px solid #e2e2e2;
 
+  &:last-child {
+    border-bottom: 0;
+  }
+
   .icon-area {
     border: 1px solid #e2e2e2;
     border-radius: 50%;
