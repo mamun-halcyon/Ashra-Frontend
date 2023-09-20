@@ -3,6 +3,15 @@
 .list-card {
   border-bottom: 1px solid #e2e2e2;
 
+  .icon-area {
+    border: 1px solid #e2e2e2;
+    border-radius: 50%;
+
+    .icon {
+      color: $ash-color;
+    }
+  }
+
   .details {
     .review {
       svg {
@@ -11,6 +20,10 @@
       span {
         color: $ash-color;
       }
+    }
+    .icon-title {
+      color: $ash-color;
+      margin-left: 5px;
     }
   }
 
@@ -25,5 +38,11 @@
   }
   .save-money {
     color: $white-color;
+  }
+  .product-btn {
+    transition: all linear 0.3s;
+    &:hover {
+      background: $hover-color;
+    }
   }
 }
