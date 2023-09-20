@@ -39,7 +39,10 @@ const ListCard: FC<IProps> = ({ product }) => {
         </div>
       </div>
       <div className="details w-[50%] relative">
-        <Link href={'/'} className="font-gotham font-bold text-sm text-black">
+        <Link
+          href={'/'}
+          className="font-gotham font-bold text-sm text-black hover:text-primary"
+        >
           GH-8203M - Gazi Smiss Gas Stove
         </Link>
         <div className="flex items-center mt-3 review">
