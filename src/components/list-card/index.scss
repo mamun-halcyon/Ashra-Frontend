@@ -33,8 +33,10 @@
 
   .sudo {
     border: 1px solid $primary-color;
-    background: $primary-color;
-    color: $white-color;
+    &:hover {
+      background: $primary-color;
+      color: $white-color;
+    }
     margin: 0 5px;
   }
   .stock {
