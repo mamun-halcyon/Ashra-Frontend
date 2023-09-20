@@ -38,7 +38,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           </span>
         </div>
       </div>
-      <div className="details w-[40%] relative">
+      <div className="details w-[50%] relative">
         <h3 className="font-gotham font-bold text-sm text-black">
           GH-8203M - Gazi Smiss Gas Stove
         </h3>
@@ -82,7 +82,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="image w-[30%] relative">
+      <div className="image w-[20%] relative">
         <h3 className="font-gotham font-normal stock pb-1 mb-4">Instock</h3>
         <h4 className=" font-gotham font-normal text-xs line-through text-black">
           ৳ 2700
