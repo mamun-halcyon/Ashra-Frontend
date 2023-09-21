@@ -30,7 +30,7 @@ function Compare() {
             </div>
           </div>
         </div>
-        <div className="flex">
+        {/* <div className="flex">
           <div className="w-[15%] pt-3 px-2">
             <h3 className=" font-gotham font-medium text-xs text-black">
               Products Comparison
@@ -44,6 +44,18 @@ function Compare() {
           <div className="w-[21%]">2</div>
           <div className="w-[21%]">2</div>
           <div className="w-[21%]">2</div>
+        </div> */}
+        <div className="grid jobair">
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
+          <h1>1023</h1>
         </div>
       </div>
     </section>
