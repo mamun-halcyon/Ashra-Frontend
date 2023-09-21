@@ -1,0 +1,45 @@
+@import '../../styles/index.scss';
+
+.wishlist-page {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  .wish-heading {
+    border-bottom: 1px solid $decenary-color;
+  }
+
+  .cart-elements {
+    .product-title {
+      border-bottom: 1px solid $decenary-color;
+      padding-bottom: 6px;
+      .dot-icon {
+        color: $decenary-color;
+      }
+    }
+
+    .product-item {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $border-color;
+
+      .qnt-1 {
+        border: 1px solid $border-color;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:first-child {
+          border-right: 0;
+          width: 20px;
+          cursor: pointer;
+        }
+        &:last-child {
+          border-left: 0;
+          width: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
