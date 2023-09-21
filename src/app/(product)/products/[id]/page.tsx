@@ -8,6 +8,7 @@ const ZoomImage = dynamic(() => import('@/components/zoom-image'));
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Slider from 'react-slick';
 import Image from 'next/image';
+import StarRatings from 'react-star-ratings';
 import './page.scss';
 import StarRating from '@/components/rating';
 import Button from '@/components/button';
@@ -21,6 +22,9 @@ import OutlineButton from '@/components/outline-button';
 import { BsArrowRepeat } from 'react-icons/bs';
 import Title from '@/components/title';
 import { productsData } from '@/static/products';
+import ReviewCard from '@/components/review-card';
+import FormGroup from '@/components/fromgroup';
+import TextAreaGroup from '@/components/textarea';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 function PageDetails() {
@@ -28,6 +32,7 @@ function PageDetails() {
   const [viewImage, setViewImag] = useState<string>(
     '/assets/images/products/product.png'
   );
+  const [rating, setRating] = useState(0);
 
   const handleViewImage = (url: string) => {
     setViewImag(url);
@@ -293,7 +298,7 @@ function PageDetails() {
 
                 <div className="tab-panel">
                   <TabPanel>
-                    <div>
+                    <div className="specification">
                       <p>
                         <strong>Model</strong>: SH-285GL
                       </p>
@@ -335,45 +340,69 @@ function PageDetails() {
                     </div>
                   </TabPanel>
                   <TabPanel>
-                    <div>
-                      <p>
-                        <strong>Model</strong>: SH-285GL
-                      </p>
-                      <p>
-                        <strong>Brand</strong>: Gazi
-                      </p>
-                      <p>
-                        <strong>Material</strong>: Ceramic
-                      </p>
-                      <p>
-                        <strong>Installation Type</strong>: Floor Mounted
-                      </p>
-                      <p>
-                        <strong>Flushing Button Type</strong>: Upper-Pressing
-                        Two-end Type
-                      </p>
-                      <p>
-                        <strong>Feature</strong>: Dual-Flush
-                      </p>
-                      <p>
-                        <strong>Drainage Pattern</strong>: S-trap
-                      </p>
-                      <p>
-                        <strong>Siphonic/S-trap</strong>: 12 inch Roughing-in
-                      </p>
-                      <p>
-                        <strong>Design Style</strong>: Modern
-                      </p>
-                      <p>
-                        <strong>Toilet Bowl Shape</strong>: D- Shape&nbsp;
-                      </p>
-                      <p>
-                        <strong>Size</strong>: 27x15.5x29 inch&nbsp;&nbsp;
-                      </p>
-                      <p>
-                        <strong>Cover Plate</strong>: Quality PP Cover &amp; WDI
-                        Fittings
-                      </p>
+                    <div className="review">
+                      <div className="grid grid-cols-2 gap-10">
+                        <div>
+                          {[...Array(4)].map((review, index) => (
+                            <ReviewCard key={index} />
+                          ))}
+                        </div>
+                        {/* Review Form */}
+                        <div>
+                          <h2 className=" font-gotham font-semibold text-lg text-black">
+                            BE THE FIRST TO REVIEW
+                          </h2>
+                          <p className=" font-gotham font-normal text-xs text-black mt-4">
+                            Your email address will not be published. Required
+                            fields are marked *
+                          </p>
+                          <div className="flex items-center mt-9 mb-5">
+                            <p className="font-gotham font-normal text-xs text-black">
+                              Your rating *
+                            </p>
+                            <div className="ml-2 mb-1">
+                              <StarRatings
+                                rating={rating}
+                                starRatedColor="#164194"
+                                changeRating={(newRating) =>
+                                  setRating(newRating)
+                                }
+                                numberOfStars={5}
+                                name="rating"
+                                starDimension="15px" // Adjust the star size as needed
+                                starSpacing="5px" // Adjust the spacing between stars as needed
+                                starHoverColor="red"
+                              />
+                            </div>
+                          </div>
+                          <form>
+                            <TextAreaGroup title="Your review *" required />
+                            <FormGroup title="First Name *" required />
+                            <FormGroup title="Email *" required />
+                            <div className="flex items-center mt-1">
+                              <div className="mr-2">
+                                <input
+                                  type="checkbox"
+                                  name="d"
+                                  id="d"
+                                  required
+                                />
+                              </div>
+                              <p className=" font-gotham font-normal text-xs  text-black">
+                                Save my name, email, and website in this browser
+                                for the next time I comment.
+                              </p>
+                            </div>
+
+                            <Button
+                              type="submit"
+                              className="my-4 px-10 py-1 font-gotham font-medium text-sm hover:bg-[#2456b5]"
+                            >
+                              Submit
+                            </Button>
+                          </form>
+                        </div>
+                      </div>
                     </div>
                   </TabPanel>
                   <TabPanel>
