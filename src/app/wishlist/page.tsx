@@ -1,6 +1,5 @@
 import Button from '@/components/button';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import { GoDotFill } from 'react-icons/go';
 import { RxCross2 } from 'react-icons/rx';
