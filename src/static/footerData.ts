@@ -14,8 +14,8 @@ export const customerServiceData = {
       href: '/whitelist',
     },
     {
-      name: 'Track Order',
-      href: '/track-order',
+      name: 'Faq',
+      href: '/faq',
     },
     {
       name: 'EMI',

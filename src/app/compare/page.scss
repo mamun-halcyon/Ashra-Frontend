@@ -5,8 +5,9 @@
 
   .header {
     background: $tertiary-color;
+    padding: 15px 0;
   }
   .jobair {
-    grid-template-columns: 100px repeat(4, 1fr);
+    grid-template-columns: 250px repeat(4, 1fr);
   }
 }
