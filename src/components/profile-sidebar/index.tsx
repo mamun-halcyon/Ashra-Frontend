@@ -61,7 +61,7 @@ const ProfileSidebar = () => {
               Purchase History
             </Link>
           </li>
-          <li className="flex items-center bg-secondary pl-3">
+          {/*  <li className="flex items-center bg-secondary pl-3">
             <span className="mr-1">
               <AiOutlineDownload />
             </span>
@@ -71,8 +71,8 @@ const ProfileSidebar = () => {
             >
               Downloads
             </Link>
-          </li>
-          <li className="flex items-center  pl-3 mt-1">
+          </li> */}
+          <li className="flex items-center bg-secondary  pl-3 mt-1">
             <span className="mr-1">
               <LiaHandHoldingUsdSolid />
             </span>
@@ -83,29 +83,29 @@ const ProfileSidebar = () => {
               Refund Requested
             </Link>
           </li>
-          <li className="flex items-center bg-secondary pl-3">
+          <li className="flex items-center  pl-3">
             <span className="mr-1">
               <AiOutlineHeart />
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={'/wishlist'}
             >
               Wishlist
             </Link>
           </li>
-          <li className="flex items-center  pl-3 mt-1">
+          <li className="flex items-center bg-secondary  pl-3 mt-1">
             <span className="mr-1">
               <BsArrowRepeat />
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={'/compare'}
             >
               Compare
             </Link>
           </li>
-          <li className="flex items-center bg-secondary pl-3">
+          <li className="flex items-center  pl-3">
             <span className="mr-1">
               <BiMessageDetail />
             </span>
@@ -116,7 +116,7 @@ const ProfileSidebar = () => {
               Conversations
             </Link>
           </li>
-          <li className="flex items-center  pl-3 mt-1">
+          <li className="flex items-center bg-secondary pl-3 mt-1">
             <span className="mr-1">
               <RiPhoneCameraLine />
             </span>
@@ -127,7 +127,7 @@ const ProfileSidebar = () => {
               Support Ticket
             </Link>
           </li>
-          <li className="flex items-center bg-secondary pl-3">
+          <li className="flex items-center  pl-3">
             <span className="mr-1">
               <GrUserSettings />
             </span>

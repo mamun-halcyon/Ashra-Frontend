@@ -1,5 +1,6 @@
 import ProfileSidebar from '@/components/profile-sidebar';
 import '../page.scss';
+import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
 
 const OrderHistory = () => {
   return (
@@ -14,54 +15,102 @@ const OrderHistory = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 font-gotham font-normal"
+                      className="px-6 py-3 font-gotham font-medium"
                     >
                       Code
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 font-gotham font-normal"
+                      className="px-6 py-3 font-gotham font-medium"
                     >
                       Date
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 font-gotham font-normal"
+                      className="px-6 py-3 font-gotham font-medium"
                     >
                       Amount
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 font-gotham font-normal"
+                      className="px-6 py-3 font-gotham font-medium"
                     >
                       Delivery Status
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 font-gotham font-normal"
+                      className="px-6 py-3 font-gotham font-medium"
                     >
                       Payment Status
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 font-gotham font-normal"
+                      className="px-6 py-3 font-gotham font-medium"
                     >
                       Options
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      Code
-                    </th>
-                    <td className="px-6 py-4">Date</td>
-                    <td className="px-6 py-4">Amount</td>
-                    <td className="px-6 py-4">Delivery Status</td>
-                    <td className="px-6 py-4">Payment Status</td>
+                  <tr className=" font-light font-gotham text-sm">
+                    <td scope="row" className="px-6 py-4  ">
+                      20230927-12584942
+                    </td>
+                    <td className="px-6 py-4">27-09-2023</td>
+                    <td className="px-6 py-4"> ৳17,280.00</td>
+                    <td className="px-6 py-4">Delivered</td>
+                    <td className="px-6 py-4">Paid</td>
+                    <td className="px-6 py-4">
+                      <div className="flex justify-center">
+                        <LiaEye className="mr-1 cursor-pointer" />
+                        <LiaDownloadSolid className="cursor-pointer" />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="font-light font-gotham text-sm">
+                    <td scope="row" className="px-6 py-4  ">
+                      20230927-12584942
+                    </td>
+                    <td className="px-6 py-4">27-09-2023</td>
+                    <td className="px-6 py-4"> ৳17,280.00</td>
+                    <td className="px-6 py-4">Delivered</td>
+                    <td className="px-6 py-4">Paid</td>
+                    <td className="px-6 py-4">
+                      <div className="flex justify-center">
+                        <LiaEye className="mr-1 cursor-pointer" />
+                        <LiaDownloadSolid className="cursor-pointer" />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className=" font-light font-gotham text-sm">
+                    <td scope="row" className="px-6 py-4  ">
+                      20230927-12584942
+                    </td>
+                    <td className="px-6 py-4">27-09-2023</td>
+                    <td className="px-6 py-4"> ৳17,280.00</td>
+                    <td className="px-6 py-4">Delivered</td>
+                    <td className="px-6 py-4">Paid</td>
+                    <td className="px-6 py-4">
+                      <div className="flex justify-center">
+                        <LiaEye className="mr-1 cursor-pointer" />
+                        <LiaDownloadSolid className="cursor-pointer" />
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="font-light font-gotham text-sm">
+                    <td scope="row" className="px-6 py-4  ">
+                      20230927-12584942
+                    </td>
+                    <td className="px-6 py-4">27-09-2023</td>
+                    <td className="px-6 py-4"> ৳17,280.00</td>
+                    <td className="px-6 py-4">Delivered</td>
+                    <td className="px-6 py-4">Paid</td>
+                    <td className="px-6 py-4">
+                      <div className="flex justify-center">
+                        <LiaEye className="mr-1 cursor-pointer" />
+                        <LiaDownloadSolid className="cursor-pointer" />
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
