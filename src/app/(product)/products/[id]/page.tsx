@@ -416,7 +416,17 @@ function PageDetails() {
                     ></iframe>
                   </TabPanel>
                   <TabPanel>
-                    <h2>Any content 4</h2>
+                    <form>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <FormGroup title="Phone Number *" required />
+                          <TextAreaGroup title="Your review *" required />
+                          <Button className=" font-gotham font-normal px-2 py-1 text-sm">
+                            Submit
+                          </Button>
+                        </div>
+                      </div>
+                    </form>
                   </TabPanel>
                 </div>
               </Tabs>

@@ -46,9 +46,11 @@ const Navbar = () => {
           </div>
           <div className="w-[33%]">
             <div className="flex flex-row-reverse">
-              <div className=" relative ml-6">
-                <BiUserCircle className=" text-2xl text-primary" />
-              </div>
+              <Link href={'/profile'}>
+                <div className=" relative ml-6">
+                  <BiUserCircle className=" text-2xl text-primary" />
+                </div>
+              </Link>
               <Link href={'/wishlist'}>
                 <div className=" relative ml-6">
                   <AiOutlineHeart className=" text-2xl text-primary" />
