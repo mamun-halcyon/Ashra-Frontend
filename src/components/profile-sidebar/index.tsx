@@ -22,8 +22,8 @@ const ProfileSidebar = () => {
             <Image
               className="w-full"
               src={'/assets/images/icon/profile.png'}
-              width={200}
-              height={200}
+              width={80}
+              height={80}
               alt="profile"
             />
           </div>
@@ -45,7 +45,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={'/profile'}
             >
               Dashboard
             </Link>
@@ -56,7 +56,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={'/profile/order'}
             >
               Purchase History
             </Link>
@@ -133,7 +133,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={'/profile/manage-profile'}
             >
               Manage Profile
             </Link>
