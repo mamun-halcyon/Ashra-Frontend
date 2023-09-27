@@ -21,7 +21,7 @@ interface IProps {
 const ListCard: FC<IProps> = ({ product }) => {
   return (
     <div className="list-card flex py-5">
-      <div className="image w-[30%] relative flex items-center justify-center">
+      <div className="image w-[30%] relative flex items-center justify-center pt-10 box-border">
         <Image
           className="w-[70%] object-cover"
           src={product.image}
