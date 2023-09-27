@@ -2,6 +2,17 @@ import React from 'react';
 import './page.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import { RxDashboard } from 'react-icons/rx';
+import {
+  AiOutlineFilePpt,
+  AiOutlineDownload,
+  AiOutlineHeart,
+} from 'react-icons/ai';
+import { LiaHandHoldingUsdSolid } from 'react-icons/lia';
+import { BsArrowRepeat } from 'react-icons/bs';
+import { BiMessageDetail } from 'react-icons/bi';
+import { RiPhoneCameraLine } from 'react-icons/ri';
+import { GrUserSettings } from 'react-icons/gr';
 
 const Profile = () => {
   return (
@@ -22,58 +33,110 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-16 text-center px-10">
-              <h3 className=" font-gotham font-medium text-sm text-black">
-                Profile Name
-              </h3>
-              <p className=" font-gotham font-normal text-sm text-black bg-secondary mt-1">
-                email@gmail.com
-              </p>
-
-              <ul className="mt-12">
-                <li>
+            <div className="mt-16 text-center ">
+              <div className="px-10">
+                <h3 className=" font-gotham font-medium text-sm text-black">
+                  Profile Name
+                </h3>
+                <p className=" font-gotham font-normal text-sm text-black bg-secondary mt-1">
+                  email@gmail.com
+                </p>
+              </div>
+              <ul className="mt-12 text-left ">
+                <li className="flex items-center bg-secondary pl-3">
+                  <span className="mr-1">
+                    <RxDashboard />
+                  </span>
                   <Link
-                    className="font-gotham font-normal text-sm text-black mt-1"
+                    className="font-gotham font-normal text-sm text-black py-2"
                     href={'/'}
                   >
                     Dashboard
                   </Link>
                 </li>
-                <li>
+                <li className="flex items-center  pl-3 mt-1">
+                  <span className="mr-1">
+                    <AiOutlineFilePpt />
+                  </span>
                   <Link
-                    className="font-gotham font-normal text-sm text-black mt-1"
+                    className="font-gotham font-normal text-sm text-black py-2"
                     href={'/'}
                   >
                     Purchase History
                   </Link>
                 </li>
-                <li>
+                <li className="flex items-center bg-secondary pl-3">
+                  <span className="mr-1">
+                    <AiOutlineDownload />
+                  </span>
                   <Link
-                    className="font-gotham font-normal text-sm text-black mt-1"
+                    className="font-gotham font-normal text-sm text-black py-2"
                     href={'/'}
                   >
                     Downloads
                   </Link>
                 </li>
-                <li>
+                <li className="flex items-center  pl-3 mt-1">
+                  <span className="mr-1">
+                    <LiaHandHoldingUsdSolid />
+                  </span>
                   <Link
-                    className="font-gotham font-normal text-sm text-black mt-1"
+                    className="font-gotham font-normal text-sm text-black py-2"
                     href={'/'}
                   >
                     Refund Requested
                   </Link>
                 </li>
-                <li>
+                <li className="flex items-center bg-secondary pl-3">
+                  <span className="mr-1">
+                    <AiOutlineHeart />
+                  </span>
                   <Link
-                    className="font-gotham font-normal text-sm text-black mt-1"
+                    className="font-gotham font-normal text-sm text-black py-2"
+                    href={'/'}
+                  >
+                    Wishlist
+                  </Link>
+                </li>
+                <li className="flex items-center  pl-3 mt-1">
+                  <span className="mr-1">
+                    <BsArrowRepeat />
+                  </span>
+                  <Link
+                    className="font-gotham font-normal text-sm text-black py-2"
+                    href={'/'}
+                  >
+                    Compare
+                  </Link>
+                </li>
+                <li className="flex items-center bg-secondary pl-3">
+                  <span className="mr-1">
+                    <BiMessageDetail />
+                  </span>
+                  <Link
+                    className="font-gotham font-normal text-sm text-black py-2"
+                    href={'/'}
+                  >
+                    Conversations
+                  </Link>
+                </li>
+                <li className="flex items-center  pl-3 mt-1">
+                  <span className="mr-1">
+                    <RiPhoneCameraLine />
+                  </span>
+                  <Link
+                    className="font-gotham font-normal text-sm text-black py-2"
                     href={'/'}
                   >
                     Support Ticket
                   </Link>
                 </li>
-                <li>
+                <li className="flex items-center bg-secondary pl-3">
+                  <span className="mr-1">
+                    <GrUserSettings />
+                  </span>
                   <Link
-                    className="font-gotham font-normal text-sm text-black mt-1"
+                    className="font-gotham font-normal text-sm text-black py-2"
                     href={'/'}
                   >
                     Manage Profile
