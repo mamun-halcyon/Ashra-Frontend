@@ -1,151 +1,41 @@
 import React from 'react';
 import './page.scss';
-import Image from 'next/image';
-import Link from 'next/link';
-import { RxDashboard } from 'react-icons/rx';
-import {
-  AiOutlineFilePpt,
-  AiOutlineDownload,
-  AiOutlineHeart,
-} from 'react-icons/ai';
-import { LiaHandHoldingUsdSolid } from 'react-icons/lia';
-import { BsArrowRepeat } from 'react-icons/bs';
-import { BiMessageDetail } from 'react-icons/bi';
-import { RiPhoneCameraLine } from 'react-icons/ri';
-import { GrUserSettings } from 'react-icons/gr';
+import ProfileSidebar from '@/components/profile-sidebar';
 
 const Profile = () => {
   return (
     <section className="profile">
       <div className="container">
         <div className="grid grid-cols-12 gap-6">
-          <div className=" col-span-3 shadow pb-6">
-            <div className="relative profile-top">
-              <div className="bg-primary h-28">
-                <div className=" absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%]">
-                  <Image
-                    className="w-full"
-                    src={'/assets/images/icon/profile.png'}
-                    width={200}
-                    height={200}
-                    alt="profile"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="mt-16 text-center ">
-              <div className="px-10">
-                <h3 className=" font-gotham font-medium text-sm text-black">
-                  Profile Name
-                </h3>
-                <p className=" font-gotham font-normal text-sm text-black bg-secondary mt-1">
-                  email@gmail.com
+          <ProfileSidebar />
+          <div className=" col-span-9">
+            <div className="grid grid-cols-3 gap-4">
+              <div className=" bg-primary py-5 pl-5">
+                <h2 className=" font-medium font-gotham text-base text-white">
+                  0 Products
+                </h2>
+                <p className=" font-gotham font-light text-xs text-white">
+                  in Your Cart
                 </p>
               </div>
-              <ul className="mt-12 text-left ">
-                <li className="flex items-center bg-secondary pl-3">
-                  <span className="mr-1">
-                    <RxDashboard />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-                <li className="flex items-center  pl-3 mt-1">
-                  <span className="mr-1">
-                    <AiOutlineFilePpt />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Purchase History
-                  </Link>
-                </li>
-                <li className="flex items-center bg-secondary pl-3">
-                  <span className="mr-1">
-                    <AiOutlineDownload />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Downloads
-                  </Link>
-                </li>
-                <li className="flex items-center  pl-3 mt-1">
-                  <span className="mr-1">
-                    <LiaHandHoldingUsdSolid />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Refund Requested
-                  </Link>
-                </li>
-                <li className="flex items-center bg-secondary pl-3">
-                  <span className="mr-1">
-                    <AiOutlineHeart />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Wishlist
-                  </Link>
-                </li>
-                <li className="flex items-center  pl-3 mt-1">
-                  <span className="mr-1">
-                    <BsArrowRepeat />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Compare
-                  </Link>
-                </li>
-                <li className="flex items-center bg-secondary pl-3">
-                  <span className="mr-1">
-                    <BiMessageDetail />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Conversations
-                  </Link>
-                </li>
-                <li className="flex items-center  pl-3 mt-1">
-                  <span className="mr-1">
-                    <RiPhoneCameraLine />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Support Ticket
-                  </Link>
-                </li>
-                <li className="flex items-center bg-secondary pl-3">
-                  <span className="mr-1">
-                    <GrUserSettings />
-                  </span>
-                  <Link
-                    className="font-gotham font-normal text-sm text-black py-2"
-                    href={'/'}
-                  >
-                    Manage Profile
-                  </Link>
-                </li>
-              </ul>
+              <div className=" bg-primary py-5 pl-5">
+                <h2 className=" font-medium font-gotham text-base text-white">
+                  0 Products
+                </h2>
+                <p className=" font-gotham font-light text-xs text-white">
+                  in Your Wishlist
+                </p>
+              </div>
+              <div className=" bg-primary py-5 pl-5">
+                <h2 className=" font-medium font-gotham text-base text-white">
+                  0 Products
+                </h2>
+                <p className=" font-gotham font-light text-xs text-white">
+                  in Your Ordered
+                </p>
+              </div>
             </div>
           </div>
-          <div className=" col-span-9">2</div>
         </div>
       </div>
     </section>
