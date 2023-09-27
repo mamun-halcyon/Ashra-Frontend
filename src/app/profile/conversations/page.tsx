@@ -8,23 +8,48 @@ const Conversations = () => {
       <div className="container">
         <div className="grid grid-cols-12 gap-6">
           <ProfileSidebar />
-          <div className="shadow col-span-9">
-            <table className="w-full text-sm text-left ">
+          <div className=" col-span-9">
+            <table className="w-full text-sm text-left shadow ">
               <thead>
                 <tr>
-                  <th scope="col" className="px-6 py-3 font-gotham font-medium">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 font-gotham font-medium text-center"
+                  >
                     Mobile Number
                   </th>
-                  <th scope="col" className="px-6 py-3 font-gotham font-medium">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 font-gotham font-medium text-center"
+                  >
                     Question
                   </th>
-                  <th scope="col" className="px-6 py-3 font-gotham font-medium">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 font-gotham font-medium text-center"
+                  >
                     Status
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr className="table-border">
+                  <td scope="row " className="px-6 py-3 font-gotham font-light">
+                    +8801724721383
+                  </td>
+                  <td scope="row" className="px-6 py-3 font-gotham font-light">
+                    How do you rate the quality of our products as compared to
+                    our competitors? Lorem ipsum dolor sit, amet consectetur
+                    adipisicing elit. Expedita quos placeat quam. Deserunt
+                    perferendis libero dicta. Nesciunt voluptate aut maiores
+                    voluptatem odio repellat adipisci? Consequuntur id aperiam
+                    quibusdam vitae quisquam!
+                  </td>
+                  <td scope="row" className="px-6 py-3 font-gotham font-light">
+                    confirm
+                  </td>
+                </tr>
+                <tr className="table-border">
                   <td scope="row" className="px-6 py-3 font-gotham font-light">
                     +8801724721383
                   </td>

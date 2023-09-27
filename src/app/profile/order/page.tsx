@@ -52,7 +52,7 @@ const OrderHistory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className=" font-light font-gotham text-sm">
+                  <tr className=" font-light font-gotham text-sm table-border">
                     <td scope="row" className="px-6 py-4  ">
                       20230927-12584942
                     </td>
@@ -67,7 +67,7 @@ const OrderHistory = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="font-light font-gotham text-sm">
+                  <tr className="font-light font-gotham text-sm table-border">
                     <td scope="row" className="px-6 py-4  ">
                       20230927-12584942
                     </td>
@@ -82,7 +82,7 @@ const OrderHistory = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className=" font-light font-gotham text-sm">
+                  <tr className=" font-light font-gotham text-sm table-border">
                     <td scope="row" className="px-6 py-4  ">
                       20230927-12584942
                     </td>
@@ -97,7 +97,7 @@ const OrderHistory = () => {
                       </div>
                     </td>
                   </tr>
-                  <tr className="font-light font-gotham text-sm">
+                  <tr className="font-light font-gotham text-sm table-border">
                     <td scope="row" className="px-6 py-4  ">
                       20230927-12584942
                     </td>

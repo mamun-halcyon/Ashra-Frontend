@@ -122,7 +122,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={'/profile/ticket'}
             >
               Support Ticket
             </Link>
