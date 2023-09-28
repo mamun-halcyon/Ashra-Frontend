@@ -78,12 +78,10 @@ function Compare() {
             <p className=" font-gotham font-light text-xs text-black">
               Kitchen Hood
             </p>
-            <p className=" font-gotham font-light text-xs danger-text">
-              <span className="mt-1">
-                <RxCrossCircled className="inline mr-1" />
-              </span>
-              Remove
-            </p>
+            <div className="flex items-center">
+              <RxCrossCircled className="inline danger-text text-xs mr-1" />
+              <p className=" font-gotham font-light text-xs danger-text">Bal</p>
+            </div>
             <h3 className=" font-gotham font-medium text-xs my-3">
               GH-8203M - Gazi Smiss Gas Stove
             </h3>
@@ -108,12 +106,10 @@ function Compare() {
             <p className=" font-gotham font-light text-xs text-black">
               Kitchen Hood
             </p>
-            <p className=" font-gotham font-light text-xs danger-text">
-              <span className="mt-1">
-                <RxCrossCircled className="inline mr-1" />
-              </span>
-              Remove
-            </p>
+            <div className="flex items-center">
+              <RxCrossCircled className="inline danger-text text-xs mr-1" />
+              <p className=" font-gotham font-light text-xs danger-text">Bal</p>
+            </div>
             <h3 className=" font-gotham font-medium text-xs my-3">
               GH-8203M - Gazi Smiss Gas Stove
             </h3>
@@ -138,12 +134,10 @@ function Compare() {
             <p className=" font-gotham font-light text-xs text-black">
               Kitchen Hood
             </p>
-            <p className=" font-gotham font-light text-xs danger-text">
-              <span className="mt-1">
-                <RxCrossCircled className="inline mr-1" />
-              </span>
-              Remove
-            </p>
+            <div className="flex items-center">
+              <RxCrossCircled className="inline danger-text text-xs mr-1" />
+              <p className=" font-gotham font-light text-xs danger-text">Bal</p>
+            </div>
             <h3 className=" font-gotham font-medium text-xs my-3">
               GH-8203M - Gazi Smiss Gas Stove
             </h3>
@@ -168,12 +162,10 @@ function Compare() {
             <p className=" font-gotham font-light text-xs text-black">
               Kitchen Hood
             </p>
-            <p className=" font-gotham font-light text-xs danger-text">
-              <span className="mt-1">
-                <RxCrossCircled className="inline mr-1" />
-              </span>
-              Remove
-            </p>
+            <div className="flex items-center">
+              <RxCrossCircled className="inline danger-text text-xs mr-1" />
+              <p className=" font-gotham font-light text-xs danger-text">Bal</p>
+            </div>
             <h3 className=" font-gotham font-medium text-xs my-3">
               GH-8203M - Gazi Smiss Gas Stove
             </h3>
@@ -200,24 +192,16 @@ function Compare() {
             </h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-medium text-black text-xs">
-              Gazi
-            </h3>
+            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-medium text-black text-xs">
-              Gazi
-            </h3>
+            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-medium text-black text-xs">
-              Gazi
-            </h3>
+            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-medium text-black text-xs">
-              Gazi
-            </h3>
+            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-card">
             <h3 className=" font-gotham font-medium text-black text-xs">
@@ -236,10 +220,62 @@ function Compare() {
           <div className="p-4 product-card">
             <StarRating rating={4} />
           </div>
-          <div className="p-4">Brand</div>
-          <h1>1023</h1>
-          <h1>1023</h1>
-          <h1>1023</h1>
+          <div className="p-4 product-row">
+            <h3 className=" font-gotham font-medium text-black text-xs">
+              Description
+            </h3>
+          </div>
+          <div className="p-4 product-row">
+            <h3 className=" font-gotham  font-light text-black text-xs">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry standard dummy text
+              ever since the 1500s,
+            </h3>
+          </div>
+          <div className="p-4 product-row">
+            <h3 className=" font-gotham  font-light text-black text-xs">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry standard dummy text
+              ever since the 1500s,
+            </h3>
+          </div>
+          <div className="p-4 product-row">
+            <h3 className=" font-gotham  font-light text-black text-xs">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry standard dummy text
+              ever since the 1500s,
+            </h3>
+          </div>
+          <div className="p-4 product-row">
+            <h3 className=" font-gotham  font-light text-black text-xs">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry standard dummy text
+              ever since the 1500s,
+            </h3>
+          </div>
+          <div className="p-4 product-card">
+            <h3 className=" font-gotham font-medium text-black text-xs"></h3>
+          </div>
+          <div className="p-4 product-card">
+            <Button className="px-3 py-1 font-gotham font-normal text-normal">
+              Buy Now
+            </Button>
+          </div>
+          <div className="p-4 product-card">
+            <Button className="px-3 py-1 font-gotham font-normal text-normal">
+              Buy Now
+            </Button>
+          </div>
+          <div className="p-4 product-card">
+            <Button className="px-3 py-1 font-gotham font-normal text-normal">
+              Buy Now
+            </Button>
+          </div>
+          <div className="p-4 product-card">
+            <Button className="px-3 py-1 font-gotham font-normal text-normal">
+              Buy Now
+            </Button>
+          </div>
         </div>
       </div>
     </section>
