@@ -108,7 +108,7 @@ function Category() {
                 <div className="flex mb-2">
                   <input type="checkbox" name="stock" id="stock" />
                   <label
-                    className="ml-2 font-gotham font-normal text-sm"
+                    className="ml-2 font-gotham font-normal text-sm hover:text-primary transition-all"
                     htmlFor="stock"
                   >
                     In Stock
@@ -117,7 +117,7 @@ function Category() {
                 <div className="flex mb-2">
                   <input type="checkbox" name="stock-out" id="stockout" />
                   <label
-                    className="ml-2 font-gotham font-normal text-sm"
+                    className="ml-2 font-gotham font-normal text-sm hover:text-primary"
                     htmlFor="stockout"
                   >
                     Out of Stock
@@ -126,7 +126,7 @@ function Category() {
                 <div className="flex">
                   <input type="checkbox" name="instock" id="upcoming" />
                   <label
-                    className="ml-2 font-gotham font-normal text-sm"
+                    className="ml-2 font-gotham font-normal text-sm hover:text-primary"
                     htmlFor="upcoming"
                   >
                     Up Coming

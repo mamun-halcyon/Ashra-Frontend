@@ -11,7 +11,7 @@ interface IProps {
 const CategoryFilter: FC<IProps> = ({ onToggle, categoryItem, selectKey }) => {
   return (
     <div className="filter-category" onClick={onToggle}>
-      <p className="font-gotham font-normal text-sm cursor-pointer">
+      <p className="font-gotham font-normal text-sm cursor-pointer category-title">
         {categoryItem.title}
       </p>
 
@@ -26,7 +26,7 @@ const CategoryFilter: FC<IProps> = ({ onToggle, categoryItem, selectKey }) => {
             <input type="checkbox" name="filter" id={`${selectKey}${index}`} />
             <label
               htmlFor={`${selectKey}${index}`}
-              className="font-gotham font-normal text-sm ml-1 cursor-pointer"
+              className="font-gotham font-normal text-sm ml-1 cursor-pointer sub-link"
             >
               {sublink.title}
             </label>

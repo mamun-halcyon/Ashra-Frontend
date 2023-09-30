@@ -1,3 +1,5 @@
+@import '../../styles/index.scss';
+
 .filter-category {
   margin-bottom: 8px;
   .close {
@@ -11,5 +13,18 @@
     opacity: 1;
     visibility: visible;
     // transition: all linear 0.3s;
+  }
+  .category-title {
+    transition: all linear 0.3s;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .sub-link {
+    transition: all linear 0.3s;
+    &:hover {
+      color: $primary-color;
+    }
   }
 }
