@@ -153,7 +153,7 @@ export default function Home() {
               width={1300}
               height={500}
             />
-            <h2 className=" py-12 uppercase text-center font-gotham text-xl font-bold">
+            <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">
               PRODUCT REVIEWS & UNBOXING VIDEOS
             </h2>
             <div className="grid grid-cols-3 gap-4">
