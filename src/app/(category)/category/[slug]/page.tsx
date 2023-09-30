@@ -165,13 +165,15 @@ function Category() {
             </div>
             <div className="w-[925px]">
               <div className="category-banner mb-5">
-                <Image
-                  className="w-full"
-                  src={'/assets/images/banner/categorybanner.png'}
-                  width={400}
-                  height={300}
-                  alt="gazi category-banner"
-                />
+                <div className="h-[235px]">
+                  <Image
+                    className="w-full h-full"
+                    src={'/assets/images/banner/categorybanner.png'}
+                    width={400}
+                    height={300}
+                    alt="gazi category-banner"
+                  />
+                </div>
               </div>
               <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5 shadow-sm">
                 <div className=" flex items-center">
@@ -275,7 +277,7 @@ function Category() {
 
               <div className="filter-products">
                 {isRow ? (
-                  <div className="grid grid-cols-4 gap-6 mb-5">
+                  <div className="grid grid-cols-4 gap-2 mb-5">
                     {[...productsData].slice(0, 12).map((product, i) => (
                       <ProductCard key={i} product={product} />
                     ))}

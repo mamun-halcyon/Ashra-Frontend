@@ -8,25 +8,25 @@
   }
 
   .icon-area {
-    border: 1px solid #e2e2e2;
+    border: 1px solid $black-color;
     border-radius: 50%;
-
+    /* 
     .icon {
-      color: $ash-color;
-    }
+      // color: $ash-color;
+    } */
   }
 
   .details {
     .review {
       svg {
-        color: $ash-color;
+        color: $primary-color;
       }
       span {
-        color: $ash-color;
+        color: $primary-color;
       }
     }
     .icon-title {
-      color: $ash-color;
+      color: $black-color;
       margin-left: 5px;
     }
   }

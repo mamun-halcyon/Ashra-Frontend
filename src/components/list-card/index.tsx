@@ -30,10 +30,10 @@ const ListCard: FC<IProps> = ({ product }) => {
           alt="product"
         />
         <div className=" absolute right-4 top-0">
-          <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+          <span className=" sudo inline-block discount font-gotham text-xs font-medium  px-2 py-1  rounded text-primary">
             12%
           </span>
-          <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+          <span className=" sudo inline-block new font-gotham text-xs font-medium  px-2 py-1  rounded text-primary">
             New
           </span>
         </div>
@@ -41,7 +41,7 @@ const ListCard: FC<IProps> = ({ product }) => {
       <div className="details w-[50%] relative">
         <Link
           href={'/'}
-          className="font-gotham font-bold text-sm text-black hover:text-primary"
+          className="font-gotham font-medium text-sm text-black hover:text-primary"
         >
           GH-8203M - Gazi Smiss Gas Stove
         </Link>
@@ -51,15 +51,18 @@ const ListCard: FC<IProps> = ({ product }) => {
             Reviews (4)
           </span>
         </div>
-        <h4 className=" font-gotham font-bold text-xs text-black mt-9">
+        <h4 className=" font-gotham font-medium text-xs text-black mt-9">
           Brand: Gazi
         </h4>
-        <Link className="font-gotham font-bold text-xs text-primary" href={'/'}>
+        <Link
+          className="font-gotham font-medium text-xs text-primary"
+          href={'/'}
+        >
           Avail Bank EMI
         </Link>
 
         <div className="flex mt-7">
-          <div className="flex items-center mr-2">
+          <div className="flex items-center mr-2 cursor-pointer">
             <div className="icon-area p-1">
               <BsArrowRepeat className=" text-xs icon" />
             </div>
@@ -67,7 +70,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               Compare
             </p>
           </div>
-          <div className="flex items-center mr-2">
+          <div className="flex items-center mr-2 cursor-pointer">
             <div className="icon-area p-1">
               <BsHeart className=" text-xs icon" />
             </div>
@@ -75,7 +78,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               Wishlist
             </p>
           </div>
-          <div className="flex items-center mr-2">
+          <div className="flex items-center mr-2 cursor-pointer">
             <div className="icon-area p-1">
               <AiOutlinePlus className=" text-xs icon" />
             </div>
@@ -86,19 +89,19 @@ const ListCard: FC<IProps> = ({ product }) => {
         </div>
       </div>
       <div className="image w-[20%] relative">
-        <h3 className="font-gotham font-bold stock pb-1 mb-4">Instock</h3>
+        <h3 className="font-gotham font-medium stock pb-1 mb-4">Instock</h3>
         <h4 className=" font-gotham font-normal text-xs line-through text-black">
           ৳ 2700
         </h4>
         <div className="flex justify-between items-center">
-          <h3 className=" font-gotham font-bold text-base text-black">
+          <h3 className=" font-gotham font-medium text-base text-black">
             ৳ 2600
           </h3>
           <span className=" font-gotham font-normal text-xs  px-2 py-1 bg-primary save-money">
             Save ৳ 1000
           </span>
         </div>
-        <Button className="w-full font-gotham font-bold text-sm py-1 mt-4 product-btn">
+        <Button className="w-full font-gotham font-medium text-sm py-1 mt-4 product-btn">
           Buy Now
         </Button>
       </div>
