@@ -48,7 +48,7 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
           </Button>
         </div>
       </div>
-      <div className=" group-hover:top-2 absolute top-0 left-2">
+      <div className=" absolute top-2 left-2">
         <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
           -12%
         </span>
