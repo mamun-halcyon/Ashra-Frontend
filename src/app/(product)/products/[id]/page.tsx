@@ -132,7 +132,7 @@ function PageDetails() {
                   Gazi Smiss Commode | SH-285GL
                 </h2>
                 <div className="flex items-center text-primary font-gotham">
-                  <div className=" ml-2 flex items-center">
+                  <div className="flex items-center">
                     <StarRating rating={4} />
                     <span className="ml-1 font-gotham text-xs"> Review</span>
                   </div>
