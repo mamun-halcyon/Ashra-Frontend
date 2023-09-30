@@ -191,8 +191,8 @@ function PageDetails() {
                         </button>
                       </div>
                     </div>
-                    <Button className=" px-6 py-1 mr-2">Buy Now</Button>
-                    <Button className=" px-6 py-1">Add to cart</Button>
+                    <Button className=" px-5 py-1 mr-2">Buy Now</Button>
+                    <Button className=" px-5 py-1">Add to cart</Button>
                   </div>
                 </div>
 
