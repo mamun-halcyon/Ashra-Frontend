@@ -41,7 +41,7 @@ export default function Home() {
         </section>
         <section className="explore">
           <div className="container">
-            <h2 className="mb-6 uppercase text-center font-gotham text-xl font-bold ">
+            <h2 className="mb-6 uppercase text-center font-gotham text-xl font-medium ">
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
