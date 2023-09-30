@@ -47,7 +47,7 @@ const ListCard: FC<IProps> = ({ product }) => {
         </Link>
         <div className="flex items-center mt-3 review">
           <StarRating rating={4} />
-          <span className="font-gotham font-normal text-sm ml-3">
+          <span className="font-gotham font-normal text-xs ml-2">
             Reviews (4)
           </span>
         </div>
