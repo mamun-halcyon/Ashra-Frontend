@@ -52,15 +52,15 @@
   .r-price {
     color: $border-color;
   }
-  .d-price {
-    .discount {
-      background: $octonary-color;
-      color: $white-color;
-      font-size: 14px;
-      margin-left: 10px;
-      padding: 3px;
-    }
+  .discount {
+    background: $octonary-color;
+    color: $white-color;
+    font-size: 12px;
+    margin-left: 16px;
+    font-family: $secondary-font;
+    padding: 3px;
   }
+
   .emi {
     border-bottom: 1px solid $border-color;
   }

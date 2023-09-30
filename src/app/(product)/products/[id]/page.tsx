@@ -128,10 +128,10 @@ function PageDetails() {
               </div>
 
               <div>
-                <h2 className=" font-gotham font-bold text-xl text-black ">
+                <h2 className=" font-gotham font-medium text-xl text-black ">
                   Gazi Smiss Commode | SH-285GL
                 </h2>
-                <div className="flex items-center text-primary font-gotham mt-1">
+                <div className="flex items-center text-primary font-gotham">
                   <div className=" ml-2 flex items-center">
                     <StarRating rating={2.5} />
                     <span className="ml-1 font-gotham text-xs"> Review</span>
@@ -143,7 +143,7 @@ function PageDetails() {
                     <h3 className=" font-gotham font-normal text-xs text-black mr-3">
                       Regular Price:
                     </h3>
-                    <h2 className="font-gotham font-normal text-2xl  line-through r-price">
+                    <h2 className="font-gotham font-normal text-xl  line-through r-price">
                       ৳25,200.00
                     </h2>
                   </div>
@@ -151,20 +151,25 @@ function PageDetails() {
                     <h3 className=" font-gotham font-normal text-xs text-black mr-3">
                       Discount Price:
                     </h3>
-                    <h2 className="font-gotham  text-2xl text-primary font-bold d-price">
-                      ৳25,200.00 <span className="discount">Save ৳2,520</span>
-                    </h2>
+                    <div className="flex">
+                      <h2 className="font-gotham  text-2xl text-primary font-medium d-price">
+                        ৳25,200.00
+                      </h2>
+                      <div>
+                        <span className="discount">Save ৳2,520</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="emi">
                   <Link href={'/'}>
-                    <h3 className=" font-gotham font-bold text-base text-primary py-3">
+                    <h3 className=" font-gotham font-medium text-sm text-primary py-2">
                       Avail Bank EMI | EMI From 1,890 Tk/month
                     </h3>
                   </Link>
                 </div>
                 <div className="action">
-                  <div className="flex py-5 font-gotham font-medium ">
+                  <div className="flex py-3 font-gotham font-medium ">
                     <div className="mr-2 flex items-center text-primary border">
                       <div
                         className="quantity cursor-pointer"
@@ -193,19 +198,19 @@ function PageDetails() {
 
                 <div className="more-action">
                   <div className="flex">
-                    <OutlineButton className="flex items-center font-gotham font-bold text-primary mr-2">
+                    <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                       <span>
                         <AiOutlineHeart className="mr-1 " />
                       </span>
                       Wishlist
                     </OutlineButton>
-                    <OutlineButton className="flex items-center font-gotham font-bold text-primary mr-2">
+                    <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                       <span>
                         <BsArrowRepeat className="mr-1 " />
                       </span>
                       Add to Compare
                     </OutlineButton>
-                    <OutlineButton className="flex items-center font-gotham font-bold text-primary mr-2">
+                    <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                       <span>
                         <AiOutlineShareAlt />
                       </span>
@@ -214,58 +219,67 @@ function PageDetails() {
                   </div>
                 </div>
 
-                <div className="services py-5">
+                <div className="services py-3">
                   <div className="flex items-center mb-3">
-                    <Image
-                      src={'/assets/images/service/service1.png'}
-                      width={40}
-                      height={40}
-                      alt="service"
-                    />
+                    <div className=" w-8">
+                      <Image
+                        className="w-full"
+                        src={'/assets/images/service/service1.png'}
+                        width={40}
+                        height={40}
+                        alt="service"
+                      />
+                    </div>
                     <div className="details ml-2">
-                      <h3 className=" font-gotham font-bold text-bold text-base text-primary">
+                      <h3 className=" font-gotham font-medium text-bold text-base text-primary">
                         Cash on Delivery
                       </h3>
-                      <h4 className=" font-gotham font-bold text-bold text-xs text-black">
+                      <h4 className=" font-gotham font-medium text-bold text-xs text-black">
                         Installation Service
                       </h4>
                     </div>
                   </div>
                   <div className="flex items-center mb-3">
-                    <Image
-                      src={'/assets/images/service/service2.png'}
-                      width={40}
-                      height={40}
-                      alt="service"
-                    />
+                    <div className=" w-8">
+                      <Image
+                        className="w-full"
+                        src={'/assets/images/service/service2.png'}
+                        width={40}
+                        height={40}
+                        alt="service"
+                      />
+                    </div>
                     <div className="details ml-2">
-                      <h3 className=" font-gotham font-bold text-bold text-base text-primary">
+                      <h3 className=" font-gotham font-medium text-bold text-base text-primary">
                         Free Home Delivery
                       </h3>
-                      <h4 className=" font-gotham font-bold text-bold text-xs text-black">
+                      <h4 className=" font-gotham font-medium text-bold text-xs text-black">
                         3 - 7 Working Days
                       </h4>
                     </div>
                   </div>
                   <div className="flex items-center mb-3">
-                    <Image
-                      src={'/assets/images/service/service4.png'}
-                      width={40}
-                      height={40}
-                      alt="service"
-                    />
+                    <div className=" w-8">
+                      <Image
+                        className="w-full"
+                        src={'/assets/images/service/service4.png'}
+                        width={40}
+                        height={40}
+                        alt="service"
+                      />
+                    </div>
                     <div className="details ml-2">
-                      <h3 className=" font-gotham font-bold text-bold text-base text-primary">
+                      <h3 className=" font-gotham font-medium text-bold text-base text-primary">
                         Contact Us
                       </h3>
-                      <h4 className=" font-gotham font-bold text-bold text-xs text-black">
+                      <h4 className=" font-gotham font-medium text-bold text-xs text-black">
                         8801766688840
                       </h4>
                     </div>
                   </div>
                 </div>
 
-                <OutlineButton className="flex items-center font-gotham font-bold text-primary text-xs">
+                <OutlineButton className="flex items-center font-gotham font-medium text-primary text-xs">
                   <span className="mr-2">
                     <Image
                       src={
