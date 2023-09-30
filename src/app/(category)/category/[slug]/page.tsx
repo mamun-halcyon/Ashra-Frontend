@@ -16,6 +16,7 @@ import ListCard from '@/components/list-card';
 import { categoryData } from '@/static/category';
 import { ICategoryData } from '@/types/cagory';
 import CategoryFilter from '@/components/category-filter';
+import Pagination from '@/components/pagination';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 function Category() {
@@ -291,7 +292,14 @@ function Category() {
                 )}
               </div>
 
-              <div className="flex justify-between items-center mt-5 bottom-filter">
+              <Pagination
+                page={page}
+                incrementPage={incrementPage}
+                decrementPage={decrementPage}
+                showTitle={showTitle}
+                handleShow={handleShow}
+              />
+              {/* <div className="flex justify-between items-center mt-5 bottom-filter">
                 <div>
                   <ActionButton title={showTitle}>
                     <ul>
@@ -331,7 +339,7 @@ function Category() {
                     <IoMdArrowDropright />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

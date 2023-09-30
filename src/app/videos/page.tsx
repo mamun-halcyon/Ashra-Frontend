@@ -5,8 +5,29 @@ import { videoData } from '@/static/video';
 import './page.scss';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
+import Pagination from '@/components/pagination';
+import { useState } from 'react';
 
 function Videos() {
+  const [page, setPage] = useState(1);
+  const [showTitle, setShowTitle] = useState<string>('Show');
+
+  const incrementPage = () => {
+    setPage(page + 1);
+  };
+
+  const decrementPage = () => {
+    if (page !== 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const clickedElement = event.target as HTMLLIElement;
+    const innerText = clickedElement.innerText;
+    setShowTitle(`Show ${innerText}`);
+  };
+
   return (
     <main>
       <section>
@@ -28,6 +49,15 @@ function Videos() {
             </div>
           </div>
         </section>
+        <div className="container">
+          <Pagination
+            page={page}
+            incrementPage={incrementPage}
+            decrementPage={decrementPage}
+            showTitle={showTitle}
+            handleShow={handleShow}
+          />
+        </div>
       </div>
     </main>
   );

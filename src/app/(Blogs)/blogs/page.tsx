@@ -1,13 +1,34 @@
 'use client';
+
 import dynamic from 'next/dynamic';
 const BlogCard = dynamic(() => import('@/components/blog-card'));
 import { BlogData } from '@/static/BlogData';
 import Link from 'next/link';
-import React from 'react';
+import { useState } from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
+import Pagination from '@/components/pagination';
 
 function Blogs() {
+  const [page, setPage] = useState(1);
+  const [showTitle, setShowTitle] = useState<string>('Show');
+
+  const incrementPage = () => {
+    setPage(page + 1);
+  };
+
+  const decrementPage = () => {
+    if (page !== 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const clickedElement = event.target as HTMLLIElement;
+    const innerText = clickedElement.innerText;
+    setShowTitle(`Show ${innerText}`);
+  };
+
   return (
     <main>
       <section>
@@ -27,6 +48,13 @@ function Blogs() {
               <BlogCard key={index} blog={blog} />
             ))}
           </div>
+          <Pagination
+            page={page}
+            incrementPage={incrementPage}
+            decrementPage={decrementPage}
+            showTitle={showTitle}
+            handleShow={handleShow}
+          />
         </div>
       </section>
     </main>
