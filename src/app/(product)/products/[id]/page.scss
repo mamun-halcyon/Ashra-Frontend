@@ -1,8 +1,8 @@
 @import '../../../../styles/index.scss';
 
 .product-details {
-  border-top: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
   padding-bottom: 50px;
 
   svg {
@@ -46,11 +46,11 @@
   }
 
   .price-area {
-    border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
   }
   .r-price {
-    color: $border-color;
+    color: #ececec;
   }
   .discount {
     background: $octonary-color;
@@ -62,7 +62,7 @@
   }
 
   .emi {
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid #ececec;
   }
   .action {
     .quantity {
@@ -76,7 +76,7 @@
 }
 
 .more-details {
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid #ececec;
   .description {
     .desc {
       margin-top: 10px;
@@ -97,8 +97,8 @@
         padding-right: 26px;
         padding-left: 26px;
         font-family: 'Gotham';
-        font-weight: 500;
-        font-size: 14px;
+        font-weight: 700;
+        font-size: 15px;
         // margin-right: 13px;
         border-right: 1px solid $white-color;
 
