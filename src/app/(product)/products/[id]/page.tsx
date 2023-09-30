@@ -464,8 +464,8 @@ function PageDetails() {
                     <form>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <FormGroup title="Phone Number *" required />
-                          <TextAreaGroup title="Your review *" required />
+                          <FormGroup title="Your Contact *" required />
+                          <TextAreaGroup title="Ask Question *" required />
                           <Button className=" font-gotham font-normal px-2 py-1 text-sm">
                             Submit
                           </Button>
