@@ -277,7 +277,7 @@ function Category() {
 
               <div className="filter-products">
                 {isRow ? (
-                  <div className="grid grid-cols-4 gap-2 mb-5">
+                  <div className="grid grid-cols-4 gap-1 mb-5">
                     {[...productsData].slice(0, 12).map((product, i) => (
                       <ProductCard key={i} product={product} />
                     ))}
