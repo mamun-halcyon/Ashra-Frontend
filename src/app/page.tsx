@@ -74,22 +74,22 @@ export default function Home() {
                 <div className="grid grid-cols-6 gap-4">
                   <div className="col-span-5">
                     <TabPanel>
-                      <div className="grid grid-cols-4 gap-4">
-                        {productsData.map((product, i) => (
+                      <div className="grid grid-cols-4 gap-2">
+                        {[...productsData.slice(0, 8)].map((product, i) => (
                           <ProductCard key={i} product={product} />
                         ))}
                       </div>
                     </TabPanel>
                     <TabPanel>
-                      <div className="grid grid-cols-4 gap-4">
-                        {[...productsData].splice(0, 4).map((product, i) => (
+                      <div className="grid grid-cols-4 gap-2">
+                        {[...productsData].splice(0, 8).map((product, i) => (
                           <ProductCard key={i} product={product} />
                         ))}
                       </div>
                     </TabPanel>
                     <TabPanel>
-                      <div className="grid grid-cols-4 gap-4">
-                        {productsData.map((product, i) => (
+                      <div className="grid grid-cols-4 gap-2">
+                        {[...productsData.slice(0, 8)].map((product, i) => (
                           <ProductCard key={i} product={product} />
                         ))}
                       </div>
