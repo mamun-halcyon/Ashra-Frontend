@@ -128,17 +128,17 @@ function PageDetails() {
               </div>
 
               <div>
-                <h2 className=" font-gotham font-medium text-xl text-black ">
+                <h2 className=" font-gotham font-medium text-xl text-black mb-1">
                   Gazi Smiss Commode | SH-285GL
                 </h2>
                 <div className="flex items-center text-primary font-gotham">
                   <div className=" ml-2 flex items-center">
-                    <StarRating rating={2.5} />
+                    <StarRating rating={4} />
                     <span className="ml-1 font-gotham text-xs"> Review</span>
                   </div>
                 </div>
 
-                <div className="price-area py-2 mt-2">
+                <div className="price-area py-3 mt-2">
                   <div className="flex items-center">
                     <h3 className=" font-gotham font-normal text-xs text-black mr-3">
                       Regular Price:
@@ -163,13 +163,13 @@ function PageDetails() {
                 </div>
                 <div className="emi">
                   <Link href={'/'}>
-                    <h3 className=" font-gotham font-medium text-sm text-primary py-2">
+                    <h3 className=" font-gotham font-medium text-sm text-primary py-3">
                       Avail Bank EMI | EMI From 1,890 Tk/month
                     </h3>
                   </Link>
                 </div>
                 <div className="action">
-                  <div className="flex py-3 font-gotham font-medium ">
+                  <div className="flex py-5 font-gotham font-medium ">
                     <div className="mr-2 flex items-center text-primary border">
                       <div
                         className="quantity cursor-pointer"
@@ -305,6 +305,7 @@ function PageDetails() {
               <Tabs>
                 <TabList className={`react-tabs__tab-list`}>
                   <Tab>Specification</Tab>
+                  <Tab>Policy</Tab>
                   <Tab>Reviews</Tab>
                   <Tab>Video</Tab>
                   <Tab>Question</Tab>
@@ -325,6 +326,36 @@ function PageDetails() {
                       <p>
                         <strong>Installation Type</strong>: Floor Mounted
                       </p>
+                      <p>
+                        <strong>Flushing Button Type</strong>: Upper-Pressing
+                        Two-end Type
+                      </p>
+                      <p>
+                        <strong>Feature</strong>: Dual-Flush
+                      </p>
+                      <p>
+                        <strong>Drainage Pattern</strong>: S-trap
+                      </p>
+                      <p>
+                        <strong>Siphonic/S-trap</strong>: 12 inch Roughing-in
+                      </p>
+                      <p>
+                        <strong>Design Style</strong>: Modern
+                      </p>
+                      <p>
+                        <strong>Toilet Bowl Shape</strong>: D- Shape&nbsp;
+                      </p>
+                      <p>
+                        <strong>Size</strong>: 27x15.5x29 inch&nbsp;&nbsp;
+                      </p>
+                      <p>
+                        <strong>Cover Plate</strong>: Quality PP Cover &amp; WDI
+                        Fittings
+                      </p>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div className="specification">
                       <p>
                         <strong>Flushing Button Type</strong>: Upper-Pressing
                         Two-end Type

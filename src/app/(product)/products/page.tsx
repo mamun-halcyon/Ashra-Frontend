@@ -22,7 +22,7 @@ function Page() {
           <div className="container">
             <div className="mb-12">
               <Title title="Gas Stove" href="/category/gas-stove" />
-              <div className="grid grid-cols-5 gap-5">
+              <div className="grid grid-cols-5 gap-1">
                 {[...productsData].slice(0, 10).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -30,7 +30,7 @@ function Page() {
             </div>
             <div className="mb-12">
               <Title title="Kitchen Hood" href="/category/kitchen-hood" />
-              <div className="grid grid-cols-5 gap-5">
+              <div className="grid grid-cols-5 gap-1">
                 {[...productsData].slice(0, 10).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -38,7 +38,7 @@ function Page() {
             </div>
             <div className="mb-12">
               <Title title="RICE COOKER" href="/category/kitchen-hood" />
-              <div className="grid grid-cols-5 gap-5">
+              <div className="grid grid-cols-5 gap-1">
                 {[...productsData].slice(0, 10).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -46,7 +46,7 @@ function Page() {
             </div>
             <div>
               <Title title="Digital Scale" href="/category/digital-scale" />
-              <div className="grid grid-cols-5 gap-5">
+              <div className="grid grid-cols-5 gap-1">
                 {[...productsData].slice(0, 10).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}

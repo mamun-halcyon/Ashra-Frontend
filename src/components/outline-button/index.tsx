@@ -12,7 +12,7 @@ const OutlineButton: React.FC<IProps> = ({
 }) => {
   return (
     <button
-      className={`${className} px-2 py-1 border outline-button  cursor-pointer`}
+      className={`${className} px-2 py-[2px] border outline-button  cursor-pointer`}
       onClick={handleClick}
     >
       {children}
