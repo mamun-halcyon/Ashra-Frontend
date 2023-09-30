@@ -19,15 +19,16 @@
         top: 0px;
         background: $white-color;
         transform: translateX(100%);
-        padding: 10px;
+        /*  padding: 10px;
+        padding-top: 0; */
         opacity: 0;
         visibility: hidden;
         transition: all linear 0.3s;
         cursor: pointer;
 
         li {
-          padding-top: 4px;
-          padding-bottom: 4px;
+          padding-top: 6px;
+          padding-bottom: 6px;
           transition: all linear 0.3s;
 
           a {

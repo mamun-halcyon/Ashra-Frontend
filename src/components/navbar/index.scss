@@ -13,4 +13,12 @@
     width: 150px;
     height: auto;
   }
+
+  .link-item {
+    &:hover {
+      .link {
+        transform: scale(1.08);
+      }
+    }
+  }
 }

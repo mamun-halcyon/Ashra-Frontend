@@ -12,7 +12,7 @@ const MegaMenu = () => {
           <div className="flex">
             {/* main Item */}
             <div className="mr-2 text-left relative heading">
-              <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-primary transition-all">
+              <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Home Appliance
                 <span className=" text-xs md:hidden inline">
                   <BsChevronDown className=" text-[5px]" />
@@ -26,7 +26,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -38,7 +38,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -46,7 +46,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -54,7 +54,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -62,7 +62,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -76,7 +76,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -88,7 +88,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -96,7 +96,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -104,7 +104,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -112,7 +112,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -126,7 +126,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Cookware
@@ -138,7 +138,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -146,7 +146,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -154,7 +154,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -162,7 +162,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -176,7 +176,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -188,7 +188,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -196,7 +196,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -204,7 +204,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -212,7 +212,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -228,7 +228,7 @@ const MegaMenu = () => {
             </div>
             {/* main Item */}
             <div className="mr-2 text-left relative heading">
-              <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-primary transition-all">
+              <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary  transition-all">
                 Bathware
                 <span className=" text-xs md:hidden inline">
                   <BsChevronDown className=" text-[5px]" />
@@ -242,7 +242,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -254,7 +254,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -262,7 +262,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -270,7 +270,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -278,7 +278,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -292,7 +292,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -304,7 +304,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -312,7 +312,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -320,7 +320,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -328,7 +328,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -342,7 +342,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Cookware
@@ -354,7 +354,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -362,7 +362,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -370,7 +370,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -378,7 +378,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -392,7 +392,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -404,7 +404,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -412,7 +412,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -420,7 +420,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -428,7 +428,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -444,7 +444,7 @@ const MegaMenu = () => {
             </div>
             {/* main Item */}
             <div className="mr-2 text-left relative heading">
-              <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-primary transition-all">
+              <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary  transition-all">
                 Pumps & Motors
                 <span className=" text-xs md:hidden inline">
                   <BsChevronDown className=" text-[5px]" />
@@ -458,7 +458,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Gas Stove
@@ -470,7 +470,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -478,7 +478,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -486,7 +486,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -494,7 +494,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -508,7 +508,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -520,7 +520,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -528,7 +528,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -536,7 +536,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -544,7 +544,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -558,7 +558,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Cookware
@@ -570,7 +570,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -578,7 +578,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -586,7 +586,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -594,7 +594,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
@@ -608,7 +608,7 @@ const MegaMenu = () => {
                 <div>
                   <div className=" relative flex justify-between items-center sub-item">
                     <Link
-                      className=" font-gotham font-normal my-2 text-sm text-black sub-element"
+                      className=" font-gotham font-medium my-2 text-sm text-black sub-element"
                       href={'/category/gas-stove'}
                     >
                       Kitchen Hood
@@ -620,7 +620,7 @@ const MegaMenu = () => {
                       <ul>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Tempered Glass
@@ -628,7 +628,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Stainless Steel
@@ -636,7 +636,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Gst
@@ -644,7 +644,7 @@ const MegaMenu = () => {
                         </li>
                         <li>
                           <Link
-                            className=" font-gotham font-normal text-sm  text-black"
+                            className=" font-gotham font-medium text-sm  text-black"
                             href={'/category/gas-stove'}
                           >
                             Single Burner
