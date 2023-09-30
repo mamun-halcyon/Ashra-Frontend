@@ -37,7 +37,7 @@ const TopHeader = () => {
               </span>
             </Link>
             <div className="absolute opacity-0 invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
-              <ul className="   bg-[#fff] font-gotham font-normal text-sm text-black">
+              <ul className="   bg-[#fff] font-gotham font-normal text-[13px] text-black">
                 <li className="px-2 py-1 hover:text-primary">
                   <Link href={'/link'}>Link 1</Link>
                 </li>
