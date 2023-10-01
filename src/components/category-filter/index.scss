@@ -16,6 +16,7 @@
   }
   .category-title {
     transition: all linear 0.3s;
+    border-bottom: 0;
 
     &:hover {
       color: $primary-color;
