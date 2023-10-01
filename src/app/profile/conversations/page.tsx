@@ -1,6 +1,7 @@
 import ProfileSidebar from '@/components/profile-sidebar';
 import '../page.scss';
 import React from 'react';
+import './page.scss';
 
 const Conversations = () => {
   return (
@@ -9,9 +10,9 @@ const Conversations = () => {
         <div className="grid grid-cols-12 gap-6">
           <ProfileSidebar />
           <div className=" col-span-9">
-            <table className="w-full text-sm text-left shadow ">
+            <table className="w-full text-sm text-left conversation-table ">
               <thead>
-                <tr>
+                <tr className="table-heading">
                   <th
                     scope="col"
                     className="px-6 py-3 font-gotham font-medium text-center"
@@ -47,6 +48,18 @@ const Conversations = () => {
                   </td>
                   <td scope="row" className="px-6 py-3 font-gotham font-light">
                     confirm
+                  </td>
+                </tr>
+                <tr className="table-border">
+                  <td scope="row" className="px-6 py-3 font-gotham font-light">
+                    +8801724721383
+                  </td>
+                  <td scope="row" className="px-6 py-3 font-gotham font-light">
+                    How do you rate the quality of our products as compared to
+                    our competitors?
+                  </td>
+                  <td scope="row" className="px-6 py-3 font-gotham font-light">
+                    pending
                   </td>
                 </tr>
                 <tr className="table-border">
