@@ -1,16 +1,30 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import './page.scss';
 import Button from '@/components/button';
 import Image from 'next/image';
 import { RxCrossCircled } from 'react-icons/rx';
+import { LuSearch } from 'react-icons/lu';
 import StarRating from '@/components/rating';
+import ToggleButton from '@/components/status-button';
 
 function Compare() {
+  const [isTrue, setIsTrue] = useState(true);
+
+  const handleToggle = () => setIsTrue(!isTrue);
   return (
     <section className="compare">
       <div className="container">
         <div className="mb-4 flex justify-between">
-          <h3 className=" font-gotham font-medium text-base">Compare</h3>
+          <div className="flex">
+            <h3 className=" font-gotham font-medium text-base mr-4">Compare</h3>
+            <div className="flex items-center">
+              <ToggleButton isChecked={isTrue} onClick={handleToggle} />
+              <p className=" font-gotham font-normal text-sm ml-4">
+                Highlight differences
+              </p>
+            </div>
+          </div>
           <Button className=" font-gotham font-medium text-sm px-4 py-1">
             Clear All
           </Button>
@@ -18,13 +32,14 @@ function Compare() {
 
         <table className="w-full text-sm text-left compare-table">
           <thead>
-            <tr>
+            <tr className="heading">
               <th scope="col" className="px-2 py-3"></th>
               <th scope="col" className="px-2 py-3">
                 <div className="header">
                   <h4 className=" font-gotham font-medium text-xs text-black">
                     GH-8203M - Gazi Smiss Gas..
                   </h4>
+                  <LuSearch />
                 </div>
               </th>
               <th scope="col" className="px-2 py-3">
@@ -32,6 +47,7 @@ function Compare() {
                   <h4 className=" font-gotham font-medium text-xs text-black">
                     GH-8203M - Gazi Smiss Gas..
                   </h4>
+                  <LuSearch />
                 </div>
               </th>
               <th scope="col" className="px-2 py-3">
@@ -39,6 +55,7 @@ function Compare() {
                   <h4 className=" font-gotham font-medium text-xs text-black">
                     GH-8203M - Gazi Smiss Gas..
                   </h4>
+                  <LuSearch />
                 </div>
               </th>
               <th scope="col" className="px-2 py-3">
@@ -46,6 +63,7 @@ function Compare() {
                   <h4 className=" font-gotham font-medium text-xs text-black">
                     GH-8203M - Gazi Smiss Gas..
                   </h4>
+                  <LuSearch />
                 </div>
               </th>
             </tr>

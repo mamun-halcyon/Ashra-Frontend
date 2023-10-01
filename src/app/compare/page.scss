@@ -4,8 +4,16 @@
   padding-bottom: 80px;
 
   .compare-table {
+    .heading {
+      background: $secondary-color;
+    }
     thead {
-      background: $tertiary-color;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        background: $white-color;
+        padding: 10px 5px;
+      }
     }
     tbody {
       tr {
@@ -24,8 +32,7 @@
           }
         }
 
-        td,
-        th {
+        td {
           border: 1px solid $tertiary-color;
           border-top: 0;
         }

@@ -1,0 +1,29 @@
+@import '../../styles/index.scss';
+
+.toggle-button {
+  width: 35px;
+  height: 14px;
+  background-color: $primary-color;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider {
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  transition: 0.2s;
+  top: 0;
+  left: 0;
+}
+
+.toggle-button.checked .slider {
+  transform: translateX(20px);
+}
+
+.toggle-button .active {
+  background-color: $white-color;
+}
