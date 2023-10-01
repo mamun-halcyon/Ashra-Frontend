@@ -1,7 +1,7 @@
 @import '../../styles/index.scss';
 
 .wishlist-page {
-  padding-top: 80px;
+  padding-top: 60px;
   padding-bottom: 80px;
 
   .wish-heading {
@@ -40,6 +40,18 @@
           cursor: pointer;
         }
       }
+    }
+  }
+}
+.cart-service {
+  background: $primary-color;
+  .service-card {
+    color: $white-color;
+    h4 {
+      color: $white-color;
+    }
+    h6 {
+      color: $white-color;
     }
   }
 }

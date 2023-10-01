@@ -24,19 +24,19 @@ function Checkout() {
                 <div className="flex justify-between item-wrapper">
                   <div className="flex items-center item flex-col">
                     <FaShoppingCart className="icon text-xl" />
-                    <h4 className=" font-gotham font-bold text-sm  ">
+                    <h4 className=" font-gotham font-medium text-sm  ">
                       My Cart
                     </h4>
                   </div>
                   <div className="flex items-center item flex-col">
                     <FaShoppingCart className=" icon text-xl" />
-                    <h4 className=" font-gotham font-bold text-sm  ">
+                    <h4 className=" font-gotham font-medium text-sm  ">
                       Payment
                     </h4>
                   </div>
                   <div className="flex items-center item flex-col">
                     <MdVerified className="icon text-xl" />
-                    <h4 className=" font-gotham font-bold text-sm  ">
+                    <h4 className=" font-gotham font-medium text-sm  ">
                       Confirmation
                     </h4>
                   </div>
@@ -46,26 +46,26 @@ function Checkout() {
               <div className="cart-elements">
                 <div className="grid grid-cols-8 gap-4 product-title">
                   <div className=" col-span-4 flex items-center justify-center">
-                    <GoDotFill className="dot-icon" />
-                    <h3 className=" font-gotham font-bold text-base text-black text-center">
+                    {/* <GoDotFill className="dot-icon" /> */}
+                    <h3 className=" font-gotham font-medium text-base text-black text-center">
                       Product
                     </h3>
                   </div>
                   <div className="col-span-1 flex items-center ">
-                    <GoDotFill className="dot-icon" />
-                    <h3 className=" font-gotham font-bold text-base text-black text-center">
+                    {/* <GoDotFill className="dot-icon" /> */}
+                    <h3 className=" font-gotham font-medium text-base text-black text-center">
                       Price
                     </h3>
                   </div>
                   <div className="col-span-2 flex items-center">
-                    <GoDotFill className="dot-icon" />
-                    <h3 className=" font-gotham font-bold text-base text-black text-center">
+                    {/* <GoDotFill className="dot-icon" /> */}
+                    <h3 className=" font-gotham font-medium text-base text-black text-center">
                       Quantity
                     </h3>
                   </div>
                   <div className="col-span-1 flex items-center">
-                    <GoDotFill className="dot-icon" />
-                    <h3 className=" font-gotham font-bold text-base text-black text-center">
+                    {/* <GoDotFill className="dot-icon" /> */}
+                    <h3 className=" font-gotham font-medium text-base text-black text-center">
                       Subtotal
                     </h3>
                   </div>
@@ -222,11 +222,11 @@ function Checkout() {
             {/* summery */}
             <div className=" col-span-4">
               <div className="py-11 px-9 cart-summery">
-                <h3 className="summery-border font-gotham font-bold text-base text-black pb-2">
+                <h3 className="summery-border font-gotham font-medium text-base text-black pb-2">
                   Cart Summery
                 </h3>
 
-                <div className="flex justify-between items-center mt-14 summery-border pb-1">
+                <div className="flex justify-between items-center mt-14 summery-border pb-2">
                   <p className=" font-gotham font-medium text-xs text-black">
                     Sub Total
                   </p>
@@ -235,15 +235,15 @@ function Checkout() {
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center mt-3 summery-border pb-1">
+                <div className="flex justify-between items-center mt-3 summery-border pb-2">
                   <p className=" font-gotham font-medium text-xs text-black">
                     Shipping
                   </p>
-                  <p className=" font-gotham font-medium text-xs text-black">
+                  <p className=" font-gotham font-normal text-xs text-black">
                     Free Shipping
                   </p>
                 </div>
-                <div className="flex justify-between items-center mt-1">
+                <div className="flex justify-between items-center mt-3">
                   <p className=" font-gotham font-medium text-sm text-black">
                     Total
                   </p>
@@ -252,7 +252,7 @@ function Checkout() {
                   </p>
                 </div>
                 <Link className=" mt-14 block" href={'/checkout'}>
-                  <Button className="w-full font-gotham font-bold text-lg py-2">
+                  <Button className="w-full font-gotham font-medium text-lg py-1">
                     Continue to Shipping
                   </Button>
                 </Link>
@@ -261,7 +261,7 @@ function Checkout() {
           </div>
         </div>
       </section>
-      {/*   <section className="cart-service">
+      <section className="cart-service">
         <div className="container">
           <div className="grid grid-cols-4 gap-4">
             {serviceCardData.map((service, i) => (
@@ -269,7 +269,7 @@ function Checkout() {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
     </main>
   );
 }
