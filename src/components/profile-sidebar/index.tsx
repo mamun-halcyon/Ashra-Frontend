@@ -41,7 +41,7 @@ const ProfileSidebar = () => {
         </div>
         <ul className="mt-12 text-left profile-link">
           <li className="flex items-center pl-3">
-            <span className="mr-1">
+            <span className="mr-2">
               <RxDashboard />
             </span>
             <Link
@@ -52,7 +52,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center  pl-3 mt-1">
-            <span className="mr-1">
+            <span className="mr-2">
               <AiOutlineFilePpt />
             </span>
             <Link
@@ -63,7 +63,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           {/*  <li className="flex items-center pl-3">
-            <span className="mr-1">
+            <span className="mr-2">
               <AiOutlineDownload />
             </span>
             <Link
@@ -74,7 +74,7 @@ const ProfileSidebar = () => {
             </Link>
           </li> */}
           <li className="flex items-center  pl-3 mt-1">
-            <span className="mr-1">
+            <span className="mr-2">
               <LiaHandHoldingUsdSolid />
             </span>
             <Link
@@ -85,7 +85,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center  pl-3">
-            <span className="mr-1">
+            <span className="mr-2">
               <AiOutlineHeart />
             </span>
             <Link
@@ -96,7 +96,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center  pl-3 mt-1">
-            <span className="mr-1">
+            <span className="mr-2">
               <BsArrowRepeat />
             </span>
             <Link
@@ -107,7 +107,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center  pl-3">
-            <span className="mr-1">
+            <span className="mr-2">
               <BiMessageDetail />
             </span>
             <Link
@@ -118,7 +118,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center pl-3 mt-1">
-            <span className="mr-1">
+            <span className="mr-2">
               <RiPhoneCameraLine />
             </span>
             <Link
@@ -129,7 +129,7 @@ const ProfileSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center  pl-3">
-            <span className="mr-1">
+            <span className="mr-2">
               <GrUserSettings />
             </span>
             <Link

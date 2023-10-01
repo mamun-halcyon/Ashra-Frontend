@@ -2,9 +2,9 @@ import Image from 'next/image';
 import './index.scss';
 import Link from 'next/link';
 import { applianceData, customerServiceData } from '@/static/footerData';
-import { GrLocation } from 'react-icons/gr';
+import { FaLocationDot } from 'react-icons/fa6';
 import { PiEnvelopeThin } from 'react-icons/pi';
-import { BsHeadphones } from 'react-icons/bs';
+import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
 
 const Footer = () => {
   return (
@@ -21,7 +21,7 @@ const Footer = () => {
             />
             <div className="flex items-start mb-3">
               <span className="mr-4">
-                <GrLocation className=" w-5 h-5 text-black mt-1" />
+                <FaLocationDot className=" w-5 h-5 text-black mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm text-black ">
                 37/2, Pritom Zaman Tower, Bir Protik Gazi Dastagir Road, Dhaka
@@ -38,7 +38,7 @@ const Footer = () => {
             </div>
             <div className="flex">
               <span className="mr-4">
-                <PiEnvelopeThin className=" w-5 h-5 text-black mt-1" />
+                <BsEnvelopeFill className=" w-5 h-5 text-black mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm text-black">
                 info@gazihomeappliance.com
