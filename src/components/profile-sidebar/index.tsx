@@ -2,11 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RxDashboard } from 'react-icons/rx';
-import {
-  AiOutlineFilePpt,
-  AiOutlineDownload,
-  AiOutlineHeart,
-} from 'react-icons/ai';
+import { AiOutlineFilePpt, AiOutlineHeart } from 'react-icons/ai';
 import { LiaHandHoldingUsdSolid } from 'react-icons/lia';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { BiMessageDetail } from 'react-icons/bi';
