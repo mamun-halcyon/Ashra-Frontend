@@ -226,16 +226,24 @@ function Compare() {
                 </h3>
               </td>
               <td scope="col" className="px-2 py-3">
-                <StarRating rating={4} />
+                <div className="icons">
+                  <StarRating rating={4} />
+                </div>
               </td>
               <td scope="col" className="px-2 py-3">
-                <StarRating rating={4} />
+                <div className="icons">
+                  <StarRating rating={4} />
+                </div>
               </td>
               <td scope="col" className="px-2 py-3">
-                <StarRating rating={4} />
+                <div className="icons">
+                  <StarRating rating={4} />
+                </div>
               </td>
               <td scope="col" className="px-2 py-3">
-                <StarRating rating={4} />
+                <div className="icons">
+                  <StarRating rating={4} />
+                </div>
               </td>
             </tr>
             <tr>
