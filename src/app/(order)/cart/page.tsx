@@ -239,7 +239,7 @@ function Checkout() {
                   <p className=" font-gotham font-medium text-xs text-black">
                     Shipping
                   </p>
-                  <p className=" font-gotham font-normal text-xs text-black">
+                  <p className=" font-gotham font-medium text-xs text-black">
                     Free Shipping
                   </p>
                 </div>

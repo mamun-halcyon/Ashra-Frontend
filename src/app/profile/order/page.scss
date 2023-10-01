@@ -1,0 +1,39 @@
+@import '../../../styles/index.scss';
+
+.order-table {
+  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.05);
+
+  .table-heading {
+    background: $secondary-color;
+  }
+  tbody {
+    tr {
+      transition: all linear 0.3s;
+      &:nth-child(even) {
+        background: $quaternary-color;
+      }
+      &:hover {
+        background: $secondary-color;
+      }
+      td {
+        border-right: 1px solid $secondary-color;
+        &:last-child {
+          border: 0;
+        }
+      }
+      .info-icons {
+        svg {
+          border: 1px solid $border-color;
+          font-size: 20px;
+          padding: 2px;
+          border-radius: 50%;
+          transition: all linear 0.3s;
+          &:hover {
+            background: $hover-color;
+            color: $white-color;
+          }
+        }
+      }
+    }
+  }
+}

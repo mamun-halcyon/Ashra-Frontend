@@ -16,7 +16,7 @@ const UpdateProfile = () => {
             <div className="shadow p-4">
               <form>
                 <div className="grid grid-cols-2 gap-4">
-                  <FormGroup title="Your name" />
+                  <FormGroup title="Your Name" />
                   <FormGroup title="Mobile Number" />
                   <FormGroup title="Photo" type="file" />
                   <FormGroup title="City" />

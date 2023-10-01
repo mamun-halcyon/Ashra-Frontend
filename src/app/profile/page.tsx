@@ -15,7 +15,7 @@ const Profile = () => {
                   0 Products
                 </h2>
                 <p className=" font-gotham font-light text-xs text-white">
-                  in Your Cart
+                  In Your Cart
                 </p>
               </div>
               <div className=" bg-primary py-5 pl-5">
@@ -23,7 +23,7 @@ const Profile = () => {
                   0 Products
                 </h2>
                 <p className=" font-gotham font-light text-xs text-white">
-                  in Your Wishlist
+                  In Your Wishlist
                 </p>
               </div>
               <div className=" bg-primary py-5 pl-5">
@@ -31,7 +31,7 @@ const Profile = () => {
                   0 Products
                 </h2>
                 <p className=" font-gotham font-light text-xs text-white">
-                  in Your Ordered
+                  In Your Ordered
                 </p>
               </div>
             </div>

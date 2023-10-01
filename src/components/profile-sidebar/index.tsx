@@ -12,13 +12,14 @@ import { BsArrowRepeat } from 'react-icons/bs';
 import { BiMessageDetail } from 'react-icons/bi';
 import { RiPhoneCameraLine } from 'react-icons/ri';
 import { GrUserSettings } from 'react-icons/gr';
+import './index.scss';
 
 const ProfileSidebar = () => {
   return (
     <div className=" col-span-3 shadow pb-6">
       <div className="relative profile-top">
         <div className="bg-primary h-28">
-          <div className=" absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%]">
+          <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%]">
             <Image
               className="w-full"
               src={'/assets/images/icon/profile.png'}
@@ -31,15 +32,15 @@ const ProfileSidebar = () => {
       </div>
       <div className="mt-16 text-center ">
         <div className="px-10">
-          <h3 className=" font-gotham font-medium text-sm text-black">
+          <h3 className=" font-gotham font-medium text-base text-black">
             Profile Name
           </h3>
           <p className=" font-gotham font-normal text-sm text-black bg-secondary mt-1">
             email@gmail.com
           </p>
         </div>
-        <ul className="mt-12 text-left ">
-          <li className="flex items-center bg-secondary pl-3">
+        <ul className="mt-12 text-left profile-link">
+          <li className="flex items-center pl-3">
             <span className="mr-1">
               <RxDashboard />
             </span>
@@ -61,7 +62,7 @@ const ProfileSidebar = () => {
               Purchase History
             </Link>
           </li>
-          {/*  <li className="flex items-center bg-secondary pl-3">
+          {/*  <li className="flex items-center pl-3">
             <span className="mr-1">
               <AiOutlineDownload />
             </span>
@@ -72,7 +73,7 @@ const ProfileSidebar = () => {
               Downloads
             </Link>
           </li> */}
-          <li className="flex items-center bg-secondary  pl-3 mt-1">
+          <li className="flex items-center  pl-3 mt-1">
             <span className="mr-1">
               <LiaHandHoldingUsdSolid />
             </span>
@@ -94,7 +95,7 @@ const ProfileSidebar = () => {
               Wishlist
             </Link>
           </li>
-          <li className="flex items-center bg-secondary  pl-3 mt-1">
+          <li className="flex items-center  pl-3 mt-1">
             <span className="mr-1">
               <BsArrowRepeat />
             </span>
@@ -116,7 +117,7 @@ const ProfileSidebar = () => {
               Conversations
             </Link>
           </li>
-          <li className="flex items-center bg-secondary pl-3 mt-1">
+          <li className="flex items-center pl-3 mt-1">
             <span className="mr-1">
               <RiPhoneCameraLine />
             </span>
