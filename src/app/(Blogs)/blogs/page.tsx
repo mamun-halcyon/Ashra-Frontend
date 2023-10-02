@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
 import Pagination from '@/components/pagination';
+import Image from 'next/image';
 
 function Blogs() {
   const [page, setPage] = useState(1);
@@ -41,6 +42,17 @@ function Blogs() {
         </div>
       </section>
 
+      <section className="mt-8 mb-5">
+        <div className="container">
+          <Image
+            className="w-full"
+            src={'/assets/images/ads/Group 9.png'}
+            width={400}
+            height={300}
+            alt="ads"
+          />
+        </div>
+      </section>
       <section className="blog">
         <div className="container">
           <div className="grid grid-cols-3 gap-6">

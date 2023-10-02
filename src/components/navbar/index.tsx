@@ -24,7 +24,7 @@ const Navbar = () => {
           </div>
           <div className=" flex-grow">
             <form className="flex items-center justify-center ">
-              <div
+              {/*  <div
                 className="select-categories text-center
               flex justify-center items-center  h-9 w-[145px]"
               >
@@ -33,10 +33,10 @@ const Navbar = () => {
                     All Categories
                   </h3>
                 </Link>
-              </div>
+              </div> */}
               <input
                 type="text"
-                className="px-3 h-9 focus:outline-none w-[365px] font-gotham font-normal text-sm placeholder:font-gotham placeholder:text-sm"
+                className="px-3 h-9 focus:outline-none w-[365px] font-gotham font-normal text-sm placeholder:font-gotham placeholder:text-sm search-input"
                 placeholder="Search for Products..."
               />
               <button className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white">

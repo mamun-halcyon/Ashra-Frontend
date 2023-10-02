@@ -20,7 +20,11 @@ function Compare() {
             <h3 className=" font-gotham font-medium text-base mr-4">Compare</h3>
             <div className="flex items-center">
               <ToggleButton isChecked={isTrue} onClick={handleToggle} />
-              <p className=" font-gotham font-normal text-sm ml-4">
+              <p
+                className={`font-gotham font-normal text-sm ml-4 ${
+                  isTrue ? 'text-primary' : ''
+                }`}
+              >
                 Highlight differences
               </p>
             </div>
@@ -208,33 +212,6 @@ function Compare() {
                     </Button>
                   </div>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="px-2 py-3">
-                <h3 className=" font-gotham font-medium text-black text-xs">
-                  Brand
-                </h3>
-              </td>
-              <td scope="col" className="px-2 py-3">
-                <h3 className=" font-gotham font-light text-black text-xs">
-                  Gazi
-                </h3>
-              </td>
-              <td scope="col" className="px-2 py-3">
-                <h3 className=" font-gotham font-light text-black text-xs">
-                  Gazi
-                </h3>
-              </td>
-              <td scope="col" className="px-2 py-3">
-                <h3 className=" font-gotham font-light text-black text-xs">
-                  Gazi
-                </h3>
-              </td>
-              <td scope="col" className="px-2 py-3">
-                <h3 className=" font-gotham font-light text-black text-xs">
-                  Gazi
-                </h3>
               </td>
             </tr>
             <tr>

@@ -101,7 +101,7 @@ function PageDetails() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="view-image">
+                <div className="view-image overflow-hidden">
                   <ZoomImage image={viewImage} />
                 </div>
                 <div className="px-5 mt-5 products">
@@ -128,7 +128,7 @@ function PageDetails() {
               </div>
 
               <div>
-                <h2 className=" font-gotham font-medium text-xl text-black mb-1">
+                <h2 className=" font-gotham font-medium text-xl text-black mb-1 hover:text-hoverColor transition-all">
                   Gazi Smiss Commode | SH-285GL
                 </h2>
                 <div className="flex items-center text-primary font-gotham">
@@ -170,9 +170,9 @@ function PageDetails() {
                 </div>
                 <div className="action">
                   <div className="flex py-5 font-gotham font-medium ">
-                    <div className="mr-2 flex items-center text-primary border">
+                    <div className="mr-2 flex items-center text-primary border ">
                       <div
-                        className="quantity cursor-pointer"
+                        className="quantity cursor-pointer hover:text-white hover:bg-primary "
                         onClick={decrement}
                       >
                         <button>
@@ -183,7 +183,7 @@ function PageDetails() {
                         {quantity}
                       </div>
                       <div
-                        className="quantity cursor-pointer"
+                        className="quantity cursor-pointer  hover:text-white hover:bg-primary"
                         onClick={increment}
                       >
                         <button>
@@ -464,7 +464,7 @@ function PageDetails() {
                     <form>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <FormGroup title="Your Contact *" required />
+                          <FormGroup title="Your Number *" required />
                           <TextAreaGroup title="Ask Question *" required />
                           <Button className=" font-gotham font-normal px-2 py-1 text-sm">
                             Submit

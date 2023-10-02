@@ -76,7 +76,7 @@ function Checkout() {
                     <div className="flex items-center">
                       <div className=" cursor-pointer">
                         <span>
-                          <RxCross2 className="text-xs " />
+                          <RxCross2 className="text-sm " />
                         </span>
                       </div>
                       <div className="w-[80px] mx-9">
@@ -89,32 +89,32 @@ function Checkout() {
                         />
                       </div>
                       <div>
-                        <h3 className=" font-gotham font-normal text-sm text-black">
+                        <h3 className=" font-gotham font-medium text-sm text-black">
                           Gazi Smiss Gas Stove | B-239
                         </h3>
                       </div>
                     </div>
                   </div>
                   <div className="col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-xs">
+                    <p className=" font-gotham font-medium text-primary text-sm">
                       ৳ 3000.00
                     </p>
                   </div>
                   <div className="col-span-2">
                     <div className="flex items-center">
                       <div className="qnt-1">
-                        <AiOutlinePlus className="text-xs" />
+                        <AiOutlinePlus className="text-sm" />
                       </div>
-                      <div className="qnt-1 px-4 font-gotham font-light text-xs">
+                      <div className="qnt-1 px-4 font-gotham font-light text-sm">
                         3
                       </div>
                       <div className="qnt-1">
-                        <AiOutlineMinus className="text-xs" />
+                        <AiOutlineMinus className="text-sm" />
                       </div>
                     </div>
                   </div>
                   <div className="col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-xs">
+                    <p className=" font-gotham font-medium text-primary text-sm">
                       ৳ 3000.00
                     </p>
                   </div>
@@ -125,7 +125,7 @@ function Checkout() {
                     <div className="flex items-center">
                       <div className=" cursor-pointer">
                         <span>
-                          <RxCross2 className="text-xs " />
+                          <RxCross2 className="text-sm " />
                         </span>
                       </div>
                       <div className="w-[80px] mx-9">
@@ -138,32 +138,32 @@ function Checkout() {
                         />
                       </div>
                       <div>
-                        <h3 className=" font-gotham font-normal text-sm text-black">
+                        <h3 className=" font-gotham font-medium text-sm text-black">
                           Gazi Smiss Gas Stove | B-239
                         </h3>
                       </div>
                     </div>
                   </div>
                   <div className="col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-xs">
+                    <p className=" font-gotham font-medium text-primary text-sm">
                       ৳ 3000.00
                     </p>
                   </div>
                   <div className="col-span-2">
                     <div className="flex items-center">
                       <div className="qnt-1">
-                        <AiOutlinePlus className="text-xs" />
+                        <AiOutlinePlus className="text-sm" />
                       </div>
-                      <div className="qnt-1 px-4 font-gotham font-light text-xs">
+                      <div className="qnt-1 px-4 font-gotham font-light text-sm">
                         3
                       </div>
                       <div className="qnt-1">
-                        <AiOutlineMinus className="text-xs" />
+                        <AiOutlineMinus className="text-sm" />
                       </div>
                     </div>
                   </div>
                   <div className="col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-xs">
+                    <p className=" font-gotham font-medium text-primary text-sm">
                       ৳ 3000.00
                     </p>
                   </div>
@@ -174,7 +174,7 @@ function Checkout() {
                     <div className="flex items-center">
                       <div className=" cursor-pointer">
                         <span>
-                          <RxCross2 className="text-xs " />
+                          <RxCross2 className="text-sm " />
                         </span>
                       </div>
                       <div className="w-[80px] mx-9">
@@ -187,32 +187,32 @@ function Checkout() {
                         />
                       </div>
                       <div>
-                        <h3 className=" font-gotham font-normal text-sm text-black">
+                        <h3 className=" font-gotham font-medium text-sm text-black">
                           Gazi Smiss Gas Stove | B-239
                         </h3>
                       </div>
                     </div>
                   </div>
                   <div className="col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-xs">
+                    <p className=" font-gotham font-medium text-primary text-sm">
                       ৳ 3000.00
                     </p>
                   </div>
                   <div className="col-span-2">
                     <div className="flex items-center">
                       <div className="qnt-1">
-                        <AiOutlinePlus className="text-xs" />
+                        <AiOutlinePlus className="text-sm" />
                       </div>
-                      <div className="qnt-1 px-4 font-gotham font-light text-xs">
+                      <div className="qnt-1 px-4 font-gotham font-light text-sm">
                         3
                       </div>
                       <div className="qnt-1">
-                        <AiOutlineMinus className="text-xs" />
+                        <AiOutlineMinus className="text-sm" />
                       </div>
                     </div>
                   </div>
                   <div className="col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-xs">
+                    <p className=" font-gotham font-medium text-primary text-sm">
                       ৳ 3000.00
                     </p>
                   </div>
@@ -226,28 +226,28 @@ function Checkout() {
                   Cart Summery
                 </h3>
 
-                <div className="flex justify-between items-center mt-14 summery-border pb-2">
-                  <p className=" font-gotham font-medium text-xs text-black">
+                <div className="flex justify-between items-center mt-14 summery-border pb-3">
+                  <p className=" font-gotham font-medium text-sm text-black">
                     Sub Total
                   </p>
-                  <p className=" font-gotham font-medium text-xs text-primary">
+                  <p className=" font-gotham font-medium text-sm text-primary">
                     ৳ 19000.00
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center mt-3 summery-border pb-2">
-                  <p className=" font-gotham font-medium text-xs text-black">
+                <div className="flex justify-between items-center mt-3 summery-border pb-3">
+                  <p className=" font-gotham font-medium text-sm text-black">
                     Shipping
                   </p>
-                  <p className=" font-gotham font-medium text-xs text-black">
+                  <p className=" font-gotham font-medium text-sm text-black">
                     Free Shipping
                   </p>
                 </div>
                 <div className="flex justify-between items-center mt-3">
-                  <p className=" font-gotham font-medium text-sm text-black">
+                  <p className=" font-gotham font-medium text-base text-black">
                     Total
                   </p>
-                  <p className=" font-gotham font-medium text-sm text-primary">
+                  <p className=" font-gotham font-medium text-base text-primary">
                     ৳ 16070.00
                   </p>
                 </div>

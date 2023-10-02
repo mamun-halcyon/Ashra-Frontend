@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import Pagination from '@/components/pagination';
 import { useState } from 'react';
+import Image from 'next/image';
 
 function Videos() {
   const [page, setPage] = useState(1);
@@ -39,6 +40,19 @@ function Videos() {
           </div>
         </div>
       </section>
+
+      <section className="mt-8 mb-5">
+        <div className="container">
+          <Image
+            className="w-full"
+            src={'/assets/images/ads/Group 9.png'}
+            width={400}
+            height={300}
+            alt="ads"
+          />
+        </div>
+      </section>
+
       <div className="videos-section">
         <section>
           <div className="container">

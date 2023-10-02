@@ -1,26 +1,26 @@
 export const exploreData = [
   {
-    image: 'image1.png',
+    image: 'image.png',
     title: 'Gas Stove',
   },
   {
-    image: 'image2.png',
+    image: 'image6.png',
     title: 'Kitchen Hood',
   },
   {
-    image: 'image3.png',
+    image: 'image4.png',
     title: 'Kitchen Appliance',
   },
   {
-    image: 'image4.png',
+    image: 'image5.png',
     title: 'Cookware',
   },
   {
-    image: 'image5.png',
+    image: 'image10.png',
     title: 'Geyser',
   },
   {
-    image: 'image6.png',
+    image: 'image13.png',
     title: 'Bathware',
   },
   {
@@ -28,11 +28,11 @@ export const exploreData = [
     title: 'Digital Scale',
   },
   {
-    image: 'image8.png',
+    image: 'image11.png',
     title: 'Pumps & Motors',
   },
   {
-    image: 'image9.png',
+    image: 'image1.png',
     title: 'Cooker',
   },
 ];

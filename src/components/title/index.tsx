@@ -8,7 +8,7 @@ interface IProps {
 const Title: React.FC<IProps> = ({ title, href }) => {
   return (
     <div className="flex justify-between items-center category-title mb-4">
-      <h3 className=" font-gotham font-medium text-lg text-primary mb-[10px] uppercase">
+      <h3 className=" font-gotham font-medium text-lg text-primary mb-[10px] uppercase transition-all hover:text-hoverColor">
         {title}
       </h3>
       {href && (
