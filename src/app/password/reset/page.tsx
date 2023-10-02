@@ -23,7 +23,7 @@ function ResetPassword() {
             />
 
             <Button className="w-full py-1 mt-3 font-gotham font-normal text-base forget-button">
-              Send Password Reset Link
+              Reset Password
             </Button>
           </form>
         </div>

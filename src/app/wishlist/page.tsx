@@ -58,7 +58,7 @@ function WishlistPage() {
                     />
                   </div>
                   <div>
-                    <h3 className=" font-gotham font-normal text-sm text-black">
+                    <h3 className=" font-gotham font-medium text-sm text-black">
                       Gazi Smiss Gas Stove | B-239
                     </h3>
                   </div>
@@ -97,7 +97,7 @@ function WishlistPage() {
                     />
                   </div>
                   <div>
-                    <h3 className=" font-gotham font-normal text-sm text-black">
+                    <h3 className=" font-gotham font-medium text-sm text-black">
                       Gazi Smiss Gas Stove | B-239
                     </h3>
                   </div>
@@ -138,7 +138,7 @@ function WishlistPage() {
                     />
                   </div>
                   <div>
-                    <h3 className=" font-gotham font-normal text-sm text-black">
+                    <h3 className=" font-gotham font-medium text-sm text-black">
                       Gazi Smiss Gas Stove | B-239
                     </h3>
                   </div>
