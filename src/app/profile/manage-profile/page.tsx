@@ -1,8 +1,7 @@
 import ProfileSidebar from '@/components/profile-sidebar';
 import '../page.scss';
-// import './page.scss';
+import './page.scss';
 import React from 'react';
-import Link from 'next/link';
 import FormGroup from '@/components/fromgroup';
 import Button from '@/components/button';
 
@@ -13,7 +12,7 @@ const UpdateProfile = () => {
         <div className="grid grid-cols-12 gap-6">
           <ProfileSidebar />
           <div className=" col-span-9">
-            <div className="shadow p-4">
+            <div className="main-area p-4">
               <form>
                 <div className="grid grid-cols-2 gap-4">
                   <FormGroup title="Your Name" />
