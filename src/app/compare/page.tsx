@@ -110,7 +110,7 @@ function Compare() {
                     ৳ 7000
                   </p>
                   <div className="flex justify-between mt-2">
-                    <h3 className=" font-gotham font-medium text-sm">৳ 6000</h3>
+                    <h3 className=" font-gotham font-bold text-sm">৳ 6000</h3>
                     <Button className="px-2 font-gotham font-light text-xs">
                       Save ৳ 1000
                     </Button>

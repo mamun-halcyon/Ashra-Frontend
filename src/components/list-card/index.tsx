@@ -62,7 +62,7 @@ const ListCard: FC<IProps> = ({ product }) => {
         </Link>
 
         <div className="flex mt-7">
-          <div className="flex items-center mr-2 cursor-pointer">
+          <div className="flex items-center mr-2 cursor-pointer interaction">
             <div className="icon-area p-1">
               <BsArrowRepeat className=" text-xs icon" />
             </div>
@@ -70,7 +70,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               Compare
             </p>
           </div>
-          <div className="flex items-center mr-2 cursor-pointer">
+          <div className="flex items-center mr-2 cursor-pointer interaction">
             <div className="icon-area p-1">
               <BsHeart className=" text-xs icon" />
             </div>
@@ -78,7 +78,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               Wishlist
             </p>
           </div>
-          <div className="flex items-center mr-2 cursor-pointer">
+          <div className="flex items-center mr-2 cursor-pointer interaction">
             <div className="icon-area p-1">
               <AiOutlinePlus className=" text-xs icon" />
             </div>

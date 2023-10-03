@@ -29,6 +29,20 @@
       color: $black-color;
       margin-left: 5px;
     }
+    .interaction {
+      transition: all linear 0.3s;
+      &:hover {
+        .icon-area {
+          border-color: $primary-color;
+        }
+        svg {
+          color: $primary-color;
+        }
+        p {
+          color: $primary-color;
+        }
+      }
+    }
   }
 
   .sudo {
