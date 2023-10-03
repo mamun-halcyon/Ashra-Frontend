@@ -29,7 +29,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           height={400}
           alt="product"
         />
-        <div className=" absolute right-4 top-0">
+        <div className=" absolute left-0 top-0">
           <span className=" sudo inline-block discount font-gotham text-xs font-medium  px-2 py-1  rounded text-primary">
             12%
           </span>

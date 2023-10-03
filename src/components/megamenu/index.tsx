@@ -2,7 +2,7 @@
 import { BsChevronDown } from 'react-icons/bs';
 import Link from 'next/link';
 import './index.scss';
-import { RiArrowDropRightLine } from 'react-icons/ri';
+import { RiArrowDropDownLine, RiArrowDropRightLine } from 'react-icons/ri';
 
 const MegaMenu = () => {
   return (
@@ -15,10 +15,10 @@ const MegaMenu = () => {
               <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Home Appliance
                 <span className=" text-xs md:hidden inline">
-                  <BsChevronDown className=" text-[5px]" />
+                  <RiArrowDropDownLine className=" text-xl" />
                 </span>
                 <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
-                  <BsChevronDown className=" text-[9px]" />
+                  <RiArrowDropDownLine className=" text-xl" />
                 </span>
               </div>
               <div className=" absolute z-10 sub-heading shadow">
@@ -231,10 +231,10 @@ const MegaMenu = () => {
               <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary  transition-all">
                 Bathware
                 <span className=" text-xs md:hidden inline">
-                  <BsChevronDown className=" text-[5px]" />
+                  <RiArrowDropDownLine className=" text-xl" />
                 </span>
                 <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
-                  <BsChevronDown className=" text-[9px]" />
+                  <RiArrowDropDownLine className=" text-xl" />
                 </span>
               </div>
               <div className=" absolute z-10 sub-heading shadow">
@@ -447,10 +447,10 @@ const MegaMenu = () => {
               <div className="py-1  md:cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary  transition-all">
                 Pumps & Motors
                 <span className=" text-xs md:hidden inline">
-                  <BsChevronDown className=" text-[5px]" />
+                  <RiArrowDropDownLine className=" text-xl" />
                 </span>
                 <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
-                  <BsChevronDown className=" text-[9px]" />
+                  <RiArrowDropDownLine className=" text-xl" />
                 </span>
               </div>
               <div className=" absolute z-10 sub-heading shadow">

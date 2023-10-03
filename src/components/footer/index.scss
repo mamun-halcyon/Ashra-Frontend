@@ -5,6 +5,13 @@ footer {
 
   background: $white-color;
 
+  .link-item {
+    transition: all linear 0.3s;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
   img {
     width: 150px;
     height: auto;

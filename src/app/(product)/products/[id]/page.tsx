@@ -19,12 +19,13 @@ import {
   AiOutlineShareAlt,
 } from 'react-icons/ai';
 import OutlineButton from '@/components/outline-button';
-import { BsArrowRepeat } from 'react-icons/bs';
+import { BsArrowRepeat, BsAwardFill } from 'react-icons/bs';
 import Title from '@/components/title';
 import { productsData } from '@/static/products';
 import ReviewCard from '@/components/review-card';
 import FormGroup from '@/components/fromgroup';
 import TextAreaGroup from '@/components/textarea';
+import { FaAward } from 'react-icons/fa6';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 function PageDetails() {
@@ -212,7 +213,7 @@ function PageDetails() {
                     </OutlineButton>
                     <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                       <span>
-                        <AiOutlineShareAlt />
+                        <AiOutlineShareAlt className="mr-1 " />
                       </span>
                       Share
                     </OutlineButton>
@@ -279,16 +280,18 @@ function PageDetails() {
                   </div>
                 </div>
 
-                <OutlineButton className="flex items-center font-gotham font-medium text-primary text-xs">
+                <OutlineButton className="flex items-center font-gotham font-medium text-primary text-xs py-1">
                   <span className="mr-2">
-                    <Image
+                    {/* <BsAwardFill /> */}
+                    <FaAward className="award" />
+                    {/*   <Image
                       src={
                         '/assets/images/icon/7 Days Replacement & 12 Month Free Service Icon.svg'
                       }
                       width={20}
                       height={20}
                       alt="icon"
-                    />
+                    /> */}
                   </span>
                   7 Days Replacement & 12 Month Free Service
                 </OutlineButton>

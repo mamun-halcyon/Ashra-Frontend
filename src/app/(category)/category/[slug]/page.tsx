@@ -152,6 +152,7 @@ function Category() {
                   <input
                     className="price-input font-gotham font-medium text-xs"
                     type="number"
+                    min={0}
                     value={priceRange[0]}
                     onChange={handleMinPrice}
                   />

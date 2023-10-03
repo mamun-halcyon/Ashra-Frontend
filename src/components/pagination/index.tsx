@@ -50,7 +50,7 @@ const Pagination: FC<IProps> = ({
           <IoMdArrowDropleft />
         </div>
         <div className=" font-gotham font-normal text-xs flex items-center">
-          <div className="active w-5 h-5 flex items-center justify-center ">
+          <div className="active w-5 h-5 flex items-center justify-center mr-1">
             {page}
           </div>
           <p>of 2</p>

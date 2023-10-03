@@ -56,7 +56,9 @@ const Footer = () => {
                     className="font-gotham font-normal text-sm text-black mb-1"
                     key={index}
                   >
-                    <Link href={item.href}> {item.name}</Link>
+                    <Link className="link-item" href={item.href}>
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -74,7 +76,10 @@ const Footer = () => {
                     className="font-gotham font-normal text-sm text-black mb-1"
                     key={index}
                   >
-                    <Link href={item.href}> {item.name}</Link>
+                    <Link className="link-item" href={item.href}>
+                      {' '}
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

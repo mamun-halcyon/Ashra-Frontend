@@ -1,4 +1,6 @@
-/* @import '../../styles/index.scss';
+@import '../../styles/index.scss';
 .pagination {
-  border-top: 1px solid #cccccc;
-} */
+  .active {
+    border: 1px solid $border-color;
+  }
+}
