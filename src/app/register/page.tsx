@@ -38,7 +38,7 @@ function Login() {
             />
             <FormGroup
               className="mt-2"
-              title="Mobile"
+              title="Mobile *"
               placeholder="Mobile Number"
               required
             />
