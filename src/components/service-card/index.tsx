@@ -24,8 +24,8 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
           alt="service"
         />
         <div>
-          <h4 className=" font-gotham font-bold text-xl">{service.title}</h4>
-          <h6 className=" font-gotham font-bold text-base">
+          <h4 className=" font-gotham font-medium text-xl">{service.title}</h4>
+          <h6 className=" font-gotham font-medium text-base">
             {service.subTitle}
           </h6>
         </div>

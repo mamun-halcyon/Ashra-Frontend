@@ -24,7 +24,7 @@ function Category() {
   const [page, setPage] = useState(1);
   const [isRow, setIsRow] = useState<boolean>(true);
   const [showItem, setShowItem] = useState<number>(12);
-  const [showTitle, setShowTitle] = useState<string>('Show');
+  const [showTitle, setShowTitle] = useState<string>('Show 12');
   const [filter, setFilter] = useState<string>('Sort by');
   const [filterTitle, setFilterTitle] = useState<string>('Sort by');
 
