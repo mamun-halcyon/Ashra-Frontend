@@ -1,6 +1,9 @@
 @import '../../styles/index.scss';
 .pagination {
   .active {
+    width: 30px;
+    height: 26px;
+    margin-right: 6px;
     border: 1px solid $border-color;
   }
 }
