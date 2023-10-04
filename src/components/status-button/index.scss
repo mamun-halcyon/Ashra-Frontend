@@ -3,10 +3,13 @@
 .toggle-button {
   width: 35px;
   height: 14px;
-  background-color: $primary-color;
+  background-color: $nonary-color;
   border-radius: 15px;
   cursor: pointer;
   position: relative;
+  &.checked {
+    background-color: $primary-color;
+  }
 }
 
 .slider {

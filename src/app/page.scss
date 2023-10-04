@@ -60,6 +60,19 @@
 
 .review-video {
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   background: $quaternary-color;
+
+  .more-btn {
+    padding: 5px 15px;
+    border-color: $primary-color;
+    background: $primary-color;
+    transition: all linear 0.3s;
+    color: $white-color;
+
+    &:hover {
+      border-color: $hover-color;
+      background: $hover-color;
+    }
+  }
 }

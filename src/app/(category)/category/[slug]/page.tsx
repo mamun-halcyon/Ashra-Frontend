@@ -262,7 +262,7 @@ function Category() {
                       <IoMdArrowDropleft />
                     </div>
                     <div className=" font-gotham font-normal text-xs flex items-center">
-                      <div className="active w-5 h-5 flex items-center justify-center ">
+                      <div className="active w-[30px] h-[26px] mr-[6px] flex items-center justify-center ">
                         {page}
                       </div>
                       <p>of 2</p>

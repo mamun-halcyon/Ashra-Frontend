@@ -12,6 +12,8 @@ import Banner from '@/components/banner';
 import ServiceCard from '@/components/service-card';
 import Navbar from '@/components/navbar';
 import MegaMenu from '@/components/megamenu';
+import Link from 'next/link';
+import { BsArrowRightShort } from 'react-icons/bs';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
@@ -161,6 +163,15 @@ export default function Home() {
                 <VideoCard key={index} url={video.url} title={video.title} />
               ))}
             </div>
+          </div>
+          <div className="text-center mt-7">
+            <Link
+              className=" font-gotham font-medium text-sm  more-btn"
+              href={'/videos'}
+            >
+              More Videos{' '}
+              <BsArrowRightShort className="inline text-xl font-bold" />
+            </Link>
           </div>
         </section>
       </main>
