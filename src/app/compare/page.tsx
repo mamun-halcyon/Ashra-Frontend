@@ -9,7 +9,7 @@ import StarRating from '@/components/rating';
 import ToggleButton from '@/components/status-button';
 
 function Compare() {
-  const [isTrue, setIsTrue] = useState(true);
+  const [isTrue, setIsTrue] = useState(false);
 
   const handleToggle = () => setIsTrue(!isTrue);
   return (
