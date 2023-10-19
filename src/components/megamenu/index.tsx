@@ -1,5 +1,4 @@
 'use client';
-import { BsChevronDown } from 'react-icons/bs';
 import Link from 'next/link';
 import './index.scss';
 import { RiArrowDropDownLine, RiArrowDropRightLine } from 'react-icons/ri';
