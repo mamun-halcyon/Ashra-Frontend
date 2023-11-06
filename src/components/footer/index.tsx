@@ -9,7 +9,7 @@ import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
 const Footer = () => {
   return (
     <footer>
-      <div className="container">
+      <div className="container px-2 md:px-0">
         <div className="grid md:grid-cols-3 grid-cols-1 gap-12">
           <div className="basic-info">
             <Image
@@ -166,14 +166,14 @@ const Footer = () => {
         </div>
       </div>
       <div className=" mt-10 py-2 bg-primary">
-        <div className="container">
-          <div className="flex justify-between items-center">
+        <div className="container px-2 md:px-0">
+          <div className="flex justify-between items-center gap-2">
             <div>
-              <h4 className=" font-gotham font-light text-xs text-white">
+              <h4 className=" font-gotham font-light text-[10px] md:text-xs text-white">
                 © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
               </h4>
             </div>
-            <div>
+            <div className="w-[60%]">
               <Image
                 className=" h-6 bottom-image"
                 src={'/assets/images/footer/payment.png'}
