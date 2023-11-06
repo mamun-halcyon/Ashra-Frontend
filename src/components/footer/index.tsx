@@ -173,7 +173,7 @@ const Footer = () => {
                 © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
               </h4>
             </div>
-            <div className="w-[60%]">
+            <div className="w-[60%] md:w-auto">
               <Image
                 className=" h-6 bottom-image"
                 src={'/assets/images/footer/payment.png'}
