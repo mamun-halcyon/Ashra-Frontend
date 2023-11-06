@@ -34,7 +34,7 @@ export default function Home() {
         </section>
         <section className="service">
           <div className="container">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {serviceCardData.map((service, i) => (
                 <ServiceCard key={i} service={service} />
               ))}

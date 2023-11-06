@@ -14,7 +14,7 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
   return (
     <Link href={'/'}>
       <div
-        className={`service-card flex justify-center items-center my-[40px]`}
+        className={`service-card flex justify-center flex-wrap items-center my-[40px]`}
       >
         <Image
           className="mr-2.5"
@@ -24,7 +24,9 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
           alt="service"
         />
         <div>
-          <h4 className=" font-gotham font-medium text-xl">{service.title}</h4>
+          <h4 className=" font-gotham font-medium text-sm md:text-xl">
+            {service.title}
+          </h4>
           <h6 className=" font-gotham font-medium text-base">
             {service.subTitle}
           </h6>
