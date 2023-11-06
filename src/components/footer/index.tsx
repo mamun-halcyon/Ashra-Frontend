@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="container">
-        <div className="grid grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 grid-cols-1 gap-12">
           <div className="basic-info">
             <Image
               className=" mb-5"
@@ -46,7 +46,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <div className="w-[60%] mx-auto">
+            <div className="w-[60%] md:mx-auto">
               <h3 className="font-gotham font-bold text-base text-black mb-4">
                 {customerServiceData.title}
               </h3>
@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <div className="w-[60%] mx-auto">
+            <div className="w-[60%] md:mx-auto">
               <h3 className="font-gotham font-bold text-base text-black mb-4">
                 {applianceData.title}
               </h3>
@@ -86,7 +86,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div>
             <p className=" font-gotham font-normal text-sm text-black mb-2 ">
               Download our Mobile Apps

@@ -16,13 +16,15 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
       <div
         className={`service-card flex justify-center flex-wrap items-center my-[40px]`}
       >
-        <Image
-          className="mr-2.5"
-          src={`/assets/images/service/service${service.image}.png`}
-          width={44}
-          height={53}
-          alt="service"
-        />
+        <div>
+          <Image
+            className="mr-2.5"
+            src={`/assets/images/service/service${service.image}.png`}
+            width={44}
+            height={53}
+            alt="service"
+          />
+        </div>
         <div>
           <h4 className=" font-gotham font-medium text-sm md:text-xl">
             {service.title}

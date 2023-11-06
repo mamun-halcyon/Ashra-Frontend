@@ -54,8 +54,8 @@ function Blogs() {
         </div>
       </section>
       <section className="blog">
-        <div className="container">
-          <div className="grid grid-cols-3 gap-6">
+        <div className="container  px-2 md:px-0">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {BlogData.map((blog, index) => (
               <BlogCard key={index} blog={blog} />
             ))}

@@ -33,7 +33,7 @@ export default function Home() {
           <Banner />
         </section>
         <section className="service">
-          <div className="container">
+          <div className="container px-2 md:px-0">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {serviceCardData.map((service, i) => (
                 <ServiceCard key={i} service={service} />
