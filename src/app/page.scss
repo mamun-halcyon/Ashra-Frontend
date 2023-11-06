@@ -65,14 +65,12 @@
 
   .more-btn {
     padding: 5px 15px;
-    border-color: $primary-color;
-    background: $primary-color;
     transition: all linear 0.3s;
-    color: $white-color;
+    // background: $white-color;
+    box-shadow: $primary-shadow;
 
     &:hover {
-      border-color: $hover-color;
-      background: $hover-color;
+      background: $secondary-color;
     }
   }
 }
