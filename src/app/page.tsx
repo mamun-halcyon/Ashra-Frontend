@@ -59,7 +59,7 @@ export default function Home() {
           </div>
         </section>
         <section className="popular-product">
-          <div className="container">
+          <div className="container px-2 md:px-0">
             <Tabs>
               <TabList>
                 <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
@@ -120,10 +120,10 @@ export default function Home() {
           />
         </section>
         <section className="category-products">
-          <div className="container">
+          <div className="container px-2 md:px-0">
             <div className="mb-12">
               <Title title="Gas Stove" href="/category/gas-stove" />
-              <div className="grid grid-cols-5 gap-1">
+              <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -131,7 +131,7 @@ export default function Home() {
             </div>
             <div className="mb-12">
               <Title title="Kitchen Hood" href="/category/kitchen-hood" />
-              <div className="grid grid-cols-5 gap-1">
+              <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -139,7 +139,7 @@ export default function Home() {
             </div>
             <div>
               <Title title="Digital Scale" href="/category/digital-scale" />
-              <div className="grid grid-cols-5 gap-1">
+              <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {[...productsData].slice(0, 5).map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
@@ -148,7 +148,7 @@ export default function Home() {
           </div>
         </section>
         <section className="review-video">
-          <div className="container">
+          <div className="container px-2 md:px-0">
             <Image
               src={'/assets/images/ads/Group 9.png'}
               alt="ads"
@@ -158,7 +158,7 @@ export default function Home() {
             <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">
               PRODUCT REVIEWS & UNBOXING VIDEOS
             </h2>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
               {[...videoData].splice(0, 3).map((video, index) => (
                 <VideoCard key={index} url={video.url} title={video.title} />
               ))}

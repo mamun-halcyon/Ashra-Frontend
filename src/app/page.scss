@@ -41,7 +41,11 @@
     &:nth-child(4n) {
       border: 0;
     }
-    @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .product-card {
       &:nth-child(2n) {
         border: 0;
       }
@@ -63,6 +67,15 @@
     border-right: 1px solid $border-color;
     &:nth-child(5n) {
       border: 0;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .product-card {
+      &:nth-child(2n) {
+        border: 0;
+      }
     }
   }
 }
