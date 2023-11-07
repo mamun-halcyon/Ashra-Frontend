@@ -12,6 +12,10 @@
   h2 {
     color: $black-color;
   }
+  @media screen and (max-width: 768) {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 }
 
 .popular-product {

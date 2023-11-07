@@ -4,16 +4,22 @@
   border: 1px solid transparent;
   padding: 10px 5px;
   transition: all linear 0.3s;
-  img {
-    object-fit: cover;
-    width: auto;
-    height: auto;
+  .image {
+    width: 15%;
+    img {
+      object-fit: cover;
+      width: auto;
+      height: auto;
+    }
   }
-  h4 {
-    color: $primary-color;
-  }
-  h6 {
-    color: $black-color;
+  .text {
+    width: 85%;
+    h4 {
+      color: $primary-color;
+    }
+    h6 {
+      color: $black-color;
+    }
   }
   &:hover {
     border: 1px solid $primary-color;
@@ -22,8 +28,16 @@
 
 @media (max-width: 575.98px) {
   .service-card {
-    img {
-      width: 40px;
+    .image {
+      width: 100%;
+      img {
+        width: 40px;
+        margin: auto;
+      }
+    }
+    .text {
+      width: 100%;
+      text-align: center;
     }
   }
 }

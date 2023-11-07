@@ -16,7 +16,7 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
       <div
         className={`service-card flex justify-center flex-wrap items-center md:my-[40px] my-2`}
       >
-        <div>
+        <div className="image">
           <Image
             className="mr-2.5"
             src={`/assets/images/service/service${service.image}.png`}
@@ -25,7 +25,7 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
             alt="service"
           />
         </div>
-        <div>
+        <div className="text">
           <h4 className=" font-gotham font-medium text-sm md:text-xl">
             {service.title}
           </h4>
