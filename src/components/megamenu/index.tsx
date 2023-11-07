@@ -5,7 +5,7 @@ import { RiArrowDropDownLine, RiArrowDropRightLine } from 'react-icons/ri';
 
 const MegaMenu = () => {
   return (
-    <div className="py-2 shadow">
+    <div className="py-2 shadow hidden md:block">
       <div className="container px-2 md:px-0">
         <div className="flex justify-between items-center ">
           <div className="flex">
