@@ -19,4 +19,9 @@
       background: $primary-color;
     }
   }
+  @media screen and (max-width: 768px) {
+    ul {
+      margin-bottom: 40px;
+    }
+  }
 }
