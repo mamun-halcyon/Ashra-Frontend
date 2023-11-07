@@ -62,42 +62,42 @@ export default function Home() {
           <div className="container">
             <Tabs>
               <TabList>
-                <Tab className="font-gotham mr-9 pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
+                <Tab className="font-gotham mr-2 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
                   Top Sales
                 </Tab>
-                <Tab className="font-gotham mr-9 pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
+                <Tab className="font-gotham mr-2 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
                   New Arrivals
                 </Tab>
-                <Tab className="font-gotham mr-9 pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
+                <Tab className="font-gotham mr-2 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
                   Featured Products
                 </Tab>
               </TabList>
               <div className="panel">
                 <div className="grid grid-cols-6 gap-4">
-                  <div className="col-span-5">
+                  <div className="col-span-6  md:col-span-5">
                     <TabPanel>
-                      <div className="grid grid-cols-4 gap-1">
+                      <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
                         {[...productsData.slice(0, 8)].map((product, i) => (
                           <ProductCard key={i} product={product} />
                         ))}
                       </div>
                     </TabPanel>
                     <TabPanel>
-                      <div className="grid grid-cols-4 gap-1">
+                      <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
                         {[...productsData].splice(0, 8).map((product, i) => (
                           <ProductCard key={i} product={product} />
                         ))}
                       </div>
                     </TabPanel>
                     <TabPanel>
-                      <div className="grid grid-cols-4 gap-1">
+                      <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
                         {[...productsData.slice(0, 8)].map((product, i) => (
                           <ProductCard key={i} product={product} />
                         ))}
                       </div>
                     </TabPanel>
                   </div>
-                  <div className="h-[100%]">
+                  <div className="h-[100%] hidden md:block">
                     <Image
                       className=" h-[100%]"
                       src={`/assets/images/ads/Banner.png`}
