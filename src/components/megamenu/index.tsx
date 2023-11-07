@@ -224,7 +224,7 @@ const MegaMenu = () => {
             </div>
             {/* main Item */}
             <div className="mr-2 text-left relative heading">
-              <div className="py-1  md md::cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary  transition-all">
+              <div className="py-1  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Bathware
                 <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
                   <RiArrowDropDownLine className=" text-xl" />
@@ -437,7 +437,7 @@ const MegaMenu = () => {
             </div>
             {/* main Item */}
             <div className="mr-2 text-left relative heading">
-              <div className="py-1  md md::cursor-pointer px-5 font-gotham font-medium text-sm flex justify-between items-center  pr-5 group border border-black text-black hover:border-primary hover:text-white hover:bg-primary  transition-all">
+              <div className="py-1  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Pumps & Motors
                 <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
                   <RiArrowDropDownLine className=" text-xl" />

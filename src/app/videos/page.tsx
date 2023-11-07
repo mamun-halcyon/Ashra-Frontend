@@ -33,7 +33,7 @@ function Videos() {
     <main>
       <section>
         <div className="container">
-          <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
+          <div className="md:flex items-center font-gotham font-normal text-sm mt-3 mb-3 hidden ">
             <Link href={'/'}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
             <Link href={'/videos'}> Videos </Link>
@@ -41,7 +41,7 @@ function Videos() {
         </div>
       </section>
 
-      <section className="mt-8 mb-5">
+      <section className="md:mt-8 md:mb-5 mt-3 mb-2">
         <div className="container">
           <Image
             className="w-full"
@@ -56,7 +56,7 @@ function Videos() {
       <div className="videos-section">
         <section>
           <div className="container">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 grid-cols-2 gap-4">
               {videoData.map((video, index) => (
                 <VideoCard url={video.url} title={video.title} key={index} />
               ))}
