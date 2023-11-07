@@ -72,8 +72,7 @@
   @media screen and (max-width: 768px) {
     padding-top: 50px;
     padding-bottom: 50px;
-    padding-left: 1px;
-    padding-right: 1px;
+    overflow-x: hidden;
     .product-card {
       &:nth-child(2n) {
         border: 0;
