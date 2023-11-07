@@ -9,7 +9,7 @@ import Link from 'next/link';
 const Navbar = () => {
   return (
     <nav className="navbar shadow">
-      <div className="container">
+      <div className="container px-2 md:px-0">
         <div className=" flex justify-between items-center py-5">
           <div className=" w-[33%]">
             <Link href={'/'}>
@@ -22,7 +22,7 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <div className=" flex-grow">
+          <div className=" flex-grow hidden md:block">
             <form className="flex items-center justify-center ">
               {/*  <div
                 className="select-categories text-center
