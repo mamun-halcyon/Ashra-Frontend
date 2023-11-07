@@ -59,7 +59,7 @@ export default function Home() {
           </div>
         </section>
         <section className="popular-product">
-          <div className="container px-2 md:px-0">
+          <div className="container px-3 md:px-0">
             <Tabs>
               <TabList>
                 <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
@@ -148,13 +148,15 @@ export default function Home() {
           </div>
         </section>
         <section className="review-video">
-          <div className="container px-2 md:px-0">
+          <div className="container ">
             <Image
               src={'/assets/images/ads/Group 9.png'}
               alt="ads"
               width={1300}
               height={500}
             />
+          </div>
+          <div className="container px-2 md:px-0">
             <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">
               PRODUCT REVIEWS & UNBOXING VIDEOS
             </h2>

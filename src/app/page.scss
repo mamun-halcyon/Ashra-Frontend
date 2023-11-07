@@ -95,4 +95,8 @@
       background: $secondary-color;
     }
   }
+  @media screen and (max-width: 768px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+  }
 }
