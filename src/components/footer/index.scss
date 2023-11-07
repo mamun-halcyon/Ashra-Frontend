@@ -27,6 +27,9 @@ footer {
   .bottom-image {
     width: auto;
     height: 25px;
+    img {
+      object-fit: cover;
+    }
   }
   .download-apps {
     width: 125px;

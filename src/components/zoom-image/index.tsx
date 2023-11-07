@@ -10,7 +10,7 @@ const ZoomImage = ({ image }: { image: string }) => {
     img: image,
   };
 
-  return <ImageZoom {...zoomProps} />;
+  return <ImageZoom {...zoomProps} alt="product Image" zoom="200" />;
 };
 
 export default ZoomImage;

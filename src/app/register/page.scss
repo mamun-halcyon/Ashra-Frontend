@@ -1,29 +1,33 @@
 @import '../../styles/index.scss';
 
 .register {
-  margin-top: 80px;
+  padding-top: 80px;
   padding-bottom: 80px;
   .register-area {
     box-shadow: $primary-shadow;
   }
-}
-.auth-border {
-  &::after {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 25%;
-    content: '';
-    height: 1px;
-    background: $border-color;
+  .auth-border {
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 25%;
+      content: '';
+      height: 1px;
+      background: $border-color;
+    }
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 25%;
+      content: '';
+      height: 1px;
+      background: $border-color;
+    }
   }
-  &::before {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 25%;
-    content: '';
-    height: 1px;
-    background: $border-color;
+  @media screen and (max-width: 768px) {
+    padding-top: 40px;
+    padding-bottom: 0px;
   }
 }

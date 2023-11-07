@@ -8,7 +8,7 @@ import './page.scss';
 function Login() {
   return (
     <main>
-      <section>
+      <section className="md:block hidden">
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
             <Link href={'/'}>Home</Link>
@@ -18,7 +18,7 @@ function Login() {
         </div>
       </section>
       <section className="flex justify-center items-center register">
-        <div className="w-[470px] register-area p-8">
+        <div className="md:w-[470px] w-[400px] register-area p-8">
           <h2 className=" font-gotham font-normal text-xl text-black">
             Create an Account
           </h2>

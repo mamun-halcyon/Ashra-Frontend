@@ -7,7 +7,7 @@ import './page.scss';
 function Login() {
   return (
     <main>
-      <section>
+      <section className=" hidden md:block">
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
             <Link href={'/'}>Home</Link>
