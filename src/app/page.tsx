@@ -62,13 +62,13 @@ export default function Home() {
           <div className="container">
             <Tabs>
               <TabList>
-                <Tab className="font-gotham mr-2 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
+                <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
                   Top Sales
                 </Tab>
-                <Tab className="font-gotham mr-2 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
+                <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
                   New Arrivals
                 </Tab>
-                <Tab className="font-gotham mr-2 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
+                <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
                   Featured Products
                 </Tab>
               </TabList>
