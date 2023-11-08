@@ -92,7 +92,7 @@ function PageDetails() {
       <div className="product-details">
         <div className="container">
           <div className="product-specification">
-            <div className="hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
+            <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
               <Link href={'/'}>Home</Link>
               <RiArrowDropRightLine className=" text-xl" />
               <Link href={'/category/bathware'}> Bathware </Link>
@@ -100,7 +100,7 @@ function PageDetails() {
               <Link href={'/subcagory/Commode'}> Commode </Link>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <div className="view-image overflow-hidden">
                   <ZoomImage image={viewImage} />

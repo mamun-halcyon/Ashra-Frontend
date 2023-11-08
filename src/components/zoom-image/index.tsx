@@ -8,9 +8,10 @@ const ZoomImage = ({ image }: { image: string }) => {
     zoomPosition: 'original',
     zoomStyle: 'opacity: 1;background-color: #fff',
     img: image,
+    zoom: '200',
   };
 
-  return <ImageZoom {...zoomProps} alt="product Image" zoom="200" />;
+  return <ImageZoom {...zoomProps} />;
 };
 
 export default ZoomImage;
