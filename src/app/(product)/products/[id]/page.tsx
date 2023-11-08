@@ -80,7 +80,7 @@ function PageDetails() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -90,7 +90,7 @@ function PageDetails() {
   return (
     <section>
       <div className="product-details">
-        <div className="container">
+        <div className="container px-2 md:px-1">
           <div className="product-specification">
             <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
               <Link href={'/'}>Home</Link>
@@ -100,9 +100,9 @@ function PageDetails() {
               <Link href={'/subcagory/Commode'}> Commode </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
               <div>
-                <div className="view-image overflow-hidden">
+                <div className="view-image mt-3 md:mt-0 overflow-hidden">
                   <ZoomImage image={viewImage} />
                 </div>
                 <div className="px-5 mt-5 products">
