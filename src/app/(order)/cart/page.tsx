@@ -19,7 +19,7 @@ function Checkout() {
         <div className="container">
           <div className="grid grid-cols-12 gap-6">
             {/* main content */}
-            <div className=" col-span-8">
+            <div className=" col-span-12 md:col-span-8">
               <div className="direction-area">
                 <div className="flex justify-between item-wrapper">
                   <div className="flex items-center item flex-col">
@@ -220,7 +220,7 @@ function Checkout() {
               </div>
             </div>
             {/* summery */}
-            <div className=" col-span-4">
+            <div className=" col-span-12 md:col-span-4">
               <div className="py-11 px-9 cart-summery">
                 <h3 className="summery-border font-gotham font-medium text-base text-black pb-2">
                   Cart Summery
@@ -263,7 +263,7 @@ function Checkout() {
       </section>
       <section className="cart-service">
         <div className="container">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {serviceCardData.map((service, i) => (
               <ServiceCard key={i} service={service} />
             ))}
