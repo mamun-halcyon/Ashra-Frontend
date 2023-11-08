@@ -80,7 +80,7 @@ function PageDetails() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
@@ -89,7 +89,7 @@ function PageDetails() {
 
   return (
     <section>
-      <div className="product-details">
+      <div className="product-details overflow-hidden">
         <div className="container px-2 md:px-1">
           <div className="product-specification">
             <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
@@ -483,7 +483,7 @@ function PageDetails() {
 
           <div className="related-products mt-12">
             <Title title="Related Products" />
-            <div className="grid grid-cols-5">
+            <div className="grid md:grid-cols-5 grid-cols-2">
               {[...productsData].splice(0, 5).map((product, i) => (
                 <ProductCard key={i} product={product} />
               ))}

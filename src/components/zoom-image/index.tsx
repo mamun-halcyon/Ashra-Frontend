@@ -1,4 +1,5 @@
 import ImageZoom from 'react-image-zoom';
+import './index.scss';
 
 const ZoomImage = ({ image }: { image: string }) => {
   const zoomProps = {
@@ -8,10 +9,10 @@ const ZoomImage = ({ image }: { image: string }) => {
     zoomPosition: 'original',
     zoomStyle: 'opacity: 1;background-color: #fff',
     img: image,
-    zoom: '200',
+    zoom: '300',
   };
 
-  return <ImageZoom {...zoomProps} />;
+  return <ImageZoom className="gallery-img" {...zoomProps} />;
 };
 
 export default ZoomImage;
