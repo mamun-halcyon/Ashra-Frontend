@@ -82,7 +82,7 @@ function Category() {
 
   return (
     <main>
-      <section>
+      <section className=" hidden md:block">
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
             <Link href={'/'}>Home</Link>
@@ -94,7 +94,7 @@ function Category() {
       <section>
         <div className="container">
           <div className="flex justify-between">
-            <div className="w-[250px]">
+            <div className=" hidden md:block md:w-[250px]">
               <FilterBox title="Category">
                 {categoryFilterItems.map((categoryItem, index) => (
                   <CategoryFilter
@@ -165,7 +165,7 @@ function Category() {
                 </div>
               </FilterBox>
             </div>
-            <div className="w-[925px]">
+            <div className="md:w-[925px] ">
               <div className="category-banner mb-5">
                 <div className="h-[235px]">
                   <Image
@@ -277,9 +277,9 @@ function Category() {
                 </div>
               </div>
 
-              <div className="filter-products">
+              <div className="filter-products px-2 md:px-0">
                 {isRow ? (
-                  <div className="grid grid-cols-4 gap-1 mb-5">
+                  <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
                     {[...productsData].slice(0, 12).map((product, i) => (
                       <ProductCard key={i} product={product} />
                     ))}

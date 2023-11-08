@@ -16,9 +16,9 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
   const blogData = data[0];
   return (
     <section className="blog-details mt-5">
-      <div className="container">
+      <div className="container px-2 md:px-0">
         <div className="grid grid-cols-6 gap-6">
-          <div className=" col-span-4">
+          <div className=" col-span-6 md:col-span-4">
             <div className="shadow">
               <Image
                 className="w-full"
@@ -90,7 +90,7 @@ const BlogDetails = ({ params }: { params: { id: string } }) => {
               </form>
             </div>
           </div>
-          <div className=" col-span-2">
+          <div className=" col-span-6 md:col-span-2">
             <h2 className="font-gotham font-normal text-xl  text-black">
               Popular Blogs
               <div className="mt-3 more-blog">

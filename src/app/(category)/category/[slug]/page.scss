@@ -83,6 +83,13 @@
       border: 0;
     }
   }
+  @media screen and (max-width: 768px) {
+    .product-card {
+      &:nth-child(2n) {
+        border: 0;
+      }
+    }
+  }
 }
 
 .bottom-filter {
