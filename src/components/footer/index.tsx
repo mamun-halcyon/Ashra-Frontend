@@ -175,7 +175,7 @@ const Footer = () => {
             </div>
             <div className="w-[60%] md:w-auto">
               <Image
-                className=" h-6 bottom-image"
+                className=" md:h-6 bottom-image "
                 src={'/assets/images/footer/payment.png'}
                 width={400}
                 height={50}

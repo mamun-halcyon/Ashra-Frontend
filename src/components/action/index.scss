@@ -25,4 +25,7 @@
       background: $secondary-color;
     }
   }
+  @media screen and (max-width: 768px) {
+    padding: 7px 6px;
+  }
 }
