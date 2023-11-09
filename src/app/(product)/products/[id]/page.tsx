@@ -31,7 +31,7 @@ const ProductCard = dynamic(() => import('@/components/card'));
 function PageDetails() {
   const [quantity, setQuantity] = useState<number>(1);
   const [viewImage, setViewImag] = useState<string>(
-    '/assets/images/products/product.png'
+    '/assets/images/products/product.jpg'
   );
   const [rating, setRating] = useState(0);
 

@@ -13,7 +13,7 @@ const MegaMenu = () => {
             <div className="mr-2 text-left relative heading">
               <div className="py-1  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Home Appliance
-                <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
+                <span className="text-xl md:mt-1 md:ml-2  md:block hidden mega-arrow">
                   <RiArrowDropDownLine className=" text-xl" />
                 </span>
               </div>
@@ -226,7 +226,7 @@ const MegaMenu = () => {
             <div className="mr-2 text-left relative heading">
               <div className="py-1  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Bathware
-                <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
+                <span className="text-xl md:mt-1 md:ml-2  md:block hidden mega-arrow">
                   <RiArrowDropDownLine className=" text-xl" />
                 </span>
               </div>
@@ -439,7 +439,7 @@ const MegaMenu = () => {
             <div className="mr-2 text-left relative heading">
               <div className="py-1  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
                 Pumps & Motors
-                <span className="text-xl md:mt-1 md:ml-2  md:block hidden">
+                <span className="text-xl md:mt-1 md:ml-2  md:block hidden mega-arrow">
                   <RiArrowDropDownLine className=" text-xl" />
                 </span>
               </div>
