@@ -19,7 +19,7 @@ function WishlistPage() {
               <div className=" col-span-4 flex items-center justify-center">
                 {/* <GoDotFill className="dot-icon" /> */}
                 <div className="w-full">
-                  <h3 className="md:ml-[162px] ml-[100px] font-gotham font-medium text-base text-black">
+                  <h3 className="md:ml-[162px] ml-[30px] font-gotham font-medium text-base text-black">
                     Product Name
                   </h3>
                 </div>
@@ -73,7 +73,7 @@ function WishlistPage() {
               </div>
               <div className="md:col-span-1 col-span-2">
                 <div>
-                  <Button className="px-6 py-1 font-gotham font-medium text-sm">
+                  <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
                     Add to Cart
                   </Button>
                 </div>
@@ -116,7 +116,7 @@ function WishlistPage() {
               </div>
               <div className="md:col-span-1 col-span-2">
                 <div>
-                  <Button className="px-6 py-1 font-gotham font-medium text-sm">
+                  <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
                     Add to Cart
                   </Button>
                 </div>
@@ -157,7 +157,7 @@ function WishlistPage() {
               </div>
               <div className="md:col-span-1 col-span-2">
                 <div>
-                  <Button className="px-6 py-1 font-gotham font-medium text-sm">
+                  <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
                     Add to Cart
                   </Button>
                 </div>
