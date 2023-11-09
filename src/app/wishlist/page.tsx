@@ -10,8 +10,8 @@ function WishlistPage() {
   return (
     <main>
       <section className="wishlist-page">
-        <div className="container">
-          <h2 className=" font-gotham font-medium text-lg wish-heading mb-1 pb-1">
+        <div className="container px-2 md:px-0">
+          <h2 className=" font-gotham font-medium text-lg wish-heading mb-1  pb-1">
             Wishlist
           </h2>
           <div className="cart-elements">
