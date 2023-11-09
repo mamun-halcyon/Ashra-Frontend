@@ -62,10 +62,10 @@ function Checkout() {
         </div>
       </section>
       <section>
-        <div className="container">
+        <div className="container px-2 md:px-0">
           <form onSubmit={handleOrder}>
             <div className="grid grid-cols-3 gap-4">
-              <div className=" col-span-1">
+              <div className=" md:col-span-1 col-span-3">
                 <Box
                   className=" text-primary"
                   step="1"
@@ -110,10 +110,10 @@ function Checkout() {
                   </div>
                 </Box>
               </div>
-              <div className=" col-span-2">
-                <div className="grid gap-4 grid-cols-2">
+              <div className=" md:col-span-2 col-span-3">
+                <div className="grid gap-4 grid-cols-2 ">
                   <Box
-                    className=" text-primary"
+                    className=" text-primary col-span-2"
                     step="2"
                     title="Payment Method"
                   >
@@ -163,9 +163,9 @@ function Checkout() {
                       alt="logo"
                     />
                   </Box>
-                  <div>
+                  <div className="col-span-2">
                     <Box
-                      className=" text-primary"
+                      className=" text-primary "
                       step="3"
                       title="Delivery Method"
                     >
@@ -263,7 +263,7 @@ function Checkout() {
                 >
                   <div className="summery-table w-full h-full">
                     <div className="grid grid-cols-5">
-                      <div className="heading-table col-span-3 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
                         Product Name
                       </div>
                       <div className="heading-table p-3 font-gotham font-normal text-xs text-black">
@@ -273,14 +273,14 @@ function Checkout() {
                         Total
                       </div>
                     </div>
-                    <div className="grid grid-cols-5 pb-5">
-                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black">
+                    <div className="grid grid-cols-5 md:pb-5">
+                      <div className=" md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
                         HY-955 - Gazi Smiss Kitchen Hood
                       </div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="md:p-3 p-1 font-gotham font-normal text-xs text-black">
                         ৳24,000.00 x 1
                       </div>
-                      <div className="p-3 font-gotham font-normal text-xs text-black">
+                      <div className="md:p-3 p-1  font-gotham font-normal text-xs text-black">
                         ৳24,000.00
                       </div>
                     </div>
