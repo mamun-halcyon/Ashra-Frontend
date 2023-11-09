@@ -1,7 +1,6 @@
 import Button from '@/components/button';
 import Image from 'next/image';
 import React from 'react';
-import { GoDotFill } from 'react-icons/go';
 import { RxCross2 } from 'react-icons/rx';
 import './page.scss';
 import ServiceCard from '@/components/service-card';
@@ -20,7 +19,7 @@ function WishlistPage() {
               <div className=" col-span-4 flex items-center justify-center">
                 {/* <GoDotFill className="dot-icon" /> */}
                 <div className="w-full">
-                  <h3 className="ml-[162px] font-gotham font-medium text-base text-black">
+                  <h3 className="md:ml-[162px] ml-[100px] font-gotham font-medium text-base text-black">
                     Product Name
                   </h3>
                 </div>
@@ -31,7 +30,7 @@ function WishlistPage() {
                   Price
                 </h3>
               </div>
-              <div className="col-span-2 flex items-center">
+              <div className=" hidden col-span-2 md:flex items-center">
                 {/* <GoDotFill className="dot-icon" /> */}
                 <h3 className=" font-gotham font-medium text-base text-black text-center">
                   Stock Status
@@ -48,7 +47,7 @@ function WishlistPage() {
                       <RxCross2 className="text-xs " />
                     </span>
                   </div>
-                  <div className="w-[80px] mx-9">
+                  <div className="w-[80px] mx-2 md:mx-9">
                     <Image
                       className=" w-full object-cover"
                       src={'/assets/images/products/image3.png'}
@@ -64,18 +63,20 @@ function WishlistPage() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1">
+              <div className="md:col-span-1 col-span-2">
                 <p className=" font-gotham font-medium text-primary text-xs">
                   ৳ 3000.00
                 </p>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-2 hidden md:block">
                 <h3 className=" font-gotham font-medium text-sm">Instock</h3>
               </div>
-              <div className="col-span-1">
-                <Button className="px-6 py-1 font-gotham font-medium text-sm">
-                  Add to Cart
-                </Button>
+              <div className="md:col-span-1 col-span-2">
+                <div>
+                  <Button className="px-6 py-1 font-gotham font-medium text-sm">
+                    Add to Cart
+                  </Button>
+                </div>
               </div>
             </div>
             {/* single cart */}
@@ -87,7 +88,7 @@ function WishlistPage() {
                       <RxCross2 className="text-xs " />
                     </span>
                   </div>
-                  <div className="w-[80px] mx-9">
+                  <div className="w-[80px] mx-2 md:mx-9">
                     <Image
                       className=" w-full object-cover"
                       src={'/assets/images/products/image4.png'}
@@ -103,20 +104,22 @@ function WishlistPage() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1">
+              <div className="md:col-span-1 col-span-2">
                 <p className=" font-gotham font-medium text-primary text-xs">
                   ৳ 3000.00
                 </p>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-2 hidden md:block">
                 <h3 className=" font-gotham font-medium text-sm">
                   Out of Stock
                 </h3>
               </div>
-              <div className="col-span-1">
-                <Button className="px-6 py-1 font-gotham font-medium text-sm">
-                  Add to Cart
-                </Button>
+              <div className="md:col-span-1 col-span-2">
+                <div>
+                  <Button className="px-6 py-1 font-gotham font-medium text-sm">
+                    Add to Cart
+                  </Button>
+                </div>
               </div>
             </div>
             {/* single cart */}
@@ -128,7 +131,7 @@ function WishlistPage() {
                       <RxCross2 className="text-xs " />
                     </span>
                   </div>
-                  <div className="w-[80px] mx-9">
+                  <div className="w-[80px] mx-2 md:mx-9">
                     <Image
                       className=" w-full object-cover"
                       src={'/assets/images/products/image3.png'}
@@ -144,18 +147,20 @@ function WishlistPage() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1">
+              <div className="md:col-span-1 col-span-2">
                 <p className=" font-gotham font-medium text-primary text-xs">
                   ৳ 3000.00
                 </p>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-2 hidden md:block">
                 <h3 className=" font-gotham font-medium text-sm">Instock</h3>
               </div>
-              <div className="col-span-1">
-                <Button className="px-6 py-1 font-gotham font-medium text-sm">
-                  Add to Cart
-                </Button>
+              <div className="md:col-span-1 col-span-2">
+                <div>
+                  <Button className="px-6 py-1 font-gotham font-medium text-sm">
+                    Add to Cart
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -163,7 +168,7 @@ function WishlistPage() {
       </section>
       <section className="cart-service">
         <div className="container">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {serviceCardData.map((service, i) => (
               <ServiceCard key={i} service={service} />
             ))}
