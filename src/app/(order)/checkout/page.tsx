@@ -113,7 +113,7 @@ function Checkout() {
               <div className=" md:col-span-2 col-span-3">
                 <div className="grid gap-4 grid-cols-2 ">
                   <Box
-                    className=" text-primary col-span-2"
+                    className=" text-primary col-span-2 md:col-span-1"
                     step="2"
                     title="Payment Method"
                   >
@@ -163,9 +163,9 @@ function Checkout() {
                       alt="logo"
                     />
                   </Box>
-                  <div className="col-span-2">
+                  <div className="col-span-2 md:col-span-1">
                     <Box
-                      className=" text-primary "
+                      className=" text-primary"
                       step="3"
                       title="Delivery Method"
                     >
@@ -263,7 +263,7 @@ function Checkout() {
                 >
                   <div className="summery-table w-full h-full">
                     <div className="grid grid-cols-5">
-                      <div className="heading-table md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table col-span-3 p-3 font-gotham font-normal text-xs text-black">
                         Product Name
                       </div>
                       <div className="heading-table p-3 font-gotham font-normal text-xs text-black">
@@ -273,14 +273,14 @@ function Checkout() {
                         Total
                       </div>
                     </div>
-                    <div className="grid grid-cols-5 md:pb-5">
-                      <div className=" md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                    <div className="grid grid-cols-5 pb-5">
+                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black">
                         HY-955 - Gazi Smiss Kitchen Hood
                       </div>
-                      <div className="md:p-3 p-1 font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
                         ৳24,000.00 x 1
                       </div>
-                      <div className="md:p-3 p-1  font-gotham font-normal text-xs text-black">
+                      <div className="p-3 font-gotham font-normal text-xs text-black">
                         ৳24,000.00
                       </div>
                     </div>
