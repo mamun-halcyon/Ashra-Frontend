@@ -285,7 +285,7 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="col-span-3 p-3 font-gotham font-normal text-xs text-black"></div>
+                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
                       <div className="p-3 font-gotham  text-xs text-primary font-medium">
                         Sub-Total :
                       </div>
