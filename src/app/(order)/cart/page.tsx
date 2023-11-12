@@ -44,14 +44,14 @@ function Checkout() {
               </div>
 
               <div className="cart-elements">
-                <div className="grid grid-cols-8 gap-4 product-title">
+                <div className="grid grid-cols-8 gap-1 md:gap-4 product-title">
                   <div className=" col-span-4 flex items-center justify-center">
                     {/* <GoDotFill className="dot-icon" /> */}
                     <h3 className=" font-gotham font-medium text-base text-black text-center">
                       Product
                     </h3>
                   </div>
-                  <div className="col-span-1 flex items-center ">
+                  <div className="col-span-2 md:col-span-1 flex items-center ">
                     {/* <GoDotFill className="dot-icon" /> */}
                     <h3 className=" font-gotham font-medium text-base text-black text-center">
                       Price
