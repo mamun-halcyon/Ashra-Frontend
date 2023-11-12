@@ -8,7 +8,7 @@ const Profile = () => {
       <div className="container">
         <div className="grid grid-cols-12 gap-6">
           <ProfileSidebar />
-          <div className=" col-span-9">
+          <div className=" md:col-span-9 col-span-12 ">
             <div className="grid grid-cols-3 gap-4">
               <div className=" bg-primary py-5 pl-5">
                 <h2 className=" font-medium font-gotham text-base text-white">

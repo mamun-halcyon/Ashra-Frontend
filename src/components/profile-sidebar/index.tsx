@@ -12,7 +12,7 @@ import './index.scss';
 
 const ProfileSidebar = () => {
   return (
-    <div className=" col-span-3 shadow pb-6">
+    <div className=" md:col-span-3 shadow pb-6 absolute md:static  bg-white">
       <div className="relative profile-top">
         <div className="bg-primary h-28">
           <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%]">
