@@ -70,153 +70,77 @@ function Checkout() {
                     </h3>
                   </div>
                 </div>
-                {/* single cart */}
-                <div className="grid grid-cols-8 gap-1 md:gap-4 items-center product-item">
-                  <div className="col-span-4">
-                    <div className="flex items-center">
-                      <div className=" cursor-pointer">
-                        <span>
-                          <RxCross2 className="text-sm " />
-                        </span>
+                {[...Array(2)].map((product, index) => {
+                  {
+                    /* single cart */
+                  }
+                  return (
+                    <div
+                      key={index}
+                      className="grid grid-cols-8 gap-1 md:gap-4 items-center product-item"
+                    >
+                      <div className="col-span-4">
+                        <div className="flex items-center">
+                          <div className=" cursor-pointer">
+                            <span>
+                              <RxCross2 className="text-sm " />
+                            </span>
+                          </div>
+                          <div className="w-[80px] mx-2 md:mx-9">
+                            <Image
+                              className=" w-full object-cover"
+                              src={'/assets/images/products/image3.png'}
+                              width={200}
+                              height={200}
+                              alt="product"
+                            />
+                          </div>
+                          <div>
+                            <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
+                              Gazi Smiss Gas Stove | B-239
+                            </h3>
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-[80px] mx-2 md:mx-9">
-                        <Image
-                          className=" w-full object-cover"
-                          src={'/assets/images/products/image3.png'}
-                          width={200}
-                          height={200}
-                          alt="product"
-                        />
+                      <div className="col-span-2 md:col-span-1">
+                        <p className=" font-gotham font-medium text-primary text-sm">
+                          ৳ 3000.00
+                        </p>
                       </div>
-                      <div>
-                        <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
-                          Gazi Smiss Gas Stove | B-239
-                        </h3>
+                      <div className="col-span-2 hidden md:block">
+                        <div className="flex items-center">
+                          <div className="qnt-1">
+                            <AiOutlinePlus className="text-sm" />
+                          </div>
+                          <div className="qnt-1 px-4 font-gotham font-light text-sm">
+                            3
+                          </div>
+                          <div className="qnt-1">
+                            <AiOutlineMinus className="text-sm" />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="col-span-2 md:col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-sm">
-                      ৳ 3000.00
-                    </p>
-                  </div>
-                  <div className="col-span-2 hidden md:block">
-                    <div className="flex items-center">
-                      <div className="qnt-1">
-                        <AiOutlinePlus className="text-sm" />
+                      <div className=" col-span-2 md:col-span-1">
+                        <p className=" font-gotham font-medium text-primary text-sm">
+                          ৳ 3000.00
+                        </p>
                       </div>
-                      <div className="qnt-1 px-4 font-gotham font-light text-sm">
-                        3
-                      </div>
-                      <div className="qnt-1">
-                        <AiOutlineMinus className="text-sm" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className=" col-span-2 md:col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-sm">
-                      ৳ 3000.00
-                    </p>
-                  </div>
-                </div>
-                {/* single cart */}
-                <div className="grid grid-cols-8 gap-1 md:gap-4 items-center product-item">
-                  <div className="col-span-4">
-                    <div className="flex items-center">
-                      <div className=" cursor-pointer">
-                        <span>
-                          <RxCross2 className="text-sm " />
-                        </span>
-                      </div>
-                      <div className="w-[80px] mx-2 md:mx-9">
-                        <Image
-                          className=" w-full object-cover"
-                          src={'/assets/images/products/image3.png'}
-                          width={200}
-                          height={200}
-                          alt="product"
-                        />
-                      </div>
-                      <div>
-                        <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
-                          Gazi Smiss Gas Stove | B-239
-                        </h3>
+                      <div className=" flex justify-center col-span-8">
+                        <div className="flex items-center">
+                          <div className="qnt-1">
+                            <AiOutlinePlus className="text-sm" />
+                          </div>
+                          <div className="qnt-1 px-4 font-gotham font-light text-sm">
+                            3
+                          </div>
+                          <div className="qnt-1">
+                            <AiOutlineMinus className="text-sm" />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-span-2 md:col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-sm">
-                      ৳ 3000.00
-                    </p>
-                  </div>
-                  <div className="col-span-2 hidden md:block">
-                    <div className="flex items-center">
-                      <div className="qnt-1">
-                        <AiOutlinePlus className="text-sm" />
-                      </div>
-                      <div className="qnt-1 px-4 font-gotham font-light text-sm">
-                        3
-                      </div>
-                      <div className="qnt-1">
-                        <AiOutlineMinus className="text-sm" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className=" col-span-2 md:col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-sm">
-                      ৳ 3000.00
-                    </p>
-                  </div>
-                </div>
-                {/* single cart */}
-                <div className="grid grid-cols-8 gap-1 md:gap-4 items-center product-item">
-                  <div className="col-span-4">
-                    <div className="flex items-center">
-                      <div className=" cursor-pointer">
-                        <span>
-                          <RxCross2 className="text-sm " />
-                        </span>
-                      </div>
-                      <div className="w-[80px] mx-2 md:mx-9">
-                        <Image
-                          className=" w-full object-cover"
-                          src={'/assets/images/products/image3.png'}
-                          width={200}
-                          height={200}
-                          alt="product"
-                        />
-                      </div>
-                      <div>
-                        <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
-                          Gazi Smiss Gas Stove | B-239
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-span-2 md:col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-sm">
-                      ৳ 3000.00
-                    </p>
-                  </div>
-                  <div className="col-span-2 hidden md:block">
-                    <div className="flex items-center">
-                      <div className="qnt-1">
-                        <AiOutlinePlus className="text-sm" />
-                      </div>
-                      <div className="qnt-1 px-4 font-gotham font-light text-sm">
-                        3
-                      </div>
-                      <div className="qnt-1">
-                        <AiOutlineMinus className="text-sm" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className=" col-span-2 md:col-span-1">
-                    <p className=" font-gotham font-medium text-primary text-sm">
-                      ৳ 3000.00
-                    </p>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
             {/* summery */}
