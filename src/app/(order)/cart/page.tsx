@@ -125,7 +125,7 @@ function Checkout() {
                           ৳ 3000.00
                         </p>
                       </div>
-                      <div className=" flex justify-center col-span-8">
+                      <div className=" flex justify-center col-span-8 md:hidden">
                         <div className="flex items-center">
                           <div className="qnt-1">
                             <AiOutlinePlus className="text-sm" />
