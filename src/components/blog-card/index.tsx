@@ -3,16 +3,10 @@ import { FC } from 'react';
 import Button from '../button';
 import './index.scss';
 import Link from 'next/link';
-
-type Blog = {
-  id: string;
-  image: string;
-  title: string;
-  postTime: string;
-};
+import { IBlog } from '@/types/blog';
 
 interface IProps {
-  blog: Blog;
+  blog: IBlog;
   className?: string;
 }
 
@@ -23,7 +17,7 @@ const BlogCard: FC<IProps> = ({ className, blog }) => {
         <Link href={`/blogs/${blog.id}`}>
           <Image
             className=" w-full object-cover"
-            src={blog.image}
+            src={`${process.env.API_ROOT}/images/blog/${blog.image}`}
             width={300}
             height={400}
             alt="gazi blog"
@@ -35,7 +29,7 @@ const BlogCard: FC<IProps> = ({ className, blog }) => {
           {blog.title}
         </h3>
         <div className="flex justify-between mt-8">
-          <Link href={`/blogs/${blog.id}`}>
+          <Link href={`/blogs/${blog.slug}`}>
             <Button className="px-2 py-1 font-gotham font-normal text-xs">
               Read more...
             </Button>

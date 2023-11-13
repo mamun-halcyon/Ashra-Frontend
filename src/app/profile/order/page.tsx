@@ -9,7 +9,7 @@ const OrderHistory = () => {
       <div className="container">
         <div className="grid grid-cols-12 gap-6">
           <ProfileSidebar />
-          <div className="overflow-x-scroll md:col-span-9 col-span-12">
+          <div className="overflow-x-scroll md:overflow-x-visible md:col-span-9 col-span-12">
             <div className="order-table">
               <table className="w-full text-sm text-left ">
                 <thead>

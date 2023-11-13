@@ -1,20 +1,37 @@
-'use client';
-
 import dynamic from 'next/dynamic';
 const BlogCard = dynamic(() => import('@/components/blog-card'));
-import { BlogData } from '@/static/BlogData';
 import Link from 'next/link';
-import { useState } from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
 import Pagination from '@/components/pagination';
 import Image from 'next/image';
+import { IResponseBlog } from '@/types/blog';
 
-function Blogs() {
-  const [page, setPage] = useState(1);
+async function getBlogs(page: number = 1, limit: number = 12) {
+  const url = `http://localhost:5000/api/v1/frontend/blogs?limit=${limit}&page=${page}`;
+  console.log(url);
+  const res = await fetch(url);
+  const data = res.json();
+  return data;
+}
+
+async function Blogs({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const page =
+    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
+  const limit =
+    typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
+  const blogs: IResponseBlog = await getBlogs(page, limit);
+  console.log(blogs);
+
+  /* const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
 
-  const incrementPage = () => {
+
+/*   const incrementPage = () => {
     setPage(page + 1);
   };
 
@@ -28,7 +45,7 @@ function Blogs() {
     const clickedElement = event.target as HTMLLIElement;
     const innerText = clickedElement.innerText;
     setShowTitle(`Show ${innerText}`);
-  };
+  }; */
 
   return (
     <main>
@@ -56,17 +73,17 @@ function Blogs() {
       <section className="blog">
         <div className="container  px-2 md:px-0">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {BlogData.map((blog, index) => (
+            {blogs.data?.rows.map((blog, index) => (
               <BlogCard key={index} blog={blog} />
             ))}
           </div>
-          <Pagination
+          {/* <Pagination
             page={page}
             incrementPage={incrementPage}
             decrementPage={decrementPage}
             showTitle={showTitle}
             handleShow={handleShow}
-          />
+          /> */}
         </div>
       </section>
     </main>
