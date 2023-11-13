@@ -14,7 +14,7 @@ const BlogCard: FC<IProps> = ({ className, blog }) => {
   return (
     <div className={`shadow hover:shadow-md ${className}`}>
       <div className="image">
-        <Link href={`/blogs/${blog.id}`}>
+        <Link href={`/blogs/${blog.slug}`}>
           <Image
             className=" w-full object-cover"
             src={`${process.env.API_ROOT}/images/blog/${blog.image}`}

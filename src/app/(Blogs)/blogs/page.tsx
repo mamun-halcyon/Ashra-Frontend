@@ -8,8 +8,7 @@ import Image from 'next/image';
 import { IResponseBlog } from '@/types/blog';
 
 async function getBlogs(page: number = 1, limit: number = 12) {
-  const url = `http://localhost:5000/api/v1/frontend/blogs?limit=${limit}&page=${page}`;
-  console.log(url);
+  const url = `http://localhost:5000/api/v1/frontend/blogs?limit=${limit}&page=${page}, { next: { revalidate: 3600 } }`;
   const res = await fetch(url);
   const data = res.json();
   return data;
