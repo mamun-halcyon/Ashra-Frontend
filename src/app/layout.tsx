@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './globals.css';
+import ReduxProvider from '@/redux/provider';
 
 const Gotham = localFont({
   src: [
@@ -58,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${Gotham.variable} ${poppins.variable}`}>
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
         <ToastContainer />
       </body>
     </html>

@@ -6,12 +6,26 @@ import './page.scss';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import Pagination from '@/components/pagination';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import axios from 'axios';
 
 function Videos() {
   const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
+  const [videos, setVideos] = useState([]);
+  const [count, setCount] = useState(0);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${process.env.API_URL}/frontend/videos`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCount(data.data.count);
+        setVideos(data.data.rows);
+        setLoading(false);
+      });
+  }, []);
 
   const incrementPage = () => {
     setPage(page + 1);
@@ -57,9 +71,10 @@ function Videos() {
         <section>
           <div className="container px-2 md:px-0">
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {videoData.map((video, index) => (
-                <VideoCard url={video.url} title={video.title} key={index} />
-              ))}
+              {isLoading &&
+                videoData.map((video, index) => (
+                  <VideoCard url={video.url} title={video.title} key={index} />
+                ))}
             </div>
           </div>
         </section>

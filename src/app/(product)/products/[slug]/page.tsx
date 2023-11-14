@@ -28,7 +28,20 @@ import TextAreaGroup from '@/components/textarea';
 import { FaAward } from 'react-icons/fa6';
 const ProductCard = dynamic(() => import('@/components/card'));
 
-function PageDetails() {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+async function getProduct(slug: string) {
+  const res = await fetch(`${process.env.API_URL}/frontend/products/${slug} `);
+  const data = await res.json();
+  return data;
+}
+
+function PageDetails({ params: { slug } }: Props) {
+  const productData = getProduct(slug);
   const [quantity, setQuantity] = useState<number>(1);
   const [viewImage, setViewImag] = useState<string>(
     '/assets/images/products/product.jpg'

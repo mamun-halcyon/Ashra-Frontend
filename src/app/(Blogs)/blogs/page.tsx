@@ -3,13 +3,14 @@ const BlogCard = dynamic(() => import('@/components/blog-card'));
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
+import { redirect } from 'next/navigation';
 import Pagination from '@/components/pagination';
 import Image from 'next/image';
 import { IResponseBlog } from '@/types/blog';
 
 async function getBlogs(page: number = 1, limit: number = 12) {
   const url = `${process.env.API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const res = await fetch(url, { next: { revalidate: 60 } });
   const data = await res.json();
   return data;
 }

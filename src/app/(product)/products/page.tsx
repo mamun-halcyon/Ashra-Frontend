@@ -1,10 +1,17 @@
+'use client';
 import ProductCard from '@/components/card';
 import Title from '@/components/title';
 import { productsData } from '@/static/products';
 import Image from 'next/image';
 import './page.scss';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useEffect } from 'react';
+import { getProducts } from '@/redux/features/products/product-slice';
 
 function Page() {
+  const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.product);
+
   return (
     <div className="all-products">
       <div className="container">
