@@ -8,9 +8,9 @@ import Image from 'next/image';
 import { IResponseBlog } from '@/types/blog';
 
 async function getBlogs(page: number = 1, limit: number = 12) {
-  const url = `http://localhost:5000/api/v1/frontend/blogs?limit=${limit}&page=${page}, { next: { revalidate: 3600 } }`;
-  const res = await fetch(url);
-  const data = res.json();
+  const url = `${process.env.API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
+  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const data = await res.json();
   return data;
 }
 
@@ -24,7 +24,6 @@ async function Blogs({
   const limit =
     typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
   const blogs: IResponseBlog = await getBlogs(page, limit);
-  console.log(blogs);
 
   /* const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');

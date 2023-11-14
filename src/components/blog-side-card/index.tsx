@@ -1,14 +1,8 @@
+import { IBlog } from '@/types/blog';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-
-interface IBlog {
-  id: string;
-  image: string;
-  title: string;
-  postTime: string;
-  description?: string;
-}
+import { formatDate } from '../dateformate';
 
 interface IProps {
   blog: IBlog;
@@ -20,14 +14,14 @@ const BlogSideCard: FC<IProps> = ({ blog }) => {
       <div className="w-[25%] mr-2">
         <Image
           className="w-full"
-          src={blog.image}
+          src={`${process.env.API_ROOT}/images/blog/${blog.image}`}
           width={100}
           height={100}
           alt="blog"
         />
       </div>
       <div className="text w-3/4">
-        <Link href={`/blogs/${blog.id}`}>
+        <Link href={`/blogs/${blog.slug}`}>
           <h4 className=" font-gotham  font-normal text-base text-black">
             {blog.title}
           </h4>
@@ -38,12 +32,12 @@ const BlogSideCard: FC<IProps> = ({ blog }) => {
             Publish in
           </p>
           <p className="font-gotham font-normal text-xs mt-2 text-black">
-            {blog.postTime}
+            {formatDate(blog.created_at)}
           </p>
         </div>
         <Link
           className="font-gotham font-normal text-xs mt-2 text-primary"
-          href={`/blogs/${blog.id}`}
+          href={`/blogs/${blog.slug}`}
         >
           Read More
         </Link>

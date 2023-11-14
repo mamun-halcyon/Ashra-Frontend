@@ -9,6 +9,8 @@ export type IBlog = {
   meta_keyword: string;
   meta_image?: File | null;
   slug: string;
+  created_at: string;
+  updated_at?: string;
 };
 
 export interface IResponseBlog {

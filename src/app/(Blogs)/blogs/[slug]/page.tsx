@@ -10,7 +10,8 @@ import { AiOutlineTwitter } from 'react-icons/ai';
 import FormGroup from '@/components/fromgroup';
 import TextAreaGroup from '@/components/textarea';
 import Button from '@/components/button';
-import { IBlog } from '@/types/blog';
+import { IBlog, IResponseBlog } from '@/types/blog';
+import { formatDate } from '@/components/dateformate';
 
 type Props = {
   params: {
@@ -22,13 +23,20 @@ type IResponse = {
 };
 
 async function getBlog(slug: string) {
-  const res = await fetch(`${process.env.API_URL}/frontend/blogs/${slug}`);
-  const data = res.json();
+  const res = await fetch(`${process.env.API_URL}/frontend/blogs/${slug} `);
+  const data = await res.json();
+  return data;
+}
+async function popularBlogs() {
+  const url = `${process.env.API_URL}/frontend/blogs?limit=10&page=1`;
+  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const data = await res.json();
   return data;
 }
 const BlogDetails = async ({ params: { slug } }: Props) => {
   const blogData: IResponse = await getBlog(slug);
-  console.log(blogData);
+  const popular: IResponseBlog = await popularBlogs();
+
   return (
     <section className="blog-details mt-5">
       <div className="container px-2 md:px-0">
@@ -72,7 +80,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                         </div>
                       </div>
                       <div className="font-gotham font-normal text-xs text-black">
-                        28 Aug 2023
+                        {formatDate(blogData.data.created_at)}
                       </div>
                     </div>
                   </div>
@@ -111,9 +119,9 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
             <h2 className="font-gotham font-normal text-xl  text-black">
               Popular Blogs
               <div className="mt-3 more-blog">
-                {/*  {BlogData.map((blog, index) => (
+                {popular.data.rows.map((blog, index) => (
                   <BlogSideCard blog={blog} key={index} />
-                ))} */}
+                ))}
               </div>
             </h2>
           </div>
