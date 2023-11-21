@@ -5,8 +5,13 @@ import { applianceData, customerServiceData } from '@/static/footerData';
 import { FaLocationDot } from 'react-icons/fa6';
 import { PiEnvelopeThin } from 'react-icons/pi';
 import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
+import { HomeApiResponse } from '@/types/home';
+import { API_ROOT } from '@/constant';
 
-const Footer = () => {
+type IProps = {
+  globalData: HomeApiResponse;
+};
+const Footer = ({ globalData }: IProps) => {
   return (
     <footer>
       <div className="container px-2 md:px-0">
@@ -14,7 +19,7 @@ const Footer = () => {
           <div className="basic-info">
             <Image
               className=" mb-5"
-              src={'/assets/images/logo/Logo.png'}
+              src={`${API_ROOT}/images/setting/${globalData?.setting?.logo}`}
               width={154}
               height={80}
               alt="gazi group logo"
@@ -24,8 +29,7 @@ const Footer = () => {
                 <FaLocationDot className=" w-5 h-5 text-black mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm text-black ">
-                37/2, Pritom Zaman Tower, Bir Protik Gazi Dastagir Road, Dhaka
-                1000
+                {globalData?.setting?.address}
               </p>
             </div>
             <div className="flex mb-3">
@@ -33,7 +37,7 @@ const Footer = () => {
                 <BsHeadphones className=" w-5 h-5 text-black mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm text-black">
-                +880 1766 688820
+                {globalData?.setting?.contact_number}
               </p>
             </div>
             <div className="flex">
@@ -41,7 +45,7 @@ const Footer = () => {
                 <BsEnvelopeFill className=" w-5 h-5 text-black mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm text-black">
-                info@gazihomeappliance.com
+                {globalData?.setting?.contact_email}
               </p>
             </div>
           </div>
@@ -113,42 +117,50 @@ const Footer = () => {
               Follow Us
             </p>
             <div className="flex">
-              <Link href={'https://www.facebook.com'} target="_blank">
-                <Image
-                  className=" rounded w-6 h-6 mx-1"
-                  src="/assets/images/icon/facebook.png"
-                  width={20}
-                  height={20}
-                  alt="social-icon"
-                />
-              </Link>
-              <Link href={'/'} target="_blank">
-                <Image
-                  className=" rounded w-6 h-6 mx-1"
-                  src="/assets/images/icon/instagram.png"
-                  width={20}
-                  height={20}
-                  alt="social-icon"
-                />
-              </Link>
-              <Link href={'/'} target="_blank">
-                <Image
-                  className=" rounded w-6 h-6 mx-1"
-                  src="/assets/images/icon/linkedin.png"
-                  width={20}
-                  height={20}
-                  alt="social-icon"
-                />
-              </Link>
-              <Link href={'/'} target="_blank">
-                <Image
-                  className=" rounded w-6 h-6 mx-1"
-                  src="/assets/images/icon/youtube.png"
-                  width={20}
-                  height={20}
-                  alt="social-icon"
-                />
-              </Link>
+              {globalData?.setting?.facebook_url && (
+                <Link href={globalData.setting.facebook_url} target="_blank">
+                  <Image
+                    className=" rounded w-6 h-6 mx-1"
+                    src="/assets/images/icon/facebook.png"
+                    width={20}
+                    height={20}
+                    alt="social-icon"
+                  />
+                </Link>
+              )}
+              {globalData.setting.instagram_url && (
+                <Link href={globalData.setting.instagram_url} target="_blank">
+                  <Image
+                    className=" rounded w-6 h-6 mx-1"
+                    src="/assets/images/icon/instagram.png"
+                    width={20}
+                    height={20}
+                    alt="social-icon"
+                  />
+                </Link>
+              )}
+              {globalData.setting.linkedIn_url && (
+                <Link href={globalData.setting.linkedIn_url} target="_blank">
+                  <Image
+                    className=" rounded w-6 h-6 mx-1"
+                    src="/assets/images/icon/linkedin.png"
+                    width={20}
+                    height={20}
+                    alt="social-icon"
+                  />
+                </Link>
+              )}
+              {globalData.setting.youtube_url && (
+                <Link href={'/'} target="_blank">
+                  <Image
+                    className=" rounded w-6 h-6 mx-1"
+                    src="/assets/images/icon/youtube.png"
+                    width={20}
+                    height={20}
+                    alt="social-icon"
+                  />
+                </Link>
+              )}
             </div>
           </div>
           <div className="flex items-end">

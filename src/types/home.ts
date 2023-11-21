@@ -1,6 +1,7 @@
 import { IBanner } from './banner';
 import { ICategoryData } from './category';
 import { IProduct } from './product';
+import { ISetting } from './setting';
 import { IVideo } from './video';
 
 export interface IHomePage {
@@ -24,4 +25,5 @@ export interface HomeApiResponse {
   topSale: IProduct[];
   newArrival: IProduct[];
   featureProduct: IProduct[];
+  setting: ISetting;
 }

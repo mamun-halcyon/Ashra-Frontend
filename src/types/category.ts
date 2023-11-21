@@ -2,7 +2,7 @@ export interface ICategoryData {
   id: number;
   title: string;
   slug: string;
-  parent_category: string;
+  parent_category: string | boolean;
   order_id: number | null;
   image: string | null;
   is_feature: boolean;

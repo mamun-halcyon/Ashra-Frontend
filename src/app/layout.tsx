@@ -11,6 +11,7 @@ import Navbar from '@/components/navbar';
 import MegaMenu from '@/components/megamenu';
 import { API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
+import Footer from '@/components/footer';
 
 const Gotham = localFont({
   src: [
@@ -57,12 +58,11 @@ export const metadata: Metadata = {
 };
 
 async function getData() {
-  const res = await fetch(`${API_URL}/home-page`);
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+  const res = await fetch(`${API_URL}/home-page`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data');
   }
 
@@ -79,10 +79,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${Gotham.variable} ${poppins.variable}`}>
         <ReduxProvider>
-          <TopHeader />
+          <TopHeader homeData={globalData.homePage} />
           <Navbar />
           <MegaMenu menus={globalData.category} />
           {children}
+          <Footer globalData={globalData} />
         </ReduxProvider>
         <ToastContainer />
       </body>

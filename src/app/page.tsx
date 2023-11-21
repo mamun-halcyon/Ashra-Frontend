@@ -13,13 +13,13 @@ import Navbar from '@/components/navbar';
 import MegaMenu from '@/components/megamenu';
 import Link from 'next/link';
 import { BsArrowRightShort } from 'react-icons/bs';
-import { API_URL } from '@/constant';
+import { API_ROOT, API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
+import { ICategoryData } from '@/types/category';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
 const VideoCard = dynamic(() => import('@/components/video-card'));
-const Footer = dynamic(() => import('@/components/footer'));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`);
@@ -33,9 +33,21 @@ async function getData() {
 
   return res.json();
 }
+async function categoryData() {
+  const res = await fetch(`${API_URL}/categories?is_feature=true`);
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
 
 export default async function Home() {
   const homeData: HomeApiResponse = await getData();
+  const categories: ICategoryData[] = await categoryData();
+  console.log(categories);
 
   return (
     <>
@@ -47,7 +59,7 @@ export default async function Home() {
         <section className="service">
           <div className="container px-2 md:px-0">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {serviceCardData.map((service, i) => (
+              {homeData.keyPoint.map((service, i) => (
                 <ServiceCard key={i} service={service} />
               ))}
             </div>
@@ -60,7 +72,7 @@ export default async function Home() {
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
-              {exploreData.map((item, i) => (
+              {categories?.data?.rows.map((item, i) => (
                 <ExploreCard
                   className="md:w-1/6 w-1/3 text-center p-2"
                   key={i}
@@ -125,12 +137,14 @@ export default async function Home() {
           </div>
         </section> */}
         <section className="promotion">
-          <Image
-            src={'/assets/images/ads/Promotion Banners.png'}
-            alt="promotion banner"
-            width={1800}
-            height={500}
-          />
+          <Link href={homeData?.homePage?.special_product_link}>
+            <Image
+              src={`${API_ROOT}/images/home-page/${homeData?.homePage?.special_product_photo}`}
+              alt="promotion banner"
+              width={1800}
+              height={500}
+            />
+          </Link>
         </section>
         <section className="category-products">
           <div className="container px-2 md:px-0">
@@ -174,7 +188,7 @@ export default async function Home() {
               PRODUCT REVIEWS & UNBOXING VIDEOS
             </h2>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {[...videoData].splice(0, 3).map((video, index) => (
+              {homeData.video.map((video, index) => (
                 <VideoCard key={index} url={video.url} title={video.title} />
               ))}
             </div>
@@ -190,7 +204,6 @@ export default async function Home() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

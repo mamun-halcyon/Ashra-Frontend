@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import Image from 'next/image';
 import './index.scss';
 import Link from 'next/link';
+import { IBanner } from '@/types/banner';
+import { API_ROOT } from '@/constant';
 
 const settings = {
   dots: true,
@@ -15,21 +17,28 @@ const settings = {
   slidesToScroll: 1,
 };
 
-const Banner = ({ banners }) => {
+type IProps = {
+  banners: IBanner[];
+};
+const Banner = ({ banners }: IProps) => {
   return (
     <div className="banner">
       <Slider {...settings}>
-        <div className="outline-none">
-          <Link href={'/category/some'}>
-            <Image
-              src="/assets/images/banner/BG.png"
-              width={2400}
-              height={500}
-              alt="banner"
-              priority={true}
-            />
-          </Link>
-        </div>
+        {banners.map((banner, index) => (
+          <>
+            <div className="outline-none" key={index}>
+              <Link href={`/${banner.url}`}>
+                <Image
+                  src={`${API_ROOT}/images/banner/${banner.image}`}
+                  width={2400}
+                  height={500}
+                  alt="banner"
+                  priority={true}
+                />
+              </Link>
+            </div>
+          </>
+        ))}
       </Slider>
     </div>
   );

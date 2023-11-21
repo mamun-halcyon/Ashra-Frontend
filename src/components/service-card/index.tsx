@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import './index.scss';
 import Link from 'next/link';
+import { API_ROOT } from '@/constant';
 
 interface IService {
   title: string;
-  subTitle: string;
+  subtitle: string;
   image: number;
 }
 interface IProps {
@@ -19,7 +20,7 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
         <div className="image">
           <Image
             className="mr-2.5"
-            src={`/assets/images/service/service${service.image}.png`}
+            src={`${API_ROOT}/images/key-point/${service.image}`}
             width={44}
             height={53}
             alt="service"
@@ -30,7 +31,7 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
             {service.title}
           </h4>
           <h6 className=" font-gotham font-medium text-base">
-            {service.subTitle}
+            {service.subtitle}
           </h6>
         </div>
       </div>
