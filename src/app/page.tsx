@@ -14,6 +14,7 @@ import MegaMenu from '@/components/megamenu';
 import Link from 'next/link';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { API_URL } from '@/constant';
+import { HomeApiResponse } from '@/types/home';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
@@ -34,7 +35,8 @@ async function getData() {
 }
 
 export default async function Home() {
-  const homeData = await getData();
+  const homeData: HomeApiResponse = await getData();
+
   return (
     <>
       <main>

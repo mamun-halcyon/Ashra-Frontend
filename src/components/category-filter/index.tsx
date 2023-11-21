@@ -1,4 +1,4 @@
-import { ICategoryData } from '@/types/cagory';
+import { ICategoryData } from '@/types/category';
 import { FC } from 'react';
 import './index.scss';
 

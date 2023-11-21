@@ -2,8 +2,12 @@
 import Link from 'next/link';
 import './index.scss';
 import { RiArrowDropDownLine, RiArrowDropRightLine } from 'react-icons/ri';
+import { ICategoryData } from '@/types/category';
 
-const MegaMenu = () => {
+type IProps = {
+  menus: ICategoryData[];
+};
+const MegaMenu = ({ menus }: IProps) => {
   return (
     <div className="py-2 shadow hidden md:block">
       <div className="container px-2 md:px-0">

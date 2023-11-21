@@ -14,7 +14,7 @@ import ActionButton from '@/components/action';
 import { productsData } from '@/static/products';
 import ListCard from '@/components/list-card';
 import { categoryData } from '@/static/category';
-import { ICategoryData } from '@/types/cagory';
+import { ICategoryData } from '@/types/category';
 import CategoryFilter from '@/components/category-filter';
 import Pagination from '@/components/pagination';
 const ProductCard = dynamic(() => import('@/components/card'));
