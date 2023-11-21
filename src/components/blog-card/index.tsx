@@ -4,6 +4,7 @@ import Button from '../button';
 import './index.scss';
 import Link from 'next/link';
 import { IBlog } from '@/types/blog';
+import { API_ROOT } from '@/constant';
 
 interface IProps {
   blog: IBlog;
@@ -17,7 +18,7 @@ const BlogCard: FC<IProps> = ({ className, blog }) => {
         <Link href={`/blogs/${blog.slug}`}>
           <Image
             className=" w-full object-cover"
-            src={`${process.env.API_ROOT}/images/blog/${blog.image}`}
+            src={`${API_ROOT}/images/blog/${blog.image}`}
             width={300}
             height={400}
             alt="gazi blog"

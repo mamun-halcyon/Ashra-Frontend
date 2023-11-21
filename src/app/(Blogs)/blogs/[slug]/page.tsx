@@ -12,6 +12,7 @@ import TextAreaGroup from '@/components/textarea';
 import Button from '@/components/button';
 import { IBlog, IResponseBlog } from '@/types/blog';
 import { formatDate } from '@/components/dateformate';
+import { API_ROOT, API_URL } from '@/constant';
 
 type Props = {
   params: {
@@ -23,12 +24,12 @@ type IResponse = {
 };
 
 async function getBlog(slug: string) {
-  const res = await fetch(`${process.env.API_URL}/frontend/blogs/${slug} `);
+  const res = await fetch(`${API_URL}/frontend/blogs/${slug} `);
   const data = await res.json();
   return data;
 }
 async function popularBlogs() {
-  const url = `${process.env.API_URL}/frontend/blogs?limit=10&page=1`;
+  const url = `${API_URL}/frontend/blogs?limit=10&page=1`;
   const res = await fetch(url, { next: { revalidate: 3600 } });
   const data = await res.json();
   return data;
@@ -46,7 +47,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
               <div className="shadow">
                 <Image
                   className="w-full"
-                  src={`${process.env.API_ROOT}/images/blog/${blogData.data?.image}`}
+                  src={`${API_ROOT}/images/blog/${blogData.data?.image}`}
                   width={600}
                   height={600}
                   alt="blog"

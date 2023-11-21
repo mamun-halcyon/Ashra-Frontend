@@ -7,9 +7,10 @@ import { redirect } from 'next/navigation';
 import Pagination from '@/components/pagination';
 import Image from 'next/image';
 import { IResponseBlog } from '@/types/blog';
+import { API_URL } from '@/constant';
 
 async function getBlogs(page: number = 1, limit: number = 12) {
-  const url = `${process.env.API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
+  const url = `${API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
   const res = await fetch(url, { next: { revalidate: 60 } });
   const data = await res.json();
   return data;

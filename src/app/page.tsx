@@ -1,4 +1,3 @@
-'use client';
 import './page.scss';
 import dynamic from 'next/dynamic';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -14,24 +13,35 @@ import Navbar from '@/components/navbar';
 import MegaMenu from '@/components/megamenu';
 import Link from 'next/link';
 import { BsArrowRightShort } from 'react-icons/bs';
+import { API_URL } from '@/constant';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
 const VideoCard = dynamic(() => import('@/components/video-card'));
 const Footer = dynamic(() => import('@/components/footer'));
 
-export default function Home() {
+async function getData() {
+  const res = await fetch(`${API_URL}/home-page`);
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+export default async function Home() {
+  const homeData = await getData();
   return (
     <>
       <main>
         <section>
-          <TopHeader />
-          <Navbar />
-          <MegaMenu />
+          <Banner banners={homeData.banner} />
         </section>
-        <section>
-          <Banner />
-        </section>
+
         <section className="service">
           <div className="container px-2 md:px-0">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -41,6 +51,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+
         <section className="explore">
           <div className="container">
             <h2 className="mb-6 uppercase text-center font-gotham text-xl font-bold ">
@@ -58,7 +69,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="popular-product">
+        {/* <section className="popular-product">
           <div className="container px-3 md:px-0">
             <Tabs>
               <TabList>
@@ -110,7 +121,7 @@ export default function Home() {
               </div>
             </Tabs>
           </div>
-        </section>
+        </section> */}
         <section className="promotion">
           <Image
             src={'/assets/images/ads/Promotion Banners.png'}

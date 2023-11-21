@@ -9,23 +9,34 @@ import Pagination from '@/components/pagination';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { getProducts } from '@/redux/features/products/product-slice';
 
 function Videos() {
+  const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.product);
+  // console.log(products);
   const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
   const [videos, setVideos] = useState([]);
   const [count, setCount] = useState(0);
   const [isLoading, setLoading] = useState(true);
+  console.log(videos);
 
   useEffect(() => {
-    fetch(`${process.env.API_URL}/frontend/videos`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/frontend/videos`)
       .then((res) => res.json())
       .then((data) => {
+        console.log('Test');
         setCount(data.data.count);
         setVideos(data.data.rows);
         setLoading(false);
       });
   }, []);
+
+  /*  useEffect(() => {
+    dispatch(getProducts({}));
+  }, []); */
 
   const incrementPage = () => {
     setPage(page + 1);
@@ -45,6 +56,9 @@ function Videos() {
 
   return (
     <main>
+      {videos.map(() => (
+        <li key={1}>1</li>
+      ))}
       <section>
         <div className="container">
           <div className="md:flex items-center font-gotham font-normal text-sm mt-3 mb-3 hidden ">

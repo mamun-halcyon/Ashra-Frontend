@@ -6,6 +6,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './globals.css';
 import ReduxProvider from '@/redux/provider';
+import TopHeader from '@/components/header';
+import Navbar from '@/components/navbar';
+import MegaMenu from '@/components/megamenu';
 
 const Gotham = localFont({
   src: [
@@ -59,7 +62,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${Gotham.variable} ${poppins.variable}`}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <TopHeader />
+          <Navbar />
+          <MegaMenu />
+          {children}
+        </ReduxProvider>
         <ToastContainer />
       </body>
     </html>

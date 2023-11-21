@@ -5,7 +5,7 @@ import axios from 'axios';
 const getAllProducts = async (filter: {
   [key: string]: string | number;
 }): Promise<IProductResponse> => {
-  let url = `${process.env.API_URL}/frontend/products`;
+  let url = `${process.env.NEXT_PUBLIC_API_URL}/frontend/products`;
   console.log(url);
   if (filter && Object.keys(filter).length > 0) {
     const queryString = Object.entries(filter)

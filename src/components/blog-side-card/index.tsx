@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { formatDate } from '../dateformate';
+import { API_ROOT } from '@/constant';
 
 interface IProps {
   blog: IBlog;
@@ -14,7 +15,7 @@ const BlogSideCard: FC<IProps> = ({ blog }) => {
       <div className="w-[25%] mr-2">
         <Image
           className="w-full"
-          src={`${process.env.API_ROOT}/images/blog/${blog.image}`}
+          src={`${API_ROOT}/images/blog/${blog.image}`}
           width={100}
           height={100}
           alt="blog"
