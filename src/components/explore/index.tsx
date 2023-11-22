@@ -2,13 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import './index.scss';
+import { ICategoryData } from '@/types/category';
+import { API_ROOT } from '@/constant';
 
-interface IExplore {
-  image: string;
-  title: string;
-}
 interface IProps {
-  item: IExplore;
+  item: ICategoryData;
   className?: string;
   href: string;
 }
@@ -19,9 +17,9 @@ const ExploreCard: React.FC<IProps> = ({
 }): React.JSX.Element => {
   return (
     <div className={`${className} explore-card`}>
-      <Link className="explore-item" href={href ? href : '/'}>
+      <Link className="explore-item" href={item.slug}>
         <Image
-          src={`/assets/images/explore/${item.image}`}
+          src={`${API_ROOT}/images/category/${item.image}`}
           width={150}
           height={150}
           alt="explore"

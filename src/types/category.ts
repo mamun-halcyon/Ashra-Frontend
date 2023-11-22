@@ -12,3 +12,10 @@ export interface ICategoryData {
   updated_at: string;
   isOpen?: boolean;
 }
+
+export interface ICategoryResponse {
+  data: {
+    count: number;
+    rows: ICategoryData[];
+  };
+}

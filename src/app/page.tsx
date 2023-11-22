@@ -4,18 +4,14 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { exploreData } from '@/static/explore';
 import { serviceCardData } from '@/static/serviceCard';
 import { productsData } from '@/static/products';
-import { videoData } from '@/static/video';
 import Image from 'next/image';
-import TopHeader from '@/components/header';
 import Banner from '@/components/banner';
 import ServiceCard from '@/components/service-card';
-import Navbar from '@/components/navbar';
-import MegaMenu from '@/components/megamenu';
 import Link from 'next/link';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { API_ROOT, API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
-import { ICategoryData } from '@/types/category';
+import { IProductResponse } from '@/types/product';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
@@ -33,21 +29,24 @@ async function getData() {
 
   return res.json();
 }
-async function categoryData() {
-  const res = await fetch(`${API_URL}/categories?is_feature=true`);
+
+async function searchProduct(search: string) {
+  const res = await fetch(`${API_URL}/products?search=${search}`);
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data');
   }
 
   return res.json();
 }
 
-export default async function Home() {
+export default async function Home({
+  searchParams: { q },
+}: {
+  searchParams: { q: string };
+}) {
   const homeData: HomeApiResponse = await getData();
-  const categories: ICategoryData[] = await categoryData();
-  console.log(categories);
+  const searchData: IProductResponse = await searchProduct(q);
 
   return (
     <>
@@ -72,12 +71,12 @@ export default async function Home() {
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
-              {categories?.data?.rows.map((item, i) => (
+              {homeData?.category.map((category, i) => (
                 <ExploreCard
                   className="md:w-1/6 w-1/3 text-center p-2"
                   key={i}
-                  href={`/category/${item.title}`}
-                  item={item}
+                  href={`/category/${category.title}`}
+                  item={category}
                 />
               ))}
             </div>

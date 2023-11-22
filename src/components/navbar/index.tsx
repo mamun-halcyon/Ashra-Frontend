@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import './index.scss';
 import { BiUserCircle } from 'react-icons/bi';
@@ -5,6 +6,8 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import Link from 'next/link';
+
+import SearchArea from '../search';
 
 const Navbar = () => {
   return (
@@ -22,28 +25,7 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <div className=" flex-grow hidden md:block">
-            <form className="flex items-center justify-center ">
-              {/*  <div
-                className="select-categories text-center
-              flex justify-center items-center  h-9 w-[145px]"
-              >
-                <Link href={'/products'}>
-                  <h3 className=" font-gotham font-normal text-sm">
-                    All Categories
-                  </h3>
-                </Link>
-              </div> */}
-              <input
-                type="text"
-                className="px-3 h-9 focus:outline-none w-[450px] font-gotham font-normal text-sm placeholder:font-gotham placeholder:text-sm search-input"
-                placeholder="Search for Products..."
-              />
-              <button className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white">
-                Search
-              </button>
-            </form>
-          </div>
+          <SearchArea />
           <div className="w-[33%]">
             <div className="flex flex-row-reverse">
               <Link className="link-item" href={'/profile'}>
