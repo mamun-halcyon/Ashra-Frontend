@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 import './index.scss';
 import { BiUserCircle } from 'react-icons/bi';

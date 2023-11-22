@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { API_ROOT, API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
-import { IProductResponse } from '@/types/product';
+import { IProduct, IProductResponse } from '@/types/product';
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
@@ -39,7 +39,17 @@ async function searchProduct(search: string) {
 
   return res.json();
 }
+async function categoryProduct(category_slug: string) {
+  const res = await fetch(
+    `${API_URL}/products?category_slug=${category_slug}is_homepage=true`
+  );
 
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
 export default async function Home({
   searchParams: { q },
 }: {
@@ -47,6 +57,7 @@ export default async function Home({
 }) {
   const homeData: HomeApiResponse = await getData();
   const searchData: IProductResponse = await searchProduct(q);
+  const gasStoveProduct: IProductResponse = await categoryProduct('gas-stove');
 
   return (
     <>
@@ -150,15 +161,17 @@ export default async function Home({
             <div className="mb-12">
               <Title title="Gas Stove" href="/category/gas-stove" />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
-                {[...productsData].slice(0, 5).map((product, i) => (
-                  <ProductCard key={i} product={product} />
-                ))}
+                {gasStoveProduct?.data?.rows.map(
+                  (product: IProduct, i: number) => (
+                    <ProductCard key={i} product={product} />
+                  )
+                )}
               </div>
             </div>
             <div className="mb-12">
               <Title title="Kitchen Hood" href="/category/kitchen-hood" />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
-                {[...productsData].slice(0, 5).map((product, i) => (
+                {gasStoveProduct?.data?.rows.map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
               </div>
@@ -166,7 +179,7 @@ export default async function Home({
             <div>
               <Title title="Digital Scale" href="/category/digital-scale" />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
-                {[...productsData].slice(0, 5).map((product, i) => (
+                {gasStoveProduct?.data?.rows.map((product, i) => (
                   <ProductCard key={i} product={product} />
                 ))}
               </div>

@@ -4,13 +4,8 @@ import Button from '../button';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsArrowRepeat } from 'react-icons/bs';
 import Link from 'next/link';
-
-interface IProduct {
-  title: string;
-  discountPrice: string;
-  regularPrice: string;
-  image: string;
-}
+import { IProduct } from '@/types/product';
+import { API_ROOT } from '@/constant';
 
 interface IProps {
   product: IProduct;
@@ -20,7 +15,12 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
     <div className="product-card group relative p-3  mt-2">
       <Link href={'/products/1'}>
         <div className="flex justify-center items-center pt-10 pb-5 px-6 image">
-          <Image src={product.image} width={300} height={300} alt="product" />
+          <Image
+            src={`${API_ROOT}/images/product/${product.image}`}
+            width={300}
+            height={300}
+            alt="product"
+          />
         </div>
       </Link>
 
@@ -33,10 +33,10 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
         </Link>
         <p className=" mb-2 text-center text-sm">
           <span className=" mr-2 line-through font-normal text-xs">
-            ৳ {product.discountPrice}
+            ৳ {product.regular_price}
           </span>
           <span className=" font-gotham font-bold text-xs">
-            ৳ {product.regularPrice}
+            ৳ {product.discount_price}
           </span>
         </p>
         <div className="flex justify-center">
