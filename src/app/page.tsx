@@ -50,6 +50,15 @@ async function categoryProduct(category_slug: string) {
 
   return res.json();
 }
+async function categoryAdBanner() {
+  const res = await fetch(`${API_URL}/banners/home`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
 export default async function Home({
   searchParams: { q },
 }: {
@@ -58,6 +67,7 @@ export default async function Home({
   const homeData: HomeApiResponse = await getData();
   const searchData: IProductResponse = await searchProduct(q);
   const gasStoveProduct: IProductResponse = await categoryProduct('gas-stove');
+  const addBanner = await categoryAdBanner();
 
   return (
     <>
@@ -189,7 +199,7 @@ export default async function Home({
         <section className="review-video">
           <div className="container ">
             <Image
-              src={'/assets/images/ads/Group 9.png'}
+              src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
               alt="ads"
               width={1300}
               height={500}

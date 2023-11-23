@@ -4,21 +4,34 @@ import Button from '../button';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsArrowRepeat } from 'react-icons/bs';
 import Link from 'next/link';
-import { IProduct } from '@/types/product';
 import { API_ROOT } from '@/constant';
 
 interface IProps {
-  product: IProduct;
+  image: string;
+  title: string;
+  regular_price: string;
+  discount_price: string;
+  url: string;
+  discount_percent: string;
+  isNew?: boolean;
 }
-const ProductCard: React.FC<IProps> = ({ product }) => {
+const ProductCard: React.FC<IProps> = ({
+  image,
+  title,
+  regular_price,
+  discount_price,
+  url,
+  discount_percent,
+  isNew,
+}) => {
   return (
     <div className="product-card group relative p-3  mt-2">
-      <Link href={'/products/1'}>
+      <Link href={url}>
         <div className="flex justify-center items-center pt-10 pb-5 px-6 image">
           <Image
-            src={`${API_ROOT}/images/product/${product.image}`}
-            width={300}
-            height={300}
+            src={`${API_ROOT}/images/product/${image}`}
+            width={100}
+            height={100}
             alt="product"
           />
         </div>
@@ -29,14 +42,14 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
           href={'/products/1'}
           className=" font-gotham product-title font-normal text-center text-sm"
         >
-          {product.title}
+          {title}
         </Link>
         <p className=" mb-2 text-center text-sm">
           <span className=" mr-2 line-through font-normal text-xs">
-            ৳ {product.regular_price}
+            ৳ {regular_price}
           </span>
           <span className=" font-gotham font-bold text-xs">
-            ৳ {product.discount_price}
+            ৳ {discount_price}
           </span>
         </p>
         <div className="flex justify-center">
@@ -50,11 +63,13 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
       </div>
       <div className=" absolute top-2 left-2">
         <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
-          -12%
+          {discount_percent}
         </span>
-        <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
-          New
-        </span>
+        {isNew && (
+          <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+            New
+          </span>
+        )}
       </div>
       <div className=" absolute  feature top-2 right-2">
         <div className="mb-1 cursor-pointer action-item">

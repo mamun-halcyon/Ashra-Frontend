@@ -96,20 +96,24 @@ const Footer = ({ globalData }: IProps) => {
               Download our Mobile Apps
             </p>
             <div className="flex">
-              <Image
-                className="mr-2 download-apps"
-                src="/assets/images/service/playstore.png"
-                alt="app-store"
-                width={500}
-                height={45}
-              />
-              <Image
-                className="download-apps"
-                src="/assets/images/service/appstore.png"
-                alt="app-store"
-                width={500}
-                height={45}
-              />
+              <Link href={globalData?.setting?.play_store_url as string}>
+                <Image
+                  className="mr-2 download-apps"
+                  src="/assets/images/service/playstore.png"
+                  alt="app-store"
+                  width={500}
+                  height={45}
+                />
+              </Link>
+              <Link href={globalData?.setting?.app_store_url as string}>
+                <Image
+                  className="download-apps"
+                  src="/assets/images/service/appstore.png"
+                  alt="app-store"
+                  width={500}
+                  height={45}
+                />
+              </Link>
             </div>
           </div>
           <div>

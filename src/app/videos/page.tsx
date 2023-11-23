@@ -15,19 +15,16 @@ import { getProducts } from '@/redux/features/products/product-slice';
 function Videos() {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.product);
-  // console.log(products);
   const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
   const [videos, setVideos] = useState([]);
   const [count, setCount] = useState(0);
   const [isLoading, setLoading] = useState(true);
-  console.log(videos);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/frontend/videos`)
       .then((res) => res.json())
       .then((data) => {
-        console.log('Test');
         setCount(data.data.count);
         setVideos(data.data.rows);
         setLoading(false);
