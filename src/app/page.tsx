@@ -173,7 +173,17 @@ export default async function Home({
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {gasStoveProduct?.data?.rows.map(
                   (product: IProduct, i: number) => (
-                    <ProductCard key={i} product={product} />
+                    <ProductCard
+                      key={i}
+                      url={product.slug}
+                      image={product.image}
+                      title={product.title}
+                      regular_price={product.regular_price}
+                      discount_price={product.discount_price}
+                      discount_percent={
+                        (product.regular_price - product.discount_price) / 100
+                      }
+                    />
                   )
                 )}
               </div>
@@ -182,7 +192,17 @@ export default async function Home({
               <Title title="Kitchen Hood" href="/category/kitchen-hood" />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {gasStoveProduct?.data?.rows.map((product, i) => (
-                  <ProductCard key={i} product={product} />
+                  <ProductCard
+                    key={i}
+                    url={product.slug}
+                    image={product.image}
+                    title={product.title}
+                    regular_price={product.regular_price}
+                    discount_price={product.discount_price}
+                    discount_percent={
+                      (product.regular_price - product.discount_price) / 100
+                    }
+                  />
                 ))}
               </div>
             </div>
@@ -190,7 +210,19 @@ export default async function Home({
               <Title title="Digital Scale" href="/category/digital-scale" />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {gasStoveProduct?.data?.rows.map((product, i) => (
-                  <ProductCard key={i} product={product} />
+                  <ProductCard
+                    key={i}
+                    url={product.slug}
+                    image={product.image}
+                    title={product.title}
+                    regular_price={product.regular_price}
+                    discount_price={product.discount_price}
+                    discount_percent={
+                      ((product.regular_price - product.discount_price) /
+                        product.regular_price) *
+                      100
+                    }
+                  />
                 ))}
               </div>
             </div>

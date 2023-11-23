@@ -9,10 +9,10 @@ import { API_ROOT } from '@/constant';
 interface IProps {
   image: string;
   title: string;
-  regular_price: string;
-  discount_price: string;
+  regular_price: string | number;
+  discount_price: string | number;
   url: string;
-  discount_percent: string;
+  discount_percent: string | number;
   isNew?: boolean;
 }
 const ProductCard: React.FC<IProps> = ({
@@ -63,7 +63,7 @@ const ProductCard: React.FC<IProps> = ({
       </div>
       <div className=" absolute top-2 left-2">
         <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
-          {discount_percent}
+          {discount_percent}%
         </span>
         {isNew && (
           <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
