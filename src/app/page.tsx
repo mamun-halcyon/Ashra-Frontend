@@ -1,9 +1,5 @@
 import './page.scss';
 import dynamic from 'next/dynamic';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { exploreData } from '@/static/explore';
-import { serviceCardData } from '@/static/serviceCard';
-import { productsData } from '@/static/products';
 import Image from 'next/image';
 import Banner from '@/components/banner';
 import ServiceCard from '@/components/service-card';
@@ -12,6 +8,7 @@ import { BsArrowRightShort } from 'react-icons/bs';
 import { API_ROOT, API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
 import { IProduct, IProductResponse } from '@/types/product';
+const Featured = dynamic(() => import('@/components/featured'));
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
 const Title = dynamic(() => import('@/components/title'));
@@ -50,8 +47,8 @@ async function categoryProduct(category_slug: string) {
 
   return res.json();
 }
-async function categoryAdBanner() {
-  const res = await fetch(`${API_URL}/banners/home`);
+async function categoryAdBanner(slug: string) {
+  const res = await fetch(`${API_URL}/banners/${slug}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -67,7 +64,8 @@ export default async function Home({
   const homeData: HomeApiResponse = await getData();
   const searchData: IProductResponse = await searchProduct(q);
   const gasStoveProduct: IProductResponse = await categoryProduct('gas-stove');
-  const addBanner = await categoryAdBanner();
+  const addBanner = await categoryAdBanner('home');
+  const verticalBanner = await categoryAdBanner('home-v');
 
   return (
     <>
@@ -103,59 +101,12 @@ export default async function Home({
             </div>
           </div>
         </section>
-        {/* <section className="popular-product">
-          <div className="container px-3 md:px-0">
-            <Tabs>
-              <TabList>
-                <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
-                  Top Sales
-                </Tab>
-                <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
-                  New Arrivals
-                </Tab>
-                <Tab className="font-gotham mr-3 ma:mr-9 md:text-base text-sm md:pr-5 pb-4 font-medium react-tabs__tab cursor-pointer">
-                  Featured Products
-                </Tab>
-              </TabList>
-              <div className="panel">
-                <div className="grid grid-cols-6 gap-4">
-                  <div className="col-span-6  md:col-span-5">
-                    <TabPanel>
-                      <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                        {[...productsData.slice(0, 8)].map((product, i) => (
-                          <ProductCard key={i} product={product} />
-                        ))}
-                      </div>
-                    </TabPanel>
-                    <TabPanel>
-                      <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                        {[...productsData].splice(0, 8).map((product, i) => (
-                          <ProductCard key={i} product={product} />
-                        ))}
-                      </div>
-                    </TabPanel>
-                    <TabPanel>
-                      <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                        {[...productsData.slice(0, 8)].map((product, i) => (
-                          <ProductCard key={i} product={product} />
-                        ))}
-                      </div>
-                    </TabPanel>
-                  </div>
-                  <div className="h-[100%] hidden md:block">
-                    <Image
-                      className=" h-[100%]"
-                      src={`/assets/images/ads/Banner.png`}
-                      width={300}
-                      height={650}
-                      alt="ads"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Tabs>
-          </div>
-        </section> */}
+        <Featured
+          featureProduct={homeData.featureProduct}
+          topSale={homeData.topSale}
+          newArrival={homeData.newArrival}
+          adsbanner={verticalBanner?.data[0]?.image}
+        />
         <section className="promotion">
           <Link href={homeData?.homePage?.special_product_link}>
             <Image
@@ -222,6 +173,7 @@ export default async function Home({
                         product.regular_price) *
                       100
                     }
+                    isNew={product.is_new}
                   />
                 ))}
               </div>
