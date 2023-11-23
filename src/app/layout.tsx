@@ -11,7 +11,8 @@ import Navbar from '@/components/navbar';
 import MegaMenu from '@/components/megamenu';
 import { API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
-import Footer from '@/components/footer';
+import dynamic from 'next/dynamic';
+const Footer = dynamic(() => import('@/components/footer'));
 
 const Gotham = localFont({
   src: [
@@ -70,17 +71,33 @@ async function getData() {
   return res.json();
 }
 
+// Load Help items
+async function getMenus(position: string) {
+  const res = await fetch(`${API_URL}/menus/${position}`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const globalData: HomeApiResponse = await getData();
+  const footerMenus = await getMenus('help');
+
   return (
     <html lang="en">
       <body className={`${Gotham.variable} ${poppins.variable}`}>
         <ReduxProvider>
-          <TopHeader homeData={globalData.homePage} />
+          <TopHeader homeData={globalData.homePage} menus={footerMenus.data} />
           <Navbar />
           <MegaMenu menus={globalData.category} />
           {children}

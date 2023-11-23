@@ -5,12 +5,14 @@ import { AiFillBell } from 'react-icons/ai';
 import { BsChevronDown } from 'react-icons/bs';
 import './index.scss';
 import { IHomePage } from '@/types/home';
+import { IMenu } from '@/types/menu';
 
 type IProps = {
   homeData: IHomePage;
+  menus: IMenu[];
 };
 
-const TopHeader = ({ homeData }: IProps) => {
+const TopHeader = ({ homeData, menus }: IProps) => {
   return (
     <div className="container p-2 md:p-0">
       <div className="flex justify-between items-center flex-wrap py-2">
@@ -45,15 +47,11 @@ const TopHeader = ({ homeData }: IProps) => {
             </Link>
             <div className="absolute opacity-0 invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
               <ul className="   bg-[#fff] font-gotham font-normal text-[13px] text-black">
-                <li className="px-2 py-1 hover:text-primary">
-                  <Link href={'/link'}>Link 1</Link>
-                </li>
-                <li className="px-2 py-1 hover:text-primary">
-                  <Link href={'/'}>Link 2</Link>
-                </li>
-                <li className="px-2 py-1 hover:text-primary">
-                  <Link href={'/'}>Link 3</Link>
-                </li>
+                {menus?.map((menu, index) => (
+                  <li key={index} className="px-2 py-1 hover:text-primary">
+                    <Link href={`/${menu.slug}`}>{menu.name}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

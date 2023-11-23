@@ -18,7 +18,7 @@ const SearchArea = () => {
   const handleSearch = useDebouncedCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const params = new URLSearchParams(Object.fromEntries(searchParams));
-
+      console.log(params);
       if (e.target.value) {
         e.target.value.length > 2 && params.set('q', e.target.value);
       } else {
@@ -29,11 +29,11 @@ const SearchArea = () => {
     300
   );
   const handleFocus = () => {
-    setIsInputFocused(true); // Set focus state to true
+    setIsInputFocused(true);
   };
 
   const handleBlur = () => {
-    setIsInputFocused(false); // Set focus state to false
+    setIsInputFocused(false);
   };
 
   return (
