@@ -281,7 +281,17 @@ function Category() {
                 {isRow ? (
                   <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
                     {[...productsData].slice(0, 12).map((product, i) => (
-                      <ProductCard key={i} product={product} />
+                      <ProductCard
+                        key={i}
+                        url={product.slug}
+                        image={product.image}
+                        title={product.title}
+                        regular_price={product.regular_price}
+                        discount_price={product.discount_price}
+                        discount_percent={
+                          (product.regular_price - product.discount_price) / 100
+                        }
+                      />
                     ))}
                   </div>
                 ) : (
