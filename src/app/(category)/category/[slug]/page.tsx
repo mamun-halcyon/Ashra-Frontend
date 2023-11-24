@@ -17,7 +17,20 @@ import { categoryData } from '@/static/category';
 import { ICategoryData } from '@/types/category';
 import CategoryFilter from '@/components/category-filter';
 import Pagination from '@/components/pagination';
+import { API_URL } from '@/constant';
 const ProductCard = dynamic(() => import('@/components/card'));
+
+const categoryProducts = async (position: string) => {
+  const res = await fetch(`${API_URL}/menus/${position}`, {
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+};
 
 function Category() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
@@ -91,7 +104,7 @@ function Category() {
           </div>
         </div>
       </section>
-      <section>
+      <section className=" pb-12">
         <div className="container">
           <div className="flex justify-between">
             <div className=" hidden md:block md:w-[250px]">
@@ -283,13 +296,13 @@ function Category() {
                     {[...productsData].slice(0, 12).map((product, i) => (
                       <ProductCard
                         key={i}
-                        url={product.slug}
+                        url={'/product/1'}
                         image={product.image}
                         title={product.title}
-                        regular_price={product.regular_price}
-                        discount_price={product.discount_price}
+                        regular_price={product.regularPrice}
+                        discount_price={product.discountPrice}
                         discount_percent={
-                          (product.regular_price - product.discount_price) / 100
+                          (product.regularPrice - product.discountPrice) / 100
                         }
                       />
                     ))}
@@ -310,47 +323,6 @@ function Category() {
                 showTitle={showTitle}
                 handleShow={handleShow}
               />
-              {/* <div className="flex justify-between items-center mt-5 bottom-filter">
-                <div>
-                  <ActionButton title={showTitle}>
-                    <ul>
-                      <li
-                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                        onClick={handleShow}
-                      >
-                        16
-                      </li>
-                      <li
-                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                        onClick={handleShow}
-                      >
-                        20
-                      </li>
-                      <li
-                        className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                        onClick={handleShow}
-                      >
-                        24
-                      </li>
-                    </ul>
-                  </ActionButton>
-                </div>
-
-                <div className="flex items-center">
-                  <div className=" cursor-pointer p-1" onClick={decrementPage}>
-                    <IoMdArrowDropleft />
-                  </div>
-                  <div className=" font-gotham font-normal text-xs flex items-center">
-                    <div className="active w-5 h-5 flex items-center justify-center ">
-                      {page}
-                    </div>
-                    <p>of 2</p>
-                  </div>
-                  <div className=" cursor-pointer p-1" onClick={incrementPage}>
-                    <IoMdArrowDropright />
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
