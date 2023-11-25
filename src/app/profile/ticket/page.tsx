@@ -3,6 +3,7 @@ import '../page.scss';
 import './page.scss';
 import React from 'react';
 import Link from 'next/link';
+import Button from '@/components/button';
 
 const Ticket = () => {
   return (
@@ -11,6 +12,7 @@ const Ticket = () => {
         <div className="grid grid-cols-12 gap-6">
           <ProfileSidebar />
           <div className=" col-span-9">
+            <Button>New Ticket</Button>
             <table className="w-full text-sm text-left ticket-table ">
               <thead>
                 <tr className="table-heading">
@@ -49,7 +51,7 @@ const Ticket = () => {
                     Pending
                   </td>
                   <td scope="row" className="px-6 py-3 font-gotham font-normal">
-                    <Link href={'/profile'} className="cursor-pointer">
+                    <Link href={'/profile/ticket/1'} className="cursor-pointer">
                       View All →
                     </Link>
                   </td>
