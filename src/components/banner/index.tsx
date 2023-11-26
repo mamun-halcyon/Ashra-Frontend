@@ -11,10 +11,11 @@ const settings = {
   dots: true,
   infinite: true,
   arrows: false,
-  speed: 500,
+  speed: 400,
   autoplay: true,
   slidesToShow: 1,
   slidesToScroll: 1,
+  adaptiveHeight: true,
 };
 
 type IProps = {

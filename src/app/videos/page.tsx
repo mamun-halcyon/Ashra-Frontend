@@ -13,8 +13,6 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getProducts } from '@/redux/features/products/product-slice';
 
 function Videos() {
-  const dispatch = useAppDispatch();
-  const { products } = useAppSelector((state) => state.product);
   const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
   const [videos, setVideos] = useState([]);
@@ -22,14 +20,16 @@ function Videos() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/frontend/videos`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/frontend/videos?page=${page}&limit=16`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCount(data.data.count);
         setVideos(data.data.rows);
         setLoading(false);
       });
-  }, []);
+  }, [page]);
 
   /*  useEffect(() => {
     dispatch(getProducts({}));

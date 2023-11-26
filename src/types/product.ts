@@ -33,3 +33,19 @@ export type IProductResponse = {
     rows: IProduct[];
   };
 };
+
+interface ProductPhoto {
+  id: number;
+  product_id: number;
+  image: string;
+  order_number: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ISingleProduct {
+  product: IProduct;
+  productPhotos: ProductPhoto[];
+  relatedProduct: IProduct[];
+  review: [];
+}

@@ -26,7 +26,7 @@ const ProductCard: React.FC<IProps> = ({
 }) => {
   return (
     <div className="product-card group relative p-3  mt-2">
-      <Link href={url}>
+      <Link href={`/product/${url}`}>
         <div className="flex justify-center items-center pt-10 pb-5 px-6 image">
           <Image
             src={`${API_ROOT}/images/product/${image}`}
@@ -39,7 +39,7 @@ const ProductCard: React.FC<IProps> = ({
 
       <div className="text ">
         <Link
-          href={'/products/1'}
+          href={`/product/${url}`}
           className=" font-gotham product-title font-normal text-center text-sm"
         >
           {title}
