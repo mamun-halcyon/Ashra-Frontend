@@ -23,6 +23,12 @@ import {
 function Checkout() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+
+  const sumWithInitial = cart.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
+    0
+  );
   return (
     <main>
       {cart.length > 0 ? (
@@ -81,93 +87,88 @@ function Checkout() {
                       </h3>
                     </div>
                   </div>
-                  {cart.map((item, index) => {
-                    {
-                      /* single cart */
-                    }
-                    return (
-                      <div
-                        key={index}
-                        className="grid grid-cols-8 gap-1 md:gap-4 items-center product-item"
-                      >
-                        <div className="col-span-4">
-                          <div className="flex items-center">
-                            <div
-                              className=" cursor-pointer"
-                              onClick={() => dispatch(removeFromCart(item))}
-                            >
-                              <span>
-                                <RxCross2 className="text-sm " />
-                              </span>
-                            </div>
-                            <div className="w-[80px] mx-2 md:mx-9">
-                              <Image
-                                className=" w-full object-cover"
-                                src={`${API_ROOT}/images/product/${item.image}`}
-                                width={200}
-                                height={200}
-                                alt="product"
-                              />
-                            </div>
-                            <div>
-                              <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
-                                {item.title}
-                              </h3>
-                            </div>
+                  {cart.map((item, index) => (
+                    <div
+                      key={index}
+                      className="grid grid-cols-8 gap-1 md:gap-4 items-center product-item"
+                    >
+                      <div className="col-span-4">
+                        <div className="flex items-center">
+                          <div
+                            className=" cursor-pointer"
+                            onClick={() => dispatch(removeFromCart(item))}
+                          >
+                            <span>
+                              <RxCross2 className="text-sm " />
+                            </span>
                           </div>
-                        </div>
-                        <div className="col-span-2 md:col-span-1">
-                          <p className=" font-gotham font-medium text-primary text-sm">
-                            ৳ {item.price}
-                          </p>
-                        </div>
-                        <div className="col-span-2 hidden md:block">
-                          <div className="flex items-center">
-                            <div
-                              className="qnt-1"
-                              onClick={() => dispatch(incrementQuantity(item))}
-                            >
-                              <AiOutlinePlus className="text-sm" />
-                            </div>
-                            <div className="qnt-1 px-4 font-gotham font-light text-sm">
-                              {item.qnty}
-                            </div>
-                            <div
-                              className="qnt-1"
-                              onClick={() => dispatch(decrementQuantity(item))}
-                            >
-                              <AiOutlineMinus className="text-sm" />
-                            </div>
+                          <div className="w-[80px] mx-2 md:mx-9">
+                            <Image
+                              className=" w-full object-cover"
+                              src={`${API_ROOT}/images/product/${item.image}`}
+                              width={200}
+                              height={200}
+                              alt="product"
+                            />
                           </div>
-                        </div>
-                        <div className=" col-span-2 md:col-span-1">
-                          <p className=" font-gotham font-medium text-primary text-sm">
-                            ৳ {item.price * item.qnty}
-                          </p>
-                        </div>
-                        <div className=" flex justify-center col-span-8 md:hidden">
-                          <div className="flex items-center">
-                            <div className="qnt-1">
-                              <AiOutlinePlus className="text-sm" />
-                            </div>
-                            <div className="qnt-1 px-4 font-gotham font-light text-sm">
-                              {item.qnty}
-                            </div>
-                            <div className="qnt-1">
-                              <AiOutlineMinus className="text-sm" />
-                            </div>
+                          <div>
+                            <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
+                              {item.title}
+                            </h3>
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+                      <div className="col-span-2 md:col-span-1">
+                        <p className=" font-gotham font-medium text-primary text-sm">
+                          ৳ {item.price}
+                        </p>
+                      </div>
+                      <div className="col-span-2 hidden md:block">
+                        <div className="flex items-center">
+                          <div
+                            className="qnt-1"
+                            onClick={() => dispatch(incrementQuantity(item))}
+                          >
+                            <AiOutlinePlus className="text-sm" />
+                          </div>
+                          <div className="qnt-1 px-4 font-gotham font-light text-sm">
+                            {item.quantity}
+                          </div>
+                          <div
+                            className="qnt-1"
+                            onClick={() => dispatch(decrementQuantity(item))}
+                          >
+                            <AiOutlineMinus className="text-sm" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className=" col-span-2 md:col-span-1">
+                        <p className=" font-gotham font-medium text-primary text-sm">
+                          ৳ {item.price * item.quantity}
+                        </p>
+                      </div>
+                      <div className=" flex justify-center col-span-8 md:hidden">
+                        <div className="flex items-center">
+                          <div className="qnt-1">
+                            <AiOutlinePlus className="text-sm" />
+                          </div>
+                          <div className="qnt-1 px-4 font-gotham font-light text-sm">
+                            {item.quantity}
+                          </div>
+                          <div className="qnt-1">
+                            <AiOutlineMinus className="text-sm" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
               {/* summery */}
               <div className=" col-span-12 md:col-span-4">
                 <div className="py-11 px-9 cart-summery">
                   <h3 className="summery-border font-gotham font-medium text-base text-black pb-2">
-                    Cart Summery
+                    Cart Summary
                   </h3>
 
                   <div className="flex justify-between items-center mt-14 summery-border pb-3">
@@ -175,7 +176,7 @@ function Checkout() {
                       Sub Total
                     </p>
                     <p className=" font-gotham font-medium text-sm text-primary">
-                      ৳ 19000.00
+                      {sumWithInitial}
                     </p>
                   </div>
 
@@ -192,7 +193,7 @@ function Checkout() {
                       Total
                     </p>
                     <p className=" font-gotham font-medium text-base text-primary">
-                      ৳ 16070.00
+                      ৳ {sumWithInitial}
                     </p>
                   </div>
                   <Link className=" mt-14 block" href={'/checkout'}>
@@ -206,9 +207,8 @@ function Checkout() {
           </div>
         </section>
       ) : (
-        <div>No Search Product</div>
+        <div className="container py-28">No Search Product</div>
       )}
-
       <section className="cart-service">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

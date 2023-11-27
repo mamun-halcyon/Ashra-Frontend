@@ -257,11 +257,11 @@ function PageDetails({ params: { slug } }: Props) {
                           className=" px-5 py-1 mr-2"
                           onClick={() =>
                             handleBuyNow({
-                              id: Number(product.product.id),
+                              product_id: Number(product.product.id),
                               price: product.product.discount_price,
                               title: product.product.title,
                               image: product.product.image,
-                              qnty: quantity,
+                              quantity: quantity,
                             })
                           }
                         >
@@ -272,11 +272,11 @@ function PageDetails({ params: { slug } }: Props) {
                           onClick={() =>
                             dispatch(
                               addToCart({
-                                id: Number(product.product.id),
+                                product_id: Number(product.product.id),
                                 price: product.product.discount_price,
                                 title: product.product.title,
                                 image: product.product.image,
-                                qnty: quantity,
+                                quantity: quantity,
                               })
                             )
                           }

@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import './index.scss';
 import { BiUserCircle } from 'react-icons/bi';
@@ -7,8 +8,10 @@ import { HiOutlineShoppingBag } from 'react-icons/hi';
 import Link from 'next/link';
 
 import SearchArea from '../search';
+import { useAppSelector } from '@/redux/hooks';
 
 const Navbar = () => {
+  const { cart } = useAppSelector((state) => state.cart);
   return (
     <nav className="navbar shadow">
       <div className="container px-2 md:px-0">
@@ -44,7 +47,7 @@ const Navbar = () => {
                 <div className="link relative ml-6">
                   <HiOutlineShoppingBag className=" text-2xl text-primary" />
                   <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
-                    0
+                    {cart.length}
                   </div>
                 </div>
               </Link>

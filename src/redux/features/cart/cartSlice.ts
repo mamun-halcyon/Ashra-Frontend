@@ -18,10 +18,12 @@ export const cartSlice = createSlice({
     // Add to cart
     addToCart: (state, action: PayloadAction<ICartItem>) => {
       const newItem = action.payload;
-      const existingItem = state.cart.find((item) => item.id === newItem.id);
+      const existingItem = state.cart.find(
+        (item) => item.product_id === newItem.product_id
+      );
 
       if (existingItem) {
-        existingItem.qnty += newItem.qnty ?? 1;
+        existingItem.quantity += newItem.quantity ?? 1;
       } else {
         state.cart = [...state.cart, newItem];
       }
@@ -31,28 +33,30 @@ export const cartSlice = createSlice({
     // Increment
     incrementQuantity: (state, action: PayloadAction<ICartItem>) => {
       const itemToIncrement = state.cart.find(
-        (item) => item.id === action.payload.id
+        (item) => item.product_id === action.payload.product_id
       );
 
-      if (itemToIncrement && itemToIncrement.qnty < 5) {
-        itemToIncrement.qnty += 1;
+      if (itemToIncrement && itemToIncrement.quantity < 5) {
+        itemToIncrement.quantity += 1;
         localStorage.setItem('cartItems', JSON.stringify(state.cart));
       }
     },
 
     decrementQuantity: (state, action: PayloadAction<ICartItem>) => {
       const itemToDecrement = state.cart.find(
-        (item) => item.id === action.payload.id
+        (item) => item.product_id === action.payload.product_id
       );
 
-      if (itemToDecrement && itemToDecrement.qnty > 1) {
-        itemToDecrement.qnty -= 1;
+      if (itemToDecrement && itemToDecrement.quantity > 1) {
+        itemToDecrement.quantity -= 1;
         localStorage.setItem('cartItems', JSON.stringify(state.cart));
       }
     },
 
     removeFromCart: (state, action: PayloadAction<ICartItem>) => {
-      state.cart = state.cart.filter((i) => i.id !== action.payload.id);
+      state.cart = state.cart.filter(
+        (i) => i.product_id !== action.payload.product_id
+      );
       localStorage.setItem('cartItems', JSON.stringify(state.cart));
     },
   },
