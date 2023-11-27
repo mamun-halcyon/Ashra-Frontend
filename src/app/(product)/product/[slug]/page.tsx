@@ -29,6 +29,11 @@ import { FaAward } from 'react-icons/fa6';
 import EmiPopup from '@/components/emi-popup';
 import { IProduct, ISingleProduct } from '@/types/product';
 import { API_ROOT, API_URL } from '@/constant';
+import { useAppDispatch } from '@/redux/hooks';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { useRouter } from 'next/navigation';
+import { ICartItem } from '@/types/cart';
+import { data } from 'autoprefixer';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
@@ -44,11 +49,13 @@ async function getProduct(slug: string) {
 }
 
 function PageDetails({ params: { slug } }: Props) {
+  const router = useRouter();
   const [product, setProduct] = useState<ISingleProduct | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [viewImage, setViewImag] = useState<string>(
     product?.productPhotos[0]?.image as string
   );
+  const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
   const [isEmi, setIsEmi] = useState(false);
 
@@ -68,6 +75,11 @@ function PageDetails({ params: { slug } }: Props) {
     if (quantity !== 0) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleBuyNow = (data: ICartItem) => {
+    dispatch(addToCart(data));
+    router.push('/cart');
   };
 
   useEffect(() => {
@@ -241,8 +253,36 @@ function PageDetails({ params: { slug } }: Props) {
                             </button>
                           </div>
                         </div>
-                        <Button className=" px-5 py-1 mr-2">Buy Now</Button>
-                        <Button className=" px-5 py-1">Add to cart</Button>
+                        <Button
+                          className=" px-5 py-1 mr-2"
+                          onClick={() =>
+                            handleBuyNow({
+                              id: Number(product.product.id),
+                              price: product.product.discount_price,
+                              title: product.product.title,
+                              image: product.product.image,
+                              qnty: quantity,
+                            })
+                          }
+                        >
+                          Buy Now
+                        </Button>
+                        <Button
+                          className=" px-5 py-1"
+                          onClick={() =>
+                            dispatch(
+                              addToCart({
+                                id: Number(product.product.id),
+                                price: product.product.discount_price,
+                                title: product.product.title,
+                                image: product.product.image,
+                                qnty: quantity,
+                              })
+                            )
+                          }
+                        >
+                          Add to cart
+                        </Button>
                       </div>
                     </div>
 
