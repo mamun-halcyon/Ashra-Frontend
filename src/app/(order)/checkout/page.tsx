@@ -4,14 +4,31 @@ import FormGroup from '@/components/fromgroup';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import Button from '@/components/button';
 import './page.scss';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import { useAppSelector } from '@/redux/hooks';
+import axios from 'axios';
+import { API_URL } from '@/constant';
 
 function Checkout() {
+  const { cart } = useAppSelector((state) => state.cart);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [thana, setThana] = useState('');
+
+  const final_price = cart.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
+    0
+  );
+
   const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
     useState<string | null>(null);
 
@@ -36,7 +53,21 @@ function Checkout() {
     }
   };
 
-  const handleOrder = (e: React.FormEvent<HTMLFormElement>) => {
+  const orderData = {
+    name,
+    email,
+    mobile,
+    address,
+    city,
+    thana,
+    order_form: 'web',
+    final_price,
+    order_status: 'pending',
+    delivery_method: selectedPaymentDeliveryStatus,
+    orderItem: cart,
+  };
+
+  const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!selectedPayment) {
@@ -46,6 +77,34 @@ function Checkout() {
     if (!selectedPaymentDeliveryStatus) {
       toast.error('Please Select delivery method');
     }
+    await axios
+      .post(`${API_URL}/orders`, {
+        name: 'mofiz',
+        email: 'johndoe@example.com',
+        mobile: '123-456-7890',
+        address: '123 Main Street',
+        city: 'New York',
+        thana: 'Manhattan',
+        payment_method: 'Credit Card',
+        delivery_method: 'Express',
+        delivery_fee: 10,
+        order_form: 'mobile',
+        final_price: 95,
+        order_status: 'Pending',
+        orderItem: [
+          {
+            product_id: 20,
+            quantity: 2,
+            product_attribute: 'L',
+          },
+          {
+            product_id: 21,
+            quantity: 1,
+            product_attribute: 'RED',
+          },
+        ],
+      })
+      .then((res) => console.log(res.data));
   };
 
   return (
@@ -61,7 +120,7 @@ function Checkout() {
           </div>
         </div>
       </section>
-      <section>
+      <section className=" mb-10">
         <div className="container px-2 md:px-0">
           <form onSubmit={handleOrder}>
             <div className="grid grid-cols-3 gap-4">
@@ -75,6 +134,7 @@ function Checkout() {
                     className="mb-1"
                     title="Full Name*"
                     placeholder="Type your full name*"
+                    onChange={(e) => setName(e.target.value)}
                     required
                   />
                   <FormGroup
@@ -82,29 +142,34 @@ function Checkout() {
                     type="email"
                     title="Email*"
                     placeholder="Type your e-mail*"
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                   <FormGroup
                     className="mb-1"
                     title="Mobile*"
                     placeholder="Type your mobile*"
+                    onChange={(e) => setMobile(e.target.value)}
                     required
                   />
                   <FormGroup
                     className="mb-1"
                     title="Address*"
                     placeholder="Type your address*"
+                    onChange={(e) => setAddress(e.target.value)}
                     required
                   />
                   <div className="grid grid-cols-2 gap-4">
                     <FormGroup
                       className="mb-1"
                       title="City*"
+                      onChange={(e) => setCity(e.target.value)}
                       placeholder="Type your city*"
                     />
                     <FormGroup
                       className="mb-1"
                       title="Thana"
+                      onChange={(e) => setThana(e.target.value)}
                       placeholder="Select your area"
                     />
                   </div>
@@ -273,17 +338,20 @@ function Checkout() {
                         Total
                       </div>
                     </div>
-                    <div className="grid grid-cols-5 pb-5">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
-                        HY-955 - Gazi Smiss Kitchen Hood
+                    {cart.map((item, inex) => (
+                      <div key={inex} className="grid grid-cols-5 pb-5">
+                        <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                          HY-955 - Gazi Smiss Kitchen Hood
+                        </div>
+                        <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                          ৳24,000 x 1
+                        </div>
+                        <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
+                          ৳24,000
+                        </div>
                       </div>
-                      <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
-                        ৳24,000 x 1
-                      </div>
-                      <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
-                        ৳24,000
-                      </div>
-                    </div>
+                    ))}
+
                     <div className="grid grid-cols-5 sub-border">
                       <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
                       <div className="p-3 col-span-2 md:col-span-1 font-gotham  text-xs text-primary font-medium">

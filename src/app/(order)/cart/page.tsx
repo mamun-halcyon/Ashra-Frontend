@@ -207,7 +207,7 @@ function Checkout() {
           </div>
         </section>
       ) : (
-        <div className="container py-28">No Search Product</div>
+        <div className="container py-28 font-gotham">No Search Product</div>
       )}
       <section className="cart-service">
         <div className="container">
