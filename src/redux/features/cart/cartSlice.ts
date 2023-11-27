@@ -9,7 +9,7 @@ interface CartState {
   cart: CartItem[];
 }
 
-const initialCart = localStorage.getItem('cartItems');
+const initialCart = typeof window !== 'undefined' ? localStorage.getItem('cartItems') : null;
 const initialState: CartState = {
   cart: initialCart ? JSON.parse(initialCart) : [],
 };
