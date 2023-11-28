@@ -24,11 +24,11 @@ export const cartSlice = createSlice({
       );
 
       if (existingItem) {
-        toast.success('Item already added in your cart!');
+        // toast.success('Item already added in your cart!');
         existingItem.quantity += newItem.quantity ?? 1;
       } else {
         state.cart = [...state.cart, newItem];
-        toast.success('Item added to your cart!');
+        // toast.success('Item added to your cart!');
       }
       localStorage.setItem('cartItems', JSON.stringify(state.cart));
     },

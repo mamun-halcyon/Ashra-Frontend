@@ -52,6 +52,10 @@ function Checkout() {
       setSelectedPaymentDeliveryStatus(selectedPaymentDeliveryStatusValue);
     }
   };
+  const orderItem = cart.map((item) => ({
+    product_id: item.product_id,
+    quantity: item.quantity,
+  }));
 
   const orderData = {
     name,
@@ -62,9 +66,11 @@ function Checkout() {
     thana,
     order_form: 'web',
     final_price,
+    delivery_fee: 0,
+    payment_method: 'Credit Card',
     order_status: 'pending',
     delivery_method: selectedPaymentDeliveryStatus,
-    orderItem: cart,
+    orderItem,
   };
 
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,32 +84,7 @@ function Checkout() {
       toast.error('Please Select delivery method');
     }
     await axios
-      .post(`${API_URL}/orders`, {
-        name: 'mofiz',
-        email: 'johndoe@example.com',
-        mobile: '123-456-7890',
-        address: '123 Main Street',
-        city: 'New York',
-        thana: 'Manhattan',
-        payment_method: 'Credit Card',
-        delivery_method: 'Express',
-        delivery_fee: 10,
-        order_form: 'mobile',
-        final_price: 95,
-        order_status: 'Pending',
-        orderItem: [
-          {
-            product_id: 20,
-            quantity: 2,
-            product_attribute: 'L',
-          },
-          {
-            product_id: 21,
-            quantity: 1,
-            product_attribute: 'RED',
-          },
-        ],
-      })
+      .post(`${API_URL}/orders`, orderData)
       .then((res) => console.log(res.data));
   };
 

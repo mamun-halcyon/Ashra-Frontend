@@ -8,6 +8,7 @@ import { BsArrowRightShort } from 'react-icons/bs';
 import { API_ROOT, API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
 import { IProduct, IProductResponse } from '@/types/product';
+import Navbar from '@/components/navbar';
 const Featured = dynamic(() => import('@/components/featured'));
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));

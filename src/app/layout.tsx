@@ -96,14 +96,19 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${Gotham.variable} ${poppins.variable}`}>
-        <ReduxProvider>
-          <TopHeader homeData={globalData.homePage} menus={footerMenus.data} />
-          <Navbar />
-          <MegaMenu menus={globalData.category} />
-          {children}
-          <Footer globalData={globalData} />
-        </ReduxProvider>
-        <ToastContainer />
+        <main>
+          <ReduxProvider>
+            <TopHeader
+              homeData={globalData.homePage}
+              menus={footerMenus.data}
+            />
+            <Navbar />
+            <MegaMenu menus={globalData.category} />
+            {children}
+            <Footer globalData={globalData} />
+            <ToastContainer />
+          </ReduxProvider>
+        </main>
       </body>
     </html>
   );

@@ -23,6 +23,7 @@ import {
 function Checkout() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  console.log(cart);
 
   const sumWithInitial = cart.reduce(
     (accumulator, currentValue) =>
