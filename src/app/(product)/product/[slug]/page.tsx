@@ -527,9 +527,8 @@ function PageDetails({ params: { slug } }: Props) {
                       title={product.title}
                       regular_price={product.regular_price}
                       discount_price={product.discount_price}
-                      discount_percent={
-                        (product.regular_price - product.discount_price) / 100
-                      }
+                      isNew={product.is_new}
+                      product_id={Number(product.id)}
                     />
                   ))}
                 </div>

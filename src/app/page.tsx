@@ -132,9 +132,7 @@ export default async function Home({
                       title={product.title}
                       regular_price={product.regular_price}
                       discount_price={product.discount_price}
-                      discount_percent={
-                        (product.regular_price - product.discount_price) / 100
-                      }
+                      product_id={Number(product.id)}
                     />
                   )
                 )}
@@ -151,9 +149,7 @@ export default async function Home({
                     title={product.title}
                     regular_price={product.regular_price}
                     discount_price={product.discount_price}
-                    discount_percent={
-                      (product.regular_price - product.discount_price) / 100
-                    }
+                    product_id={Number(product.id)}
                   />
                 ))}
               </div>
@@ -169,12 +165,8 @@ export default async function Home({
                     title={product.title}
                     regular_price={product.regular_price}
                     discount_price={product.discount_price}
-                    discount_percent={
-                      ((product.regular_price - product.discount_price) /
-                        product.regular_price) *
-                      100
-                    }
                     isNew={product.is_new}
+                    product_id={Number(product.id)}
                   />
                 ))}
               </div>

@@ -9,11 +9,15 @@ import { RiArrowDropRightLine } from 'react-icons/ri';
 import Button from '@/components/button';
 import './page.scss';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import axios from 'axios';
 import { API_URL } from '@/constant';
+import { useRouter } from 'next/navigation';
+import { clearCart } from '@/redux/features/cart/cartSlice';
 
 function Checkout() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [name, setName] = useState('');
@@ -68,7 +72,7 @@ function Checkout() {
     final_price,
     delivery_fee: 0,
     payment_method: 'Credit Card',
-    order_status: 'Pending',
+    order_status: 'pending',
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
   };
@@ -84,7 +88,9 @@ function Checkout() {
       toast.error('Please Select delivery method');
     }
     await axios.post(`${API_URL}/orders`, orderData).then((res) => {
-      toast.success(res.data.massage);
+      toast.success('Order create successfully');
+      dispatch(clearCart());
+      router.push('/order/confirm/1');
     });
   };
 
@@ -322,13 +328,13 @@ function Checkout() {
                     {cart.map((item, inex) => (
                       <div key={inex} className="grid grid-cols-5 pb-5">
                         <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
-                          HY-955 - Gazi Smiss Kitchen Hood
+                          {item.title}
                         </div>
                         <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
-                          ৳24,000 x 1
+                          ৳ {item.price} x {item.quantity}
                         </div>
                         <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
-                          ৳24,000
+                          ৳{item.price * item.quantity}
                         </div>
                       </div>
                     ))}
@@ -339,7 +345,7 @@ function Checkout() {
                         Sub-Total :
                       </div>
                       <div className="p-3 font-gotham  text-xs text-primary font-medium">
-                        ৳24,000
+                        ৳{final_price}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
@@ -357,7 +363,7 @@ function Checkout() {
                         Total :
                       </div>
                       <div className="p-3  font-gotham text-xs text-primary font-medium">
-                        ৳24,000
+                        ৳{final_price}
                       </div>
                     </div>
                   </div>
