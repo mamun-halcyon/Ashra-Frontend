@@ -62,6 +62,11 @@ export const cartSlice = createSlice({
       );
       localStorage.setItem('cartItems', JSON.stringify(state.cart));
     },
+
+    clearCart: (state) => {
+      state.cart = [];
+      localStorage.removeItem('cartItems');
+    },
   },
 });
 

@@ -68,7 +68,7 @@ function Checkout() {
     final_price,
     delivery_fee: 0,
     payment_method: 'Credit Card',
-    order_status: 'pending',
+    order_status: 'Pending',
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
   };
@@ -83,9 +83,9 @@ function Checkout() {
     if (!selectedPaymentDeliveryStatus) {
       toast.error('Please Select delivery method');
     }
-    await axios
-      .post(`${API_URL}/orders`, orderData)
-      .then((res) => console.log(res.data));
+    await axios.post(`${API_URL}/orders`, orderData).then((res) => {
+      toast.success(res.data.massage);
+    });
   };
 
   return (
