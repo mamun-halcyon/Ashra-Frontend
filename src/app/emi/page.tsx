@@ -1,7 +1,22 @@
 import React from 'react';
 import './page.scss';
+import { API_URL } from '@/constant';
 
-function Emi() {
+async function getEmis() {
+  const res = await fetch(`${API_URL}/emis`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+async function Emi() {
+  const emisData: IEmiResponse = await getEmis();
   return (
     <section className="emi">
       <div className="container md:overflow-x-auto overflow-x-scroll">
@@ -38,238 +53,37 @@ function Emi() {
             </tr>
           </thead>
           <tbody>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
-            <tr className="table-border">
-              <td scope="row " className="px-6 py-3 font-gotham font-light">
-                Jamuna Bank Limited
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                Yes
-              </td>
-              <td scope="row" className="px-6 py-3 font-gotham font-light">
-                NO
-              </td>
-            </tr>
+            {emisData?.data.rows.map((emi, index) => (
+              <tr className="table-border" key={index}>
+                <td scope="row " className="px-6 py-3 font-gotham font-light">
+                  {emi.bank_name}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.three_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.six_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.nine_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.twelve_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.eighteen_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.twenty_four_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.thirty_months ? 'Yes' : 'No'}
+                </td>
+                <td scope="row" className="px-6 py-3 font-gotham font-light">
+                  {emi.thirty_six_months ? 'Yes' : 'No'}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

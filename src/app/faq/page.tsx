@@ -1,12 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QuestionAndAnswer from '@/components/question-ans';
-import { faqData } from '@/static/faqData';
 import { IFaq } from '@/types/faq';
 import './page.scss';
+import { API_URL } from '@/constant';
+import axios from 'axios';
 
 const Faq = () => {
-  const [faqs, setFaqs] = useState<IFaq[]>(faqData);
+  const [faqs, setFaqs] = useState<IFaq[]>([]);
 
   const handleQuestionToggle = (clickedIndex: number) => {
     const updatedSideLinks = faqs.map((linkItem, index) => ({
@@ -16,6 +17,15 @@ const Faq = () => {
 
     setFaqs(updatedSideLinks);
   };
+
+  useEffect(() => {
+    async function getEmis() {
+      const res = await axios.get(`${API_URL}/faqs`);
+      setFaqs(res.data.data.rows);
+    }
+
+    getEmis();
+  }, []);
 
   return (
     <section className="faq">

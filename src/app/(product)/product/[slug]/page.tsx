@@ -57,7 +57,7 @@ function PageDetails({ params: { slug } }: Props) {
   );
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
-  const [isEmi, setIsEmi] = useState(false);
+  const [isEmi, setIsEmi] = useState(true);
 
   console.log(product?.product.description);
 
@@ -215,7 +215,11 @@ function PageDetails({ params: { slug } }: Props) {
                             ৳{product?.product?.discount_price}
                           </h2>
                           <div>
-                            <span className="discount">Save ৳2,520</span>
+                            <span className="discount">
+                              Save ৳
+                              {product.product.regular_price -
+                                product.product.discount_price}
+                            </span>
                           </div>
                         </div>
                       </div>
