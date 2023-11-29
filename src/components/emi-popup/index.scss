@@ -6,8 +6,12 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.243);
   .main-wrapper {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+    height: 85%;
+    background: #fff;
     display: flex;
     justify-content: center;
-    align-items: center;
   }
 }

@@ -57,9 +57,9 @@ function PageDetails({ params: { slug } }: Props) {
   );
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
-  const [isEmi, setIsEmi] = useState(true);
+  const [isEmi, setIsEmi] = useState(false);
 
-  console.log(product?.product.description);
+  const handleEmi = () => setIsEmi(!isEmi);
 
   const handleViewImage = (url: string) => {
     setViewImag(url);
@@ -133,7 +133,7 @@ function PageDetails({ params: { slug } }: Props) {
     ],
   };
   if (!product) {
-    return <div>Loading...</div>;
+    return <div className="py-5 container">Loading...</div>;
   }
 
   return (
@@ -225,14 +225,15 @@ function PageDetails({ params: { slug } }: Props) {
                       </div>
                     </div>
                     <div className="emi">
-                      <Link href={'/'}>
-                        <h3 className=" font-gotham font-medium text-sm text-primary py-3">
-                          <span onClick={() => setIsEmi(true)}>
-                            Avail Bank EMI
-                          </span>
-                          | EMI From 1,890 Tk/month
-                        </h3>
-                      </Link>
+                      <h3 className=" font-gotham font-medium text-sm text-primary py-3">
+                        <span
+                          className="cursor-point"
+                          onClick={() => setIsEmi(true)}
+                        >
+                          Avail Bank EMI |
+                        </span>
+                        <Link href={'/'}> EMI From 1,890 Tk/month</Link>
+                      </h3>
                     </div>
                     <div className="action">
                       <div className="flex py-5 font-gotham font-medium ">
@@ -550,7 +551,12 @@ function PageDetails({ params: { slug } }: Props) {
           </div>
         </section>
       )}
-      {isEmi && <EmiPopup />}
+      {isEmi && (
+        <EmiPopup
+          handleEmi={handleEmi}
+          price={product.product.discount_price}
+        />
+      )}
     </>
   );
 }
