@@ -35,6 +35,7 @@ const ProductCard: React.FC<IProps> = ({
     dispatch(addToCart(data));
     router.push('/cart');
   };
+
   return (
     <div className="product-card group relative p-3  mt-2">
       <Link href={`/product/${url}`}>
@@ -68,7 +69,7 @@ const ProductCard: React.FC<IProps> = ({
             onClick={() =>
               dispatch(
                 addToCart({
-                  product_id,
+                  product_id: product_id,
                   price: Number(discount_price),
                   title: title,
                   image: image,

@@ -1,6 +1,5 @@
 import { ICartItem } from '@/types/cart';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 interface CartState {
   cart: ICartItem[];

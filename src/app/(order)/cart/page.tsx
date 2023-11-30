@@ -23,13 +23,13 @@ import {
 function Checkout() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
-  console.log(cart);
 
   const sumWithInitial = cart.reduce(
     (accumulator, currentValue) =>
       accumulator + currentValue.price * currentValue.quantity,
     0
   );
+
   return (
     <main>
       {cart.length > 0 ? (
@@ -150,13 +150,19 @@ function Checkout() {
                       </div>
                       <div className=" flex justify-center col-span-8 md:hidden">
                         <div className="flex items-center">
-                          <div className="qnt-1">
+                          <div
+                            className="qnt-1"
+                            onClick={() => dispatch(incrementQuantity(item))}
+                          >
                             <AiOutlinePlus className="text-sm" />
                           </div>
                           <div className="qnt-1 px-4 font-gotham font-light text-sm">
                             {item.quantity}
                           </div>
-                          <div className="qnt-1">
+                          <div
+                            className="qnt-1"
+                            onClick={() => dispatch(decrementQuantity(item))}
+                          >
                             <AiOutlineMinus className="text-sm" />
                           </div>
                         </div>
