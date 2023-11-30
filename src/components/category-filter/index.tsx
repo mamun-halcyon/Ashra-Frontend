@@ -21,17 +21,15 @@ const CategoryFilter: FC<IProps> = ({ onToggle, categoryItem, selectKey }) => {
           categoryItem.isOpen ? 'open' : 'close'
         } ml-2 category-children`}
       >
-        {categoryItem.subLinks.map((sublink, index) => (
-          <div className="flex items-center " key={index}>
-            <input type="checkbox" name="filter" id={`${selectKey}${index}`} />
-            <label
-              htmlFor={`${selectKey}${index}`}
-              className="font-gotham font-normal text-sm ml-1 cursor-pointer sub-link"
-            >
-              {sublink.title}
-            </label>
-          </div>
-        ))}
+        <div className="flex items-center ">
+          <input type="checkbox" name="filter" id={`${selectKey}${1}`} />
+          <label
+            htmlFor={`${selectKey}${1}`}
+            className="font-gotham font-normal text-sm ml-1 cursor-pointer sub-link"
+          >
+            Talha
+          </label>
+        </div>
       </div>
     </div>
   );

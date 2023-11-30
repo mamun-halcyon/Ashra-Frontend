@@ -97,3 +97,33 @@
     border: 1px solid $border-color;
   }
 }
+
+.filter-category {
+  margin-bottom: 8px;
+  .close {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    // transition: all linear 0.3s;
+  }
+  .open {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+    // transition: all linear 0.3s;
+  }
+  .category-title {
+    transition: all linear 0.3s;
+    border-bottom: 0;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .sub-link {
+    transition: all linear 0.3s;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

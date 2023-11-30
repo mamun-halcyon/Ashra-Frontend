@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterBox from '@/components/filterbox';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
@@ -14,10 +14,11 @@ import ActionButton from '@/components/action';
 import { productsData } from '@/static/products';
 import ListCard from '@/components/list-card';
 import { categoryData } from '@/static/category';
-import { ICategoryData } from '@/types/category';
+import { ICategoryData, ICategoryResponse } from '@/types/category';
 import CategoryFilter from '@/components/category-filter';
 import Pagination from '@/components/pagination';
 import { API_URL } from '@/constant';
+import axios from 'axios';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 const categoryProducts = async (position: string) => {
@@ -42,8 +43,9 @@ function Category() {
   const [filterTitle, setFilterTitle] = useState<string>('Sort by');
 
   /* Sidebar */
-  const [categoryFilterItems, setCategoryFilterItems] =
-    useState<ICategoryData[]>(categoryData);
+  const [categoryFilterItems, setCategoryFilterItems] = useState<
+    ICategoryData[]
+  >([]);
 
   const handleDropdownToggle = (clickedIndex: number) => {
     const updatedSideLinks = categoryFilterItems.map((linkItem, index) => ({
@@ -93,6 +95,27 @@ function Category() {
     }
   };
 
+  useEffect(() => {
+    // Function to fetch data from the API
+    const fetchData = async () => {
+      try {
+        // Replace {{gazi_root_url}} with your actual API root URL
+        const response = await axios.get<ICategoryResponse>(
+          `${API_URL}/categories`
+        );
+
+        // Set the category filter items in the state
+        setCategoryFilterItems(response.data?.data?.rows);
+      } catch (error) {
+        // Handle errors here
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, []);
+
   return (
     <main>
       <section className=" hidden md:block">
@@ -109,14 +132,68 @@ function Category() {
           <div className="flex justify-between">
             <div className=" hidden md:block md:w-[250px]">
               <FilterBox title="Category">
-                {categoryFilterItems.map((categoryItem, index) => (
-                  <CategoryFilter
-                    selectKey={index}
-                    key={index}
-                    categoryItem={categoryItem}
-                    onToggle={() => handleDropdownToggle(index)}
-                  />
-                ))}
+                {categoryFilterItems
+                  .filter(
+                    (parent) =>
+                      parent.parent_category !== '0' ||
+                      parent.parent_category !== null
+                  )
+                  .map((categoryItem, index) => (
+                    <div key={index}>
+                      {categoryFilterItems
+                        .filter(
+                          (category) =>
+                            category.parent_category === categoryItem.slug
+                        )
+                        .map((subCategory, index) => (
+                          <div
+                            className="filter-category"
+                            onClick={() => handleDropdownToggle(index)}
+                            key={index}
+                          >
+                            <p className="font-gotham font-normal text-sm cursor-pointer category-title">
+                              {categoryItem.title}
+                            </p>
+
+                            {/* children category */}
+                            {categoryFilterItems
+                              .filter(
+                                (children) =>
+                                  children.parent_category === subCategory.slug
+                              )
+                              .map((childrenCategory, index) => (
+                                <div
+                                  key={index}
+                                  className={`${
+                                    categoryItem.isOpen ? 'open' : 'close'
+                                  } ml-2 category-children`}
+                                >
+                                  <div className="flex items-center ">
+                                    <input
+                                      type="checkbox"
+                                      name="filter"
+                                      // id={`${selectKey}${1}`}
+                                    />
+                                    <label
+                                      // htmlFor={`${selectKey}${1}`}
+                                      className="font-gotham font-normal text-sm ml-1 cursor-pointer sub-link"
+                                    >
+                                      Talha
+                                    </label>
+                                  </div>
+                                </div>
+                              ))}
+                          </div>
+                        ))}
+                    </div>
+                  ))}
+
+                {/* <CategoryFilter
+                      selectKey={index}
+                      key={index}
+                      categoryItem={categoryFilterItems.filter}
+                      onToggle={() => handleDropdownToggle(index)}
+                    /> */}
               </FilterBox>
               <FilterBox title="Availability">
                 <div className="flex mb-2">
