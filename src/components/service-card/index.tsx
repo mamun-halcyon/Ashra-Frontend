@@ -7,13 +7,14 @@ interface IService {
   title: string;
   subtitle: string;
   image: number;
+  url: string;
 }
 interface IProps {
   service: IService;
 }
 const ServiceCard: React.FC<IProps> = ({ service }) => {
   return (
-    <Link href={'/'}>
+    <Link href={service.url}>
       <div
         className={`service-card flex justify-center flex-wrap items-center md:my-[40px] my-2`}
       >
