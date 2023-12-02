@@ -8,21 +8,19 @@ import { RiArrowDropRightLine } from 'react-icons/ri';
 import Pagination from '@/components/pagination';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getProducts } from '@/redux/features/products/product-slice';
+import { API_URL } from '@/constant';
+import { IVideo } from '@/types/video';
 
 function Videos() {
   const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<IVideo[]>([]);
   const [count, setCount] = useState(0);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/frontend/videos?page=${page}&limit=16`
-    )
+    fetch(`${API_URL}/videos?page=${page}&limit=16`)
       .then((res) => res.json())
       .then((data) => {
         setCount(data.data.count);
@@ -53,9 +51,6 @@ function Videos() {
 
   return (
     <main>
-      {videos.map(() => (
-        <li key={1}>1</li>
-      ))}
       <section>
         <div className="container">
           <div className="md:flex items-center font-gotham font-normal text-sm mt-3 mb-3 hidden ">
@@ -82,9 +77,9 @@ function Videos() {
         <section>
           <div className="container px-2 md:px-0">
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {isLoading &&
-                videoData.map((video, index) => (
-                  <VideoCard url={video.url} title={video.title} key={index} />
+              {!isLoading &&
+                videos.map((video, index) => (
+                  <VideoCard key={index} url={video.url} title={video.title} />
                 ))}
             </div>
           </div>
