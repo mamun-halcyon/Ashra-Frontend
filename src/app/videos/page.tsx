@@ -8,7 +8,6 @@ import { RiArrowDropRightLine } from 'react-icons/ri';
 import Pagination from '@/components/pagination';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { API_URL } from '@/constant';
 import { IVideo } from '@/types/video';
 
