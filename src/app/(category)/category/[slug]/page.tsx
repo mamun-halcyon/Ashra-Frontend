@@ -19,6 +19,7 @@ import CategoryFilter from '@/components/category-filter';
 import Pagination from '@/components/pagination';
 import { API_URL } from '@/constant';
 import axios from 'axios';
+import { IProduct, IProductResponse } from '@/types/product';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 const categoryProducts = async (position: string) => {
@@ -37,11 +38,12 @@ function Category() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
   const [page, setPage] = useState(1);
   const [isRow, setIsRow] = useState<boolean>(true);
-  const [showItem, setShowItem] = useState<number>(12);
   const [showTitle, setShowTitle] = useState<string>('Show 12');
   const [filter, setFilter] = useState<string>('Sort by');
   const [filterTitle, setFilterTitle] = useState<string>('Sort by');
-
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [limit, setLimit] = useState<number | string>(12);
+  console.log(products);
   /* Sidebar */
   const [categoryFilterItems, setCategoryFilterItems] = useState<
     ICategoryData[]
@@ -60,6 +62,7 @@ function Category() {
     const clickedElement = event.target as HTMLLIElement;
     const innerText = clickedElement.innerText;
     setShowTitle(`Show ${innerText}`);
+    setLimit(innerText);
   };
 
   const handleFilter = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -115,6 +118,27 @@ function Category() {
     // Call the fetchData function when the component mounts
     fetchData();
   }, []);
+
+  useEffect(() => {
+    // Function to fetch data from the API
+    const fetchData = async () => {
+      try {
+        // Replace {{gazi_root_url}} with your actual API root URL
+        const response = await axios.get<IProductResponse>(
+          `${API_URL}/frontend/products?limit=${limit}&page=${page}`
+        );
+
+        // Set the category filter items in the state
+        setProducts(response.data?.data?.rows);
+      } catch (error) {
+        // Handle errors here
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, [limit, page]);
 
   return (
     <main>
@@ -370,17 +394,16 @@ function Category() {
               <div className="filter-products px-2 md:px-0">
                 {isRow ? (
                   <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
-                    {[...productsData].slice(0, 12).map((product, i) => (
+                    {products.map((product, i) => (
                       <ProductCard
                         key={i}
-                        url={'/product/1'}
+                        url={product.slug}
                         image={product.image}
                         title={product.title}
-                        regular_price={product.regularPrice}
-                        discount_price={product.discountPrice}
-                        discount_percent={
-                          (product.regularPrice - product.discountPrice) / 100
-                        }
+                        regular_price={product.regular_price}
+                        discount_price={product.discount_price}
+                        isNew={product.is_new}
+                        product_id={Number(product.id)}
                       />
                     ))}
                   </div>
