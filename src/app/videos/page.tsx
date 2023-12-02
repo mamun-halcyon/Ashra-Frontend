@@ -14,20 +14,21 @@ import { IVideo } from '@/types/video';
 
 function Videos() {
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState<number | string>(16);
   const [showTitle, setShowTitle] = useState<string>('Show');
   const [videos, setVideos] = useState<IVideo[]>([]);
   const [count, setCount] = useState(0);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}/videos?page=${page}&limit=16`)
+    fetch(`${API_URL}/videos?page=${page}&limit=${limit}`)
       .then((res) => res.json())
       .then((data) => {
         setCount(data.data.count);
         setVideos(data.data.rows);
         setLoading(false);
       });
-  }, [page]);
+  }, [page, limit]);
 
   /*  useEffect(() => {
     dispatch(getProducts({}));
@@ -47,6 +48,7 @@ function Videos() {
     const clickedElement = event.target as HTMLLIElement;
     const innerText = clickedElement.innerText;
     setShowTitle(`Show ${innerText}`);
+    setLimit(innerText);
   };
 
   return (
