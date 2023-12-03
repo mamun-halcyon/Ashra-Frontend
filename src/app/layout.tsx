@@ -61,7 +61,20 @@ export const metadata: Metadata = {
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
     // cache: 'no-store',
-    next: { revalidate: 800 },
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+async function getCategories() {
+  const res = await fetch(`${API_URL}/categories`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) {
@@ -92,6 +105,7 @@ export default async function RootLayout({
 }) {
   const globalData: HomeApiResponse = await getData();
   const footerMenus = await getMenus('help');
+  const categories = await getCategories();
 
   return (
     <html lang="en">
@@ -103,7 +117,7 @@ export default async function RootLayout({
               menus={footerMenus.data}
             />
             <Navbar />
-            <MegaMenu menus={globalData.category} />
+            <MegaMenu menus={categories?.data?.rows} />
             {children}
             <Footer globalData={globalData} />
             <ToastContainer />
