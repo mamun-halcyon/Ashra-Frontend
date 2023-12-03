@@ -1,10 +1,38 @@
+'use client';
+
 import Button from '@/components/button';
 import FormGroup from '@/components/fromgroup';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 import { RiArrowDropRightLine } from 'react-icons/ri';
-import './page.scss';
+import './page.scss';;
+import axios from '../../lib/axios';
+import { useState } from 'react';
 
 function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter(); 
+
+  const handleLogin = async (e:any) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('/auths/login', {
+        email: email,
+        password: password,
+      });
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      console.log('Login successful');
+      router.push('/profile');
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
+
+
   return (
     <main>
       <section className=" hidden md:block">
@@ -21,13 +49,14 @@ function Login() {
           <h2 className=" font-gotham font-normal text-xl text-black">
             Account Login
           </h2>
-          <form>
+          <form onSubmit={handleLogin}>
             <FormGroup
               className="mt-2 "
               type="email"
               title="E-Mail*"
               placeholder="Your Email"
               required
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <FormGroup
@@ -36,6 +65,7 @@ function Login() {
               title="Password*"
               placeholder="Enter Password"
               required
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className="mt-3 flex justify-between items-center">
               <div className="flex">
