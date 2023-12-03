@@ -12,6 +12,7 @@ import {
   clearCompare,
   removeFromCompare,
 } from '@/redux/features/compare/compareSlice';
+import { API_ROOT } from '@/constant';
 
 function Compare() {
   const dispatch = useAppDispatch();
@@ -61,7 +62,7 @@ function Compare() {
                   >
                     <div className="header">
                       <h4 className=" font-gotham font-medium text-xs text-black">
-                        GH-8203M - Gazi Smiss Gas..
+                        {item.title}
                       </h4>
                       <LuSearch />
                     </div>
@@ -98,29 +99,32 @@ function Compare() {
                       </p>
                       <div className="flex items-center">
                         <RxCrossCircled className="inline danger-text text-xs mr-1" />
-                        <p className=" font-gotham font-light text-xs danger-text">
+                        <p
+                          className=" font-gotham font-light text-xs danger-text cursor-pointer"
+                          onClick={() => dispatch(removeFromCompare(item))}
+                        >
                           Remove
                         </p>
                       </div>
                       <h3 className=" font-gotham font-medium text-xs my-3">
-                        GH-8203M - Gazi Smiss Gas Stove
+                        {item.title}
                       </h3>
                       <Image
                         className=" w-3/4 mx-auto my-3"
-                        src={'/assets/images/products/image1.png'}
+                        src={`${API_ROOT}/images/product/${item.image}`}
                         width={150}
                         height={150}
                         alt="product"
                       />
                       <p className=" font-gotham font-normal text-xs line-through">
-                        ৳ 7000
+                        ৳ {item.regular_price}
                       </p>
                       <div className="flex justify-between mt-2">
                         <h3 className=" font-gotham font-bold text-sm">
-                          ৳ 6000
+                          ৳ {item.price}
                         </h3>
                         <Button className="px-2 font-gotham font-light text-xs">
-                          Save ৳ 1000
+                          Save ৳ {item.regular_price - item.price}
                         </Button>
                       </div>
                     </div>
@@ -143,7 +147,7 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <div className="icons">
-                      <StarRating rating={4} />
+                      <StarRating rating={item.rating} />
                     </div>
                   </td>
                 ))}
@@ -164,9 +168,7 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <h3 className=" font-gotham  font-light text-black text-xs">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry
-                      standard dummy text ever since the 1500s,
+                      {item.description}
                     </h3>
                   </td>
                 ))}

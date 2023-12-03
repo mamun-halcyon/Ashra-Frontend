@@ -20,7 +20,7 @@ interface IProps {
   title: string;
   regular_price: string | number;
   discount_price: string | number;
-  sort_description?: string;
+  sort_description: string;
   url: string;
   isNew?: boolean;
 }

@@ -139,20 +139,17 @@ function Category() {
     // Call the fetchData function when the component mounts
     fetchData();
   }, [limit, page]);
-  
+
   const renderCategory = (category: ICategoryData, depth: number) => (
-    <div
-      className={`filter-category ml-${depth * 2}`}
-      key={category.id}
-    >
+    <div className={`filter-category ml-${depth * 2}`} key={category.id}>
       <p className="font-gotham font-normal text-sm cursor-pointer category-title">
         {category.title}
       </p>
       {categoryFilterItems
-        .filter((childCategory) => childCategory.parent_category === category.slug)
-        .map((childCategory) => (
-          renderCategory(childCategory, depth + 1)
-        ))}
+        .filter(
+          (childCategory) => childCategory.parent_category === category.slug
+        )
+        .map((childCategory) => renderCategory(childCategory, depth + 1))}
     </div>
   );
 
@@ -171,12 +168,15 @@ function Category() {
         <div className="container">
           <div className="flex justify-between">
             <div className=" hidden md:block md:w-[250px]">
-              
-            <FilterBox title="Category">
-  {categoryFilterItems
-    .filter((category) => category.parent_category === '0' || category.parent_category === null)
-    .map((rootCategory) => renderCategory(rootCategory, 0))}
-</FilterBox>
+              <FilterBox title="Category">
+                {categoryFilterItems
+                  .filter(
+                    (category) =>
+                      category.parent_category === '0' ||
+                      category.parent_category === null
+                  )
+                  .map((rootCategory) => renderCategory(rootCategory, 0))}
+              </FilterBox>
 
               <FilterBox title="Availability">
                 <div className="flex mb-2">
@@ -363,6 +363,7 @@ function Category() {
                         discount_price={product.discount_price}
                         isNew={product.is_new}
                         product_id={Number(product.id)}
+                        sort_description={product.sort_description}
                       />
                     ))}
                   </div>
