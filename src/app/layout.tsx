@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { Poppins } from 'next/font/google';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
 import ReduxProvider from '@/redux/provider';
 import TopHeader from '@/components/header';

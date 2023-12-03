@@ -6,10 +6,13 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BsArrowRepeat } from 'react-icons/bs';
 import Link from 'next/link';
 import { API_ROOT } from '@/constant';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addToCart } from '@/redux/features/cart/cartSlice';
 import { ICartItem } from '@/types/cart';
 import { useRouter } from 'next/navigation';
+import { addToCompare } from '@/redux/features/compare/compareSlice';
+import { ICompareItem } from '@/types/compare';
+import { toast } from 'react-toastify';
 
 interface IProps {
   product_id: number;
@@ -17,6 +20,7 @@ interface IProps {
   title: string;
   regular_price: string | number;
   discount_price: string | number;
+  sort_description?: string;
   url: string;
   isNew?: boolean;
 }
@@ -28,12 +32,22 @@ const ProductCard: React.FC<IProps> = ({
   url,
   isNew,
   product_id,
+  sort_description,
 }) => {
+  const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
     router.push('/cart');
+  };
+
+  const addCompare = (data: ICompareItem) => {
+    if (compareItems.length < 4) {
+      dispatch(addToCompare(data));
+    } else {
+      toast.error('Maximum items exits');
+    }
   };
 
   return (
@@ -114,7 +128,21 @@ const ProductCard: React.FC<IProps> = ({
         <div className="mb-1 cursor-pointer action-item">
           <AiOutlineHeart className=" hover:text-primary" />
         </div>
-        <div className="mb-1 cursor-pointer action-item">
+        <div
+          className="mb-1 cursor-pointer action-item"
+          onClick={() =>
+            addCompare({
+              product_id,
+              description: sort_description ?? '',
+              image,
+              title,
+              regular_price: Number(regular_price),
+              price: Number(discount_price),
+              quantity: 1,
+              rating: 5,
+            })
+          }
+        >
           <BsArrowRepeat className=" hover:text-primary" />
         </div>
       </div>

@@ -7,11 +7,19 @@ import { RxCrossCircled } from 'react-icons/rx';
 import { LuSearch } from 'react-icons/lu';
 import StarRating from '@/components/rating';
 import ToggleButton from '@/components/status-button';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+  clearCompare,
+  removeFromCompare,
+} from '@/redux/features/compare/compareSlice';
 
 function Compare() {
+  const dispatch = useAppDispatch();
   const [isTrue, setIsTrue] = useState(false);
-
+  const { data: compareItems } = useAppSelector((state) => state.compare);
   const handleToggle = () => setIsTrue(!isTrue);
+
+  const handleClearCompare = () => dispatch(clearCompare());
   return (
     <section className="compare">
       <div className="container">
@@ -29,7 +37,10 @@ function Compare() {
               </p>
             </div>
           </div>
-          <Button className=" font-gotham font-medium text-sm px-4 py-1">
+          <Button
+            onClick={handleClearCompare}
+            className=" font-gotham font-medium text-sm px-4 py-1"
+          >
             Clear All
           </Button>
         </div>
@@ -42,50 +53,20 @@ function Compare() {
                   scope="col"
                   className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                 ></th>
-                <th
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="header">
-                    <h4 className=" font-gotham font-medium text-xs text-black">
-                      GH-8203M - Gazi Smiss Gas..
-                    </h4>
-                    <LuSearch />
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="header">
-                    <h4 className=" font-gotham font-medium text-xs text-black">
-                      GH-8203M - Gazi Smiss Gas..
-                    </h4>
-                    <LuSearch />
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="header">
-                    <h4 className=" font-gotham font-medium text-xs text-black">
-                      GH-8203M - Gazi Smiss Gas..
-                    </h4>
-                    <LuSearch />
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="header">
-                    <h4 className=" font-gotham font-medium text-xs text-black">
-                      GH-8203M - Gazi Smiss Gas..
-                    </h4>
-                    <LuSearch />
-                  </div>
-                </th>
+                {compareItems.map((item, index) => (
+                  <th
+                    key={index}
+                    scope="col"
+                    className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
+                  >
+                    <div className="header">
+                      <h4 className=" font-gotham font-medium text-xs text-black">
+                        GH-8203M - Gazi Smiss Gas..
+                      </h4>
+                      <LuSearch />
+                    </div>
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -104,152 +85,47 @@ function Compare() {
                     </p>
                   </div>
                 </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="product-card">
-                    <p className=" font-gotham font-light text-xs text-black">
-                      Kitchen Hood
-                    </p>
-                    <div className="flex items-center">
-                      <RxCrossCircled className="inline danger-text text-xs mr-1" />
-                      <p className=" font-gotham font-light text-xs danger-text">
-                        Remove
+
+                {compareItems.map((item, index) => (
+                  <td
+                    key={index}
+                    scope="col"
+                    className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
+                  >
+                    <div className="product-card">
+                      <p className=" font-gotham font-light text-xs text-black">
+                        Kitchen Hood
                       </p>
-                    </div>
-                    <h3 className=" font-gotham font-medium text-xs my-3">
-                      GH-8203M - Gazi Smiss Gas Stove
-                    </h3>
-                    <Image
-                      className=" w-3/4 mx-auto my-3"
-                      src={'/assets/images/products/image1.png'}
-                      width={150}
-                      height={150}
-                      alt="product"
-                    />
-                    <p className=" font-gotham font-normal text-xs line-through">
-                      ৳ 7000
-                    </p>
-                    <div className="flex justify-between mt-2">
-                      <h3 className=" font-gotham font-bold text-sm">৳ 6000</h3>
-                      <Button className="px-2 font-gotham font-light text-xs">
-                        Save ৳ 1000
-                      </Button>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="product-card">
-                    <p className=" font-gotham font-light text-xs text-black">
-                      Kitchen Hood
-                    </p>
-                    <div className="flex items-center">
-                      <RxCrossCircled className="inline danger-text text-xs mr-1" />
-                      <p className=" font-gotham font-light text-xs danger-text">
-                        Remove
-                      </p>
-                    </div>
-                    <h3 className=" font-gotham font-medium text-xs my-3">
-                      GH-8203M - Gazi Smiss Gas Stove
-                    </h3>
-                    <Image
-                      className=" w-3/4 mx-auto my-3"
-                      src={'/assets/images/products/image1.png'}
-                      width={150}
-                      height={150}
-                      alt="product"
-                    />
-                    <p className=" font-gotham font-normal text-xs line-through">
-                      ৳ 7000
-                    </p>
-                    <div className="flex justify-between mt-2">
-                      <h3 className=" font-gotham font-medium text-sm">
-                        ৳ 6000
+                      <div className="flex items-center">
+                        <RxCrossCircled className="inline danger-text text-xs mr-1" />
+                        <p className=" font-gotham font-light text-xs danger-text">
+                          Remove
+                        </p>
+                      </div>
+                      <h3 className=" font-gotham font-medium text-xs my-3">
+                        GH-8203M - Gazi Smiss Gas Stove
                       </h3>
-                      <Button className="px-2 font-gotham font-light text-xs">
-                        Save ৳ 1000
-                      </Button>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="product-card">
-                    <p className=" font-gotham font-light text-xs text-black">
-                      Kitchen Hood
-                    </p>
-                    <div className="flex items-center">
-                      <RxCrossCircled className="inline danger-text text-xs mr-1" />
-                      <p className=" font-gotham font-light text-xs danger-text">
-                        Remove
+                      <Image
+                        className=" w-3/4 mx-auto my-3"
+                        src={'/assets/images/products/image1.png'}
+                        width={150}
+                        height={150}
+                        alt="product"
+                      />
+                      <p className=" font-gotham font-normal text-xs line-through">
+                        ৳ 7000
                       </p>
+                      <div className="flex justify-between mt-2">
+                        <h3 className=" font-gotham font-bold text-sm">
+                          ৳ 6000
+                        </h3>
+                        <Button className="px-2 font-gotham font-light text-xs">
+                          Save ৳ 1000
+                        </Button>
+                      </div>
                     </div>
-                    <h3 className=" font-gotham font-medium text-xs my-3">
-                      GH-8203M - Gazi Smiss Gas Stove
-                    </h3>
-                    <Image
-                      className=" w-3/4 mx-auto my-3"
-                      src={'/assets/images/products/image1.png'}
-                      width={150}
-                      height={150}
-                      alt="product"
-                    />
-                    <p className=" font-gotham font-normal text-xs line-through">
-                      ৳ 7000
-                    </p>
-                    <div className="flex justify-between mt-2">
-                      <h3 className=" font-gotham font-medium text-sm">
-                        ৳ 6000
-                      </h3>
-                      <Button className="px-2 font-gotham font-light text-xs">
-                        Save ৳ 1000
-                      </Button>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="product-card">
-                    <p className=" font-gotham font-light text-xs text-black">
-                      Kitchen Hood
-                    </p>
-                    <div className="flex items-center">
-                      <RxCrossCircled className="inline danger-text text-xs mr-1" />
-                      <p className=" font-gotham font-light text-xs danger-text">
-                        Remove
-                      </p>
-                    </div>
-                    <h3 className=" font-gotham font-medium text-xs my-3">
-                      GH-8203M - Gazi Smiss Gas Stove
-                    </h3>
-                    <Image
-                      className=" w-3/4 mx-auto my-3"
-                      src={'/assets/images/products/image1.png'}
-                      width={150}
-                      height={150}
-                      alt="product"
-                    />
-                    <p className=" font-gotham font-normal text-xs line-through">
-                      ৳ 7000
-                    </p>
-                    <div className="flex justify-between mt-2">
-                      <h3 className=" font-gotham font-medium text-sm">
-                        ৳ 6000
-                      </h3>
-                      <Button className="px-2 font-gotham font-light text-xs">
-                        Save ৳ 1000
-                      </Button>
-                    </div>
-                  </div>
-                </td>
+                  </td>
+                ))}
               </tr>
               <tr>
                 <td
@@ -260,38 +136,17 @@ function Compare() {
                     Rating
                   </h3>
                 </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="icons">
-                    <StarRating rating={4} />
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="icons">
-                    <StarRating rating={4} />
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="icons">
-                    <StarRating rating={4} />
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="icons">
-                    <StarRating rating={4} />
-                  </div>
-                </td>
+                {compareItems.map((item, index) => (
+                  <td
+                    key={index}
+                    scope="col"
+                    className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
+                  >
+                    <div className="icons">
+                      <StarRating rating={4} />
+                    </div>
+                  </td>
+                ))}
               </tr>
               <tr>
                 <td
@@ -302,92 +157,38 @@ function Compare() {
                     Description
                   </h3>
                 </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <h3 className=" font-gotham  font-light text-black text-xs">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry
-                    standard dummy text ever since the 1500s,
-                  </h3>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <h3 className=" font-gotham  font-light text-black text-xs">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry
-                    standard dummy text ever since the 1500s,
-                  </h3>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <h3 className=" font-gotham  font-light text-black text-xs">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry
-                    standard dummy text ever since the 1500s,
-                  </h3>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <h3 className=" font-gotham  font-light text-black text-xs">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry
-                    standard dummy text ever since the 1500s,
-                  </h3>
-                </td>
+                {compareItems.map((item, index) => (
+                  <td
+                    key={index}
+                    scope="col"
+                    className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
+                  >
+                    <h3 className=" font-gotham  font-light text-black text-xs">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry
+                      standard dummy text ever since the 1500s,
+                    </h3>
+                  </td>
+                ))}
               </tr>
               <tr>
                 <td
                   scope="col"
                   className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                 ></td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="text-center px-4">
-                    <Button className="w-full py-1 font-gotham font-normal text-normal">
-                      Buy Now
-                    </Button>
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="text-center px-4">
-                    <Button className="w-full py-1 font-gotham font-normal text-normal">
-                      Buy Now
-                    </Button>
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="text-center px-4">
-                    <Button className="w-full py-1 font-gotham font-normal text-normal">
-                      Buy Now
-                    </Button>
-                  </div>
-                </td>
-                <td
-                  scope="col"
-                  className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
-                >
-                  <div className="text-center px-4">
-                    <Button className="w-full py-1 font-gotham font-normal text-normal">
-                      Buy Now
-                    </Button>
-                  </div>
-                </td>
+                {compareItems.map((item, index) => (
+                  <td
+                    key={index}
+                    scope="col"
+                    className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
+                  >
+                    <div className="text-center px-4">
+                      <Button className="w-full py-1 font-gotham font-normal text-normal">
+                        Buy Now
+                      </Button>
+                    </div>
+                  </td>
+                ))}
               </tr>
             </tbody>
           </table>
