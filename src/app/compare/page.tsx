@@ -13,14 +13,22 @@ import {
   removeFromCompare,
 } from '@/redux/features/compare/compareSlice';
 import { API_ROOT } from '@/constant';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { useRouter } from 'next/navigation';
+import { ICartItem } from '@/types/cart';
 
 function Compare() {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const [isTrue, setIsTrue] = useState(false);
   const { data: compareItems } = useAppSelector((state) => state.compare);
   const handleToggle = () => setIsTrue(!isTrue);
-
   const handleClearCompare = () => dispatch(clearCompare());
+
+  const handleBuyNow = (data: ICartItem) => {
+    dispatch(addToCart(data));
+    router.push('/cart');
+  };
   return (
     <section className="compare">
       <div className="container">
@@ -185,7 +193,18 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <div className="text-center px-4">
-                      <Button className="w-full py-1 font-gotham font-normal text-normal">
+                      <Button
+                        className="w-full py-1 font-gotham font-normal text-normal"
+                        onClick={() =>
+                          handleBuyNow({
+                            title: item.title,
+                            quantity: item.quantity,
+                            price: item.price,
+                            product_id: item.product_id,
+                            image: item.image,
+                          })
+                        }
+                      >
                         Buy Now
                       </Button>
                     </div>
