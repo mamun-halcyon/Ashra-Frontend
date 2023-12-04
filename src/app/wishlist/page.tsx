@@ -166,7 +166,7 @@ function WishlistPage() {
           </div>
         </div>
       </section>
-      <section className="cart-service">
+      {/* <section className="cart-service">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {serviceCardData.map((service, i) => (
@@ -174,7 +174,7 @@ function WishlistPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

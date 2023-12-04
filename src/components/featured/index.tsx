@@ -53,6 +53,7 @@ const Featured: FC<IProps> = ({
                           discount_price={product.discount_price}
                           isNew={product.is_new}
                           product_id={Number(product.id)}
+                          sort_description={product.sort_description}
                         />
                       ))}
                     </div>
@@ -69,6 +70,7 @@ const Featured: FC<IProps> = ({
                           discount_price={product.discount_price}
                           isNew={product.is_new}
                           product_id={Number(product.id)}
+                          sort_description={product.sort_description}
                         />
                       ))}
                     </div>
@@ -85,6 +87,7 @@ const Featured: FC<IProps> = ({
                           discount_price={product.discount_price}
                           isNew={product.is_new}
                           product_id={Number(product.id)}
+                          sort_description={product.sort_description}
                         />
                       ))}
                     </div>
