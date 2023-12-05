@@ -1,18 +1,18 @@
-'use client';
-import Image from 'next/image';
-import './index.scss';
-import Button from '../button';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { BsArrowRepeat } from 'react-icons/bs';
-import Link from 'next/link';
-import { API_ROOT } from '@/constant';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { ICartItem } from '@/types/cart';
-import { useRouter } from 'next/navigation';
-import { addToCompare } from '@/redux/features/compare/compareSlice';
-import { ICompareItem } from '@/types/compare';
-import { toast } from 'react-toastify';
+"use client";
+import Image from "next/image";
+import "./index.scss";
+import Button from "../button";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BsArrowRepeat } from "react-icons/bs";
+import Link from "next/link";
+import { API_ROOT } from "@/constant";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { ICartItem } from "@/types/cart";
+import { useRouter } from "next/navigation";
+import { addToCompare } from "@/redux/features/compare/compareSlice";
+import { ICompareItem } from "@/types/compare";
+import { toast } from "react-toastify";
 
 interface IProps {
   product_id: number;
@@ -39,16 +39,21 @@ const ProductCard: React.FC<IProps> = ({
   const dispatch = useAppDispatch();
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error('Maximum items exits');
+      toast.error("Maximum items exits");
     }
   };
+  console.log(
+    "fffff",
+    ((Number(regular_price) - Number(discount_price)) / Number(regular_price)) *
+      100
+  );
 
   return (
     <div className="product-card group relative p-3  mt-2">
@@ -64,12 +69,14 @@ const ProductCard: React.FC<IProps> = ({
       </Link>
 
       <div className="text ">
-        <Link
-          href={`/product/${url}`}
-          className=" font-gotham product-title font-normal text-center text-sm"
-        >
-          {title}
-        </Link>
+        <div className=" h-12">
+          <Link
+            href={`/product/${url}`}
+            className=" font-gotham product-title font-normal text-center text-sm"
+          >
+            {title.substring(0, 46)}
+          </Link>
+        </div>
         <p className=" mb-2 text-center text-sm">
           <span className=" mr-2 line-through font-normal text-xs">
             ৳ {regular_price}
@@ -112,12 +119,19 @@ const ProductCard: React.FC<IProps> = ({
         </div>
       </div>
       <div className=" absolute top-2 left-2">
-        <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
-          {((Number(regular_price) - Number(discount_price)) /
-            Number(regular_price)) *
-            100}
-          %
-        </span>
+        {((Number(regular_price) - Number(discount_price)) /
+          Number(regular_price)) *
+          100 !==
+        0 ? (
+          <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+            {(
+              ((Number(regular_price) - Number(discount_price)) /
+                Number(regular_price)) *
+              100
+            ).toFixed(2)}
+            %
+          </span>
+        ) : null}
         {isNew && (
           <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
             New
@@ -133,7 +147,7 @@ const ProductCard: React.FC<IProps> = ({
           onClick={() =>
             addCompare({
               product_id,
-              description: sort_description ?? '',
+              description: sort_description ?? "",
               image,
               title,
               regular_price: Number(regular_price),
