@@ -49,11 +49,6 @@ const ProductCard: React.FC<IProps> = ({
       toast.error("Maximum items exits");
     }
   };
-  console.log(
-    "fffff",
-    ((Number(regular_price) - Number(discount_price)) / Number(regular_price)) *
-      100
-  );
 
   return (
     <div className="product-card group relative p-3  mt-2">
