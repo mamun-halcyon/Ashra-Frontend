@@ -18,11 +18,7 @@ const SearchArea = () => {
   const handleSearch = useDebouncedCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const params = new URLSearchParams(Object.fromEntries(searchParams));
-      if (e.target.value) {
-        e.target.value.length > 2 && params.set('q', e.target.value);
-      } else {
-        params.delete('search');
-      }
+      params.set('search', e.target.value);
       replace(`${pathname}?${params}`);
     },
     300
@@ -33,6 +29,12 @@ const SearchArea = () => {
 
   const handleBlur = () => {
     setIsInputFocused(false);
+  };
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    const params = new URLSearchParams(Object.fromEntries(searchParams));
+    replace(`/category/filter?${params}`);
   };
 
   return (
@@ -57,7 +59,7 @@ const SearchArea = () => {
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
-          <button className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white">
+          <button className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white" onClick={handleClick}>
             Search
           </button>
         </form>

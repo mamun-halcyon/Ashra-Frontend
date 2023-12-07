@@ -20,6 +20,7 @@ import Pagination from '@/components/pagination';
 import { API_URL } from '@/constant';
 import axios from 'axios';
 import { IProduct, IProductResponse } from '@/types/product';
+import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 const categoryProducts = async (position: string) => {
@@ -35,6 +36,7 @@ const categoryProducts = async (position: string) => {
 };
 
 function Category() {
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
   const [page, setPage] = useState(1);
   const [isRow, setIsRow] = useState<boolean>(true);
@@ -43,6 +45,7 @@ function Category() {
   const [filterTitle, setFilterTitle] = useState<string>('Sort by');
   const [products, setProducts] = useState<IProduct[]>([]);
   const [limit, setLimit] = useState<number | string>(12);
+  const [çategories, setCategories] = useState<string[]>([]);
   console.log(products);
   /* Sidebar */
   const [categoryFilterItems, setCategoryFilterItems] = useState<
@@ -121,11 +124,14 @@ function Category() {
 
   useEffect(() => {
     // Function to fetch data from the API
+    const search:string = searchParams.get("search")?.trim() || '';
+    const category:string = çategories.length>0 && çategories.join(',') || '';
+
     const fetchData = async () => {
       try {
         // Replace {{gazi_root_url}} with your actual API root URL
         const response = await axios.get<IProductResponse>(
-          `${API_URL}/frontend/products?limit=${limit}&page=${page}`
+          `${API_URL}/frontend/products?limit=${limit}&page=${page}${category!=='' ? '&category='+category : ''}${search!=='' ? '&search='+search : ''}`
         );
 
         // Set the category filter items in the state
@@ -138,12 +144,22 @@ function Category() {
 
     // Call the fetchData function when the component mounts
     fetchData();
-  }, [limit, page]);
+  }, [limit, page, çategories, searchParams]);
+
+  const handleMultipleCategory = (e: any) => {
+    setCategories(prevState=>{
+      const itemFound = prevState?.find(item=>item===e.target.value);
+      if(itemFound){
+        return prevState.filter(item=>item!==e.target.value);
+      }
+      return [...prevState, e.target.value];
+    });
+  };
 
   const renderCategory = (category: ICategoryData, depth: number) => (
     <div className={`filter-category ml-${depth * 2}`} key={category.id}>
       <p className="font-gotham font-normal text-sm cursor-pointer category-title">
-        {category.title}
+        <input type="checkbox" value={category.title} onChange={handleMultipleCategory}/> {category.title}
       </p>
       {categoryFilterItems
         .filter(
