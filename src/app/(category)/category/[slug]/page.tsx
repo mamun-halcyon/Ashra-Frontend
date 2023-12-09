@@ -1,27 +1,27 @@
-'use client';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
-import FilterBox from '@/components/filterbox';
-import Link from 'next/link';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import ReactSlider from 'react-slider';
-import './page.scss';
-import Image from 'next/image';
-import { AiOutlineBars } from 'react-icons/ai';
-import { PiDotsNineBold } from 'react-icons/pi';
-import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
-import ActionButton from '@/components/action';
-import { productsData } from '@/static/products';
-import ListCard from '@/components/list-card';
-import { categoryData } from '@/static/category';
-import { ICategoryData, ICategoryResponse } from '@/types/category';
-import CategoryFilter from '@/components/category-filter';
-import Pagination from '@/components/pagination';
-import { API_URL } from '@/constant';
-import axios from 'axios';
-import { IProduct, IProductResponse } from '@/types/product';
-import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
-const ProductCard = dynamic(() => import('@/components/card'));
+"use client";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import FilterBox from "@/components/filterbox";
+import Link from "next/link";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import ReactSlider from "react-slider";
+import "./page.scss";
+import Image from "next/image";
+import { AiOutlineBars } from "react-icons/ai";
+import { PiDotsNineBold } from "react-icons/pi";
+import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import ActionButton from "@/components/action";
+import { productsData } from "@/static/products";
+import ListCard from "@/components/list-card";
+import { categoryData } from "@/static/category";
+import { ICategoryData, ICategoryResponse } from "@/types/category";
+import CategoryFilter from "@/components/category-filter";
+import Pagination from "@/components/pagination";
+import { API_URL } from "@/constant";
+import axios from "axios";
+import { IProduct, IProductResponse } from "@/types/product";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+const ProductCard = dynamic(() => import("@/components/card"));
 
 const categoryProducts = async (position: string) => {
   const res = await fetch(`${API_URL}/menus/${position}`, {
@@ -29,7 +29,7 @@ const categoryProducts = async (position: string) => {
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
@@ -37,29 +37,19 @@ const categoryProducts = async (position: string) => {
 
 function Category() {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 200000]);
   const [page, setPage] = useState(1);
   const [isRow, setIsRow] = useState<boolean>(true);
-  const [showTitle, setShowTitle] = useState<string>('Show 12');
-  const [filter, setFilter] = useState<string>('Sort by');
-  const [filterTitle, setFilterTitle] = useState<string>('Sort by');
+  const [showTitle, setShowTitle] = useState<string>("Show 12");
+  const [sortBy, setSortBy] = useState<string>("Sort by");
   const [products, setProducts] = useState<IProduct[]>([]);
   const [limit, setLimit] = useState<number | string>(12);
   const [çategories, setCategories] = useState<string[]>([]);
-  console.log(products);
+  const [availabilities, setAvailabilities] = useState<number[]>([]);
   /* Sidebar */
   const [categoryFilterItems, setCategoryFilterItems] = useState<
     ICategoryData[]
   >([]);
-
-  const handleDropdownToggle = (clickedIndex: number) => {
-    const updatedSideLinks = categoryFilterItems.map((linkItem, index) => ({
-      ...linkItem,
-      isOpen: index === clickedIndex ? !linkItem.isOpen : false,
-    }));
-
-    setCategoryFilterItems(updatedSideLinks);
-  };
 
   const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedElement = event.target as HTMLLIElement;
@@ -68,10 +58,10 @@ function Category() {
     setLimit(innerText);
   };
 
-  const handleFilter = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  const handleSortBy = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedElement = event.target as HTMLLIElement;
     const innerText = clickedElement.innerText;
-    setFilterTitle(innerText);
+    setSortBy(innerText);
   };
 
   const incrementPage = () => {
@@ -102,81 +92,115 @@ function Category() {
   };
 
   useEffect(() => {
-    // Function to fetch data from the API
     const fetchData = async () => {
       try {
-        // Replace {{gazi_root_url}} with your actual API root URL
         const response = await axios.get<ICategoryResponse>(
           `${API_URL}/categories`
         );
-
-        // Set the category filter items in the state
         setCategoryFilterItems(response.data?.data?.rows);
       } catch (error) {
-        // Handle errors here
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    // Call the fetchData function when the component mounts
     fetchData();
   }, []);
 
-  useEffect(() => {
-    // Function to fetch data from the API
-    const search:string = searchParams.get("search")?.trim() || '';
-    const category:string = çategories.length>0 && çategories.join(',') || '';
-
-    const fetchData = async () => {
-      try {
-        // Replace {{gazi_root_url}} with your actual API root URL
-        const response = await axios.get<IProductResponse>(
-          `${API_URL}/frontend/products?limit=${limit}&page=${page}${category!=='' ? '&category='+category : ''}${search!=='' ? '&search='+search : ''}`
-        );
-
-        // Set the category filter items in the state
-        setProducts(response.data?.data?.rows);
-      } catch (error) {
-        // Handle errors here
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    // Call the fetchData function when the component mounts
-    fetchData();
-  }, [limit, page, çategories, searchParams]);
-
-  const handleMultipleCategory = (e: any) => {
-    setCategories(prevState=>{
-      const itemFound = prevState?.find(item=>item===e.target.value);
-      if(itemFound){
-        return prevState.filter(item=>item!==e.target.value);
-      }
-      return [...prevState, e.target.value];
-    });
+  const fetchData = async () => {
+    const search: string = searchParams.get("search")?.trim() || "";
+    const availability: string =
+      (availabilities.length > 0 && availabilities.join(",")) || "";
+    let sort_by: string = "";
+    switch (sortBy) {
+      case "Newest":
+        sort_by = "newest";
+        break;
+      case "Oldest":
+        sort_by = "oldest";
+        break;
+      case "Price low to high":
+        sort_by = "low";
+        break;
+      case "Price high to low":
+        sort_by = "high";
+        break;
+    }
+    const category: string =
+      (çategories.length > 0 && çategories.join(",")) || "";
+    try {
+      const response = await axios.get<IProductResponse>(
+        `${API_URL}/frontend/products?limit=${limit}&page=${page}
+        ${category !== "" ? "&category=" + category : ""}
+        ${search !== "" ? "&search=" + search : ""}
+        ${
+          priceRange[0] > 0 || priceRange[1] < 200000
+            ? "&min_price=" + priceRange[0]
+            : ""
+        }
+        ${
+          priceRange[0] > 0 || priceRange[1] < 200000
+            ? "&max_price=" + priceRange[1]
+            : ""
+        }
+        ${sort_by !== "" ? "&sort_by=" + sort_by : ""}
+        ${availability !== "" ? "&availability=" + availability : ""}`
+      );
+      setProducts(response.data?.data?.rows);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
-  const renderCategory = (category: ICategoryData, depth: number) => (
-    <div className={`filter-category ml-${depth * 2}`} key={category.id}>
-      <p className="font-gotham font-normal text-sm cursor-pointer category-title">
-        <input type="checkbox" value={category.title} onChange={handleMultipleCategory}/> {category.title}
-      </p>
-      {categoryFilterItems
-        .filter(
-          (childCategory) => childCategory.parent_category === category.slug
-        )
-        .map((childCategory) => renderCategory(childCategory, depth + 1))}
-    </div>
-  );
+  let timeOutId: any = 0;
+  useEffect(() => {
+    if (timeOutId === 0) {
+      timeOutId = setTimeout(() => {
+        fetchData();
+      }, 1000);
+      return () => clearTimeout(timeOutId);
+    }
+  }, [
+    limit,
+    page,
+    çategories,
+    searchParams,
+    priceRange,
+    sortBy,
+    availabilities,
+  ]);
+
+  const handleMultipleCategory = (title: string, removeUnselected: boolean) => {
+    if (removeUnselected) {
+      setCategories((prevState) =>
+        prevState?.find((item) => item === title)
+          ? prevState.filter((item) => item !== title)
+          : [...prevState]
+      );
+      return;
+    }
+    setCategories((prevState) =>
+      prevState?.find((item) => item === title)
+        ? prevState.filter((item) => item !== title)
+        : [...prevState, title]
+    );
+  };
+
+  const handleAvailability = (event: any) => {
+    setAvailabilities((prevState) =>
+      prevState?.find((item) => item === event.target.value)
+        ? prevState.filter((item) => item !== event.target.value)
+        : [...prevState, event.target.value]
+    );
+  };
 
   return (
     <main>
       <section className=" hidden md:block">
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/bathware'}> Home Appliance </Link>
+            <Link href={"/bathware"}> Home Appliance </Link>
           </div>
         </div>
       </section>
@@ -185,18 +209,21 @@ function Category() {
           <div className="flex justify-between">
             <div className=" hidden md:block md:w-[250px]">
               <FilterBox title="Category">
-                {categoryFilterItems
-                  .filter(
-                    (category) =>
-                      category.parent_category === '0' ||
-                      category.parent_category === null
-                  )
-                  .map((rootCategory) => renderCategory(rootCategory, 0))}
+                <CategoryFilter
+                  categoryFilterItems={categoryFilterItems}
+                  handleMultipleCategory={handleMultipleCategory}
+                />
               </FilterBox>
 
               <FilterBox title="Availability">
                 <div className="flex mb-2">
-                  <input type="checkbox" name="stock" id="stock" />
+                  <input
+                    type="checkbox"
+                    name="stock"
+                    id="stock"
+                    value={0}
+                    onChange={handleAvailability}
+                  />
                   <label
                     className="ml-2 font-gotham font-normal text-sm hover:text-primary transition-all"
                     htmlFor="stock"
@@ -205,7 +232,13 @@ function Category() {
                   </label>
                 </div>
                 <div className="flex mb-2">
-                  <input type="checkbox" name="stock-out" id="stockout" />
+                  <input
+                    type="checkbox"
+                    name="stock-out"
+                    id="stockout"
+                    value={1}
+                    onChange={handleAvailability}
+                  />
                   <label
                     className="ml-2 font-gotham font-normal text-sm hover:text-primary"
                     htmlFor="stockout"
@@ -214,7 +247,13 @@ function Category() {
                   </label>
                 </div>
                 <div className="flex">
-                  <input type="checkbox" name="instock" id="upcoming" />
+                  <input
+                    type="checkbox"
+                    name="instock"
+                    id="upcoming"
+                    value={2}
+                    onChange={handleAvailability}
+                  />
                   <label
                     className="ml-2 font-gotham font-normal text-sm hover:text-primary"
                     htmlFor="upcoming"
@@ -259,7 +298,7 @@ function Category() {
                 <div className="h-[235px]">
                   <Image
                     className="w-full h-full"
-                    src={'/assets/images/banner/categorybanner.png'}
+                    src={"/assets/images/banner/categorybanner.png"}
                     width={400}
                     height={300}
                     alt="gazi category-banner"
@@ -269,13 +308,13 @@ function Category() {
               <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5 shadow-sm">
                 <div className=" flex items-center">
                   <span
-                    className={`${isRow ? 'active' : null} p-1 mr-2 `}
+                    className={`${isRow ? "active" : null} p-1 mr-2 `}
                     onClick={() => setIsRow(true)}
                   >
                     <PiDotsNineBold className="text-xl icon" />
                   </span>
                   <span
-                    className={`${!isRow ? 'active' : null} p-1 `}
+                    className={`${!isRow ? "active" : null} p-1 `}
                     onClick={() => setIsRow(false)}
                   >
                     <AiOutlineBars className="text-xl icon" />
@@ -283,29 +322,29 @@ function Category() {
                 </div>
                 <div className="action flex items-center">
                   <div>
-                    <ActionButton title={filterTitle}>
+                    <ActionButton title={sortBy}>
                       <ul>
                         <li
                           className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleFilter}
+                          onClick={handleSortBy}
                         >
                           Newest
                         </li>
                         <li
                           className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleFilter}
+                          onClick={handleSortBy}
                         >
                           Oldest
                         </li>
                         <li
                           className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleFilter}
+                          onClick={handleSortBy}
                         >
                           Price low to high
                         </li>
                         <li
                           className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleFilter}
+                          onClick={handleSortBy}
                         >
                           Price high to low
                         </li>
@@ -385,7 +424,7 @@ function Category() {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 mb-5">
-                    {[...productsData].slice(0, 12).map((product, i) => (
+                    {products.map((product, i) => (
                       <ListCard key={i} product={product} />
                     ))}
                   </div>

@@ -127,10 +127,12 @@ const ProductCard: React.FC<IProps> = ({
             %
           </span>
         ) : null}
-        {isNew && (
+        {isNew ? (
           <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
             New
           </span>
+        ) : (
+          <></>
         )}
       </div>
       <div className=" absolute  feature top-2 right-2">

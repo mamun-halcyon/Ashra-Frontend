@@ -1,37 +1,35 @@
-import { ICategoryData } from '@/types/category';
-import { FC } from 'react';
-import './index.scss';
+import { ICategoryData } from "@/types/category";
+import { FC } from "react";
+import SubCategory from "./sub-category";
 
 interface IProps {
-  selectKey: number;
-  categoryItem: ICategoryData;
-  onToggle: () => void;
+  categoryFilterItems: ICategoryData[];
+  handleMultipleCategory: (title: string, removeUnselected: boolean) => void;
 }
 
-const CategoryFilter: FC<IProps> = ({ onToggle, categoryItem, selectKey }) => {
+const CategoryFilter: FC<IProps> = ({
+  categoryFilterItems,
+  handleMultipleCategory,
+}) => {
   return (
-    <div className="filter-category" onClick={onToggle}>
-      <p className="font-gotham font-normal text-sm cursor-pointer category-title">
-        {categoryItem.title}
-      </p>
-
-      {/* children category */}
-      <div
-        className={`${
-          categoryItem.isOpen ? 'open' : 'close'
-        } ml-2 category-children`}
-      >
-        <div className="flex items-center ">
-          <input type="checkbox" name="filter" id={`${selectKey}${1}`} />
-          <label
-            htmlFor={`${selectKey}${1}`}
-            className="font-gotham font-normal text-sm ml-1 cursor-pointer sub-link"
-          >
-            Talha
-          </label>
-        </div>
-      </div>
-    </div>
+    <>
+      {categoryFilterItems
+        .filter(
+          (category) =>
+            category.parent_category === "0" ||
+            category.parent_category === null
+        )
+        .map((rootCategory) => {
+          return (
+            <SubCategory
+              key={rootCategory.title}
+              categoryFilterItems={categoryFilterItems}
+              rootCategory={rootCategory}
+              handleMultipleCategory={handleMultipleCategory}
+            />
+          );
+        })}
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import { ICompareItem } from '@/types/compare';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 interface CompareState {
   data: ICompareItem[];
@@ -26,7 +27,7 @@ export const compareSlice = createSlice({
         state.data = state.data;
       } else {
         state.data = [...state.data, newItem];
-        // toast.success('Item added to your cart!');
+        toast.success('Item added to your compare list!');
       }
       localStorage.setItem('compare', JSON.stringify(state.data));
     },
