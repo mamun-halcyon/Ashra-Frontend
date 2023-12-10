@@ -1,16 +1,19 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { RxDashboard } from 'react-icons/rx';
-import { AiOutlineFilePpt, AiOutlineHeart } from 'react-icons/ai';
-import { LiaHandHoldingUsdSolid } from 'react-icons/lia';
-import { BsArrowRepeat } from 'react-icons/bs';
-import { BiMessageDetail } from 'react-icons/bi';
-import { RiPhoneCameraLine } from 'react-icons/ri';
-import { GrUserSettings } from 'react-icons/gr';
-import './index.scss';
+"use client";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { RxDashboard } from "react-icons/rx";
+import { AiOutlineFilePpt, AiOutlineHeart } from "react-icons/ai";
+import { LiaHandHoldingUsdSolid } from "react-icons/lia";
+import { BsArrowRepeat } from "react-icons/bs";
+import { BiMessageDetail } from "react-icons/bi";
+import { RiPhoneCameraLine } from "react-icons/ri";
+import { GrUserSettings } from "react-icons/gr";
+import "./index.scss";
+import { useAppSelector } from "@/redux/hooks";
 
 const ProfileSidebar = () => {
+  const { login } = useAppSelector((state) => state.login);
   return (
     <div className=" md:col-span-3 shadow pb-6 absolute md:static  bg-white">
       <div className="relative profile-top">
@@ -18,7 +21,7 @@ const ProfileSidebar = () => {
           <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%]">
             <Image
               className="w-full"
-              src={'/assets/images/icon/profile.png'}
+              src={"/assets/images/icon/profile.png"}
               width={80}
               height={80}
               alt="profile"
@@ -29,10 +32,10 @@ const ProfileSidebar = () => {
       <div className="mt-16 text-center ">
         <div className="px-10">
           <h3 className=" font-gotham font-medium text-base text-black">
-            Profile Name
+            {login?.user?.name}
           </h3>
           <p className=" font-gotham font-normal text-sm text-black bg-secondary mt-1">
-            email@gmail.com
+            {login?.user?.email}
           </p>
         </div>
         <ul className="mt-12 text-left profile-link">
@@ -42,7 +45,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile'}
+              href={"/profile"}
             >
               Dashboard
             </Link>
@@ -53,7 +56,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/order'}
+              href={"/profile/order"}
             >
               Purchase History
             </Link>
@@ -75,7 +78,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/'}
+              href={"/"}
             >
               Refund Requested
             </Link>
@@ -86,7 +89,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/wishlist'}
+              href={"/wishlist"}
             >
               Wishlist
             </Link>
@@ -97,7 +100,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/compare'}
+              href={"/compare"}
             >
               Compare
             </Link>
@@ -108,7 +111,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/conversations'}
+              href={"/profile/conversations"}
             >
               Conversations
             </Link>
@@ -119,7 +122,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/ticket'}
+              href={"/profile/ticket"}
             >
               Support Ticket
             </Link>
@@ -130,7 +133,7 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/manage-profile'}
+              href={"/profile/manage-profile"}
             >
               Manage Profile
             </Link>

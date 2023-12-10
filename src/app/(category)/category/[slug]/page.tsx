@@ -25,7 +25,7 @@ const ProductCard = dynamic(() => import("@/components/card"));
 
 const categoryProducts = async (position: string) => {
   const res = await fetch(`${API_URL}/menus/${position}`, {
-    cache: 'no-store' 
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -94,7 +94,7 @@ function Category() {
     const fetchData = async () => {
       try {
         const response = await axios.get<ICategoryResponse>(
-          `${API_URL}/categories`
+          `${API_URL}/categories?page=1&limit=100`
         );
         if (response.status == 200) {
           console.log("category Response : ", response.data?.data?.rows);
