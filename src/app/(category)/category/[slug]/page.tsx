@@ -97,7 +97,6 @@ function Category() {
           `${API_URL}/categories?page=1&limit=100`
         );
         if (response.status == 200) {
-          console.log("category Response : ", response.data?.data?.rows);
           setCategoryFilterItems(response.data?.data?.rows);
         }
       } catch (error) {

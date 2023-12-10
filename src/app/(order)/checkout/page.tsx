@@ -91,7 +91,7 @@ function Checkout() {
     await axios.post(`${API_URL}/orders`, orderData).then((res) => {
       toast.success("Order create successfully");
       dispatch(clearCart());
-      router.push("/order/confirm/1");
+      router.push("/profile/order");
     });
   };
 
@@ -116,8 +116,6 @@ function Checkout() {
 
   useEffect(() => {
     if (approvePromoData) {
-      console.log(approvePromoData);
-      console.log(discountCart);
       if (approvePromoData?.discount_type === "flat") {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
