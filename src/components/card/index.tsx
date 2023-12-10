@@ -5,14 +5,16 @@ import Button from "../button";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsArrowRepeat } from "react-icons/bs";
 import Link from "next/link";
-import { API_ROOT } from "@/constant";
+import { API_ROOT, API_URL } from "@/constant";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
+import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
 import { ICartItem } from "@/types/cart";
 import { useRouter } from "next/navigation";
 import { addToCompare } from "@/redux/features/compare/compareSlice";
 import { ICompareItem } from "@/types/compare";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 interface IProps {
   product_id: number;
@@ -37,6 +39,7 @@ const ProductCard: React.FC<IProps> = ({
   const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
   const dispatch = useAppDispatch();
+
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
     router.push("/cart");
@@ -47,6 +50,38 @@ const ProductCard: React.FC<IProps> = ({
       dispatch(addToCompare(data));
     } else {
       toast.error("Maximum items exits");
+    }
+  };
+
+  const addWishList = async () => {
+    const storedLogin: string | null = localStorage.getItem("login");
+    const accessToken: string | null = storedLogin
+      ? JSON.parse(storedLogin)?.accessToken || null
+      : null;
+    const user_id: number | null = storedLogin
+      ? JSON.parse(storedLogin)?.user?.id || null
+      : null;
+    if (accessToken !== null && user_id !== null) {
+      try {
+        const response = await axios.post(`${API_URL}/wishlists`, {
+          product_id,
+          user_id: user_id,
+        });
+        if (response.status == 200) {
+          toast.success("");
+        }
+
+        // dispatch(
+        //   addToWishList({
+        //     product_id: response.data.data.product_id,
+        //     user_id: response.data.data.user_id,
+        //   })
+        // );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      router.push("/login");
     }
   };
 
@@ -90,6 +125,7 @@ const ProductCard: React.FC<IProps> = ({
                   title: title,
                   image: image,
                   quantity: 1,
+                  regular_price: Number(regular_price),
                 })
               )
             }
@@ -105,6 +141,7 @@ const ProductCard: React.FC<IProps> = ({
                 title: title,
                 image: image,
                 quantity: 1,
+                regular_price: Number(regular_price),
               })
             }
             className="font-gotham font-medium py-2 text-xs  w-[102px]"
@@ -136,7 +173,7 @@ const ProductCard: React.FC<IProps> = ({
         )}
       </div>
       <div className=" absolute  feature top-2 right-2">
-        <div className="mb-1 cursor-pointer action-item">
+        <div className="mb-1 cursor-pointer action-item" onClick={addWishList}>
           <AiOutlineHeart className=" hover:text-primary" />
         </div>
         <div

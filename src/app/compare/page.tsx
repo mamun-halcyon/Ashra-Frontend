@@ -1,21 +1,21 @@
-'use client';
-import React, { useState } from 'react';
-import './page.scss';
-import Button from '@/components/button';
-import Image from 'next/image';
-import { RxCrossCircled } from 'react-icons/rx';
-import { LuSearch } from 'react-icons/lu';
-import StarRating from '@/components/rating';
-import ToggleButton from '@/components/status-button';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+"use client";
+import React, { useState } from "react";
+import "./page.scss";
+import Button from "@/components/button";
+import Image from "next/image";
+import { RxCrossCircled } from "react-icons/rx";
+import { LuSearch } from "react-icons/lu";
+import StarRating from "@/components/rating";
+import ToggleButton from "@/components/status-button";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   clearCompare,
   removeFromCompare,
-} from '@/redux/features/compare/compareSlice';
-import { API_ROOT } from '@/constant';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useRouter } from 'next/navigation';
-import { ICartItem } from '@/types/cart';
+} from "@/redux/features/compare/compareSlice";
+import { API_ROOT } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useRouter } from "next/navigation";
+import { ICartItem } from "@/types/cart";
 
 function Compare() {
   const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ function Compare() {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
   return (
     <section className="compare">
@@ -39,7 +39,7 @@ function Compare() {
               <ToggleButton isChecked={isTrue} onClick={handleToggle} />
               <p
                 className={`font-gotham font-normal text-sm ml-4 ${
-                  isTrue ? 'text-primary' : ''
+                  isTrue ? "text-primary" : ""
                 }`}
               >
                 Highlight differences
@@ -202,6 +202,7 @@ function Compare() {
                             price: item.price,
                             product_id: item.product_id,
                             image: item.image,
+                            regular_price: item.regular_price,
                           })
                         }
                       >

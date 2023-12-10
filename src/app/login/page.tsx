@@ -1,33 +1,37 @@
-'use client';
+"use client";
 
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import './page.scss';
-import axios from '../../lib/axios';
-import { useState } from 'react';
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import "./page.scss";
+import axios from "../../lib/axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useAppDispatch } from "@/redux/hooks";
+import { saveLoginInfo } from "@/redux/features/login/loginSlice";
+import { API_URL } from "@/constant";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('/auths/login', {
-        email: email,
+      const response = await axios.post(`${API_URL}/auths/login`, {
+        user_name: email,
         password: password,
       });
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      console.log('Login successful');
-      router.push('/profile');
+      dispatch(saveLoginInfo(response.data));
+      toast.success("Login Success!");
+      router.push("/profile");
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
+      toast.error("Login Error!");
     }
   };
 
@@ -36,9 +40,9 @@ function Login() {
       <section className=" hidden md:block">
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/login'}> Login </Link>
+            <Link href={"/login"}> Login </Link>
           </div>
         </div>
       </section>
@@ -78,7 +82,7 @@ function Login() {
               <div>
                 <Link
                   className="font-gotham font-normal text-sm text-black hover:text-primary"
-                  href={'/password/reset'}
+                  href={"/password/reset"}
                 >
                   Forget Password
                 </Link>
@@ -93,7 +97,7 @@ function Login() {
           </h3>
           <Link
             className="w-full inline-block text-center py-1 mt-3 register-outline  font-gotham font-normal text-base"
-            href={'/register'}
+            href={"/register"}
           >
             Register Now
           </Link>

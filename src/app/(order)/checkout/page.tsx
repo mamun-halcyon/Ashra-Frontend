@@ -1,31 +1,38 @@
-'use client';
-import Box from '@/components/box';
-import FormGroup from '@/components/fromgroup';
-import { toast } from 'react-toastify';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { FormEvent, useState } from 'react';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import Button from '@/components/button';
-import './page.scss';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import { useRouter } from 'next/navigation';
-import { clearCart } from '@/redux/features/cart/cartSlice';
+"use client";
+import Box from "@/components/box";
+import FormGroup from "@/components/fromgroup";
+import { toast } from "react-toastify";
+import Image from "next/image";
+import Link from "next/link";
+import React, { FormEvent, useEffect, useState } from "react";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import Button from "@/components/button";
+import "./page.scss";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import { API_URL } from "@/constant";
+import { useRouter } from "next/navigation";
+import { clearCart } from "@/redux/features/cart/cartSlice";
 
 function Checkout() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [thana, setThana] = useState('');
+  const [approvePromoCode, setApprovePromCode] = useState<string | null>(null);
+  const [approvePromoData, setApprovePromoData] = useState<any>(null);
+  const [approvePromoError, setApprovePromError] = useState<string | null>(
+    null
+  );
+  const [discountType, setDiscountType] = useState<string | null>(null);
+  const [discountAmount, setDiscountAmount] = useState<number | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [thana, setThana] = useState("");
 
   const final_price = cart.reduce(
     (accumulator, currentValue) =>
@@ -68,42 +75,67 @@ function Checkout() {
     address,
     city,
     thana,
-    order_form: 'web',
+    order_form: "web",
     final_price,
     delivery_fee: 0,
-    payment_method: 'Credit Card',
-    order_status: 'pending',
+    payment_method: "Credit Card",
+    order_status: "pending",
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
   };
 
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (!selectedPayment) {
-      toast.error('Please Select payment method');
+      toast.error("Please Select payment method");
       return;
     }
     if (!selectedPaymentDeliveryStatus) {
-      toast.error('Please Select delivery method');
+      toast.error("Please Select delivery method");
     }
     await axios.post(`${API_URL}/orders`, orderData).then((res) => {
-      toast.success('Order create successfully');
+      toast.success("Order create successfully");
       dispatch(clearCart());
-      router.push('/order/confirm/1');
+      router.push("/order/confirm/1");
     });
   };
+
+  const handleApplyPromo = async () => {
+    if (approvePromoCode?.trim() || approvePromoCode?.trim() !== "") {
+      try {
+        const response = await axios.post(`${API_URL}/coupons/validation`, {
+          coupon_code: approvePromoCode,
+        });
+        if (response.status == 200) {
+          setApprovePromoData(response.data.coupon);
+          setApprovePromError(null);
+        } else {
+          setApprovePromoData(null);
+          setApprovePromError("Coupon not valid");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (approvePromoData) {
+      console.log(approvePromoData);
+      // setDiscountType(approvePromoData);
+    }
+  }, [approvePromoData]);
 
   return (
     <main>
       <section>
         <div className="container px-2 md:px-0">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/cart'}> Shopping Cart </Link>
+            <Link href={"/cart"}> Shopping Cart </Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/checkout'}> Checkout </Link>
+            <Link href={"/checkout"}> Checkout </Link>
           </div>
         </div>
       </section>
@@ -178,7 +210,7 @@ function Checkout() {
                           type="checkbox"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
-                          checked={selectedPayment === 'cashOnDelivery'}
+                          checked={selectedPayment === "cashOnDelivery"}
                           onChange={handlePaymentChange}
                         />
                         <label
@@ -193,7 +225,7 @@ function Checkout() {
                           type="checkbox"
                           name="onlinePayment"
                           id="onlinePayment"
-                          checked={selectedPayment === 'onlinePayment'}
+                          checked={selectedPayment === "onlinePayment"}
                           onChange={handlePaymentChange}
                         />
                         <label
@@ -208,7 +240,7 @@ function Checkout() {
                       We Accept
                     </p>
                     <Image
-                      src={'/assets/images/service/card-logo.png'}
+                      src={"/assets/images/service/card-logo.png"}
                       className="w-9/12 mt-2"
                       width={200}
                       height={100}
@@ -230,7 +262,7 @@ function Checkout() {
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
-                              selectedPaymentDeliveryStatus === 'homeDelivery'
+                              selectedPaymentDeliveryStatus === "homeDelivery"
                             }
                             onChange={handlePaymentStatusChange}
                           />
@@ -246,7 +278,7 @@ function Checkout() {
                             type="checkbox"
                             name="pickup"
                             id="pickup"
-                            checked={selectedPaymentDeliveryStatus === 'pickup'}
+                            checked={selectedPaymentDeliveryStatus === "pickup"}
                             onChange={handlePaymentStatusChange}
                           />
                           <label
@@ -264,14 +296,17 @@ function Checkout() {
                           className="w-3/4 block form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs text-black promo-box"
                           type="text"
                           placeholder="Promo Code"
+                          onChange={(e) => setApprovePromCode(e.target.value)}
                         />
                         <Button
                           type="button"
                           className="font-gotham font-medium py-2 text-xs  w-1/4 button"
+                          onClick={handleApplyPromo}
                         >
                           Apply Promo
                         </Button>
                       </div>
+                      <div>Promo code not valid!</div>
                     </div>
                   </div>
                 </div>
@@ -382,12 +417,12 @@ function Checkout() {
                         htmlFor="accept"
                         className=" font-gotham font-normal text-xs"
                       >
-                        I have read and agree to the{' '}
+                        I have read and agree to the{" "}
                         <span className="sudo">
-                          {' '}
+                          {" "}
                           Terms and Conditions, Privacy Policy
-                        </span>{' '}
-                        and{' '}
+                        </span>{" "}
+                        and{" "}
                         <span className="sudo">Refund and Return Policy</span>
                       </label>
                     </div>

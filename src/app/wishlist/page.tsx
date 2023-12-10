@@ -1,12 +1,72 @@
-import Button from '@/components/button';
-import Image from 'next/image';
-import React from 'react';
-import { RxCross2 } from 'react-icons/rx';
-import './page.scss';
-import ServiceCard from '@/components/service-card';
-import { serviceCardData } from '@/static/serviceCard';
+"use client";
+import Button from "@/components/button";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import "./page.scss";
+import ServiceCard from "@/components/service-card";
+import { serviceCardData } from "@/static/serviceCard";
+import { IWishListItem } from "@/types/wishList";
+import axios from "axios";
+import { API_ROOT, API_URL } from "@/constant";
+import { toast } from "react-toastify";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 
 function WishlistPage() {
+  const [wishListItems, setWishListItems] = useState<any[]>([]);
+  const dispatch = useAppDispatch();
+
+  const getWishListItems = async () => {
+    const storedLogin: string | null = localStorage.getItem("login");
+    const accessToken: string | null = storedLogin
+      ? JSON.parse(storedLogin)?.accessToken || null
+      : null;
+    if (accessToken !== null) {
+      try {
+        const response = await axios.get(`${API_URL}/customers/wishlists`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        if (response.status == 200) {
+          setWishListItems(response?.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+  };
+
+  const handleRemoveItem = async (id: number) => {
+    const storedLogin: string | null = localStorage.getItem("login");
+    const accessToken: string | null = storedLogin
+      ? JSON.parse(storedLogin)?.accessToken || null
+      : null;
+    if (accessToken !== null) {
+      try {
+        const response = await axios.delete(
+          `${API_URL}/wishlists?ids=[${id}]`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+        if (response.status == 200) {
+          toast.success("Item removed successfuly!");
+          getWishListItems();
+        }
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getWishListItems();
+  }, []);
+
   return (
     <main>
       <section className="wishlist-page">
@@ -38,131 +98,73 @@ function WishlistPage() {
               </div>
               <div className="col-span-1 flex items-center"></div>
             </div>
-            {/* single cart */}
-            <div className="grid grid-cols-8 gap-4 items-center product-item">
-              <div className="col-span-4">
-                <div className="flex items-center">
-                  <div className=" cursor-pointer">
-                    <span>
-                      <RxCross2 className="text-xs " />
-                    </span>
+            {wishListItems.length > 0 &&
+              wishListItems.map((item, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-8 gap-4 items-center product-item"
+                >
+                  <div className="col-span-4">
+                    <div className="flex items-center">
+                      <div
+                        className=" cursor-pointer"
+                        onClick={() => handleRemoveItem(item.id)}
+                      >
+                        <span>
+                          <RxCross2 className="text-xs " />
+                        </span>
+                      </div>
+                      <div className="w-[80px] mx-2 md:mx-9">
+                        <Image
+                          className=" w-full object-cover"
+                          src={`${API_ROOT}/images/products/${item.image}`}
+                          width={200}
+                          height={200}
+                          alt="product"
+                        />
+                      </div>
+                      <div>
+                        <h3 className=" font-gotham font-medium text-sm text-black">
+                          {item.title}
+                        </h3>
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-[80px] mx-2 md:mx-9">
-                    <Image
-                      className=" w-full object-cover"
-                      src={'/assets/images/products/image3.png'}
-                      width={200}
-                      height={200}
-                      alt="product"
-                    />
+                  <div className="md:col-span-1 col-span-2">
+                    <p className=" font-gotham font-medium text-primary text-xs">
+                      ৳ {item.discount_price}
+                    </p>
                   </div>
-                  <div>
-                    <h3 className=" font-gotham font-medium text-sm text-black">
-                      Gazi Smiss Gas Stove | B-239
+                  <div className="col-span-2 hidden md:block">
+                    <h3 className=" font-gotham font-medium text-sm">
+                      {item.availability == 0 ? "Instock" : ""}
+                      {item.availability === 1 ? "Out of stock" : ""}
+                      {item.availability === 2 ? "Upcomming" : ""}
                     </h3>
                   </div>
-                </div>
-              </div>
-              <div className="md:col-span-1 col-span-2">
-                <p className=" font-gotham font-medium text-primary text-xs">
-                  ৳ 3000.00
-                </p>
-              </div>
-              <div className="col-span-2 hidden md:block">
-                <h3 className=" font-gotham font-medium text-sm">Instock</h3>
-              </div>
-              <div className="md:col-span-1 col-span-2">
-                <div>
-                  <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
-                    Add to Cart
-                  </Button>
-                </div>
-              </div>
-            </div>
-            {/* single cart */}
-            <div className="grid grid-cols-8 gap-4 items-center product-item">
-              <div className="col-span-4">
-                <div className="flex items-center">
-                  <div className=" cursor-pointer">
-                    <span>
-                      <RxCross2 className="text-xs " />
-                    </span>
-                  </div>
-                  <div className="w-[80px] mx-2 md:mx-9">
-                    <Image
-                      className=" w-full object-cover"
-                      src={'/assets/images/products/image4.png'}
-                      width={200}
-                      height={200}
-                      alt="product"
-                    />
-                  </div>
-                  <div>
-                    <h3 className=" font-gotham font-medium text-sm text-black">
-                      Gazi Smiss Gas Stove | B-239
-                    </h3>
+                  <div className="md:col-span-1 col-span-2">
+                    <div>
+                      <Button
+                        className="px-6 py-1 font-gotham font-medium text-sm w-btn"
+                        onClick={() =>
+                          dispatch(
+                            addToCart({
+                              product_id: Number(item.id),
+                              price: item.discount_price,
+                              title: item.title,
+                              image: item.image,
+                              quantity: 1,
+                              regular_price: item.regular_price,
+                            })
+                          )
+                        }
+                      >
+                        Add to Cart
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="md:col-span-1 col-span-2">
-                <p className=" font-gotham font-medium text-primary text-xs">
-                  ৳ 3000.00
-                </p>
-              </div>
-              <div className="col-span-2 hidden md:block">
-                <h3 className=" font-gotham font-medium text-sm">
-                  Out of Stock
-                </h3>
-              </div>
-              <div className="md:col-span-1 col-span-2">
-                <div>
-                  <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
-                    Add to Cart
-                  </Button>
-                </div>
-              </div>
-            </div>
-            {/* single cart */}
-            <div className="grid grid-cols-8 gap-4 items-center product-item">
-              <div className="col-span-4">
-                <div className="flex items-center">
-                  <div className=" cursor-pointer">
-                    <span>
-                      <RxCross2 className="text-xs " />
-                    </span>
-                  </div>
-                  <div className="w-[80px] mx-2 md:mx-9">
-                    <Image
-                      className=" w-full object-cover"
-                      src={'/assets/images/products/image3.png'}
-                      width={200}
-                      height={200}
-                      alt="product"
-                    />
-                  </div>
-                  <div>
-                    <h3 className=" font-gotham font-medium text-sm text-black">
-                      Gazi Smiss Gas Stove | B-239
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-1 col-span-2">
-                <p className=" font-gotham font-medium text-primary text-xs">
-                  ৳ 3000.00
-                </p>
-              </div>
-              <div className="col-span-2 hidden md:block">
-                <h3 className=" font-gotham font-medium text-sm">Instock</h3>
-              </div>
-              <div className="md:col-span-1 col-span-2">
-                <div>
-                  <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
-                    Add to Cart
-                  </Button>
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
         </div>
       </section>

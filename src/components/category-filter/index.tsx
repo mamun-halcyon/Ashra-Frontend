@@ -17,7 +17,8 @@ const CategoryFilter: FC<IProps> = ({
         .filter(
           (category) =>
             category.parent_category === "0" ||
-            category.parent_category === null
+            category.parent_category === null ||
+            category.parent_category === ""
         )
         .map((rootCategory) => {
           return (

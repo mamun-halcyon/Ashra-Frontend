@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import './index.scss';
-import Link from 'next/link';
-import { applianceData, customerServiceData } from '@/static/footerData';
-import { FaLocationDot } from 'react-icons/fa6';
-import { PiEnvelopeThin } from 'react-icons/pi';
-import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
-import { HomeApiResponse } from '@/types/home';
-import { API_ROOT } from '@/constant';
+import Image from "next/image";
+import "./index.scss";
+import Link from "next/link";
+import { applianceData, customerServiceData } from "@/static/footerData";
+import { FaLocationDot } from "react-icons/fa6";
+import { PiEnvelopeThin } from "react-icons/pi";
+import { BsHeadphones, BsEnvelopeFill } from "react-icons/bs";
+import { HomeApiResponse } from "@/types/home";
+import { API_ROOT } from "@/constant";
 
 type IProps = {
   globalData: HomeApiResponse;
@@ -81,7 +81,7 @@ const Footer = ({ globalData }: IProps) => {
                     key={index}
                   >
                     <Link className="link-item" href={item.href}>
-                      {' '}
+                      {" "}
                       {item.name}
                     </Link>
                   </li>
@@ -90,7 +90,7 @@ const Footer = ({ globalData }: IProps) => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div>
             <p className=" font-gotham font-normal text-sm text-black mb-2 ">
               Download our Mobile Apps
@@ -132,7 +132,7 @@ const Footer = ({ globalData }: IProps) => {
                   />
                 </Link>
               )}
-              {globalData.setting.instagram_url && (
+              {globalData?.setting?.instagram_url && (
                 <Link href={globalData.setting.instagram_url} target="_blank">
                   <Image
                     className=" rounded w-6 h-6 mx-1"
@@ -143,7 +143,7 @@ const Footer = ({ globalData }: IProps) => {
                   />
                 </Link>
               )}
-              {globalData.setting.linkedIn_url && (
+              {globalData?.setting?.linkedIn_url && (
                 <Link href={globalData.setting.linkedIn_url} target="_blank">
                   <Image
                     className=" rounded w-6 h-6 mx-1"
@@ -154,8 +154,8 @@ const Footer = ({ globalData }: IProps) => {
                   />
                 </Link>
               )}
-              {globalData.setting.youtube_url && (
-                <Link href={'/'} target="_blank">
+              {globalData?.setting?.youtube_url && (
+                <Link href={"/"} target="_blank">
                   <Image
                     className=" rounded w-6 h-6 mx-1"
                     src="/assets/images/icon/youtube.png"
@@ -179,7 +179,7 @@ const Footer = ({ globalData }: IProps) => {
               </span>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className=" mt-10 py-2 bg-primary">
         <div className="container px-2 md:px-0">
@@ -192,7 +192,7 @@ const Footer = ({ globalData }: IProps) => {
             <div className="w-[60%] md:w-auto">
               <Image
                 className=" md:h-6 bottom-image "
-                src={'/assets/images/footer/payment.png'}
+                src={"/assets/images/footer/payment.png"}
                 width={400}
                 height={50}
                 alt="payment"

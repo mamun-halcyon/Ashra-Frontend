@@ -1,11 +1,15 @@
-import Link from 'next/link';
-import React from 'react';
-import { BiSolidPhone } from 'react-icons/bi';
-import { AiFillBell } from 'react-icons/ai';
-import { BsChevronDown } from 'react-icons/bs';
-import './index.scss';
-import { IHomePage } from '@/types/home';
-import { IMenu } from '@/types/menu';
+"use client";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { BiSolidPhone } from "react-icons/bi";
+import { AiFillBell } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
+import "./index.scss";
+import { IHomePage } from "@/types/home";
+import { IMenu } from "@/types/menu";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearLoginInfo } from "@/redux/features/login/loginSlice";
 
 type IProps = {
   homeData: IHomePage;
@@ -13,6 +17,23 @@ type IProps = {
 };
 
 const TopHeader = ({ homeData, menus }: IProps) => {
+  const { login } = useAppSelector((state) => state.login);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (login?.accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, [login?.accessToken]);
+
+  const logoutHandler = (e: any) => {
+    e.preventDefault();
+    dispatch(clearLoginInfo());
+    router.push("/login");
+  };
+
   return (
     <div className="container p-2 md:p-0">
       <div className="flex justify-between items-center flex-wrap py-2">
@@ -38,7 +59,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
           <div className="relative group inline-block">
             <Link
               className="sub-link  text-primary font-gotham font-normal text-sm"
-              href={'/about'}
+              href={"/about"}
             >
               Help
               <span>
@@ -55,19 +76,29 @@ const TopHeader = ({ homeData, menus }: IProps) => {
               </ul>
             </div>
           </div>
-
-          <Link
-            className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
-            href={'/login'}
-          >
-            Login
-          </Link>
-          <Link
-            className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
-            href={'/register'}
-          >
-            Registration
-          </Link>
+          {isLoggedIn ? (
+            <span
+              className="ml-6 sub-link text-primary font-gotham font-normal text-sm logout-button"
+              onClick={logoutHandler}
+            >
+              Logout
+            </span>
+          ) : (
+            <>
+              <Link
+                className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
+                href={"/login"}
+              >
+                Login
+              </Link>
+              <Link
+                className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
+                href={"/register"}
+              >
+                Registration
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

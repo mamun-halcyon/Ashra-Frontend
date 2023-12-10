@@ -144,6 +144,7 @@ const ListCard: FC<IProps> = ({ product }) => {
                     title: product.title,
                     image: product.image,
                     quantity: 1,
+                    regular_price: Number(product.regular_price),
                   })
                 )
               }
@@ -176,6 +177,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               title: product.title,
               image: product.image,
               quantity: 1,
+              regular_price: Number(product.regular_price),
             });
           }}
         >

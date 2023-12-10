@@ -46,7 +46,6 @@ function Category() {
   const [limit, setLimit] = useState<number | string>(12);
   const [çategories, setCategories] = useState<string[]>([]);
   const [availabilities, setAvailabilities] = useState<number[]>([]);
-  /* Sidebar */
   const [categoryFilterItems, setCategoryFilterItems] = useState<
     ICategoryData[]
   >([]);
@@ -97,7 +96,10 @@ function Category() {
         const response = await axios.get<ICategoryResponse>(
           `${API_URL}/categories`
         );
-        setCategoryFilterItems(response.data?.data?.rows);
+        if (response.status == 200) {
+          console.log("category Response : ", response.data?.data?.rows);
+          setCategoryFilterItems(response.data?.data?.rows);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }

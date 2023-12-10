@@ -12,3 +12,9 @@
   opacity: 1;
   visibility: visible;
 }
+
+.logout-button{
+  &:hover{
+    cursor: pointer;
+  }
+}
