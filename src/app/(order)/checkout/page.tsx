@@ -118,7 +118,7 @@ function Checkout() {
     if (approvePromoData) {
       console.log(approvePromoData);
       console.log(discountCart);
-      if (approvePromoData?.discount_type === 0) {
+      if (approvePromoData?.discount_type === "flat") {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           tempDisCart = tempDisCart?.map((item: any) => {
