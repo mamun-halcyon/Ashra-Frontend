@@ -15,7 +15,7 @@ function Login() {
   const [fullName, setFullName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [mobile, setMobile] = useState<string>("");
-  const [passeord, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -23,18 +23,17 @@ function Login() {
       fullName.trim() !== "" &&
       email.trim() !== "" &&
       mobile.trim() !== "" &&
-      passeord.trim() !== ""
+      password.trim() !== ""
     ) {
-      console.log("all ok");
       try {
         const response = await axios.post(`${API_URL}/users`, {
           name: fullName,
           email: email,
           mobile: mobile,
-          passeord: passeord,
+          password: password,
           role_id: 1,
         });
-        if (response.status === 200) {
+        if (response.status === 201) {
           toast.success("Registration Success!");
           router.push("/login");
         }
