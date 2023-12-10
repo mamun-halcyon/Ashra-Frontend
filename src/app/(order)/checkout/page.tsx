@@ -4,7 +4,7 @@ import FormGroup from "@/components/fromgroup";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import Link from "next/link";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import Button from "@/components/button";
 import "./page.scss";
@@ -19,29 +19,23 @@ function Checkout() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const [discountCart, setDiscountCart] = useState<any>(cart);
+  const [finalPrice, setFinalPrice] = useState<number>(0);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [approvePromoCode, setApprovePromCode] = useState<string | null>(null);
   const [approvePromoData, setApprovePromoData] = useState<any>(null);
-  const [approvePromoError, setApprovePromError] = useState<string | null>(
+  const [approvePromoStatus, setApprovePromStatus] = useState<number | null>(
     null
   );
-  const [discountType, setDiscountType] = useState<string | null>(null);
-  const [discountAmount, setDiscountAmount] = useState<number | null>(null);
+  const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
+    useState<string | null>(null);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [thana, setThana] = useState("");
-
-  const final_price = cart.reduce(
-    (accumulator, currentValue) =>
-      accumulator + currentValue.price * currentValue.quantity,
-    0
-  );
-
-  const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
-    useState<string | null>(null);
 
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedPaymentValue = event.target.name;
@@ -52,17 +46,18 @@ function Checkout() {
       setSelectedPayment(selectedPaymentValue);
     }
   };
+
   const handlePaymentStatusChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const selectedPaymentDeliveryStatusValue = event.target.name;
-
     if (selectedPayment === selectedPaymentDeliveryStatusValue) {
       setSelectedPaymentDeliveryStatus(null);
     } else {
       setSelectedPaymentDeliveryStatus(selectedPaymentDeliveryStatusValue);
     }
   };
+
   const orderItem = cart.map((item) => ({
     product_id: item.product_id,
     quantity: item.quantity,
@@ -76,7 +71,7 @@ function Checkout() {
     city,
     thana,
     order_form: "web",
-    final_price,
+    final_price: finalPrice,
     delivery_fee: 0,
     payment_method: "Credit Card",
     order_status: "pending",
@@ -108,10 +103,10 @@ function Checkout() {
         });
         if (response.status == 200) {
           setApprovePromoData(response.data.coupon);
-          setApprovePromError(null);
+          setApprovePromStatus(1);
         } else {
           setApprovePromoData(null);
-          setApprovePromError("Coupon not valid");
+          setApprovePromStatus(0);
         }
       } catch (error) {
         console.log(error);
@@ -122,9 +117,72 @@ function Checkout() {
   useEffect(() => {
     if (approvePromoData) {
       console.log(approvePromoData);
-      // setDiscountType(approvePromoData);
+      console.log(discountCart);
+      if (approvePromoData?.discount_type === 0) {
+        let tempDisCart = discountCart;
+        if (approvePromoData?.product_id) {
+          tempDisCart = tempDisCart?.map((item: any) => {
+            if (approvePromoData?.product_id == item.id) {
+              return {
+                ...item,
+                price: item.regular_price - approvePromoData.discount_amount,
+              };
+            }
+            return item;
+          });
+        } else {
+          tempDisCart = tempDisCart?.map((item: any) => {
+            return {
+              ...item,
+              price: item.regular_price - approvePromoData.discount_amount,
+            };
+          });
+        }
+        setDiscountCart(tempDisCart);
+      } else {
+        let tempDisCart = discountCart;
+        if (approvePromoData?.product_id) {
+          tempDisCart = tempDisCart?.map((item: any) => {
+            if (approvePromoData?.product_id == item.id) {
+              return {
+                ...item,
+                price:
+                  item.regular_price -
+                  item.regular_price * (approvePromoData.discount_amount / 100),
+              };
+            }
+            return item;
+          });
+        } else {
+          tempDisCart = tempDisCart?.map((item: any) => {
+            return {
+              ...item,
+              price:
+                item.regular_price -
+                item.regular_price * (approvePromoData.discount_amount / 100),
+            };
+          });
+        }
+        setDiscountCart(tempDisCart);
+      }
     }
   }, [approvePromoData]);
+
+  useEffect(() => {
+    if (approvePromoData) {
+      let finalPrice = 0;
+      discountCart?.map((item: any) => {
+        finalPrice += item.price * item.quantity;
+      });
+      setFinalPrice(finalPrice);
+    } else {
+      let finalPrice = 0;
+      cart?.map((item: any) => {
+        finalPrice += item.price * item.quantity;
+      });
+      setFinalPrice(finalPrice);
+    }
+  }, [cart, approvePromoData, discountCart]);
 
   return (
     <main>
@@ -306,7 +364,19 @@ function Checkout() {
                           Apply Promo
                         </Button>
                       </div>
-                      <div>Promo code not valid!</div>
+                      {approvePromoStatus ? (
+                        approvePromoStatus === 0 ? (
+                          <div className="text font-gotham font-normal bold text-xs">
+                            Not Valid
+                          </div>
+                        ) : (
+                          <div className="text font-gotham font-normal bold text-xs">
+                            Promo Code Applied
+                          </div>
+                        )
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -360,19 +430,33 @@ function Checkout() {
                         Total
                       </div>
                     </div>
-                    {cart.map((item, inex) => (
-                      <div key={inex} className="grid grid-cols-5 pb-5">
-                        <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
-                          {item.title}
-                        </div>
-                        <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
-                          ৳ {item.price} x {item.quantity}
-                        </div>
-                        <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
-                          ৳{item.price * item.quantity}
-                        </div>
-                      </div>
-                    ))}
+                    {approvePromoData
+                      ? discountCart.map((item: any, index: number) => (
+                          <div key={index} className="grid grid-cols-5 pb-5">
+                            <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                              {item.title}
+                            </div>
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                              ৳ {item.price} x {item.quantity}
+                            </div>
+                            <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
+                              ৳{item.price * item.quantity}
+                            </div>
+                          </div>
+                        ))
+                      : cart.map((item, index) => (
+                          <div key={index} className="grid grid-cols-5 pb-5">
+                            <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                              {item.title}
+                            </div>
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                              ৳ {item.price} x {item.quantity}
+                            </div>
+                            <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
+                              ৳{item.price * item.quantity}
+                            </div>
+                          </div>
+                        ))}
 
                     <div className="grid grid-cols-5 sub-border">
                       <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
@@ -380,7 +464,7 @@ function Checkout() {
                         Sub-Total :
                       </div>
                       <div className="p-3 font-gotham  text-xs text-primary font-medium">
-                        ৳{final_price}
+                        ৳{finalPrice}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
@@ -398,7 +482,7 @@ function Checkout() {
                         Total :
                       </div>
                       <div className="p-3  font-gotham text-xs text-primary font-medium">
-                        ৳{final_price}
+                        ৳{finalPrice}
                       </div>
                     </div>
                   </div>
