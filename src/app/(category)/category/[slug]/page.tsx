@@ -25,7 +25,7 @@ const ProductCard = dynamic(() => import("@/components/card"));
 
 const categoryProducts = async (position: string) => {
   const res = await fetch(`${API_URL}/menus/${position}`, {
-    next: { revalidate: 3600 },
+    cache: 'no-store' 
   });
 
   if (!res.ok) {

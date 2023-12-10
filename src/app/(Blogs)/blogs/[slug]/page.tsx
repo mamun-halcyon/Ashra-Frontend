@@ -30,7 +30,7 @@ async function getBlog(slug: string) {
 }
 async function popularBlogs() {
   const url = `${API_URL}/frontend/blogs?limit=10&page=1`;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const res = await fetch(url, {cache: 'no-store' });
   const data = await res.json();
   return data;
 }

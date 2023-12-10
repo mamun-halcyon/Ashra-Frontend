@@ -4,8 +4,7 @@ import { API_URL } from '@/constant';
 
 async function getEmis() {
   const res = await fetch(`${API_URL}/emis`, {
-    // cache: 'no-store',
-    next: { revalidate: 3600 },
+     cache: 'no-store',
   });
 
   if (!res.ok) {

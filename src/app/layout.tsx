@@ -61,8 +61,8 @@ export const metadata: Metadata = {
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    // cache: 'no-store',
-    next: { revalidate: 3600 },
+     cache: 'no-store',
+  
   });
 
   if (!res.ok) {
@@ -74,8 +74,7 @@ async function getData() {
 
 async function getCategories() {
   const res = await fetch(`${API_URL}/categories`, {
-    // cache: 'no-store',
-    next: { revalidate: 3600 },
+     cache: 'no-store',
   });
 
   if (!res.ok) {
@@ -88,8 +87,7 @@ async function getCategories() {
 // Load Help items
 async function getMenus(position: string) {
   const res = await fetch(`${API_URL}/menus/${position}`, {
-    // cache: 'no-store',
-    next: { revalidate: 3600 },
+    cache: 'no-store',
   });
 
   if (!res.ok) {
