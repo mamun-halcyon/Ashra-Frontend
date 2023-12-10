@@ -121,8 +121,14 @@ function Checkout() {
       if (approvePromoData?.discount_type === "flat") {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
+          let tempIdsArr: any[] = [];
+          if (approvePromoData?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = approvePromoData?.product_id?.split(",");
+          } else {
+            tempIdsArr = [approvePromoData?.product_id];
+          }
           tempDisCart = tempDisCart?.map((item: any) => {
-            if (approvePromoData?.product_id == item.id) {
+            if (tempIdsArr.find((element) => element == item.id)) {
               return {
                 ...item,
                 price: item.regular_price - approvePromoData.discount_amount,
@@ -142,8 +148,14 @@ function Checkout() {
       } else {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
+          let tempIdsArr: any[] = [];
+          if (approvePromoData?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = approvePromoData?.product_id?.split(",");
+          } else {
+            tempIdsArr = [approvePromoData?.product_id];
+          }
           tempDisCart = tempDisCart?.map((item: any) => {
-            if (approvePromoData?.product_id == item.id) {
+            if (tempIdsArr.find((element) => element == item.id)) {
               return {
                 ...item,
                 price:
