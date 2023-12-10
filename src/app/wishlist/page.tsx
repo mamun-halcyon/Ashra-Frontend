@@ -6,27 +6,23 @@ import { RxCross2 } from "react-icons/rx";
 import "./page.scss";
 import ServiceCard from "@/components/service-card";
 import { serviceCardData } from "@/static/serviceCard";
-import { IWishListItem } from "@/types/wishList";
 import axios from "axios";
 import { API_ROOT, API_URL } from "@/constant";
 import { toast } from "react-toastify";
 import { addToCart } from "@/redux/features/cart/cartSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 function WishlistPage() {
   const [wishListItems, setWishListItems] = useState<any[]>([]);
+  const { login } = useAppSelector((state) => state.login);
   const dispatch = useAppDispatch();
 
   const getWishListItems = async () => {
-    const storedLogin: string | null = localStorage.getItem("login");
-    const accessToken: string | null = storedLogin
-      ? JSON.parse(storedLogin)?.accessToken || null
-      : null;
-    if (accessToken !== null) {
+    if (login?.accessToken) {
       try {
         const response = await axios.get(`${API_URL}/customers/wishlists`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${login?.accessToken}`,
           },
         });
         if (response.status == 200) {

@@ -1,3 +1,4 @@
+"use client";
 import ProfileSidebar from "@/components/profile-sidebar";
 import "../page.scss";
 import "./page.scss";

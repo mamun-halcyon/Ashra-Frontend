@@ -3,11 +3,13 @@ import Link from "next/link";
 import "./index.scss";
 import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
 import { ICategoryData } from "@/types/category";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   menus: ICategoryData[];
 };
 const MegaMenu = ({ menus }: IProps) => {
+  const route = useRouter();
   return (
     <div className="py-2 shadow hidden md:block">
       <div className="container px-2 md:px-0">
@@ -17,11 +19,17 @@ const MegaMenu = ({ menus }: IProps) => {
               .filter(
                 (parent) =>
                   parent.parent_category === "0" ||
-                  parent.parent_category === null
+                  parent.parent_category === null ||
+                  parent.parent_category === ""
               )
               .map((menu, index) => (
                 <div className="mr-2 text-left relative heading" key={index}>
-                  <div className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all">
+                  <div
+                    className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all"
+                    onClick={() =>
+                      route.push(`/category/filter?category=${menu.title}`)
+                    }
+                  >
                     {menu.title.toUpperCase()}
                     <span className="text-xl  md:block hidden">
                       <RiArrowDropDownLine className=" text-xl" />
@@ -38,7 +46,7 @@ const MegaMenu = ({ menus }: IProps) => {
                           <div className=" relative flex justify-between items-center sub-item">
                             <Link
                               className=" font-gotham font-medium my-2 text-sm text-black sub-element"
-                              href={`/category/${subCategory.slug}`}
+                              href={`/category/filter?category=${subCategory.slug}`}
                             >
                               {subCategory.title}
                             </Link>
@@ -57,7 +65,7 @@ const MegaMenu = ({ menus }: IProps) => {
                                     <li key={index}>
                                       <Link
                                         className=" font-gotham font-medium text-sm  text-black"
-                                        href={`/category/${childrenCategory.slug}`}
+                                        href={`/category/filter?category=${childrenCategory.slug}`}
                                       >
                                         {childrenCategory.title}
                                       </Link>

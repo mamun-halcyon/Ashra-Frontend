@@ -109,6 +109,7 @@ function Category() {
 
   const fetchData = async () => {
     const search: string = searchParams.get("search")?.trim() || "";
+    const mainCategory: string = searchParams.get("category")?.trim() || "";
     const availability: string =
       (availabilities.length > 0 && availabilities.join(",")) || "";
     let sort_by: string = "";
@@ -126,8 +127,10 @@ function Category() {
         sort_by = "high";
         break;
     }
+    const tempCategories: string[] =
+      çategories.length > 0 ? [...çategories] : [mainCategory, ...çategories];
     const category: string =
-      (çategories.length > 0 && çategories.join(",")) || "";
+      (tempCategories.length > 0 && tempCategories.join(",")) || "";
     try {
       const response = await axios.get<IProductResponse>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}
@@ -200,8 +203,18 @@ function Category() {
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
             <Link href={"/"}>Home</Link>
-            <RiArrowDropRightLine className=" text-xl" />
-            <Link href={"/bathware"}> Home Appliance </Link>
+            {searchParams.get("category")?.trim() !== "" &&
+            çategories?.length == 0 ? (
+              <>
+                <RiArrowDropRightLine className=" text-xl" />
+                <Link href={"/bathware"}>
+                  {" "}
+                  {searchParams.get("category")?.trim()}{" "}
+                </Link>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </section>
