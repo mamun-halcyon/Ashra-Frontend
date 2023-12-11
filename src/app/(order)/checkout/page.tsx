@@ -29,6 +29,7 @@ function Checkout() {
   );
   const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
     useState<string | null>(null);
+  const [couponId, setCouponId] = useState<Number | null>(null);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -77,8 +78,8 @@ function Checkout() {
     city,
     thana,
     order_form: "web",
-    final_price: finalPrice,
     delivery_fee: 0,
+    coupon_id: couponId,
     payment_method: "Credit Card",
     order_status: "pending",
     delivery_method: selectedPaymentDeliveryStatus,
@@ -108,7 +109,8 @@ function Checkout() {
           coupon_code: approvePromoCode,
         });
         if (response.status == 200) {
-          setApprovePromoData(response.data.coupon);
+          setApprovePromoData(response?.data?.coupon);
+          setCouponId(response?.data?.coupon?.id);
           setApprovePromStatus(1);
         } else {
           setApprovePromoData(null);
