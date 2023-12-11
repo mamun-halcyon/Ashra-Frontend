@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './page.scss';
 import { API_URL } from '@/constant';
+import Image from 'next/image';
 
 type Props = {
   params: {
@@ -29,9 +30,18 @@ const CustomPage = ({ params: { slug } }: Props) => {
   return (
     <section className="custom">
       <div className="container">
-        <h5>{pageData?.title}</h5>
+        <h3 className="mb-4 font-gotham font-semibold">{pageData?.title}</h3>
+        <div>
+          <Image
+            className="w-full"
+            src="/assets/images/banner/BG.png"
+            alt="custom"
+            width={400}
+            height={400}
+          />
+        </div>
         <div
-          className=" font-gotham"
+          className=" font-gotham mt-5"
           dangerouslySetInnerHTML={{ __html: pageData?.content }}
         />
       </div>
