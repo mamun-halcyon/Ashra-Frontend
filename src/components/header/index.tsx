@@ -1,15 +1,15 @@
-"use client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { BiSolidPhone } from "react-icons/bi";
-import { AiFillBell } from "react-icons/ai";
-import { BsChevronDown } from "react-icons/bs";
-import "./index.scss";
-import { IHomePage } from "@/types/home";
-import { IMenu } from "@/types/menu";
-import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { clearLoginInfo } from "@/redux/features/login/loginSlice";
+'use client';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { BiSolidPhone } from 'react-icons/bi';
+import { AiFillBell } from 'react-icons/ai';
+import { BsChevronDown } from 'react-icons/bs';
+import './index.scss';
+import { IHomePage } from '@/types/home';
+import { IMenu } from '@/types/menu';
+import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { clearLoginInfo } from '@/redux/features/login/loginSlice';
 
 type IProps = {
   homeData: IHomePage;
@@ -31,7 +31,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
   const logoutHandler = (e: any) => {
     e.preventDefault();
     dispatch(clearLoginInfo());
-    router.push("/login");
+    router.push('/login');
   };
 
   return (
@@ -59,14 +59,14 @@ const TopHeader = ({ homeData, menus }: IProps) => {
           <div className="relative group inline-block">
             <Link
               className="sub-link  text-primary font-gotham font-normal text-sm"
-              href={"/about"}
+              href={'/about'}
             >
               Help
               <span>
                 <BsChevronDown className="inline text-[9px] font-bold ml-1" />
               </span>
             </Link>
-            <div className="absolute opacity-0 invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
+            <div className="absolute  invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
               <ul className="   bg-[#fff] font-gotham font-normal text-[13px] text-black">
                 {menus?.map((menu, index) => (
                   <li key={index} className="px-2 py-1 hover:text-primary">
@@ -87,13 +87,13 @@ const TopHeader = ({ homeData, menus }: IProps) => {
             <>
               <Link
                 className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
-                href={"/login"}
+                href={'/login'}
               >
                 Login
               </Link>
               <Link
                 className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
-                href={"/register"}
+                href={'/register'}
               >
                 Registration
               </Link>

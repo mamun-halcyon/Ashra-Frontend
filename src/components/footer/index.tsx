@@ -1,17 +1,28 @@
-import Image from "next/image";
-import "./index.scss";
-import Link from "next/link";
-import { applianceData, customerServiceData } from "@/static/footerData";
-import { FaLocationDot } from "react-icons/fa6";
-import { PiEnvelopeThin } from "react-icons/pi";
-import { BsHeadphones, BsEnvelopeFill } from "react-icons/bs";
-import { HomeApiResponse } from "@/types/home";
-import { API_ROOT } from "@/constant";
+import Image from 'next/image';
+import './index.scss';
+import Link from 'next/link';
+import { applianceData } from '@/static/footerData';
+import { FaLocationDot } from 'react-icons/fa6';
+import { PiEnvelopeThin } from 'react-icons/pi';
+import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
+import { HomeApiResponse } from '@/types/home';
+import { API_ROOT, API_URL } from '@/constant';
+import axios from 'axios';
+import { IMenu } from '@/types/menu';
 
 type IProps = {
   globalData: HomeApiResponse;
 };
-const Footer = ({ globalData }: IProps) => {
+
+const getMenus = async (slug: string) => {
+  const res = await axios.get(`${API_URL}/menus/${slug}`);
+  return res.data?.data;
+};
+
+const Footer = async ({ globalData }: IProps) => {
+  const footerOneData: IMenu[] = await getMenus('footer_one');
+  const footerTwoData: IMenu[] = await getMenus('footer_two');
+
   return (
     <footer>
       <div className="container px-2 md:px-0">
@@ -52,15 +63,15 @@ const Footer = ({ globalData }: IProps) => {
           <div>
             <div className="w-[60%] md:mx-auto">
               <h3 className="font-gotham font-bold text-base text-black mb-4">
-                {customerServiceData.title}
+                Customer Service
               </h3>
               <ul className=" mx-auto">
-                {customerServiceData.items.map((item, index) => (
+                {footerOneData.map((item, index) => (
                   <li
                     className="font-gotham font-normal text-sm text-black mb-1"
                     key={index}
                   >
-                    <Link className="link-item" href={item.href}>
+                    <Link className="link-item" href={item.slug}>
                       {item.name}
                     </Link>
                   </li>
@@ -72,16 +83,16 @@ const Footer = ({ globalData }: IProps) => {
           <div>
             <div className="w-[60%] md:mx-auto">
               <h3 className="font-gotham font-bold text-base text-black mb-4">
-                {applianceData.title}
+                Gazi Home Appliancee
               </h3>
               <ul className="mx-auto">
-                {customerServiceData.items.map((item, index) => (
+                {footerTwoData.map((item, index) => (
                   <li
                     className="font-gotham font-normal text-sm text-black mb-1"
                     key={index}
                   >
-                    <Link className="link-item" href={item.href}>
-                      {" "}
+                    <Link className="link-item" href={item.slug}>
+                      {' '}
                       {item.name}
                     </Link>
                   </li>
@@ -192,7 +203,7 @@ const Footer = ({ globalData }: IProps) => {
             <div className="w-[60%] md:w-auto">
               <Image
                 className=" md:h-6 bottom-image "
-                src={"/assets/images/footer/payment.png"}
+                src={'/assets/images/footer/payment.png'}
                 width={400}
                 height={50}
                 alt="payment"
