@@ -144,3 +144,20 @@
     }
   }
 }
+
+.attribute {
+  border-bottom: 1px solid $secondary-color;
+
+  .select {
+    border: 1px solid $primary-color;
+    transition: all linear 0.3s;
+    &:hover {
+      background: $primary-color;
+      color: $white-color;
+    }
+  }
+  .selected {
+    background: $primary-color;
+    color: $white-color;
+  }
+}

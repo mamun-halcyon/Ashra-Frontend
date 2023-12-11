@@ -37,3 +37,14 @@
     }
   }
 }
+.refund-request {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  background: #fff;
+  z-index: 1;
+  width: 600px;
+  height: 400px;
+  padding: 15px;
+}

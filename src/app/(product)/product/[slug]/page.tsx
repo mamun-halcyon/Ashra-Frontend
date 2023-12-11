@@ -1,40 +1,40 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { RiArrowDropRightLine } from "react-icons/ri";
-const ZoomImage = dynamic(() => import("@/components/zoom-image"));
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Slider from "react-slick";
-import Image from "next/image";
-import StarRatings from "react-star-ratings";
-import "./page.scss";
-import StarRating from "@/components/rating";
-import Button from "@/components/button";
+'use client';
+import { useState, useEffect } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { RiArrowDropRightLine } from 'react-icons/ri';
+const ZoomImage = dynamic(() => import('@/components/zoom-image'));
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import StarRatings from 'react-star-ratings';
+import './page.scss';
+import StarRating from '@/components/rating';
+import Button from '@/components/button';
 import {
   AiOutlineHeart,
   AiOutlineMinus,
   AiOutlinePlus,
   AiOutlineShareAlt,
-} from "react-icons/ai";
-import OutlineButton from "@/components/outline-button";
-import { BsArrowRepeat, BsAwardFill } from "react-icons/bs";
-import Title from "@/components/title";
-import { productsData } from "@/static/products";
-import ReviewCard from "@/components/review-card";
-import FormGroup from "@/components/fromgroup";
-import TextAreaGroup from "@/components/textarea";
-import { FaAward } from "react-icons/fa6";
-import EmiPopup from "@/components/emi-popup";
-import { IProduct, ISingleProduct } from "@/types/product";
-import { API_ROOT, API_URL } from "@/constant";
-import { useAppDispatch } from "@/redux/hooks";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { useRouter } from "next/navigation";
-import { ICartItem } from "@/types/cart";
-import { data } from "autoprefixer";
-const ProductCard = dynamic(() => import("@/components/card"));
+} from 'react-icons/ai';
+import OutlineButton from '@/components/outline-button';
+import { BsArrowRepeat, BsAwardFill } from 'react-icons/bs';
+import Title from '@/components/title';
+import { productsData } from '@/static/products';
+import ReviewCard from '@/components/review-card';
+import FormGroup from '@/components/fromgroup';
+import TextAreaGroup from '@/components/textarea';
+import { FaAward } from 'react-icons/fa6';
+import EmiPopup from '@/components/emi-popup';
+import { IProduct, ISingleProduct } from '@/types/product';
+import { API_ROOT, API_URL } from '@/constant';
+import { useAppDispatch } from '@/redux/hooks';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { useRouter } from 'next/navigation';
+import { ICartItem } from '@/types/cart';
+import { data } from 'autoprefixer';
+const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
   params: {
@@ -79,7 +79,7 @@ function PageDetails({ params: { slug } }: Props) {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
 
   useEffect(() => {
@@ -88,7 +88,7 @@ function PageDetails({ params: { slug } }: Props) {
         const data = await getProduct(slug);
         setProduct(data.data);
       } catch (error) {
-        console.error("Error fetching product:", error);
+        console.error('Error fetching product:', error);
       }
     };
 
@@ -144,11 +144,11 @@ function PageDetails({ params: { slug } }: Props) {
             <div className="container px-2 md:px-1">
               <div className="product-specification">
                 <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                  <Link href={"/"}>Home</Link>
+                  <Link href={'/'}>Home</Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/category/bathware"}> Bathware </Link>
+                  <Link href={'/category/bathware'}> Bathware </Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/subcagory/Commode"}> Commode </Link>
+                  <Link href={'/subcagory/Commode'}> Commode </Link>
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
@@ -191,7 +191,7 @@ function PageDetails({ params: { slug } }: Props) {
                       <div className="flex items-center">
                         <StarRating rating={product?.review?.length} />
                         <span className="ml-1 font-gotham text-xs">
-                          {" "}
+                          {' '}
                           Review
                         </span>
                       </div>
@@ -230,10 +230,23 @@ function PageDetails({ params: { slug } }: Props) {
                           className="cursor-point"
                           onClick={() => setIsEmi(true)}
                         >
-                          Avail Bank EMI |
+                          Avail Bank EMI | EMI From 1,890 Tk/month
                         </span>
-                        <Link href={"/"}> EMI From 1,890 Tk/month</Link>
                       </h3>
+                    </div>
+                    <div className="attribute py-2">
+                      <div className="flex items-center">
+                        <p className=" font-gotham text-sm mr-2"> Gas type:</p>
+                        <div className="flex">
+                          {/* when attribute will selected then TODO:'selected' class will be set in button */}
+                          <button className="select  font-gotham text-sm bg-white text-black px-2 py-[2px] mr-1">
+                            NG
+                          </button>
+                          <button className="select font-gotham text-sm bg-white text-black px-2 py-1 mr-1">
+                            LPG
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <div className="action">
                       <div className="flex py-5 font-gotham font-medium ">
@@ -321,7 +334,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className=" w-8">
                           <Image
                             className="w-full"
-                            src={"/assets/images/service/service1.png"}
+                            src={'/assets/images/service/service1.png'}
                             width={40}
                             height={40}
                             alt="service"
@@ -340,7 +353,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className=" w-8">
                           <Image
                             className="w-full"
-                            src={"/assets/images/service/service2.png"}
+                            src={'/assets/images/service/service2.png'}
                             width={40}
                             height={40}
                             alt="service"
@@ -359,7 +372,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className=" w-8">
                           <Image
                             className="w-full"
-                            src={"/assets/images/service/service4.png"}
+                            src={'/assets/images/service/service4.png'}
                             width={40}
                             height={40}
                             alt="service"
@@ -544,7 +557,7 @@ function PageDetails({ params: { slug } }: Props) {
 
               <div className=" pt-7 pb-24">
                 <Image
-                  src={"/assets/images/ads/Group 9.png"}
+                  src={'/assets/images/ads/Group 9.png'}
                   alt="ads"
                   width={1300}
                   height={500}

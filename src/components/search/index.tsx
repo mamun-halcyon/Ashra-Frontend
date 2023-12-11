@@ -10,26 +10,18 @@ import { ChangeEvent } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 const SearchArea = () => {
-  const [isInputFocused, setIsInputFocused] = useState(false);
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
 
-  const handleSearch = useDebouncedCallback(
+  /* const handleSearch = useDebouncedCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const params = new URLSearchParams(Object.fromEntries(searchParams));
       params.set('search', e.target.value);
       replace(`${pathname}?${params}`);
     },
     300
-  );
-  const handleFocus = () => {
-    setIsInputFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsInputFocused(false);
-  };
+  ); */
 
   const handleClick = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -55,19 +47,15 @@ const SearchArea = () => {
             type="text"
             className="px-3 h-9 focus:outline-none w-[450px] font-gotham font-normal text-sm placeholder:font-gotham placeholder:text-sm search-input"
             placeholder="Search for Products..."
-            onChange={handleSearch}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            // onChange={handleSearch}
           />
-          <button className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white" onClick={handleClick}>
+          <button
+            className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white"
+            onClick={handleClick}
+          >
             Search
           </button>
         </form>
-        {isInputFocused && ( // Conditional rendering based on focus state
-          <div className="absolute bg-white top-[40px] left-0 max-h-[300px] w-full p-3">
-            products
-          </div>
-        )}
       </div>
     </div>
   );

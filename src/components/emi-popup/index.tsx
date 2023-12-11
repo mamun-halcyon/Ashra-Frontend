@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './index.scss';
 import axios from 'axios';
 import { API_URL } from '@/constant';
+import { RxCross2 } from 'react-icons/rx';
 
 type IProps = {
   handleEmi: () => void;
@@ -43,10 +44,10 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
     <div className="emi-popup">
       <div className="text-right">
         <div
-          className="  text-white bg-black inline-block p-2 mr-3 mt-3"
+          className="  text-white bg-black inline-block p-2 mr-3 mt-3 cursor-pointer"
           onClick={handleEmi}
         >
-          X
+          <RxCross2 />
         </div>
       </div>
       <div className="main-wrapper">

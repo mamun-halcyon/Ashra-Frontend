@@ -1,11 +1,12 @@
-import ProfileSidebar from "@/components/profile-sidebar";
-import "../page.scss";
-import "./page.scss";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Button from "@/components/button";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks";
+'use client';
+import ProfileSidebar from '@/components/profile-sidebar';
+import '../page.scss';
+import './page.scss';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Button from '@/components/button';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
 
 const Ticket = () => {
   const route = useRouter();
@@ -16,7 +17,7 @@ const Ticket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -95,7 +96,7 @@ const Ticket = () => {
                         className="px-6 py-3 font-gotham font-normal"
                       >
                         <Link
-                          href={"/profile/ticket/1"}
+                          href={'/profile/ticket/1'}
                           className="cursor-pointer"
                         >
                           View All →
@@ -131,7 +132,7 @@ const Ticket = () => {
                         scope="row"
                         className="px-6 py-3 font-gotham font-normal"
                       >
-                        <Link href={"/profile"} className="cursor-pointer">
+                        <Link href={'/profile'} className="cursor-pointer">
                           View All →
                         </Link>
                       </td>
@@ -165,7 +166,7 @@ const Ticket = () => {
                         scope="row"
                         className="px-6 py-3 font-gotham font-normal"
                       >
-                        <Link href={"/profile"} className="cursor-pointer">
+                        <Link href={'/profile'} className="cursor-pointer">
                           View All →
                         </Link>
                       </td>

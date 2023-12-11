@@ -214,7 +214,19 @@ function Checkout() {
           </div>
         </section>
       ) : (
-        <div className="container py-28 font-gotham">No Search Product</div>
+        <div className="container py-28 font-gotham text-center">
+          <Image
+            className=" mx-auto"
+            src="/assets/images/service/empty-cart.png"
+            alt="empty-cart"
+            width={100}
+            height={100}
+          />
+          <p>Your cart is Empty</p>
+          <Link href={`/`}>
+            <Button className="px-2 py-1 mt-2">Continue Shopping</Button>
+          </Link>
+        </div>
       )}
       <section className="cart-service">
         <div className="container">

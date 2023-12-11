@@ -1,13 +1,15 @@
-"use client";
-import ProfileSidebar from "@/components/profile-sidebar";
-import "../page.scss";
-import { LiaDownloadSolid, LiaEye } from "react-icons/lia";
-import "./page.scss";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "@/constant";
+'use client';
+import ProfileSidebar from '@/components/profile-sidebar';
+import '../page.scss';
+import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
+import './page.scss';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '@/constant';
+import Button from '@/components/button';
+import SingleOrder from '@/components/single-order';
 
 const OrderHistory = () => {
   const route = useRouter();
@@ -19,7 +21,7 @@ const OrderHistory = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -95,26 +97,10 @@ const OrderHistory = () => {
                       </tr>
                     </thead>
                     <tbody>
+                      <SingleOrder />
                       {allOrders?.length > 0 ? (
                         allOrders?.map((item, index) => (
-                          <tr
-                            key={index}
-                            className=" font-normal font-gotham text-sm table-border"
-                          >
-                            <td scope="row" className="px-6 py-4  ">
-                              20230927-12584942
-                            </td>
-                            <td className="px-6 py-4">27-09-2023</td>
-                            <td className="px-6 py-4">৳17,280.00</td>
-                            <td className="px-6 py-4">Delivered</td>
-                            <td className="px-6 py-4">Paid</td>
-                            <td className="px-6 py-2">
-                              <div className="flex justify-center info-icons">
-                                <LiaEye className="mr-1 cursor-pointer" />
-                                <LiaDownloadSolid className="cursor-pointer" />
-                              </div>
-                            </td>
-                          </tr>
+                          <SingleOrder key={index} />
                         ))
                       ) : (
                         <></>
