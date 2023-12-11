@@ -1,19 +1,52 @@
-'use client';
-import React, { useState } from 'react';
-import Button from '../button';
-import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
-import { RxCross2 } from 'react-icons/rx';
-import './index.scss';
+"use client";
+import React, { FC, useEffect, useState } from "react";
+import Button from "../button";
+import { LiaDownloadSolid, LiaEye } from "react-icons/lia";
+import { RxCross2 } from "react-icons/rx";
+import "./index.scss";
+import axios from "axios";
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
 
-const SingleOrder = () => {
+export interface IProps {
+  order: any;
+}
+
+const SingleOrder: FC<IProps> = ({ order }) => {
+  const { login } = useAppSelector((state) => state.login);
   const [isOpen, setIsOpen] = useState(false);
+  const [orderDetails, setOrderDetails] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (order?.id) {
+      const getOrderDetails = async () => {
+        try {
+          const response = await axios.get(
+            `${API_URL}/customers/orders/${order?.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${login?.accessToken}`,
+              },
+            }
+          );
+          if (response?.status === 200) {
+            console.log(response?.data);
+            setOrderDetails(response?.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getOrderDetails();
+    }
+  }, [order?.id]);
 
   return (
     <tr className=" font-normal font-gotham text-sm table-border">
       <td scope="row" className="px-6 py-4  ">
         20230927-12584942
       </td>
-      <td className="px-6 py-4">27-09-2023</td>
+      <td className="px-6 py-4">{order?.created_at}</td>
       <td className="px-6 py-4">৳17,280.00</td>
       <td className="px-6 py-4">Delivered</td>
       <td className="px-6 py-4">Paid</td>
@@ -54,7 +87,7 @@ const SingleOrder = () => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Shipping Address:{' '}
+                      Shipping Address:{" "}
                     </p>
                     <p className=" font-gotham text-sm">
                       340, Road5, Ave3, Mirpur Dohs
@@ -64,7 +97,7 @@ const SingleOrder = () => {
                 <div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Date :{' '}
+                      Order Date :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       12-12-2023 02:43AM
@@ -72,25 +105,25 @@ const SingleOrder = () => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Status:{' '}
+                      Order Status:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">Pending</p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Total Order Amount:{' '}
+                      Total Order Amount:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">2302</p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Shipping method:{' '}
+                      Shipping method:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">Flat Shipping</p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Payment method:{' '}
+                      Payment method:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       Cash on Delivery

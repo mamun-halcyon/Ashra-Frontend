@@ -1,15 +1,13 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import '../page.scss';
-import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
-import './page.scss';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/redux/hooks';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import Button from '@/components/button';
-import SingleOrder from '@/components/single-order';
+"use client";
+import ProfileSidebar from "@/components/profile-sidebar";
+import "../page.scss";
+import "./page.scss";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/hooks";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "@/constant";
+import SingleOrder from "@/components/single-order";
 
 const OrderHistory = () => {
   const route = useRouter();
@@ -21,7 +19,7 @@ const OrderHistory = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -35,8 +33,7 @@ const OrderHistory = () => {
             },
           });
           if (response.status == 200) {
-            console.log(response.data.data);
-            setAllOrders(response?.data?.data);
+            setAllOrders(response?.data);
           }
         } catch (error) {
           console.log(error);
@@ -97,10 +94,9 @@ const OrderHistory = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <SingleOrder />
                       {allOrders?.length > 0 ? (
                         allOrders?.map((item, index) => (
-                          <SingleOrder key={index} />
+                          <SingleOrder order={item} key={index} />
                         ))
                       ) : (
                         <></>
