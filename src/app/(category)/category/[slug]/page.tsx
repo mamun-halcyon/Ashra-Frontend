@@ -235,7 +235,7 @@ function Category() {
                     type="checkbox"
                     name="stock"
                     id="stock"
-                    value={0}
+                    value={1}
                     onChange={handleAvailability}
                   />
                   <label
@@ -250,7 +250,7 @@ function Category() {
                     type="checkbox"
                     name="stock-out"
                     id="stockout"
-                    value={1}
+                    value={2}
                     onChange={handleAvailability}
                   />
                   <label
@@ -265,7 +265,7 @@ function Category() {
                     type="checkbox"
                     name="instock"
                     id="upcoming"
-                    value={2}
+                    value={3}
                     onChange={handleAvailability}
                   />
                   <label
@@ -422,25 +422,33 @@ function Category() {
               <div className="filter-products px-2 md:px-0">
                 {isRow ? (
                   <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
-                    {products.map((product, i) => (
-                      <ProductCard
-                        key={i}
-                        url={product.slug}
-                        image={product.image}
-                        title={product.title}
-                        regular_price={product.regular_price}
-                        discount_price={product.discount_price}
-                        isNew={product.is_new}
-                        product_id={Number(product.id)}
-                        sort_description={product.sort_description}
-                      />
-                    ))}
+                    {products?.length > 0 ? (
+                      products?.map((product, i) => (
+                        <ProductCard
+                          key={i}
+                          url={product.slug}
+                          image={product.image}
+                          title={product.title}
+                          regular_price={product.regular_price}
+                          discount_price={product.discount_price}
+                          isNew={product.is_new}
+                          product_id={Number(product.id)}
+                          sort_description={product.sort_description}
+                        />
+                      ))
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 mb-5">
-                    {products.map((product, i) => (
-                      <ListCard key={i} product={product} />
-                    ))}
+                    {products?.length > 0 ? (
+                      products?.map((product, i) => (
+                        <ListCard key={i} product={product} />
+                      ))
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 )}
               </div>
