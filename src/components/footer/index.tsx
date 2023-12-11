@@ -1,7 +1,7 @@
+"use client";
 import Image from "next/image";
 import "./index.scss";
 import Link from "next/link";
-import { applianceData } from "@/static/footerData";
 import { FaLocationDot } from "react-icons/fa6";
 import { PiEnvelopeThin } from "react-icons/pi";
 import { BsHeadphones, BsEnvelopeFill } from "react-icons/bs";
@@ -9,19 +9,60 @@ import { HomeApiResponse } from "@/types/home";
 import { API_ROOT, API_URL } from "@/constant";
 import axios from "axios";
 import { IMenu } from "@/types/menu";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type IProps = {
   globalData: HomeApiResponse;
 };
 
-const getMenus = async (slug: string) => {
-  const res = await axios.get(`${API_URL}/menus/${slug}`);
-  return res.data?.data;
-};
-
 const Footer = async ({ globalData }: IProps) => {
-  const footerOneData: IMenu[] = await getMenus("footer_one");
-  const footerTwoData: IMenu[] = await getMenus("footer_two");
+  const [email, setEmail] = useState<string>("");
+  const [footerOneData, setFooterOneData] = useState<IMenu[]>([]);
+  const [footerTwoData, setFooterTwoData] = useState<IMenu[]>([]);
+
+  useEffect(() => {
+    const getFooterOneData = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/menus/footer_one`);
+        if (response?.status === 200) {
+          setFooterOneData(response.data?.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const getFooterTwoData = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/menus/footer_two`);
+        if (response?.status === 200) {
+          setFooterTwoData(response.data?.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFooterOneData();
+    getFooterTwoData();
+  }, []);
+
+  const handleSubscribe = async (e: any) => {
+    e.preventDefault();
+    if (email.trim() !== "") {
+      try {
+        const response = await axios.post(`${API_URL}/subscribes`, {
+          email: email,
+        });
+        if (response?.status === 201) {
+          setEmail("");
+          toast.success("Subscribed Successfuly!");
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Subscribtion Error!");
+      }
+    }
+  };
 
   return (
     <footer>
@@ -66,16 +107,20 @@ const Footer = async ({ globalData }: IProps) => {
                 Customer Service
               </h3>
               <ul className=" mx-auto">
-                {footerOneData.map((item, index) => (
-                  <li
-                    className="font-gotham font-normal text-sm text-black mb-1"
-                    key={index}
-                  >
-                    <Link className="link-item" href={item.slug}>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
+                {footerOneData?.length > 0 ? (
+                  footerOneData?.map((item, index) => (
+                    <li
+                      className="font-gotham font-normal text-sm text-black mb-1"
+                      key={index}
+                    >
+                      <Link className="link-item" href={item.slug}>
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <></>
+                )}
               </ul>
             </div>
           </div>
@@ -86,17 +131,21 @@ const Footer = async ({ globalData }: IProps) => {
                 Gazi Home Appliancee
               </h3>
               <ul className="mx-auto">
-                {footerTwoData.map((item, index) => (
-                  <li
-                    className="font-gotham font-normal text-sm text-black mb-1"
-                    key={index}
-                  >
-                    <Link className="link-item" href={item.slug}>
-                      {" "}
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
+                {footerTwoData?.length > 0 ? (
+                  footerTwoData?.map((item, index) => (
+                    <li
+                      className="font-gotham font-normal text-sm text-black mb-1"
+                      key={index}
+                    >
+                      <Link className="link-item" href={item.slug}>
+                        {" "}
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <></>
+                )}
               </ul>
             </div>
           </div>
@@ -185,8 +234,13 @@ const Footer = async ({ globalData }: IProps) => {
                 type="email"
                 className="px-3 py-2 border-b-2  focus:ring-0 focus:border-blue-500 outline-none placeholder:font-gotham  placeholder:font-light placeholder:text-sm"
                 placeholder="Enter your email..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <span className=" absolute top-[50%] translate-y-[-50%] right-0">
+              <span
+                className=" absolute top-[50%] translate-y-[-50%] right-0"
+                onClick={handleSubscribe}
+              >
                 <PiEnvelopeThin className="subscribe-icon w-5 h-5" />
               </span>
             </form>
