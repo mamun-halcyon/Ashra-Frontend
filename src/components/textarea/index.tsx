@@ -1,15 +1,16 @@
-import React, { FC } from 'react';
-import './index.scss';
+import React, { ChangeEvent, FC } from "react";
+import "./index.scss";
 
 interface IProps {
   name?: string;
   id?: string;
-  onChange?: () => void;
+  onChange?: any;
   placeholder?: string;
   required?: boolean;
   title: string;
   className?: string;
   type?: string;
+  value?: string;
 }
 const TextAreaGroup: FC<IProps> = ({
   className,
@@ -20,6 +21,7 @@ const TextAreaGroup: FC<IProps> = ({
   title,
   required,
   type,
+  value,
 }) => {
   return (
     <div className={`from-group ${className}`}>
@@ -36,6 +38,7 @@ const TextAreaGroup: FC<IProps> = ({
         placeholder={placeholder}
         onChange={onChange}
         required={required}
+        value={value}
       ></textarea>
     </div>
   );

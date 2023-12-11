@@ -25,6 +25,8 @@ const TopHeader = ({ homeData, menus }: IProps) => {
   useEffect(() => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
   }, [login?.accessToken]);
 
