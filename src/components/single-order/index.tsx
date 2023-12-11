@@ -40,10 +40,6 @@ const SingleOrder: FC<IProps> = ({ order }) => {
     }
   }, [order?.id]);
 
-  useEffect(() => {
-    console.log(orderDetails.orderItems);
-  }, [orderDetails]);
-
   return (
     <tr className=" font-normal font-gotham text-sm table-border">
       <td scope="row" className="px-6 py-4  ">
