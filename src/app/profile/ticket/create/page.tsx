@@ -1,9 +1,10 @@
-import Button from "@/components/button";
-import FormGroup from "@/components/fromgroup";
-import ProfileSidebar from "@/components/profile-sidebar";
-import { useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+'use client';
+import Button from '@/components/button';
+import FormGroup from '@/components/fromgroup';
+import ProfileSidebar from '@/components/profile-sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 const CreateTicket = () => {
   const route = useRouter();
@@ -14,7 +15,7 @@ const CreateTicket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
