@@ -1,19 +1,19 @@
-import './page.scss';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Banner from '@/components/banner';
-import ServiceCard from '@/components/service-card';
-import Link from 'next/link';
-import { BsArrowRightShort } from 'react-icons/bs';
-import { API_ROOT, API_URL } from '@/constant';
-import { HomeApiResponse } from '@/types/home';
-import { IProduct, IProductResponse } from '@/types/product';
-import Navbar from '@/components/navbar';
-const Featured = dynamic(() => import('@/components/featured'));
-const ExploreCard = dynamic(() => import('@/components/explore'));
-const ProductCard = dynamic(() => import('@/components/card'));
-const Title = dynamic(() => import('@/components/title'));
-const VideoCard = dynamic(() => import('@/components/video-card'));
+import "./page.scss";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Banner from "@/components/banner";
+import ServiceCard from "@/components/service-card";
+import Link from "next/link";
+import { BsArrowRightShort } from "react-icons/bs";
+import { API_ROOT, API_URL } from "@/constant";
+import { HomeApiResponse } from "@/types/home";
+import { IProduct, IProductResponse } from "@/types/product";
+import Navbar from "@/components/navbar";
+const Featured = dynamic(() => import("@/components/featured"));
+const ExploreCard = dynamic(() => import("@/components/explore"));
+const ProductCard = dynamic(() => import("@/components/card"));
+const Title = dynamic(() => import("@/components/title"));
+const VideoCard = dynamic(() => import("@/components/video-card"));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`);
@@ -22,7 +22,7 @@ async function getData() {
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
@@ -32,18 +32,17 @@ async function searchProduct(search: string) {
   const res = await fetch(`${API_URL}/products?search=${search}`);
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
 }
 async function categoryProduct(category_slug: string) {
   const res = await fetch(
-    `${API_URL}/products?category_slug=${category_slug}is_homepage=true`
+    `${API_URL}/frontend/products?page=1&limit=10&category=${category_slug}`
   );
-
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
@@ -52,7 +51,7 @@ async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`);
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
@@ -64,9 +63,15 @@ export default async function Home({
 }) {
   const homeData: HomeApiResponse = await getData();
   const searchData: IProductResponse = await searchProduct(q);
-  const gasStoveProduct: IProductResponse = await categoryProduct('gas-stove');
-  const addBanner = await categoryAdBanner('home');
-  const verticalBanner = await categoryAdBanner('home-v');
+  const gasStoveProducts: IProductResponse = await categoryProduct("gas-stove");
+  const kitchenHoodProducts: IProductResponse = await categoryProduct(
+    "kichen-hood"
+  );
+  const digitalScaleProducts: IProductResponse = await categoryProduct(
+    "digital-scale"
+  );
+  const addBanner = await categoryAdBanner("home");
+  const verticalBanner = await categoryAdBanner("home-v");
 
   return (
     <>
@@ -121,9 +126,12 @@ export default async function Home({
         <section className="category-products">
           <div className="container px-2 md:px-0">
             <div className="mb-12">
-              <Title title="Gas Stove" href="/category/gas-stove" />
+              <Title
+                title="Gas Stove"
+                href="/category/filter?category=gas-stove"
+              />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
-                {gasStoveProduct?.data?.rows.map(
+                {gasStoveProducts?.data?.rows.map(
                   (product: IProduct, i: number) => (
                     <ProductCard
                       key={i}
@@ -140,9 +148,12 @@ export default async function Home({
               </div>
             </div>
             <div className="mb-12">
-              <Title title="Kitchen Hood" href="/category/kitchen-hood" />
+              <Title
+                title="Kitchen Hood"
+                href="/category/filter?category=kitchen-hood"
+              />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
-                {gasStoveProduct?.data?.rows.map((product, i) => (
+                {kitchenHoodProducts?.data?.rows.map((product, i) => (
                   <ProductCard
                     key={i}
                     url={product.slug}
@@ -157,9 +168,12 @@ export default async function Home({
               </div>
             </div>
             <div>
-              <Title title="Digital Scale" href="/category/digital-scale" />
+              <Title
+                title="Digital Scale"
+                href="/category/filter?category=digital-scale"
+              />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
-                {gasStoveProduct?.data?.rows.map((product, i) => (
+                {digitalScaleProducts?.data?.rows.map((product, i) => (
                   <ProductCard
                     key={i}
                     url={product.slug}
@@ -198,9 +212,9 @@ export default async function Home({
           <div className="text-center mt-7">
             <Link
               className=" font-gotham font-medium text-sm  more-btn"
-              href={'/videos'}
+              href={"/videos"}
             >
-              More Videos{' '}
+              More Videos{" "}
               <BsArrowRightShort className="inline text-xl font-bold" />
             </Link>
           </div>
