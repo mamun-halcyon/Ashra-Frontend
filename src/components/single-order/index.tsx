@@ -15,7 +15,7 @@ export interface IProps {
 const SingleOrder: FC<IProps> = ({ order }) => {
   const { login } = useAppSelector((state) => state.login);
   const [isOpen, setIsOpen] = useState(false);
-  const [orderDetails, setOrderDetails] = useState<any[]>([]);
+  const [orderDetails, setOrderDetails] = useState<any>({});
 
   useEffect(() => {
     if (order?.id) {
@@ -30,7 +30,6 @@ const SingleOrder: FC<IProps> = ({ order }) => {
             }
           );
           if (response?.status === 200) {
-            console.log(response?.data);
             setOrderDetails(response?.data);
           }
         } catch (error) {
@@ -40,6 +39,10 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       getOrderDetails();
     }
   }, [order?.id]);
+
+  useEffect(() => {
+    console.log(orderDetails.orderItems);
+  }, [orderDetails]);
 
   return (
     <tr className=" font-normal font-gotham text-sm table-border">
@@ -79,18 +82,20 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     <p className=" font-gotham text-sm font-semibold">
                       Customer Name:
                     </p>
-                    <p className=" font-gotham text-sm">John</p>
+                    <p className=" font-gotham text-sm">{orderDetails?.name}</p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">Email:</p>
-                    <p className=" font-gotham text-sm">example@gmail.com</p>
+                    <p className=" font-gotham text-sm">
+                      {orderDetails?.email}
+                    </p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
                       Shipping Address:{" "}
                     </p>
                     <p className=" font-gotham text-sm">
-                      340, Road5, Ave3, Mirpur Dohs
+                      {orderDetails?.address}
                     </p>
                   </div>
                 </div>
@@ -100,14 +105,16 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                       Order Date :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
-                      12-12-2023 02:43AM
+                      {orderDetails?.created_at}
                     </p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
                       Order Status:{" "}
                     </p>
-                    <p className=" font-gotham text-sm ml-2">Pending</p>
+                    <p className=" font-gotham text-sm ml-2">
+                      {orderDetails?.status}
+                    </p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
@@ -119,14 +126,16 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     <p className=" font-gotham text-sm font-semibold">
                       Shipping method:{" "}
                     </p>
-                    <p className=" font-gotham text-sm ml-2">Flat Shipping</p>
+                    <p className=" font-gotham text-sm ml-2">
+                      {orderDetails?.delivery_method}
+                    </p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
                       Payment method:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
-                      Cash on Delivery
+                      {orderDetails?.payment_method}
                     </p>
                   </div>
                 </div>
@@ -168,24 +177,26 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className=" font-normal font-gotham text-sm table-border p-2">
-                    <td className="px-6 py-4">Product Name</td>
-                    <td className="px-6 py-4">2</td>
-                    <td className="px-6 py-4">LPG</td>
-                    <td className="px-6 py-4">৳2000</td>
-                    <td className="px-6 py-4">
-                      <Button className="px-3 py-1">Apply Now</Button>
-                    </td>
-                  </tr>
-                  <tr className=" font-normal font-gotham text-sm table-border p-2">
-                    <td className="px-6 py-4">Product Name</td>
-                    <td className="px-6 py-4">2</td>
-                    <td className="px-6 py-4">LPG</td>
-                    <td className="px-6 py-4">৳2000</td>
-                    <td className="px-6 py-4">
-                      <Button className="px-3 py-1">Apply Now</Button>
-                    </td>
-                  </tr>
+                  {orderDetails?.orderItems?.length > 0 ? (
+                    orderDetails?.orderItems?.map((item: any, i: any) => {
+                      return (
+                        <tr
+                          key={i}
+                          className=" font-normal font-gotham text-sm table-border p-2"
+                        >
+                          <td className="px-6 py-4">{item?.product_name}</td>
+                          <td className="px-6 py-4">{item?.quantity}</td>
+                          <td className="px-6 py-4">LPG</td>
+                          <td className="px-6 py-4">৳{item?.discount_price}</td>
+                          <td className="px-6 py-4">
+                            <Button className="px-3 py-1">Apply Now</Button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
                 </tbody>
               </table>
               <div className="mt-12">
