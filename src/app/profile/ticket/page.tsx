@@ -29,8 +29,10 @@ const Ticket = () => {
             <div className="grid grid-cols-12 gap-6">
               <ProfileSidebar />
               <div className=" col-span-9">
-                <Button>New Ticket</Button>
-                <table className="w-full text-sm text-left ticket-table ">
+                <Link href={'/profile/ticket/create'}>
+                  <Button className="px-2 py-1 font-gotham">New Ticket</Button>
+                </Link>
+                <table className="w-full text-sm text-left ticket-table mt-3 ">
                   <thead>
                     <tr className="table-heading">
                       <th
@@ -99,7 +101,7 @@ const Ticket = () => {
                           href={'/profile/ticket/1'}
                           className="cursor-pointer"
                         >
-                          View All →
+                          Replay →
                         </Link>
                       </td>
                     </tr>
