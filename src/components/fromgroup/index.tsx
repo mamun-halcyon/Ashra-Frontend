@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FC } from 'react';
-import './index.scss';
+import React, { ChangeEvent, FC } from "react";
+import "./index.scss";
 
 interface IProps {
   name?: string;
@@ -10,6 +10,7 @@ interface IProps {
   title: string;
   className?: string;
   type?: string;
+  value?: string;
 }
 const FormGroup: FC<IProps> = ({
   className,
@@ -20,6 +21,7 @@ const FormGroup: FC<IProps> = ({
   title,
   required,
   type,
+  value,
 }) => {
   return (
     <div className={`from-group ${className}`}>
@@ -31,11 +33,12 @@ const FormGroup: FC<IProps> = ({
       </label>
       <input
         className="block mt-1 form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs w-full text-black"
-        type={type ? type : 'text'}
+        type={type ? type : "text"}
         name={name}
         placeholder={placeholder}
         onChange={onChange}
         required={required}
+        value={value}
       />
     </div>
   );

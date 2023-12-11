@@ -1,22 +1,40 @@
-'use client';
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import ProfileSidebar from '@/components/profile-sidebar';
-import { useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import './page.scss';
+"use client";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const ViewTicket = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [ticket, setTicket] = useState<{}>({});
 
   useEffect(() => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
+    }
+  }, [login]);
+
+  useEffect(() => {
+    if (login?.accessToken) {
+      const getTicketDetails = async () => {
+        try {
+          const response = await axios.get(`${API_URL}/`);
+          if (response.status === 200) {
+            setTicket(response?.data?.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getTicketDetails();
     }
   }, [login]);
 
