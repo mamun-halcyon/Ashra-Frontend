@@ -1,19 +1,19 @@
-'use client';
-import Box from '@/components/box';
-import FormGroup from '@/components/fromgroup';
-import { toast } from 'react-toastify';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import Button from '@/components/button';
-import './page.scss';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import { useRouter } from 'next/navigation';
-import { clearCart } from '@/redux/features/cart/cartSlice';
+"use client";
+import Box from "@/components/box";
+import FormGroup from "@/components/fromgroup";
+import { toast } from "react-toastify";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import Button from "@/components/button";
+import "./page.scss";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import { API_URL } from "@/constant";
+import { useRouter } from "next/navigation";
+import { clearCart } from "@/redux/features/cart/cartSlice";
 
 function Checkout() {
   const router = useRouter();
@@ -30,12 +30,18 @@ function Checkout() {
   const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
     useState<string | null>(null);
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [thana, setThana] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [thana, setThana] = useState("");
+  const [cashOnDeliveryMessage, setCashOnDeliveryMessage] = useState<
+    string | null
+  >("");
+  const [onlinePaymentMessage, setOnlinePaymentMessage] = useState<
+    string | null
+  >("");
 
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedPaymentValue = event.target.name;
@@ -70,11 +76,11 @@ function Checkout() {
     address,
     city,
     thana,
-    order_form: 'web',
+    order_form: "web",
     final_price: finalPrice,
     delivery_fee: 0,
-    payment_method: 'Credit Card',
-    order_status: 'pending',
+    payment_method: "Credit Card",
+    order_status: "pending",
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
   };
@@ -82,21 +88,21 @@ function Checkout() {
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedPayment) {
-      toast.error('Please Select payment method');
+      toast.error("Please Select payment method");
       return;
     }
     if (!selectedPaymentDeliveryStatus) {
-      toast.error('Please Select delivery method');
+      toast.error("Please Select delivery method");
     }
     await axios.post(`${API_URL}/orders`, orderData).then((res) => {
-      toast.success('Order create successfully');
+      toast.success("Order create successfully");
       dispatch(clearCart());
-      router.push('/profile/order');
+      router.push("/profile/order");
     });
   };
 
   const handleApplyPromo = async () => {
-    if (approvePromoCode?.trim() || approvePromoCode?.trim() !== '') {
+    if (approvePromoCode?.trim() || approvePromoCode?.trim() !== "") {
       try {
         const response = await axios.post(`${API_URL}/coupons/validation`, {
           coupon_code: approvePromoCode,
@@ -116,12 +122,12 @@ function Checkout() {
 
   useEffect(() => {
     if (approvePromoData) {
-      if (approvePromoData?.discount_type === 'flat') {
+      if (approvePromoData?.discount_type === "flat") {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           let tempIdsArr: any[] = [];
-          if (approvePromoData?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = approvePromoData?.product_id?.split(',');
+          if (approvePromoData?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = approvePromoData?.product_id?.split(",");
           } else {
             tempIdsArr = [approvePromoData?.product_id];
           }
@@ -147,8 +153,8 @@ function Checkout() {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           let tempIdsArr: any[] = [];
-          if (approvePromoData?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = approvePromoData?.product_id?.split(',');
+          if (approvePromoData?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = approvePromoData?.product_id?.split(",");
           } else {
             tempIdsArr = [approvePromoData?.product_id];
           }
@@ -194,16 +200,33 @@ function Checkout() {
     }
   }, [cart, approvePromoData, discountCart]);
 
+  useEffect(() => {
+    const getAllSettings = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/settings`);
+        if (response?.status === 200) {
+          setCashOnDeliveryMessage(response?.data?.setting?.cash_on_message);
+          setOnlinePaymentMessage(
+            response?.data?.setting?.online_payment_message
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllSettings();
+  }, []);
+
   return (
     <main>
       <section>
         <div className="container px-2 md:px-0">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/cart'}> Shopping Cart </Link>
+            <Link href={"/cart"}> Shopping Cart </Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/checkout'}> Checkout </Link>
+            <Link href={"/checkout"}> Checkout </Link>
           </div>
         </div>
       </section>
@@ -294,7 +317,7 @@ function Checkout() {
                           type="checkbox"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
-                          checked={selectedPayment === 'cashOnDelivery'}
+                          checked={selectedPayment === "cashOnDelivery"}
                           onChange={handlePaymentChange}
                         />
                         <label
@@ -309,7 +332,7 @@ function Checkout() {
                           type="checkbox"
                           name="onlinePayment"
                           id="onlinePayment"
-                          checked={selectedPayment === 'onlinePayment'}
+                          checked={selectedPayment === "onlinePayment"}
                           onChange={handlePaymentChange}
                         />
                         <label
@@ -324,7 +347,7 @@ function Checkout() {
                       We Accept
                     </p>
                     <Image
-                      src={'/assets/images/service/card-logo.png'}
+                      src={"/assets/images/service/card-logo.png"}
                       className="w-9/12 mt-2"
                       width={200}
                       height={100}
@@ -346,7 +369,7 @@ function Checkout() {
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
-                              selectedPaymentDeliveryStatus === 'homeDelivery'
+                              selectedPaymentDeliveryStatus === "homeDelivery"
                             }
                             onChange={handlePaymentStatusChange}
                           />
@@ -362,7 +385,7 @@ function Checkout() {
                             type="checkbox"
                             name="pickup"
                             id="pickup"
-                            checked={selectedPaymentDeliveryStatus === 'pickup'}
+                            checked={selectedPaymentDeliveryStatus === "pickup"}
                             onChange={handlePaymentStatusChange}
                           />
                           <label
@@ -419,21 +442,14 @@ function Checkout() {
                     <TabPanel>
                       <div className="content">
                         <p className="text font-gotham font-normal bold text-xs">
-                          ধন্যবাদ আপনার অর্ডারের জন্য। আমাদের অফিশিয়াল ফোন কল না
-                          পাওয়া পর্যন্ত আপনার অর্ডারটি পেন্ডিং -এ থাকবে। (Thank
-                          you for your order. Your order is pending until the
-                          official phone call confirmation)
+                          {cashOnDeliveryMessage ? cashOnDeliveryMessage : ""}
                         </p>
                       </div>
                     </TabPanel>
                     <TabPanel>
                       <div className="content">
                         <p className="text font-gotham font-normal bold text-xs">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Ipsum illum sint laudantium nesciunt rerum, esse
-                          quod assumenda repellendus accusamus velit optio quo
-                          odit, dolor rem laboriosam commodi deserunt dolorem
-                          illo?
+                          {onlinePaymentMessage ? onlinePaymentMessage : ""}
                         </p>
                       </div>
                     </TabPanel>
@@ -527,12 +543,12 @@ function Checkout() {
                         htmlFor="accept"
                         className=" font-gotham font-normal text-xs"
                       >
-                        I have read and agree to the{' '}
+                        I have read and agree to the{" "}
                         <span className="sudo">
-                          {' '}
+                          {" "}
                           Terms and Conditions, Privacy Policy
-                        </span>{' '}
-                        and{' '}
+                        </span>{" "}
+                        and{" "}
                         <span className="sudo">Refund and Return Policy</span>
                       </label>
                     </div>
