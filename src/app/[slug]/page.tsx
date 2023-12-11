@@ -29,10 +29,10 @@ const CustomPage = ({ params: { slug } }: Props) => {
   return (
     <section className="custom">
       <div className="container">
-        <h5>{pageData.title}</h5>
+        <h5>{pageData?.title}</h5>
         <div
           className=" font-gotham"
-          dangerouslySetInnerHTML={{ __html: pageData.content }}
+          dangerouslySetInnerHTML={{ __html: pageData?.content }}
         />
       </div>
     </section>
