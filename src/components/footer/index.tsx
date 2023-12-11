@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import './index.scss';
-import Link from 'next/link';
-import { applianceData } from '@/static/footerData';
-import { FaLocationDot } from 'react-icons/fa6';
-import { PiEnvelopeThin } from 'react-icons/pi';
-import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
-import { HomeApiResponse } from '@/types/home';
-import { API_ROOT, API_URL } from '@/constant';
-import axios from 'axios';
-import { IMenu } from '@/types/menu';
+import Image from "next/image";
+import "./index.scss";
+import Link from "next/link";
+import { applianceData } from "@/static/footerData";
+import { FaLocationDot } from "react-icons/fa6";
+import { PiEnvelopeThin } from "react-icons/pi";
+import { BsHeadphones, BsEnvelopeFill } from "react-icons/bs";
+import { HomeApiResponse } from "@/types/home";
+import { API_ROOT, API_URL } from "@/constant";
+import axios from "axios";
+import { IMenu } from "@/types/menu";
 
 type IProps = {
   globalData: HomeApiResponse;
@@ -20,8 +20,8 @@ const getMenus = async (slug: string) => {
 };
 
 const Footer = async ({ globalData }: IProps) => {
-  const footerOneData: IMenu[] = await getMenus('footer_one');
-  const footerTwoData: IMenu[] = await getMenus('footer_two');
+  const footerOneData: IMenu[] = await getMenus("footer_one");
+  const footerTwoData: IMenu[] = await getMenus("footer_two");
 
   return (
     <footer>
@@ -92,7 +92,7 @@ const Footer = async ({ globalData }: IProps) => {
                     key={index}
                   >
                     <Link className="link-item" href={item.slug}>
-                      {' '}
+                      {" "}
                       {item.name}
                     </Link>
                   </li>
@@ -101,7 +101,8 @@ const Footer = async ({ globalData }: IProps) => {
             </div>
           </div>
         </div>
-        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div>
             <p className=" font-gotham font-normal text-sm text-black mb-2 ">
               Download our Mobile Apps
@@ -190,7 +191,7 @@ const Footer = async ({ globalData }: IProps) => {
               </span>
             </form>
           </div>
-        </div> */}
+        </div>
       </div>
       <div className=" mt-10 py-2 bg-primary">
         <div className="container px-2 md:px-0">
@@ -203,7 +204,7 @@ const Footer = async ({ globalData }: IProps) => {
             <div className="w-[60%] md:w-auto">
               <Image
                 className=" md:h-6 bottom-image "
-                src={'/assets/images/footer/payment.png'}
+                src={"/assets/images/footer/payment.png"}
                 width={400}
                 height={50}
                 alt="payment"
