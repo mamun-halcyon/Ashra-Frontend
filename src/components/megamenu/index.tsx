@@ -27,7 +27,7 @@ const MegaMenu = ({ menus }: IProps) => {
                   <div
                     className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all"
                     onClick={() =>
-                      route.push(`/category/filter?category=${menu.title}`)
+                      route.push(`/category/filter?category=${menu.slug}`)
                     }
                   >
                     {menu.title.toUpperCase()}

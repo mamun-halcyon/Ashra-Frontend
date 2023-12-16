@@ -20,7 +20,7 @@ const ChildCategory: FC<IProps> = ({
   const [checked, setChecked] = useState<boolean>(false);
 
   const onChangeHandler = (event: any) => {
-    handleMultipleCategory(event.target.value, false);
+    handleMultipleCategory(childCategory.slug, false);
     setChecked((prevState) => !prevState);
     setRootCategoryChanged(subCategory.slug);
   };
@@ -29,7 +29,7 @@ const ChildCategory: FC<IProps> = ({
     if (rootCategoryChanged !== subCategory.slug) {
       if (checked) {
         setChecked(false);
-        handleMultipleCategory(childCategory.title, true);
+        handleMultipleCategory(childCategory.slug, true);
       }
     }
   }, [rootCategoryChanged]);
