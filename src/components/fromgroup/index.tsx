@@ -10,7 +10,7 @@ interface IProps {
   title: string;
   className?: string;
   type?: string;
-  value?: string;
+  value?: any;
 }
 const FormGroup: FC<IProps> = ({
   className,

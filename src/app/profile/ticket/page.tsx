@@ -28,13 +28,12 @@ const Ticket = () => {
     if (login?.accessToken) {
       const getAllTickets = async () => {
         try {
-          const response = await axios.get(`${API_URL}/supports`, {
+          const response = await axios.get(`${API_URL}/customers/supports`, {
             headers: {
               Authorization: `Bearer ${login?.accessToken}`,
             },
           });
           if (response.status === 200) {
-            console.log("support tickets", response);
             setTickets(response?.data?.data);
           }
         } catch (error) {
@@ -99,19 +98,19 @@ const Ticket = () => {
                             scope="row "
                             className="px-6 py-3 font-gotham font-normal"
                           >
-                            #2147483647
+                            #{ticket?.id}
                           </td>
                           <td
                             scope="row"
                             className="px-6 py-3 font-gotham font-normal"
                           >
-                            2023-09-27 03:24:50
+                            {ticket?.created_at}
                           </td>
                           <td
                             scope="row"
                             className="px-6 py-3 font-gotham font-normal"
                           >
-                            Account Recovery
+                            {ticket?.subject}
                           </td>
                           <td
                             scope="row"
@@ -124,7 +123,7 @@ const Ticket = () => {
                             className="px-6 py-3 font-gotham font-normal"
                           >
                             <Link
-                              href={"/profile/ticket/1"}
+                              href={`/profile/ticket/${ticket?.id}`}
                               className="cursor-pointer"
                             >
                               View All →
