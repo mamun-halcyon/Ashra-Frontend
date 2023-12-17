@@ -10,6 +10,7 @@ import { API_URL } from "@/constant";
 const Profile = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
+  const { cart } = useAppSelector((state) => state.cart);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [dashboard, setDashboard] = useState<any>();
 
@@ -44,7 +45,7 @@ const Profile = () => {
                 <div className="grid grid-cols-3 gap-4">
                   <div className=" bg-primary py-5 pl-5">
                     <h2 className=" font-medium font-gotham text-base text-white">
-                      0 Products
+                      {cart?.length} Products
                     </h2>
                     <p className=" font-gotham font-light text-xs text-white">
                       In Your Cart
