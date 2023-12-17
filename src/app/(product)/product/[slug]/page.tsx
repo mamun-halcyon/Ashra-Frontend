@@ -64,6 +64,10 @@ function PageDetails({ params: { slug } }: Props) {
   );
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
+  const [review, setReview] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
   const [isEmi, setIsEmi] = useState(false);
   const [number, setNumber] = useState<string>("");
   const [question, setQuestion] = useState<string>("");
@@ -91,16 +95,16 @@ function PageDetails({ params: { slug } }: Props) {
     router.push("/cart");
   };
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const data = await getProduct(slug);
-        setProduct(data.data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
+  const fetchProduct = async () => {
+    try {
+      const data = await getProduct(slug);
+      setProduct(data.data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchProduct();
   }, [slug]);
 
@@ -201,6 +205,40 @@ function PageDetails({ params: { slug } }: Props) {
       dispatch(addToCompare(data));
     } else {
       toast.error("Maximum items exits");
+    }
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (
+      review !== "" &&
+      firstName !== "" &&
+      email !== "" &&
+      product?.product?.id &&
+      login?.user?.id &&
+      login?.user?.name
+    ) {
+      try {
+        const response = await axios.post(`${API_URL}/reviews`, {
+          product_id: product?.product?.id,
+          product_name: product?.product?.title,
+          user_id: login?.user?.id,
+          name: login?.user?.name,
+          comment: review,
+          rating: rating,
+          is_visible: "0",
+        });
+        if (response?.status === 201) {
+          toast.success("Review post success!");
+          setRating(0);
+          setReview("");
+          setFirstName("");
+          setEmail("");
+          fetchProduct();
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -543,9 +581,13 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className="review">
                           <div className="grid grid-cols-2 gap-10">
                             <div>
-                              {[...Array(4)].map((review, index) => (
-                                <ReviewCard key={index} />
-                              ))}
+                              {product?.review?.length > 0 ? (
+                                product?.review?.map((item, index) => (
+                                  <ReviewCard key={index} review={item} />
+                                ))
+                              ) : (
+                                <></>
+                              )}
                             </div>
                             {/* Review Form */}
                             <div>
@@ -575,10 +617,32 @@ function PageDetails({ params: { slug } }: Props) {
                                   />
                                 </div>
                               </div>
-                              <form>
-                                <TextAreaGroup title="Your review *" required />
-                                <FormGroup title="First Name *" required />
-                                <FormGroup title="Email *" required />
+                              <form onSubmit={handleSubmit}>
+                                <TextAreaGroup
+                                  title="Your review *"
+                                  required
+                                  value={review}
+                                  onChange={(e: any) =>
+                                    setReview(e.target.value)
+                                  }
+                                />
+                                <FormGroup
+                                  title="First Name *"
+                                  required
+                                  value={firstName}
+                                  onChange={(e: any) =>
+                                    setFirstName(e.target.value)
+                                  }
+                                />
+                                <FormGroup
+                                  title="Email *"
+                                  type="email"
+                                  required
+                                  value={email}
+                                  onChange={(e: any) =>
+                                    setEmail(e.target.value)
+                                  }
+                                />
                                 <div className="flex items-center mt-1">
                                   <div className="mr-2">
                                     <input
