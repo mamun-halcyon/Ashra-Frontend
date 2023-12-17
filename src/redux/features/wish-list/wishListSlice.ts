@@ -27,13 +27,13 @@ export const wishListSlice = createSlice({
       } else {
         state.wishList = [...state.wishList, newItem];
         toast.success('Item added to your wish list!');
+        localStorage.setItem('wishListItems', JSON.stringify(state.wishList));
       }
-      localStorage.setItem('wishListItems', JSON.stringify(state.wishList));
     },
 
     removeFromWishList: (state, action: PayloadAction<IWishListItem>) => {
       state.wishList = state.wishList.filter(
-        (i) => i.product_id !== action.payload.product_id
+        (item) => item.product_id !== action.payload.product_id
       );
       localStorage.setItem('wishListItems', JSON.stringify(state.wishList));
     },

@@ -23,6 +23,7 @@ export const loginSlice = createSlice({
       state.login = null;
       localStorage.removeItem('login');
       localStorage.removeItem('cartItems');
+      localStorage.removeItem('wishListItems');
     }
   },
 });

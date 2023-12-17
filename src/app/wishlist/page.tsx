@@ -9,6 +9,7 @@ import { serviceCardData } from "@/static/serviceCard";
 import axios from "axios";
 import { API_ROOT, API_URL } from "@/constant";
 import { toast } from "react-toastify";
+import { removeFromWishList } from "@/redux/features/wish-list/wishListSlice";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
@@ -34,23 +35,25 @@ function WishlistPage() {
     }
   };
 
-  const handleRemoveItem = async (id: number) => {
-    const storedLogin: string | null = localStorage.getItem("login");
-    const accessToken: string | null = storedLogin
-      ? JSON.parse(storedLogin)?.accessToken || null
-      : null;
-    if (accessToken !== null) {
+  const handleRemoveItem = async (wishlistID: number, productID: number) => {
+    if (login?.accessToken && login?.user?.id) {
       try {
         const response = await axios.delete(
-          `${API_URL}/wishlists?ids=[${id}]`,
+          `${API_URL}/wishlists?ids=[${wishlistID}]`,
           {
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              Authorization: `Bearer ${login?.accessToken}`,
             },
           }
         );
         if (response.status == 200) {
           toast.success("Item removed successfuly!");
+          dispatch(
+            removeFromWishList({
+              product_id: productID,
+              user_id: login?.user?.id,
+            })
+          );
           getWishListItems();
         }
       } catch (error) {
@@ -104,7 +107,9 @@ function WishlistPage() {
                     <div className="flex items-center">
                       <div
                         className=" cursor-pointer"
-                        onClick={() => handleRemoveItem(item.id)}
+                        onClick={() =>
+                          handleRemoveItem(item.wishlist_id, item?.id)
+                        }
                       >
                         <span>
                           <RxCross2 className="text-xs " />

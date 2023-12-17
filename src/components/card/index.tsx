@@ -36,6 +36,7 @@ const ProductCard: React.FC<IProps> = ({
   product_id,
   sort_description,
 }) => {
+  const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -54,29 +55,22 @@ const ProductCard: React.FC<IProps> = ({
   };
 
   const addWishList = async () => {
-    const storedLogin: string | null = localStorage.getItem("login");
-    const accessToken: string | null = storedLogin
-      ? JSON.parse(storedLogin)?.accessToken || null
-      : null;
-    const user_id: number | null = storedLogin
-      ? JSON.parse(storedLogin)?.user?.id || null
-      : null;
-    if (accessToken !== null && user_id !== null) {
+    if (login?.accessToken && login?.user?.id) {
       try {
         const response = await axios.post(`${API_URL}/wishlists`, {
           product_id,
-          user_id: user_id,
+          user_id: login?.user?.id,
         });
-        if (response.status == 200) {
-          toast.success("");
+        if (response.status == 201) {
+          dispatch(
+            addToWishList({
+              product_id: response.data.data.product_id,
+              user_id: response.data.data.user_id,
+            })
+          );
+        } else {
+          console.log("Status : ", response.status);
         }
-
-        // dispatch(
-        //   addToWishList({
-        //     product_id: response.data.data.product_id,
-        //     user_id: response.data.data.user_id,
-        //   })
-        // );
       } catch (error) {
         console.log(error);
       }
