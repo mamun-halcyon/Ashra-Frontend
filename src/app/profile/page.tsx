@@ -4,15 +4,30 @@ import "./page.scss";
 import ProfileSidebar from "@/components/profile-sidebar";
 import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { API_URL } from "@/constant";
 
 const Profile = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [dashboard, setDashboard] = useState<any>();
+
+  const getDashboardInfo = async () => {
+    const response = await axios.get(`${API_URL}/customers/dashboards`, {
+      headers: {
+        Authorization: `Bearer ${login?.accessToken}`,
+      },
+    });
+    if (response?.status === 200) {
+      setDashboard(response?.data);
+    }
+  };
 
   useEffect(() => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
+      getDashboardInfo();
     } else {
       route.push("/login");
     }
@@ -37,7 +52,7 @@ const Profile = () => {
                   </div>
                   <div className=" bg-primary py-5 pl-5">
                     <h2 className=" font-medium font-gotham text-base text-white">
-                      0 Products
+                      {dashboard?.wishlistCount} Products
                     </h2>
                     <p className=" font-gotham font-light text-xs text-white">
                       In Your Wishlist
@@ -45,7 +60,7 @@ const Profile = () => {
                   </div>
                   <div className=" bg-primary py-5 pl-5">
                     <h2 className=" font-medium font-gotham text-base text-white">
-                      0 Products
+                      {dashboard?.orderCount} Products
                     </h2>
                     <p className=" font-gotham font-light text-xs text-white">
                       In Your Ordered
