@@ -37,6 +37,8 @@ import { data } from "autoprefixer";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
+import { ICompareItem } from "@/types/compare";
+import { addToCompare } from "@/redux/features/compare/compareSlice";
 const ProductCard = dynamic(() => import("@/components/card"));
 
 type Props = {
@@ -53,6 +55,7 @@ async function getProduct(slug: string) {
 
 function PageDetails({ params: { slug } }: Props) {
   const { login } = useAppSelector((state) => state.login);
+  const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
   const [product, setProduct] = useState<ISingleProduct | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -190,6 +193,14 @@ function PageDetails({ params: { slug } }: Props) {
       }
     } else {
       router.push("/login");
+    }
+  };
+
+  const addCompare = (data: ICompareItem) => {
+    if (compareItems.length < 4) {
+      dispatch(addToCompare(data));
+    } else {
+      toast.error("Maximum items exits");
     }
   };
 
@@ -381,13 +392,33 @@ function PageDetails({ params: { slug } }: Props) {
                             Wishlist
                           </OutlineButton>
                         </span>
-
-                        <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
-                          <span>
-                            <BsArrowRepeat className="mr-1 " />
-                          </span>
-                          Add to Compare
-                        </OutlineButton>
+                        <span
+                          onClick={() => {
+                            return (
+                              product?.product?.id &&
+                              addCompare({
+                                product_id: product?.product?.id,
+                                description:
+                                  product?.product?.description ?? "",
+                                image: product?.product?.image,
+                                title: product?.product?.title,
+                                regular_price: Number(
+                                  product?.product?.regular_price
+                                ),
+                                price: Number(product?.product?.discount_price),
+                                quantity: 1,
+                                rating: 5,
+                              })
+                            );
+                          }}
+                        >
+                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                            <span>
+                              <BsArrowRepeat className="mr-1 " />
+                            </span>
+                            Add to Compare
+                          </OutlineButton>
+                        </span>
                         <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                           <span>
                             <AiOutlineShareAlt className="mr-1 " />
