@@ -29,13 +29,14 @@ import { FaAward } from "react-icons/fa6";
 import EmiPopup from "@/components/emi-popup";
 import { IProduct, ISingleProduct } from "@/types/product";
 import { API_ROOT, API_URL } from "@/constant";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
 import { ICartItem } from "@/types/cart";
 import { data } from "autoprefixer";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
 const ProductCard = dynamic(() => import("@/components/card"));
 
 type Props = {
@@ -51,6 +52,7 @@ async function getProduct(slug: string) {
 }
 
 function PageDetails({ params: { slug } }: Props) {
+  const { login } = useAppSelector((state) => state.login);
   const router = useRouter();
   const [product, setProduct] = useState<ISingleProduct | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -163,6 +165,31 @@ function PageDetails({ params: { slug } }: Props) {
       } catch (error) {
         console.log(error);
       }
+    }
+  };
+
+  const addWishList = async (productID: Number) => {
+    if (login?.accessToken && login?.user?.id) {
+      try {
+        const response = await axios.post(`${API_URL}/wishlists`, {
+          product_id: productID,
+          user_id: login?.user?.id,
+        });
+        if (response.status == 201) {
+          dispatch(
+            addToWishList({
+              product_id: response.data.data.product_id,
+              user_id: response.data.data.user_id,
+            })
+          );
+        } else {
+          console.log("Status : ", response.status);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      router.push("/login");
     }
   };
 
@@ -338,12 +365,23 @@ function PageDetails({ params: { slug } }: Props) {
 
                     <div className="more-action">
                       <div className="flex">
-                        <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
-                          <span>
-                            <AiOutlineHeart className="mr-1 " />
-                          </span>
-                          Wishlist
-                        </OutlineButton>
+                        <span
+                          onClick={() => {
+                            return (
+                              product?.product?.id &&
+                              addWishList(product?.product?.id)
+                            );
+                          }}
+                        >
+                          {" "}
+                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                            <span>
+                              <AiOutlineHeart className="mr-1 " />
+                            </span>
+                            Wishlist
+                          </OutlineButton>
+                        </span>
+
                         <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                           <span>
                             <BsArrowRepeat className="mr-1 " />
