@@ -16,6 +16,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
   const { login } = useAppSelector((state) => state.login);
   const [isOpen, setIsOpen] = useState(false);
   const [orderDetails, setOrderDetails] = useState<any>({});
+  const [finalPrice, setFinalPrice] = useState<number>(0);
 
   useEffect(() => {
     if (order?.id) {
@@ -40,13 +41,111 @@ const SingleOrder: FC<IProps> = ({ order }) => {
     }
   }, [order?.id]);
 
+  useEffect(() => {
+    if (orderDetails?.coupon) {
+      if (orderDetails?.coupon?.discount_type === "flat") {
+        let tempDisCart = orderDetails?.orderItems;
+        if (orderDetails?.coupon?.product_id) {
+          let tempIdsArr: any[] = [];
+          if (orderDetails?.coupon?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = orderDetails?.coupon?.product_id?.split(",");
+          } else {
+            tempIdsArr = [orderDetails?.coupon?.product_id];
+          }
+          tempDisCart = tempDisCart?.map((item: any) => {
+            if (tempIdsArr.find((element) => element == item.id)) {
+              return {
+                ...item,
+                discount_price:
+                  item.regular_price - orderDetails?.coupon?.discount_amount,
+              };
+            }
+            return item;
+          });
+        } else {
+          tempDisCart = tempDisCart?.map((item: any) => {
+            return {
+              ...item,
+              discount_price:
+                item.regular_price - orderDetails?.coupon?.discount_amount,
+            };
+          });
+        }
+        setOrderDetails((prevState: any) => {
+          return {
+            ...prevState,
+            orderItems: tempDisCart,
+          };
+        });
+      } else {
+        let tempDisCart = orderDetails?.orderItems;
+        if (orderDetails?.coupon?.product_id) {
+          let tempIdsArr: any[] = [];
+          if (orderDetails?.coupon?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = orderDetails?.coupon?.product_id?.split(",");
+          } else {
+            tempIdsArr = [orderDetails?.coupon?.product_id];
+          }
+          tempDisCart = tempDisCart?.map((item: any) => {
+            if (tempIdsArr.find((element) => element == item.id)) {
+              return {
+                ...item,
+                discount_price:
+                  item.regular_price -
+                  item.regular_price *
+                    (orderDetails?.coupon.discount_amount / 100),
+              };
+            }
+            return item;
+          });
+        } else {
+          tempDisCart = tempDisCart?.map((item: any) => {
+            return {
+              ...item,
+              discount_price:
+                item.regular_price -
+                item.regular_price *
+                  (orderDetails?.coupon.discount_amount / 100),
+            };
+          });
+        }
+        setOrderDetails((prevState: any) => {
+          return {
+            ...prevState,
+            orderItems: tempDisCart,
+          };
+        });
+      }
+    }
+  }, [orderDetails?.coupon]);
+
+  useEffect(() => {
+    if (orderDetails?.orderItems?.length > 0) {
+      if (orderDetails?.coupon) {
+        let finalPrice = 0;
+        orderDetails?.orderItems?.map((item: any) => {
+          finalPrice += item?.discount_price * item?.quantity;
+        });
+        setFinalPrice(finalPrice);
+      } else {
+        let finalPrice = 0;
+        orderDetails?.orderItems?.map((item: any) => {
+          finalPrice += item?.discount_price
+            ? item?.discount_price
+            : item?.regular_price * item?.quantity;
+        });
+        setFinalPrice(finalPrice);
+      }
+    }
+  }, [orderDetails?.coupon, orderDetails?.orderItems]);
+
   return (
     <tr className=" font-normal font-gotham text-sm table-border">
       <td scope="row" className="px-6 py-4  ">
         20230927-12584942
       </td>
       <td className="px-6 py-4">{order?.created_at}</td>
-      <td className="px-6 py-4">৳17,280.00</td>
+      <td className="px-6 py-4">৳{finalPrice}</td>
       <td className="px-6 py-4">Delivered</td>
       <td className="px-6 py-4">Paid</td>
       <td className="px-6 py-2">
@@ -183,7 +282,12 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                           <td className="px-6 py-4">{item?.product_name}</td>
                           <td className="px-6 py-4">{item?.quantity}</td>
                           <td className="px-6 py-4">LPG</td>
-                          <td className="px-6 py-4">৳{item?.discount_price}</td>
+                          <td className="px-6 py-4">
+                            ৳
+                            {item?.discount_price
+                              ? item?.discount_price
+                              : item?.regular_price}
+                          </td>
                           <td className="px-6 py-4">
                             <Button className="px-3 py-1">Apply Now</Button>
                           </td>
@@ -212,10 +316,10 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     </h3>
                   </div>
                   <div className="ml-6">
-                    <p className=" font-gotham text-sm mb-3">৳1200</p>
-                    <p className=" font-gotham text-sm mb-3">৳120</p>
-                    <p className=" font-gotham text-sm mb-3">৳200</p>
-                    <p className=" font-gotham text-sm mb-3">৳1000</p>
+                    <p className=" font-gotham text-sm mb-3">৳{finalPrice}</p>
+                    <p className=" font-gotham text-sm mb-3">৳0</p>
+                    <p className=" font-gotham text-sm mb-3">৳0</p>
+                    <p className=" font-gotham text-sm mb-3">৳0</p>
                   </div>
                 </div>
               </div>
