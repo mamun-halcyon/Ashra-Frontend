@@ -76,17 +76,44 @@
 .mobile-menu {
   .main-button {
     .menus {
-      // height: 0;
-      // opacity: 0;
+      height: 0;
+      opacity: 0;
+      transition: all linear 0.3s;
 
       .parent-category {
         // height: 0;
         // opacity: 0;
-      }
-      .sub-category {
-        // height: 0;
-        // opacity: 0;
+        .sub-categories {
+          height: 0;
+          opacity: 0;
+          transition: all linear 0.3s;
 
+          .sub-category {
+            .children-category {
+              height: 0;
+              opacity: 0;
+              transition: all linear 0.3s;
+            }
+
+            .self:hover {
+              svg {
+                color: $white-color;
+              }
+              a {
+                color: $white-color;
+              }
+            }
+            &:hover {
+              .children-category {
+                height: 100%;
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+
+      .sub-category {
         .children-category {
           height: 0;
           opacity: 0;
@@ -108,14 +135,19 @@
           }
         }
       }
+
+      .parent-category:hover ~ .sub-categories {
+        height: 100%;
+        opacity: 1;
+      }
     }
 
     // working
-    /* &:hover {
+    &:hover {
       .menus {
         height: 100%;
         opacity: 1;
       }
-    } */
+    }
   }
 }

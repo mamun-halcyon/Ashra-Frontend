@@ -126,7 +126,7 @@ const MegaMenu = ({ menus }: IProps) => {
                           <RiArrowDropDownLine className=" text-xl" />
                         </span>
                       </div>
-                      <div>
+                      <div className="sub-categories">
                         {menus
                           .filter(
                             (category) => category.parent_category === menu.slug
