@@ -8,12 +8,14 @@ import ProductCard from '../card';
 import { API_ROOT } from '@/constant';
 import { IProduct } from '@/types/product';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type IProps = {
   topSale: IProduct[];
   newArrival: IProduct[];
   featureProduct: IProduct[];
   adsbanner: string;
+  bannerUrl: string;
 };
 
 const Featured: FC<IProps> = ({
@@ -21,6 +23,7 @@ const Featured: FC<IProps> = ({
   newArrival,
   featureProduct,
   adsbanner,
+  bannerUrl,
 }) => {
   return (
     <div>
@@ -94,13 +97,15 @@ const Featured: FC<IProps> = ({
                   </TabPanel>
                 </div>
                 <div className="h-[100%] hidden md:block">
-                  <Image
-                    className=" h-[100%]"
-                    src={`${API_ROOT}/images/banner/${adsbanner}`}
-                    width={100}
-                    height={100}
-                    alt="ads"
-                  />
+                  <Link href={bannerUrl}>
+                    <Image
+                      className=" w-full"
+                      src={`${API_ROOT}/images/banner/${adsbanner}`}
+                      width={100}
+                      height={100}
+                      alt="ads"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>

@@ -72,3 +72,50 @@
     }
   }
 }
+
+.mobile-menu {
+  .main-button {
+    .menus {
+      // height: 0;
+      // opacity: 0;
+
+      .parent-category {
+        // height: 0;
+        // opacity: 0;
+      }
+      .sub-category {
+        // height: 0;
+        // opacity: 0;
+
+        .children-category {
+          height: 0;
+          opacity: 0;
+          transition: all linear 0.3s;
+        }
+
+        .self:hover {
+          svg {
+            color: $white-color;
+          }
+          a {
+            color: $white-color;
+          }
+        }
+        &:hover {
+          .children-category {
+            height: 100%;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    // working
+    /* &:hover {
+      .menus {
+        height: 100%;
+        opacity: 1;
+      }
+    } */
+  }
+}

@@ -1,19 +1,18 @@
-import "./page.scss";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Banner from "@/components/banner";
-import ServiceCard from "@/components/service-card";
-import Link from "next/link";
-import { BsArrowRightShort } from "react-icons/bs";
-import { API_ROOT, API_URL } from "@/constant";
-import { HomeApiResponse } from "@/types/home";
-import { IProduct, IProductResponse } from "@/types/product";
-import Navbar from "@/components/navbar";
-const Featured = dynamic(() => import("@/components/featured"));
-const ExploreCard = dynamic(() => import("@/components/explore"));
-const ProductCard = dynamic(() => import("@/components/card"));
-const Title = dynamic(() => import("@/components/title"));
-const VideoCard = dynamic(() => import("@/components/video-card"));
+import './page.scss';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Banner from '@/components/banner';
+import ServiceCard from '@/components/service-card';
+import Link from 'next/link';
+import { BsArrowRightShort } from 'react-icons/bs';
+import { API_ROOT, API_URL } from '@/constant';
+import { HomeApiResponse } from '@/types/home';
+import { IProduct, IProductResponse } from '@/types/product';
+const Featured = dynamic(() => import('@/components/featured'));
+const ExploreCard = dynamic(() => import('@/components/explore'));
+const ProductCard = dynamic(() => import('@/components/card'));
+const Title = dynamic(() => import('@/components/title'));
+const VideoCard = dynamic(() => import('@/components/video-card'));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`);
@@ -22,27 +21,18 @@ async function getData() {
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+    throw new Error('Failed to fetch data');
   }
 
   return res.json();
 }
 
-async function searchProduct(search: string) {
-  const res = await fetch(`${API_URL}/products?search=${search}`);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
 async function categoryProduct(category_slug: string) {
   const res = await fetch(
     `${API_URL}/frontend/products?page=1&limit=10&category=${category_slug}`
   );
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error('Failed to fetch data');
   }
 
   return res.json();
@@ -51,7 +41,7 @@ async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`);
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error('Failed to fetch data');
   }
 
   return res.json();
@@ -62,16 +52,15 @@ export default async function Home({
   searchParams: { q: string };
 }) {
   const homeData: HomeApiResponse = await getData();
-  const searchData: IProductResponse = await searchProduct(q);
-  const gasStoveProducts: IProductResponse = await categoryProduct("gas-stove");
+  const gasStoveProducts: IProductResponse = await categoryProduct('gas-stove');
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
-    "kichen-hood"
+    'kichen-hood'
   );
   const digitalScaleProducts: IProductResponse = await categoryProduct(
-    "digital-scale"
+    'digital-scale'
   );
-  const addBanner = await categoryAdBanner("home");
-  const verticalBanner = await categoryAdBanner("home-v");
+  const addBanner = await categoryAdBanner('home');
+  const verticalBanner = await categoryAdBanner('home-v');
 
   return (
     <>
@@ -112,6 +101,7 @@ export default async function Home({
           topSale={homeData.topSale}
           newArrival={homeData.newArrival}
           adsbanner={verticalBanner?.data[0]?.image}
+          bannerUrl={verticalBanner?.data[0]?.url}
         />
         <section className="promotion">
           <Link href={homeData?.homePage?.special_product_link}>
@@ -212,9 +202,9 @@ export default async function Home({
           <div className="text-center mt-7">
             <Link
               className=" font-gotham font-medium text-sm  more-btn"
-              href={"/videos"}
+              href={'/videos'}
             >
-              More Videos{" "}
+              More Videos{' '}
               <BsArrowRightShort className="inline text-xl font-bold" />
             </Link>
           </div>

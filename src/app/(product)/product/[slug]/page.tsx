@@ -1,45 +1,44 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { RiArrowDropRightLine } from "react-icons/ri";
-const ZoomImage = dynamic(() => import("@/components/zoom-image"));
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Slider from "react-slick";
-import Image from "next/image";
-import StarRatings from "react-star-ratings";
-import "./page.scss";
-import StarRating from "@/components/rating";
-import Button from "@/components/button";
+'use client';
+import { useState, useEffect } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { RiArrowDropRightLine } from 'react-icons/ri';
+const ZoomImage = dynamic(() => import('@/components/zoom-image'));
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import StarRatings from 'react-star-ratings';
+import './page.scss';
+import StarRating from '@/components/rating';
+import Button from '@/components/button';
 import {
   AiOutlineHeart,
   AiOutlineMinus,
   AiOutlinePlus,
   AiOutlineShareAlt,
-} from "react-icons/ai";
-import OutlineButton from "@/components/outline-button";
-import { BsArrowRepeat, BsAwardFill } from "react-icons/bs";
-import Title from "@/components/title";
-import { productsData } from "@/static/products";
-import ReviewCard from "@/components/review-card";
-import FormGroup from "@/components/fromgroup";
-import TextAreaGroup from "@/components/textarea";
-import { FaAward } from "react-icons/fa6";
-import EmiPopup from "@/components/emi-popup";
-import { IProduct, ISingleProduct } from "@/types/product";
-import { API_ROOT, API_URL } from "@/constant";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { useRouter } from "next/navigation";
-import { ICartItem } from "@/types/cart";
-import { data } from "autoprefixer";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
-import { ICompareItem } from "@/types/compare";
-import { addToCompare } from "@/redux/features/compare/compareSlice";
-const ProductCard = dynamic(() => import("@/components/card"));
+} from 'react-icons/ai';
+import OutlineButton from '@/components/outline-button';
+import { BsArrowRepeat, BsAwardFill } from 'react-icons/bs';
+import Title from '@/components/title';
+import { productsData } from '@/static/products';
+import ReviewCard from '@/components/review-card';
+import FormGroup from '@/components/fromgroup';
+import TextAreaGroup from '@/components/textarea';
+import { FaAward } from 'react-icons/fa6';
+import EmiPopup from '@/components/emi-popup';
+import { IProduct, ISingleProduct } from '@/types/product';
+import { API_ROOT, API_URL } from '@/constant';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { useRouter } from 'next/navigation';
+import { ICartItem } from '@/types/cart';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
+import { ICompareItem } from '@/types/compare';
+import { addToCompare } from '@/redux/features/compare/compareSlice';
+const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
   params: {
@@ -64,13 +63,13 @@ function PageDetails({ params: { slug } }: Props) {
   );
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [review, setReview] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
 
   const [isEmi, setIsEmi] = useState(false);
-  const [number, setNumber] = useState<string>("");
-  const [question, setQuestion] = useState<string>("");
+  const [number, setNumber] = useState<string>('');
+  const [question, setQuestion] = useState<string>('');
 
   const handleEmi = () => setIsEmi(!isEmi);
 
@@ -92,7 +91,7 @@ function PageDetails({ params: { slug } }: Props) {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
 
   const fetchProduct = async () => {
@@ -100,7 +99,7 @@ function PageDetails({ params: { slug } }: Props) {
       const data = await getProduct(slug);
       setProduct(data.data);
     } catch (error) {
-      console.error("Error fetching product:", error);
+      console.error('Error fetching product:', error);
     }
   };
 
@@ -152,8 +151,8 @@ function PageDetails({ params: { slug } }: Props) {
   const handleSubmitQuestion = async (e: any) => {
     e.preventDefault();
     if (
-      number.trim() !== "" &&
-      question.trim() !== "" &&
+      number.trim() !== '' &&
+      question.trim() !== '' &&
       product?.product?.id &&
       product?.product?.title
     ) {
@@ -166,8 +165,8 @@ function PageDetails({ params: { slug } }: Props) {
         });
         if (response.status === 201) {
           toast.success(response?.data?.message);
-          setNumber("");
-          setQuestion("");
+          setNumber('');
+          setQuestion('');
         }
       } catch (error) {
         console.log(error);
@@ -190,13 +189,13 @@ function PageDetails({ params: { slug } }: Props) {
             })
           );
         } else {
-          console.log("Status : ", response.status);
+          console.log('Status : ', response.status);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      router.push("/login");
+      router.push('/login');
     }
   };
 
@@ -204,16 +203,16 @@ function PageDetails({ params: { slug } }: Props) {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error("Maximum items exits");
+      toast.error('Maximum items exits');
     }
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (
-      review !== "" &&
-      firstName !== "" &&
-      email !== "" &&
+      review !== '' &&
+      firstName !== '' &&
+      email !== '' &&
       product?.product?.id &&
       login?.user?.id &&
       login?.user?.name
@@ -226,14 +225,14 @@ function PageDetails({ params: { slug } }: Props) {
           name: login?.user?.name,
           comment: review,
           rating: rating,
-          is_visible: "0",
+          is_visible: '0',
         });
         if (response?.status === 201) {
-          toast.success("Review post success!");
+          toast.success('Review post success!');
           setRating(0);
-          setReview("");
-          setFirstName("");
-          setEmail("");
+          setReview('');
+          setFirstName('');
+          setEmail('');
           fetchProduct();
         }
       } catch (error) {
@@ -250,11 +249,11 @@ function PageDetails({ params: { slug } }: Props) {
             <div className="container px-2 md:px-1">
               <div className="product-specification">
                 <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                  <Link href={"/"}>Home</Link>
+                  <Link href={'/'}>Home</Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/category/bathware"}> Bathware </Link>
+                  <Link href={'/category/bathware'}> Bathware </Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/subcagory/Commode"}> Commode </Link>
+                  <Link href={'/subcagory/Commode'}> Commode </Link>
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
@@ -295,9 +294,9 @@ function PageDetails({ params: { slug } }: Props) {
                     </h2>
                     <div className="flex items-center text-primary font-gotham">
                       <div className="flex items-center">
-                        <StarRating rating={product?.review?.length} />
+                        <StarRating rating={product?.averageReview} />
                         <span className="ml-1 font-gotham text-xs">
-                          {" "}
+                          {' '}
                           Review
                         </span>
                       </div>
@@ -422,7 +421,7 @@ function PageDetails({ params: { slug } }: Props) {
                             );
                           }}
                         >
-                          {" "}
+                          {' '}
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
                               <AiOutlineHeart className="mr-1 " />
@@ -437,7 +436,7 @@ function PageDetails({ params: { slug } }: Props) {
                               addCompare({
                                 product_id: product?.product?.id,
                                 description:
-                                  product?.product?.description ?? "",
+                                  product?.product?.description ?? '',
                                 image: product?.product?.image,
                                 title: product?.product?.title,
                                 regular_price: Number(
@@ -471,7 +470,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className=" w-8">
                           <Image
                             className="w-full"
-                            src={"/assets/images/service/service1.png"}
+                            src={'/assets/images/service/service1.png'}
                             width={40}
                             height={40}
                             alt="service"
@@ -490,7 +489,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className=" w-8">
                           <Image
                             className="w-full"
-                            src={"/assets/images/service/service2.png"}
+                            src={'/assets/images/service/service2.png'}
                             width={40}
                             height={40}
                             alt="service"
@@ -509,7 +508,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <div className=" w-8">
                           <Image
                             className="w-full"
-                            src={"/assets/images/service/service4.png"}
+                            src={'/assets/images/service/service4.png'}
                             width={40}
                             height={40}
                             alt="service"
@@ -735,7 +734,7 @@ function PageDetails({ params: { slug } }: Props) {
 
               <div className=" pt-7 pb-24">
                 <Image
-                  src={"/assets/images/ads/Group 9.png"}
+                  src={'/assets/images/ads/Group 9.png'}
                   alt="ads"
                   width={1300}
                   height={500}

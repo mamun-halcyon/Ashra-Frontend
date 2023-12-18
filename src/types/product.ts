@@ -44,6 +44,7 @@ interface ProductPhoto {
 }
 
 export interface ISingleProduct {
+  averageReview: number;
   product: IProduct;
   productPhotos: ProductPhoto[];
   relatedProduct: IProduct[];
