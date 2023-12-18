@@ -107,7 +107,7 @@ function Checkout() {
       })
       .catch((error) => {
         if (error?.response?.status === 400) {
-          toast.error("Email & Mobile Do Not Match");
+          toast.error("This Email or Phone already used in another account!");
         }
         console.log("error : ", error);
       });
