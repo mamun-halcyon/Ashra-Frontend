@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { saveLoginInfo } from "@/redux/features/login/loginSlice";
 import { API_URL } from "@/constant";
+import { setWishList } from "@/redux/features/wish-list/wishListSlice";
 
 function Login() {
   const route = useRouter();
@@ -29,6 +30,27 @@ function Login() {
     }
   }, [login]);
 
+  useEffect(() => {
+    getWishListItems();
+  }, [login?.accessToken]);
+
+  const getWishListItems = async () => {
+    if (login?.accessToken) {
+      try {
+        const response = await axios.get(`${API_URL}/customers/wishlists`, {
+          headers: {
+            Authorization: `Bearer ${login?.accessToken}`,
+          },
+        });
+        if (response.status == 200) {
+          dispatch(setWishList(response?.data));
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+  };
+
   const handleLogin = async (e: any) => {
     e.preventDefault();
     try {
@@ -38,6 +60,7 @@ function Login() {
       });
       dispatch(saveLoginInfo(response.data));
       toast.success("Successfull Login!");
+
       router.push("/profile");
     } catch (error: any) {
       console.error("Login error:", error);
