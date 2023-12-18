@@ -38,6 +38,7 @@ import { toast } from 'react-toastify';
 import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
 import { ICompareItem } from '@/types/compare';
 import { addToCompare } from '@/redux/features/compare/compareSlice';
+import { IBanner } from '@/types/banner';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
@@ -57,6 +58,7 @@ function PageDetails({ params: { slug } }: Props) {
   const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
   const [product, setProduct] = useState<ISingleProduct | null>(null);
+  const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
   const [quantity, setQuantity] = useState<number>(1);
   const [viewImage, setViewImag] = useState<string>(
     product?.productPhotos[0]?.image as string
@@ -103,9 +105,24 @@ function PageDetails({ params: { slug } }: Props) {
     }
   };
 
+  async function categoryAdBanner() {
+    try {
+      const data = await axios.get(
+        `${API_URL}/banners/${product?.product?.category_slug}`
+      );
+
+      setAdsBanner(data.data?.data[0]);
+    } catch (error) {
+      console.log('category ads banner' + error);
+    }
+  }
+
   useEffect(() => {
     fetchProduct();
   }, [slug]);
+  useEffect(() => {
+    categoryAdBanner();
+  }, [product?.product?.category_slug]);
 
   const settings = {
     dots: false,
@@ -732,14 +749,16 @@ function PageDetails({ params: { slug } }: Props) {
                 </div>
               </div>
 
-              <div className=" pt-7 pb-24">
-                <Image
-                  src={'/assets/images/ads/Group 9.png'}
-                  alt="ads"
-                  width={1300}
-                  height={500}
-                />
-              </div>
+              {adsBanner?.image && (
+                <div className=" pt-7 pb-24">
+                  <Image
+                    src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
+                    alt="ads"
+                    width={1300}
+                    height={500}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>
