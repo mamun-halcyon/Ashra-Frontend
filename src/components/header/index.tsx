@@ -1,15 +1,16 @@
-'use client';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { BiSolidPhone } from 'react-icons/bi';
-import { AiFillBell } from 'react-icons/ai';
-import { BsChevronDown } from 'react-icons/bs';
-import './index.scss';
-import { IHomePage } from '@/types/home';
-import { IMenu } from '@/types/menu';
-import { useRouter } from 'next/navigation';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { clearLoginInfo } from '@/redux/features/login/loginSlice';
+"use client";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { BiSolidPhone } from "react-icons/bi";
+import { AiFillBell } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
+import "./index.scss";
+import { IHomePage } from "@/types/home";
+import { IMenu } from "@/types/menu";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearLoginInfo } from "@/redux/features/login/loginSlice";
+import { clearWishList } from "@/redux/features/wish-list/wishListSlice";
 
 type IProps = {
   homeData: IHomePage;
@@ -32,8 +33,9 @@ const TopHeader = ({ homeData, menus }: IProps) => {
 
   const logoutHandler = (e: any) => {
     e.preventDefault();
+    dispatch(clearWishList());
     dispatch(clearLoginInfo());
-    router.push('/login');
+    router.push("/login");
   };
 
   return (
@@ -61,7 +63,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
           <div className="relative group inline-block">
             <Link
               className="sub-link  text-primary font-gotham font-normal text-sm"
-              href={'/about'}
+              href={"/about"}
             >
               Help
               <span>
@@ -89,13 +91,13 @@ const TopHeader = ({ homeData, menus }: IProps) => {
             <>
               <Link
                 className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
-                href={'/login'}
+                href={"/login"}
               >
                 Login
               </Link>
               <Link
                 className="ml-6 sub-link text-primary font-gotham font-normal text-sm"
-                href={'/register'}
+                href={"/register"}
               >
                 Registration
               </Link>

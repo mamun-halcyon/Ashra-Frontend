@@ -11,6 +11,7 @@ interface IProps {
   className?: string;
   type?: string;
   value?: any;
+  disabled?: boolean;
 }
 const FormGroup: FC<IProps> = ({
   className,
@@ -22,6 +23,7 @@ const FormGroup: FC<IProps> = ({
   required,
   type,
   value,
+  disabled,
 }) => {
   return (
     <div className={`from-group ${className}`}>
@@ -39,6 +41,7 @@ const FormGroup: FC<IProps> = ({
         onChange={onChange}
         required={required}
         value={value}
+        disabled={disabled}
       />
     </div>
   );

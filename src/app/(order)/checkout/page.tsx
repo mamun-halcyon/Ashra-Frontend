@@ -18,19 +18,22 @@ import { clearCart } from "@/redux/features/cart/cartSlice";
 function Checkout() {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { login } = useAppSelector((state) => state.login);
   const { cart } = useAppSelector((state) => state.cart);
   const [discountCart, setDiscountCart] = useState<any>(cart);
   const [finalPrice, setFinalPrice] = useState<number>(0);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [approvePromoCode, setApprovePromCode] = useState<string | null>(null);
   const [approvePromoData, setApprovePromoData] = useState<any>(null);
-  const [approvePromoStatus, setApprovePromStatus] = useState<number | null>(
+  const [approvePromoStatus, setApprovePromStatus] = useState<Number | null>(
     null
   );
   const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
     useState<string | null>(null);
   const [couponId, setCouponId] = useState<Number | null>(null);
-
+  const [location, setLocation] = useState<string>("");
+  const [locations, setLocations] = useState<any[]>([]);
+  const [deliveryFee, setDeliveryFee] = useState<number>(0);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
@@ -72,13 +75,13 @@ function Checkout() {
 
   const orderData = {
     name,
-    email,
-    mobile,
+    email: login?.user?.email ? login?.user?.email : email,
+    mobile: login?.user?.mobile ? login?.user?.mobile : mobile,
     address,
     city,
     thana,
     order_form: "web",
-    delivery_fee: 0,
+    delivery_fee: deliveryFee,
     coupon_id: couponId,
     payment_method: "Credit Card",
     order_status: "pending",
@@ -95,11 +98,19 @@ function Checkout() {
     if (!selectedPaymentDeliveryStatus) {
       toast.error("Please Select delivery method");
     }
-    await axios.post(`${API_URL}/orders`, orderData).then((res) => {
-      toast.success("Order create successfully");
-      dispatch(clearCart());
-      router.push("/profile/order");
-    });
+    await axios
+      .post(`${API_URL}/orders`, orderData)
+      .then((res) => {
+        toast.success("Order create successfully");
+        dispatch(clearCart());
+        router.push("/profile/order");
+      })
+      .catch((error) => {
+        if (error?.response?.status === 400) {
+          toast.error("Email & Mobile Do Not Match");
+        }
+        console.log("error : ", error);
+      });
   };
 
   const handleApplyPromo = async () => {
@@ -219,6 +230,49 @@ function Checkout() {
     getAllSettings();
   }, []);
 
+  useEffect(() => {
+    const getLocations = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/shippings`);
+        if (response?.status === 200) {
+          setLocations(response?.data?.data?.rows);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getLocations();
+  }, []);
+
+  useEffect(() => {
+    if (
+      selectedPaymentDeliveryStatus &&
+      location !== "" &&
+      locations?.length > 0
+    ) {
+      if (selectedPaymentDeliveryStatus == "pickup") {
+        let totalProductsCount = 0;
+        let perCountFree = 0;
+        cart?.length > 0 &&
+          cart?.map((item) => {
+            totalProductsCount += item.quantity;
+          });
+        locations?.map((item) => {
+          if (location == item?.location) {
+            perCountFree = item?.price;
+          }
+        });
+        setDeliveryFee(totalProductsCount * perCountFree);
+      } else {
+        setDeliveryFee(0);
+      }
+    }
+  }, [selectedPaymentDeliveryStatus, location, locations]);
+
+  const handleChangeLocation = (e: any) => {
+    setLocation(e.target.value);
+  };
+
   return (
     <main>
       <section>
@@ -256,6 +310,8 @@ function Checkout() {
                     placeholder="Type your e-mail*"
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    value={login?.user?.email ? login?.user?.email : email}
+                    disabled={login?.accessToken ? true : false}
                   />
                   <FormGroup
                     className="mb-1"
@@ -263,6 +319,8 @@ function Checkout() {
                     placeholder="Type your mobile*"
                     onChange={(e) => setMobile(e.target.value)}
                     required
+                    value={login?.user?.mobile ? login?.user?.mobile : mobile}
+                    disabled={login?.accessToken ? true : false}
                   />
                   <FormGroup
                     className="mb-1"
@@ -288,10 +346,18 @@ function Checkout() {
                       <select
                         id="location"
                         className="bg-gray-50 border border-secondary mt-1 text-black text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
+                        onChange={handleChangeLocation}
                       >
                         <option value="">Select Location</option>
-                        <option value="dhaka">Dhaka</option>
-                        <option value="Gazipur">Gazipur</option>
+                        {locations?.length > 0 ? (
+                          locations?.map((location, i) => (
+                            <option key={i} value={`${location?.location}`}>
+                              {location?.location}
+                            </option>
+                          ))
+                        ) : (
+                          <></>
+                        )}
                       </select>
                     </div>
                     {/* <FormGroup
@@ -517,7 +583,7 @@ function Checkout() {
                         Home Delivery :
                       </div>
                       <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
-                        ৳0.00
+                        ৳{deliveryFee}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
@@ -526,7 +592,7 @@ function Checkout() {
                         Total :
                       </div>
                       <div className="p-3  font-gotham text-xs text-primary font-medium">
-                        ৳{finalPrice}
+                        ৳{finalPrice + deliveryFee}
                       </div>
                     </div>
                   </div>

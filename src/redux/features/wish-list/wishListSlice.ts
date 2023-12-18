@@ -16,6 +16,10 @@ export const wishListSlice = createSlice({
   name: 'wishList',
   initialState,
   reducers: {
+    setWishList: (state, action: PayloadAction<IWishListItem[]>) => {
+      state.wishList = [...action.payload];
+    },
+
     addToWishList: (state, action: PayloadAction<IWishListItem>) => {
       const newItem = action.payload;
       const existingItem = state.wishList.find(
@@ -46,6 +50,7 @@ export const wishListSlice = createSlice({
 });
 
 export const {
+  setWishList,
     addToWishList,
     removeFromWishList,
     clearWishList,

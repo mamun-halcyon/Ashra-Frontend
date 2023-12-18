@@ -1,24 +1,29 @@
-'use client';
-import Button from '@/components/button';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { RxCross2 } from 'react-icons/rx';
-import './page.scss';
-import ServiceCard from '@/components/service-card';
-import { serviceCardData } from '@/static/serviceCard';
-import axios from 'axios';
-import { API_ROOT, API_URL } from '@/constant';
-import { toast } from 'react-toastify';
-import { removeFromWishList } from '@/redux/features/wish-list/wishListSlice';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+"use client";
+import Button from "@/components/button";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import "./page.scss";
+import ServiceCard from "@/components/service-card";
+import { serviceCardData } from "@/static/serviceCard";
+import axios from "axios";
+import { API_ROOT, API_URL } from "@/constant";
+import { toast } from "react-toastify";
+import { removeFromWishList } from "@/redux/features/wish-list/wishListSlice";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearLoginInfo } from "@/redux/features/login/loginSlice";
+import {
+  setWishList,
+  clearWishList,
+} from "@/redux/features/wish-list/wishListSlice";
+import { useRouter } from "next/navigation";
 
 function WishlistPage() {
   const [wishListItems, setWishListItems] = useState<any[]>([]);
   const { login } = useAppSelector((state) => state.login);
   const dispatch = useAppDispatch();
-
-  console.log(wishListItems);
+  const route = useRouter();
 
   const getWishListItems = async () => {
     if (login?.accessToken) {
@@ -30,9 +35,15 @@ function WishlistPage() {
         });
         if (response.status == 200) {
           setWishListItems(response?.data);
+          dispatch(setWishList(response?.data));
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        if (error?.response?.status === 401) {
+          dispatch(clearWishList());
+          dispatch(clearLoginInfo());
+          route.push("/login");
+        }
+        console.error("Error fetching data:", error);
       }
     }
   };
@@ -49,7 +60,7 @@ function WishlistPage() {
           }
         );
         if (response.status == 200) {
-          toast.success('Item removed successfuly!');
+          toast.success("Item removed successfuly!");
           dispatch(
             removeFromWishList({
               product_id: productID,
@@ -59,7 +70,7 @@ function WishlistPage() {
           getWishListItems();
         }
       } catch (error) {
-        console.error('Error deleting data:', error);
+        console.error("Error deleting data:", error);
       }
     }
   };
@@ -140,9 +151,9 @@ function WishlistPage() {
                   </div>
                   <div className="col-span-2 hidden md:block">
                     <h3 className=" font-gotham font-medium text-sm">
-                      {item.availability == 0 ? 'Instock' : ''}
-                      {item.availability === 1 ? 'Out of stock' : ''}
-                      {item.availability === 2 ? 'Upcomming' : ''}
+                      {item.availability == 0 ? "Instock" : ""}
+                      {item.availability === 1 ? "Out of stock" : ""}
+                      {item.availability === 2 ? "Upcomming" : ""}
                     </h3>
                   </div>
                   <div className="md:col-span-1 col-span-2">
