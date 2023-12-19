@@ -14,14 +14,14 @@ const SearchArea = () => {
   const { replace } = useRouter();
   const pathname = usePathname();
 
-  /* const handleSearch = useDebouncedCallback(
+  const handleSearch = useDebouncedCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const params = new URLSearchParams(Object.fromEntries(searchParams));
       params.set('search', e.target.value);
       replace(`${pathname}?${params}`);
     },
     300
-  ); */
+  );
 
   const handleClick = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -47,7 +47,7 @@ const SearchArea = () => {
             type="text"
             className="px-3 h-9 focus:outline-none w-[450px] font-gotham font-normal text-sm placeholder:font-gotham placeholder:text-sm search-input"
             placeholder="Search for Products..."
-            // onChange={handleSearch}
+            onChange={handleSearch}
           />
           <button
             className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white"
