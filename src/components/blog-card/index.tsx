@@ -5,6 +5,7 @@ import './index.scss';
 import Link from 'next/link';
 import { IBlog } from '@/types/blog';
 import { API_ROOT } from '@/constant';
+import { formatDate } from '../dateformate';
 
 interface IProps {
   blog: IBlog;
@@ -38,7 +39,7 @@ const BlogCard: FC<IProps> = ({ className, blog }) => {
 
           <div>
             <span className=" font-gotham font-normal italic text-[10px] blog-time">
-              Update on 30th July 2023
+              Update on {formatDate(blog.created_at)}
             </span>
           </div>
         </div>

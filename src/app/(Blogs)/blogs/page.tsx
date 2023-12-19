@@ -7,13 +7,24 @@ import { redirect } from 'next/navigation';
 import Pagination from '@/components/pagination';
 import Image from 'next/image';
 import { IResponseBlog } from '@/types/blog';
-import { API_URL } from '@/constant';
+import { API_ROOT, API_URL } from '@/constant';
+import axios from 'axios';
+import { IBanner } from '@/types/banner';
 
 async function getBlogs(page: number = 1, limit: number = 12) {
   const url = `${API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
   const res = await fetch(url, { cache: 'no-store' });
   const data = await res.json();
   return data;
+}
+async function adBanner() {
+  try {
+    const data = await axios.get(`${API_URL}/banners/blog`);
+
+    return data?.data?.data[0];
+  } catch (error) {
+    console.log('category ads banner' + error);
+  }
 }
 
 async function Blogs({
@@ -26,6 +37,8 @@ async function Blogs({
   const limit =
     typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
   const blogs: IResponseBlog = await getBlogs(page, limit);
+
+  const adsBanner: IBanner = await adBanner();
 
   /* const [page, setPage] = useState(1);
   const [showTitle, setShowTitle] = useState<string>('Show');
@@ -61,13 +74,17 @@ async function Blogs({
 
       <section className="mt-8 mb-5">
         <div className="container">
-          <Image
-            className="w-full"
-            src={'/assets/images/ads/Group 9.png'}
-            width={400}
-            height={300}
-            alt="ads"
-          />
+          {adsBanner && (
+            <Link href={adsBanner.url}>
+              <Image
+                className="w-full"
+                src={`${API_ROOT}/images/banner/${adsBanner.image}`}
+                width={400}
+                height={300}
+                alt="ads"
+              />
+            </Link>
+          )}
         </div>
       </section>
       <section className="blog">

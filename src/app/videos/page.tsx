@@ -10,14 +10,26 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { API_URL } from '@/constant';
 import { IVideo } from '@/types/video';
+import axios from 'axios';
+import { IBanner } from '@/types/banner';
 
 function Videos() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState<number | string>(16);
   const [showTitle, setShowTitle] = useState<string>('Show');
   const [videos, setVideos] = useState<IVideo[]>([]);
+  const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
   const [count, setCount] = useState(0);
   const [isLoading, setLoading] = useState(true);
+
+  async function adBanner() {
+    try {
+      const data = await axios.get(`${API_URL}/banners/video`);
+      setAdsBanner(data.data?.data[0]);
+    } catch (error) {
+      console.log('category ads banner' + error);
+    }
+  }
 
   useEffect(() => {
     fetch(`${API_URL}/videos?page=${page}&limit=${limit}`)
@@ -32,6 +44,9 @@ function Videos() {
   /*  useEffect(() => {
     dispatch(getProducts({}));
   }, []); */
+  useEffect(() => {
+    adBanner();
+  }, []);
 
   const incrementPage = () => {
     setPage(page + 1);
@@ -63,15 +78,19 @@ function Videos() {
       </section>
 
       <section className="md:mt-8 md:mb-5 mt-3 mb-2">
-        <div className="container">
-          <Image
-            className="w-full"
-            src={'/assets/images/ads/Group 9.png'}
-            width={400}
-            height={300}
-            alt="ads"
-          />
-        </div>
+        {adsBanner?.image && (
+          <div className="container">
+            <Link href={'/'}>
+              <Image
+                className="w-full"
+                src={'/assets/images/ads/Group 9.png'}
+                width={400}
+                height={300}
+                alt="ads"
+              />
+            </Link>
+          </div>
+        )}
       </section>
 
       <div className="videos-section">

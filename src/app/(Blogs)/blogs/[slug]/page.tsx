@@ -13,6 +13,7 @@ import Button from '@/components/button';
 import { IBlog, IResponseBlog } from '@/types/blog';
 import { formatDate } from '@/components/dateformate';
 import { API_ROOT, API_URL } from '@/constant';
+import axios from 'axios';
 
 type Props = {
   params: {
@@ -28,9 +29,10 @@ async function getBlog(slug: string) {
   const data = await res.json();
   return data;
 }
+
 async function popularBlogs() {
   const url = `${API_URL}/frontend/blogs?limit=10&page=1`;
-  const res = await fetch(url, {cache: 'no-store' });
+  const res = await fetch(url, { cache: 'no-store' });
   const data = await res.json();
   return data;
 }
@@ -120,7 +122,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
             <h2 className="font-gotham font-normal text-xl  text-black">
               Popular Blogs
               <div className="mt-3 more-blog">
-                {popular.data.rows.map((blog, index) => (
+                {popular?.data?.rows?.map((blog, index) => (
                   <BlogSideCard blog={blog} key={index} />
                 ))}
               </div>
