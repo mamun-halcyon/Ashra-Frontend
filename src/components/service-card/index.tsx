@@ -2,13 +2,8 @@ import Image from 'next/image';
 import './index.scss';
 import Link from 'next/link';
 import { API_ROOT } from '@/constant';
+import { IService } from '@/types/service';
 
-interface IService {
-  title: string;
-  subtitle: string;
-  image: number;
-  url: string;
-}
 interface IProps {
   service: IService;
 }

@@ -1,14 +1,14 @@
-"use client";
-import ProfileSidebar from "@/components/profile-sidebar";
-import "../page.scss";
-import "./page.scss";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Button from "@/components/button";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks";
-import { API_URL } from "@/constant";
-import axios from "axios";
+'use client';
+import ProfileSidebar from '@/components/profile-sidebar';
+import '../page.scss';
+import './page.scss';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Button from '@/components/button';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
+import { API_URL } from '@/constant';
+import axios from 'axios';
 
 const Ticket = () => {
   const route = useRouter();
@@ -20,7 +20,7 @@ const Ticket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -52,7 +52,7 @@ const Ticket = () => {
             <div className="grid grid-cols-12 gap-6">
               <ProfileSidebar />
               <div className=" col-span-9">
-                <Link href={"/profile/ticket/create"}>
+                <Link href={'/profile/ticket/create'}>
                   <Button className="px-2 py-1 font-gotham">New Ticket</Button>
                 </Link>
                 <table className="w-full text-sm text-left ticket-table mt-3 ">
@@ -92,8 +92,8 @@ const Ticket = () => {
                   </thead>
                   <tbody>
                     {tickets?.length > 0 ? (
-                      tickets?.map((ticket) => (
-                        <tr className="table-border">
+                      tickets?.map((ticket, index) => (
+                        <tr className="table-border" key={index}>
                           <td
                             scope="row "
                             className="px-6 py-3 font-gotham font-normal"

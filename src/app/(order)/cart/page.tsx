@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { GoDotFill } from 'react-icons/go';
 import { MdVerified } from 'react-icons/md';
@@ -13,22 +13,37 @@ import Button from '@/components/button';
 import { serviceCardData } from '@/static/serviceCard';
 import ServiceCard from '@/components/service-card';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { API_ROOT } from '@/constant';
+import { API_ROOT, API_URL } from '@/constant';
 import {
   decrementQuantity,
   incrementQuantity,
   removeFromCart,
 } from '@/redux/features/cart/cartSlice';
+import axios from 'axios';
+import { IService } from '@/types/service';
 
 function Checkout() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const [keyPoints, setKeyPoints] = useState<IService[]>([]);
 
   const sumWithInitial = cart.reduce(
     (accumulator, currentValue) =>
       accumulator + currentValue.price * currentValue.quantity,
     0
   );
+
+  const fetchService = async () => {
+    try {
+      const data = await axios.get(`${API_URL}/frontend/keypoints/other`);
+      setKeyPoints(data.data?.data?.rows);
+    } catch (error) {
+      console.error('Error fetching product:', error);
+    }
+  };
+  useEffect(() => {
+    fetchService();
+  }, []);
 
   return (
     <main>
@@ -228,15 +243,17 @@ function Checkout() {
           </Link>
         </div>
       )}
-      <section className="cart-service">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {/* {serviceCardData.map((service, i) => (
-              <ServiceCard key={i} service={service} />
-            ))} */}
+      {keyPoints.length > 0 && (
+        <section className="cart-service">
+          <div className="container">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {keyPoints.map((service, i) => (
+                <ServiceCard key={i} service={service} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </main>
   );
 }

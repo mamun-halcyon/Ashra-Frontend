@@ -1,13 +1,13 @@
-"use client";
-import Button from "@/components/button";
-import FormGroup from "@/components/fromgroup";
-import ProfileSidebar from "@/components/profile-sidebar";
-import { API_URL } from "@/constant";
-import { useAppSelector } from "@/redux/hooks";
-import axios from "axios";
-import { useRouter, useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+'use client';
+import Button from '@/components/button';
+import FormGroup from '@/components/fromgroup';
+import ProfileSidebar from '@/components/profile-sidebar';
+import { API_URL } from '@/constant';
+import { useAppSelector } from '@/redux/hooks';
+import axios from 'axios';
+import { useRouter, useParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const ViewTicket = () => {
   const route = useRouter();
@@ -15,7 +15,7 @@ const ViewTicket = () => {
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [messages, setMessages] = useState<any[]>([]);
-  const [details, setDetails] = useState<string>("");
+  const [details, setDetails] = useState<string>('');
   const [image, setImage] = useState(undefined);
 
   const getTicketDetails = async () => {
@@ -40,7 +40,7 @@ const ViewTicket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -52,29 +52,29 @@ const ViewTicket = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (details?.trim() !== "" && login?.user?.id && image && param?.slug) {
+    if (details?.trim() !== '' && login?.user?.id && image && param?.slug) {
       try {
         const formData = new FormData();
-        formData.append("subject", "");
-        formData.append("details", details?.trim());
-        formData.append("user_id", login?.user?.id?.toString());
-        formData.append("image", image);
-        formData.append("parent_text_id", param?.slug?.toString());
-        formData.append("text_type", "reply");
-        formData.append("upload_preset", "w8omhp4w");
+        formData.append('subject', '');
+        formData.append('details', details?.trim());
+        formData.append('user_id', login?.user?.id?.toString());
+        formData.append('image', image);
+        formData.append('parent_text_id', param?.slug?.toString());
+        formData.append('text_type', 'reply');
+        formData.append('upload_preset', 'w8omhp4w');
         const response = await axios.post(`${API_URL}/supports`, formData, {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
           },
         });
         if (response?.status === 201) {
-          setDetails("");
+          setDetails('');
           setImage(undefined);
           getTicketDetails();
         }
       } catch (error) {
         console.log(error);
-        toast.error("Reply Error!");
+        toast.error('Reply Error!');
       }
     }
   };
@@ -89,15 +89,15 @@ const ViewTicket = () => {
               <div className=" col-span-9">
                 <div className="mb-12 h-[350px] overflow-y-scroll scrollbar">
                   {messages?.length > 0 ? (
-                    messages?.map((message) =>
+                    messages?.map((message, index) =>
                       message.parent_text_id == 0 ? (
-                        <div className="py-2">
+                        <div className="py-2" key={index}>
                           <p className=" font-gotham text-sm bg-hoverColor text-white inline-block px-2 py-1 rounded-md">
                             {message?.details}
                           </p>
                         </div>
                       ) : (
-                        <div className="text-right py-2">
+                        <div className="text-right py-2" key={index}>
                           <p className=" font-gotham text-sm bg-primary text-white inline-block px-2 py-1 rounded-md">
                             {message?.details}
                           </p>

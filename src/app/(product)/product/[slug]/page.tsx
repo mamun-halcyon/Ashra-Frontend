@@ -39,6 +39,7 @@ import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
 import { ICompareItem } from '@/types/compare';
 import { addToCompare } from '@/redux/features/compare/compareSlice';
 import { IBanner } from '@/types/banner';
+import { IService } from '@/types/service';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
@@ -68,7 +69,7 @@ function PageDetails({ params: { slug } }: Props) {
   const [review, setReview] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-
+  const [keyPoints, setKeyPoints] = useState<IService[]>([]);
   const [isEmi, setIsEmi] = useState(false);
   const [number, setNumber] = useState<string>('');
   const [question, setQuestion] = useState<string>('');
@@ -104,6 +105,14 @@ function PageDetails({ params: { slug } }: Props) {
       console.error('Error fetching product:', error);
     }
   };
+  const fetchService = async () => {
+    try {
+      const data = await axios.get(`${API_URL}/frontend/keypoints/product`);
+      setKeyPoints(data.data?.data?.rows);
+    } catch (error) {
+      console.error('Error fetching product:', error);
+    }
+  };
 
   async function categoryAdBanner() {
     try {
@@ -120,6 +129,11 @@ function PageDetails({ params: { slug } }: Props) {
   useEffect(() => {
     fetchProduct();
   }, [slug]);
+
+  useEffect(() => {
+    fetchService();
+  }, []);
+
   useEffect(() => {
     categoryAdBanner();
   }, [product?.product?.category_slug]);
@@ -483,63 +497,27 @@ function PageDetails({ params: { slug } }: Props) {
                     </div>
 
                     <div className="services py-3">
-                      <div className="flex items-center mb-3">
-                        <div className=" w-8">
-                          <Image
-                            className="w-full"
-                            src={'/assets/images/service/service1.png'}
-                            width={40}
-                            height={40}
-                            alt="service"
-                          />
+                      {keyPoints.map((service, index) => (
+                        <div key={index} className="flex items-center mb-3">
+                          <div className=" w-8">
+                            <Image
+                              className="w-full"
+                              src={`${API_ROOT}/images/key-point/${service.image}`}
+                              width={40}
+                              height={40}
+                              alt="service"
+                            />
+                          </div>
+                          <div className="details ml-2">
+                            <h3 className=" font-gotham font-medium text-bold text-base text-primary">
+                              Cash on Delivery
+                            </h3>
+                            <h4 className=" font-gotham font-medium text-bold text-xs text-black">
+                              Installation Service
+                            </h4>
+                          </div>
                         </div>
-                        <div className="details ml-2">
-                          <h3 className=" font-gotham font-medium text-bold text-base text-primary">
-                            Cash on Delivery
-                          </h3>
-                          <h4 className=" font-gotham font-medium text-bold text-xs text-black">
-                            Installation Service
-                          </h4>
-                        </div>
-                      </div>
-                      <div className="flex items-center mb-3">
-                        <div className=" w-8">
-                          <Image
-                            className="w-full"
-                            src={'/assets/images/service/service2.png'}
-                            width={40}
-                            height={40}
-                            alt="service"
-                          />
-                        </div>
-                        <div className="details ml-2">
-                          <h3 className=" font-gotham font-medium text-bold text-base text-primary">
-                            Free Home Delivery
-                          </h3>
-                          <h4 className=" font-gotham font-medium text-bold text-xs text-black">
-                            3 - 7 Working Days
-                          </h4>
-                        </div>
-                      </div>
-                      <div className="flex items-center mb-3">
-                        <div className=" w-8">
-                          <Image
-                            className="w-full"
-                            src={'/assets/images/service/service4.png'}
-                            width={40}
-                            height={40}
-                            alt="service"
-                          />
-                        </div>
-                        <div className="details ml-2">
-                          <h3 className=" font-gotham font-medium text-bold text-base text-primary">
-                            Contact Us
-                          </h3>
-                          <h4 className=" font-gotham font-medium text-bold text-xs text-black">
-                            8801766688840
-                          </h4>
-                        </div>
-                      </div>
+                      ))}
                     </div>
 
                     <OutlineButton className="flex items-center font-gotham font-medium text-primary text-xs py-1">

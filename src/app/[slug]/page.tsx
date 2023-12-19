@@ -9,7 +9,10 @@ type Props = {
     slug: string;
   };
 };
-
+type IPage = {
+  title: string;
+  content: string;
+};
 async function getPages(slug: string) {
   const res = await fetch(`${API_URL}/frontend/pages/${slug} `);
   const data = await res.json();
@@ -17,7 +20,7 @@ async function getPages(slug: string) {
 }
 
 const CustomPage = ({ params: { slug } }: Props) => {
-  const [pageData, setPageData] = useState({});
+  const [pageData, setPageData] = useState<IPage>({} as IPage);
 
   useEffect(() => {
     const fetchData = async () => {
