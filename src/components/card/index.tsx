@@ -1,20 +1,20 @@
-"use client";
-import Image from "next/image";
-import "./index.scss";
-import Button from "../button";
-import { AiOutlineHeart } from "react-icons/ai";
-import { BsArrowRepeat } from "react-icons/bs";
-import Link from "next/link";
-import { API_ROOT, API_URL } from "@/constant";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
-import { ICartItem } from "@/types/cart";
-import { useRouter } from "next/navigation";
-import { addToCompare } from "@/redux/features/compare/compareSlice";
-import { ICompareItem } from "@/types/compare";
-import { toast } from "react-toastify";
-import axios from "axios";
+'use client';
+import Image from 'next/image';
+import './index.scss';
+import Button from '../button';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { BsArrowRepeat } from 'react-icons/bs';
+import Link from 'next/link';
+import { API_ROOT, API_URL } from '@/constant';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
+import { ICartItem } from '@/types/cart';
+import { useRouter } from 'next/navigation';
+import { addToCompare } from '@/redux/features/compare/compareSlice';
+import { ICompareItem } from '@/types/compare';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 interface IProps {
   product_id: number;
@@ -43,14 +43,14 @@ const ProductCard: React.FC<IProps> = ({
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error("Maximum items exits");
+      toast.error('Maximum items exits');
     }
   };
 
@@ -69,13 +69,13 @@ const ProductCard: React.FC<IProps> = ({
             })
           );
         } else {
-          console.log("Status : ", response.status);
+          console.log('Status : ', response.status);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      router.push("/login");
+      router.push('/login');
     }
   };
 
@@ -102,12 +102,20 @@ const ProductCard: React.FC<IProps> = ({
           </Link>
         </div>
         <p className=" mb-2 text-center text-sm">
-          <span className=" mr-2 line-through font-normal text-xs">
+          <span
+            className={`mr-2 font-gotham ${
+              Number(discount_price) > 0
+                ? 'line-through font-normal '
+                : 'font-bold'
+            } text-xs`}
+          >
             ৳ {regular_price}
           </span>
-          <span className=" font-gotham font-bold text-xs">
-            ৳ {discount_price}
-          </span>
+          {Number(discount_price) > 0 && (
+            <span className=" font-gotham font-bold text-xs">
+              ৳ {discount_price}
+            </span>
+          )}
         </p>
         <div className="flex justify-center">
           <Button
@@ -115,7 +123,9 @@ const ProductCard: React.FC<IProps> = ({
               dispatch(
                 addToCart({
                   product_id: product_id,
-                  price: Number(discount_price),
+                  price: Number(
+                    Number(discount_price) > 0 ? discount_price : regular_price
+                  ),
                   title: title,
                   image: image,
                   quantity: 1,
@@ -175,7 +185,7 @@ const ProductCard: React.FC<IProps> = ({
           onClick={() =>
             addCompare({
               product_id,
-              description: sort_description ?? "",
+              description: sort_description ?? '',
               image,
               title,
               regular_price: Number(regular_price),

@@ -1,23 +1,23 @@
-"use client";
-import Image from "next/image";
-import "./index.scss";
-import Link from "next/link";
-import { FaLocationDot } from "react-icons/fa6";
-import { PiEnvelopeThin } from "react-icons/pi";
-import { BsHeadphones, BsEnvelopeFill } from "react-icons/bs";
-import { HomeApiResponse } from "@/types/home";
-import { API_ROOT, API_URL } from "@/constant";
-import axios from "axios";
-import { IMenu } from "@/types/menu";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+'use client';
+import Image from 'next/image';
+import './index.scss';
+import Link from 'next/link';
+import { FaLocationDot } from 'react-icons/fa6';
+import { PiEnvelopeThin } from 'react-icons/pi';
+import { BsHeadphones, BsEnvelopeFill } from 'react-icons/bs';
+import { HomeApiResponse } from '@/types/home';
+import { API_ROOT, API_URL } from '@/constant';
+import axios from 'axios';
+import { IMenu } from '@/types/menu';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 type IProps = {
   globalData: HomeApiResponse;
 };
 
-const Footer = async ({ globalData }: IProps) => {
-  const [email, setEmail] = useState<string>("");
+const Footer = ({ globalData }: IProps) => {
+  const [email, setEmail] = useState<string>('');
   const [footerOneData, setFooterOneData] = useState<IMenu[]>([]);
   const [footerTwoData, setFooterTwoData] = useState<IMenu[]>([]);
 
@@ -48,18 +48,18 @@ const Footer = async ({ globalData }: IProps) => {
 
   const handleSubscribe = async (e: any) => {
     e.preventDefault();
-    if (email.trim() !== "") {
+    if (email.trim() !== '') {
       try {
         const response = await axios.post(`${API_URL}/subscribes`, {
           email: email,
         });
         if (response?.status === 201) {
-          setEmail("");
-          toast.success("Subscribed Successfuly!");
+          setEmail('');
+          toast.success('Subscribed Successfuly!');
         }
       } catch (error) {
         console.log(error);
-        toast.error("Subscribtion Error!");
+        toast.error('Subscribtion Error!');
       }
     }
   };
@@ -138,7 +138,7 @@ const Footer = async ({ globalData }: IProps) => {
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
-                        {" "}
+                        {' '}
                         {item.name}
                       </Link>
                     </li>
@@ -216,7 +216,7 @@ const Footer = async ({ globalData }: IProps) => {
                 </Link>
               )}
               {globalData?.setting?.youtube_url && (
-                <Link href={"/"} target="_blank">
+                <Link href={'/'} target="_blank">
                   <Image
                     className=" rounded w-6 h-6 mx-1"
                     src="/assets/images/icon/youtube.png"
@@ -229,7 +229,10 @@ const Footer = async ({ globalData }: IProps) => {
             </div>
           </div>
           <div className="flex items-end">
-            <form className="relative inline-block subscribe-form">
+            <form
+              className="relative inline-block subscribe-form"
+              onSubmit={handleSubscribe}
+            >
               <input
                 type="email"
                 className="px-3 py-2 border-b-2  focus:ring-0 focus:border-blue-500 outline-none placeholder:font-gotham  placeholder:font-light placeholder:text-sm"
@@ -237,10 +240,7 @@ const Footer = async ({ globalData }: IProps) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <span
-                className=" absolute top-[50%] translate-y-[-50%] right-0"
-                onClick={handleSubscribe}
-              >
+              <span className=" absolute top-[50%] translate-y-[-50%] right-0">
                 <PiEnvelopeThin className="subscribe-icon w-5 h-5" />
               </span>
             </form>
@@ -258,7 +258,7 @@ const Footer = async ({ globalData }: IProps) => {
             <div className="w-[60%] md:w-auto">
               <Image
                 className=" md:h-6 bottom-image "
-                src={"/assets/images/footer/payment.png"}
+                src={'/assets/images/footer/payment.png'}
                 width={400}
                 height={50}
                 alt="payment"
