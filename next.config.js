@@ -5,7 +5,7 @@ const nextConfig = {
     return config;
   }, */
   images: {
-    domains: ['localhost', '54.226.132.225', 'zulkar.me'],
+    domains: ['localhost', '54.226.132.225', 'zulkar.me', '204.152.197.183'],
   },
 };
 
