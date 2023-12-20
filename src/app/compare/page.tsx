@@ -1,33 +1,33 @@
-"use client";
-import React, { useState } from "react";
-import "./page.scss";
-import Button from "@/components/button";
-import Image from "next/image";
-import { RxCrossCircled } from "react-icons/rx";
-import { LuSearch } from "react-icons/lu";
-import StarRating from "@/components/rating";
-import ToggleButton from "@/components/status-button";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+'use client';
+import React, { useState } from 'react';
+import './page.scss';
+import Button from '@/components/button';
+import Image from 'next/image';
+import { RxCrossCircled } from 'react-icons/rx';
+import { LuSearch } from 'react-icons/lu';
+import StarRating from '@/components/rating';
+// import ToggleButton from '@/components/status-button';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   clearCompare,
   removeFromCompare,
-} from "@/redux/features/compare/compareSlice";
-import { API_ROOT } from "@/constant";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { useRouter } from "next/navigation";
-import { ICartItem } from "@/types/cart";
+} from '@/redux/features/compare/compareSlice';
+import { API_ROOT } from '@/constant';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { useRouter } from 'next/navigation';
+import { ICartItem } from '@/types/cart';
 
 function Compare() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [isTrue, setIsTrue] = useState(false);
   const { data: compareItems } = useAppSelector((state) => state.compare);
-  const handleToggle = () => setIsTrue(!isTrue);
+  // const handleToggle = () => setIsTrue(!isTrue);
   const handleClearCompare = () => dispatch(clearCompare());
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
   return (
     <section className="compare">
@@ -36,14 +36,14 @@ function Compare() {
           <div className="flex">
             <h3 className=" font-gotham font-medium text-base mr-4">Compare</h3>
             <div className="flex items-center">
-              <ToggleButton isChecked={isTrue} onClick={handleToggle} />
-              <p
+              {/* <ToggleButton isChecked={isTrue} onClick={handleToggle} /> */}
+              {/* <p
                 className={`font-gotham font-normal text-sm ml-4 ${
-                  isTrue ? "text-primary" : ""
+                  isTrue ? 'text-primary' : ''
                 }`}
               >
                 Highlight differences
-              </p>
+              </p> */}
             </div>
           </div>
           <Button

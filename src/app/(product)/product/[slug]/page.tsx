@@ -443,7 +443,7 @@ function PageDetails({ params: { slug } }: Props) {
                     </div>
 
                     <div className="more-action">
-                      <div className="flex">
+                      <div className="flex flex-col md:flex-row">
                         <span
                           onClick={() => {
                             return (
@@ -461,6 +461,7 @@ function PageDetails({ params: { slug } }: Props) {
                           </OutlineButton>
                         </span>
                         <span
+                          className="mt-2 md:mt-0"
                           onClick={() => {
                             return (
                               product?.product?.id &&
@@ -487,12 +488,14 @@ function PageDetails({ params: { slug } }: Props) {
                             Add to Compare
                           </OutlineButton>
                         </span>
-                        <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
-                          <span>
-                            <AiOutlineShareAlt className="mr-1 " />
-                          </span>
-                          Share
-                        </OutlineButton>
+                        <span className="mt-2 md:mt-0">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                            <span>
+                              <AiOutlineShareAlt className="mr-1 " />
+                            </span>
+                            Share
+                          </OutlineButton>
+                        </span>
                       </div>
                     </div>
 
@@ -573,7 +576,7 @@ function PageDetails({ params: { slug } }: Props) {
                       </TabPanel>
                       <TabPanel>
                         <div className="review">
-                          <div className="grid grid-cols-2 gap-10">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div>
                               {product?.review?.length > 0 ? (
                                 product?.review?.map((item, index) => (
@@ -677,7 +680,7 @@ function PageDetails({ params: { slug } }: Props) {
                       </TabPanel>
                       <TabPanel>
                         <form>
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                               <FormGroup
                                 title="Your Number *"
