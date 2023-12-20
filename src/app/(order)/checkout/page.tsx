@@ -47,8 +47,6 @@ function Checkout() {
     string | null
   >('');
 
-  console.log(cashOnDeliveryMessage);
-
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedPaymentValue = event.target.name;
 
@@ -74,6 +72,11 @@ function Checkout() {
     product_id: item.product_id,
     quantity: item.quantity,
   }));
+
+  const subTotal = cart.reduce(
+    (sum: any, item: any) => (sum += item.price * item.quantity),
+    0
+  );
 
   const orderData = {
     name,
@@ -532,8 +535,11 @@ function Checkout() {
                 >
                   <div className="summery-table w-full h-full">
                     <div className="grid grid-cols-5">
-                      <div className="heading-table col-span-2 md:col-span-3 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table col-span-2 md:col-span-2 p-3 font-gotham font-normal text-xs text-black">
                         Product Name
+                      </div>
+                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs text-black">
+                        Regular Price
                       </div>
                       <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs text-black">
                         Price
@@ -545,8 +551,12 @@ function Checkout() {
                     {approvePromoData
                       ? discountCart.map((item: any, index: number) => (
                           <div key={index} className="grid grid-cols-5 pb-5">
-                            <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs text-black">
                               {item.title}
+                            </div>
+
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                              ৳ {item.regular_price}
                             </div>
                             <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
                               ৳ {item.price} x {item.quantity}
@@ -558,8 +568,11 @@ function Checkout() {
                         ))
                       : cart.map((item, index) => (
                           <div key={index} className="grid grid-cols-5 pb-5">
-                            <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs text-black">
                               {item.title}
+                            </div>
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                              ৳ {item.regular_price}
                             </div>
                             <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
                               ৳ {item.price} x {item.quantity}
@@ -576,16 +589,28 @@ function Checkout() {
                         Sub-Total :
                       </div>
                       <div className="p-3 font-gotham  text-xs text-primary font-medium">
-                        ৳{finalPrice}
+                        ৳{subTotal}
                       </div>
                     </div>
+                    {selectedPaymentDeliveryStatus && (
+                      <div className="grid grid-cols-5 sub-border">
+                        <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
+                        <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs text-primary font-medium">
+                          Delivery :
+                        </div>
+                        <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
+                          ৳{deliveryFee}
+                        </div>
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-5 sub-border">
                       <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
                       <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs text-primary font-medium">
-                        Home Delivery :
+                        Discount :
                       </div>
                       <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
-                        ৳{deliveryFee}
+                        {subTotal - finalPrice}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">

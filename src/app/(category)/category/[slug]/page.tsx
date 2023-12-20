@@ -120,7 +120,6 @@ function Category() {
 
     fetchData();
   }, []);
-  console.log(limit);
   useEffect(() => {
     categoryAdBanner();
   }, [searchParams]);

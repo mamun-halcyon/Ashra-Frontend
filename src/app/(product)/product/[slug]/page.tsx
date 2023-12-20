@@ -708,7 +708,7 @@ function PageDetails({ params: { slug } }: Props) {
                 </div>
               </div>
 
-              <div className="related-products mt-12">
+              <div className="related-products mt-12 pb-7">
                 <Title title="Related Products" />
                 <div className="grid md:grid-cols-5 grid-cols-2">
                   {product.relatedProduct.map((product, i) => (
@@ -728,7 +728,7 @@ function PageDetails({ params: { slug } }: Props) {
               </div>
 
               {adsBanner?.image && (
-                <div className=" pt-7 pb-24">
+                <div className=" pb-24">
                   <Image
                     src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                     alt="ads"

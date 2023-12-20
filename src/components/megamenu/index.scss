@@ -78,6 +78,7 @@
     .menus {
       height: 0;
       opacity: 0;
+      visibility: hidden;
       transition: all linear 0.3s;
 
       .parent-category {
@@ -147,6 +148,7 @@
       .menus {
         height: 100%;
         opacity: 1;
+        visibility: visible;
       }
     }
   }
