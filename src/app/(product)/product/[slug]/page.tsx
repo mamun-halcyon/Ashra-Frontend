@@ -73,6 +73,7 @@ function PageDetails({ params: { slug } }: Props) {
   const [isEmi, setIsEmi] = useState(false);
   const [number, setNumber] = useState<string>('');
   const [question, setQuestion] = useState<string>('');
+  const [variant, setVariant] = useState<string>('');
 
   const handleEmi = () => setIsEmi(!isEmi);
 
@@ -229,6 +230,7 @@ function PageDetails({ params: { slug } }: Props) {
       router.push('/login');
     }
   };
+  console.log(variant);
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
@@ -370,20 +372,35 @@ function PageDetails({ params: { slug } }: Props) {
                         </span>
                       </h3>
                     </div>
-                    <div className="attribute py-2">
-                      <div className="flex items-center">
-                        <p className=" font-gotham text-sm mr-2"> Gas type:</p>
-                        <div className="flex">
-                          {/* when attribute will selected then TODO:'selected' class will be set in button */}
-                          <button className="select  font-gotham text-sm bg-white text-black px-2 py-[2px] mr-1">
-                            NG
-                          </button>
-                          <button className="select font-gotham text-sm bg-white text-black px-2 py-1 mr-1">
-                            LPG
-                          </button>
+                    {product.productAttribute &&
+                      product.productAttribute.length > 0 && (
+                        <div className="attribute py-2">
+                          {product.productAttribute.map((attribute, index) => (
+                            <div className="flex items-center" key={index}>
+                              <p className=" font-gotham text-sm mr-2">
+                                {attribute.attribute_key} :
+                              </p>
+                              <div className="flex">
+                                {attribute.attribute_value
+                                  .split(',')
+                                  .map((value, index) => (
+                                    <button
+                                      onClick={() => setVariant(value.trim())}
+                                      key={index}
+                                      className={`select  font-gotham text-sm ${
+                                        value.trim() === variant
+                                          ? 'bg-primary text-white'
+                                          : 'bg-white text-black'
+                                      }  px-2 py-[2px] mr-1`}
+                                    >
+                                      {value}
+                                    </button>
+                                  ))}
+                              </div>
+                            </div>
+                          ))}
                         </div>
-                      </div>
-                    </div>
+                      )}
                     <div className="action">
                       <div className="flex py-5 font-gotham font-medium ">
                         <div className="mr-2 flex items-center text-primary border ">
@@ -409,7 +426,15 @@ function PageDetails({ params: { slug } }: Props) {
                         </div>
                         <Button
                           className=" px-5 py-1 mr-2"
-                          onClick={() =>
+                          onClick={() => {
+                            if (
+                              product?.productAttribute &&
+                              product?.productAttribute?.length > 0 &&
+                              !variant
+                            ) {
+                              toast.error('Please Select Variant');
+                              return;
+                            }
                             handleBuyNow({
                               product_id: Number(product.product.id),
                               price: product.product.discount_price,
@@ -417,14 +442,23 @@ function PageDetails({ params: { slug } }: Props) {
                               image: product.product.image,
                               quantity: quantity,
                               regular_price: product.product.regular_price,
-                            })
-                          }
+                              product_attribute: variant,
+                            });
+                          }}
                         >
                           Buy Now
                         </Button>
                         <Button
                           className=" px-5 py-1"
-                          onClick={() =>
+                          onClick={() => {
+                            if (
+                              product?.productAttribute &&
+                              product?.productAttribute?.length > 0 &&
+                              !variant
+                            ) {
+                              toast.error('Please Select Variant');
+                              return;
+                            }
                             dispatch(
                               addToCart({
                                 product_id: Number(product.product.id),
@@ -433,9 +467,10 @@ function PageDetails({ params: { slug } }: Props) {
                                 image: product.product.image,
                                 quantity: quantity,
                                 regular_price: product.product.regular_price,
+                                product_attribute: variant,
                               })
-                            )
-                          }
+                            );
+                          }}
                         >
                           Add to cart
                         </Button>

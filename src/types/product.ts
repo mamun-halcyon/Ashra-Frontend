@@ -43,10 +43,20 @@ interface ProductPhoto {
   updated_at: string;
 }
 
+interface IProductAttribute {
+  id: number;
+  product_id: number;
+  attribute_key: string;
+  attribute_value: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface ISingleProduct {
   averageReview: number;
   product: IProduct;
   productPhotos: ProductPhoto[];
   relatedProduct: IProduct[];
   review: [];
+  productAttribute?: IProductAttribute[];
 }

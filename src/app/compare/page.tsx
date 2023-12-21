@@ -72,7 +72,7 @@ function Compare() {
                       <h4 className=" font-gotham font-medium text-xs text-black">
                         {item.title}
                       </h4>
-                      <LuSearch />
+                      {/* <LuSearch /> */}
                     </div>
                   </th>
                 ))}
@@ -101,9 +101,9 @@ function Compare() {
                     scope="col"
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
-                    <div className="product-card">
+                    <div className="product">
                       <p className=" font-gotham font-light text-xs text-black">
-                        Kitchen Hood
+                        {item.title}
                       </p>
                       <div className="flex items-center">
                         <RxCrossCircled className="inline danger-text text-xs mr-1" />
@@ -114,16 +114,18 @@ function Compare() {
                           Remove
                         </p>
                       </div>
-                      <h3 className=" font-gotham font-medium text-xs my-3">
+                      {/*  <h3 className=" font-gotham font-medium text-xs my-3">
                         {item.title}
-                      </h3>
-                      <Image
-                        className=" w-3/4 mx-auto my-3"
-                        src={`${API_ROOT}/images/product/${item.image}`}
-                        width={150}
-                        height={150}
-                        alt="product"
-                      />
+                      </h3> */}
+                      <div className=" bg-white">
+                        <Image
+                          className=" w-3/4 h-[200px] mx-auto my-3"
+                          src={`${API_ROOT}/images/product/${item.image}`}
+                          width={150}
+                          height={150}
+                          alt="product"
+                        />
+                      </div>
                       <p className=" font-gotham font-normal text-xs line-through">
                         ৳ {item.regular_price}
                       </p>
