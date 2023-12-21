@@ -1,45 +1,38 @@
 import Image from 'next/image';
 import './index.scss';
 
-const Invoice = () => {
+const Invoice = ({ order }: any) => {
   return (
-    <div className="invoice">
+    <div className="invoice bg-white hidden">
       <div className="invoice-header">
         <div className="title">
           <Image
-            className="w-auto"
-            src={'/assets/images/logo/Logo.png'}
-            width={60}
-            height={60}
-            alt="logo"
+            className="w-full"
+            src="/assets/images/invoice-header.png"
+            alt="invoice"
+            width={800}
+            height={400}
           />
-          <h5></h5>
         </div>
-        <div className="details">
-          <div>
-            <p>Gazi Home Apppance</p>
-            <p>
-              37/2, Pritom Zaman Tower, Bir Protik Gazi Dastagir Road, Dhaka
-              1000
-            </p>
-            <p>Email: info@gazihomeapppance.com</p>
-            <p>Phone: +8801766688840 </p>
+        <h4 className="customer-details bg-white text-black">
+          Customer Details
+        </h4>
+        <div className="details bg-secondary mr-2 p-1">
+          <div className="left">
+            <p>Name: {order.name}</p>
+            <p>Email: {order.email}</p>
+            <p>Phone: {order.mobile} </p>
+            <p>Address: {order.address} </p>
           </div>
-          <div className="order-details">
-            <p>Bill to:</p>
-            <p>Iftakher</p>
-            <p>
-              House: 12, Road: 01, Block I. Basundhara R/A, Dhaka, Bangladesh{' '}
-            </p>
-            <p>Email: iftebmw@gmail.com</p>
-            <p>Phone: 01976100280</p>
-            <p className="mt-5">Order ID: 20230810-11135133</p>
-            <p>Order date: 10-08-2023</p>
+          <div className="order-details  bg-secondary p-1 right">
+            <p>Order date: {order.created_at}</p>
+            <p>Invoice No: GHA-{order.id}</p>
+            <p>Order No: {order.id}</p>
           </div>
         </div>
       </div>
 
-      {/*   <div className="invoice-body">
+      {/* <div className="invoice-body">
         <p>Bill to:</p>
         <p>Iftakher</p>
         <p> House: 12, Road: 01, Block I. Basundhara R/A, Dhaka, Bangladesh </p>
@@ -47,41 +40,70 @@ const Invoice = () => {
         <p>Phone: 01976100280</p>
       </div> */}
 
-      <table className="invoice-table">
-        <thead>
-          <tr>
-            <th>Product Name </th>
-            <th>Depvery Type</th>
-            <th>Qty</th>
-            <th>Unit price</th>
-            <th>tax</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>GA-BGS-30 - Gazi Smiss Gas Stove (LPG)</td>
-            <td>Depvered</td>
-            <td>1</td>
-            <td>৳13,500.00</td>
-            <td>৳0.00</td>
-            <td>৳13,500.00</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div className="summery">
-        <div className="item">
-          <p>Sub Total</p>
-          <p>৳13,500.00</p>
-          <p>Shipping cost</p>
-          <p>৳00.00</p>
-          <p>Total Tax</p>
-          <p>৳00.00</p>
-          <p>Coupon Discount</p>
-          <p>৳00.00</p>
-          <p>Grand Total</p>
-          <p>৳13,500.00</p>
+      <div className="invoice-table">
+        <div className="grid grid-cols-8">
+          <div className=" col-span-1">SL. </div>
+          <div className=" col-span-2">Description</div>
+          <div className=" col-span-1">Attribute</div>
+          <div className=" col-span-1">Qty</div>
+          <div className=" col-span-2">Unit price (BDT)</div>
+          <div className=" col-span-1">Total</div>
+        </div>
+        {
+          <>
+            {order?.orderItems?.map((product: any, index: any) => (
+              <div className="grid grid-cols-8" key={index}>
+                <div className=" col-span-1">{index}</div>
+                <div className=" col-span-2">{product.product_name}</div>
+                <div className=" col-span-1">-</div>
+                <div className=" col-span-1">{product.quantity}</div>
+                <div className=" col-span-2">{product.discount_price}</div>
+                <div className="col-span-1">
+                  ৳ {product.discount_price * product.quantity}
+                </div>
+              </div>
+            ))}
+          </>
+        }
+        <div className="grid grid-cols-8">
+          <div className=" col-span-5">
+            <h3>Notes:</h3>
+            <p>1.Please check the product carefully before payment.</p>
+            <p>
+              2.After payment there will be no option for refund & exchange.
+            </p>
+            <p>3.No claim will be accepted after receiving the product.</p>
+          </div>
+          <div className=" col-span-3">
+            <div className="summery">
+              <div className="">
+                <p className=" sort-summery">Sub Total</p>
+                <p className=" sort-summery"></p>
+                <p className=" sort-summery">Shipping cost</p>
+                <p className=" sort-summery">৳00.00</p>
+                <p className=" sort-summery">Coupon Discount</p>
+                <p className=" sort-summery">৳00.00</p>
+                <p className=" sort-summery">Grand Total</p>
+                <p className=" sort-summery">{`৳${order?.orderItems?.reduce(
+                  (sum: any, item: any) => {
+                    // Check if discount_price is null or 0
+                    if (
+                      item.discount_price === null ||
+                      item.discount_price === 0
+                    ) {
+                      // Add regular_price * quantity to the sum
+                      sum += item.regular_price * item.quantity;
+                    } else {
+                      // Add discount_price * quantity to the sum
+                      sum += item.discount_price * item.quantity;
+                    }
+                    return sum;
+                  },
+                  0
+                )}`}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

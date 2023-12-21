@@ -77,3 +77,8 @@
     }
   }
 }
+@media print {
+  .invoice {
+    display: block;
+  }
+}

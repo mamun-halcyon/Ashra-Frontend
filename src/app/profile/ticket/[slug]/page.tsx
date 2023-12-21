@@ -126,11 +126,13 @@ const ViewTicket = () => {
                     type="file"
                     title="photo"
                     placeholder="Photo"
-                    required
                     onChange={(e: any) => setImage(e.target.files[0])}
                   />
                   <div className="text-right">
-                    <Button className="mt-2 px-3 py-1 font-gotham text-xs">
+                    <Button
+                      type="submit"
+                      className="mt-2 px-3 py-1 font-gotham text-xs"
+                    >
                       Replay
                     </Button>
                   </div>

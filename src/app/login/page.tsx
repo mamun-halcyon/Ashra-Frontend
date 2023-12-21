@@ -59,12 +59,11 @@ function Login() {
         password: password,
       });
       dispatch(saveLoginInfo(response.data));
-      toast.success('Successfull Login!');
+      toast.success('Login Successful!');
 
       router.push('/profile');
-    } catch (error: any) {
+    } catch (error) {
       console.error('Login error:', error);
-      toast.error(error?.message);
     }
   };
 
