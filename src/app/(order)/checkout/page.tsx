@@ -140,7 +140,9 @@ function Checkout() {
 
   useEffect(() => {
     if (approvePromoData) {
-      if (approvePromoData?.discount_type === 'flat') {
+      console.log("approvePromoData : ", approvePromoData);
+      console.log("discountCart : ", discountCart);
+      if (approvePromoData?.discount_type === '0') {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           let tempIdsArr: any[] = [];
@@ -150,7 +152,7 @@ function Checkout() {
             tempIdsArr = [approvePromoData?.product_id];
           }
           tempDisCart = tempDisCart?.map((item: any) => {
-            if (tempIdsArr.find((element) => element == item.id)) {
+            if (tempIdsArr.find((element) => element == item.product_id)) {
               return {
                 ...item,
                 price: item.regular_price - approvePromoData.discount_amount,
@@ -177,7 +179,7 @@ function Checkout() {
             tempIdsArr = [approvePromoData?.product_id];
           }
           tempDisCart = tempDisCart?.map((item: any) => {
-            if (tempIdsArr.find((element) => element == item.id)) {
+            if (tempIdsArr.find((element) => element == item.product_id)) {
               return {
                 ...item,
                 price:

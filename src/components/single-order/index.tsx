@@ -43,7 +43,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
 
   useEffect(() => {
     if (orderDetails?.coupon) {
-      if (orderDetails?.coupon?.discount_type === "flat") {
+      if (orderDetails?.coupon?.discount_type === "0") {
         let tempDisCart = orderDetails?.orderItems;
         if (orderDetails?.coupon?.product_id) {
           let tempIdsArr: any[] = [];
@@ -53,7 +53,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
             tempIdsArr = [orderDetails?.coupon?.product_id];
           }
           tempDisCart = tempDisCart?.map((item: any) => {
-            if (tempIdsArr.find((element) => element == item.id)) {
+            if (tempIdsArr.find((element) => element == item.product_id)) {
               return {
                 ...item,
                 discount_price:
@@ -87,7 +87,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
             tempIdsArr = [orderDetails?.coupon?.product_id];
           }
           tempDisCart = tempDisCart?.map((item: any) => {
-            if (tempIdsArr.find((element) => element == item.id)) {
+            if (tempIdsArr.find((element) => element == item.product_id)) {
               return {
                 ...item,
                 discount_price:
