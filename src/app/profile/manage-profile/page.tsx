@@ -10,6 +10,7 @@ import { useAppSelector } from '@/redux/hooks';
 import axios from 'axios';
 import { API_URL } from '@/constant';
 import { toast } from 'react-toastify';
+import { FaBars } from 'react-icons/fa6';
 
 const UpdateProfile = () => {
   const route = useRouter();
@@ -81,8 +82,15 @@ const UpdateProfile = () => {
         <section className="profile">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
-              <div className=" col-span-9">
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className="items">
+                  <ProfileSidebar />
+                </div>
+              </div>
+              <div className=" col-span-12 md:col-span-9">
                 <div className="main-area p-4">
                   <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-2 gap-4">

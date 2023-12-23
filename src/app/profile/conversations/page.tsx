@@ -1,12 +1,13 @@
-"use client";
-import ProfileSidebar from "@/components/profile-sidebar";
-import "../page.scss";
-import React, { useEffect, useState } from "react";
-import "./page.scss";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks";
-import { API_URL } from "@/constant";
-import axios from "axios";
+'use client';
+import ProfileSidebar from '@/components/profile-sidebar';
+import '../page.scss';
+import React, { useEffect, useState } from 'react';
+import './page.scss';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
+import { API_URL } from '@/constant';
+import axios from 'axios';
+import { FaBars } from 'react-icons/fa6';
 
 const Conversations = () => {
   const route = useRouter();
@@ -18,7 +19,7 @@ const Conversations = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -49,7 +50,14 @@ const Conversations = () => {
         <section className="profile">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className="items">
+                  <ProfileSidebar />
+                </div>
+              </div>
               <div className=" col-span-9">
                 <table className="w-full text-sm text-left conversation-table ">
                   <thead>

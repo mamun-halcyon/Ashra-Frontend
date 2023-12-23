@@ -1,13 +1,14 @@
-"use client";
-import ProfileSidebar from "@/components/profile-sidebar";
-import "../page.scss";
-import "./page.scss";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/redux/hooks";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "@/constant";
-import SingleOrder from "@/components/single-order";
+'use client';
+import ProfileSidebar from '@/components/profile-sidebar';
+import '../page.scss';
+import './page.scss';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '@/constant';
+import SingleOrder from '@/components/single-order';
+import { FaBars } from 'react-icons/fa6';
 
 const OrderHistory = () => {
   const route = useRouter();
@@ -19,7 +20,7 @@ const OrderHistory = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -49,8 +50,15 @@ const OrderHistory = () => {
         <section className="profile">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
-              <div className="overflow-x-scroll md:overflow-x-visible md:col-span-9 col-span-12">
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className="items">
+                  <ProfileSidebar />
+                </div>
+              </div>
+              <div className="overflow-x-scroll md:overflow-x-visible md:col-span-9 col-span-12 px-1">
                 <div className="order-table">
                   <table className="w-full text-sm text-left ">
                     <thead>
@@ -59,7 +67,7 @@ const OrderHistory = () => {
                           scope="col"
                           className="px-6 py-3 font-gotham font-medium"
                         >
-                          Code
+                          Invoice No
                         </th>
                         <th
                           scope="col"

@@ -10,3 +10,8 @@
   padding: 30px;
   margin-bottom: 30px;
 }
+@media screen and (max-width: 578px) {
+  .refund-request {
+    width: 90%;
+  }
+}

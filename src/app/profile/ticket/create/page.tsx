@@ -7,6 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { FaBars } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 
 const CreateTicket = () => {
@@ -61,7 +62,14 @@ const CreateTicket = () => {
         <section className="py-10">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className="items">
+                  <ProfileSidebar />
+                </div>
+              </div>
               <div className=" col-span-9">
                 <form className="w-[450px] mx-auto" onSubmit={handleSubmit}>
                   <FormGroup

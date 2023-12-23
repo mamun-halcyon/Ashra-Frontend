@@ -6,7 +6,7 @@ function ResetPassword() {
   return (
     <main>
       <section className="flex justify-center items-center forget-page">
-        <div className="w-[400px] forget-area px-4 py-6 ">
+        <div className="md:w-[400px] w-[95%] forget-area px-4 py-6 ">
           <h2 className=" font-gotham font-normal text-xl text-black">
             Forgot Password?
           </h2>
@@ -17,8 +17,8 @@ function ResetPassword() {
             <FormGroup
               className="mt-2 "
               type="email"
-              title="E-Mail*"
-              placeholder="Your Email"
+              title="Email/Mobile*"
+              placeholder="Your Email or Mobile"
               required
             />
 

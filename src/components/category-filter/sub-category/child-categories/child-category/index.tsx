@@ -1,6 +1,6 @@
-import { ICategoryData } from "@/types/category";
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
-import "./index.scss";
+import { ICategoryData } from '@/types/category';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import './index.scss';
 
 interface IProps {
   childCategory: ICategoryData;
@@ -35,7 +35,7 @@ const ChildCategory: FC<IProps> = ({
   }, [rootCategoryChanged]);
 
   return (
-    <div className="childCategory">
+    <div className="childCategory font-gotham font-normal text-sm">
       <input
         className="childCategory-checkbox"
         type="checkbox"

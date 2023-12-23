@@ -6,3 +6,9 @@
     box-shadow: $primary-shadow;
   }
 }
+@media screen and (max-width: 768px) {
+  .forget-page {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}

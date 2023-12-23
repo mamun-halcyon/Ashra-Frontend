@@ -183,11 +183,11 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 </span>
               </div>
 
-              <div className="flex justify-between mb-4">
-                <div>
+              <div className="flex justify-between flex-wrap mb-4">
+                <div className="w-full md:w-auto">
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Code:
+                      Invoice No:
                     </p>
                     <p className=" font-gotham text-sm">
                       {order.order_prefix}-{order.id}
@@ -256,71 +256,75 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 </div>
               </div>
 
-              <table className="w-full text-sm text-left ">
-                <thead>
-                  <tr className="table-heading">
-                    <th
-                      scope="col"
-                      className="px-6 py-3 font-gotham font-medium"
-                    >
-                      Product
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 font-gotham font-medium"
-                    >
-                      Quantity
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 font-gotham font-medium"
-                    >
-                      Variant
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 font-gotham font-medium"
-                    >
-                      Price
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 font-gotham font-medium"
-                    >
-                      Warrenty/Refund
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orderDetails?.orderItems?.length > 0 ? (
-                    orderDetails?.orderItems?.map((item: any, i: any) => {
-                      return (
-                        <tr
-                          key={i}
-                          className=" font-normal font-gotham text-sm table-border p-2"
-                        >
-                          <td className="px-6 py-4">{item?.product_name}</td>
-                          <td className="px-6 py-4">{item?.quantity}</td>
-                          <td className="px-6 py-4">LPG</td>
-                          <td className="px-6 py-4">
-                            ৳
-                            {item?.discount_price
-                              ? item?.discount_price
-                              : item?.regular_price}
-                          </td>
-                          <td className="px-6 py-4">
-                            <Button className="px-3 py-1">Apply Now</Button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </tbody>
-              </table>
+              <div className="overflow-x-scroll md:overflow-x-visible">
+                <table className="w-full text-sm text-left  ">
+                  <thead>
+                    <tr className="table-heading">
+                      <th
+                        scope="col"
+                        className="px-6 py-3 font-gotham font-medium"
+                      >
+                        Product
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 font-gotham font-medium"
+                      >
+                        Quantity
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 font-gotham font-medium"
+                      >
+                        Variant
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 font-gotham font-medium"
+                      >
+                        Price
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 font-gotham font-medium"
+                      >
+                        Warrenty/Refund
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orderDetails?.orderItems?.length > 0 ? (
+                      orderDetails?.orderItems?.map((item: any, i: any) => {
+                        return (
+                          <tr
+                            key={i}
+                            className=" font-normal font-gotham text-sm table-border p-2"
+                          >
+                            <td className="px-6 py-4">{item?.product_name}</td>
+                            <td className="px-6 py-4">{item?.quantity}</td>
+
+                            {/* TODO: Variant will Dynamic */}
+                            <td className="px-6 py-4">LPG</td>
+                            <td className="px-6 py-4">
+                              ৳
+                              {item?.discount_price
+                                ? item?.discount_price
+                                : item?.regular_price}
+                            </td>
+                            <td className="px-6 py-4">
+                              <Button className="px-3 py-1">Apply Now</Button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
+                  </tbody>
+                </table>
+              </div>
               <div className="mt-12">
-                <div className="flex justify-end py-1">
+                <div className="flex md:justify-end justify-start py-1">
                   <div>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
                       Subtotal:

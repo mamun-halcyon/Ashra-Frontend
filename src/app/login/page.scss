@@ -23,3 +23,9 @@
 .login-area {
   box-shadow: $primary-shadow;
 }
+@media screen and (max-width: 768px) {
+  .login-page {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}

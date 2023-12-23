@@ -30,6 +30,11 @@
   }
   .new {
     transition: all linear 0.3s;
+
+    &:hover {
+      background: $primary-color;
+      color: $white-color;
+    }
   }
   &:hover {
     // transform: scale(1.1);
@@ -40,14 +45,14 @@
       opacity: 1;
       visibility: visible;
     }
-    .discount {
-      background: $primary-color;
-      color: $white-color;
+    /*  .discount {
+      // background: $primary-color;
+      // color: $white-color;
     }
     .new {
       background: $primary-color;
       color: $white-color;
-    }
+    } */
     .product-title {
       color: $primary-color;
     }

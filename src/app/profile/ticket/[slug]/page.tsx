@@ -7,7 +7,9 @@ import { useAppSelector } from '@/redux/hooks';
 import axios from 'axios';
 import { useRouter, useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { FaBars } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
+import '../../page.scss';
 
 const ViewTicket = () => {
   const route = useRouter();
@@ -85,7 +87,14 @@ const ViewTicket = () => {
         <section className="py-10">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className="items">
+                  <ProfileSidebar />
+                </div>
+              </div>
               <div className=" col-span-9">
                 <div className="mb-12 h-[350px] overflow-y-scroll scrollbar">
                   {messages?.length > 0 ? (

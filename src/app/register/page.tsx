@@ -77,7 +77,7 @@ function Login() {
             </div>
           </section>
           <section className="flex justify-center items-center register">
-            <div className="md:w-[470px] w-[400px] register-area p-8">
+            <div className="md:w-[400px] w-[95%] register-area p-8">
               <h2 className=" font-gotham font-normal text-xl text-black">
                 Create an Account
               </h2>

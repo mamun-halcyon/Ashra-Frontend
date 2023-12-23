@@ -93,7 +93,7 @@ const ProductCard: React.FC<IProps> = ({
       </Link>
 
       <div className="text ">
-        <div className=" h-12">
+        <div className=" h-10 text-center">
           <Link
             href={`/product/${url}`}
             className=" font-gotham product-title font-normal text-center text-sm"

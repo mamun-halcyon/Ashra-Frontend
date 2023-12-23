@@ -1,11 +1,12 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import "./page.scss";
-import ProfileSidebar from "@/components/profile-sidebar";
-import { useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { API_URL } from "@/constant";
+'use client';
+import React, { useEffect, useState } from 'react';
+import './page.scss';
+import ProfileSidebar from '@/components/profile-sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { API_URL } from '@/constant';
+import { FaBars } from 'react-icons/fa';
 
 const Profile = () => {
   const route = useRouter();
@@ -30,7 +31,7 @@ const Profile = () => {
       setIsLoggedIn(true);
       getDashboardInfo();
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -40,9 +41,16 @@ const Profile = () => {
         <section className="profile">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
-              <div className=" md:col-span-9 col-span-12 ">
-                <div className="grid grid-cols-3 gap-4">
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className=" items">
+                  <ProfileSidebar />
+                </div>
+              </div>
+              <div className=" md:col-span-9 col-span-12 px-1 ">
+                <div className="grid grid-cols-3 md:gap-4 gap-1">
                   <div className=" bg-primary py-5 pl-5">
                     <h2 className=" font-medium font-gotham text-base text-white">
                       {cart?.length} Products

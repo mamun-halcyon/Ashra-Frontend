@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
 import { API_URL } from '@/constant';
 import axios from 'axios';
+import { FaBars } from 'react-icons/fa6';
+import { formatDate } from '@/components/dateformate';
 
 const Ticket = () => {
   const route = useRouter();
@@ -50,8 +52,15 @@ const Ticket = () => {
         <section className="profile">
           <div className="container">
             <div className="grid grid-cols-12 gap-6">
-              <ProfileSidebar />
-              <div className=" col-span-9">
+              <div className="sidebar  md:col-span-3  px-1">
+                <span className="md:hidden">
+                  <FaBars />
+                </span>
+                <div className="items">
+                  <ProfileSidebar />
+                </div>
+              </div>
+              <div className=" col-span-12 md:col-span-9 overflow-x-scroll md:overflow-x-visible">
                 <Link href={'/profile/ticket/create'}>
                   <Button className="px-2 py-1 font-gotham">New Ticket</Button>
                 </Link>
@@ -104,7 +113,7 @@ const Ticket = () => {
                             scope="row"
                             className="px-6 py-3 font-gotham font-normal"
                           >
-                            {ticket?.created_at}
+                            {formatDate(ticket?.created_at)}
                           </td>
                           <td
                             scope="row"

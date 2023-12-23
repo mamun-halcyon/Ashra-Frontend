@@ -34,7 +34,11 @@ const MegaMenu = ({ menus }: IProps) => {
                     >
                       {menu.title.toUpperCase()}
                       <span className="text-xl  md:block hidden">
-                        <RiArrowDropDownLine className=" text-xl" />
+                        {menus.filter(
+                          (category) => category.parent_category === menu.slug
+                        ).length > 0 && (
+                          <RiArrowDropDownLine className=" text-xl" />
+                        )}
                       </span>
                     </div>
                     <div className=" absolute z-10 sub-heading shadow">
@@ -123,7 +127,11 @@ const MegaMenu = ({ menus }: IProps) => {
                       >
                         <Link href={menu.slug}>{menu.title}</Link>
                         <span className="text-xl ">
-                          <RiArrowDropDownLine className=" text-xl" />
+                          {menus.filter(
+                            (category) => category.parent_category === menu.slug
+                          ).length > 0 && (
+                            <RiArrowDropDownLine className=" text-xl" />
+                          )}
                         </span>
                       </div>
                       <div className="sub-categories">

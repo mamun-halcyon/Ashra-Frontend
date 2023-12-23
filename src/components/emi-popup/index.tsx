@@ -52,7 +52,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
       </div>
       <div className="main-wrapper">
         <div className="grid w-full grid-cols-7">
-          <div className="col-span-2 h-[400px] overflow-y-scroll">
+          <div className="md:col-span-2 col-span-7  md:h-[400px]  h-[150px] overflow-y-scroll">
             <ul>
               <li
                 onClick={() => setEmi(null)}
@@ -73,9 +73,9 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
               ))}
             </ul>
           </div>
-          <div className="col-span-5">
+          <div className="md:col-span-5 col-span-7">
             {emi ? (
-              <div>
+              <div className=" overflow-x-scroll md:overflow-x-visible">
                 <table className="w-full text-sm text-left ">
                   <thead className=" bg-secondary">
                     <tr className="table-heading">

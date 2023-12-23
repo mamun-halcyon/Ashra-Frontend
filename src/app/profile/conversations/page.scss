@@ -24,3 +24,25 @@
     }
   }
 }
+
+.sidebar {
+  .items {
+    opacity: 0;
+    visibility: hidden;
+    transition: all linear 0.3s;
+  }
+  &:hover {
+    .items {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+@media (min-width: 769px) {
+  .sidebar {
+    .items {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

@@ -40,6 +40,7 @@ import { ICompareItem } from '@/types/compare';
 import { addToCompare } from '@/redux/features/compare/compareSlice';
 import { IBanner } from '@/types/banner';
 import { IService } from '@/types/service';
+import SharePopUp from '@/components/share-popup';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
@@ -74,7 +75,9 @@ function PageDetails({ params: { slug } }: Props) {
   const [number, setNumber] = useState<string>('');
   const [question, setQuestion] = useState<string>('');
   const [variant, setVariant] = useState<string>('');
+  const [isShare, setIsShare] = useState(false);
 
+  const handleShare = () => setIsShare(!isShare);
   const handleEmi = () => setIsEmi(!isEmi);
 
   const handleViewImage = (url: string) => {
@@ -523,7 +526,10 @@ function PageDetails({ params: { slug } }: Props) {
                             Add to Compare
                           </OutlineButton>
                         </span>
-                        <span className="mt-2 md:mt-0">
+                        <span
+                          className="mt-2 md:mt-0"
+                          onClick={() => setIsShare(true)}
+                        >
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
                               <AiOutlineShareAlt className="mr-1 " />
@@ -675,7 +681,7 @@ function PageDetails({ params: { slug } }: Props) {
                                     setEmail(e.target.value)
                                   }
                                 />
-                                <div className="flex items-center mt-1">
+                                {/* <div className="flex items-center mt-1">
                                   <div className="mr-2">
                                     <input
                                       type="checkbox"
@@ -688,7 +694,7 @@ function PageDetails({ params: { slug } }: Props) {
                                     Save my name, email, and website in this
                                     browser for the next time I comment.
                                   </p>
-                                </div>
+                                </div> */}
 
                                 <Button
                                   type="submit"
@@ -785,6 +791,7 @@ function PageDetails({ params: { slug } }: Props) {
           price={product.product.discount_price}
         />
       )}
+      {isShare && <SharePopUp handleShare={handleShare} />}
     </>
   );
 }

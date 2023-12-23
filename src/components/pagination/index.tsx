@@ -19,7 +19,7 @@ const Pagination: FC<IProps> = ({
   page,
 }) => {
   return (
-    <div className="flex justify-between items-center mt-5 bottom-filter pagination">
+    <div className="flex justify-between items-center mt-5 bottom-filter pagination px-1 md:px-0">
       <div>
         <ActionButton title={showTitle}>
           <ul>
