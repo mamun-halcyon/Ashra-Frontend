@@ -27,6 +27,12 @@
   }
   .discount {
     transition: all linear 0.3s;
+
+    &:hover {
+      background: $primary-color;
+      color: $white-color;
+      cursor: pointer;
+    }
   }
   .new {
     transition: all linear 0.3s;
@@ -34,6 +40,7 @@
     &:hover {
       background: $primary-color;
       color: $white-color;
+      cursor: pointer;
     }
   }
   &:hover {

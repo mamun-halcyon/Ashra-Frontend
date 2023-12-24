@@ -55,10 +55,10 @@
   .service-card {
     color: $white-color;
     h4 {
-      color: $white-color;
+      color: $white-color !important;
     }
     h6 {
-      color: $white-color;
+      color: $white-color !important;
     }
   }
 }

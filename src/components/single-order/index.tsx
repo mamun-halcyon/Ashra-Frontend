@@ -1,5 +1,5 @@
 'use client';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import Button from '../button';
 import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
 import { RxCross2 } from 'react-icons/rx';
@@ -10,6 +10,8 @@ import { useAppSelector } from '@/redux/hooks';
 import { formatDate } from '../dateformate';
 import ReactToPrint from 'react-to-print';
 import Invoice from '../invoice';
+import TextAreaGroup from '../textarea';
+import SingleOrderDetails from '../orderDetails';
 
 export interface IProps {
   order: any;
@@ -21,8 +23,6 @@ const SingleOrder: FC<IProps> = ({ order }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [orderDetails, setOrderDetails] = useState<any>({});
   const [finalPrice, setFinalPrice] = useState<number>(0);
-
-  console.log(orderDetails);
 
   useEffect(() => {
     if (order?.id) {
@@ -295,27 +295,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   <tbody>
                     {orderDetails?.orderItems?.length > 0 ? (
                       orderDetails?.orderItems?.map((item: any, i: any) => {
-                        return (
-                          <tr
-                            key={i}
-                            className=" font-normal font-gotham text-sm table-border p-2"
-                          >
-                            <td className="px-6 py-4">{item?.product_name}</td>
-                            <td className="px-6 py-4">{item?.quantity}</td>
-
-                            {/* TODO: Variant will Dynamic */}
-                            <td className="px-6 py-4">LPG</td>
-                            <td className="px-6 py-4">
-                              ৳
-                              {item?.discount_price
-                                ? item?.discount_price
-                                : item?.regular_price}
-                            </td>
-                            <td className="px-6 py-4">
-                              <Button className="px-3 py-1">Apply Now</Button>
-                            </td>
-                          </tr>
-                        );
+                        return <SingleOrderDetails item={item} key={i} />;
                       })
                     ) : (
                       <></>

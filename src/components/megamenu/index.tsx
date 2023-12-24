@@ -36,7 +36,7 @@ const MegaMenu = ({ menus }: IProps) => {
                       <span className="text-xl  md:block hidden">
                         {menus.filter(
                           (category) => category.parent_category === menu.slug
-                        ).length > 0 && (
+                        ).length > 1 && (
                           <RiArrowDropDownLine className=" text-xl" />
                         )}
                       </span>
