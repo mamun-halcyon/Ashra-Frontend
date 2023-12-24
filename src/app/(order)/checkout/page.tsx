@@ -88,8 +88,9 @@ function Checkout() {
     order_form: 'web',
     delivery_fee: deliveryFee,
     coupon_id: couponId,
-    payment_method: 'Credit Card',
+    payment_method: selectedPayment,
     order_status: 'pending',
+    order_prefix: 'GHA',
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
   };

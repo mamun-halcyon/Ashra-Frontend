@@ -13,7 +13,6 @@ import Button from '@/components/button';
 import { IBlog, IResponseBlog } from '@/types/blog';
 import { formatDate } from '@/components/dateformate';
 import { API_ROOT, API_URL } from '@/constant';
-import axios from 'axios';
 
 type Props = {
   params: {
