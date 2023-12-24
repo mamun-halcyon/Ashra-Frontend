@@ -49,7 +49,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
 
   useEffect(() => {
     if (orderDetails?.coupon) {
-      if (orderDetails?.coupon?.discount_type === '0') {
+      if (orderDetails?.coupon?.discount_type === 'flat') {
         let tempDisCart = orderDetails?.orderItems;
         if (orderDetails?.coupon?.product_id) {
           let tempIdsArr: any[] = [];

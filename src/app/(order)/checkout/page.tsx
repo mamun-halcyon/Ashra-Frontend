@@ -140,9 +140,7 @@ function Checkout() {
 
   useEffect(() => {
     if (approvePromoData) {
-      console.log("approvePromoData : ", approvePromoData);
-      console.log("discountCart : ", discountCart);
-      if (approvePromoData?.discount_type === '0') {
+      if (approvePromoData?.discount_type === 'flat') {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           let tempIdsArr: any[] = [];
