@@ -135,9 +135,11 @@ function Checkout() {
         }
 
     
-      } catch (error) {
-        console.log(error);
-        setApprovePromStatus(error.response.data.message)
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          console.log(error);
+          setApprovePromStatus(error.response?.data?.message || 'An error occurred');
+        }
       }
     }
   };
