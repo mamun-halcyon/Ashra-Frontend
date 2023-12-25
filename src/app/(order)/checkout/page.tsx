@@ -132,6 +132,7 @@ function Checkout() {
         } else {
           setApprovePromoData(null);
           setApprovePromStatus(response.data.message);
+          setCouponId(null)
         }
 
     
@@ -139,6 +140,7 @@ function Checkout() {
         if (axios.isAxiosError(error)) {
           console.log(error);
           setApprovePromoData(null);
+          setCouponId(null)
           setApprovePromStatus(error.response?.data?.message || 'An error occurred');
         }
       }
