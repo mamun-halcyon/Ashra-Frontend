@@ -76,6 +76,7 @@ function PageDetails({ params: { slug } }: Props) {
   const [question, setQuestion] = useState<string>('');
   const [variant, setVariant] = useState<string>('');
   const [isShare, setIsShare] = useState(false);
+  const [attributes, setAttributes] = useState<any[]>([]);
 
   const handleShare = () => setIsShare(!isShare);
   const handleEmi = () => setIsEmi(!isEmi);
@@ -104,11 +105,19 @@ function PageDetails({ params: { slug } }: Props) {
   const fetchProduct = async () => {
     try {
       const data = await getProduct(slug);
-      setProduct(data.data);
+      setProduct(data?.data);
+      let tempArr: any[] = [];
+      data?.data?.productAttribute?.length>0 && data?.data?.productAttribute?.map((attr: any)=>{
+        let tempValuesArr: string[] = attr?.attribute_value?.split(',');
+        let tempValuesArrObjs: any[] = tempValuesArr.map(val=>{return {name: val, checked: false}});
+        tempArr.push({name: attr?.attribute_key, values: [...tempValuesArrObjs]});
+      });
+      setAttributes([...tempArr]);
     } catch (error) {
       console.error('Error fetching product:', error);
     }
   };
+
   const fetchService = async () => {
     try {
       const data = await axios.get(`${API_URL}/frontend/keypoints/product`);
@@ -123,7 +132,6 @@ function PageDetails({ params: { slug } }: Props) {
       const data = await axios.get(
         `${API_URL}/banners/${product?.product?.category_slug}`
       );
-
       setAdsBanner(data.data?.data[0]);
     } catch (error) {
       console.log('category ads banner' + error);
@@ -233,7 +241,6 @@ function PageDetails({ params: { slug } }: Props) {
       router.push('/login');
     }
   };
-  console.log(variant);
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
@@ -273,6 +280,26 @@ function PageDetails({ params: { slug } }: Props) {
         console.log(error);
       }
     }
+  };
+
+  const handleAttributeClick = (attrName: string, valName: string) => {
+    setAttributes((prevState)=>{
+        return prevState.map(attr=>{
+          if(attr.name===attrName){
+            attr.values = attr.values.map((val: any)=>{
+              if(val.name===valName){
+                val.checked = true;
+              }else{
+                val.checked = false;
+              }
+              return val;
+            });
+            return attr;
+          }else{
+            return attr;
+          }
+        });
+    });
   };
 
   return (
@@ -378,30 +405,29 @@ function PageDetails({ params: { slug } }: Props) {
                     {product.productAttribute &&
                       product.productAttribute.length > 0 && (
                         <div className="attribute py-2">
-                          {product.productAttribute.map((attribute, index) => (
-                            <div className="flex items-center" key={index}>
-                              <p className=" font-gotham text-sm mr-2">
-                                {attribute.attribute_key} :
-                              </p>
-                              <div className="flex">
-                                {attribute.attribute_value
-                                  .split(',')
-                                  .map((value, index) => (
-                                    <button
-                                      onClick={() => setVariant(value.trim())}
-                                      key={index}
-                                      className={`select  font-gotham text-sm ${
-                                        value.trim() === variant
-                                          ? 'bg-primary text-white'
-                                          : 'bg-white text-black'
-                                      }  px-2 py-[2px] mr-1`}
-                                    >
-                                      {value}
-                                    </button>
-                                  ))}
-                              </div>
-                            </div>
-                          ))}
+
+                          {attributes?.length>0 ? <>
+                            {attributes?.map((attr, i)=>{
+                              return (<div key={i} className="flex items-center mb-2">
+                                <div className=" font-gotham text-sm mr-2">{attr?.name} : </div>
+                                <div className="flex">
+                                  {attr?.values?.length>0 ? <>
+                                  {attr?.values?.map((val: any, j: number)=>{
+                                    return (
+                                      <div 
+                                        key={j} 
+                                        className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${val?.checked===true ? 'bg-primary text-white' : 'bg-white text-black'}`} 
+                                        onClick={()=>handleAttributeClick(attr?.name, val?.name)}
+                                      >
+                                        {val?.name}
+                                      </div>
+                                    )
+                                  })}
+                                  </> : <></>}
+                                </div>
+                              </div>)
+                            })}
+                          </> : <></>}
                         </div>
                       )}
                     <div className="action">
