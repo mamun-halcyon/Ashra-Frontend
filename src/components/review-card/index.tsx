@@ -1,8 +1,8 @@
-import React from "react";
-import StarRating from "../rating";
+import React from 'react';
+import StarRating from '../rating';
+import { formatDate } from '../dateformate';
 
 const ReviewCard = ({ review }: any) => {
-  console.log("review : ", review);
   return (
     <div className="all-reviews py-4">
       <div className="flex justify-between">
@@ -15,7 +15,7 @@ const ReviewCard = ({ review }: any) => {
         {review?.comment}
       </p>
       <p className="font-gotham font-light text-xs text-black">
-        {review?.created_at}
+        {formatDate(review?.created_at)}
       </p>
     </div>
   );

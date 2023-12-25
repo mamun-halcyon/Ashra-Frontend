@@ -99,7 +99,7 @@ const Featured: FC<IProps> = ({
                 <div className=" hidden md:block">
                   <Link href={bannerUrl}>
                     <Image
-                      className=" w-full"
+                      className=" w-full max-h-[668px]"
                       src={`${API_ROOT}/images/banner/${adsbanner}`}
                       width={100}
                       height={100}

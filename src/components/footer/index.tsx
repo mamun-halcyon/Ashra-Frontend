@@ -216,7 +216,7 @@ const Footer = ({ globalData }: IProps) => {
                 </Link>
               )}
               {globalData?.setting?.youtube_url && (
-                <Link href={'/'} target="_blank">
+                <Link href={globalData?.setting?.youtube_url} target="_blank">
                   <Image
                     className=" rounded w-6 h-6 mx-1"
                     src="/assets/images/icon/youtube.png"

@@ -11,14 +11,14 @@ function ResetPassword() {
             Forgot Password?
           </h2>
           <p className="font-gotham font-light text-sm text-black mt-2">
-            Enter your email address to recover your password.
+            Enter your mobile number to recover your password.
           </p>
           <form>
             <FormGroup
               className="mt-2 "
               type="email"
-              title="Email/Mobile*"
-              placeholder="Your Email or Mobile"
+              title="Mobile Number*"
+              placeholder="Your Mobile Number"
               required
             />
 

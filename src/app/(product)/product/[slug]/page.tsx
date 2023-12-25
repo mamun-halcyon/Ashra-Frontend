@@ -249,16 +249,14 @@ function PageDetails({ params: { slug } }: Props) {
       review !== '' &&
       firstName !== '' &&
       email !== '' &&
-      product?.product?.id &&
-      login?.user?.id &&
-      login?.user?.name
+      product?.product?.id
     ) {
       try {
         const response = await axios.post(`${API_URL}/reviews`, {
           product_id: product?.product?.id,
           product_name: product?.product?.title,
           user_id: login?.user?.id,
-          name: login?.user?.name,
+          name: firstName,
           comment: review,
           rating: rating,
           is_visible: '0',
@@ -347,23 +345,25 @@ function PageDetails({ params: { slug } }: Props) {
                           ৳{product?.product?.regular_price}
                         </h2>
                       </div>
-                      <div className="flex items-center">
-                        <h3 className=" font-gotham font-normal text-xs text-black mr-3">
-                          Discount Price:
-                        </h3>
-                        <div className="flex">
-                          <h2 className="font-gotham  text-2xl text-primary font-medium d-price">
-                            ৳{product?.product?.discount_price}
-                          </h2>
-                          <div>
-                            <span className="discount">
-                              Save ৳
-                              {product.product.regular_price -
-                                product.product.discount_price}
-                            </span>
+                      {product?.product?.discount_price > 0 && (
+                        <div className="flex items-center">
+                          <h3 className=" font-gotham font-normal text-xs text-black mr-3">
+                            Discount Price:
+                          </h3>
+                          <div className="flex">
+                            <h2 className="font-gotham  text-2xl text-primary font-medium d-price">
+                              ৳{product?.product?.discount_price}
+                            </h2>
+                            <div>
+                              <span className="discount">
+                                Save ৳
+                                {product.product.regular_price -
+                                  product.product.discount_price}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                     <div className="emi">
                       <h3 className=" font-gotham font-medium text-sm text-primary py-3 cursor-pointer">
@@ -465,7 +465,10 @@ function PageDetails({ params: { slug } }: Props) {
                             dispatch(
                               addToCart({
                                 product_id: Number(product.product.id),
-                                price: product.product.discount_price,
+                                price:
+                                  product.product.discount_price > 0
+                                    ? product.product.discount_price
+                                    : product?.product?.regular_price,
                                 title: product.product.title,
                                 image: product.product.image,
                                 quantity: quantity,
@@ -649,23 +652,15 @@ function PageDetails({ params: { slug } }: Props) {
                                     }
                                     numberOfStars={5}
                                     name="rating"
-                                    starDimension="15px" // Adjust the star size as needed
-                                    starSpacing="5px" // Adjust the spacing between stars as needed
-                                    starHoverColor="red"
+                                    starDimension="15px"
+                                    starSpacing="5px"
+                                    starHoverColor="#2456b5"
                                   />
                                 </div>
                               </div>
                               <form onSubmit={handleSubmit}>
-                                <TextAreaGroup
-                                  title="Your review *"
-                                  required
-                                  value={review}
-                                  onChange={(e: any) =>
-                                    setReview(e.target.value)
-                                  }
-                                />
                                 <FormGroup
-                                  title="First Name *"
+                                  title="Full Name *"
                                   required
                                   value={firstName}
                                   onChange={(e: any) =>
@@ -679,6 +674,14 @@ function PageDetails({ params: { slug } }: Props) {
                                   value={email}
                                   onChange={(e: any) =>
                                     setEmail(e.target.value)
+                                  }
+                                />
+                                <TextAreaGroup
+                                  title="Your review *"
+                                  required
+                                  value={review}
+                                  onChange={(e: any) =>
+                                    setReview(e.target.value)
                                   }
                                 />
                                 {/* <div className="flex items-center mt-1">
