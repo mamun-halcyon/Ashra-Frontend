@@ -96,7 +96,7 @@ const Featured: FC<IProps> = ({
                     </div>
                   </TabPanel>
                 </div>
-                <div className="h-[100%] hidden md:block">
+                <div className=" hidden md:block">
                   <Link href={bannerUrl}>
                     <Image
                       className=" w-full"

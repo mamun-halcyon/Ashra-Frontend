@@ -40,8 +40,7 @@ const UpdateProfile = () => {
       city.trim() !== '' &&
       password !== '' &&
       confirmPassword !== '' &&
-      address.trim() !== '' &&
-      image
+      address.trim() !== ''
     ) {
       if (password === confirmPassword) {
         try {
@@ -52,7 +51,9 @@ const UpdateProfile = () => {
           formData.append('city', city);
           formData.append('password', password);
           formData.append('address', address);
-          formData.append('image', image);
+          if (image) {
+            formData.append('image', image);
+          }
           formData.append('upload_preset', 'w8omhp4w');
 
           const response = await axios.patch(
@@ -75,6 +76,15 @@ const UpdateProfile = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (login) {
+      setAddress(login.user.address as string);
+      setCity(login.user.city as string);
+      setMobile(login.user.mobile as string);
+      setName(login.user.name as string);
+    }
+  }, [login?.user]);
 
   return (
     <>
@@ -115,11 +125,13 @@ const UpdateProfile = () => {
                         onChange={(e) => setCity(e.target.value)}
                       />
                       <FormGroup
+                        type="password"
                         title="Your Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
                       <FormGroup
+                        type="password"
                         title="Confirm Password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}

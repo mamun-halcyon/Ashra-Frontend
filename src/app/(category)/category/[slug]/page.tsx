@@ -459,7 +459,13 @@ function Category() {
                         />
                       ))
                     ) : (
-                      <></>
+                      <>
+                        <div className="py-5 text-center col-span-4">
+                          <p className=" font-gotham text-black text-sm text-center font-normal">
+                            Product not found
+                          </p>
+                        </div>
+                      </>
                     )}
                   </div>
                 ) : (
