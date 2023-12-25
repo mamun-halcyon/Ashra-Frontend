@@ -138,6 +138,7 @@ function Checkout() {
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           console.log(error);
+          setApprovePromoData(null);
           setApprovePromStatus(error.response?.data?.message || 'An error occurred');
         }
       }
