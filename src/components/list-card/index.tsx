@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const ListCard: FC<IProps> = ({ product }) => {
-  console.log(product);
+  // console.log(product);
   const [isEmi, setIsEmi] = useState(false);
   const handleEmi = () => setIsEmi(!isEmi);
   const { data: compareItems } = useAppSelector((state) => state.compare);

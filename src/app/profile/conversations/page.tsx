@@ -33,7 +33,7 @@ const Conversations = () => {
             },
           });
           if (response.status === 200) {
-            console.log(response?.data?.data);
+            // console.log(response?.data?.data);
             setConversations(response?.data?.data);
           }
         } catch (error) {

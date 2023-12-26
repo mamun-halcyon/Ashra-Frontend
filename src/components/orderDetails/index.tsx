@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
 import TextAreaGroup from '../textarea';
 import Button from '../button';
 import axios from 'axios';
@@ -13,6 +13,7 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
   const { login } = useAppSelector((state) => state.login);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
+  const [attributes, setAttributes] = useState<any[]>([]);
 
   const handleSetMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
@@ -44,14 +45,26 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
       console.log(error);
     }
   };
+
+  useEffect(()=>{
+    try{
+      if(item?.product_attribute!==''){
+        setAttributes(JSON.parse(item?.product_attribute));
+      }
+    }catch(err){
+      console.log(err);
+      setAttributes([]);
+    }
+  },[item?.product_attribute]);
+
   return (
     <>
       <tr className=" font-normal font-gotham text-sm table-border p-2">
         <td className="px-6 py-4">{item?.product_name}</td>
         <td className="px-6 py-4">{item?.quantity}</td>
-
-        {/* TODO: Variant will Dynamic */}
-        <td className="px-6 py-4">LPG</td>
+        <td className="px-6 py-4">{
+          attributes?.length>0 ? attributes?.map(attr=><div>{`${attr?.name} : ${attr?.value}`}</div>) : <></>
+        }</td>
         <td className="px-6 py-4">
           ৳{item?.discount_price ? item?.discount_price : item?.regular_price}
         </td>

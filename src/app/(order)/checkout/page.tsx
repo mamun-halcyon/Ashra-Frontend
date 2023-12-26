@@ -71,6 +71,7 @@ function Checkout() {
   const orderItem = cart.map((item) => ({
     product_id: item.product_id,
     quantity: item.quantity,
+    product_attribute: item.product_attribute
   }));
 
   const subTotal = cart.reduce(

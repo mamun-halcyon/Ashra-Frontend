@@ -77,6 +77,7 @@ function PageDetails({ params: { slug } }: Props) {
   const [variant, setVariant] = useState<string>('');
   const [isShare, setIsShare] = useState(false);
   const [attributes, setAttributes] = useState<any[]>([]);
+  const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
 
   const handleShare = () => setIsShare(!isShare);
   const handleEmi = () => setIsEmi(!isEmi);
@@ -84,6 +85,18 @@ function PageDetails({ params: { slug } }: Props) {
   const handleViewImage = (url: string) => {
     setViewImag(url);
   };
+
+  useEffect(()=>{
+    let tempSelAttr:any[] = [];
+    attributes?.map(attr=>{
+      attr?.values?.map((val: any)=>{
+        if(val?.checked){
+          tempSelAttr.push({name: attr.name, value: val.name});
+        }
+      });
+    });
+    setSelectedAttribute(tempSelAttr);
+  }, [attributes]);
 
   const increment = () => {
     if (quantity < 5) {
@@ -456,11 +469,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <Button
                           className=" px-5 py-1 mr-2"
                           onClick={() => {
-                            if (
-                              product?.productAttribute &&
-                              product?.productAttribute?.length > 0 &&
-                              !variant
-                            ) {
+                            if (attributes?.length!==selectAttributes?.length) {
                               toast.error('Please Select Variant');
                               return;
                             }
@@ -471,7 +480,7 @@ function PageDetails({ params: { slug } }: Props) {
                               image: product.product.image,
                               quantity: quantity,
                               regular_price: product.product.regular_price,
-                              product_attribute: variant,
+                              product_attribute: selectAttributes,
                             });
                           }}
                         >
@@ -480,11 +489,7 @@ function PageDetails({ params: { slug } }: Props) {
                         <Button
                           className=" px-5 py-1"
                           onClick={() => {
-                            if (
-                              product?.productAttribute &&
-                              product?.productAttribute?.length > 0 &&
-                              !variant
-                            ) {
+                            if (attributes?.length!==selectAttributes?.length) {
                               toast.error('Please Select Variant');
                               return;
                             }
@@ -499,7 +504,7 @@ function PageDetails({ params: { slug } }: Props) {
                                 image: product.product.image,
                                 quantity: quantity,
                                 regular_price: product.product.regular_price,
-                                product_attribute: variant,
+                                product_attribute: selectAttributes,
                               })
                             );
                           }}

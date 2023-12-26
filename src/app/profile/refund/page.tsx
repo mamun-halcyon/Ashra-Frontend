@@ -11,7 +11,7 @@ import { formatDate } from '@/components/dateformate';
 const Refund = () => {
   const { login } = useAppSelector((state) => state.login);
   const [refunds, setRefunds] = useState<any[]>([]);
-  console.log(refunds);
+  // console.log(refunds);
   useEffect(() => {
     if (login?.accessToken) {
       const getAllOrders = async () => {

@@ -65,7 +65,7 @@ const UpdateProfile = () => {
           toast.success('Profile Updated Successful!');
           route.push('/profile');
         }
-        console.log('response : ', response);
+        // console.log('response : ', response);
       } catch (error) {
         console.log(error);
         toast.error('Profile Update Error!');

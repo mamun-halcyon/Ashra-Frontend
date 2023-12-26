@@ -22,7 +22,7 @@ function Login() {
   const [emailError, setEmailError] = useState('');
   const [mobileError, setMobileError] = useState('');
 
-  console.log(emailError);
+  // console.log(emailError);
 
   useEffect(() => {
     if (login?.accessToken) {

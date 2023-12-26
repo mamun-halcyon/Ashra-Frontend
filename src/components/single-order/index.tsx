@@ -124,6 +124,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       }
     }
   }, [orderDetails?.coupon]);
+  
   useEffect(() => {
     if (orderDetails?.orderItems?.length > 0) {
       if (orderDetails?.coupon) {
