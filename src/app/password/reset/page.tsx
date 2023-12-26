@@ -1,8 +1,30 @@
+'use client';
 import Button from '@/components/button';
 import FormGroup from '@/components/fromgroup';
 import './page.scss';
+import { FormEvent, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '@/constant';
+import { toast } from 'react-toastify';
 
 function ResetPassword() {
+  const [mobile, setMobile] = useState('');
+
+  const handleReset = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const { data, status } = await axios.post(`${API_URL}/auths/reset`, {
+        user_name: mobile,
+      });
+      if (status === 200) {
+        setMobile('');
+        toast.success(data.message);
+      }
+    } catch (error) {
+      console.log('reset Error' + error);
+    }
+  };
+
   return (
     <main>
       <section className="flex justify-center items-center forget-page">
@@ -13,12 +35,14 @@ function ResetPassword() {
           <p className="font-gotham font-light text-sm text-black mt-2">
             Enter your mobile number to recover your password.
           </p>
-          <form>
+          <form onSubmit={handleReset}>
             <FormGroup
               className="mt-2 "
               type="text"
               title="Mobile Number*"
               placeholder="Your Mobile Number"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
               required
             />
 
