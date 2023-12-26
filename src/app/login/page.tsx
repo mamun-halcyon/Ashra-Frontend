@@ -19,6 +19,8 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -63,6 +65,8 @@ function Login() {
 
       router.push('/profile');
     } catch (error) {
+      console.log(error);
+      // setEmailError(error?.response.data.)
       console.error('Login error:', error);
     }
   };

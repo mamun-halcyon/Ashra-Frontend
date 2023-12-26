@@ -34,45 +34,41 @@ const UpdateProfile = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (
-      name.trim() !== '' &&
-      mobile.trim() !== '' &&
-      city.trim() !== '' &&
-      password !== '' &&
-      confirmPassword !== '' &&
-      address.trim() !== ''
-    ) {
-      if (password === confirmPassword) {
-        try {
-          const formData = new FormData();
 
-          formData.append('name', name);
-          formData.append('mobile', mobile);
-          formData.append('city', city);
-          formData.append('password', password);
-          formData.append('address', address);
-          if (image) {
-            formData.append('image', image);
-          }
-          formData.append('upload_preset', 'w8omhp4w');
+    if (login) {
+      if (password !== confirmPassword) {
+        toast.error("Password didn't match");
+      }
+      try {
+        const formData = new FormData();
 
-          const response = await axios.patch(
-            `${API_URL}/users/${login?.user?.id}`,
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${login?.accessToken}`,
-              },
-            }
-          );
-          if (response?.status === 200) {
-            toast.success('Profile Updated Successful!');
-          }
-          console.log('response : ', response);
-        } catch (error) {
-          console.log(error);
-          toast.error('Profile Update Error!');
+        formData.append('name', name);
+        formData.append('mobile', mobile);
+        formData.append('city', city);
+        formData.append('password', password);
+        formData.append('address', address);
+        if (image) {
+          formData.append('image', image);
         }
+        formData.append('upload_preset', 'w8omhp4w');
+
+        const response = await axios.patch(
+          `${API_URL}/users/${login?.user?.id}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${login?.accessToken}`,
+            },
+          }
+        );
+        if (response?.status === 200) {
+          toast.success('Profile Updated Successful!');
+          route.push('/profile');
+        }
+        console.log('response : ', response);
+      } catch (error) {
+        console.log(error);
+        toast.error('Profile Update Error!');
       }
     }
   };

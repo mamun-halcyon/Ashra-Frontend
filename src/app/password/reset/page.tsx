@@ -21,6 +21,9 @@ function ResetPassword() {
         toast.success(data.message);
       }
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message);
+      }
       console.log('reset Error' + error);
     }
   };
