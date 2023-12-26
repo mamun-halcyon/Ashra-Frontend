@@ -29,7 +29,7 @@ async function getData() {
 
 async function categoryProduct(category_slug: string) {
   const res = await fetch(
-    `${API_URL}/frontend/products?page=1&limit=10&category=${category_slug}`
+    `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`
   );
   if (!res.ok) {
     throw new Error('Failed to fetch data');

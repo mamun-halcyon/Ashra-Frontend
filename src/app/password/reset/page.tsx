@@ -16,7 +16,7 @@ function ResetPassword() {
           <form>
             <FormGroup
               className="mt-2 "
-              type="email"
+              type="text"
               title="Mobile Number*"
               placeholder="Your Mobile Number"
               required
