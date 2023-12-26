@@ -23,6 +23,9 @@
 .login-area {
   box-shadow: $primary-shadow;
 }
+.warning {
+  color: $octonary-color;
+}
 @media screen and (max-width: 768px) {
   .login-page {
     padding-top: 50px;

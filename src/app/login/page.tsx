@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import './page.scss';
 import axios from '../../lib/axios';
+import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -19,8 +20,7 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -65,8 +65,9 @@ function Login() {
 
       router.push('/profile');
     } catch (error) {
-      console.log(error);
-      // setEmailError(error?.response.data.)
+      if (Axios.isAxiosError(error)) {
+        setError(error?.response?.data?.message);
+      }
       console.error('Login error:', error);
     }
   };
@@ -98,7 +99,6 @@ function Login() {
                   required
                   onChange={(e) => setEmail(e.target.value)}
                 />
-
                 <FormGroup
                   type="password"
                   className="mt-2"
@@ -107,6 +107,7 @@ function Login() {
                   required
                   onChange={(e) => setPassword(e.target.value)}
                 />
+
                 <div className="mt-3 flex justify-between items-center">
                   <div className="flex">
                     <input type="checkbox" name="check" id="check" />
@@ -130,6 +131,7 @@ function Login() {
                   Login
                 </Button>
               </form>
+              <p className=" font-gotham text-xs warning pt-1">{error}</p>
               <h3 className="font-gotham font-normal text-sm text-black my-2 text-center relative auth-border">
                 {`Don't`} have an account?
               </h3>

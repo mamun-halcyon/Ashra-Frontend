@@ -6,8 +6,10 @@ import { FormEvent, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '@/constant';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 function ResetPassword() {
+  const router = useRouter();
   const [mobile, setMobile] = useState('');
 
   const handleReset = async (e: FormEvent<HTMLFormElement>) => {
@@ -19,6 +21,7 @@ function ResetPassword() {
       if (status === 200) {
         setMobile('');
         toast.success(data.message);
+        router.push('/login');
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
