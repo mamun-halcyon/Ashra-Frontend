@@ -25,7 +25,7 @@ function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [approvePromoCode, setApprovePromCode] = useState<string | null>(null);
   const [approvePromoData, setApprovePromoData] = useState<any>(null);
-  const [approvePromoStatus, setApprovePromStatus] = useState<Number | null>(
+  const [approvePromoStatus, setApprovePromStatus] = useState<string | null>(
     null
   );
   const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
@@ -128,13 +128,21 @@ function Checkout() {
         if (response.status == 200) {
           setApprovePromoData(response?.data?.coupon);
           setCouponId(response?.data?.coupon?.id);
-          setApprovePromStatus(1);
+          setApprovePromStatus(response.data.message);
         } else {
           setApprovePromoData(null);
-          setApprovePromStatus(0);
+          setApprovePromStatus(response.data.message);
+          setCouponId(null)
         }
-      } catch (error) {
-        console.log(error);
+
+    
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          console.log(error);
+          setApprovePromoData(null);
+          setCouponId(null)
+          setApprovePromStatus(error.response?.data?.message || 'An error occurred');
+        }
       }
     }
   };
@@ -488,16 +496,11 @@ function Checkout() {
                         </Button>
                       </div>
                       {approvePromoStatus ? (
-                        approvePromoStatus === 0 ? (
                           <div className="text font-gotham font-normal bold text-xs">
-                            Not Valid
-                          </div>
-                        ) : (
-                          <div className="text font-gotham font-normal bold text-xs">
-                            Promo Code Applied
+                           {approvePromoStatus}
                           </div>
                         )
-                      ) : (
+                      : (
                         <></>
                       )}
                     </div>

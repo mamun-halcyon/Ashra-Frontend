@@ -5,6 +5,12 @@
   border-bottom: 1px solid #ececec;
   padding-bottom: 50px;
 
+  .pointer{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
   svg {
     width: 15px;
     height: 15px;
