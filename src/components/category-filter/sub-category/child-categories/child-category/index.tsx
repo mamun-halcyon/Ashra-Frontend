@@ -35,7 +35,7 @@ const ChildCategory: FC<IProps> = ({
   }, [rootCategoryChanged]);
 
   return (
-    <div className="childCategory font-gotham font-normal text-sm">
+    <div className="childCategory font-gotham font-normal text-sm capitalize mb-1 hover:text-primary transition-all duration-300">
       <input
         className="childCategory-checkbox"
         type="checkbox"
@@ -44,7 +44,7 @@ const ChildCategory: FC<IProps> = ({
         value={childCategory.title}
         style={{ marginInline: 10 }}
       />
-      {childCategory.title}
+      {childCategory.title.toLowerCase()}
     </div>
   );
 };
