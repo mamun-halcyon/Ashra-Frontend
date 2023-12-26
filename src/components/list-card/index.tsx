@@ -43,26 +43,28 @@ const ListCard: FC<IProps> = ({ product }) => {
   };
 
   return (
-    <div className="list-card flex flex-wrap py-5">
-      <div className="image md:w-[30%] w-[50%] relative flex items-center justify-center pt-10 box-border">
+    <div className="list-card flex  py-5">
+      <div className="image md:w-[30%] w-[30%] relative flex items-center justify-center pt-10 box-border">
         <Link
           href={`/product/${product.slug}`}
-          className="font-gotham font-medium text-sm inline-block text-black hover:text-primary"
+          className="font-gotham font-medium text-sm inline-block text-black hover:text-primary w-full"
         >
-          <Image
-            className="md:w-[70%] w-full object-cover"
-            src={`${API_ROOT}/images/product/${product.image}`}
-            width={400}
-            height={400}
-            alt="product"
-          />
+          <div className=" w-[70%]">
+            <Image
+              className=" w-full object-cover"
+              src={`${API_ROOT}/images/product/${product.image}`}
+              width={400}
+              height={400}
+              alt="product"
+            />
+          </div>
         </Link>
         <div className=" absolute left-0 top-0">
           {((Number(product.regular_price) - Number(product.discount_price)) /
             Number(product.regular_price)) *
             100 !==
           0 ? (
-            <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+            <span className=" sudo inline-block discount font-gotham text-[10px] md:text-xs font-bold  px-1 md:px-2 py-1  rounded text-primary">
               {(
                 ((Number(product.regular_price) -
                   Number(product.discount_price)) /
@@ -73,7 +75,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             </span>
           ) : null}
           {product.is_new ? (
-            <span className=" sudo inline-block new font-gotham text-xs font-medium  px-2 py-1  rounded text-primary">
+            <span className=" sudo inline-block new font-gotham text-[10px] md:text-xs font-medium px-1 md:px-2 py-1  rounded text-primary">
               New
             </span>
           ) : (
@@ -81,16 +83,16 @@ const ListCard: FC<IProps> = ({ product }) => {
           )}
         </div>
       </div>
-      <div className="details w-[50%] relative">
+      <div className="details md:w-[50%] w-[40%] relative">
         <Link
           href={`/product/${product.slug}`}
-          className="font-gotham font-medium text-sm text-black hover:text-primary"
+          className="font-gotham font-medium text-sm  text-black hover:text-primary"
         >
           {product.title}
         </Link>
-        <div className="flex items-center mt-1 md:mt-3 review">
+        <div className="flex flex-wrap items-center mt-1 md:mt-3 review">
           <StarRating rating={4} />
-          <span className="font-gotham font-normal text-xs ml-2">
+          <span className="font-gotham font-normal w-full md:w-auto text-xs ml-0 md:ml-2">
             Reviews ({4})
           </span>
         </div>
@@ -98,7 +100,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           Brand: Gazi
         </h4> */}
         <h3
-          className="font-gotham font-medium text-xs text-primary cursor-pointer mt-10"
+          className="font-gotham font-medium text-xs text-primary cursor-pointer md:mt-10 mt-4"
           onClick={() => setIsEmi(true)}
         >
           Avail Bank EMI
@@ -127,7 +129,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               Compare
             </p>
           </div>
-          <div className="flex items-center mr-2 cursor-pointer interaction">
+          <div className="flex items-center mr-2 mt-2 md:mt-0 cursor-pointer interaction">
             <div className="icon-area p-1">
               <BsHeart className=" text-xs icon" />
             </div>
@@ -159,22 +161,22 @@ const ListCard: FC<IProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="image w-full md:w-[20%] relative">
+      <div className="image w-[30%] relative">
         <h3 className="font-gotham font-medium stock pb-1 mb-4">Instock</h3>
         <h4 className=" font-gotham font-normal text-xs line-through text-black">
           ৳ {product.regular_price}
         </h4>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between flex-wrap items-center">
           <h3 className=" font-gotham font-medium text-base text-black">
             ৳ {product.discount_price}
           </h3>
-          <span className=" font-gotham font-normal text-xs  px-2 py-1 bg-primary save-money">
+          <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] bg-primary save-money">
             Save ৳{' '}
             {Number(product.regular_price) - Number(product.discount_price)}
           </span>
         </div>
         <Button
-          className="md:w-full px-3 md:px-0 font-gotham font-medium text-sm py-1 mt-4 product-btn"
+          className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn"
           onClick={() => {
             handleBuyNow({
               product_id: product.id,

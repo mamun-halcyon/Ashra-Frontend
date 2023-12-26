@@ -54,13 +54,16 @@ const ViewTicket = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (details?.trim() !== '' && login?.user?.id && image && param?.slug) {
+    if (details?.trim() !== '' && login?.user?.id && param?.slug) {
       try {
         const formData = new FormData();
         formData.append('subject', '');
         formData.append('details', details?.trim());
         formData.append('user_id', login?.user?.id?.toString());
-        formData.append('image', image);
+        formData.append('user_name', login?.user?.name);
+        if (image) {
+          formData.append('image', image);
+        }
         formData.append('parent_text_id', param?.slug?.toString());
         formData.append('text_type', 'reply');
         formData.append('upload_preset', 'w8omhp4w');
@@ -99,7 +102,8 @@ const ViewTicket = () => {
                 <div className="mb-12 h-[350px] overflow-y-scroll scrollbar">
                   {messages?.length > 0 ? (
                     messages?.map((message, index) =>
-                      message.parent_text_id == 0 ? (
+                      message.parent_text_id == 0 ||
+                      message.user_id === login?.user?.id ? (
                         <div className="py-2" key={index}>
                           <p className=" font-gotham text-sm bg-hoverColor text-white inline-block px-2 py-1 rounded-md">
                             {message?.details}

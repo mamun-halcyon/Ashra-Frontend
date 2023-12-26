@@ -28,14 +28,17 @@ const CreateTicket = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (subject && details && login?.user?.id && image) {
+    if (subject && details && login?.user?.id) {
       try {
         const formData = new FormData();
 
         formData.append('subject', subject);
+        formData.append('user_name', login?.user?.name);
         formData.append('details', details);
         formData.append('user_id', login?.user?.id?.toString());
-        formData.append('image', image);
+        if (image) {
+          formData.append('image', image);
+        }
         formData.append('parent_text_id', '0');
         formData.append('text_type', 'query');
         formData.append('upload_preset', 'w8omhp4w');
@@ -98,7 +101,6 @@ const CreateTicket = () => {
                     type="file"
                     title="photo"
                     placeholder="Photo"
-                    required
                     onChange={(e: any) =>
                       e.target.files[0]
                         ? setImage(e.target.files[0])
