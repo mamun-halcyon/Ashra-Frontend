@@ -101,7 +101,22 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                 <h3 className=" font-gotham font-normal text-base text-black mb-3">
                   Write a comment
                 </h3>
-                <BlogComment blogId={blogData?.data?.id} />
+                <div>
+                  <form>
+                    <div className="grid grid-cols-2 gap-4">
+                      <FormGroup title="Name" className="mb-2 " required />
+                      <FormGroup title="Email" className=" mb-2" required />
+                    </div>
+                    <TextAreaGroup title="Your Comment" required />
+
+                    <Button
+                      type="submit"
+                      className="px-3 py-1 font-gotham font-normal text-sm mt-2"
+                    >
+                      Summit
+                    </Button>
+                  </form>
+                </div>
               </div>
             </div>
           }
