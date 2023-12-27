@@ -2,13 +2,12 @@
 import Button from '@/components/button';
 import FormGroup from '@/components/fromgroup';
 import ProfileSidebar from '@/components/profile-sidebar';
-import { API_URL } from '@/constant';
 import { useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
 import { useRouter, useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
+import axiosInstance from '../../../../../utils/axiosInstance';
 import '../../page.scss';
 
 const ViewTicket = () => {
@@ -22,8 +21,8 @@ const ViewTicket = () => {
 
   const getTicketDetails = async () => {
     try {
-      const response = await axios.get(
-        `${API_URL}/customers/supports/${param?.slug}`,
+      const response = await axiosInstance.get(
+        `/customers/supports/${param?.slug}`,
         {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
@@ -67,7 +66,7 @@ const ViewTicket = () => {
         formData.append('parent_text_id', param?.slug?.toString());
         formData.append('text_type', 'reply');
         formData.append('upload_preset', 'w8omhp4w');
-        const response = await axios.post(`${API_URL}/supports`, formData, {
+        const response = await axiosInstance.post(`/supports`, formData, {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
           },

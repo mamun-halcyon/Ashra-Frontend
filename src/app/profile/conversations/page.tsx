@@ -5,9 +5,8 @@ import React, { useEffect, useState } from 'react';
 import './page.scss';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
-import { API_URL } from '@/constant';
-import axios from 'axios';
 import { FaBars } from 'react-icons/fa6';
+import axiosInstance from '../../../../utils/axiosInstance';
 
 const Conversations = () => {
   const route = useRouter();
@@ -27,13 +26,12 @@ const Conversations = () => {
     if (login?.accessToken) {
       const getAllConversations = async () => {
         try {
-          const response = await axios.get(`${API_URL}/customers/querys`, {
+          const response = await axiosInstance.get(`/customers/querys`, {
             headers: {
               Authorization: `Bearer ${login?.accessToken}`,
             },
           });
           if (response.status === 200) {
-            // console.log(response?.data?.data);
             setConversations(response?.data?.data);
           }
         } catch (error) {

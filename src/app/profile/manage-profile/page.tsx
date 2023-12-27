@@ -7,10 +7,9 @@ import FormGroup from '@/components/fromgroup';
 import Button from '@/components/button';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import { API_URL } from '@/constant';
 import { toast } from 'react-toastify';
 import { FaBars } from 'react-icons/fa6';
+import axiosInstance from '../../../../utils/axiosInstance';
 
 const UpdateProfile = () => {
   const route = useRouter();
@@ -52,8 +51,8 @@ const UpdateProfile = () => {
         }
         formData.append('upload_preset', 'w8omhp4w');
 
-        const response = await axios.patch(
-          `${API_URL}/users/${login?.user?.id}`,
+        const response = await axiosInstance.patch(
+          `/users/${login?.user?.id}`,
           formData,
           {
             headers: {
@@ -65,7 +64,6 @@ const UpdateProfile = () => {
           toast.success('Profile Updated Successful!');
           route.push('/profile');
         }
-        // console.log('response : ', response);
       } catch (error) {
         console.log(error);
         toast.error('Profile Update Error!');

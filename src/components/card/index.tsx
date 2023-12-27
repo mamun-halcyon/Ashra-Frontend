@@ -15,6 +15,7 @@ import { addToCompare } from '@/redux/features/compare/compareSlice';
 import { ICompareItem } from '@/types/compare';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import axiosInstance from '../../../utils/axiosInstance';
 
 interface IProps {
   product_id: number;
@@ -57,9 +58,13 @@ const ProductCard: React.FC<IProps> = ({
   const addWishList = async () => {
     if (login?.accessToken && login?.user?.id) {
       try {
-        const response = await axios.post(`${API_URL}/wishlists`, {
+        const response = await axiosInstance.post(`/wishlists`, {
           product_id,
           user_id: login?.user?.id,
+        },{
+          headers: {
+            Authorization: `Bearer ${login?.accessToken}`,
+          },
         });
         if (response.status == 201) {
           dispatch(

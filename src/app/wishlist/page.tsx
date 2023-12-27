@@ -19,6 +19,7 @@ import {
 } from '@/redux/features/wish-list/wishListSlice';
 import { useRouter } from 'next/navigation';
 import { IService } from '@/types/service';
+import axiosInstance from '../../../utils/axiosInstance';
 
 function WishlistPage() {
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
@@ -30,7 +31,7 @@ function WishlistPage() {
   const getWishListItems = async () => {
     if (login?.accessToken) {
       try {
-        const response = await axios.get(`${API_URL}/customers/wishlists`, {
+        const response = await axiosInstance.get(`/customers/wishlists`, {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
           },
@@ -53,8 +54,8 @@ function WishlistPage() {
   const handleRemoveItem = async (wishlistID: number, productID: number) => {
     if (login?.accessToken && login?.user?.id) {
       try {
-        const response = await axios.delete(
-          `${API_URL}/wishlists?ids=[${wishlistID}]`,
+        const response = await axiosInstance.delete(
+          `/wishlists?ids=[${wishlistID}]`,
           {
             headers: {
               Authorization: `Bearer ${login?.accessToken}`,

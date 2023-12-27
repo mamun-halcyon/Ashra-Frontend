@@ -4,20 +4,19 @@ import React, { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa6';
 import '../page.scss';
 import { useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import { API_URL } from '@/constant';
 import { formatDate } from '@/components/dateformate';
+import axiosInstance from '../../../../utils/axiosInstance';
 
 const Refund = () => {
   const { login } = useAppSelector((state) => state.login);
   const [refunds, setRefunds] = useState<any[]>([]);
-  // console.log(refunds);
+
   useEffect(() => {
     if (login?.accessToken) {
       const getAllOrders = async () => {
         try {
-          const response = await axios.get(
-            `${API_URL}/refunds?customer_id=${login.user.id}`,
+          const response = await axiosInstance.get(
+            `/refunds?customer_id=${login.user.id}`,
             {
               headers: {
                 Authorization: `Bearer ${login?.accessToken}`,
