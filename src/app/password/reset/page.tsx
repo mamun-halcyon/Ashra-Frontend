@@ -6,7 +6,7 @@ import { FormEvent, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '@/constant';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 function ResetPassword() {
   const router = useRouter();
