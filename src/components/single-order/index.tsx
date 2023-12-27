@@ -124,7 +124,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       }
     }
   }, [orderDetails?.coupon]);
-  
+
   useEffect(() => {
     if (orderDetails?.orderItems?.length > 0) {
       if (orderDetails?.coupon) {
@@ -151,7 +151,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
         {order?.order_prefix}-{order.id}
       </td>
       <td className="px-6 py-4">{formatDate(order?.created_at)}</td>
-      <td className="px-6 py-4">৳{finalPrice}</td>
+      <td className="px-6 py-4">৳{finalPrice + order.delivery_fee}</td>
       <td className="px-6 py-4">
         {order.order_status === '0' ? 'pending' : order?.order_status}
       </td>
@@ -324,7 +324,9 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     <p className=" font-gotham text-sm mb-3">৳{finalPrice}</p>
                     <p className=" font-gotham text-sm mb-3">৳0</p>
                     <p className=" font-gotham text-sm mb-3">৳0</p>
-                    <p className=" font-gotham text-sm mb-3">৳{finalPrice}</p>
+                    <p className=" font-gotham text-sm mb-3">
+                      ৳{finalPrice + order.delivery_fee}
+                    </p>
                   </div>
                 </div>
               </div>
