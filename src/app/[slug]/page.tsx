@@ -34,7 +34,7 @@ const CustomPage = ({ params: { slug } }: Props) => {
     <section className="custom">
       <div className="container">
         <h3 className="mb-4 font-gotham font-semibold">{pageData?.title}</h3>
-        <div>
+        {/* <div>
           <Image
             className="w-full"
             src="/assets/images/banner/BG.png"
@@ -42,7 +42,7 @@ const CustomPage = ({ params: { slug } }: Props) => {
             width={400}
             height={400}
           />
-        </div>
+        </div> */}
         <div
           className=" font-gotham mt-5"
           dangerouslySetInnerHTML={{ __html: pageData?.content }}

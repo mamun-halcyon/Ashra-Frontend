@@ -46,25 +46,31 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
     }
   };
 
-  useEffect(()=>{
-    try{
-      if(item?.product_attribute!==''){
+  useEffect(() => {
+    try {
+      if (item?.product_attribute !== '') {
         setAttributes(JSON.parse(item?.product_attribute));
       }
-    }catch(err){
+    } catch (err) {
       console.log(err);
       setAttributes([]);
     }
-  },[item?.product_attribute]);
+  }, [item?.product_attribute]);
 
   return (
     <>
       <tr className=" font-normal font-gotham text-sm table-border p-2">
         <td className="px-6 py-4">{item?.product_name}</td>
         <td className="px-6 py-4">{item?.quantity}</td>
-        <td className="px-6 py-4">{
-          attributes?.length>0 ? attributes?.map(attr=><div>{`${attr?.name} : ${attr?.value}`}</div>) : <></>
-        }</td>
+        <td className="px-6 py-4">
+          {attributes?.length > 0 ? (
+            attributes?.map((attr, index) => (
+              <div key={index}>{`${attr?.name} : ${attr?.value}`}</div>
+            ))
+          ) : (
+            <></>
+          )}
+        </td>
         <td className="px-6 py-4">
           ৳{item?.discount_price ? item?.discount_price : item?.regular_price}
         </td>

@@ -13,6 +13,7 @@ import Button from '@/components/button';
 import { IBlog, IResponseBlog } from '@/types/blog';
 import { formatDate } from '@/components/dateformate';
 import { API_ROOT, API_URL } from '@/constant';
+import BlogComment from '@/components/blog-from';
 
 type Props = {
   params: {
@@ -100,20 +101,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                 <h3 className=" font-gotham font-normal text-base text-black mb-3">
                   Write a comment
                 </h3>
-                <form>
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormGroup title="Name" className="mb-2 " />
-                    <FormGroup title="Email" className=" mb-2" />
-                  </div>
-                  <TextAreaGroup title="Your Comment" />
-
-                  <Button
-                    type="submit"
-                    className="px-3 py-1 font-gotham font-normal text-sm mt-2"
-                  >
-                    Summit
-                  </Button>
-                </form>
+                <BlogComment blogId={blogData?.data?.id} />
               </div>
             </div>
           }
