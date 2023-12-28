@@ -15,7 +15,9 @@ const Title = dynamic(() => import('@/components/title'));
 const VideoCard = dynamic(() => import('@/components/video-card'));
 
 async function getData() {
-  const res = await fetch(`${API_URL}/home-page`);
+  const res = await fetch(`${API_URL}/home-page`, {
+    cache: 'no-store',
+  });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -29,7 +31,10 @@ async function getData() {
 
 async function categoryProduct(category_slug: string) {
   const res = await fetch(
-    `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`
+    `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`,
+    {
+      cache: 'no-store',
+    }
   );
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -38,7 +43,9 @@ async function categoryProduct(category_slug: string) {
   return res.json();
 }
 async function categoryAdBanner(slug: string) {
-  const res = await fetch(`${API_URL}/banners/${slug}`);
+  const res = await fetch(`${API_URL}/banners/${slug}`, {
+    cache: 'no-store',
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
