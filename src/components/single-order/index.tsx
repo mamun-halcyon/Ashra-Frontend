@@ -23,6 +23,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [orderDetails, setOrderDetails] = useState<any>({});
   const [finalPrice, setFinalPrice] = useState<number>(0);
+  const [amountBeforeCoupon, setAmountBeforeCoupon] = useState<number>(0);
 
   useEffect(() => {
     if (order?.id) {
@@ -143,6 +144,15 @@ const SingleOrder: FC<IProps> = ({ order }) => {
         setFinalPrice(finalPrice);
       }
     }
+
+    if (orderDetails?.orderItems?.length > 0) {
+      let amountBeforeCoupon = 0;
+      orderDetails?.orderItems?.forEach((item: any) => {
+        amountBeforeCoupon += item?.regular_price * item?.quantity;
+      });
+      setAmountBeforeCoupon(amountBeforeCoupon);
+    }
+
   }, [orderDetails?.coupon, orderDetails?.orderItems]);
 
   return (
@@ -153,10 +163,10 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       <td className="px-6 py-4">{formatDate(order?.created_at)}</td>
       <td className="px-6 py-4">৳{finalPrice + order.delivery_fee}</td>
       <td className="px-6 py-4">
-        {order.order_status === '0' ? 'pending' : order?.order_status}
+        {order.order_status}
       </td>
       <td className="px-6 py-4">
-        {order?.delivery_method === 'unpaid' ? 'unpaid' : 'paid'}
+        {order?.delivery_method}
       </td>
       <td className="px-6 py-2">
         <div className="flex justify-center info-icons">
@@ -236,7 +246,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     <p className=" font-gotham text-sm font-semibold">
                       Total Order Amount:{' '}
                     </p>
-                    <p className=" font-gotham text-sm ml-2">{finalPrice}</p>
+                    <p className=" font-gotham text-sm ml-2">{finalPrice  + order.delivery_fee}</p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
@@ -308,24 +318,24 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div className="flex md:justify-end justify-start py-1">
                   <div>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Subtotal:
+                      Regular Price:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
                       Shipping:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Coupon:
+                      Coupon discount:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Total:
+                      Fianl Price:
                     </h3>
                   </div>
                   <div className="ml-6">
-                    <p className=" font-gotham text-sm mb-3">৳{finalPrice}</p>
-                    <p className=" font-gotham text-sm mb-3">৳0</p>
-                    <p className=" font-gotham text-sm mb-3">৳0</p>
+                    <p className=" font-gotham text-sm mb-3">৳ {amountBeforeCoupon}</p>
+                    <p className=" font-gotham text-sm mb-3">৳ {orderDetails.delivery_fee}</p>
+                    <p className=" font-gotham text-sm mb-3">৳ {amountBeforeCoupon- finalPrice}</p>
                     <p className=" font-gotham text-sm mb-3">
-                      ৳{finalPrice + order.delivery_fee}
+                      ৳ {finalPrice + order.delivery_fee}
                     </p>
                   </div>
                 </div>
