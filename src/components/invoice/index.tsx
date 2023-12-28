@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import './index.scss';
 
-const Invoice = ({ order }: any) => {
+const Invoice = ({ order, amountBeforeCoupon, shipingCost, finalPrice }: any) => {
   return (
     <div className="invoice bg-white hidden">
       <div className="invoice-header">
@@ -78,29 +78,14 @@ const Invoice = ({ order }: any) => {
             <div className="summery">
               <div className="">
                 <p className=" sort-summery">Sub Total</p>
+                <p className=" sort-summery">৳ {amountBeforeCoupon} </p>
                 <p className=" sort-summery"></p>
                 <p className=" sort-summery">Shipping cost</p>
-                <p className=" sort-summery">৳00.00</p>
+                <p className=" sort-summery">৳ {shipingCost}</p>
                 <p className=" sort-summery">Coupon Discount</p>
-                <p className=" sort-summery">৳00.00</p>
+                <p className=" sort-summery">৳ {amountBeforeCoupon- finalPrice}</p>
                 <p className=" sort-summery">Grand Total</p>
-                <p className=" sort-summery">{`৳${order?.orderItems?.reduce(
-                  (sum: any, item: any) => {
-                    // Check if discount_price is null or 0
-                    if (
-                      item.discount_price === null ||
-                      item.discount_price === 0
-                    ) {
-                      // Add regular_price * quantity to the sum
-                      sum += item.regular_price * item.quantity;
-                    } else {
-                      // Add discount_price * quantity to the sum
-                      sum += item.discount_price * item.quantity;
-                    }
-                    return sum;
-                  },
-                  0
-                )}`}</p>
+                <p className=" sort-summery">৳ {finalPrice+ shipingCost } </p>
               </div>
             </div>
           </div>

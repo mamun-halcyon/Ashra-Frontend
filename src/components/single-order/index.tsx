@@ -174,7 +174,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
           />
 
           <div className="print-area" ref={componentRef}>
-            {<Invoice order={order} />}
+            {<Invoice order={order} amountBeforeCoupon={amountBeforeCoupon} shipingCost={order.delivery_fee} finalPrice={finalPrice}/>}
           </div>
 
           {/* Order Popup View */}
