@@ -8,12 +8,15 @@ import { useEffect, useState } from 'react';
 import SingleOrder from '@/components/single-order';
 import { FaBars } from 'react-icons/fa6';
 import axiosInstance from '../../../../utils/axiosInstance';
+import { FaLongArrowAltLeft } from 'react-icons/fa';
+import { FaArrowRightLong } from 'react-icons/fa6';
 
 const OrderHistory = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [allOrders, setAllOrders] = useState<any[]>([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (login?.accessToken) {
@@ -27,11 +30,14 @@ const OrderHistory = () => {
     if (login?.accessToken) {
       const getAllOrders = async () => {
         try {
-          const response = await axiosInstance.get(`/customers/orders`, {
-            headers: {
-              Authorization: `Bearer ${login?.accessToken}`,
-            },
-          });
+          const response = await axiosInstance.get(
+            `/customers/orders?page=${page}&limit=10`,
+            {
+              headers: {
+                Authorization: `Bearer ${login?.accessToken}`,
+              },
+            }
+          );
           if (response.status == 200) {
             setAllOrders(response?.data);
           }
@@ -41,7 +47,7 @@ const OrderHistory = () => {
       };
       getAllOrders();
     }
-  }, [login]);
+  }, [login, page]);
 
   return (
     <>
@@ -110,6 +116,22 @@ const OrderHistory = () => {
                       )}
                     </tbody>
                   </table>
+                </div>
+                <div className="mt-5">
+                  <div className="flex justify-between">
+                    <p
+                      className=" cursor-pointer"
+                      onClick={() => setPage(page > 1 ? page - 1 : 1)}
+                    >
+                      <FaLongArrowAltLeft />
+                    </p>
+                    <p
+                      className=" cursor-pointer"
+                      onClick={() => setPage(page + 1)}
+                    >
+                      <FaArrowRightLong />
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

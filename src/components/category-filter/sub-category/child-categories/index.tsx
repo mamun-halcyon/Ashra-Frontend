@@ -1,7 +1,7 @@
-import { ICategoryData } from "@/types/category";
-import { Dispatch, FC, SetStateAction } from "react";
-import ChildCategory from "./child-category";
-import "./index.scss";
+import { ICategoryData } from '@/types/category';
+import { Dispatch, FC, SetStateAction } from 'react';
+import ChildCategory from './child-category';
+import './index.scss';
 
 interface IProps {
   categoryFilterItems: ICategoryData[];
@@ -25,7 +25,8 @@ const ChildCategories: FC<IProps> = ({
   return (
     <div
       className={`childCategories ${
-        showChildCategories === subCategory.title && "childCategories-show"
+        showChildCategories.toLocaleLowerCase() ===
+          subCategory.title.toLocaleLowerCase() && 'childCategories-show'
       }`}
     >
       {categoryFilterItems
