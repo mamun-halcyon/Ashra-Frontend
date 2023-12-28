@@ -138,6 +138,7 @@ function Checkout() {
           setApprovePromoData(null);
           setApprovePromStatus(response.data.message);
           setCouponId(null)
+          setDiscountCart(cart);
         }
 
     
@@ -147,6 +148,7 @@ function Checkout() {
           setApprovePromoData(null);
           setCouponId(null)
           setApprovePromStatus(error.response?.data?.message || 'An error occurred');
+          setDiscountCart(cart);
         }
       }
     }
