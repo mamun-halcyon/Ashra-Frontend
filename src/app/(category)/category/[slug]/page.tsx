@@ -456,6 +456,7 @@ function Category() {
                           isNew={product.is_new}
                           product_id={Number(product.id)}
                           sort_description={product.sort_description}
+                          availability={product.availability}
                         />
                       ))
                     ) : (

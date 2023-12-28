@@ -26,6 +26,7 @@ interface IProps {
   sort_description: string;
   url: string;
   isNew?: boolean;
+  availability: any;
 }
 const ProductCard: React.FC<IProps> = ({
   image,
@@ -36,6 +37,7 @@ const ProductCard: React.FC<IProps> = ({
   isNew,
   product_id,
   sort_description,
+  availability,
 }) => {
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
@@ -58,14 +60,18 @@ const ProductCard: React.FC<IProps> = ({
   const addWishList = async () => {
     if (login?.accessToken && login?.user?.id) {
       try {
-        const response = await axiosInstance.post(`/wishlists`, {
-          product_id,
-          user_id: login?.user?.id,
-        },{
-          headers: {
-            Authorization: `Bearer ${login?.accessToken}`,
+        const response = await axiosInstance.post(
+          `/wishlists`,
+          {
+            product_id,
+            user_id: login?.user?.id,
           },
-        });
+          {
+            headers: {
+              Authorization: `Bearer ${login?.accessToken}`,
+            },
+          }
+        );
         if (response.status == 201) {
           dispatch(
             addToWishList({
@@ -107,15 +113,18 @@ const ProductCard: React.FC<IProps> = ({
           </Link>
         </div>
         <p className=" mb-2 text-center text-sm">
-          <span
-            className={`mr-2 font-gotham ${
-              Number(discount_price) > 0
-                ? 'line-through font-normal '
-                : 'font-bold'
-            } text-xs`}
-          >
-            ৳ {regular_price}
-          </span>
+          {Number(regular_price) !== Number(discount_price) && (
+            <span
+              className={`mr-2 font-gotham ${
+                Number(discount_price) > 0
+                  ? 'line-through font-normal '
+                  : 'font-bold'
+              } text-xs`}
+            >
+              ৳ {regular_price}
+            </span>
+          )}
+
           {Number(discount_price) > 0 && (
             <span className=" font-gotham font-bold text-xs">
               ৳ {discount_price}
@@ -123,47 +132,63 @@ const ProductCard: React.FC<IProps> = ({
           )}
         </p>
         <div className="flex justify-center">
-          <Button
-            onClick={() =>
-              dispatch(
-                addToCart({
-                  product_id: product_id,
-                  price: Number(
-                    Number(discount_price) > 0 ? discount_price : regular_price
-                  ),
-                  title: title,
-                  image: image,
-                  quantity: 1,
-                  regular_price: Number(regular_price),
-                })
-              )
-            }
-            className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
-          >
-            Add to Cart
-          </Button>
-          <Button
-            onClick={() =>
-              handleBuyNow({
-                product_id,
-                price: Number(discount_price),
-                title: title,
-                image: image,
-                quantity: 1,
-                regular_price: Number(regular_price),
-              })
-            }
-            className="font-gotham font-medium py-2 text-xs  w-[102px]"
-          >
-            Buy Now
-          </Button>
+          {availability === 1 && (
+            <>
+              <Button
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      product_id: product_id,
+                      price: Number(
+                        Number(discount_price) > 0
+                          ? discount_price
+                          : regular_price
+                      ),
+                      title: title,
+                      image: image,
+                      quantity: 1,
+                      regular_price: Number(regular_price),
+                    })
+                  )
+                }
+                className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
+              >
+                Add to Cart
+              </Button>
+              <Button
+                onClick={() =>
+                  handleBuyNow({
+                    product_id,
+                    price: Number(discount_price),
+                    title: title,
+                    image: image,
+                    quantity: 1,
+                    regular_price: Number(regular_price),
+                  })
+                }
+                className="font-gotham font-medium py-2 text-xs  w-[102px]"
+              >
+                Buy Now
+              </Button>
+            </>
+          )}
+          {availability === 2 && (
+            <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]">
+              Out of Stock
+            </Button>
+          )}
+          {availability === 3 && (
+            <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]">
+              Upcoming
+            </Button>
+          )}
         </div>
       </div>
       <div className=" absolute top-2 left-2">
         {((Number(regular_price) - Number(discount_price)) /
           Number(regular_price)) *
           100 !==
-        0 ? (
+          0 && discount_price !== 0 ? (
           <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
             {(
               ((Number(regular_price) - Number(discount_price)) /

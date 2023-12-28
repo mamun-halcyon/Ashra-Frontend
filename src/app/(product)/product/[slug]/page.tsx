@@ -87,12 +87,12 @@ function PageDetails({ params: { slug } }: Props) {
     setViewImag(url);
   };
 
-  useEffect(()=>{
-    let tempSelAttr:any[] = [];
-    attributes?.map(attr=>{
-      attr?.values?.map((val: any)=>{
-        if(val?.checked){
-          tempSelAttr.push({name: attr.name, value: val.name});
+  useEffect(() => {
+    let tempSelAttr: any[] = [];
+    attributes?.map((attr) => {
+      attr?.values?.map((val: any) => {
+        if (val?.checked) {
+          tempSelAttr.push({ name: attr.name, value: val.name });
         }
       });
     });
@@ -121,11 +121,17 @@ function PageDetails({ params: { slug } }: Props) {
       const data = await getProduct(slug);
       setProduct(data?.data);
       let tempArr: any[] = [];
-      data?.data?.productAttribute?.length>0 && data?.data?.productAttribute?.map((attr: any)=>{
-        let tempValuesArr: string[] = attr?.attribute_value?.split(',');
-        let tempValuesArrObjs: any[] = tempValuesArr.map(val=>{return {name: val, checked: false}});
-        tempArr.push({name: attr?.attribute_key, values: [...tempValuesArrObjs]});
-      });
+      data?.data?.productAttribute?.length > 0 &&
+        data?.data?.productAttribute?.map((attr: any) => {
+          let tempValuesArr: string[] = attr?.attribute_value?.split(',');
+          let tempValuesArrObjs: any[] = tempValuesArr.map((val) => {
+            return { name: val, checked: false };
+          });
+          tempArr.push({
+            name: attr?.attribute_key,
+            values: [...tempValuesArrObjs],
+          });
+        });
       setAttributes([...tempArr]);
     } catch (error) {
       console.error('Error fetching product:', error);
@@ -234,14 +240,18 @@ function PageDetails({ params: { slug } }: Props) {
   const addWishList = async (productID: Number) => {
     if (login?.accessToken && login?.user?.id) {
       try {
-        const response = await axiosInstance.post(`/wishlists`, {
-          product_id: productID,
-          user_id: login?.user?.id,
-        },{
-          headers: {
-            Authorization: `Bearer ${login?.accessToken}`,
+        const response = await axiosInstance.post(
+          `/wishlists`,
+          {
+            product_id: productID,
+            user_id: login?.user?.id,
           },
-        });
+          {
+            headers: {
+              Authorization: `Bearer ${login?.accessToken}`,
+            },
+          }
+        );
         if (response.status == 201) {
           dispatch(
             addToWishList({
@@ -301,22 +311,22 @@ function PageDetails({ params: { slug } }: Props) {
   };
 
   const handleAttributeClick = (attrName: string, valName: string) => {
-    setAttributes((prevState)=>{
-        return prevState.map(attr=>{
-          if(attr.name===attrName){
-            attr.values = attr.values.map((val: any)=>{
-              if(val.name===valName){
-                val.checked = true;
-              }else{
-                val.checked = false;
-              }
-              return val;
-            });
-            return attr;
-          }else{
-            return attr;
-          }
-        });
+    setAttributes((prevState) => {
+      return prevState.map((attr) => {
+        if (attr.name === attrName) {
+          attr.values = attr.values.map((val: any) => {
+            if (val.name === valName) {
+              val.checked = true;
+            } else {
+              val.checked = false;
+            }
+            return val;
+          });
+          return attr;
+        } else {
+          return attr;
+        }
+      });
     });
   };
 
@@ -386,7 +396,12 @@ function PageDetails({ params: { slug } }: Props) {
                         <h3 className=" font-gotham font-normal text-xs text-black mr-3">
                           Regular Price:
                         </h3>
-                        <h2 className="font-gotham font-normal text-xl  line-through r-price">
+                        <h2
+                          className={`font-gotham font-normal text-xl  ${
+                            product?.product?.discount_price > 0 &&
+                            ' line-through'
+                          } r-price`}
+                        >
                           ৳{product?.product?.regular_price}
                         </h2>
                       </div>
@@ -423,29 +438,54 @@ function PageDetails({ params: { slug } }: Props) {
                     {product.productAttribute &&
                       product.productAttribute.length > 0 && (
                         <div className="attribute py-2">
-
-                          {attributes?.length>0 ? <>
-                            {attributes?.map((attr, i)=>{
-                              return (<div key={i} className="flex items-center mb-2">
-                                <div className=" font-gotham text-sm mr-2">{attr?.name} : </div>
-                                <div className="flex">
-                                  {attr?.values?.length>0 ? <>
-                                  {attr?.values?.map((val: any, j: number)=>{
-                                    return (
-                                      <div 
-                                        key={j} 
-                                        className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${val?.checked===true ? 'bg-primary text-white' : 'bg-white text-black'}`} 
-                                        onClick={()=>handleAttributeClick(attr?.name, val?.name)}
-                                      >
-                                        {val?.name}
-                                      </div>
-                                    )
-                                  })}
-                                  </> : <></>}
-                                </div>
-                              </div>)
-                            })}
-                          </> : <></>}
+                          {attributes?.length > 0 ? (
+                            <>
+                              {attributes?.map((attr, i) => {
+                                return (
+                                  <div
+                                    key={i}
+                                    className="flex items-center mb-2"
+                                  >
+                                    <div className=" font-gotham text-sm mr-2">
+                                      {attr?.name} :{' '}
+                                    </div>
+                                    <div className="flex">
+                                      {attr?.values?.length > 0 ? (
+                                        <>
+                                          {attr?.values?.map(
+                                            (val: any, j: number) => {
+                                              return (
+                                                <div
+                                                  key={j}
+                                                  className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
+                                                    val?.checked === true
+                                                      ? 'bg-primary text-white'
+                                                      : 'bg-white text-black'
+                                                  }`}
+                                                  onClick={() =>
+                                                    handleAttributeClick(
+                                                      attr?.name,
+                                                      val?.name
+                                                    )
+                                                  }
+                                                >
+                                                  {val?.name}
+                                                </div>
+                                              );
+                                            }
+                                          )}
+                                        </>
+                                      ) : (
+                                        <></>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </>
+                          ) : (
+                            <></>
+                          )}
                         </div>
                       )}
                     <div className="action">
@@ -474,7 +514,9 @@ function PageDetails({ params: { slug } }: Props) {
                         <Button
                           className=" px-5 py-1 mr-2"
                           onClick={() => {
-                            if (attributes?.length!==selectAttributes?.length) {
+                            if (
+                              attributes?.length !== selectAttributes?.length
+                            ) {
                               toast.error('Please Select Variant');
                               return;
                             }
@@ -494,7 +536,9 @@ function PageDetails({ params: { slug } }: Props) {
                         <Button
                           className=" px-5 py-1"
                           onClick={() => {
-                            if (attributes?.length!==selectAttributes?.length) {
+                            if (
+                              attributes?.length !== selectAttributes?.length
+                            ) {
                               toast.error('Please Select Variant');
                               return;
                             }
@@ -805,6 +849,7 @@ function PageDetails({ params: { slug } }: Props) {
                       isNew={product.is_new}
                       product_id={Number(product.id)}
                       sort_description={product.sort_description}
+                      availability={product.availability}
                     />
                   ))}
                 </div>

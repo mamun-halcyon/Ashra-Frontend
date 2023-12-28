@@ -63,7 +63,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           {((Number(product.regular_price) - Number(product.discount_price)) /
             Number(product.regular_price)) *
             100 !==
-          0 ? (
+            0 && product.discount_price !== 0 ? (
             <span className=" sudo inline-block discount font-gotham text-[10px] md:text-xs font-bold  px-1 md:px-2 py-1  rounded text-primary">
               {(
                 ((Number(product.regular_price) -

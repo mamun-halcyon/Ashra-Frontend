@@ -139,6 +139,7 @@ export default async function Home({
                       discount_price={product.discount_price}
                       product_id={Number(product.id)}
                       sort_description={product.sort_description}
+                      availability={product.availability}
                     />
                   )
                 )}
@@ -160,6 +161,7 @@ export default async function Home({
                     discount_price={product.discount_price}
                     product_id={Number(product.id)}
                     sort_description={product.sort_description}
+                    availability={product.availability}
                   />
                 ))}
               </div>
@@ -181,6 +183,7 @@ export default async function Home({
                     isNew={product.is_new}
                     product_id={Number(product.id)}
                     sort_description={product.sort_description}
+                    availability={product.availability}
                   />
                 ))}
               </div>
