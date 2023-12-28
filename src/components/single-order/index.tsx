@@ -153,10 +153,10 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       <td className="px-6 py-4">{formatDate(order?.created_at)}</td>
       <td className="px-6 py-4">৳{finalPrice + order.delivery_fee}</td>
       <td className="px-6 py-4">
-        {order.order_status === '0' ? 'pending' : order?.order_status}
+        {order.order_status}
       </td>
       <td className="px-6 py-4">
-        {order?.delivery_method === 'unpaid' ? 'unpaid' : 'paid'}
+        {order?.delivery_method}
       </td>
       <td className="px-6 py-2">
         <div className="flex justify-center info-icons">
@@ -236,7 +236,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     <p className=" font-gotham text-sm font-semibold">
                       Total Order Amount:{' '}
                     </p>
-                    <p className=" font-gotham text-sm ml-2">{finalPrice}</p>
+                    <p className=" font-gotham text-sm ml-2">{finalPrice  + order.delivery_fee}</p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
@@ -321,11 +321,11 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     </h3>
                   </div>
                   <div className="ml-6">
-                    <p className=" font-gotham text-sm mb-3">৳{finalPrice}</p>
-                    <p className=" font-gotham text-sm mb-3">৳0</p>
-                    <p className=" font-gotham text-sm mb-3">৳0</p>
+                    <p className=" font-gotham text-sm mb-3">৳ {finalPrice}</p>
+                    <p className=" font-gotham text-sm mb-3">৳ {orderDetails.delivery_fee}</p>
+                    <p className=" font-gotham text-sm mb-3">৳ coupon based discount amount</p>
                     <p className=" font-gotham text-sm mb-3">
-                      ৳{finalPrice + order.delivery_fee}
+                      ৳ {finalPrice + order.delivery_fee}
                     </p>
                   </div>
                 </div>
