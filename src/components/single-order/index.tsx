@@ -318,7 +318,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div className="flex md:justify-end justify-start py-1">
                   <div>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Subtotal:
+                      Regular Price:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
                       Shipping:
@@ -327,11 +327,11 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                       Coupon discount:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Total:
+                      Fianl Price:
                     </h3>
                   </div>
                   <div className="ml-6">
-                    <p className=" font-gotham text-sm mb-3">৳ {finalPrice}</p>
+                    <p className=" font-gotham text-sm mb-3">৳ {amountBeforeCoupon}</p>
                     <p className=" font-gotham text-sm mb-3">৳ {orderDetails.delivery_fee}</p>
                     <p className=" font-gotham text-sm mb-3">৳ {amountBeforeCoupon- finalPrice}</p>
                     <p className=" font-gotham text-sm mb-3">
