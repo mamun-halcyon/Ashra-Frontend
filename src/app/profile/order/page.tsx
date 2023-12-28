@@ -5,10 +5,9 @@ import './page.scss';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '@/constant';
 import SingleOrder from '@/components/single-order';
 import { FaBars } from 'react-icons/fa6';
+import axiosInstance from '../../../../utils/axiosInstance';
 
 const OrderHistory = () => {
   const route = useRouter();
@@ -28,7 +27,7 @@ const OrderHistory = () => {
     if (login?.accessToken) {
       const getAllOrders = async () => {
         try {
-          const response = await axios.get(`${API_URL}/customers/orders`, {
+          const response = await axiosInstance.get(`/customers/orders`, {
             headers: {
               Authorization: `Bearer ${login?.accessToken}`,
             },

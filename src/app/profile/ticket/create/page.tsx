@@ -2,13 +2,12 @@
 import Button from '@/components/button';
 import FormGroup from '@/components/fromgroup';
 import ProfileSidebar from '@/components/profile-sidebar';
-import { API_URL } from '@/constant';
 import { useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
+import axiosInstance from '../../../../../utils/axiosInstance';
 
 const CreateTicket = () => {
   const route = useRouter();
@@ -43,7 +42,7 @@ const CreateTicket = () => {
         formData.append('text_type', 'query');
         formData.append('upload_preset', 'w8omhp4w');
 
-        const response = await axios.post(`${API_URL}/supports`, formData, {
+        const response = await axiosInstance.post(`/supports`, formData, {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
           },

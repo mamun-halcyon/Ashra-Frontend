@@ -7,10 +7,9 @@ import Link from 'next/link';
 import Button from '@/components/button';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
-import { API_URL } from '@/constant';
-import axios from 'axios';
 import { FaBars } from 'react-icons/fa6';
 import { formatDate } from '@/components/dateformate';
+import axiosInstance from '../../../../utils/axiosInstance';
 
 const Ticket = () => {
   const route = useRouter();
@@ -30,7 +29,7 @@ const Ticket = () => {
     if (login?.accessToken) {
       const getAllTickets = async () => {
         try {
-          const response = await axios.get(`${API_URL}/customers/supports`, {
+          const response = await axiosInstance.get(`/customers/supports`, {
             headers: {
               Authorization: `Bearer ${login?.accessToken}`,
             },

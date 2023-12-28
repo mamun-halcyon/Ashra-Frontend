@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { saveLoginInfo } from '@/redux/features/login/loginSlice';
 import { API_URL } from '@/constant';
 import { setWishList } from '@/redux/features/wish-list/wishListSlice';
+import axiosInstance from '../../../utils/axiosInstance';
 
 function Login() {
   const route = useRouter();
@@ -39,7 +40,7 @@ function Login() {
   const getWishListItems = async () => {
     if (login?.accessToken) {
       try {
-        const response = await axios.get(`${API_URL}/customers/wishlists`, {
+        const response = await axiosInstance.get(`/customers/wishlists`, {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
           },

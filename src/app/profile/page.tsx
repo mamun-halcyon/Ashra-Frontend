@@ -4,9 +4,8 @@ import './page.scss';
 import ProfileSidebar from '@/components/profile-sidebar';
 import { useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import { API_URL } from '@/constant';
 import { FaBars } from 'react-icons/fa';
+import axiosInstance from '../../../utils/axiosInstance';
 
 const Profile = () => {
   const route = useRouter();
@@ -16,7 +15,7 @@ const Profile = () => {
   const [dashboard, setDashboard] = useState<any>();
 
   const getDashboardInfo = async () => {
-    const response = await axios.get(`${API_URL}/customers/dashboards`, {
+    const response = await axiosInstance.get(`/customers/dashboards`, {
       headers: {
         Authorization: `Bearer ${login?.accessToken}`,
       },

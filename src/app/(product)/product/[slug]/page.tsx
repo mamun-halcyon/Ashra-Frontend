@@ -41,6 +41,7 @@ import { addToCompare } from '@/redux/features/compare/compareSlice';
 import { IBanner } from '@/types/banner';
 import { IService } from '@/types/service';
 import SharePopUp from '@/components/share-popup';
+import axiosInstance from '../../../../../utils/axiosInstance';
 const ProductCard = dynamic(() => import('@/components/card'));
 
 type Props = {
@@ -233,9 +234,13 @@ function PageDetails({ params: { slug } }: Props) {
   const addWishList = async (productID: Number) => {
     if (login?.accessToken && login?.user?.id) {
       try {
-        const response = await axios.post(`${API_URL}/wishlists`, {
+        const response = await axiosInstance.post(`/wishlists`, {
           product_id: productID,
           user_id: login?.user?.id,
+        },{
+          headers: {
+            Authorization: `Bearer ${login?.accessToken}`,
+          },
         });
         if (response.status == 201) {
           dispatch(
