@@ -48,6 +48,7 @@ function Category() {
   const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
   const [çategories, setCategories] = useState<string[]>([]);
   const [availabilities, setAvailabilities] = useState<number[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [categoryFilterItems, setCategoryFilterItems] = useState<
     ICategoryData[]
   >([]);
@@ -125,6 +126,7 @@ function Category() {
   }, [searchParams]);
 
   const fetchData = async () => {
+    setIsLoading(true);
     const search: string = searchParams.get('search')?.trim() || '';
     const mainCategory: string = searchParams.get('category')?.trim() || '';
     const availability: string =
@@ -167,8 +169,10 @@ function Category() {
         ${availability !== '' ? '&availability=' + availability : ''}`
       );
       setProducts(response.data?.data?.rows);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setIsLoading(false);
     }
   };
 
@@ -441,46 +445,50 @@ function Category() {
                 </div>
               </div>
 
-              <div className="filter-products px-2 md:px-0">
-                {isRow ? (
-                  <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
-                    {products?.length > 0 ? (
-                      products?.map((product, i) => (
-                        <ProductCard
-                          key={i}
-                          url={product.slug}
-                          image={product.image}
-                          title={product.title}
-                          regular_price={product.regular_price}
-                          discount_price={product.discount_price}
-                          isNew={product.is_new}
-                          product_id={Number(product.id)}
-                          sort_description={product.sort_description}
-                          availability={product.availability}
-                        />
-                      ))
-                    ) : (
-                      <>
-                        <div className="py-5 text-center col-span-4">
-                          <p className=" font-gotham text-black text-sm text-center font-normal">
-                            Product not found
-                          </p>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 mb-5">
-                    {products?.length > 0 ? (
-                      products?.map((product, i) => (
-                        <ListCard key={i} product={product} />
-                      ))
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                )}
-              </div>
+              {!isLoading ? (
+                <div className="filter-products px-2 md:px-0">
+                  {isRow ? (
+                    <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
+                      {products?.length > 0 ? (
+                        products?.map((product, i) => (
+                          <ProductCard
+                            key={i}
+                            url={product.slug}
+                            image={product.image}
+                            title={product.title}
+                            regular_price={product.regular_price}
+                            discount_price={product.discount_price}
+                            isNew={product.is_new}
+                            product_id={Number(product.id)}
+                            sort_description={product.sort_description}
+                            availability={product.availability}
+                          />
+                        ))
+                      ) : (
+                        <>
+                          <div className="py-5 text-center col-span-4">
+                            <p className=" font-gotham text-black text-sm text-center font-normal">
+                              Product not found
+                            </p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 mb-5">
+                      {products?.length > 0 ? (
+                        products?.map((product, i) => (
+                          <ListCard key={i} product={product} />
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>Loading...</div>
+              )}
 
               <Pagination
                 page={page}

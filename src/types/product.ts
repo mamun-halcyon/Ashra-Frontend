@@ -11,7 +11,7 @@ export type IProduct = {
   discount_price: number;
   delivery_fee?: number;
   is_visible: boolean;
-  availability?: boolean;
+  availability?: number;
   video_url?: string;
   is_sale?: boolean;
   is_feature?: boolean;
