@@ -40,6 +40,10 @@ function Checkout() {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [thana, setThana] = useState('');
+  
+  const [totalCostBeforeCoupon, setTotalCostBeforeCoupon] = useState<number>(0);
+  const [totalCostAfterCoupon, setTotalCostAfterCoupon] = useState<number>(0);
+
   const [cashOnDeliveryMessage, setCashOnDeliveryMessage] = useState<
     string | null
   >('');
@@ -134,6 +138,7 @@ function Checkout() {
           setApprovePromoData(null);
           setApprovePromStatus(response.data.message);
           setCouponId(null)
+          setDiscountCart(cart);
         }
 
     
@@ -143,6 +148,7 @@ function Checkout() {
           setApprovePromoData(null);
           setCouponId(null)
           setApprovePromStatus(error.response?.data?.message || 'An error occurred');
+          setDiscountCart(cart);
         }
       }
     }
@@ -283,6 +289,23 @@ function Checkout() {
       }
     }
   }, [selectedPaymentDeliveryStatus, location, locations]);
+
+
+  useEffect(() => {
+    // Calculate total cost before coupon
+    let tempTotalCostBeforeCoupon = 0;
+    cart?.map((item: any) => {
+      tempTotalCostBeforeCoupon += item.regular_price * item.quantity;
+    });
+    setTotalCostBeforeCoupon(tempTotalCostBeforeCoupon);
+
+    // Calculate total cost after coupon
+    let tempTotalCostAfterCoupon = 0;
+    discountCart?.map((item: any) => {
+      tempTotalCostAfterCoupon += item.price * item.quantity;
+    });
+    setTotalCostAfterCoupon(tempTotalCostAfterCoupon);
+  }, [cart, discountCart]);
 
   const handleChangeLocation = (e: any) => {
     setLocation(e.target.value);
@@ -591,10 +614,10 @@ function Checkout() {
                     <div className="grid grid-cols-5 sub-border">
                       <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
                       <div className="p-3 col-span-2 md:col-span-1 font-gotham  text-xs text-primary font-medium">
-                        Sub-Total :
+                        Regular Price:
                       </div>
                       <div className="p-3 font-gotham  text-xs text-primary font-medium">
-                        ৳{subTotal}
+                        ৳{totalCostBeforeCoupon}
                       </div>
                     </div>
                     {selectedPaymentDeliveryStatus && (
@@ -615,7 +638,7 @@ function Checkout() {
                         Discount :
                       </div>
                       <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
-                        {subTotal - finalPrice}
+                        {totalCostBeforeCoupon - totalCostAfterCoupon}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
