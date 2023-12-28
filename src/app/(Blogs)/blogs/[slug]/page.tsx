@@ -25,7 +25,9 @@ type IResponse = {
 };
 
 async function getBlog(slug: string) {
-  const res = await fetch(`${API_URL}/frontend/blogs/${slug} `);
+  const res = await fetch(`${API_URL}/frontend/blogs/${slug} `, {
+    cache: 'no-store',
+  });
   const data = await res.json();
   return data;
 }
