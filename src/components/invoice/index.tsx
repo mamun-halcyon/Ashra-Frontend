@@ -60,11 +60,11 @@ const Invoice = ({
       </div> */}
 
       <div className="invoice-table">
-        <div className="grid grid-cols-8 bg-secondary">
+        <div className="grid grid-cols-10 bg-secondary">
           <div className=" col-span-1 font-gotham text-sm font-normal">
             SL.{" "}
           </div>
-          <div className=" col-span-2 font-gotham text-sm font-normal">
+          <div className=" col-span-4 font-gotham text-sm font-normal px-1">
             Description
           </div>
           <div className=" col-span-1 font-gotham text-sm font-normal">
@@ -82,13 +82,13 @@ const Invoice = ({
           <>
             {order?.orderItems?.map((product: any, index: any) => (
               <div
-                className="grid grid-cols-8 font-gotham text-sm font-normal"
-                key={index + 1}
+                className="grid grid-cols-10 font-gotham text-sm font-normal"
+                key={index}
               >
                 <div className=" col-span-1 font-gotham text-sm font-normal">
-                  {index}
+                  {index + 1}
                 </div>
-                <div className=" col-span-2">{product.product_name}</div>
+                <div className=" col-span-4 px-1">{product.product_name}</div>
                 <div className=" col-span-1 font-gotham text-sm font-normal">
                   -
                 </div>
@@ -131,7 +131,7 @@ const Invoice = ({
                 <p className=" font-gotham text-sm font-semibold">
                   ৳ {shipingCost}
                 </p>
-                <p className=" font-gotham text-sm font-semibold">Coupon</p>
+                <p className=" font-gotham text-sm font-semibold">Discount</p>
                 <p className=" font-gotham text-sm font-semibold">
                   ৳ {amountBeforeCoupon - finalPrice}
                 </p>

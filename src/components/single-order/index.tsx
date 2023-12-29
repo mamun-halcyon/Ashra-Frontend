@@ -198,21 +198,25 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div className="w-full md:w-auto">
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Invoice No:
+                      Invoice No:{"  "}
                     </p>
-                    <p className=" font-gotham text-sm">
+                    <p className=" font-gotham text-sm ml-1">
                       {order.order_prefix}-{order.id}
                     </p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Customer Name:
+                      Customer Name:{" "}
                     </p>
-                    <p className=" font-gotham text-sm">{orderDetails?.name}</p>
+                    <p className=" font-gotham text-sm ml-1">
+                      {orderDetails?.name}
+                    </p>
                   </div>
                   <div className="flex py-1">
-                    <p className=" font-gotham text-sm font-semibold">Email:</p>
-                    <p className=" font-gotham text-sm">
+                    <p className=" font-gotham text-sm font-semibold">
+                      Email:{" "}
+                    </p>
+                    <p className=" font-gotham text-sm ml-1">
                       {orderDetails?.email}
                     </p>
                   </div>
@@ -220,7 +224,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     <p className=" font-gotham text-sm font-semibold ">
                       Shipping Address:{" "}
                     </p>
-                    <p className="max-w-[250px] font-gotham text-sm">
+                    <p className="max-w-[250px] font-gotham text-sm ml-1">
                       {orderDetails?.address}
                     </p>
                   </div>
@@ -236,7 +240,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Status:{" "}
+                      Order Status :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {orderDetails?.order_status}
@@ -244,7 +248,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Total Order Amount:{" "}
+                      Total Order Amount :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {finalPrice + order.delivery_fee}
@@ -252,7 +256,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Shipping method:{" "}
+                      Shipping method :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {orderDetails?.delivery_method}
@@ -260,7 +264,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Payment method:{" "}
+                      Payment method :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {orderDetails?.payment_method}
