@@ -1,17 +1,15 @@
-'use client';
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
-import Button from '../button';
-import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
-import { RxCross2 } from 'react-icons/rx';
-import './index.scss';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import { useAppSelector } from '@/redux/hooks';
-import { formatDate } from '../dateformate';
-import ReactToPrint from 'react-to-print';
-import Invoice from '../invoice';
-import TextAreaGroup from '../textarea';
-import SingleOrderDetails from '../orderDetails';
+"use client";
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import { FC, useEffect, useRef, useState } from "react";
+import { LiaDownloadSolid, LiaEye } from "react-icons/lia";
+import { RxCross2 } from "react-icons/rx";
+import ReactToPrint from "react-to-print";
+import { formatDate } from "../dateformate";
+import Invoice from "../invoice";
+import SingleOrderDetails from "../orderDetails";
+import "./index.scss";
 
 export interface IProps {
   order: any;
@@ -50,12 +48,12 @@ const SingleOrder: FC<IProps> = ({ order }) => {
 
   useEffect(() => {
     if (orderDetails?.coupon) {
-      if (orderDetails?.coupon?.discount_type === 'flat') {
+      if (orderDetails?.coupon?.discount_type === "flat") {
         let tempDisCart = orderDetails?.orderItems;
         if (orderDetails?.coupon?.product_id) {
           let tempIdsArr: any[] = [];
-          if (orderDetails?.coupon?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = orderDetails?.coupon?.product_id?.split(',');
+          if (orderDetails?.coupon?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = orderDetails?.coupon?.product_id?.split(",");
           } else {
             tempIdsArr = [orderDetails?.coupon?.product_id];
           }
@@ -88,8 +86,8 @@ const SingleOrder: FC<IProps> = ({ order }) => {
         let tempDisCart = orderDetails?.orderItems;
         if (orderDetails?.coupon?.product_id) {
           let tempIdsArr: any[] = [];
-          if (orderDetails?.coupon?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = orderDetails?.coupon?.product_id?.split(',');
+          if (orderDetails?.coupon?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = orderDetails?.coupon?.product_id?.split(",");
           } else {
             tempIdsArr = [orderDetails?.coupon?.product_id];
           }
@@ -174,7 +172,14 @@ const SingleOrder: FC<IProps> = ({ order }) => {
           />
 
           <div className="print-area" ref={componentRef}>
-            {<Invoice order={order} amountBeforeCoupon={amountBeforeCoupon} shipingCost={order.delivery_fee} finalPrice={finalPrice}/>}
+            {
+              <Invoice
+                order={order}
+                amountBeforeCoupon={amountBeforeCoupon}
+                shipingCost={order.delivery_fee}
+                finalPrice={finalPrice}
+              />
+            }
           </div>
 
           {/* Order Popup View */}
@@ -212,10 +217,10 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     </p>
                   </div>
                   <div className="flex py-1">
-                    <p className=" font-gotham text-sm font-semibold">
-                      Shipping Address:{' '}
+                    <p className=" font-gotham text-sm font-semibold ">
+                      Shipping Address:{" "}
                     </p>
-                    <p className=" font-gotham text-sm">
+                    <p className="max-w-[250px] font-gotham text-sm">
                       {orderDetails?.address}
                     </p>
                   </div>
@@ -223,7 +228,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Date :{' '}
+                      Order Date :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {formatDate(orderDetails?.created_at)}
@@ -231,7 +236,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Status:{' '}
+                      Order Status:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {orderDetails?.order_status}
@@ -239,7 +244,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Total Order Amount:{' '}
+                      Total Order Amount:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {finalPrice + order.delivery_fee}
@@ -247,7 +252,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Shipping method:{' '}
+                      Shipping method:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {orderDetails?.delivery_method}
@@ -255,7 +260,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Payment method:{' '}
+                      Payment method:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {orderDetails?.payment_method}
@@ -318,7 +323,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                       Regular Price:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Shipping:
+                      Delivery:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
                       Discount:

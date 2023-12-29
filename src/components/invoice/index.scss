@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .invoice {
   padding: 40px;
@@ -34,7 +34,6 @@
   .invoice-table {
     width: 100%;
     margin-top: 20px;
-    border-bottom: 1px solid $decenary-color;
     font-family: $secondary-font;
 
     thead {

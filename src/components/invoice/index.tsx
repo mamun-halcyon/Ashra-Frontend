@@ -1,7 +1,12 @@
-import Image from 'next/image';
-import './index.scss';
+import Image from "next/image";
+import "./index.scss";
 
-const Invoice = ({ order, amountBeforeCoupon, shipingCost, finalPrice }: any) => {
+const Invoice = ({
+  order,
+  amountBeforeCoupon,
+  shipingCost,
+  finalPrice,
+}: any) => {
   return (
     <div className="invoice bg-white hidden">
       <div className="invoice-header">
@@ -14,20 +19,34 @@ const Invoice = ({ order, amountBeforeCoupon, shipingCost, finalPrice }: any) =>
             height={400}
           />
         </div>
-        <h4 className="customer-details bg-white text-black">
+        <h4 className="customer-details bg-white text-black mt-5">
           Customer Details
         </h4>
         <div className="details bg-secondary mr-2 p-1">
           <div className="left">
-            <p>Name: {order.name}</p>
-            <p>Email: {order.email}</p>
-            <p>Phone: {order.mobile} </p>
-            <p>Address: {order.address} </p>
+            <p className="font-gotham text-sm font-normal">
+              Name: {order.name}
+            </p>
+            <p className="font-gotham text-sm font-normal">
+              Email: {order.email}
+            </p>
+            <p className="font-gotham text-sm font-normal">
+              Phone: {order.mobile}{" "}
+            </p>
+            <p className="font-gotham text-sm font-normal max-w-[250px]">
+              Address: {order.address}{" "}
+            </p>
           </div>
           <div className="order-details  bg-secondary p-1 right">
-            <p>Order date: {order.created_at}</p>
-            <p>Invoice No: GHA-{order.id}</p>
-            <p>Order No: {order.id}</p>
+            <p className=" font-gotham text-sm font-normal">
+              Order No: {order.id}
+            </p>
+            <p className="">Order Status: {order.order_status}</p>
+            <p className="">Shipping method: {order?.delivery_method}</p>
+            <p className=" font-gotham text-sm font-normal">
+              Invoice No: {order.order_prefix}-{order.id}
+            </p>
+            <p className="">Total: ৳{finalPrice + order.delivery_fee}</p>
           </div>
         </div>
       </div>
@@ -41,51 +60,85 @@ const Invoice = ({ order, amountBeforeCoupon, shipingCost, finalPrice }: any) =>
       </div> */}
 
       <div className="invoice-table">
-        <div className="grid grid-cols-8">
-          <div className=" col-span-1">SL. </div>
-          <div className=" col-span-2">Description</div>
-          <div className=" col-span-1">Attribute</div>
-          <div className=" col-span-1">Qty</div>
-          <div className=" col-span-2">Unit price (BDT)</div>
-          <div className=" col-span-1">Total</div>
+        <div className="grid grid-cols-8 bg-secondary">
+          <div className=" col-span-1 font-gotham text-sm font-normal">
+            SL.{" "}
+          </div>
+          <div className=" col-span-2 font-gotham text-sm font-normal">
+            Description
+          </div>
+          <div className=" col-span-1 font-gotham text-sm font-normal">
+            Attribute
+          </div>
+          <div className=" col-span-1 font-gotham text-sm font-normal">Qty</div>
+          <div className=" col-span-2 font-gotham text-sm font-normal">
+            Unit price (BDT)
+          </div>
+          <div className=" col-span-1 font-gotham text-sm font-normal">
+            Total
+          </div>
         </div>
         {
           <>
             {order?.orderItems?.map((product: any, index: any) => (
-              <div className="grid grid-cols-8" key={index}>
-                <div className=" col-span-1">{index}</div>
+              <div
+                className="grid grid-cols-8 font-gotham text-sm font-normal"
+                key={index + 1}
+              >
+                <div className=" col-span-1 font-gotham text-sm font-normal">
+                  {index}
+                </div>
                 <div className=" col-span-2">{product.product_name}</div>
-                <div className=" col-span-1">-</div>
-                <div className=" col-span-1">{product.quantity}</div>
-                <div className=" col-span-2">{product.discount_price}</div>
-                <div className="col-span-1">
+                <div className=" col-span-1 font-gotham text-sm font-normal">
+                  -
+                </div>
+                <div className=" col-span-1 font-gotham text-sm font-normal">
+                  {product.quantity}
+                </div>
+                <div className=" col-span-2 font-gotham text-sm font-normal">
+                  {product.discount_price}
+                </div>
+                <div className="col-span-1 font-gotham text-sm font-normal">
                   ৳ {product.discount_price * product.quantity}
                 </div>
               </div>
             ))}
           </>
         }
-        <div className="grid grid-cols-8">
+        <div className="grid grid-cols-8 mt-5">
           <div className=" col-span-5">
-            <h3>Notes:</h3>
-            <p>1.Please check the product carefully before payment.</p>
-            <p>
+            <h3 className=" font-gotham text-sm font-medium">Notes:</h3>
+            <p className="font-gotham text-sm font-normal">
+              1.Please check the product carefully before payment.
+            </p>
+            <p className="font-gotham text-sm font-normal">
               2.After payment there will be no option for refund & exchange.
             </p>
-            <p>3.No claim will be accepted after receiving the product.</p>
+            <p className="font-gotham text-sm font-normal">
+              3.No claim will be accepted after receiving the product.
+            </p>
           </div>
           <div className=" col-span-3">
-            <div className="summery">
-              <div className="">
-                <p className=" sort-summery">Sub Total</p>
-                <p className=" sort-summery">৳ {amountBeforeCoupon} </p>
-                <p className=" sort-summery"></p>
-                <p className=" sort-summery">Shipping cost</p>
-                <p className=" sort-summery">৳ {shipingCost}</p>
-                <p className=" sort-summery">Coupon Discount</p>
-                <p className=" sort-summery">৳ {amountBeforeCoupon- finalPrice}</p>
-                <p className=" sort-summery">Grand Total</p>
-                <p className=" sort-summery">৳ {finalPrice+ shipingCost } </p>
+            <div className=" font-gotham text-sm font-semibold">
+              <div className="grid grid-cols-2">
+                <p className=" font-gotham text-sm font-semibold">
+                  Regular Price
+                </p>
+                <p className=" font-gotham text-sm font-semibold">
+                  ৳ {amountBeforeCoupon}{" "}
+                </p>
+                <p className=" font-gotham text-sm font-semibold">Delivery</p>
+                <p className=" font-gotham text-sm font-semibold">
+                  ৳ {shipingCost}
+                </p>
+                <p className=" font-gotham text-sm font-semibold">Coupon</p>
+                <p className=" font-gotham text-sm font-semibold">
+                  ৳ {amountBeforeCoupon - finalPrice}
+                </p>
+                <p className=" font-gotham text-sm font-semibold">Total</p>
+                <p className=" font-gotham text-sm font-semibold">
+                  ৳ {finalPrice + shipingCost}{" "}
+                </p>
               </div>
             </div>
           </div>

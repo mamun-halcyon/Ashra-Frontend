@@ -1,10 +1,10 @@
-'use client';
-import Link from 'next/link';
-import './index.scss';
-import { RiArrowDropDownLine, RiArrowDropRightLine } from 'react-icons/ri';
-import { ICategoryData } from '@/types/category';
-import { useRouter } from 'next/navigation';
-import { FaBars } from 'react-icons/fa6';
+"use client";
+import { ICategoryData } from "@/types/category";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FaBars } from "react-icons/fa6";
+import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
+import "./index.scss";
 
 type IProps = {
   menus: ICategoryData[];
@@ -20,9 +20,9 @@ const MegaMenu = ({ menus }: IProps) => {
               {menus
                 ?.filter(
                   (parent) =>
-                    parent.parent_category === '0' ||
+                    parent.parent_category === "0" ||
                     parent.parent_category === null ||
-                    parent.parent_category === ''
+                    parent.parent_category === ""
                 )
                 .map((menu, index) => (
                   <div className="mr-2 text-left relative heading" key={index}>
@@ -51,7 +51,7 @@ const MegaMenu = ({ menus }: IProps) => {
                           <div key={index}>
                             <div className=" relative flex justify-between items-center sub-item">
                               <Link
-                                className=" font-gotham font-medium my-2 text-sm text-black sub-element"
+                                className=" font-gotham font-medium my-2 text-sm text-black sub-element w-[90%]"
                                 href={`/category/filter?category=${subCategory.slug}`}
                               >
                                 {subCategory.title}
@@ -70,7 +70,7 @@ const MegaMenu = ({ menus }: IProps) => {
                                     .map((childrenCategory, index) => (
                                       <li key={index}>
                                         <Link
-                                          className=" font-gotham font-medium text-sm  text-black"
+                                          className=" font-gotham font-medium text-sm w-[90%] text-black"
                                           href={`/category/filter?category=${childrenCategory.slug}`}
                                         >
                                           {childrenCategory.title}
@@ -89,13 +89,13 @@ const MegaMenu = ({ menus }: IProps) => {
             <div>
               <Link
                 className=" font-gotham font-medium text-sm text-black hover:text-primary "
-                href={'/videos'}
+                href={"/videos"}
               >
                 Videos
               </Link>
               <Link
                 className=" font-gotham font-medium text-sm text-black hover:text-primary ml-4 md:ml-14"
-                href={'/blogs'}
+                href={"/blogs"}
               >
                 Blogs
               </Link>
@@ -113,9 +113,9 @@ const MegaMenu = ({ menus }: IProps) => {
                 {menus
                   ?.filter(
                     (parent) =>
-                      parent.parent_category === '0' ||
+                      parent.parent_category === "0" ||
                       parent.parent_category === null ||
-                      parent.parent_category === ''
+                      parent.parent_category === ""
                   )
                   .map((menu, index) => (
                     <div key={index} className="menus">
@@ -183,13 +183,13 @@ const MegaMenu = ({ menus }: IProps) => {
             <div>
               <Link
                 className=" font-gotham font-medium text-sm text-black hover:text-primary "
-                href={'/videos'}
+                href={"/videos"}
               >
                 Videos
               </Link>
               <Link
                 className=" font-gotham font-medium text-sm text-black hover:text-primary ml-4 md:ml-14"
-                href={'/blogs'}
+                href={"/blogs"}
               >
                 Blogs
               </Link>
