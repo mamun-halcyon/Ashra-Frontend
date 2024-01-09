@@ -1,21 +1,21 @@
-'use client';
-import Image from 'next/image';
-import { FC, useState } from 'react';
-import './index.scss';
-import StarRating from '../rating';
-import Button from '../button';
-import Link from 'next/link';
-import { BsArrowRepeat, BsHeart } from 'react-icons/bs';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { API_ROOT } from '@/constant';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { addToCompare } from '@/redux/features/compare/compareSlice';
-import { useRouter } from 'next/navigation';
-import { ICartItem } from '@/types/cart';
-import { ICompareItem } from '@/types/compare';
-import { toast } from 'react-toastify';
-import EmiPopup from '../emi-popup';
+"use client";
+import { API_ROOT } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { addToCompare } from "@/redux/features/compare/compareSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { ICartItem } from "@/types/cart";
+import { ICompareItem } from "@/types/compare";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FC, useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import { BsArrowRepeat, BsHeart } from "react-icons/bs";
+import { toast } from "react-toastify";
+import Button from "../button";
+import EmiPopup from "../emi-popup";
+import StarRating from "../rating";
+import "./index.scss";
 
 interface IProps {
   product: any;
@@ -31,14 +31,14 @@ const ListCard: FC<IProps> = ({ product }) => {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error('Maximum items exits');
+      toast.error("Maximum items exits");
     }
   };
 
@@ -112,7 +112,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             onClick={() =>
               addCompare({
                 product_id: product.id,
-                description: product.sort_description ?? '',
+                description: product.sort_description ?? "",
                 image: product.image,
                 title: product.title,
                 regular_price: Number(product.regular_price),
@@ -170,8 +170,8 @@ const ListCard: FC<IProps> = ({ product }) => {
           <h3 className=" font-gotham font-medium text-base text-black">
             ৳ {product.discount_price}
           </h3>
-          <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] bg-primary save-money">
-            Save ৳{' '}
+          <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] save-text save-money">
+            Save ৳{" "}
             {Number(product.regular_price) - Number(product.discount_price)}
           </span>
         </div>

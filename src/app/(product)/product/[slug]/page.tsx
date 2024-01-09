@@ -1,48 +1,48 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-const ZoomImage = dynamic(() => import('@/components/zoom-image'));
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import Slider from 'react-slick';
-import Image from 'next/image';
-import StarRatings from 'react-star-ratings';
-import './page.scss';
-import StarRating from '@/components/rating';
-import Button from '@/components/button';
+"use client";
+import Button from "@/components/button";
+import EmiPopup from "@/components/emi-popup";
+import FormGroup from "@/components/fromgroup";
+import OutlineButton from "@/components/outline-button";
+import FormatPrice from "@/components/price-formate";
+import StarRating from "@/components/rating";
+import ReviewCard from "@/components/review-card";
+import SharePopUp from "@/components/share-popup";
+import TextAreaGroup from "@/components/textarea";
+import Title from "@/components/title";
+import { API_ROOT, API_URL } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { addToCompare } from "@/redux/features/compare/compareSlice";
+import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { IBanner } from "@/types/banner";
+import { ICartItem } from "@/types/cart";
+import { ICompareItem } from "@/types/compare";
+import { ISingleProduct } from "@/types/product";
+import { IService } from "@/types/service";
+import axios from "axios";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   AiOutlineHeart,
   AiOutlineMinus,
   AiOutlinePlus,
   AiOutlineShareAlt,
-} from 'react-icons/ai';
-import OutlineButton from '@/components/outline-button';
-import { BsArrowRepeat, BsAwardFill } from 'react-icons/bs';
-import Title from '@/components/title';
-import { productsData } from '@/static/products';
-import ReviewCard from '@/components/review-card';
-import FormGroup from '@/components/fromgroup';
-import TextAreaGroup from '@/components/textarea';
-import { FaAward } from 'react-icons/fa6';
-import EmiPopup from '@/components/emi-popup';
-import { IProduct, ISingleProduct } from '@/types/product';
-import { API_ROOT, API_URL } from '@/constant';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useRouter } from 'next/navigation';
-import { ICartItem } from '@/types/cart';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
-import { ICompareItem } from '@/types/compare';
-import { addToCompare } from '@/redux/features/compare/compareSlice';
-import { IBanner } from '@/types/banner';
-import { IService } from '@/types/service';
-import SharePopUp from '@/components/share-popup';
-import axiosInstance from '../../../../../utils/axiosInstance';
-const ProductCard = dynamic(() => import('@/components/card'));
+} from "react-icons/ai";
+import { BsArrowRepeat } from "react-icons/bs";
+import { FaAward } from "react-icons/fa6";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import Slider from "react-slick";
+import StarRatings from "react-star-ratings";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../../../utils/axiosInstance";
+import "./page.scss";
+const ZoomImage = dynamic(() => import("@/components/zoom-image"));
+const ProductCard = dynamic(() => import("@/components/card"));
 
 type Props = {
   params: {
@@ -68,14 +68,14 @@ function PageDetails({ params: { slug } }: Props) {
   );
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState<string>('');
-  const [firstName, setFirstName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [review, setReview] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
   const [isEmi, setIsEmi] = useState(false);
-  const [number, setNumber] = useState<string>('');
-  const [question, setQuestion] = useState<string>('');
-  const [variant, setVariant] = useState<string>('');
+  const [number, setNumber] = useState<string>("");
+  const [question, setQuestion] = useState<string>("");
+  const [variant, setVariant] = useState<string>("");
   const [isShare, setIsShare] = useState(false);
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
@@ -113,7 +113,7 @@ function PageDetails({ params: { slug } }: Props) {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
 
   const fetchProduct = async () => {
@@ -123,7 +123,7 @@ function PageDetails({ params: { slug } }: Props) {
       let tempArr: any[] = [];
       data?.data?.productAttribute?.length > 0 &&
         data?.data?.productAttribute?.map((attr: any) => {
-          let tempValuesArr: string[] = attr?.attribute_value?.split(',');
+          let tempValuesArr: string[] = attr?.attribute_value?.split(",");
           let tempValuesArrObjs: any[] = tempValuesArr.map((val) => {
             return { name: val, checked: false };
           });
@@ -134,7 +134,7 @@ function PageDetails({ params: { slug } }: Props) {
         });
       setAttributes([...tempArr]);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
 
@@ -143,7 +143,7 @@ function PageDetails({ params: { slug } }: Props) {
       const data = await axios.get(`${API_URL}/frontend/keypoints/product`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
 
@@ -154,7 +154,7 @@ function PageDetails({ params: { slug } }: Props) {
       );
       setAdsBanner(data.data?.data[0]);
     } catch (error) {
-      console.log('category ads banner' + error);
+      console.log("category ads banner" + error);
     }
   }
 
@@ -214,8 +214,8 @@ function PageDetails({ params: { slug } }: Props) {
   const handleSubmitQuestion = async (e: any) => {
     e.preventDefault();
     if (
-      number.trim() !== '' &&
-      question.trim() !== '' &&
+      number.trim() !== "" &&
+      question.trim() !== "" &&
       product?.product?.id &&
       product?.product?.title
     ) {
@@ -228,8 +228,8 @@ function PageDetails({ params: { slug } }: Props) {
         });
         if (response.status === 201) {
           toast.success(response?.data?.message);
-          setNumber('');
-          setQuestion('');
+          setNumber("");
+          setQuestion("");
         }
       } catch (error) {
         console.log(error);
@@ -260,13 +260,13 @@ function PageDetails({ params: { slug } }: Props) {
             })
           );
         } else {
-          console.log('Status : ', response.status);
+          console.log("Status : ", response.status);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   };
 
@@ -274,16 +274,16 @@ function PageDetails({ params: { slug } }: Props) {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error('Maximum items exits');
+      toast.error("Maximum items exits");
     }
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (
-      review !== '' &&
-      firstName !== '' &&
-      email !== '' &&
+      review !== "" &&
+      firstName !== "" &&
+      email !== "" &&
       product?.product?.id
     ) {
       try {
@@ -294,14 +294,14 @@ function PageDetails({ params: { slug } }: Props) {
           name: firstName,
           comment: review,
           rating: rating,
-          is_visible: '0',
+          is_visible: "0",
         });
         if (response?.status === 201) {
-          toast.success('Review post success!');
+          toast.success("Review post success!");
           setRating(0);
-          setReview('');
-          setFirstName('');
-          setEmail('');
+          setReview("");
+          setFirstName("");
+          setEmail("");
           fetchProduct();
         }
       } catch (error) {
@@ -338,11 +338,11 @@ function PageDetails({ params: { slug } }: Props) {
             <div className="container px-2 md:px-1">
               <div className="product-specification">
                 <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                  <Link href={'/'}>Home</Link>
+                  <Link href={"/"}>Home</Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={'/category/bathware'}> Bathware </Link>
+                  <Link href={"/category/bathware"}> Bathware </Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={'/subcagory/Commode'}> Commode </Link>
+                  <Link href={"/subcagory/Commode"}> Commode </Link>
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
@@ -385,7 +385,7 @@ function PageDetails({ params: { slug } }: Props) {
                       <div className="flex items-center">
                         <StarRating rating={product?.averageReview} />
                         <span className="ml-1 font-gotham text-xs">
-                          {' '}
+                          {" "}
                           Review
                         </span>
                       </div>
@@ -399,10 +399,10 @@ function PageDetails({ params: { slug } }: Props) {
                         <h2
                           className={`font-gotham font-normal text-xl  ${
                             product?.product?.discount_price > 0 &&
-                            ' line-through'
+                            " line-through"
                           } r-price`}
                         >
-                          ৳{product?.product?.regular_price}
+                          ৳{FormatPrice(product?.product?.regular_price)}
                         </h2>
                       </div>
                       {product?.product?.discount_price > 0 && (
@@ -412,7 +412,7 @@ function PageDetails({ params: { slug } }: Props) {
                           </h3>
                           <div className="flex">
                             <h2 className="font-gotham  text-2xl text-primary font-medium d-price">
-                              ৳{product?.product?.discount_price}
+                              ৳{FormatPrice(product?.product?.discount_price)}
                             </h2>
                             <div>
                               <span className="discount">
@@ -447,7 +447,7 @@ function PageDetails({ params: { slug } }: Props) {
                                     className="flex items-center mb-2"
                                   >
                                     <div className=" font-gotham text-sm mr-2">
-                                      {attr?.name} :{' '}
+                                      {attr?.name} :{" "}
                                     </div>
                                     <div className="flex">
                                       {attr?.values?.length > 0 ? (
@@ -459,8 +459,8 @@ function PageDetails({ params: { slug } }: Props) {
                                                   key={j}
                                                   className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
                                                     val?.checked === true
-                                                      ? 'bg-primary text-white'
-                                                      : 'bg-white text-black'
+                                                      ? "bg-primary text-white"
+                                                      : "bg-white text-black"
                                                   }`}
                                                   onClick={() =>
                                                     handleAttributeClick(
@@ -518,7 +518,7 @@ function PageDetails({ params: { slug } }: Props) {
                               if (
                                 attributes?.length !== selectAttributes?.length
                               ) {
-                                toast.error('Please Select Variant');
+                                toast.error("Please Select Variant");
                                 return;
                               }
                               handleBuyNow({
@@ -540,7 +540,7 @@ function PageDetails({ params: { slug } }: Props) {
                               if (
                                 attributes?.length !== selectAttributes?.length
                               ) {
-                                toast.error('Please Select Variant');
+                                toast.error("Please Select Variant");
                                 return;
                               }
                               dispatch(
@@ -575,7 +575,7 @@ function PageDetails({ params: { slug } }: Props) {
                             );
                           }}
                         >
-                          {' '}
+                          {" "}
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
                               <AiOutlineHeart className="mr-1 " />
@@ -591,7 +591,7 @@ function PageDetails({ params: { slug } }: Props) {
                               addCompare({
                                 product_id: product?.product?.id,
                                 description:
-                                  product?.product?.description ?? '',
+                                  product?.product?.description ?? "",
                                 image: product?.product?.image,
                                 title: product?.product?.title,
                                 regular_price: Number(
@@ -639,10 +639,10 @@ function PageDetails({ params: { slug } }: Props) {
                           </div>
                           <div className="details ml-2">
                             <h3 className=" font-gotham font-medium text-bold text-base text-primary">
-                              Cash on Delivery
+                              {service.title}
                             </h3>
                             <h4 className=" font-gotham font-medium text-bold text-xs text-black">
-                              Installation Service
+                              {service.subtitle}
                             </h4>
                           </div>
                         </div>

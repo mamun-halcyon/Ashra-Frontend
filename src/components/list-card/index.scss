@@ -1,7 +1,11 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .list-card {
   border-bottom: 1px solid #e2e2e2;
+
+  .save-text {
+    background: $octonary-color;
+  }
 
   &:last-child {
     border-bottom: 0;
