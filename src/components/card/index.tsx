@@ -95,8 +95,8 @@ const ProductCard: React.FC<IProps> = ({
         <div className="flex justify-center items-center pt-10 pb-5  image">
           <Image
             src={`${API_ROOT}/images/product/${image}`}
-            width={100}
-            height={100}
+            width={300}
+            height={300}
             quality={100}
             alt="product"
           />
