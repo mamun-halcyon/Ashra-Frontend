@@ -1,14 +1,11 @@
-'use client';
-import React, { FC } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { exploreData } from '@/static/explore';
-import { serviceCardData } from '@/static/serviceCard';
-import { productsData } from '@/static/products';
-import ProductCard from '../card';
-import { API_ROOT } from '@/constant';
-import { IProduct } from '@/types/product';
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
+import { API_ROOT } from "@/constant";
+import { IProduct } from "@/types/product";
+import Image from "next/image";
+import Link from "next/link";
+import { FC } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import ProductCard from "../card";
 
 type IProps = {
   topSale: IProduct[];
@@ -102,7 +99,7 @@ const Featured: FC<IProps> = ({
                 <div className=" hidden md:block">
                   <Link href={bannerUrl}>
                     <Image
-                      className=" w-full max-h-[668px]"
+                      className=" w-full max-h-[708px]"
                       src={`${API_ROOT}/images/banner/${adsbanner}`}
                       width={100}
                       height={100}

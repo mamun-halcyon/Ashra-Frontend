@@ -116,7 +116,7 @@ const ProductCard: React.FC<IProps> = ({
         <p className=" mb-6 text-center text-sm ">
           {Number(regular_price) !== Number(discount_price) && (
             <span
-              className={`mr-2 font-gotham ${
+              className={`mr-3 font-gotham ${
                 Number(discount_price) > 0
                   ? "line-through font-normal "
                   : "font-bold"
