@@ -1,32 +1,32 @@
-'use client';
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
-import './page.scss';
-import { API_URL } from '@/constant';
-import axios from 'axios';
-import { useAppSelector } from '@/redux/hooks';
+"use client";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import { toast } from "react-toastify";
+import "./page.scss";
 
 function Login() {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
-  const [fullName, setFullName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [mobile, setMobile] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [emailError, setEmailError] = useState('');
-  const [mobileError, setMobileError] = useState('');
+  const [fullName, setFullName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [mobile, setMobile] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [emailError, setEmailError] = useState("");
+  const [mobileError, setMobileError] = useState("");
 
   // console.log(emailError);
 
   useEffect(() => {
     if (login?.accessToken) {
-      route.push('/profile');
+      route.push("/profile");
     } else {
       setIsLoggedIn(false);
     }
@@ -35,10 +35,10 @@ function Login() {
   const handleLogin = async (e: any) => {
     e.preventDefault();
     if (
-      fullName.trim() !== '' &&
-      email.trim() !== '' &&
-      mobile.trim() !== '' &&
-      password.trim() !== ''
+      fullName.trim() !== "" &&
+      email.trim() !== "" &&
+      mobile.trim() !== "" &&
+      password.trim() !== ""
     ) {
       try {
         const response = await axios.post(`${API_URL}/users`, {
@@ -49,16 +49,16 @@ function Login() {
           role_id: 1,
         });
         if (response.status === 201) {
-          toast.success('Registration Success!');
-          route.push('/login');
+          toast.success("Registration Success!");
+          route.push("/login");
         }
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setEmailError(error?.response?.data?.errors?.email);
           setMobileError(error?.response?.data?.errors?.mobile);
         }
-        console.error('Registration error:', error);
-        toast.error('Registration Error!');
+        console.error("Registration error:", error);
+        toast.error("Registration Error!");
       }
     }
   };
@@ -70,9 +70,9 @@ function Login() {
           <section className="md:block hidden">
             <div className="container">
               <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                <Link href={'/'}>Home</Link>
+                <Link href={"/"}>Home</Link>
                 <RiArrowDropRightLine className=" text-xl" />
-                <Link href={'/register'}> Register </Link>
+                <Link href={"/register"}> Register </Link>
               </div>
             </div>
           </section>
@@ -122,8 +122,8 @@ function Login() {
                 Already have an account?
               </h3>
               <h3 className="font-gotham font-normal text-sm text-black">
-                If you already have an account with us, please login at the{' '}
-                <Link className="text-primary" href={'/login'}>
+                If you already have an account with us, please login at the{" "}
+                <Link className="text-primary" href={"/login"}>
                   login page
                 </Link>
                 .

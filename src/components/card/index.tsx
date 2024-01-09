@@ -1,21 +1,20 @@
-'use client';
-import Image from 'next/image';
-import './index.scss';
-import Button from '../button';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { BsArrowRepeat } from 'react-icons/bs';
-import Link from 'next/link';
-import { API_ROOT, API_URL } from '@/constant';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
-import { ICartItem } from '@/types/cart';
-import { useRouter } from 'next/navigation';
-import { addToCompare } from '@/redux/features/compare/compareSlice';
-import { ICompareItem } from '@/types/compare';
-import { toast } from 'react-toastify';
-import axios from 'axios';
-import axiosInstance from '../../../utils/axiosInstance';
+"use client";
+import { API_ROOT } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { addToCompare } from "@/redux/features/compare/compareSlice";
+import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { ICartItem } from "@/types/cart";
+import { ICompareItem } from "@/types/compare";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BsArrowRepeat } from "react-icons/bs";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../utils/axiosInstance";
+import Button from "../button";
+import "./index.scss";
 
 interface IProps {
   product_id: number;
@@ -46,14 +45,14 @@ const ProductCard: React.FC<IProps> = ({
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error('Maximum items exits');
+      toast.error("Maximum items exits");
     }
   };
 
@@ -80,20 +79,20 @@ const ProductCard: React.FC<IProps> = ({
             })
           );
         } else {
-          console.log('Status : ', response.status);
+          console.log("Status : ", response.status);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   };
 
   return (
     <div className="product-card group relative p-3  mt-2">
       <Link href={`/product/${url}`}>
-        <div className="flex justify-center items-center pt-10 pb-5 px-6 image">
+        <div className="flex justify-center items-center pt-10 pb-5  image">
           <Image
             src={`${API_ROOT}/images/product/${image}`}
             width={100}
@@ -117,8 +116,8 @@ const ProductCard: React.FC<IProps> = ({
             <span
               className={`mr-2 font-gotham ${
                 Number(discount_price) > 0
-                  ? 'line-through font-normal '
-                  : 'font-bold'
+                  ? "line-through font-normal "
+                  : "font-bold"
               } text-xs`}
             >
               ৳ {regular_price}
@@ -215,7 +214,7 @@ const ProductCard: React.FC<IProps> = ({
           onClick={() =>
             addCompare({
               product_id,
-              description: sort_description ?? '',
+              description: sort_description ?? "",
               image,
               title,
               regular_price: Number(regular_price),
