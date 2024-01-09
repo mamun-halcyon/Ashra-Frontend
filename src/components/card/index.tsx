@@ -97,13 +97,14 @@ const ProductCard: React.FC<IProps> = ({
             src={`${API_ROOT}/images/product/${image}`}
             width={100}
             height={100}
+            quality={100}
             alt="product"
           />
         </div>
       </Link>
 
       <div className="text ">
-        <div className=" h-10 text-center">
+        <div className=" h-10 text-center mb-1">
           <Link
             href={`/product/${url}`}
             className=" font-gotham product-title font-normal text-center text-sm"

@@ -3,7 +3,7 @@ import "./index.scss";
 
 const ZoomImage = ({ image }: { image: string }) => {
   const zoomProps = {
-    width: 500,
+    width: 600,
     height: 500,
     zoomWidth: 600,
     zoomPosition: "original",
