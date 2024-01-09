@@ -14,6 +14,7 @@ import { BsArrowRepeat } from "react-icons/bs";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../utils/axiosInstance";
 import Button from "../button";
+import FormatPrice from "../price-formate";
 import "./index.scss";
 
 interface IProps {
@@ -112,22 +113,22 @@ const ProductCard: React.FC<IProps> = ({
             {title.substring(0, 46)}
           </Link>
         </div>
-        <p className=" mb-2 text-center text-sm">
+        <p className=" mb-6 text-center text-sm ">
           {Number(regular_price) !== Number(discount_price) && (
             <span
               className={`mr-2 font-gotham ${
                 Number(discount_price) > 0
                   ? "line-through font-normal "
                   : "font-bold"
-              } text-xs`}
+              } text-sm`}
             >
-              ৳ {regular_price}
+              ৳ {FormatPrice(regular_price)}
             </span>
           )}
 
           {Number(discount_price) > 0 && (
-            <span className=" font-gotham font-bold text-xs">
-              ৳ {discount_price}
+            <span className=" font-gotham font-bold text-sm">
+              ৳ {FormatPrice(discount_price)}
             </span>
           )}
         </p>
@@ -173,13 +174,13 @@ const ProductCard: React.FC<IProps> = ({
             </>
           )}
           {availability === 2 && (
-            <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]">
+            <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px] stock-out">
               Out of Stock
             </Button>
           )}
           {availability === 3 && (
             <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]">
-              Upcoming
+              Up Coming
             </Button>
           )}
         </div>

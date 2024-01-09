@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
-import "./index.scss";
-import { BiUserCircle } from "react-icons/bi";
+import Link from "next/link";
 import { AiOutlineHeart } from "react-icons/ai";
+import { BiUserCircle } from "react-icons/bi";
 import { BsArrowRepeat } from "react-icons/bs";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import Link from "next/link";
+import "./index.scss";
 
-import SearchArea from "../search";
 import { useAppSelector } from "@/redux/hooks";
+import SearchArea from "../search";
 
 const Navbar = () => {
   const { cart } = useAppSelector((state) => state.cart);
@@ -23,7 +23,7 @@ const Navbar = () => {
               <Image
                 className="logo"
                 src={"/assets/images/logo/Logo.png"}
-                width={154}
+                width={200}
                 height={80}
                 alt="gazi group logo"
               />
