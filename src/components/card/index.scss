@@ -65,6 +65,9 @@
     }
   }
   .stock-out {
-    background: $secondary-color;
+    background: #6c757d;
+    &:hover {
+      background: #6c757d;
+    }
   }
 }
