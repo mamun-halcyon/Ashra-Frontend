@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { IBanner } from "@/types/banner";
 import { ICartItem } from "@/types/cart";
 import { ICompareItem } from "@/types/compare";
+import ISingleProduct from "@/types/product";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
