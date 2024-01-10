@@ -1,15 +1,14 @@
-import React from 'react';
-import './page.scss';
 import { API_URL } from '@/constant';
+import './page.scss';
 
 async function getEmis() {
   const res = await fetch(`${API_URL}/emis`, {
      cache: 'no-store',
   });
 
-  if (!res.ok) {
+ /*  if (!res.ok) {
     throw new Error('Failed to fetch data');
-  }
+  } */
 
   return res.json();
 }

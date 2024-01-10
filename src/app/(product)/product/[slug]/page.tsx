@@ -17,7 +17,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { IBanner } from "@/types/banner";
 import { ICartItem } from "@/types/cart";
 import { ICompareItem } from "@/types/compare";
-import ISingleProduct from "@/types/product";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -578,7 +577,7 @@ function PageDetails({ params: { slug } }: Props) {
                           {" "}
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
-                              <AiOutlineHeart className="mr-1 " />
+                              <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
                             Wishlist
                           </OutlineButton>
@@ -606,7 +605,7 @@ function PageDetails({ params: { slug } }: Props) {
                         >
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
-                              <BsArrowRepeat className="mr-1 " />
+                              <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
                             Add to Compare
                           </OutlineButton>
@@ -617,7 +616,7 @@ function PageDetails({ params: { slug } }: Props) {
                         >
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
-                              <AiOutlineShareAlt className="mr-1 " />
+                              <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
                             Share
                           </OutlineButton>

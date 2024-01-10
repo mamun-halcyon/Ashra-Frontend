@@ -52,7 +52,7 @@ interface IProductAttribute {
   updated_at: string;
 }
 
-export interface ISingleProduct {
+export type ISingleProduct = {
   averageReview: number;
   product: IProduct;
   productPhotos: ProductPhoto[];

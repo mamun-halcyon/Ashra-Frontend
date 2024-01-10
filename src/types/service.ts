@@ -1,4 +1,4 @@
-export interface IService {
+export type IService = {
   title: string;
   subtitle: string;
   image: number;

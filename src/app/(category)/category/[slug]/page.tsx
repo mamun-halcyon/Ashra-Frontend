@@ -1,37 +1,35 @@
-'use client';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
-import FilterBox from '@/components/filterbox';
-import Link from 'next/link';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import ReactSlider from 'react-slider';
-import './page.scss';
-import Image from 'next/image';
-import { AiOutlineBars } from 'react-icons/ai';
-import { PiDotsNineBold } from 'react-icons/pi';
-import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
-import ActionButton from '@/components/action';
-import { productsData } from '@/static/products';
-import ListCard from '@/components/list-card';
-import { categoryData } from '@/static/category';
-import { ICategoryData, ICategoryResponse } from '@/types/category';
-import CategoryFilter from '@/components/category-filter';
-import Pagination from '@/components/pagination';
-import { API_ROOT, API_URL } from '@/constant';
-import axios from 'axios';
-import { IProduct, IProductResponse } from '@/types/product';
-import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
-import { IBanner } from '@/types/banner';
-const ProductCard = dynamic(() => import('@/components/card'));
+"use client";
+import ActionButton from "@/components/action";
+import CategoryFilter from "@/components/category-filter";
+import FilterBox from "@/components/filterbox";
+import ListCard from "@/components/list-card";
+import Pagination from "@/components/pagination";
+import { API_ROOT, API_URL } from "@/constant";
+import { IBanner } from "@/types/banner";
+import { ICategoryData, ICategoryResponse } from "@/types/category";
+import { IProduct, IProductResponse } from "@/types/product";
+import axios from "axios";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AiOutlineBars } from "react-icons/ai";
+import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import { PiDotsNineBold } from "react-icons/pi";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import ReactSlider from "react-slider";
+import "./page.scss";
+const ProductCard = dynamic(() => import("@/components/card"));
 
 const categoryProducts = async (position: string) => {
   const res = await fetch(`${API_URL}/menus/${position}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
 
-  if (!res.ok) {
+  /* if (!res.ok) {
     throw new Error('Failed to fetch data');
-  }
+  } */
 
   return res.json();
 };
@@ -41,8 +39,8 @@ function Category() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200000]);
   const [page, setPage] = useState(1);
   const [isRow, setIsRow] = useState<boolean>(true);
-  const [showTitle, setShowTitle] = useState<string>('Show 12');
-  const [sortBy, setSortBy] = useState<string>('Sort by');
+  const [showTitle, setShowTitle] = useState<string>("Show 12");
+  const [sortBy, setSortBy] = useState<string>("Sort by");
   const [products, setProducts] = useState<IProduct[]>([]);
   const [limit, setLimit] = useState<number | string>(12);
   const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
@@ -96,12 +94,12 @@ function Category() {
   async function categoryAdBanner() {
     try {
       const data = await axios.get(
-        `${API_URL}/banners/${searchParams.get('category')?.trim()}`
+        `${API_URL}/banners/${searchParams.get("category")?.trim()}`
       );
 
       setAdsBanner(data.data?.data[0]);
     } catch (error) {
-      console.log('category ads banner' + error);
+      console.log("category ads banner" + error);
     }
   }
 
@@ -115,7 +113,7 @@ function Category() {
           setCategoryFilterItems(response.data?.data?.rows);
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -127,51 +125,51 @@ function Category() {
 
   const fetchData = async () => {
     setIsLoading(true);
-    const search: string = searchParams.get('search')?.trim() || '';
-    const mainCategory: string = searchParams.get('category')?.trim() || '';
+    const search: string = searchParams.get("search")?.trim() || "";
+    const mainCategory: string = searchParams.get("category")?.trim() || "";
     const availability: string =
-      (availabilities.length > 0 && availabilities.join(',')) || '';
-    let sort_by: string = '';
+      (availabilities.length > 0 && availabilities.join(",")) || "";
+    let sort_by: string = "";
     switch (sortBy) {
-      case 'Newest':
-        sort_by = 'newest';
+      case "Newest":
+        sort_by = "newest";
         break;
-      case 'Oldest':
-        sort_by = 'oldest';
+      case "Oldest":
+        sort_by = "oldest";
         break;
-      case 'Price low to high':
-        sort_by = 'low';
+      case "Price low to high":
+        sort_by = "low";
         break;
-      case 'Price high to low':
-        sort_by = 'high';
+      case "Price high to low":
+        sort_by = "high";
         break;
     }
     const tempCategories: string[] =
       çategories.length > 0 ? [...çategories] : [mainCategory, ...çategories];
     const category: string =
-      (tempCategories.length > 0 && tempCategories.join(',')) || '';
+      (tempCategories.length > 0 && tempCategories.join(",")) || "";
     try {
       const response = await axios.get<IProductResponse>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}
-        ${category !== '' ? '&category=' + category : ''}
-        ${search !== '' ? '&search=' + search : ''}
+        ${category !== "" ? "&category=" + category : ""}
+        ${search !== "" ? "&search=" + search : ""}
         ${
           priceRange[0] > 0 || priceRange[1] < 200000
-            ? '&min_price=' + priceRange[0]
-            : ''
+            ? "&min_price=" + priceRange[0]
+            : ""
         }
         ${
           priceRange[0] > 0 || priceRange[1] < 200000
-            ? '&max_price=' + priceRange[1]
-            : ''
+            ? "&max_price=" + priceRange[1]
+            : ""
         }
-        ${sort_by !== '' ? '&sort_by=' + sort_by : ''}
-        ${availability !== '' ? '&availability=' + availability : ''}`
+        ${sort_by !== "" ? "&sort_by=" + sort_by : ""}
+        ${availability !== "" ? "&availability=" + availability : ""}`
       );
       setProducts(response.data?.data?.rows);
       setIsLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       setIsLoading(false);
     }
   };
@@ -223,14 +221,14 @@ function Category() {
       <section className=" hidden md:block">
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
-            {searchParams.get('category')?.trim() !== '' &&
+            <Link href={"/"}>Home</Link>
+            {searchParams.get("category")?.trim() !== "" &&
             çategories?.length == 0 ? (
               <>
                 <RiArrowDropRightLine className=" text-xl" />
-                <Link href={'/bathware'}>
-                  {' '}
-                  {searchParams.get('category')?.trim()}{' '}
+                <Link href={"/bathware"}>
+                  {" "}
+                  {searchParams.get("category")?.trim()}{" "}
                 </Link>
               </>
             ) : (
@@ -348,13 +346,13 @@ function Category() {
               <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5 shadow-sm">
                 <div className=" flex items-center">
                   <span
-                    className={`${isRow ? 'active' : null} p-1 mr-2 `}
+                    className={`${isRow ? "active" : null} p-1 mr-2 `}
                     onClick={() => setIsRow(true)}
                   >
                     <PiDotsNineBold className="text-xl icon" />
                   </span>
                   <span
-                    className={`${!isRow ? 'active' : null} p-1 `}
+                    className={`${!isRow ? "active" : null} p-1 `}
                     onClick={() => setIsRow(false)}
                   >
                     <AiOutlineBars className="text-xl icon" />
