@@ -175,7 +175,7 @@ function PageDetails({ params: { slug } }: Props) {
     arrows: true,
     prevArrow: <IoIosArrowBack className="text-base" />,
     nextArrow: <IoIosArrowForward />,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
