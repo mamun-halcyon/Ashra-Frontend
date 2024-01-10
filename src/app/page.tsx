@@ -93,7 +93,7 @@ export default async function Home({
             </h2>
             <div className="flex flex-wrap justify-center  ">
               {homeData?.category
-                .sort((a, b) => (b.order_id || 0) - (a.order_id || 0))
+                .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
                 .map((category, i) => (
                   <ExploreCard
                     className="md:w-1/6 w-1/3 text-center p-2"
