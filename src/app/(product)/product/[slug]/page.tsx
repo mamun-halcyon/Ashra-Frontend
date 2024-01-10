@@ -17,8 +17,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { IBanner } from "@/types/banner";
 import { ICartItem } from "@/types/cart";
 import { ICompareItem } from "@/types/compare";
-import { ISingleProduct } from "@/types/product";
-import { IService } from "@/types/service";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -177,7 +175,7 @@ function PageDetails({ params: { slug } }: Props) {
     arrows: true,
     prevArrow: <IoIosArrowBack className="text-base" />,
     nextArrow: <IoIosArrowForward />,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -397,10 +395,11 @@ function PageDetails({ params: { slug } }: Props) {
                           Regular Price:
                         </h3>
                         <h2
-                          className={`font-gotham font-normal text-xl  ${
-                            product?.product?.discount_price > 0 &&
-                            " line-through"
-                          } r-price`}
+                          className={`font-gotham  text-xl font-medium ${
+                            product?.product?.discount_price > 0
+                              ? " line-through font-normal r-price "
+                              : "text-primary"
+                          }  `}
                         >
                           ৳{FormatPrice(product?.product?.regular_price)}
                         </h2>
