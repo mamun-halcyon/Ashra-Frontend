@@ -47,6 +47,7 @@ const MegaMenu = ({ menus }: IProps) => {
                         .filter(
                           (category) => category.parent_category === menu.slug
                         )
+                        .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
                         .map((subCategory, index) => (
                           <div key={index}>
                             <div className=" relative flex justify-between items-center sub-item">
@@ -66,6 +67,10 @@ const MegaMenu = ({ menus }: IProps) => {
                                       (children) =>
                                         children.parent_category ===
                                         subCategory.slug
+                                    )
+                                    .sort(
+                                      (a, b) =>
+                                        (a.order_id || 0) - (b.order_id || 0)
                                     )
                                     .map((childrenCategory, index) => (
                                       <li key={index}>
