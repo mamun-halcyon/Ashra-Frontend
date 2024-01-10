@@ -1,29 +1,29 @@
-import './page.scss';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Banner from '@/components/banner';
-import ServiceCard from '@/components/service-card';
-import Link from 'next/link';
-import { BsArrowRightShort } from 'react-icons/bs';
-import { API_ROOT, API_URL } from '@/constant';
-import { HomeApiResponse } from '@/types/home';
-import { IProduct, IProductResponse } from '@/types/product';
-const Featured = dynamic(() => import('@/components/featured'));
-const ExploreCard = dynamic(() => import('@/components/explore'));
-const ProductCard = dynamic(() => import('@/components/card'));
-const Title = dynamic(() => import('@/components/title'));
-const VideoCard = dynamic(() => import('@/components/video-card'));
+import Banner from "@/components/banner";
+import ServiceCard from "@/components/service-card";
+import { API_ROOT, API_URL } from "@/constant";
+import { HomeApiResponse } from "@/types/home";
+import { IProduct, IProductResponse } from "@/types/product";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { BsArrowRightShort } from "react-icons/bs";
+import "./page.scss";
+const Featured = dynamic(() => import("@/components/featured"));
+const ExploreCard = dynamic(() => import("@/components/explore"));
+const ProductCard = dynamic(() => import("@/components/card"));
+const Title = dynamic(() => import("@/components/title"));
+const VideoCard = dynamic(() => import("@/components/video-card"));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
@@ -33,22 +33,22 @@ async function categoryProduct(category_slug: string) {
   const res = await fetch(
     `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`,
     {
-      cache: 'no-store',
+      cache: "no-store",
     }
   );
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
 }
 async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error("Failed to fetch data");
   }
 
   return res.json();
@@ -59,15 +59,15 @@ export default async function Home({
   searchParams: { q: string };
 }) {
   const homeData: HomeApiResponse = await getData();
-  const gasStoveProducts: IProductResponse = await categoryProduct('gas-stove');
+  const gasStoveProducts: IProductResponse = await categoryProduct("gas-stove");
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
-    'kichen-hood'
+    "kichen-hood"
   );
   const digitalScaleProducts: IProductResponse = await categoryProduct(
-    'digital-scale'
+    "digital-scale"
   );
-  const addBanner = await categoryAdBanner('home');
-  const verticalBanner = await categoryAdBanner('home-v');
+  const addBanner = await categoryAdBanner("home");
+  const verticalBanner = await categoryAdBanner("home-v");
 
   return (
     <>
@@ -92,14 +92,16 @@ export default async function Home({
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
-              {homeData?.category.map((category, i) => (
-                <ExploreCard
-                  className="md:w-1/6 w-1/3 text-center p-2"
-                  key={i}
-                  href={`/category/${category.title}`}
-                  item={category}
-                />
-              ))}
+              {homeData?.category
+                .sort((a, b) => (b.order_id || 0) - (a.order_id || 0))
+                .map((category, i) => (
+                  <ExploreCard
+                    className="md:w-1/6 w-1/3 text-center p-2"
+                    key={i}
+                    href={`/category/${category.title}`}
+                    item={category}
+                  />
+                ))}
             </div>
           </div>
         </section>
@@ -211,10 +213,10 @@ export default async function Home({
           </div>
           <div className="text-center mt-7">
             <Link
-              className=" font-gotham font-medium text-sm  more-btn"
-              href={'/videos'}
+              className=" font-gotham font-normal text-sm  more-btn"
+              href={"/videos"}
             >
-              More Videos{' '}
+              More Videos{" "}
               <BsArrowRightShort className="inline text-xl font-bold" />
             </Link>
           </div>

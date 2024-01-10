@@ -1,4 +1,4 @@
-@import '../styles/index.scss';
+@import "../styles/index.scss";
 
 .service {
   background: $quaternary-color;
@@ -89,13 +89,13 @@
   background: $quaternary-color;
 
   .more-btn {
-    padding: 5px 15px;
+    padding: 7px 15px;
     transition: all linear 0.3s;
     // background: $white-color;
     box-shadow: $primary-shadow;
 
     &:hover {
-      background: $secondary-color;
+      color: $primary-color;
     }
   }
   @media screen and (max-width: 768px) {
