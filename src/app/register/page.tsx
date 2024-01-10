@@ -46,7 +46,7 @@ function Login() {
           email: email,
           mobile: mobile,
           password: password,
-          role_id: 1,
+          role_id: 2,
         });
         if (response.status === 201) {
           toast.success("Registration Success!");
