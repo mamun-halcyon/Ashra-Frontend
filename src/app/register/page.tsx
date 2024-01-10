@@ -122,9 +122,9 @@ function Login() {
                 Already have an account?
               </h3>
               <h3 className="font-gotham font-normal text-sm text-black">
-                If you already have an account with us, please login at the{" "}
+                If you already have an account with us, Please{" "}
                 <Link className="text-primary" href={"/login"}>
-                  login page
+                  Login
                 </Link>
                 .
               </h3>

@@ -55,10 +55,11 @@ async function getProduct(slug: string) {
 }
 
 function PageDetails({ params: { slug } }: Props) {
+  const [product, setProduct] = useState<ISingleProduct | null>(null);
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
-  const [product, setProduct] = useState<ISingleProduct | null>(null);
+
   const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
   const [quantity, setQuantity] = useState<number>(1);
   const [viewImage, setViewImag] = useState<string>(
@@ -441,10 +442,7 @@ function PageDetails({ params: { slug } }: Props) {
                             <>
                               {attributes?.map((attr, i) => {
                                 return (
-                                  <div
-                                    key={i}
-                                    className="flex items-center mb-2"
-                                  >
+                                  <div key={i} className="flex items-center">
                                     <div className=" font-gotham text-sm mr-2">
                                       {attr?.name} :{" "}
                                     </div>
@@ -575,7 +573,7 @@ function PageDetails({ params: { slug } }: Props) {
                           }}
                         >
                           {" "}
-                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-primary text-sm mr-2">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
@@ -603,7 +601,7 @@ function PageDetails({ params: { slug } }: Props) {
                             );
                           }}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm text-primary mr-2">
                             <span>
                               <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
@@ -614,7 +612,7 @@ function PageDetails({ params: { slug } }: Props) {
                           className="mt-2 md:mt-0"
                           onClick={() => setIsShare(true)}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm text-primary mr-2">
                             <span>
                               <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
@@ -722,7 +720,7 @@ function PageDetails({ params: { slug } }: Props) {
                               </p>
                               <div className="flex items-center mt-9 mb-5">
                                 <p className="font-gotham font-normal text-xs text-black">
-                                  Your rating *
+                                  Your Rating *
                                 </p>
                                 <div className="ml-2 mb-1">
                                   <StarRatings
@@ -758,7 +756,7 @@ function PageDetails({ params: { slug } }: Props) {
                                   }
                                 />
                                 <TextAreaGroup
-                                  title="Your review *"
+                                  title="Your Review *"
                                   required
                                   value={review}
                                   onChange={(e: any) =>

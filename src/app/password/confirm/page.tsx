@@ -1,6 +1,6 @@
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import './page.scss';
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import "./page.scss";
 
 function ConfirmPassword() {
   return (
@@ -9,18 +9,18 @@ function ConfirmPassword() {
         <div className="w-[400px] forget-area p-4 ">
           <form>
             <FormGroup
-              title="New password*"
+              title="New Password*"
               placeholder="New Password"
               required
             />
             <FormGroup
               className="mt-2 "
-              title="Confirm password*"
+              title="Confirm Password*"
               placeholder="Confirm password"
               required
             />
 
-            <Button className="w-full py-1 mt-3 font-gotham font-normal text-base forget-button">
+            <Button className="w-full py-1 mt-3 font-gotham font-normal text-sm forget-button">
               Confirm
             </Button>
           </form>

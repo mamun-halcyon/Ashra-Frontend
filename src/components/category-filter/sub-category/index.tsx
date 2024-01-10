@@ -1,7 +1,7 @@
-import { ICategoryData } from '@/types/category';
-import { FC, useState } from 'react';
-import ChildCategories from './child-categories';
-import './index.scss';
+import { ICategoryData } from "@/types/category";
+import { FC, useState } from "react";
+import ChildCategories from "./child-categories";
+import "./index.scss";
 
 interface IProps {
   categoryFilterItems: ICategoryData[];
@@ -14,8 +14,8 @@ const SubCategory: FC<IProps> = ({
   rootCategory,
   handleMultipleCategory,
 }) => {
-  const [rootCategoryChanged, setRootCategoryChanged] = useState<string>('');
-  const [showChildCategories, setShowChildCatefories] = useState<string>('');
+  const [rootCategoryChanged, setRootCategoryChanged] = useState<string>("");
+  const [showChildCategories, setShowChildCatefories] = useState<string>("");
 
   const onClickSubCategoryHandler = (event: any) => {
     setShowChildCatefories(event.target.innerText);
@@ -28,6 +28,7 @@ const SubCategory: FC<IProps> = ({
       ).length > 0 &&
         categoryFilterItems
           .filter((category) => category.parent_category === rootCategory.slug)
+          .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
           .map((subCategory) => {
             return (
               <div key={subCategory.title}>

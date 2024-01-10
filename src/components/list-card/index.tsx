@@ -14,6 +14,7 @@ import { BsArrowRepeat, BsHeart } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Button from "../button";
 import EmiPopup from "../emi-popup";
+import FormatPrice from "../price-formate";
 import StarRating from "../rating";
 import "./index.scss";
 
@@ -162,9 +163,18 @@ const ListCard: FC<IProps> = ({ product }) => {
         </div>
       </div>
       <div className="image w-[30%] relative">
-        <h3 className="font-gotham font-medium stock pb-1 mb-4">Instock</h3>
+        <h3 className="font-gotham font-medium stock pb-1 mb-4">
+          {" "}
+          {product.availability === 1
+            ? "In Stock"
+            : product.availability === 2
+            ? "Out of Stock"
+            : product.availability === 3
+            ? "Upcoming"
+            : "Unknown Availability"}
+        </h3>
         <h4 className=" font-gotham font-normal text-xs line-through text-black">
-          ৳ {product.regular_price}
+          ৳ {FormatPrice(product.regular_price)}
         </h4>
         <div className="flex justify-between flex-wrap items-center">
           <h3 className=" font-gotham font-medium text-base text-black">
@@ -175,21 +185,33 @@ const ListCard: FC<IProps> = ({ product }) => {
             {Number(product.regular_price) - Number(product.discount_price)}
           </span>
         </div>
-        <Button
-          className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn"
-          onClick={() => {
-            handleBuyNow({
-              product_id: product.id,
-              price: Number(product.discount_price),
-              title: product.title,
-              image: product.image,
-              quantity: 1,
-              regular_price: Number(product.regular_price),
-            });
-          }}
-        >
-          Buy Now
-        </Button>
+        {product.availability === 1 ? (
+          <Button
+            className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn"
+            onClick={() => {
+              handleBuyNow({
+                product_id: product.id,
+                price: Number(product.discount_price),
+                title: product.title,
+                image: product.image,
+                quantity: 1,
+                regular_price: Number(product.regular_price),
+              });
+            }}
+          >
+            Buy Now
+          </Button>
+        ) : product.availability === 2 ? (
+          <Button className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn stock-out">
+            Out of Stock
+          </Button>
+        ) : product.availability === 3 ? (
+          <Button className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn">
+            Up Coming
+          </Button>
+        ) : (
+          "Unknown Stock"
+        )}
       </div>
       {isEmi && (
         <EmiPopup price={product.discount_price} handleEmi={handleEmi} />
