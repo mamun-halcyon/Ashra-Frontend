@@ -332,7 +332,7 @@ function Category() {
                   <div className="h-[235px]">
                     <Link href={adsBanner.url}>
                       <Image
-                        className="w-full h-full"
+                        className="w-full h-full transition-all duration-100 hover:scale-[1.01]"
                         src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                         width={400}
                         height={300}

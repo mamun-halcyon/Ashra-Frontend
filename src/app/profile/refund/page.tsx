@@ -1,11 +1,11 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import React, { useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa6';
-import '../page.scss';
-import { useAppSelector } from '@/redux/hooks';
-import { formatDate } from '@/components/dateformate';
-import axiosInstance from '../../../../utils/axiosInstance';
+"use client";
+import { formatDate } from "@/components/dateformate";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { useAppSelector } from "@/redux/hooks";
+import { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import axiosInstance from "../../../../utils/axiosInstance";
+import "../page.scss";
 
 const Refund = () => {
   const { login } = useAppSelector((state) => state.login);
@@ -74,7 +74,7 @@ const Refund = () => {
                     <td className="px-6 py-4">{formatDate(item.created_at)}</td>
                     <td className="px-6 py-4">{item.order_id}</td>
                     <td className="px-6 py-4">{item.product_name}</td>
-                    <td className="px-6 py-4">{item.product_price}</td>
+                    <td className="px-6 py-4">৳ {item.product_price}</td>
                     <td className="px-6 py-4">{item.refund_status}</td>
                   </tr>
                 ))}

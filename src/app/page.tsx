@@ -206,12 +206,15 @@ export default async function Home({
         </section>
         <section className="review-video">
           <div className="container ">
-            <Image
-              src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
-              alt="ads"
-              width={1300}
-              height={500}
-            />
+            <Link href={addBanner?.data[0]?.url}>
+              <Image
+                className=" transition-all duration-100 hover:scale-[1.01]"
+                src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
+                alt="ads"
+                width={1300}
+                height={500}
+              />
+            </Link>
           </div>
           <div className="container px-2 md:px-0">
             <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">

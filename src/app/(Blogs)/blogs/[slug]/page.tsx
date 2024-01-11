@@ -39,6 +39,8 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
   const blogData: IResponse = await getBlog(slug);
   const popular: IResponseBlog = await popularBlogs();
 
+  const sharePath = typeof window !== "undefined" ? window.location.href : "";
+
   return (
     <section className="blog-details mt-5">
       <div className="container px-2 md:px-0">
@@ -62,7 +64,8 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                       <div className="flex">
                         <div className="social-item flex justify-center items-center mr-1">
                           <Link
-                            href={`https://web.facebook.com/sharer/sharer.php?u=`}
+                            href={`https://web.facebook.com/sharer/sharer.php?u=https://gazi-frontend.vercel.app/blogs/Gas-Stove-Beboharer-Sothik-Niyomaboli`}
+                            target="_blank"
                           >
                             <BiLogoFacebook />
                           </Link>
@@ -73,12 +76,21 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                           </Link>
                         </div>
                         <div className="social-item flex justify-center items-center mr-1">
-                          <Link href={"/"}>
+                          <Link
+                            href={`https://linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                              `${process.env.NEXT_PUBLIC_DOMAIN}/blogs/${blogData.data.slug}`
+                            )}`}
+                            target="_blank"
+                          >
                             <BiLogoLinkedin />
                           </Link>
                         </div>
                         <div className="social-item flex justify-center items-center mr-1">
-                          <Link href={"/"}>
+                          <Link
+                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                              `${process.env.NEXT_PUBLIC_DOMAIN}/blogs/${blogData.data.slug}`
+                            )}`}
+                          >
                             <AiOutlineTwitter />
                           </Link>
                         </div>

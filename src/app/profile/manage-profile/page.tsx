@@ -1,33 +1,34 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import '../page.scss';
-import './page.scss';
-import React, { useEffect, useState } from 'react';
-import FormGroup from '@/components/fromgroup';
-import Button from '@/components/button';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/redux/hooks';
-import { toast } from 'react-toastify';
-import { FaBars } from 'react-icons/fa6';
-import axiosInstance from '../../../../utils/axiosInstance';
+"use client";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../../utils/axiosInstance";
+import "../page.scss";
+import "./page.scss";
 
 const UpdateProfile = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [name, setName] = useState<string>('');
-  const [mobile, setMobile] = useState<string>('');
-  const [city, setCity] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [mobile, setMobile] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [email, setEmail] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
   useEffect(() => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -41,15 +42,15 @@ const UpdateProfile = () => {
       try {
         const formData = new FormData();
 
-        formData.append('name', name);
-        formData.append('mobile', mobile);
-        formData.append('city', city);
-        formData.append('password', password);
-        formData.append('address', address);
+        formData.append("name", name);
+        formData.append("mobile", mobile);
+        formData.append("city", city);
+        formData.append("password", password);
+        formData.append("address", address);
         if (image) {
-          formData.append('image', image);
+          formData.append("image", image);
         }
-        formData.append('upload_preset', 'w8omhp4w');
+        formData.append("upload_preset", "w8omhp4w");
 
         const response = await axiosInstance.patch(
           `/users/${login?.user?.id}`,
@@ -61,12 +62,12 @@ const UpdateProfile = () => {
           }
         );
         if (response?.status === 200) {
-          toast.success('Profile Updated Successful!');
-          route.push('/profile');
+          toast.success("Profile Updated Successful!");
+          route.push("/profile");
         }
       } catch (error) {
         console.log(error);
-        toast.error('Profile Update Error!');
+        toast.error("Profile Update Error!");
       }
     }
   };
@@ -77,6 +78,7 @@ const UpdateProfile = () => {
       setCity(login.user.city as string);
       setMobile(login.user.mobile as string);
       setName(login.user.name as string);
+      setEmail(login.user.email);
     }
   }, [login?.user]);
 
@@ -119,6 +121,17 @@ const UpdateProfile = () => {
                         onChange={(e) => setCity(e.target.value)}
                       />
                       <FormGroup
+                        title="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                      />
+                      <FormGroup
+                        title="Address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                      <FormGroup
                         type="password"
                         title="Your Password"
                         value={password}
@@ -131,11 +144,7 @@ const UpdateProfile = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                       />
                     </div>
-                    <FormGroup
-                      title="Address"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
+
                     <Button
                       type="submit"
                       className="px-2 py-1 font-gotham text-sm font-normal mt-4"

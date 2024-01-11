@@ -54,7 +54,7 @@ async function getProduct(slug: string) {
   return data;
 }
 
-function PageDetails({ params: { slug } }: Props) {
+export const PageDetails = ({ params: { slug } }: Props) => {
   const [product, setProduct] = useState<ISingleProduct | null>(null);
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
@@ -206,9 +206,6 @@ function PageDetails({ params: { slug } }: Props) {
       },
     ],
   };
-  if (!product) {
-    return <div className="py-5 container">Loading...</div>;
-  }
 
   const handleSubmitQuestion = async (e: any) => {
     e.preventDefault();
@@ -328,7 +325,9 @@ function PageDetails({ params: { slug } }: Props) {
       });
     });
   };
-
+  if (!product) {
+    return <div className="py-5 container">Loading...</div>;
+  }
   return (
     <>
       {product && (
@@ -857,6 +856,7 @@ function PageDetails({ params: { slug } }: Props) {
               {adsBanner?.image && (
                 <div className=" pb-24">
                   <Image
+                    className="transition-all duration-100 hover:scale-[1.01]"
                     src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                     alt="ads"
                     width={1300}
@@ -877,6 +877,6 @@ function PageDetails({ params: { slug } }: Props) {
       {isShare && <SharePopUp handleShare={handleShare} />}
     </>
   );
-}
+};
 
 export default PageDetails;

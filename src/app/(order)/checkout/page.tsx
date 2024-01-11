@@ -1,19 +1,19 @@
-'use client';
-import Box from '@/components/box';
-import FormGroup from '@/components/fromgroup';
-import { toast } from 'react-toastify';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import Button from '@/components/button';
-import './page.scss';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import { useRouter } from 'next/navigation';
-import { clearCart } from '@/redux/features/cart/cartSlice';
+"use client";
+import Box from "@/components/box";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import { API_URL } from "@/constant";
+import { clearCart } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { toast } from "react-toastify";
+import "./page.scss";
 
 function Checkout() {
   const router = useRouter();
@@ -31,25 +31,25 @@ function Checkout() {
   const [selectedPaymentDeliveryStatus, setSelectedPaymentDeliveryStatus] =
     useState<string | null>(null);
   const [couponId, setCouponId] = useState<Number | null>(null);
-  const [location, setLocation] = useState<string>('');
+  const [location, setLocation] = useState<string>("");
   const [locations, setLocations] = useState<any[]>([]);
   const [deliveryFee, setDeliveryFee] = useState<number>(0);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [thana, setThana] = useState('');
-  
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [thana, setThana] = useState("");
+
   const [totalCostBeforeCoupon, setTotalCostBeforeCoupon] = useState<number>(0);
   const [totalCostAfterCoupon, setTotalCostAfterCoupon] = useState<number>(0);
 
   const [cashOnDeliveryMessage, setCashOnDeliveryMessage] = useState<
     string | null
-  >('');
+  >("");
   const [onlinePaymentMessage, setOnlinePaymentMessage] = useState<
     string | null
-  >('');
+  >("");
 
   const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedPaymentValue = event.target.name;
@@ -75,7 +75,7 @@ function Checkout() {
   const orderItem = cart.map((item) => ({
     product_id: item.product_id,
     quantity: item.quantity,
-    product_attribute: item.product_attribute
+    product_attribute: item.product_attribute,
   }));
 
   const subTotal = cart.reduce(
@@ -90,12 +90,12 @@ function Checkout() {
     address,
     city,
     thana,
-    order_form: 'web',
+    order_form: "web",
     delivery_fee: deliveryFee,
     coupon_id: couponId,
     payment_method: selectedPayment,
-    order_status: 'pending',
-    order_prefix: 'GHA',
+    order_status: "pending",
+    order_prefix: "GHA",
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
   };
@@ -103,29 +103,29 @@ function Checkout() {
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedPayment) {
-      toast.error('Please Select payment method');
+      toast.error("Please Select payment method");
       return;
     }
     if (!selectedPaymentDeliveryStatus) {
-      toast.error('Please Select delivery method');
+      toast.error("Please Select delivery method");
     }
     await axios
       .post(`${API_URL}/orders`, orderData)
       .then((res) => {
-        toast.success('Order create successfully');
+        toast.success("Order create successfully");
         dispatch(clearCart());
-        router.push('/profile/order');
+        router.push("/profile/order");
       })
       .catch((error) => {
         if (error?.response?.status === 400) {
-          toast.error('This Email or Phone already used in another account!');
+          toast.error("This Email or Phone already used in another account!");
         }
-        console.log('error : ', error);
+        console.log("error : ", error);
       });
   };
 
   const handleApplyPromo = async () => {
-    if (approvePromoCode?.trim() || approvePromoCode?.trim() !== '') {
+    if (approvePromoCode?.trim() || approvePromoCode?.trim() !== "") {
       try {
         const response = await axios.post(`${API_URL}/coupons/validation`, {
           coupon_code: approvePromoCode,
@@ -137,17 +137,17 @@ function Checkout() {
         } else {
           setApprovePromoData(null);
           setApprovePromStatus(response.data.message);
-          setCouponId(null)
+          setCouponId(null);
           setDiscountCart(cart);
         }
-
-    
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           console.log(error);
           setApprovePromoData(null);
-          setCouponId(null)
-          setApprovePromStatus(error.response?.data?.message || 'An error occurred');
+          setCouponId(null);
+          setApprovePromStatus(
+            error.response?.data?.message || "An error occurred"
+          );
           setDiscountCart(cart);
         }
       }
@@ -156,12 +156,12 @@ function Checkout() {
 
   useEffect(() => {
     if (approvePromoData) {
-      if (approvePromoData?.discount_type === 'flat') {
+      if (approvePromoData?.discount_type === "flat") {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           let tempIdsArr: any[] = [];
-          if (approvePromoData?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = approvePromoData?.product_id?.split(',');
+          if (approvePromoData?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = approvePromoData?.product_id?.split(",");
           } else {
             tempIdsArr = [approvePromoData?.product_id];
           }
@@ -187,8 +187,8 @@ function Checkout() {
         let tempDisCart = discountCart;
         if (approvePromoData?.product_id) {
           let tempIdsArr: any[] = [];
-          if (approvePromoData?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = approvePromoData?.product_id?.split(',');
+          if (approvePromoData?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = approvePromoData?.product_id?.split(",");
           } else {
             tempIdsArr = [approvePromoData?.product_id];
           }
@@ -268,10 +268,10 @@ function Checkout() {
   useEffect(() => {
     if (
       selectedPaymentDeliveryStatus &&
-      location !== '' &&
+      location !== "" &&
       locations?.length > 0
     ) {
-      if (selectedPaymentDeliveryStatus == 'pickup') {
+      if (selectedPaymentDeliveryStatus == "pickup") {
         let totalProductsCount = 0;
         let perCountFree = 0;
         cart?.length > 0 &&
@@ -289,7 +289,6 @@ function Checkout() {
       }
     }
   }, [selectedPaymentDeliveryStatus, location, locations]);
-
 
   useEffect(() => {
     // Calculate total cost before coupon
@@ -316,11 +315,11 @@ function Checkout() {
       <section>
         <div className="container px-2 md:px-0">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/cart'}> Shopping Cart </Link>
+            <Link href={"/cart"}> Shopping Cart </Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/checkout'}> Checkout </Link>
+            <Link href={"/checkout"}> Checkout </Link>
           </div>
         </div>
       </section>
@@ -423,7 +422,7 @@ function Checkout() {
                           type="checkbox"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
-                          checked={selectedPayment === 'cashOnDelivery'}
+                          checked={selectedPayment === "cashOnDelivery"}
                           onChange={handlePaymentChange}
                         />
                         <label
@@ -438,7 +437,7 @@ function Checkout() {
                           type="checkbox"
                           name="onlinePayment"
                           id="onlinePayment"
-                          checked={selectedPayment === 'onlinePayment'}
+                          checked={selectedPayment === "onlinePayment"}
                           onChange={handlePaymentChange}
                         />
                         <label
@@ -453,7 +452,7 @@ function Checkout() {
                       We Accept
                     </p>
                     <Image
-                      src={'/assets/images/service/card-logo.png'}
+                      src={"/assets/images/service/card-logo.png"}
                       className="w-9/12 mt-2"
                       width={200}
                       height={100}
@@ -466,7 +465,9 @@ function Checkout() {
                       step="3"
                       title="Delivery Method"
                     >
-                      <p>Select a delivery method</p>
+                      <p className="font-gotham font-normal text-xs text-black">
+                        Select a delivery method
+                      </p>
 
                       <div className="py-2">
                         <div className="flex  items-center">
@@ -475,7 +476,7 @@ function Checkout() {
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
-                              selectedPaymentDeliveryStatus === 'homeDelivery'
+                              selectedPaymentDeliveryStatus === "homeDelivery"
                             }
                             onChange={handlePaymentStatusChange}
                           />
@@ -491,7 +492,7 @@ function Checkout() {
                             type="checkbox"
                             name="pickup"
                             id="pickup"
-                            checked={selectedPaymentDeliveryStatus === 'pickup'}
+                            checked={selectedPaymentDeliveryStatus === "pickup"}
                             onChange={handlePaymentStatusChange}
                           />
                           <label
@@ -520,11 +521,10 @@ function Checkout() {
                         </Button>
                       </div>
                       {approvePromoStatus ? (
-                          <div className="text font-gotham font-normal bold text-xs">
-                           {approvePromoStatus}
-                          </div>
-                        )
-                      : (
+                        <div className="text font-gotham font-normal bold text-xs">
+                          {approvePromoStatus}
+                        </div>
+                      ) : (
                         <></>
                       )}
                     </div>
@@ -543,14 +543,14 @@ function Checkout() {
                     <TabPanel>
                       <div className="content">
                         <p className="text font-gotham font-normal bold text-xs">
-                          {cashOnDeliveryMessage ? cashOnDeliveryMessage : ''}
+                          {cashOnDeliveryMessage ? cashOnDeliveryMessage : ""}
                         </p>
                       </div>
                     </TabPanel>
                     <TabPanel>
                       <div className="content">
                         <p className="text font-gotham font-normal bold text-xs">
-                          {onlinePaymentMessage ? onlinePaymentMessage : ''}
+                          {onlinePaymentMessage ? onlinePaymentMessage : ""}
                         </p>
                       </div>
                     </TabPanel>
@@ -567,7 +567,7 @@ function Checkout() {
                         Product Name
                       </div>
                       <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs text-black">
-                        Regular Price
+                        Sub-total
                       </div>
                       <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs text-black">
                         Price
@@ -614,20 +614,20 @@ function Checkout() {
                     <div className="grid grid-cols-5 sub-border">
                       <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
                       <div className="p-3 col-span-2 md:col-span-1 font-gotham  text-xs text-primary font-medium">
-                        Regular Price:
+                        Sub-Total:
                       </div>
                       <div className="p-3 font-gotham  text-xs text-primary font-medium">
-                        ৳{totalCostBeforeCoupon}
+                        ৳ {totalCostBeforeCoupon}
                       </div>
                     </div>
                     {selectedPaymentDeliveryStatus && (
                       <div className="grid grid-cols-5 sub-border">
                         <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
                         <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs text-primary font-medium">
-                          Delivery :
+                          Delivery Charges :
                         </div>
                         <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
-                          ৳{deliveryFee}
+                          ৳ {deliveryFee}
                         </div>
                       </div>
                     )}
@@ -638,7 +638,7 @@ function Checkout() {
                         Discount :
                       </div>
                       <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
-                        {totalCostBeforeCoupon - totalCostAfterCoupon}
+                        ৳ {totalCostBeforeCoupon - totalCostAfterCoupon}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
@@ -647,7 +647,7 @@ function Checkout() {
                         Total :
                       </div>
                       <div className="p-3  font-gotham text-xs text-primary font-medium">
-                        ৳{finalPrice + deliveryFee}
+                        ৳ {finalPrice + deliveryFee}
                       </div>
                     </div>
                   </div>
@@ -666,12 +666,12 @@ function Checkout() {
                         htmlFor="accept"
                         className=" font-gotham font-normal text-xs"
                       >
-                        I have read and agree to the{' '}
+                        I agree to the{" "}
                         <span className="sudo">
-                          {' '}
+                          {" "}
                           Terms and Conditions, Privacy Policy
-                        </span>{' '}
-                        and{' '}
+                        </span>{" "}
+                        and{" "}
                         <span className="sudo">Refund and Return Policy</span>
                       </label>
                     </div>
