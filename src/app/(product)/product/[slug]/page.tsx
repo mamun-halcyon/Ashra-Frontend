@@ -56,7 +56,7 @@ async function getProduct(slug: string) {
   return data;
 }
 
-export const PageDetails = ({ params: { slug } }: Props) => {
+const PageDetails = ({ params: { slug } }: Props) => {
   const [product, setProduct] = useState<ISingleProduct | null>(null);
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
