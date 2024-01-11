@@ -1,21 +1,20 @@
-'use client';
-import React, { useState } from 'react';
-import './page.scss';
-import Button from '@/components/button';
-import Image from 'next/image';
-import { RxCrossCircled } from 'react-icons/rx';
-import { LuSearch } from 'react-icons/lu';
-import StarRating from '@/components/rating';
+"use client";
+import Button from "@/components/button";
+import StarRating from "@/components/rating";
+import Image from "next/image";
+import { useState } from "react";
+import { RxCrossCircled } from "react-icons/rx";
+import "./page.scss";
 // import ToggleButton from '@/components/status-button';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { API_ROOT } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 import {
   clearCompare,
   removeFromCompare,
-} from '@/redux/features/compare/compareSlice';
-import { API_ROOT } from '@/constant';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useRouter } from 'next/navigation';
-import { ICartItem } from '@/types/cart';
+} from "@/redux/features/compare/compareSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { ICartItem } from "@/types/cart";
+import { useRouter } from "next/navigation";
 
 function Compare() {
   const dispatch = useAppDispatch();
@@ -27,7 +26,7 @@ function Compare() {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
   return (
     <section className="compare">
@@ -89,7 +88,7 @@ function Compare() {
                       Products Comparison
                     </h3>
                     <p className="font-gotham font-normal text-xs text-black mt-2">
-                      Find and select products tosee the differences and
+                      Find and select products to see the differences and
                       similarities between them
                     </p>
                   </div>

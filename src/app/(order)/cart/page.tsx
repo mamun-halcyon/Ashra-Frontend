@@ -1,26 +1,24 @@
-'use client';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
-import { GoDotFill } from 'react-icons/go';
-import { MdVerified } from 'react-icons/md';
-import { RxCross2 } from 'react-icons/rx';
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import { MdVerified } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 
-import './page.scss';
-import Image from 'next/image';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import Button from '@/components/button';
-import { serviceCardData } from '@/static/serviceCard';
-import ServiceCard from '@/components/service-card';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { API_ROOT, API_URL } from '@/constant';
+import Button from "@/components/button";
+import ServiceCard from "@/components/service-card";
+import { API_ROOT, API_URL } from "@/constant";
 import {
   decrementQuantity,
   incrementQuantity,
   removeFromCart,
-} from '@/redux/features/cart/cartSlice';
-import axios from 'axios';
-import { IService } from '@/types/service';
+} from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { IService } from "@/types/service";
+import axios from "axios";
+import Image from "next/image";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import "./page.scss";
 
 function Checkout() {
   const dispatch = useAppDispatch();
@@ -38,7 +36,7 @@ function Checkout() {
       const data = await axios.get(`${API_URL}/frontend/keypoints/other`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
   useEffect(() => {
@@ -99,7 +97,7 @@ function Checkout() {
                     <div className="col-span-1 flex items-center">
                       {/* <GoDotFill className="dot-icon" /> */}
                       <h3 className=" font-gotham font-medium text-base text-black text-center">
-                        Subtotal
+                        Total
                       </h3>
                     </div>
                   </div>
@@ -188,7 +186,7 @@ function Checkout() {
               </div>
               {/* summery */}
               <div className=" col-span-12 md:col-span-4">
-                <div className="py-11 px-9 cart-summery">
+                <div className="p-9 cart-summery">
                   <h3 className="summery-border font-gotham font-medium text-base text-black pb-2">
                     Cart Summary
                   </h3>
@@ -202,23 +200,23 @@ function Checkout() {
                     </p>
                   </div>
 
-                  <div className="flex justify-between items-center mt-3 summery-border pb-3">
+                  {/*   <div className="flex justify-between items-center mt-3 summery-border pb-3">
                     <p className=" font-gotham font-medium text-sm text-black">
                       Shipping
                     </p>
                     <p className=" font-gotham font-medium text-sm text-black">
                       Free Shipping
                     </p>
-                  </div>
-                  <div className="flex justify-between items-center mt-3">
+                  </div> */}
+                  {/*   <div className="flex justify-between items-center mt-3">
                     <p className=" font-gotham font-medium text-base text-black">
                       Total
                     </p>
                     <p className=" font-gotham font-medium text-base text-primary">
                       ৳ {sumWithInitial}
                     </p>
-                  </div>
-                  <Link className=" mt-14 block" href={'/checkout'}>
+                  </div> */}
+                  <Link className=" mt-14 block" href={"/checkout"}>
                     <Button className="w-full font-gotham font-medium text-lg py-1">
                       Continue to Shipping
                     </Button>

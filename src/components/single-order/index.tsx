@@ -324,10 +324,10 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div className="flex md:justify-end justify-start py-1">
                   <div>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Regular Price:
+                      Sub-Total:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Delivery:
+                      Delivery Charges:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
                       Discount:

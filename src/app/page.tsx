@@ -3,6 +3,8 @@ import ServiceCard from "@/components/service-card";
 import { API_ROOT, API_URL } from "@/constant";
 import { HomeApiResponse } from "@/types/home";
 import { IProduct, IProductResponse } from "@/types/product";
+import { IService } from "@/types/service";
+import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,6 +44,15 @@ async function categoryProduct(category_slug: string) {
 
   return res.json();
 }
+async function serviceItems() {
+  try {
+    const res = await axios.get(`${API_URL}/frontend/keypoints/home?limit=3`);
+
+    return res.data?.data?.rows;
+  } catch (error) {
+    console.log(error);
+  }
+}
 async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
     cache: "no-store",
@@ -63,6 +74,7 @@ export default async function Home({
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
     "kichen-hood"
   );
+  const services: IService[] = await serviceItems();
   const digitalScaleProducts: IProductResponse = await categoryProduct(
     "digital-scale"
   );
@@ -79,7 +91,7 @@ export default async function Home({
         <section className="service">
           <div className="container px-2 md:px-0">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {homeData.keyPoint.map((service, i) => (
+              {services.map((service, i) => (
                 <ServiceCard key={i} service={service} />
               ))}
             </div>
@@ -194,12 +206,15 @@ export default async function Home({
         </section>
         <section className="review-video">
           <div className="container ">
-            <Image
-              src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
-              alt="ads"
-              width={1300}
-              height={500}
-            />
+            <Link href={addBanner?.data[0]?.url}>
+              <Image
+                className=" transition-all duration-100 hover:scale-[1.01]"
+                src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
+                alt="ads"
+                width={1300}
+                height={500}
+              />
+            </Link>
           </div>
           <div className="container px-2 md:px-0">
             <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">

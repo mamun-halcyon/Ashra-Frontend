@@ -1,12 +1,12 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import '../page.scss';
-import React, { useEffect, useState } from 'react';
-import './page.scss';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/redux/hooks';
-import { FaBars } from 'react-icons/fa6';
-import axiosInstance from '../../../../utils/axiosInstance';
+"use client";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import axiosInstance from "../../../../utils/axiosInstance";
+import "../page.scss";
+import "./page.scss";
 
 const Conversations = () => {
   const route = useRouter();
@@ -18,7 +18,7 @@ const Conversations = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -62,19 +62,25 @@ const Conversations = () => {
                     <tr className="table-heading">
                       <th
                         scope="col"
-                        className="px-6 py-3 font-gotham font-medium text-center"
+                        className="px-6 py-3 font-gotham font-medium "
+                      >
+                        SI NO.
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 font-gotham font-medium "
                       >
                         Mobile Number
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 font-gotham font-medium text-center"
+                        className="px-6 py-3 font-gotham font-medium "
                       >
                         Question
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 font-gotham font-medium text-center"
+                        className="px-6 py-3 font-gotham font-medium "
                       >
                         Status
                       </th>
@@ -84,6 +90,12 @@ const Conversations = () => {
                     {conversations?.length > 0 ? (
                       conversations?.map((conversation, i) => (
                         <tr className="table-border" key={i}>
+                          <td
+                            scope="row "
+                            className="px-6 py-3 font-gotham font-light"
+                          >
+                            {i + 1}
+                          </td>
                           <td
                             scope="row "
                             className="px-6 py-3 font-gotham font-light"

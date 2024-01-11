@@ -1,10 +1,11 @@
-import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
-import TextAreaGroup from '../textarea';
-import Button from '../button';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import { useAppSelector } from '@/redux/hooks';
-import { toast } from 'react-toastify';
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import Button from "../button";
+import FormatPrice from "../price-formate";
+import TextAreaGroup from "../textarea";
 
 type IProps = {
   item: any;
@@ -12,7 +13,7 @@ type IProps = {
 const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
   const { login } = useAppSelector((state) => state.login);
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [attributes, setAttributes] = useState<any[]>([]);
 
   const handleSetMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -25,7 +26,7 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
     product_id: item.product_id,
     product_name: item.product_name,
     product_price: item.discount_price ?? item.regular_price,
-    refund_status: 'pending',
+    refund_status: "pending",
     message,
   };
 
@@ -48,7 +49,7 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
 
   useEffect(() => {
     try {
-      if (item?.product_attribute !== '') {
+      if (item?.product_attribute !== "") {
         setAttributes(JSON.parse(item?.product_attribute));
       }
     } catch (err) {
@@ -71,8 +72,11 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
             <></>
           )}
         </td>
-        <td className="px-6 py-4">
-          ৳{item?.discount_price ? item?.discount_price : item?.regular_price}
+        <td className="px-4 py-4">
+          ৳{" "}
+          {item?.discount_price
+            ? FormatPrice(item?.discount_price)
+            : FormatPrice(item?.regular_price)}
         </td>
         <td className="px-6 py-4">
           {isOpen ? (

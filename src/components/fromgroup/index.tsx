@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC } from "react";
 import "./index.scss";
 
 interface IProps {
@@ -7,7 +7,7 @@ interface IProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
-  title: string;
+  title?: string;
   className?: string;
   type?: string;
   value?: any;
