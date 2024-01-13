@@ -1,25 +1,24 @@
-'use client';
-import Button from '@/components/button';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { RxCross2 } from 'react-icons/rx';
-import './page.scss';
-import ServiceCard from '@/components/service-card';
-import { serviceCardData } from '@/static/serviceCard';
-import axios from 'axios';
-import { API_ROOT, API_URL } from '@/constant';
-import { toast } from 'react-toastify';
-import { removeFromWishList } from '@/redux/features/wish-list/wishListSlice';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { clearLoginInfo } from '@/redux/features/login/loginSlice';
+"use client";
+import Button from "@/components/button";
+import FormatPrice from "@/components/price-formate";
+import ServiceCard from "@/components/service-card";
+import { API_ROOT, API_URL } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { clearLoginInfo } from "@/redux/features/login/loginSlice";
 import {
-  setWishList,
   clearWishList,
-} from '@/redux/features/wish-list/wishListSlice';
-import { useRouter } from 'next/navigation';
-import { IService } from '@/types/service';
-import axiosInstance from '../../../utils/axiosInstance';
+  removeFromWishList,
+  setWishList,
+} from "@/redux/features/wish-list/wishListSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../utils/axiosInstance";
+import "./page.scss";
 
 function WishlistPage() {
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
@@ -44,9 +43,9 @@ function WishlistPage() {
         if (axios.isAxiosError(error) && error.response?.status === 401) {
           dispatch(clearWishList());
           dispatch(clearLoginInfo());
-          route.push('/login');
+          route.push("/login");
         }
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     }
   };
@@ -63,7 +62,7 @@ function WishlistPage() {
           }
         );
         if (response.status == 200) {
-          toast.success('Item removed successfuly!');
+          toast.success("Item removed successfuly!");
           dispatch(
             removeFromWishList({
               product_id: productID,
@@ -73,7 +72,7 @@ function WishlistPage() {
           getWishListItems();
         }
       } catch (error) {
-        console.error('Error deleting data:', error);
+        console.error("Error deleting data:", error);
       }
     }
   };
@@ -83,14 +82,16 @@ function WishlistPage() {
       const data = await axios.get(`${API_URL}/frontend/keypoints/other`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
-
   useEffect(() => {
+    if (!login?.accessToken) {
+      route.push("/login");
+    }
     getWishListItems();
     fetchService();
-  }, []);
+  }, [login?.accessToken]);
 
   return (
     <main>
@@ -159,14 +160,14 @@ function WishlistPage() {
                   </div>
                   <div className="md:col-span-1 col-span-2">
                     <p className=" font-gotham font-medium text-primary text-xs">
-                      ৳ {item.discount_price}
+                      ৳ {FormatPrice(item.discount_price)}
                     </p>
                   </div>
                   <div className="col-span-2 hidden md:block">
                     <h3 className=" font-gotham font-medium text-sm">
-                      {item.availability == 0 ? 'Instock' : ''}
-                      {item.availability === 1 ? 'Out of stock' : ''}
-                      {item.availability === 2 ? 'Upcomming' : ''}
+                      {item.availability === 1 ? "In Stock" : ""}
+                      {item.availability === 2 ? "Out of stock" : ""}
+                      {item.availability === 3 ? "Up Coming" : ""}
                     </h3>
                   </div>
                   <div className="md:col-span-1 col-span-2">

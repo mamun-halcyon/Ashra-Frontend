@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .heading {
   .mega-arrow {
@@ -38,6 +38,7 @@
           a {
             padding-left: 10px;
             transition: all linear 0.3s;
+            display: block;
           }
 
           &:hover {

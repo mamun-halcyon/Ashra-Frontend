@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Button from "../button";
 import FormatPrice from "../price-formate";
 import TextAreaGroup from "../textarea";
+import "./index.scss";
 
 type IProps = {
   item: any;
@@ -19,7 +20,6 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
   const handleSetMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
-
   const data = {
     customer_id: login?.user.id,
     order_id: item.order_id,
@@ -80,7 +80,7 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
         </td>
         <td className="px-6 py-4">
           {isOpen ? (
-            <form onSubmit={handleRefunds}>
+            <form onSubmit={handleRefunds} className="refund-area">
               <TextAreaGroup
                 title="Message"
                 onChange={handleSetMessage}
