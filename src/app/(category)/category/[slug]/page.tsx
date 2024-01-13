@@ -334,7 +334,7 @@ function Category() {
                       <Image
                         className="w-full h-full transition-all duration-100 hover:scale-[1.01]"
                         src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
-                        width={400}
+                        width={1000}
                         height={300}
                         alt="gazi category-banner"
                       />

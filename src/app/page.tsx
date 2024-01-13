@@ -46,7 +46,7 @@ async function categoryProduct(category_slug: string) {
 }
 async function serviceItems() {
   try {
-    const res = await axios.get(`${API_URL}/frontend/keypoints/home?limit=3`);
+    const res = await axios.get(`${API_URL}/frontend/keypoints/home?limit=4`);
 
     return res.data?.data?.rows;
   } catch (error) {
