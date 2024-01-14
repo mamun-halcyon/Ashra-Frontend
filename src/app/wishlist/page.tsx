@@ -1,24 +1,26 @@
-"use client";
-import Button from "@/components/button";
-import FormatPrice from "@/components/price-formate";
-import ServiceCard from "@/components/service-card";
-import { API_ROOT, API_URL } from "@/constant";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { clearLoginInfo } from "@/redux/features/login/loginSlice";
+'use client';
+import Button from '@/components/button';
+import FormatPrice from '@/components/price-formate';
+import ServiceCard from '@/components/service-card';
+import { API_ROOT, API_URL } from '@/constant';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { clearLoginInfo } from '@/redux/features/login/loginSlice';
 import {
   clearWishList,
   removeFromWishList,
   setWishList,
-} from "@/redux/features/wish-list/wishListSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import axios from "axios";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import axiosInstance from "../../../utils/axiosInstance";
-import "./page.scss";
+} from '@/redux/features/wish-list/wishListSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import axios from 'axios';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { RxCross2 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
+import axiosInstance from '../../../utils/axiosInstance';
+import './page.scss';
+import { GoDotFill } from 'react-icons/go';
+import { IService } from '@/types/service';
 
 function WishlistPage() {
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
@@ -43,9 +45,9 @@ function WishlistPage() {
         if (axios.isAxiosError(error) && error.response?.status === 401) {
           dispatch(clearWishList());
           dispatch(clearLoginInfo());
-          route.push("/login");
+          route.push('/login');
         }
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     }
   };
@@ -62,7 +64,7 @@ function WishlistPage() {
           }
         );
         if (response.status == 200) {
-          toast.success("Item removed successfuly!");
+          toast.success('Item removed successfuly!');
           dispatch(
             removeFromWishList({
               product_id: productID,
@@ -72,7 +74,7 @@ function WishlistPage() {
           getWishListItems();
         }
       } catch (error) {
-        console.error("Error deleting data:", error);
+        console.error('Error deleting data:', error);
       }
     }
   };
@@ -82,12 +84,12 @@ function WishlistPage() {
       const data = await axios.get(`${API_URL}/frontend/keypoints/other`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error("Error fetching product:", error);
+      console.error('Error fetching product:', error);
     }
   };
   useEffect(() => {
     if (!login?.accessToken) {
-      route.push("/login");
+      route.push('/login');
     }
     getWishListItems();
     fetchService();
@@ -103,7 +105,7 @@ function WishlistPage() {
           <div className="cart-elements">
             <div className="grid grid-cols-8 gap-4 product-title">
               <div className=" col-span-4 flex items-center justify-center">
-                {/* <GoDotFill className="dot-icon" /> */}
+                <GoDotFill className="dot-icon" />
                 <div className="w-full">
                   <h3 className="md:ml-[162px] ml-[30px] font-gotham font-medium text-base text-black">
                     Product Name
@@ -111,13 +113,13 @@ function WishlistPage() {
                 </div>
               </div>
               <div className="col-span-1 flex items-center ">
-                {/* <GoDotFill className="dot-icon" /> */}
+                <GoDotFill className="dot-icon" />
                 <h3 className=" font-gotham font-medium text-base text-black text-center">
                   Price
                 </h3>
               </div>
               <div className=" hidden col-span-2 md:flex items-center">
-                {/* <GoDotFill className="dot-icon" /> */}
+                <GoDotFill className="dot-icon" />
                 <h3 className=" font-gotham font-medium text-base text-black text-center">
                   Stock Status
                 </h3>
@@ -165,9 +167,9 @@ function WishlistPage() {
                   </div>
                   <div className="col-span-2 hidden md:block">
                     <h3 className=" font-gotham font-medium text-sm">
-                      {item.availability === 1 ? "In Stock" : ""}
-                      {item.availability === 2 ? "Out of stock" : ""}
-                      {item.availability === 3 ? "Up Coming" : ""}
+                      {item.availability === 1 ? 'In Stock' : ''}
+                      {item.availability === 2 ? 'Out of stock' : ''}
+                      {item.availability === 3 ? 'Up Coming' : ''}
                     </h3>
                   </div>
                   <div className="md:col-span-1 col-span-2">

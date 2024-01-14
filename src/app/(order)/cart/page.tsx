@@ -1,24 +1,25 @@
-"use client";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { MdVerified } from "react-icons/md";
-import { RxCross2 } from "react-icons/rx";
+'use client';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
+import { MdVerified } from 'react-icons/md';
+import { RxCross2 } from 'react-icons/rx';
+import { GoDotFill } from 'react-icons/go';
 
-import Button from "@/components/button";
-import ServiceCard from "@/components/service-card";
-import { API_ROOT, API_URL } from "@/constant";
+import Button from '@/components/button';
+import ServiceCard from '@/components/service-card';
+import { API_ROOT, API_URL } from '@/constant';
 import {
   decrementQuantity,
   incrementQuantity,
   removeFromCart,
-} from "@/redux/features/cart/cartSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { IService } from "@/types/service";
-import axios from "axios";
-import Image from "next/image";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import "./page.scss";
+} from '@/redux/features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { IService } from '@/types/service';
+import axios from 'axios';
+import Image from 'next/image';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import './page.scss';
 
 function Checkout() {
   const dispatch = useAppDispatch();
@@ -36,7 +37,7 @@ function Checkout() {
       const data = await axios.get(`${API_URL}/frontend/keypoints/other`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error("Error fetching product:", error);
+      console.error('Error fetching product:', error);
     }
   };
   useEffect(() => {
@@ -77,25 +78,25 @@ function Checkout() {
                 <div className="cart-elements">
                   <div className="grid grid-cols-8 gap-1 md:gap-4 product-title">
                     <div className=" col-span-4 flex items-center justify-center">
-                      {/* <GoDotFill className="dot-icon" /> */}
+                      <GoDotFill className="dot-icon" />
                       <h3 className=" font-gotham font-medium text-base text-black text-center">
                         Product
                       </h3>
                     </div>
                     <div className="col-span-2 md:col-span-1 flex items-center ">
-                      {/* <GoDotFill className="dot-icon" /> */}
+                      <GoDotFill className="dot-icon" />
                       <h3 className=" font-gotham font-medium text-base text-black text-center">
                         Price
                       </h3>
                     </div>
                     <div className="col-span-2  items-center hidden md:flex">
-                      {/* <GoDotFill className="dot-icon" /> */}
+                      <GoDotFill className="dot-icon" />
                       <h3 className=" font-gotham font-medium text-base text-black text-center">
                         Quantity
                       </h3>
                     </div>
                     <div className="col-span-1 flex items-center">
-                      {/* <GoDotFill className="dot-icon" /> */}
+                      <GoDotFill className="dot-icon" />
                       <h3 className=" font-gotham font-medium text-base text-black text-center">
                         Total
                       </h3>
@@ -216,7 +217,7 @@ function Checkout() {
                       ৳ {sumWithInitial}
                     </p>
                   </div> */}
-                  <Link className=" mt-14 block" href={"/checkout"}>
+                  <Link className=" mt-14 block" href={'/checkout'}>
                     <Button className="w-full font-gotham font-medium text-lg py-1">
                       Continue to Shipping
                     </Button>
