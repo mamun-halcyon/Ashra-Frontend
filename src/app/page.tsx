@@ -70,13 +70,15 @@ export default async function Home({
   searchParams: { q: string };
 }) {
   const homeData: HomeApiResponse = await getData();
-  const gasStoveProducts: IProductResponse = await categoryProduct('gas-stove');
+  const gasStoveProducts: IProductResponse = await categoryProduct(
+    'gasstove-lpg-ng'
+  );
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
-    'kichen-hood'
+    'kitchenhood'
   );
   const services: IService[] = await serviceItems();
   const digitalScaleProducts: IProductResponse = await categoryProduct(
-    'digital-scale'
+    'digitalscale'
   );
   const addBanner = await categoryAdBanner('home');
   const verticalBanner = await categoryAdBanner('home-v');

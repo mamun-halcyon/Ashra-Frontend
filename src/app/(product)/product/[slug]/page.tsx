@@ -615,7 +615,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             </span>
                             Share
                           </OutlineButton>
-                          <SharePopUp />
+                          <SharePopUp
+                            slug={`/product/${product?.product?.slug}`}
+                          />
                         </span>
                       </div>
                     </div>

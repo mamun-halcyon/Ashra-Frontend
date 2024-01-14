@@ -1,23 +1,23 @@
-"use client";
-import { API_ROOT, API_URL } from "@/constant";
-import { HomeApiResponse } from "@/types/home";
-import { IMenu } from "@/types/menu";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { BsEnvelopeFill, BsHeadphones } from "react-icons/bs";
-import { FaLocationDot } from "react-icons/fa6";
-import { PiEnvelopeThin } from "react-icons/pi";
-import { toast } from "react-toastify";
-import "./index.scss";
+'use client';
+import { API_ROOT, API_URL } from '@/constant';
+import { HomeApiResponse } from '@/types/home';
+import { IMenu } from '@/types/menu';
+import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { BsEnvelopeFill, BsHeadphones } from 'react-icons/bs';
+import { FaLocationDot } from 'react-icons/fa6';
+import { PiEnvelopeThin } from 'react-icons/pi';
+import { toast } from 'react-toastify';
+import './index.scss';
 
 type IProps = {
   globalData: HomeApiResponse;
 };
 
 const Footer = ({ globalData }: IProps) => {
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
   const [footerOneData, setFooterOneData] = useState<IMenu[]>([]);
   const [footerTwoData, setFooterTwoData] = useState<IMenu[]>([]);
 
@@ -48,18 +48,18 @@ const Footer = ({ globalData }: IProps) => {
 
   const handleSubscribe = async (e: any) => {
     e.preventDefault();
-    if (email.trim() !== "") {
+    if (email.trim() !== '') {
       try {
         const response = await axios.post(`${API_URL}/subscribes`, {
           email: email,
         });
         if (response?.status === 201) {
-          setEmail("");
-          toast.success("Subscribed Successfuly!");
+          setEmail('');
+          toast.success('Subscribed Successfuly!');
         }
       } catch (error) {
         console.log(error);
-        toast.error("Subscribtion Error!");
+        toast.error('Subscribtion Error!');
       }
     }
   };
@@ -138,7 +138,7 @@ const Footer = ({ globalData }: IProps) => {
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
-                        {" "}
+                        {' '}
                         {item.name}
                       </Link>
                     </li>
@@ -238,11 +238,14 @@ const Footer = ({ globalData }: IProps) => {
                 className="px-3 py-2 border-b-2  focus:ring-0 focus:border-blue-500 outline-none placeholder:font-gotham  placeholder:font-light placeholder:text-sm"
                 placeholder="Enter your email..."
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <span className=" absolute top-[50%] translate-y-[-50%] right-0">
-                <PiEnvelopeThin className="subscribe-icon w-5 h-5" />
-              </span>
+              <button type="submit">
+                <span className=" absolute top-[50%] translate-y-[-50%] right-0">
+                  <PiEnvelopeThin className="subscribe-icon w-5 h-5" />
+                </span>
+              </button>
             </form>
           </div>
         </div>
@@ -258,7 +261,7 @@ const Footer = ({ globalData }: IProps) => {
             <div className="w-[60%] md:w-auto">
               <Image
                 className=" md:h-6 bottom-image "
-                src={"/assets/images/footer/payment.png"}
+                src={'/assets/images/footer/payment.png'}
                 width={400}
                 height={50}
                 alt="payment"
