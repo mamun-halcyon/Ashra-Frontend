@@ -77,9 +77,9 @@ function Category() {
     }
   };
 
-  const handlePriceChange = (newValue: [number, number]) => {
+  /*  const handlePriceChange = (newValue: [number, number]) => {
     setPriceRange(newValue);
-  };
+  }; */
 
   const handleMinPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPrice = parseFloat(e.target.value);
@@ -306,10 +306,12 @@ function Category() {
                     trackClassName="example-track"
                     value={priceRange}
                     min={0}
-                    max={50000}
+                    max={200000}
                     step={1} // Adjust step size as needed
                     minDistance={500}
-                    onChange={handlePriceChange}
+                    onChange={(newValue) => {
+                      setPriceRange(newValue as [number, number]);
+                    }}
                   />
                 </div>
                 <div className="flex w-full justify-between mt-2">
