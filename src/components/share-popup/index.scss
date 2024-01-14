@@ -1,25 +1,19 @@
 @import '../../styles/index.scss';
 
 .share-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
   background: $white-color;
   z-index: 5;
-  min-height: 100px;
+  padding: 5px 7px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  margin-top: 10px;
+  position: absolute;
   .media {
-    height: 40px;
-    width: 40px;
     margin-right: 5px;
     border-radius: 50%;
-    border: 1px solid $border-color;
+    // border: 1px solid $border-color;
     display: flex;
     justify-content: center;
     align-items: center;
