@@ -1,20 +1,21 @@
-"use client";
-import Button from "@/components/button";
-import StarRating from "@/components/rating";
-import Image from "next/image";
-import { useState } from "react";
-import { RxCrossCircled } from "react-icons/rx";
-import "./page.scss";
+'use client';
+import Button from '@/components/button';
+import StarRating from '@/components/rating';
+import Image from 'next/image';
+import { useState } from 'react';
+import { RxCrossCircled } from 'react-icons/rx';
+import './page.scss';
 // import ToggleButton from '@/components/status-button';
-import { API_ROOT } from "@/constant";
-import { addToCart } from "@/redux/features/cart/cartSlice";
+import { API_ROOT } from '@/constant';
+import { addToCart } from '@/redux/features/cart/cartSlice';
 import {
   clearCompare,
   removeFromCompare,
-} from "@/redux/features/compare/compareSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { ICartItem } from "@/types/cart";
-import { useRouter } from "next/navigation";
+} from '@/redux/features/compare/compareSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { ICartItem } from '@/types/cart';
+import { useRouter } from 'next/navigation';
+import FormatPrice from '@/components/price-formate';
 
 function Compare() {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ function Compare() {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
   return (
     <section className="compare">
@@ -47,14 +48,14 @@ function Compare() {
           </div>
           <Button
             onClick={handleClearCompare}
-            className=" font-gotham font-medium text-sm px-4 py-1"
+            className=" font-gotham font-medium text-sm px-4 py-1 compare-button"
           >
             Clear All
           </Button>
         </div>
 
         <div className=" overflow-x-scroll md:overflow-x-auto">
-          <table className="w-full text-sm text-left compare-table">
+          <table className="w-full text-sm text-left compare-table md:table-fixed">
             <thead>
               <tr className="heading">
                 <th
@@ -126,15 +127,22 @@ function Compare() {
                         />
                       </div>
                       <p className=" font-gotham font-normal text-xs line-through">
+                        ৳ {FormatPrice(item.regular_price)}
+                      </p>
+                      {/*  {
+                        item.regular_price > item.price && <p className=" font-gotham font-normal text-xs line-through">
                         ৳ {item.regular_price}
                       </p>
+                      } */}
                       <div className="flex justify-between mt-2">
                         <h3 className=" font-gotham font-bold text-sm">
-                          ৳ {item.price}
+                          ৳ {FormatPrice(item.price)}
                         </h3>
-                        <Button className="px-2 font-gotham font-light text-xs">
-                          Save ৳ {item.regular_price - item.price}
-                        </Button>
+                        {item.regular_price > item.price && (
+                          <Button className="px-2 font-gotham font-light text-xs">
+                            Save ৳ {item.regular_price - item.price}
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </td>

@@ -3,6 +3,18 @@
   padding-top: 60px;
   padding-bottom: 80px;
 
+  .compare-button {
+    background: transparent;
+    color: #000;
+    border: 1px solid $primary-color;
+    transition: all linear 0.3s;
+
+    &:hover {
+      background: $primary-color;
+      color: $white-color;
+    }
+  }
+
   .compare-table {
     .heading {
       background: $secondary-color;
