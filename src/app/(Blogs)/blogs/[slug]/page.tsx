@@ -1,4 +1,4 @@
-import BlogSideCard from '@/components/blog-side-card';
+import dynamic from 'next/dynamic';
 import Button from '@/components/button';
 import { formatDate } from '@/components/dateformate';
 import FormGroup from '@/components/fromgroup';
@@ -11,6 +11,7 @@ import { AiOutlineTwitter } from 'react-icons/ai';
 import { BiLogoFacebook, BiLogoLinkedin } from 'react-icons/bi';
 import { FiInstagram } from 'react-icons/fi';
 import './page.scss';
+const BlogSideCard = dynamic(import('@/components/blog-side-card'));
 
 type Props = {
   params: {

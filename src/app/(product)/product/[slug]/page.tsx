@@ -424,7 +424,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </div>
                       )}
                     </div>
-                    <div className="emi">
+                    <div className="e-emi">
                       <h3 className=" font-gotham font-medium text-sm text-primary py-3 cursor-pointer">
                         <span
                           className="cursor-point"

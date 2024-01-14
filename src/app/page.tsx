@@ -1,5 +1,4 @@
 import Banner from '@/components/banner';
-import ServiceCard from '@/components/service-card';
 import { API_ROOT, API_URL } from '@/constant';
 import { HomeApiResponse } from '@/types/home';
 import { IProduct, IProductResponse } from '@/types/product';
@@ -10,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsArrowRightShort } from 'react-icons/bs';
 import './page.scss';
+const ServiceCard = dynamic(() => import('@/components/service-card'));
 const Featured = dynamic(() => import('@/components/featured'));
 const ExploreCard = dynamic(() => import('@/components/explore'));
 const ProductCard = dynamic(() => import('@/components/card'));
