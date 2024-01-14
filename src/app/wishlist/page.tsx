@@ -106,11 +106,9 @@ function WishlistPage() {
             <div className="grid grid-cols-8 gap-4 product-title">
               <div className=" col-span-4 flex items-center justify-center">
                 <GoDotFill className="dot-icon" />
-                <div className="w-full">
-                  <h3 className="md:ml-[162px] ml-[30px] font-gotham font-medium text-base text-black">
-                    Product Name
-                  </h3>
-                </div>
+                <h3 className="w1/2 font-gotham font-medium text-base text-black">
+                  Product Name
+                </h3>
               </div>
               <div className="col-span-1 flex items-center ">
                 <GoDotFill className="dot-icon" />

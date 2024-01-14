@@ -1,24 +1,24 @@
-import Banner from "@/components/banner";
-import ServiceCard from "@/components/service-card";
-import { API_ROOT, API_URL } from "@/constant";
-import { HomeApiResponse } from "@/types/home";
-import { IProduct, IProductResponse } from "@/types/product";
-import { IService } from "@/types/service";
-import axios from "axios";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Link from "next/link";
-import { BsArrowRightShort } from "react-icons/bs";
-import "./page.scss";
-const Featured = dynamic(() => import("@/components/featured"));
-const ExploreCard = dynamic(() => import("@/components/explore"));
-const ProductCard = dynamic(() => import("@/components/card"));
-const Title = dynamic(() => import("@/components/title"));
-const VideoCard = dynamic(() => import("@/components/video-card"));
+import Banner from '@/components/banner';
+import ServiceCard from '@/components/service-card';
+import { API_ROOT, API_URL } from '@/constant';
+import { HomeApiResponse } from '@/types/home';
+import { IProduct, IProductResponse } from '@/types/product';
+import { IService } from '@/types/service';
+import axios from 'axios';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
+import { BsArrowRightShort } from 'react-icons/bs';
+import './page.scss';
+const Featured = dynamic(() => import('@/components/featured'));
+const ExploreCard = dynamic(() => import('@/components/explore'));
+const ProductCard = dynamic(() => import('@/components/card'));
+const Title = dynamic(() => import('@/components/title'));
+const VideoCard = dynamic(() => import('@/components/video-card'));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    cache: "no-store",
+    cache: 'no-store',
   });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
@@ -35,7 +35,7 @@ async function categoryProduct(category_slug: string) {
   const res = await fetch(
     `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`,
     {
-      cache: "no-store",
+      cache: 'no-store',
     }
   );
   /* if (!res.ok) {
@@ -55,7 +55,7 @@ async function serviceItems() {
 }
 async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
-    cache: "no-store",
+    cache: 'no-store',
   });
 
   /* if (!res.ok) {
@@ -70,16 +70,16 @@ export default async function Home({
   searchParams: { q: string };
 }) {
   const homeData: HomeApiResponse = await getData();
-  const gasStoveProducts: IProductResponse = await categoryProduct("gas-stove");
+  const gasStoveProducts: IProductResponse = await categoryProduct('gas-stove');
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
-    "kichen-hood"
+    'kichen-hood'
   );
   const services: IService[] = await serviceItems();
   const digitalScaleProducts: IProductResponse = await categoryProduct(
-    "digital-scale"
+    'digital-scale'
   );
-  const addBanner = await categoryAdBanner("home");
-  const verticalBanner = await categoryAdBanner("home-v");
+  const addBanner = await categoryAdBanner('home');
+  const verticalBanner = await categoryAdBanner('home-v');
 
   return (
     <>
@@ -91,7 +91,7 @@ export default async function Home({
         <section className="service">
           <div className="container px-2 md:px-0">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {services.map((service, i) => (
+              {services?.map((service, i) => (
                 <ServiceCard key={i} service={service} />
               ))}
             </div>
@@ -229,9 +229,9 @@ export default async function Home({
           <div className="text-center mt-7">
             <Link
               className=" font-gotham font-normal text-sm  more-btn"
-              href={"/videos"}
+              href={'/videos'}
             >
-              More Videos{" "}
+              More Videos{' '}
               <BsArrowRightShort className="inline text-xl font-bold" />
             </Link>
           </div>
