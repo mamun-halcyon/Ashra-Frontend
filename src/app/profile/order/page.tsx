@@ -8,8 +8,7 @@ import { useEffect, useState } from 'react';
 import SingleOrder from '@/components/single-order';
 import { FaBars } from 'react-icons/fa6';
 import axiosInstance from '../../../../utils/axiosInstance';
-import { FaLongArrowAltLeft } from 'react-icons/fa';
-import { FaArrowRightLong } from 'react-icons/fa6';
+import ProfilePagination from '@/components/profile-pagination';
 
 const OrderHistory = () => {
   const route = useRouter();
@@ -17,6 +16,9 @@ const OrderHistory = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [allOrders, setAllOrders] = useState<any[]>([]);
   const [page, setPage] = useState(1);
+
+  const decrementPage = () => setPage(page > 1 ? page - 1 : 1);
+  const incrementPage = () => setPage(page + 1);
 
   useEffect(() => {
     if (login?.accessToken) {
@@ -117,22 +119,16 @@ const OrderHistory = () => {
                     </tbody>
                   </table>
                 </div>
-                <div className="mt-5">
-                  <div className="flex justify-between">
-                    <p
-                      className=" cursor-pointer"
-                      onClick={() => setPage(page > 1 ? page - 1 : 1)}
-                    >
-                      <FaLongArrowAltLeft />
-                    </p>
-                    <p
-                      className=" cursor-pointer"
-                      onClick={() => setPage(page + 1)}
-                    >
-                      <FaArrowRightLong />
-                    </p>
+                {allOrders.length > 10 && (
+                  <div className="mt-5">
+                    <ProfilePagination
+                      incrementPage={incrementPage}
+                      decrementPage={decrementPage}
+                      currentPage={page}
+                      totalPage={3}
+                    />
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

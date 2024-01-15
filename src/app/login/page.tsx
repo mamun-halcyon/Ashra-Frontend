@@ -1,33 +1,33 @@
-"use client";
-import Button from "@/components/button";
-import FormGroup from "@/components/fromgroup";
-import { API_URL } from "@/constant";
-import { saveLoginInfo } from "@/redux/features/login/loginSlice";
-import { setWishList } from "@/redux/features/wish-list/wishListSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import Axios from "axios";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { RiArrowDropRightLine } from "react-icons/ri";
-import { toast } from "react-toastify";
-import axiosInstance from "../../../utils/axiosInstance";
-import axios from "../../lib/axios";
-import "./page.scss";
+'use client';
+import Button from '@/components/button';
+import FormGroup from '@/components/fromgroup';
+import { API_URL } from '@/constant';
+import { saveLoginInfo } from '@/redux/features/login/loginSlice';
+import { setWishList } from '@/redux/features/wish-list/wishListSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import Axios from 'axios';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { RiArrowDropRightLine } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import axiosInstance from '../../../utils/axiosInstance';
+import axios from '../../lib/axios';
+import './page.scss';
 
 function Login() {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (login?.accessToken) {
-      route.push("/profile");
+      route.push('/profile');
     } else {
       setIsLoggedIn(false);
     }
@@ -49,7 +49,7 @@ function Login() {
           dispatch(setWishList(response?.data));
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     }
   };
@@ -58,18 +58,18 @@ function Login() {
     e.preventDefault();
     try {
       const response: any = await axios.post(`${API_URL}/auths/login`, {
-        user_name: email,
+        user_name: email.startsWith('+88') ? email.split('+88')[1] : email,
         password: password,
       });
       dispatch(saveLoginInfo(response.data));
-      toast.success("Login Successful!");
+      toast.success('Login Successful!');
 
-      router.push("/profile");
+      router.push('/profile');
     } catch (error) {
       if (Axios.isAxiosError(error)) {
         setError(error?.response?.data?.message);
       }
-      console.error("Login error:", error);
+      console.error('Login error:', error);
     }
   };
 
@@ -80,9 +80,9 @@ function Login() {
           <section className=" hidden md:block">
             <div className="container">
               <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                <Link href={"/"}>Home</Link>
+                <Link href={'/'}>Home</Link>
                 <RiArrowDropRightLine className=" text-xl" />
-                <Link href={"/login"}> Login </Link>
+                <Link href={'/login'}> Login </Link>
               </div>
             </div>
           </section>
@@ -122,7 +122,7 @@ function Login() {
                   <div>
                     <Link
                       className="font-gotham font-normal text-sm text-black hover:text-primary"
-                      href={"/password/reset"}
+                      href={'/password/reset'}
                     >
                       Forget Password?
                     </Link>
@@ -138,7 +138,7 @@ function Login() {
               </h3>
               <Link
                 className="w-full inline-block text-center py-1 mt-3 register-outline  font-gotham font-normal text-base"
-                href={"/register"}
+                href={'/register'}
               >
                 Register Now
               </Link>

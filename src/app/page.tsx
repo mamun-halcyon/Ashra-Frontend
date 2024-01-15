@@ -141,7 +141,7 @@ export default async function Home({
             <div className="mb-12">
               <Title
                 title="Gas Stove"
-                href="/category/filter?category=gas-stove"
+                href="/category/filter?category=gasstove-lpg-ng"
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {gasStoveProducts?.data?.rows.map(
@@ -164,7 +164,7 @@ export default async function Home({
             <div className="mb-12">
               <Title
                 title="Kitchen Hood"
-                href="/category/filter?category=kitchen-hood"
+                href="/category/filter?category=kitchenhood"
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {kitchenHoodProducts?.data?.rows.map((product, i) => (
@@ -185,7 +185,7 @@ export default async function Home({
             <div>
               <Title
                 title="Digital Scale"
-                href="/category/filter?category=digital-scale"
+                href="/category/filter?category=digitalscale"
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {digitalScaleProducts?.data?.rows.map((product, i) => (

@@ -1,34 +1,37 @@
-"use client";
-import Button from "@/components/button";
-import FormGroup from "@/components/fromgroup";
-import ProfileSidebar from "@/components/profile-sidebar";
-import { useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa6";
-import { toast } from "react-toastify";
-import axiosInstance from "../../../../utils/axiosInstance";
-import "../page.scss";
-import "./page.scss";
+'use client';
+import Button from '@/components/button';
+import FormGroup from '@/components/fromgroup';
+import ProfileSidebar from '@/components/profile-sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { FaBars } from 'react-icons/fa6';
+import { toast } from 'react-toastify';
+import axiosInstance from '../../../../utils/axiosInstance';
+import '../page.scss';
+import './page.scss';
+import { AxiosError } from 'axios';
 
 const UpdateProfile = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [name, setName] = useState<string>("");
-  const [mobile, setMobile] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState<string>('');
+  const [mobile, setMobile] = useState<string>('');
+  const [city, setCity] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+  const [email, setEmail] = useState('');
   const [image, setImage] = useState<File | null>(null);
+  const [errors, setErrors] = useState<any>({});
+  console.log(errors);
 
   useEffect(() => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -42,15 +45,19 @@ const UpdateProfile = () => {
       try {
         const formData = new FormData();
 
-        formData.append("name", name);
-        formData.append("mobile", mobile);
-        formData.append("city", city);
-        formData.append("password", password);
-        formData.append("address", address);
+        formData.append('name', name);
+        formData.append(
+          'mobile',
+          mobile.startsWith('+88') ? mobile.split('+88')[1] : mobile
+        );
+        formData.append('city', city);
+        formData.append('password', password);
+        formData.append('address', address);
+        formData.append('email', email);
         if (image) {
-          formData.append("image", image);
+          formData.append('image', image);
         }
-        formData.append("upload_preset", "w8omhp4w");
+        formData.append('upload_preset', 'w8omhp4w');
 
         const response = await axiosInstance.patch(
           `/users/${login?.user?.id}`,
@@ -62,12 +69,14 @@ const UpdateProfile = () => {
           }
         );
         if (response?.status === 200) {
-          toast.success("Profile Updated Successful!");
-          route.push("/profile");
+          toast.success('Profile Updated Successful!');
+          route.push('/profile');
         }
       } catch (error) {
-        console.log(error);
-        toast.error("Profile Update Error!");
+        if (error instanceof AxiosError) {
+          setErrors(error.response?.data?.errors);
+        }
+        // toast.error('Profile Update Error!');
       }
     }
   };
@@ -100,32 +109,58 @@ const UpdateProfile = () => {
                 <div className="main-area p-4">
                   <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-2 gap-4">
-                      <FormGroup
-                        title="Your Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                      <FormGroup
-                        title="Mobile Number"
-                        value={mobile}
-                        onChange={(e) => setMobile(e.target.value)}
-                      />
-                      <FormGroup
-                        title="Photo"
-                        type="file"
-                        onChange={(e: any) => setImage(e.target.files[0])}
-                      />
-                      <FormGroup
-                        title="City"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                      />
-                      <FormGroup
-                        title="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email"
-                      />
+                      <div>
+                        <FormGroup
+                          title="Your Name"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                        <p className=" font-gotham text-xs warning pt-1">
+                          {errors.name}
+                        </p>
+                      </div>
+                      <div>
+                        <FormGroup
+                          title="Mobile Number"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
+                        />
+                        <p className=" font-gotham text-xs warning pt-1">
+                          {errors.mobile}
+                        </p>
+                      </div>
+                      <div>
+                        <FormGroup
+                          title="Photo"
+                          type="file"
+                          onChange={(e: any) => setImage(e.target.files[0])}
+                        />
+                        <p className=" font-gotham text-xs warning pt-1">
+                          {errors.image}
+                        </p>
+                      </div>
+                      <div>
+                        <FormGroup
+                          title="City"
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
+                        />
+                        <p className=" font-gotham text-xs warning pt-1">
+                          {errors.city}
+                        </p>
+                      </div>
+                      <div>
+                        <FormGroup
+                          title="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Email"
+                        />
+                        <p className=" font-gotham text-xs warning pt-1">
+                          {errors.email}
+                        </p>
+                      </div>
+
                       <FormGroup
                         title="Address"
                         value={address}

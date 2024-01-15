@@ -11,6 +11,7 @@ import { RiPhoneCameraLine } from 'react-icons/ri';
 import { GrUserSettings } from 'react-icons/gr';
 import './index.scss';
 import { useAppSelector } from '@/redux/hooks';
+import { API_ROOT } from '@/constant';
 
 const ProfileSidebar = () => {
   const { login } = useAppSelector((state) => state.login);
@@ -18,14 +19,24 @@ const ProfileSidebar = () => {
     <div className=" md:col-span-3 shadow pb-6 absolute md:static  bg-white">
       <div className="relative profile-top">
         <div className="bg-primary h-28">
-          <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%]">
-            <Image
-              className="w-full"
-              src={'/assets/images/icon/profile.png'}
-              width={80}
-              height={80}
-              alt="profile"
-            />
+          <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%] overflow-hidden">
+            {login?.user?.image ? (
+              <Image
+                className="w-full"
+                src={`${API_ROOT}/images/user/${login.user.image}`}
+                width={80}
+                height={80}
+                alt="profile"
+              />
+            ) : (
+              <Image
+                className="w-full"
+                src={'/assets/images/icon/profile.png'}
+                width={80}
+                height={80}
+                alt="profile"
+              />
+            )}
           </div>
         </div>
       </div>
