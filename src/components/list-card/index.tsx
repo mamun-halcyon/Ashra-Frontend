@@ -1,22 +1,22 @@
-"use client";
-import { API_ROOT } from "@/constant";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { addToCompare } from "@/redux/features/compare/compareSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { ICartItem } from "@/types/cart";
-import { ICompareItem } from "@/types/compare";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
-import { BsArrowRepeat, BsHeart } from "react-icons/bs";
-import { toast } from "react-toastify";
-import Button from "../button";
-import EmiPopup from "../emi-popup";
-import FormatPrice from "../price-formate";
-import StarRating from "../rating";
-import "./index.scss";
+'use client';
+import { API_ROOT } from '@/constant';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { addToCompare } from '@/redux/features/compare/compareSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { ICartItem } from '@/types/cart';
+import { ICompareItem } from '@/types/compare';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { FC, useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { BsArrowRepeat, BsHeart } from 'react-icons/bs';
+import { toast } from 'react-toastify';
+import Button from '../button';
+import EmiPopup from '../emi-popup';
+import FormatPrice from '../price-formate';
+import StarRating from '../rating';
+import './index.scss';
 
 interface IProps {
   product: any;
@@ -32,14 +32,16 @@ const ListCard: FC<IProps> = ({ product }) => {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error("Maximum items exits");
+      toast.error(
+        'You already have added 4 products in your compare list. Please remove one of them from compare page to add a new one.'
+      );
     }
   };
 
@@ -113,13 +115,14 @@ const ListCard: FC<IProps> = ({ product }) => {
             onClick={() =>
               addCompare({
                 product_id: product.id,
-                description: product.sort_description ?? "",
+                description: product.sort_description ?? '',
                 image: product.image,
                 title: product.title,
                 regular_price: Number(product.regular_price),
                 price: Number(product.discount_price),
                 quantity: 1,
                 rating: 5,
+                availability: product.availability,
               })
             }
           >
@@ -164,20 +167,20 @@ const ListCard: FC<IProps> = ({ product }) => {
       </div>
       <div className="image w-[30%] relative">
         <h3 className="font-gotham font-medium stock pb-1 mb-4">
-          {" "}
+          {' '}
           {product.availability === 1
-            ? "In Stock"
+            ? 'In Stock'
             : product.availability === 2
-            ? "Out of Stock"
+            ? 'Out of Stock'
             : product.availability === 3
-            ? "Upcoming"
-            : "Unknown Availability"}
+            ? 'Upcoming'
+            : 'Not Available'}
         </h3>
         <h4
           className={` font-gotham  ${
             Number(product.discount_price) > 0
-              ? "text-xs line-through font-normal"
-              : "font-medium text-base"
+              ? 'text-xs line-through font-normal'
+              : 'font-medium text-base'
           } text-black`}
         >
           ৳ {FormatPrice(product.regular_price)}
@@ -191,7 +194,7 @@ const ListCard: FC<IProps> = ({ product }) => {
               </h3>
             )}
           <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] save-text save-money">
-            Save ৳{" "}
+            Save ৳{' '}
             {Number(product.regular_price) - Number(product.discount_price)}
           </span>
         </div>
@@ -220,7 +223,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             Up Coming
           </Button>
         ) : (
-          "Unknown Stock"
+          'Not Available'
         )}
       </div>
       {isEmi && (

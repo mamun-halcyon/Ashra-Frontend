@@ -139,7 +139,7 @@ function Compare() {
                           ৳ {FormatPrice(item.price)}
                         </h3>
                         {item.regular_price > item.price && (
-                          <span className="px-2 font-gotham font-light text-xs discount">
+                          <span className="px-2 py-1 font-gotham font-light text-xs discount">
                             Save ৳ {item.regular_price - item.price}
                           </span>
                         )}
@@ -202,21 +202,31 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <div className="text-center px-4">
-                      <Button
-                        className="w-full py-1 font-gotham font-normal text-normal"
-                        onClick={() =>
-                          handleBuyNow({
-                            title: item.title,
-                            quantity: item.quantity,
-                            price: item.price,
-                            product_id: item.product_id,
-                            image: item.image,
-                            regular_price: item.regular_price,
-                          })
-                        }
-                      >
-                        Buy Now
-                      </Button>
+                      {item.availability === 1 ? (
+                        <Button
+                          className="w-full py-1 font-gotham font-normal text-normal"
+                          onClick={() =>
+                            handleBuyNow({
+                              title: item.title,
+                              quantity: item.quantity,
+                              price: item.price,
+                              product_id: item.product_id,
+                              image: item.image,
+                              regular_price: item.regular_price,
+                            })
+                          }
+                        >
+                          Buy Now
+                        </Button>
+                      ) : item.availability === 2 ? (
+                        <Button className="w-full py-1 font-gotham font-normal text-normal">
+                          Out of Stock
+                        </Button>
+                      ) : (
+                        <Button className="w-full py-1 font-gotham font-normal text-normal">
+                          Up Coming
+                        </Button>
+                      )}
                     </div>
                   </td>
                 ))}

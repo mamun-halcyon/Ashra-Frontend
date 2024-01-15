@@ -98,7 +98,14 @@
     }
   }
 }
-
+.related-products {
+  .product-card {
+    border-right: 1px solid $border-color;
+  }
+  &:last-child {
+    border-color: transparent;
+  }
+}
 .more-details {
   border-bottom: 1px solid #ececec;
   overflow-x: hidden;

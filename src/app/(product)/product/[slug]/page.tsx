@@ -76,7 +76,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [isEmi, setIsEmi] = useState(false);
   const [number, setNumber] = useState<string>('');
   const [question, setQuestion] = useState<string>('');
-  const [variant, setVariant] = useState<string>('');
+  // const [variant, setVariant] = useState<string>('');
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
 
@@ -270,7 +270,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error('Maximum items exits');
+      toast.error(
+        'You already have added 4 products in your compare list. Please remove one of them from compare page to add a new one.'
+      );
     }
   };
 
@@ -596,6 +598,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 price: Number(product?.product?.discount_price),
                                 quantity: 1,
                                 rating: 5,
+                                availability: product.product
+                                  .availability as number,
                               })
                             );
                           }}

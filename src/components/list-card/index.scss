@@ -1,4 +1,4 @@
-@import "../../styles/index.scss";
+@import '../../styles/index.scss';
 
 .list-card {
   border-bottom: 1px solid #e2e2e2;
@@ -70,9 +70,9 @@
     }
   }
   .stock-out {
-    background: #6c757d;
+    background: #92989d;
     &:hover {
-      background: #6c757d;
+      background: #92989d;
     }
   }
 }

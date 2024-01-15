@@ -7,4 +7,5 @@ export interface ICompareItem {
   quantity: number;
   description: string;
   rating: number;
+  availability?: number;
 }

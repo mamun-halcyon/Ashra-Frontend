@@ -1,21 +1,21 @@
-"use client";
-import { API_ROOT } from "@/constant";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { addToCompare } from "@/redux/features/compare/compareSlice";
-import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { ICartItem } from "@/types/cart";
-import { ICompareItem } from "@/types/compare";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { AiOutlineHeart } from "react-icons/ai";
-import { BsArrowRepeat } from "react-icons/bs";
-import { toast } from "react-toastify";
-import axiosInstance from "../../../utils/axiosInstance";
-import Button from "../button";
-import FormatPrice from "../price-formate";
-import "./index.scss";
+'use client';
+import { API_ROOT } from '@/constant';
+import { addToCart } from '@/redux/features/cart/cartSlice';
+import { addToCompare } from '@/redux/features/compare/compareSlice';
+import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { ICartItem } from '@/types/cart';
+import { ICompareItem } from '@/types/compare';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { BsArrowRepeat } from 'react-icons/bs';
+import { toast } from 'react-toastify';
+import axiosInstance from '../../../utils/axiosInstance';
+import Button from '../button';
+import FormatPrice from '../price-formate';
+import './index.scss';
 
 interface IProps {
   product_id: number;
@@ -46,14 +46,16 @@ const ProductCard: React.FC<IProps> = ({
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push("/cart");
+    router.push('/cart');
   };
 
   const addCompare = (data: ICompareItem) => {
     if (compareItems.length < 4) {
       dispatch(addToCompare(data));
     } else {
-      toast.error("Maximum items exits");
+      toast.error(
+        'You already have added 4 products in your compare list. Please remove one of them from compare page to add a new one.'
+      );
     }
   };
 
@@ -80,13 +82,13 @@ const ProductCard: React.FC<IProps> = ({
             })
           );
         } else {
-          console.log("Status : ", response.status);
+          console.log('Status : ', response.status);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      router.push("/login");
+      router.push('/login');
     }
   };
 
@@ -118,8 +120,8 @@ const ProductCard: React.FC<IProps> = ({
             <span
               className={`mr-3 font-gotham ${
                 Number(discount_price) > 0
-                  ? "line-through font-normal "
-                  : "font-bold"
+                  ? 'line-through font-normal '
+                  : 'font-bold'
               } text-sm`}
             >
               ৳ {FormatPrice(regular_price)}
@@ -216,13 +218,14 @@ const ProductCard: React.FC<IProps> = ({
           onClick={() =>
             addCompare({
               product_id,
-              description: sort_description ?? "",
+              description: sort_description ?? '',
               image,
               title,
               regular_price: Number(regular_price),
               price: Number(discount_price),
               quantity: 1,
               rating: 5,
+              availability: availability,
             })
           }
         >

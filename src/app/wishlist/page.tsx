@@ -172,23 +172,33 @@ function WishlistPage() {
                   </div>
                   <div className="md:col-span-1 col-span-2">
                     <div>
-                      <Button
-                        className="px-6 py-1 font-gotham font-medium text-sm w-btn"
-                        onClick={() =>
-                          dispatch(
-                            addToCart({
-                              product_id: Number(item.id),
-                              price: item.discount_price,
-                              title: item.title,
-                              image: item.image,
-                              quantity: 1,
-                              regular_price: item.regular_price,
-                            })
-                          )
-                        }
-                      >
-                        Add to Cart
-                      </Button>
+                      {item.availability === 1 ? (
+                        <Button
+                          className="px-6 py-1 font-gotham font-medium text-sm w-btn"
+                          onClick={() =>
+                            dispatch(
+                              addToCart({
+                                product_id: Number(item.id),
+                                price: item.discount_price,
+                                title: item.title,
+                                image: item.image,
+                                quantity: 1,
+                                regular_price: item.regular_price,
+                              })
+                            )
+                          }
+                        >
+                          Add to Cart
+                        </Button>
+                      ) : item.availability === 2 ? (
+                        <Button className="px-4 py-1 font-gotham font-medium text-sm w-btn">
+                          Out of Stock
+                        </Button>
+                      ) : (
+                        <Button className="px-6 py-1 font-gotham font-medium text-sm w-btn">
+                          Up Coming
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
