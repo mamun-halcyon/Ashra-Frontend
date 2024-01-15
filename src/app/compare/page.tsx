@@ -119,7 +119,7 @@ function Compare() {
                       </h3> */}
                       <div className=" bg-white">
                         <Image
-                          className=" w-3/4 h-[200px] mx-auto my-3"
+                          className=" w-3/4 h-[200px] mx-auto my-3 object-contain"
                           src={`${API_ROOT}/images/product/${item.image}`}
                           width={150}
                           height={150}
@@ -139,9 +139,9 @@ function Compare() {
                           ৳ {FormatPrice(item.price)}
                         </h3>
                         {item.regular_price > item.price && (
-                          <Button className="px-2 font-gotham font-light text-xs">
+                          <span className="px-2 font-gotham font-light text-xs discount">
                             Save ৳ {item.regular_price - item.price}
-                          </Button>
+                          </span>
                         )}
                       </div>
                     </div>

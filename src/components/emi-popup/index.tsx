@@ -4,6 +4,7 @@ import './index.scss';
 import axios from 'axios';
 import { API_URL } from '@/constant';
 import { RxCross2 } from 'react-icons/rx';
+import FormGroup from '../fromgroup';
 
 type IProps = {
   handleEmi: () => void;
@@ -13,6 +14,7 @@ type IProps = {
 const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
   const [emi, setEmi] = useState<null | number | string>(null);
   const [emiData, setEmiData] = useState<IEmi>({} as IEmi);
+  const [search, setSearch] = useState('');
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
   useEffect(() => {
     const fetchBank = async () => {
       try {
-        const data = await axios.get(`${API_URL}/emis`);
+        const data = await axios.get(`${API_URL}/emis?bank_name=${search}`);
         setBankList(data.data);
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -39,20 +41,37 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
     };
 
     fetchBank();
-  }, []);
+  }, [search]);
+
   return (
     <div className="emi-popup">
       <div className="text-right">
-        <div
+        {/*  <div
           className="  text-white bg-black inline-block p-2 mr-3 mt-3 cursor-pointer"
           onClick={handleEmi}
         >
           <RxCross2 />
-        </div>
+        </div> */}
       </div>
-      <div className="main-wrapper">
+      <div className="main-wrapper flex-wrap">
+        <div className="w-full ">
+          <div className="emi-header flex justify-between">
+            <div>
+              <h3 className=" font-gotham text-sm">BANK EMI</h3>
+            </div>
+            <div
+              className="  inline-block p-2  cursor-pointer"
+              onClick={handleEmi}
+            >
+              <RxCross2 />
+            </div>
+          </div>
+        </div>
         <div className="grid w-full grid-cols-7 gap-4">
-          <div className="md:col-span-2 col-span-7  md:h-[400px]  h-[150px] overflow-y-scroll border-color">
+          <div className="md:col-span-2 col-span-7  md:h-[400px]  h-[150px] overflow-y-scroll border border-color">
+            <div className="px-1">
+              <FormGroup placeholder="Search Bank" />
+            </div>
             <ul>
               <li
                 onClick={() => setEmi(null)}

@@ -10,7 +10,7 @@
   background: rgba(0, 0, 0, 0.243);
   .main-wrapper {
     width: 75%;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 30px;
     height: 85%;
     background: #fff;
@@ -20,6 +20,9 @@
   }
   .border-color {
     border-color: $border-color;
+  }
+  .emi-header {
+    border-bottom: 1px solid $border-color;
   }
 }
 
