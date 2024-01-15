@@ -442,7 +442,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               {attributes?.map((attr, i) => {
                                 return (
                                   <div key={i} className="flex items-center">
-                                    <div className=" font-gotham text-sm mr-2">
+                                    <div className=" font-gotham font-normal text-xs mr-2">
                                       {attr?.name} :{' '}
                                     </div>
                                     <div className="flex">

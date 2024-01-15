@@ -1,3 +1,5 @@
+@import '../../styles/index.scss';
+
 .emi-popup {
   position: fixed;
   top: 0;
@@ -15,6 +17,9 @@
     z-index: 10;
     display: flex;
     justify-content: center;
+  }
+  .border-color {
+    border-color: $border-color;
   }
 }
 
