@@ -1,12 +1,12 @@
-"use client";
-import ProfileSidebar from "@/components/profile-sidebar";
-import { useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa6";
-import axiosInstance from "../../../../utils/axiosInstance";
-import "../page.scss";
-import "./page.scss";
+'use client';
+import ProfileSidebar from '@/components/profile-sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { FaBars } from 'react-icons/fa6';
+import axiosInstance from '../../../../utils/axiosInstance';
+import '../page.scss';
+import './page.scss';
 
 const Conversations = () => {
   const route = useRouter();
@@ -18,7 +18,7 @@ const Conversations = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push("/login");
+      route.push('/login');
     }
   }, [login]);
 
@@ -110,9 +110,9 @@ const Conversations = () => {
                           </td>
                           <td
                             scope="row"
-                            className="px-6 py-3 font-gotham font-light"
+                            className="px-6 py-3 font-gotham font-light capitalize"
                           >
-                            confirm
+                            {conversation.status ?? 'Pending'}
                           </td>
                         </tr>
                       ))

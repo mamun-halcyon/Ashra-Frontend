@@ -348,7 +348,6 @@ function Checkout() {
                     title="Email*"
                     placeholder="Type your e-mail*"
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                     value={login?.user?.email ? login?.user?.email : email}
                     disabled={login?.accessToken ? true : false}
                   />

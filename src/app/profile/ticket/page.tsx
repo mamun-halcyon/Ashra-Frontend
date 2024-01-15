@@ -84,12 +84,7 @@ const Ticket = () => {
                       >
                         Subject
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 font-gotham font-medium"
-                      >
-                        Status
-                      </th>
+
                       <th
                         scope="col"
                         className="px-6 py-3 font-gotham font-medium"
@@ -120,12 +115,7 @@ const Ticket = () => {
                           >
                             {ticket?.subject}
                           </td>
-                          <td
-                            scope="row"
-                            className="px-6 py-3 font-gotham font-normal"
-                          >
-                            Pending
-                          </td>
+
                           <td
                             scope="row"
                             className="px-6 py-3 font-gotham font-normal"
