@@ -4,8 +4,8 @@
     height: 200px;
     img {
       width: 100%;
-      max-height: 200px;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -65,9 +65,9 @@
     }
   }
   .stock-out {
-    background: #92989d ;
+    background: #92989d;
     &:hover {
-      background: #92989d ;
+      background: #92989d;
     }
   }
 }
