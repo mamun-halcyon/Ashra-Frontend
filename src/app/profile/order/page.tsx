@@ -1,20 +1,21 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import '../page.scss';
-import './page.scss';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/redux/hooks';
-import { useEffect, useState } from 'react';
-import SingleOrder from '@/components/single-order';
-import { FaBars } from 'react-icons/fa6';
-import axiosInstance from '../../../../utils/axiosInstance';
-import ProfilePagination from '@/components/profile-pagination';
+"use client";
+import ProfileSidebar from "@/components/profile-sidebar";
+import "../page.scss";
+import "./page.scss";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/hooks";
+import { useEffect, useState } from "react";
+import SingleOrder from "@/components/single-order";
+import { FaBars } from "react-icons/fa6";
+import axiosInstance from "../../../../utils/axiosInstance";
+import ProfilePagination from "@/components/profile-pagination";
 
 const OrderHistory = () => {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [allOrders, setAllOrders] = useState<any[]>([]);
+  const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
 
   const decrementPage = () => setPage(page > 1 ? page - 1 : 1);
@@ -24,7 +25,7 @@ const OrderHistory = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -41,7 +42,8 @@ const OrderHistory = () => {
             }
           );
           if (response.status == 200) {
-            setAllOrders(response?.data);
+            setAllOrders(response?.data?.rows);
+            setCount(response?.data?.count);
           }
         } catch (error) {
           console.log(error);
@@ -125,7 +127,7 @@ const OrderHistory = () => {
                       incrementPage={incrementPage}
                       decrementPage={decrementPage}
                       currentPage={page}
-                      totalPage={3}
+                      totalPage={Math.floor(count / 10)}
                     />
                   </div>
                 )}
