@@ -121,7 +121,7 @@ const OrderHistory = () => {
                     </tbody>
                   </table>
                 </div>
-                {allOrders.length > 10 && (
+                {count > 10 && (
                   <div className="mt-5">
                     <ProfilePagination
                       incrementPage={incrementPage}

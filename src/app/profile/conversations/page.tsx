@@ -1,13 +1,13 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import { useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa6';
-import axiosInstance from '../../../../utils/axiosInstance';
-import '../page.scss';
-import './page.scss';
-import ProfilePagination from '@/components/profile-pagination';
+"use client";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import axiosInstance from "../../../../utils/axiosInstance";
+import "../page.scss";
+import "./page.scss";
+import ProfilePagination from "@/components/profile-pagination";
 
 const Conversations = () => {
   const route = useRouter();
@@ -24,7 +24,7 @@ const Conversations = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -42,7 +42,7 @@ const Conversations = () => {
           );
           if (response.status === 200) {
             setTotal(response?.data?.data?.count);
-            setConversations(response?.data?.data);
+            setConversations(response?.data?.data?.rows);
           }
         } catch (error) {
           console.log(error);
@@ -122,7 +122,7 @@ const Conversations = () => {
                             scope="row"
                             className="px-6 py-3 font-gotham font-light capitalize"
                           >
-                            {conversation.status ?? 'Pending'}
+                            {conversation.status ?? "Pending"}
                           </td>
                         </tr>
                       ))
