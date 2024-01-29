@@ -115,7 +115,7 @@ const ProductCard: React.FC<IProps> = ({
             {title.substring(0, 46)}
           </Link>
         </div>
-        <p className=" mb-6 text-center text-sm max-h-5">
+        <p className=" mb-6 text-center text-sm h-5">
           {Number(regular_price) !== Number(discount_price) && (
             <span
               className={`mr-3 font-gotham ${

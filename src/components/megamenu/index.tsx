@@ -57,9 +57,15 @@ const MegaMenu = ({ menus }: IProps) => {
                               >
                                 {subCategory.title}
                               </Link>
-                              <span>
-                                <RiArrowDropRightLine className=" text-xl" />
-                              </span>
+                              {menus.filter(
+                                (children) =>
+                                  children.parent_category === subCategory.slug
+                              ).length > 0 && (
+                                <span>
+                                  <RiArrowDropRightLine className=" text-xl" />
+                                </span>
+                              )}
+
                               <div className=" absolute children-item shadow">
                                 <ul>
                                   {menus
