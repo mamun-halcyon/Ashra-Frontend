@@ -1,48 +1,49 @@
-'use client';
-import Button from '@/components/button';
-import EmiPopup from '@/components/emi-popup';
-import FormGroup from '@/components/fromgroup';
-import OutlineButton from '@/components/outline-button';
-import FormatPrice from '@/components/price-formate';
-import StarRating from '@/components/rating';
-import ReviewCard from '@/components/review-card';
-import SharePopUp from '@/components/share-popup';
-import TextAreaGroup from '@/components/textarea';
-import Title from '@/components/title';
-import { API_ROOT, API_URL } from '@/constant';
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { addToCompare } from '@/redux/features/compare/compareSlice';
-import { addToWishList } from '@/redux/features/wish-list/wishListSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { IBanner } from '@/types/banner';
-import { ICartItem } from '@/types/cart';
-import { ICompareItem } from '@/types/compare';
-import { ISingleProduct } from '@/types/product';
-import { IService } from '@/types/service';
-import axios from 'axios';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+"use client";
+import Button from "@/components/button";
+import EmiPopup from "@/components/emi-popup";
+import FormGroup from "@/components/fromgroup";
+import OutlineButton from "@/components/outline-button";
+import FormatPrice from "@/components/price-formate";
+import StarRating from "@/components/rating";
+import ReviewCard from "@/components/review-card";
+import SharePopUp from "@/components/share-popup";
+import TextAreaGroup from "@/components/textarea";
+import Title from "@/components/title";
+import { API_ROOT, API_URL } from "@/constant";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { addToCompare } from "@/redux/features/compare/compareSlice";
+import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { IBanner } from "@/types/banner";
+import { ICartItem } from "@/types/cart";
+import { ICompareItem } from "@/types/compare";
+import { ISingleProduct } from "@/types/product";
+import { IService } from "@/types/service";
+import axios from "axios";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   AiOutlineHeart,
   AiOutlineMinus,
   AiOutlinePlus,
   AiOutlineShareAlt,
-} from 'react-icons/ai';
-import { BsArrowRepeat } from 'react-icons/bs';
-import { FaAward } from 'react-icons/fa6';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import Slider from 'react-slick';
-import StarRatings from 'react-star-ratings';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { toast } from 'react-toastify';
-import axiosInstance from '../../../../../utils/axiosInstance';
-import './page.scss';
-const ZoomImage = dynamic(() => import('@/components/zoom-image'));
-const ProductCard = dynamic(() => import('@/components/card'));
+} from "react-icons/ai";
+import { BsArrowRepeat } from "react-icons/bs";
+import { FaAward } from "react-icons/fa6";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import Slider from "react-slick";
+import StarRatings from "react-star-ratings";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../../../utils/axiosInstance";
+import "./page.scss";
+import "react-quill/dist/quill.snow.css";
+const ZoomImage = dynamic(() => import("@/components/zoom-image"));
+const ProductCard = dynamic(() => import("@/components/card"));
 
 type Props = {
   params: {
@@ -69,13 +70,13 @@ const PageDetails = ({ params: { slug } }: Props) => {
   );
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState<string>('');
-  const [firstName, setFirstName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [review, setReview] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
   const [isEmi, setIsEmi] = useState(false);
-  const [number, setNumber] = useState<string>('');
-  const [question, setQuestion] = useState<string>('');
+  const [number, setNumber] = useState<string>("");
+  const [question, setQuestion] = useState<string>("");
   // const [variant, setVariant] = useState<string>('');
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
@@ -112,7 +113,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
-    router.push('/cart');
+    router.push("/cart");
   };
 
   const fetchProduct = async () => {
@@ -122,7 +123,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
       let tempArr: any[] = [];
       data?.data?.productAttribute?.length > 0 &&
         data?.data?.productAttribute?.map((attr: any) => {
-          let tempValuesArr: string[] = attr?.attribute_value?.split(',');
+          let tempValuesArr: string[] = attr?.attribute_value?.split(",");
           let tempValuesArrObjs: any[] = tempValuesArr.map((val) => {
             return { name: val, checked: false };
           });
@@ -133,7 +134,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
         });
       setAttributes([...tempArr]);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
 
@@ -142,7 +143,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
       const data = await axios.get(`${API_URL}/frontend/keypoints/product`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
 
@@ -153,7 +154,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
       );
       setAdsBanner(data.data?.data[0]);
     } catch (error) {
-      console.log('category ads banner' + error);
+      console.log("category ads banner" + error);
     }
   }
 
@@ -210,8 +211,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const handleSubmitQuestion = async (e: any) => {
     e.preventDefault();
     if (
-      number.trim() !== '' &&
-      question.trim() !== '' &&
+      number.trim() !== "" &&
+      question.trim() !== "" &&
       product?.product?.id &&
       product?.product?.title
     ) {
@@ -224,8 +225,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
         });
         if (response.status === 201) {
           toast.success(response?.data?.message);
-          setNumber('');
-          setQuestion('');
+          setNumber("");
+          setQuestion("");
         }
       } catch (error) {
         console.log(error);
@@ -256,13 +257,13 @@ const PageDetails = ({ params: { slug } }: Props) => {
             })
           );
         } else {
-          console.log('Status : ', response.status);
+          console.log("Status : ", response.status);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   };
 
@@ -271,7 +272,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
       dispatch(addToCompare(data));
     } else {
       toast.error(
-        'You already have added 4 products in your compare list. Please remove one of them from compare page to add a new one.'
+        "You already have added 4 products in your compare list. Please remove one of them from compare page to add a new one."
       );
     }
   };
@@ -279,9 +280,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (
-      review !== '' &&
-      firstName !== '' &&
-      email !== '' &&
+      review !== "" &&
+      firstName !== "" &&
+      email !== "" &&
       product?.product?.id
     ) {
       try {
@@ -292,14 +293,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
           name: firstName,
           comment: review,
           rating: rating,
-          is_visible: '0',
+          is_visible: "0",
         });
         if (response?.status === 201) {
-          toast.success('Review post success!');
+          toast.success("Review post success!");
           setRating(0);
-          setReview('');
-          setFirstName('');
-          setEmail('');
+          setReview("");
+          setFirstName("");
+          setEmail("");
           fetchProduct();
         }
       } catch (error) {
@@ -338,11 +339,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
             <div className="container px-2 md:px-1">
               <div className="product-specification">
                 <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                  <Link href={'/'}>Home</Link>
+                  <Link href={"/"}>Home</Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={'/category/bathware'}> Bathware </Link>
+                  <Link href={"/category/bathware"}> Bathware </Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={'/subcagory/Commode'}> Commode </Link>
+                  <Link href={"/subcagory/Commode"}> Commode </Link>
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
@@ -385,7 +386,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       <div className="flex items-center">
                         <StarRating rating={product?.averageReview} />
                         <span className="ml-1 font-gotham text-xs">
-                          {' '}
+                          {" "}
                           Review
                         </span>
                       </div>
@@ -399,8 +400,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         <h2
                           className={`font-gotham  text-xl font-medium ${
                             product?.product?.discount_price > 0
-                              ? ' line-through font-normal r-price '
-                              : 'text-primary'
+                              ? " line-through font-normal r-price "
+                              : "text-primary"
                           }  `}
                         >
                           ৳{FormatPrice(product?.product?.regular_price)}
@@ -445,7 +446,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 return (
                                   <div key={i} className="flex items-center">
                                     <div className=" font-gotham font-normal text-xs mr-2">
-                                      {attr?.name} :{' '}
+                                      {attr?.name} :{" "}
                                     </div>
                                     <div className="flex">
                                       {attr?.values?.length > 0 ? (
@@ -457,8 +458,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                   key={j}
                                                   className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
                                                     val?.checked === true
-                                                      ? 'bg-primary text-white'
-                                                      : 'bg-white text-black'
+                                                      ? "bg-primary text-white"
+                                                      : "bg-white text-black"
                                                   }`}
                                                   onClick={() =>
                                                     handleAttributeClick(
@@ -516,7 +517,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               if (
                                 attributes?.length !== selectAttributes?.length
                               ) {
-                                toast.error('Please Select Variant');
+                                toast.error("Please Select Variant");
                                 return;
                               }
                               handleBuyNow({
@@ -538,7 +539,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               if (
                                 attributes?.length !== selectAttributes?.length
                               ) {
-                                toast.error('Please Select Variant');
+                                toast.error("Please Select Variant");
                                 return;
                               }
                               dispatch(
@@ -573,7 +574,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             );
                           }}
                         >
-                          {' '}
+                          {" "}
                           <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
@@ -589,7 +590,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               addCompare({
                                 product_id: product?.product?.id,
                                 description:
-                                  product?.product?.description ?? '',
+                                  product?.product?.description ?? "",
                                 image: product?.product?.image,
                                 title: product?.product?.title,
                                 regular_price: Number(
@@ -687,7 +688,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                     <div className="tab-panel">
                       <TabPanel>
                         <div
-                          className="specification"
+                          className="specification ql-editor"
                           dangerouslySetInnerHTML={{
                             __html: product?.product?.description,
                           }}
@@ -695,7 +696,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       </TabPanel>
                       <TabPanel>
                         <div
-                          className="specification"
+                          className="specification ql-editor"
                           dangerouslySetInnerHTML={{
                             __html: product?.product?.policy,
                           }}
