@@ -27,6 +27,7 @@ interface IProps {
   url: string;
   isNew?: boolean;
   availability: any;
+  quantity: number;
 }
 const ProductCard: React.FC<IProps> = ({
   image,
@@ -38,6 +39,7 @@ const ProductCard: React.FC<IProps> = ({
   product_id,
   sort_description,
   availability,
+  quantity,
 }) => {
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
@@ -91,6 +93,8 @@ const ProductCard: React.FC<IProps> = ({
       router.push("/login");
     }
   };
+  console.log(availability === 1, quantity > 0);
+  console.log(availability, quantity);
 
   return (
     <div className="product-card group relative p-3  mt-2">
@@ -135,7 +139,7 @@ const ProductCard: React.FC<IProps> = ({
           )}
         </p>
         <div className="flex justify-center">
-          {availability === 1 && (
+          {availability === 1 && quantity > 0 && (
             <>
               <Button
                 onClick={() =>
@@ -175,11 +179,11 @@ const ProductCard: React.FC<IProps> = ({
               </Button>
             </>
           )}
-          {availability === 2 && (
+          {availability === 2 || quantity < 1 ? (
             <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px] stock-out">
               Out of Stock
             </Button>
-          )}
+          ) : null}
           {availability === 3 && (
             <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]">
               Up Coming
