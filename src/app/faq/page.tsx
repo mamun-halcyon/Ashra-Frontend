@@ -9,6 +9,7 @@ import "./page.scss";
 
 const Faq = () => {
   const [faqs, setFaqs] = useState<IFaq[]>([]);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState<number>(1);
 
   const increment = () => {
@@ -32,16 +33,27 @@ const Faq = () => {
 
   useEffect(() => {
     async function getEmis() {
+      setLoading(true);
       try {
         const res = await axios.get(`${API_URL}/faqs?page=${page}`);
         setFaqs(res.data.data.rows);
+        setLoading(false);
       } catch (error) {
         setFaqs([]);
+        setLoading(false);
       }
     }
 
     getEmis();
   }, [page]);
+
+  if (loading) {
+    return (
+      <p className="py-4 font-gotham font-normal text-base text-black">
+        Loading...
+      </p>
+    );
+  }
 
   return (
     <section className="faq">
