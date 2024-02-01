@@ -487,82 +487,86 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           )}
                         </div>
                       )}
-                    {product?.product?.availability === 1 && (
-                      <div className="action">
-                        <div className="flex pt-5 font-gotham font-medium ">
-                          <div className="mr-2 flex items-center text-primary border ">
-                            <div
-                              className="quantity cursor-pointer hover:text-white hover:bg-primary "
-                              onClick={decrement}
-                            >
-                              <button>
-                                <AiOutlineMinus />
-                              </button>
+                    {product?.product?.availability === 1 &&
+                      product?.product?.quantity > 0 && (
+                        <div className="action">
+                          <div className="flex pt-5 font-gotham font-medium ">
+                            <div className="mr-2 flex items-center text-primary border ">
+                              <div
+                                className="quantity cursor-pointer hover:text-white hover:bg-primary "
+                                onClick={decrement}
+                              >
+                                <button>
+                                  <AiOutlineMinus />
+                                </button>
+                              </div>
+                              <div className="quantity border-x-[1px] border-x-primary">
+                                {quantity}
+                              </div>
+                              <div
+                                className="quantity cursor-pointer  hover:text-white hover:bg-primary"
+                                onClick={increment}
+                              >
+                                <button>
+                                  <AiOutlinePlus />
+                                </button>
+                              </div>
                             </div>
-                            <div className="quantity border-x-[1px] border-x-primary">
-                              {quantity}
-                            </div>
-                            <div
-                              className="quantity cursor-pointer  hover:text-white hover:bg-primary"
-                              onClick={increment}
-                            >
-                              <button>
-                                <AiOutlinePlus />
-                              </button>
-                            </div>
-                          </div>
-                          <Button
-                            className=" px-5 py-1 mr-2"
-                            onClick={() => {
-                              if (
-                                attributes?.length !== selectAttributes?.length
-                              ) {
-                                toast.error("Please Select Variant");
-                                return;
-                              }
-                              handleBuyNow({
-                                product_id: Number(product.product.id),
-                                price: product.product.discount_price,
-                                title: product.product.title,
-                                image: product.product.image,
-                                quantity: quantity,
-                                regular_price: product.product.regular_price,
-                                product_attribute: selectAttributes,
-                              });
-                            }}
-                          >
-                            Buy Now
-                          </Button>
-                          <Button
-                            className=" px-5 py-1"
-                            onClick={() => {
-                              if (
-                                attributes?.length !== selectAttributes?.length
-                              ) {
-                                toast.error("Please Select Variant");
-                                return;
-                              }
-                              dispatch(
-                                addToCart({
+                            <Button
+                              className=" px-5 py-1 mr-2"
+                              onClick={() => {
+                                if (
+                                  attributes?.length !==
+                                  selectAttributes?.length
+                                ) {
+                                  toast.error("Please Select Variant");
+                                  return;
+                                }
+                                handleBuyNow({
                                   product_id: Number(product.product.id),
-                                  price:
-                                    product.product.discount_price > 0
-                                      ? product.product.discount_price
-                                      : product?.product?.regular_price,
+                                  price: product.product.discount_price,
                                   title: product.product.title,
                                   image: product.product.image,
                                   quantity: quantity,
                                   regular_price: product.product.regular_price,
                                   product_attribute: selectAttributes,
-                                })
-                              );
-                            }}
-                          >
-                            Add to cart
-                          </Button>
+                                });
+                              }}
+                            >
+                              Buy Now
+                            </Button>
+                            <Button
+                              className=" px-5 py-1"
+                              onClick={() => {
+                                if (
+                                  attributes?.length !==
+                                  selectAttributes?.length
+                                ) {
+                                  toast.error("Please Select Variant");
+                                  return;
+                                }
+                                dispatch(
+                                  addToCart({
+                                    product_id: Number(product.product.id),
+                                    price:
+                                      product.product.discount_price > 0
+                                        ? product.product.discount_price
+                                        : product?.product?.regular_price,
+                                    title: product.product.title,
+                                    image: product.product.image,
+                                    quantity: quantity,
+                                    regular_price:
+                                      product.product.regular_price,
+                                    product_attribute: selectAttributes,
+                                  })
+                                );
+                              }}
+                            >
+                              Add to cart
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     <div className="more-action pt-5">
                       <div className="flex flex-col md:flex-row">
