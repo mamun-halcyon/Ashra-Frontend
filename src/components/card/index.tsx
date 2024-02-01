@@ -93,13 +93,11 @@ const ProductCard: React.FC<IProps> = ({
       router.push("/login");
     }
   };
-  console.log(availability === 1, quantity > 0);
-  console.log(availability, quantity);
 
   return (
     <div className="product-card group relative p-3  mt-2">
       <Link href={`/product/${url}`}>
-        <div className="flex justify-center items-center pt-10 pb-5  image">
+        <div className="flex justify-center items-center  pb-5  image">
           <Image
             src={`${API_ROOT}/images/product/${image}`}
             width={300}
