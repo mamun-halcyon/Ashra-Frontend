@@ -1,10 +1,8 @@
 @import "../../styles/index.scss";
 .product-card {
   .image {
-    height: 200px;
     img {
       width: 100%;
-      height: 100%;
       object-fit: cover;
     }
   }
