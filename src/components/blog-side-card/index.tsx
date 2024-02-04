@@ -1,9 +1,10 @@
-import { IBlog } from '@/types/blog';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FC } from 'react';
-import { formatDate } from '../dateformate';
-import { API_ROOT } from '@/constant';
+"use client";
+import { IBlog } from "@/types/blog";
+import Image from "next/image";
+import Link from "next/link";
+import { FC } from "react";
+import { formatDate } from "../dateformate";
+import { API_ROOT } from "@/constant";
 
 interface IProps {
   blog: IBlog;
