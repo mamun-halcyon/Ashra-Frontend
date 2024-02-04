@@ -39,7 +39,6 @@ async function popularBlogs() {
 const BlogDetails = async ({ params: { slug } }: Props) => {
   const blogData: IResponse = await getBlog(slug);
   const popular: IResponseBlog = await popularBlogs();
-  console.log(popular?.data?.rows);
 
   return (
     <section className="blog-details mt-5">

@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { FaLongArrowAltLeft } from 'react-icons/fa';
-import { FaArrowRightLong } from 'react-icons/fa6';
+import React, { FC } from "react";
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 type IProps = {
   incrementPage: () => void;
@@ -15,7 +15,6 @@ const ProfilePagination: FC<IProps> = ({
   decrementPage,
   totalPage,
 }) => {
-  console.log(totalPage);
   return (
     <div className="flex justify-between">
       {currentPage <= 1 ? (
