@@ -71,14 +71,14 @@ export default async function Home({
 }) {
   const homeData: HomeApiResponse = await getData();
   const gasStoveProducts: IProductResponse = await categoryProduct(
-    "gasstove-lpg-ng"
+    homeData.homePage.category_one
   );
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
-    "kitchenhood"
+    homeData.homePage.category_two
   );
   const services: IService[] = await serviceItems();
   const digitalScaleProducts: IProductResponse = await categoryProduct(
-    "digitalscale"
+    homeData.homePage.category_three
   );
   const addBanner = await categoryAdBanner("home");
   const verticalBanner = await categoryAdBanner("home-v");
@@ -141,7 +141,7 @@ export default async function Home({
             <div className="mb-12">
               <Title
                 title="Gas Stove"
-                href="/category/filter?category=gasstove-lpg-ng"
+                href={`/category/filter?category=${homeData?.homePage?.category_one}`}
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {gasStoveProducts?.data?.rows.map(
@@ -165,7 +165,7 @@ export default async function Home({
             <div className="mb-12">
               <Title
                 title="Kitchen Hood"
-                href="/category/filter?category=kitchenhood"
+                href={`/category/filter?category=${homeData?.homePage?.category_two}`}
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {kitchenHoodProducts?.data?.rows.map((product, i) => (
@@ -187,7 +187,7 @@ export default async function Home({
             <div>
               <Title
                 title="Digital Scale"
-                href="/category/filter?category=digitalscale"
+                href={`/category/filter?category=${homeData?.homePage?.category_three}`}
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
                 {digitalScaleProducts?.data?.rows.map((product, i) => (

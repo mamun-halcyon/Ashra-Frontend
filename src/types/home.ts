@@ -1,8 +1,8 @@
-import { IBanner } from './banner';
-import { ICategoryData } from './category';
-import { IProduct } from './product';
-import { ISetting } from './setting';
-import { IVideo } from './video';
+import { IBanner } from "./banner";
+import { ICategoryData } from "./category";
+import { IProduct } from "./product";
+import { ISetting } from "./setting";
+import { IVideo } from "./video";
 
 export interface IHomePage {
   id: number;
@@ -12,6 +12,9 @@ export interface IHomePage {
   office_time: string;
   special_product_link: string;
   special_product_photo: string;
+  category_one: string;
+  category_two: string;
+  category_three: string;
   created_at: string;
   updated_at: string;
 }
