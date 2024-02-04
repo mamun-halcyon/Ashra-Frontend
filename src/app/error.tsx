@@ -21,6 +21,7 @@ export default function Error({
         Something went wrong!
       </h2>
       <Button
+        className="mb-5 px-2 py-1 font-gotham text-sm"
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()
