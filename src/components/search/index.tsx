@@ -1,13 +1,13 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import {
   ReadonlyURLSearchParams,
   usePathname,
   useRouter,
   useSearchParams,
-} from 'next/navigation';
-import { ChangeEvent } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
+} from "next/navigation";
+import { ChangeEvent } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 const SearchArea = () => {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
@@ -17,7 +17,7 @@ const SearchArea = () => {
   const handleSearch = useDebouncedCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const params = new URLSearchParams(Object.fromEntries(searchParams));
-      params.set('search', e.target.value);
+      params.set("search", e.target.value);
       replace(`${pathname}?${params}`);
     },
     300
