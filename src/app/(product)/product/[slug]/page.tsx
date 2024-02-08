@@ -385,8 +385,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 className=" w-full cursor-pointer"
                                 src={`${API_ROOT}/images/product/${productImage.image}`}
                                 alt="product"
-                                width={100}
-                                height={100}
+                                fill
                               />
                             </div>
                           ))}
