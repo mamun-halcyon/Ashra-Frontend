@@ -328,6 +328,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
       });
     });
   };
+  const smallestOrderPhoto = product?.productPhotos.reduce((prev, current) =>
+    prev.order_number < current.order_number ? prev : current
+  );
+
   if (!product) {
     return <div className="py-5 container">Loading...</div>;
   }
@@ -341,9 +345,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                 <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
                   <Link href={"/"}>Home</Link>
                   <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/category/bathware"}> Bathware </Link>
-                  <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/subcagory/Commode"}> Commode </Link>
+                  <Link
+                    className=" capitalize"
+                    href={`/category/filter?category=${product.product.category_slug}`}
+                  >
+                    {product.product.category_slug}{" "}
+                  </Link>
+                  {/* <RiArrowDropRightLine className=" text-xl" />
+                  <Link href={"/subcagory/Commode"}> Commode </Link> */}
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
@@ -353,27 +362,34 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         image={
                           viewImage
                             ? `${API_ROOT}/images/product/${viewImage}`
-                            : `${API_ROOT}/images/product/${product.productPhotos[0]?.image}`
+                            : `${API_ROOT}/images/product/${smallestOrderPhoto?.image}`
                         }
                       />
                     </div>
                     <div className="px-5 mt-5 products">
                       <Slider {...settings}>
-                        {product.productPhotos.map((productImage, index) => (
-                          <div
-                            key={index + 1}
-                            className="mx-1 product-item"
-                            onClick={() => handleViewImage(productImage.image)}
-                          >
-                            <Image
-                              className=" w-full cursor-pointer"
-                              src={`${API_ROOT}/images/product/${productImage.image}`}
-                              alt="product"
-                              width={100}
-                              height={100}
-                            />
-                          </div>
-                        ))}
+                        {product.productPhotos
+                          .sort(
+                            (a, b) =>
+                              (a.order_number || 0) - (b.order_number || 0)
+                          )
+                          .map((productImage, index) => (
+                            <div
+                              key={index + 1}
+                              className="mx-1 product-item"
+                              onClick={() =>
+                                handleViewImage(productImage.image)
+                              }
+                            >
+                              <Image
+                                className=" w-full cursor-pointer"
+                                src={`${API_ROOT}/images/product/${productImage.image}`}
+                                alt="product"
+                                width={100}
+                                height={100}
+                              />
+                            </div>
+                          ))}
                       </Slider>
                     </div>
                   </div>
@@ -444,7 +460,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             <>
                               {attributes?.map((attr, i) => {
                                 return (
-                                  <div key={i} className="flex items-center">
+                                  <div
+                                    key={i}
+                                    className="flex items-center mb-1"
+                                  >
                                     <div className=" font-gotham font-normal text-xs mr-2">
                                       {attr?.name} :{" "}
                                     </div>
