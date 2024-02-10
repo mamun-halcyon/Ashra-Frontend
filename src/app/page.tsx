@@ -20,14 +20,6 @@ async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
     cache: "no-store",
   });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  /*  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  } */
-
   return res.json();
 }
 
@@ -38,10 +30,6 @@ async function categoryProduct(category_slug: string) {
       cache: "no-store",
     }
   );
-  /* if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  } */
-
   return res.json();
 }
 async function serviceItems() {
@@ -57,11 +45,6 @@ async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
     cache: "no-store",
   });
-
-  /* if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  } */
-
   return res.json();
 }
 export default async function Home({
@@ -236,7 +219,7 @@ export default async function Home({
               className=" font-gotham font-normal text-sm  more-btn"
               href={"/videos"}
             >
-              More Videos{" "}
+              More Videos
               <BsArrowRightShort className="inline text-xl font-bold" />
             </Link>
           </div>
