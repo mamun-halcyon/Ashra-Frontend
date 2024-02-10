@@ -42,7 +42,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
     <div className="container p-2 md:p-0">
       <div className="flex justify-between items-center flex-wrap py-2">
         <div className="flex justify-between md:justify-start w-[100%]  md:w-[auto] items-center">
-          <div className="flex">
+          <div className="flex items-center">
             <span className=" mr-2 text-primary font-gotham font-normal text-sm">
               <BiSolidPhone />
             </span>

@@ -77,10 +77,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [isEmi, setIsEmi] = useState(false);
   const [number, setNumber] = useState<string>("");
   const [question, setQuestion] = useState<string>("");
-  // const [variant, setVariant] = useState<string>('');
+  const [emiPRice, setEmiPrice] = useState<number>(0);
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
-
+  const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const handleEmi = () => setIsEmi(!isEmi);
 
   const handleViewImage = (url: string) => {
@@ -169,6 +169,80 @@ const PageDetails = ({ params: { slug } }: Props) => {
   useEffect(() => {
     categoryAdBanner();
   }, [product?.product?.category_slug]);
+
+  useEffect(() => {
+    let smallestPrice = Infinity;
+    bankList?.data?.rows.forEach((bank) => {
+      let subTotalPrice = 0;
+      let price =
+        (product?.product?.discount_price ?? 0) > 0
+          ? product?.product?.discount_price ?? 0
+          : product?.product?.regular_price ?? 0;
+
+      // Calculate subTotalPrice and comparePrice for each EMI tenure
+      if (bank.three_months) {
+        subTotalPrice = price + (price * bank.three_months) / 100;
+
+        const comparePrice = subTotalPrice / 3;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+
+      if (bank.six_months) {
+        subTotalPrice = price + (price * bank.six_months) / 100;
+        const comparePrice = subTotalPrice / 6;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+
+      if (bank.nine_months) {
+        subTotalPrice = price + (price * bank.nine_months) / 100;
+        const comparePrice = subTotalPrice / 9;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+      if (bank.twelve_months) {
+        subTotalPrice = price + (price * bank.twelve_months) / 100;
+        const comparePrice = subTotalPrice / 12;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+      if (bank.eighteen_months) {
+        subTotalPrice = price + (price * bank.eighteen_months) / 100;
+        const comparePrice = subTotalPrice / 18;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+      if (bank.twenty_four_months) {
+        subTotalPrice = price + (price * bank.twenty_four_months) / 100;
+        const comparePrice = subTotalPrice / 24;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+      if (bank.thirty_months) {
+        subTotalPrice = price + (price * bank.thirty_months) / 100;
+        const comparePrice = subTotalPrice / 30;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+      if (bank.thirty_six_months) {
+        subTotalPrice = price + (price * bank.thirty_six_months) / 100;
+        const comparePrice = subTotalPrice / 36;
+        if (comparePrice < smallestPrice) {
+          smallestPrice = comparePrice;
+        }
+      }
+    });
+
+    setEmiPrice(smallestPrice); // Update state with the smallestPrice
+  }, [bankList, product]);
 
   const settings = {
     dots: false,
@@ -332,6 +406,19 @@ const PageDetails = ({ params: { slug } }: Props) => {
     prev.order_number < current.order_number ? prev : current
   );
 
+  useEffect(() => {
+    const fetchBank = async () => {
+      try {
+        const data = await axios.get(`${API_URL}/emis`);
+        setBankList(data.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchBank();
+  }, []);
+
   if (!product) {
     return <div className="py-5 container">Loading...</div>;
   }
@@ -448,7 +535,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           className="cursor-point"
                           onClick={() => setIsEmi(true)}
                         >
-                          Avail Bank EMI | EMI From 1,890 Tk/month
+                          Avail Bank EMI | EMI From {Math.ceil(emiPRice)}{" "}
+                          Tk/month
                         </span>
                       </h3>
                     </div>

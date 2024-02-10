@@ -1,10 +1,10 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import './index.scss';
-import axios from 'axios';
-import { API_URL } from '@/constant';
-import { RxCross2 } from 'react-icons/rx';
-import FormGroup from '../fromgroup';
+"use client";
+import React, { useEffect, useState } from "react";
+import "./index.scss";
+import axios from "axios";
+import { API_URL } from "@/constant";
+import { RxCross2 } from "react-icons/rx";
+import FormGroup from "../fromgroup";
 
 type IProps = {
   handleEmi: () => void;
@@ -14,7 +14,7 @@ type IProps = {
 const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
   const [emi, setEmi] = useState<null | number | string>(null);
   const [emiData, setEmiData] = useState<IEmi>({} as IEmi);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
         const data = await axios.get(`${API_URL}/emis/${emi}`);
         setEmiData(data.data.data);
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error("Error fetching product:", error);
       }
     };
 
@@ -36,7 +36,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
         const data = await axios.get(`${API_URL}/emis?bank_name=${search}`);
         setBankList(data.data);
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error("Error fetching product:", error);
       }
     };
 
@@ -86,7 +86,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                     onClick={() => setEmi(bank.id)}
                     key={index}
                     className={`font-gotham text-sm p-2 cursor-pointer ${
-                      bank.id == emi ? ' bg-primary text-white' : ''
+                      bank.id == emi ? " bg-primary text-white" : ""
                     }`}
                   >
                     {bank.bank_name}
@@ -420,7 +420,9 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                           className="px-6 py-3 font-gotham font-medium border border-color"
                         >
                           {Math.ceil(
-                            (price + (emiData.thirty_months * price) / 100) / 36
+                            (price +
+                              (emiData.thirty_six_months * price) / 100) /
+                              36
                           )}
                         </td>
                       </tr>

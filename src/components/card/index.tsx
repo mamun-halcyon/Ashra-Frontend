@@ -138,47 +138,55 @@ const ProductCard: React.FC<IProps> = ({
           )}
         </p>
         <div className="flex justify-center">
-          {availability === 1 && quantity > 0 && (
+          {availability === 1 && (
             <>
-              <Button
-                onClick={() =>
-                  dispatch(
-                    addToCart({
-                      product_id: product_id,
-                      price: Number(
-                        Number(discount_price) > 0
-                          ? discount_price
-                          : regular_price
-                      ),
-                      title: title,
-                      image: image,
-                      quantity: 1,
-                      regular_price: Number(regular_price),
-                    })
-                  )
-                }
-                className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
-              >
-                Add to Cart
-              </Button>
-              <Button
-                onClick={() =>
-                  handleBuyNow({
-                    product_id,
-                    price: Number(discount_price),
-                    title: title,
-                    image: image,
-                    quantity: 1,
-                    regular_price: Number(regular_price),
-                  })
-                }
-                className="font-gotham font-medium py-2 text-xs  w-[102px]"
-              >
-                Buy Now
-              </Button>
+              {quantity > 0 ? (
+                <>
+                  <Button
+                    onClick={() =>
+                      dispatch(
+                        addToCart({
+                          product_id: product_id,
+                          price: Number(
+                            Number(discount_price) > 0
+                              ? discount_price
+                              : regular_price
+                          ),
+                          title: title,
+                          image: image,
+                          quantity: 1,
+                          regular_price: Number(regular_price),
+                        })
+                      )
+                    }
+                    className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
+                  >
+                    Add to Cart
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      handleBuyNow({
+                        product_id,
+                        price: Number(discount_price),
+                        title: title,
+                        image: image,
+                        quantity: 1,
+                        regular_price: Number(regular_price),
+                      })
+                    }
+                    className="font-gotham font-medium py-2 text-xs  w-[102px]"
+                  >
+                    Buy Now
+                  </Button>
+                </>
+              ) : (
+                <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px] stock-out">
+                  Out of Stock
+                </Button>
+              )}
             </>
           )}
-          {availability === 2 || quantity < 1 ? (
+          {availability === 2 ? (
             <Button className="font-gotham font-medium py-2 text-xs mr-2 w-[102px] stock-out">
               Out of Stock
             </Button>
