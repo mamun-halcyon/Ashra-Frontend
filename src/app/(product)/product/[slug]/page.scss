@@ -1,8 +1,9 @@
-@import '../../../../styles/index.scss';
+@import "../../../../styles/index.scss";
 
 .product-details {
   border-top: 1px solid #ececec;
   border-bottom: 1px solid #ececec;
+  padding-bottom: 20px;
 
   .pointer {
     &:hover {
@@ -125,7 +126,7 @@
       .react-tabs__tab {
         cursor: pointer;
         padding: 8px 30px;
-        font-family: 'Gotham';
+        font-family: "Gotham";
         font-weight: 700;
         border-right: 1px solid $white-color;
         font-size: 15px;
@@ -135,7 +136,7 @@
           position: relative;
           &::after {
             position: absolute;
-            content: '';
+            content: "";
             bottom: 0;
             left: 0;
             width: 100%;
@@ -155,7 +156,7 @@
       .tab-panel {
         padding: 12px;
         .specification {
-          font-family: 'Gotham';
+          font-family: "Gotham";
           font-size: 12px;
           font-weight: 400;
         }
