@@ -1,4 +1,4 @@
-@import '../../../styles/index.scss';
+@import "../../../styles/index.scss";
 
 .promo-box {
   border: 1px solid $border-color;
@@ -26,7 +26,7 @@
           left: 0;
           width: 100%;
           height: 1px;
-          content: '';
+          content: "";
           background: $primary-color;
         }
       }
@@ -62,5 +62,12 @@
   border-bottom: 1px solid $border-color;
   .sudo {
     color: $octonary-color;
+  }
+}
+
+@supports (-webkit-appearance: none) {
+  #location option {
+    color: #000;
+    background: $white-color;
   }
 }
