@@ -5,11 +5,13 @@ const nextConfig = {
     return config;
   }, */
   images: {
-    domains: [
-      'localhost',
-      '54.226.132.225',
-      '204.152.197.183',
-      'gazihomeappliances.com',
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "gazihomeappliances.com",
+        port: "",
+        pathname: '/**',
+      },
     ],
   },
 };
