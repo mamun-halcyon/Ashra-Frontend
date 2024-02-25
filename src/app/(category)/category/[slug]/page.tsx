@@ -441,9 +441,9 @@ function Category() {
                       <div className="active w-[30px] h-[26px] mr-[6px] flex items-center justify-center ">
                         {page}
                       </div>
-                      <p>of {Math.floor(count / Number(limit))}</p>
+                      <p>of {Math.ceil(count / Number(limit))}</p>
                     </div>
-                    {page < Math.floor(count / Number(limit)) && (
+                    {page < Math.ceil(count / Number(limit)) && (
                       <div
                         className=" cursor-pointer p-1"
                         onClick={incrementPage}
@@ -507,7 +507,7 @@ function Category() {
                 decrementPage={decrementPage}
                 showTitle={showTitle}
                 handleShow={handleShow}
-                totalPage={Math.floor(count / Number(limit))}
+                totalPage={Math.ceil(count / Number(limit))}
               />
             </div>
           </div>
