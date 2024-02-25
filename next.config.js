@@ -4,13 +4,14 @@ const nextConfig = {
     config.infrastructureLogging = { debug: /PackFileCache/ };
     return config;
   }, */
+  // output: "export",
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "gazihomeappliances.com",
         port: "",
-        pathname: '/**',
+        pathname: "/**",
       },
     ],
   },

@@ -150,7 +150,10 @@ const ListCard: FC<IProps> = ({ product }) => {
                 dispatch(
                   addToCart({
                     product_id: product.id,
-                    price: Number(product.discount_price),
+                    price:
+                      Number(product.discount_price) > 0
+                        ? Number(product.discount_price)
+                        : Number(product.regular_price),
                     title: product.title,
                     image: product.image,
                     quantity: 1,
@@ -203,7 +206,10 @@ const ListCard: FC<IProps> = ({ product }) => {
             onClick={() => {
               handleBuyNow({
                 product_id: product.id,
-                price: Number(product.discount_price),
+                price:
+                  Number(product.discount_price) > 0
+                    ? Number(product.discount_price)
+                    : Number(product.regular_price),
                 title: product.title,
                 image: product.image,
                 quantity: 1,
