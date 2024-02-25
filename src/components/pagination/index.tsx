@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import ActionButton from '../action';
-import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
-import './index.scss';
+import { FC } from "react";
+import ActionButton from "../action";
+import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import "./index.scss";
 
 interface IProps {
   showTitle: string;
@@ -9,6 +9,7 @@ interface IProps {
   decrementPage: () => void;
   handleShow: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
   page: number;
+  totalPage: any;
 }
 
 const Pagination: FC<IProps> = ({
@@ -16,6 +17,7 @@ const Pagination: FC<IProps> = ({
   incrementPage,
   decrementPage,
   handleShow,
+  totalPage = 2,
   page,
 }) => {
   return (
@@ -46,16 +48,21 @@ const Pagination: FC<IProps> = ({
       </div>
 
       <div className="flex items-center">
-        <div className=" cursor-pointer p-1 mr-1" onClick={decrementPage}>
-          <IoMdArrowDropleft />
-        </div>
+        {page > 1 && (
+          <div className=" cursor-pointer p-1 mr-1" onClick={decrementPage}>
+            <IoMdArrowDropleft />
+          </div>
+        )}
+
         <div className=" font-gotham font-normal text-xs flex items-center">
           <div className="active flex items-center justify-center">{page}</div>
-          <p>of 2</p>
+          <p>of {totalPage}</p>
         </div>
-        <div className=" cursor-pointer p-1 ml-1" onClick={incrementPage}>
-          <IoMdArrowDropright />
-        </div>
+        {page < totalPage && (
+          <div className=" cursor-pointer p-1 ml-1" onClick={incrementPage}>
+            <IoMdArrowDropright />
+          </div>
+        )}
       </div>
     </div>
   );

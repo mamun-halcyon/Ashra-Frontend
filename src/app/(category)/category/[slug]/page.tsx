@@ -53,6 +53,7 @@ function Category() {
   const [categoryFilterItems, setCategoryFilterItems] = useState<
     ICategoryData[]
   >([]);
+  const [count, setCount] = useState(0);
 
   const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedElement = event.target as HTMLLIElement;
@@ -170,6 +171,7 @@ function Category() {
         ${availability !== "" ? "&availability=" + availability : ""}`
       );
       setProducts(response.data?.data?.rows);
+      setCount(response.data?.data?.count);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -426,24 +428,29 @@ function Category() {
                     </ActionButton>
                   </div>
                   <div className="flex items-center ml-2">
-                    <div
-                      className=" cursor-pointer p-1"
-                      onClick={decrementPage}
-                    >
-                      <IoMdArrowDropleft />
-                    </div>
+                    {page > 1 && (
+                      <div
+                        className=" cursor-pointer p-1"
+                        onClick={decrementPage}
+                      >
+                        <IoMdArrowDropleft />
+                      </div>
+                    )}
+
                     <div className=" font-gotham font-normal text-xs flex items-center">
                       <div className="active w-[30px] h-[26px] mr-[6px] flex items-center justify-center ">
                         {page}
                       </div>
-                      <p>of 2</p>
+                      <p>of {Math.floor(count / Number(limit))}</p>
                     </div>
-                    <div
-                      className=" cursor-pointer p-1"
-                      onClick={incrementPage}
-                    >
-                      <IoMdArrowDropright />
-                    </div>
+                    {page < Math.floor(count / Number(limit)) && (
+                      <div
+                        className=" cursor-pointer p-1"
+                        onClick={incrementPage}
+                      >
+                        <IoMdArrowDropright />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -500,6 +507,7 @@ function Category() {
                 decrementPage={decrementPage}
                 showTitle={showTitle}
                 handleShow={handleShow}
+                totalPage={Math.floor(count / Number(limit))}
               />
             </div>
           </div>
