@@ -12,6 +12,9 @@ export interface IHomePage {
   office_time: string;
   special_product_link: string;
   special_product_photo: string;
+  category_one_title: string;
+  category_two_title: string;
+  category_three_title: string;
   category_one: string;
   category_two: string;
   category_three: string;

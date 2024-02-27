@@ -123,7 +123,7 @@ export default async function Home({
           <div className="container px-2 md:px-0">
             <div className="mb-12">
               <Title
-                title="Gas Stove"
+                title={homeData?.homePage?.category_one_title}
                 href={`/category/filter?category=${homeData?.homePage?.category_one}`}
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
@@ -147,7 +147,7 @@ export default async function Home({
             </div>
             <div className="mb-12">
               <Title
-                title="Kitchen Hood"
+                title={homeData?.homePage?.category_two_title}
                 href={`/category/filter?category=${homeData?.homePage?.category_two}`}
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
@@ -169,7 +169,7 @@ export default async function Home({
             </div>
             <div>
               <Title
-                title="Digital Scale"
+                title={homeData?.homePage?.category_three_title}
                 href={`/category/filter?category=${homeData?.homePage?.category_three}`}
               />
               <div className="grid md:grid-cols-5 grid-cols-2 gap-1">
