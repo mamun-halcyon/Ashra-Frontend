@@ -25,6 +25,7 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 const ReactSlider = dynamic(() => import("react-slider"));
 // import ReactSlider from "react-slider";
 import "./page.scss";
+import { useAppSelector } from "@/redux/hooks";
 const ProductCard = dynamic(() => import("@/components/card"));
 
 /* const categoryProducts = async (position: string) => {
@@ -39,6 +40,7 @@ const ProductCard = dynamic(() => import("@/components/card"));
 
 function Category() {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
+  const { title, slug } = useAppSelector((state) => state.category);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200000]);
   const [page, setPage] = useState(1);
   const [isRow, setIsRow] = useState<boolean>(true);
@@ -231,9 +233,9 @@ function Category() {
             çategories?.length == 0 ? (
               <>
                 <RiArrowDropRightLine className=" text-xl" />
-                <Link href={"/bathware"}>
+                <Link href={`/category/filter?category=${slug}`}>
                   {" "}
-                  {searchParams.get("category")?.trim()}{" "}
+                  {title}{" "}
                 </Link>
               </>
             ) : (

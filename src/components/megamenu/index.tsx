@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import { FaBars } from "react-icons/fa6";
 import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
 import "./index.scss";
+import { useAppDispatch } from "@/redux/hooks";
+import { addCategory } from "@/redux/features/category/categorySlice";
 
 type IProps = {
   menus: ICategoryData[];
 };
 const MegaMenu = ({ menus }: IProps) => {
+  const dispatch = useAppDispatch();
   const route = useRouter();
   return (
     <>
@@ -28,9 +31,12 @@ const MegaMenu = ({ menus }: IProps) => {
                   <div className="mr-2 text-left relative heading" key={index}>
                     <div
                       className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black text-black hover:border-primary hover:text-white hover:bg-primary transition-all"
-                      onClick={() =>
-                        route.push(`/category/filter?category=${menu.slug}`)
-                      }
+                      onClick={() => {
+                        route.push(`/category/filter?category=${menu.slug}`);
+                        dispatch(
+                          addCategory({ title: menu.title, slug: menu.slug })
+                        );
+                      }}
                     >
                       {menu.title.toUpperCase()}
                       <span className="text-xl  md:block hidden">
@@ -54,6 +60,14 @@ const MegaMenu = ({ menus }: IProps) => {
                               <Link
                                 className=" font-gotham font-medium my-2 text-sm text-black sub-element w-[90%]"
                                 href={`/category/filter?category=${subCategory.slug}`}
+                                onClick={() =>
+                                  dispatch(
+                                    addCategory({
+                                      title: subCategory.title,
+                                      slug: subCategory.slug,
+                                    })
+                                  )
+                                }
                               >
                                 {subCategory.title}
                               </Link>
@@ -79,7 +93,17 @@ const MegaMenu = ({ menus }: IProps) => {
                                         (a.order_id || 0) - (b.order_id || 0)
                                     )
                                     .map((childrenCategory, index) => (
-                                      <li key={index}>
+                                      <li
+                                        key={index}
+                                        onClick={() =>
+                                          dispatch(
+                                            addCategory({
+                                              title: childrenCategory.title,
+                                              slug: childrenCategory.slug,
+                                            })
+                                          )
+                                        }
+                                      >
                                         <Link
                                           className=" font-gotham font-medium text-sm w-[90%] text-black"
                                           href={`/category/filter?category=${childrenCategory.slug}`}

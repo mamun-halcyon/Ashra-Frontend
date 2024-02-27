@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import productReducer from '@/redux/features/products/product-slice';
-import cardReducer from '@/redux/features/cart/cartSlice';
-import compareReducer from '@/redux/features/compare/compareSlice';
-import wishListReducer from '@/redux/features/wish-list/wishListSlice';
-import loginReducer from '@/redux/features/login/loginSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import productReducer from "@/redux/features/products/product-slice";
+import cardReducer from "@/redux/features/cart/cartSlice";
+import compareReducer from "@/redux/features/compare/compareSlice";
+import wishListReducer from "@/redux/features/wish-list/wishListSlice";
+import loginReducer from "@/redux/features/login/loginSlice";
+import categoryReducer from "@/redux/features/category/categorySlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     compare: compareReducer,
     wishList: wishListReducer,
     login: loginReducer,
+    category: categoryReducer,
   },
   devTools: true,
 });
