@@ -632,7 +632,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 }
                                 handleBuyNow({
                                   product_id: Number(product.product.id),
-                                  price: product.product.discount_price,
+                                  price:
+                                    product.product.discount_price > 0
+                                      ? product.product.discount_price
+                                      : product.product.regular_price,
                                   title: product.product.title,
                                   image: product.product.image,
                                   quantity: quantity,

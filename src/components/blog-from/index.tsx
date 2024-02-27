@@ -1,27 +1,30 @@
-'use client';
-import React, { FormEvent, useState } from 'react';
-import FormGroup from '../fromgroup';
-import TextAreaGroup from '../textarea';
-import Button from '../button';
-import axios from 'axios';
-import { API_URL } from '@/constant';
+"use client";
+import React, { FormEvent, useState } from "react";
+import FormGroup from "../fromgroup";
+import TextAreaGroup from "../textarea";
+import Button from "../button";
+import axios from "axios";
+import { API_URL } from "@/constant";
+import { toast } from "react-toastify";
 
-const BlogComment = ({
-  blogId,
-}: {
-  [key: string]: [value: string | number];
-}) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+const BlogComment = ({ blogId }: { blogId: number }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const data = { name: name, email, comment: message, blog_id: blogId };
+
   const handleComment = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(`${API_URL}/blog/comments`, data);
+      toast.success(response.data.message);
+      setName("");
+      setEmail("");
+      setMessage("");
+      (e.target as HTMLFormElement).reset();
     } catch (error) {
-      console.log('comment error' + error);
+      console.log("comment error" + error);
     }
   };
   return (
@@ -36,6 +39,7 @@ const BlogComment = ({
           />
           <FormGroup
             title="Email"
+            type="email"
             className=" mb-2"
             required
             onChange={(e) => setEmail(e.target.value)}

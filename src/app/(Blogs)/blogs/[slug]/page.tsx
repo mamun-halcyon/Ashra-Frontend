@@ -11,6 +11,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook, BiLogoLinkedin } from "react-icons/bi";
 import { FiInstagram } from "react-icons/fi";
 import "./page.scss";
+import BlogComment from "@/components/blog-from";
 const BlogSideCard = dynamic(import("@/components/blog-side-card"));
 
 type Props = {
@@ -115,7 +116,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                   Write a comment
                 </h3>
                 <div>
-                  <form>
+                  {/*  <form>
                     <div className="grid grid-cols-2 gap-4">
                       <FormGroup title="Name" className="mb-2 " required />
                       <FormGroup title="Email" className=" mb-2" required />
@@ -128,7 +129,8 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                     >
                       Summit
                     </Button>
-                  </form>
+                  </form> */}
+                  <BlogComment blogId={blogData.data.id as number} />
                 </div>
               </div>
             </div>

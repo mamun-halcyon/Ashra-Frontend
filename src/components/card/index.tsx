@@ -167,7 +167,11 @@ const ProductCard: React.FC<IProps> = ({
                     onClick={() =>
                       handleBuyNow({
                         product_id,
-                        price: Number(discount_price),
+                        price: Number(
+                          Number(discount_price) > 0
+                            ? discount_price
+                            : regular_price
+                        ),
                         title: title,
                         image: image,
                         quantity: 1,

@@ -195,10 +195,14 @@ const ListCard: FC<IProps> = ({ product }) => {
                 ৳ {FormatPrice(product.discount_price)}
               </h3>
             )}
-          <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] save-text save-money">
-            Save ৳{" "}
-            {Number(product.regular_price) - Number(product.discount_price)}
-          </span>
+          {product.discount_price > 0 && (
+            <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] save-text save-money">
+              Save ৳{" "}
+              {FormatPrice(
+                Number(product.regular_price) - Number(product.discount_price)
+              )}
+            </span>
+          )}
         </div>
         {product.availability === 1 ? (
           <Button

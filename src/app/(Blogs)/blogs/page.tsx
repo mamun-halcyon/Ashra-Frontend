@@ -1,19 +1,20 @@
-import dynamic from 'next/dynamic';
-const BlogCard = dynamic(() => import('@/components/blog-card'));
-import Link from 'next/link';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import './page.scss';
-import { redirect } from 'next/navigation';
-import Pagination from '@/components/pagination';
-import Image from 'next/image';
-import { IResponseBlog } from '@/types/blog';
-import { API_ROOT, API_URL } from '@/constant';
-import axios from 'axios';
-import { IBanner } from '@/types/banner';
+import dynamic from "next/dynamic";
+const BlogCard = dynamic(() => import("@/components/blog-card"));
+import Link from "next/link";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import "./page.scss";
+import { redirect } from "next/navigation";
+import Pagination from "@/components/pagination";
+import Image from "next/image";
+import { IResponseBlog } from "@/types/blog";
+import { API_ROOT, API_URL } from "@/constant";
+import axios from "axios";
+import { IBanner } from "@/types/banner";
+import ServerPagination from "@/components/pagination/pagination";
 
 async function getBlogs(page: number = 1, limit: number = 12) {
   const url = `${API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
-  const res = await fetch(url, { cache: 'no-store' });
+  const res = await fetch(url, { cache: "no-store" });
   const data = await res.json();
   return data;
 }
@@ -23,7 +24,7 @@ async function adBanner() {
 
     return data?.data?.data[0];
   } catch (error) {
-    console.log('category ads banner' + error);
+    console.log("category ads banner" + error);
   }
 }
 
@@ -33,9 +34,9 @@ async function Blogs({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const page =
-    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
+    typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
   const limit =
-    typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10;
+    typeof searchParams.limit === "string" ? Number(searchParams.limit) : 12;
   const blogs: IResponseBlog = await getBlogs(page, limit);
 
   const adsBanner: IBanner = await adBanner();
@@ -65,9 +66,9 @@ async function Blogs({
       <section>
         <div className="container">
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/blogs'}> Blogs </Link>
+            <Link href={"/blogs"}> Blogs </Link>
           </div>
         </div>
       </section>
@@ -94,13 +95,11 @@ async function Blogs({
               <BlogCard key={index} blog={blog} />
             ))}
           </div>
-          {/* <Pagination
+          <ServerPagination
+            showTitle={`Show ${limit}`}
             page={page}
-            incrementPage={incrementPage}
-            decrementPage={decrementPage}
-            showTitle={showTitle}
-            handleShow={handleShow}
-          /> */}
+            totalPage={Math.ceil(blogs.data?.count / limit)}
+          />
         </div>
       </section>
     </main>
