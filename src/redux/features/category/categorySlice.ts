@@ -6,9 +6,10 @@ interface ICategory {
 }
 
 // Load initial state from localStorage if available
-const initialCategoryState: ICategory | null = localStorage.getItem("category")
-  ? JSON.parse(localStorage.getItem("category") || "null")
-  : null;
+const initialCategoryState: ICategory | null =
+  typeof window !== "undefined"
+    ? JSON.parse(localStorage.getItem("category") || "null")
+    : null;
 
 const initialState: ICategory = initialCategoryState || {
   title: "",
