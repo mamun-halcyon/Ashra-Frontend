@@ -9,8 +9,9 @@ import "./index.scss";
 
 import { useAppSelector } from "@/redux/hooks";
 import SearchArea from "../search";
+import { API_ROOT } from "@/constant";
 
-const Navbar = () => {
+const Navbar = ({ logo }: { logo: string }) => {
   const { cart } = useAppSelector((state) => state.cart);
   const { wishList } = useAppSelector((state) => state.wishList);
   const { data: compareItems } = useAppSelector((state) => state.compare);
@@ -22,9 +23,11 @@ const Navbar = () => {
             <Link href={"/"}>
               <Image
                 className="logo"
-                src={"/assets/images/logo/Logo.png"}
+                src={`${API_ROOT}/images/setting/${logo}`}
+                // src={"/assets/images/logo/Logo.png"}
                 width={200}
                 height={80}
+                quality={100}
                 alt="gazi group logo"
               />
             </Link>
