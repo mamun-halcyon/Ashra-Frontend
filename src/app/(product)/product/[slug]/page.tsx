@@ -42,6 +42,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../../../../utils/axiosInstance";
 import "./page.scss";
 import "react-quill/dist/quill.snow.css";
+import { addCategory } from "@/redux/features/category/categorySlice";
 const ZoomImage = dynamic(() => import("@/components/zoom-image"));
 const ProductCard = dynamic(() => import("@/components/card"));
 
@@ -435,6 +436,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                   <Link
                     className=" capitalize"
                     href={`/category/filter?category=${product.product.category_slug}`}
+                    onClick={() =>
+                      dispatch(
+                        addCategory({
+                          title: product.product.category_slug as string,
+                          slug: product.product.category_slug as string,
+                        })
+                      )
+                    }
                   >
                     {product.product.category_slug}{" "}
                   </Link>

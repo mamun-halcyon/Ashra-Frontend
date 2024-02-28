@@ -3,6 +3,9 @@ import { FC, useState } from "react";
 import ChildCategories from "./child-categories";
 import "./index.scss";
 import Link from "next/link";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { addCategory } from "@/redux/features/category/categorySlice";
 
 interface IProps {
   categoryFilterItems: ICategoryData[];
@@ -15,6 +18,8 @@ const SubCategory: FC<IProps> = ({
   rootCategory,
   handleMultipleCategory,
 }) => {
+  const dispatch = useAppDispatch();
+  const route = useRouter();
   const [rootCategoryChanged, setRootCategoryChanged] = useState<string>("");
   const [showChildCategories, setShowChildCatefories] = useState<string>("");
 
@@ -36,7 +41,17 @@ const SubCategory: FC<IProps> = ({
                 href={`/category/filter?category=${subCategory.slug}`}
                 key={subCategory.title}
               >
-                <div>
+                <div
+                  onClick={() => {
+                    route.push(`/category/filter?category=${subCategory.slug}`);
+                    dispatch(
+                      addCategory({
+                        title: subCategory.title,
+                        slug: subCategory.slug,
+                      })
+                    );
+                  }}
+                >
                   <p
                     onClick={onClickSubCategoryHandler}
                     className="capitalize subCategory-title font-gotham font-normal text-sm hover:text-primary mb-1 transition-all duration-300"
