@@ -61,10 +61,10 @@ export const metadata: Metadata = {
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    // cache: 'no-store',
-    next: {
+    cache: "no-store",
+    /* next: {
       revalidate: 3600,
-    },
+    }, */
   });
 
   /* if (!res.ok) {
