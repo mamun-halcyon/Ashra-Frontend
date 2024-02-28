@@ -1,22 +1,22 @@
-'use client';
-import dynamic from 'next/dynamic';
-const VideoCard = dynamic(() => import('@/components/video-card'));
-import { videoData } from '@/static/video';
-import './page.scss';
-import Link from 'next/link';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import Pagination from '@/components/pagination';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { API_URL } from '@/constant';
-import { IVideo } from '@/types/video';
-import axios from 'axios';
-import { IBanner } from '@/types/banner';
+"use client";
+import dynamic from "next/dynamic";
+const VideoCard = dynamic(() => import("@/components/video-card"));
+import { videoData } from "@/static/video";
+import "./page.scss";
+import Link from "next/link";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import Pagination from "@/components/pagination";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { API_URL } from "@/constant";
+import { IVideo } from "@/types/video";
+import axios from "axios";
+import { IBanner } from "@/types/banner";
 
 function Videos() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState<number | string>(16);
-  const [showTitle, setShowTitle] = useState<string>('Show');
+  const [showTitle, setShowTitle] = useState<string>("Show");
   const [videos, setVideos] = useState<IVideo[]>([]);
   const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
   const [count, setCount] = useState(0);
@@ -27,18 +27,26 @@ function Videos() {
       const data = await axios.get(`${API_URL}/banners/video`);
       setAdsBanner(data.data?.data[0]);
     } catch (error) {
-      console.log('category ads banner' + error);
+      console.log("category ads banner" + error);
     }
   }
 
   useEffect(() => {
-    fetch(`${API_URL}/videos?page=${page}&limit=${limit}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCount(data.data.count);
-        setVideos(data.data.rows);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${API_URL}/videos?page=${page}&limit=${limit}`
+        );
+        const data = await response.json();
+        setCount(data.data?.count);
+        setVideos(data.data?.rows);
         setLoading(false);
-      });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, [page, limit]);
 
   /*  useEffect(() => {
@@ -70,9 +78,9 @@ function Videos() {
       <section>
         <div className="container">
           <div className="md:flex items-center font-gotham font-normal text-sm mt-3 mb-3 hidden ">
-            <Link href={'/'}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <RiArrowDropRightLine className=" text-xl" />
-            <Link href={'/videos'}> Videos </Link>
+            <Link href={"/videos"}> Videos </Link>
           </div>
         </div>
       </section>
@@ -80,10 +88,10 @@ function Videos() {
       <section className="md:mt-8 md:mb-5 mt-3 mb-2">
         {adsBanner?.image && (
           <div className="container">
-            <Link href={'/'}>
+            <Link href={"/"}>
               <Image
                 className="w-full"
-                src={'/assets/images/ads/Group 9.png'}
+                src={"/assets/images/ads/Group 9.png"}
                 width={400}
                 height={300}
                 alt="ads"
@@ -107,6 +115,7 @@ function Videos() {
         <div className="container">
           <Pagination
             page={page}
+            totalPage={Math.ceil(count / Number(limit))}
             incrementPage={incrementPage}
             decrementPage={decrementPage}
             showTitle={showTitle}
