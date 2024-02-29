@@ -1,8 +1,7 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import './page.scss';
-import { API_URL } from '@/constant';
-import Image from 'next/image';
+"use client";
+import React, { useEffect, useState } from "react";
+import "./page.scss";
+import { API_URL } from "@/constant";
 
 type Props = {
   params: {
