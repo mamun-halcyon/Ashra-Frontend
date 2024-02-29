@@ -18,7 +18,10 @@ const VideoCard = dynamic(() => import("@/components/video-card"));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    cache: "no-store",
+    // cache: "no-store",
+    next: {
+      revalidate: 3600,
+    },
   });
   return res.json();
 }
@@ -27,7 +30,10 @@ async function categoryProduct(category_slug: string) {
   const res = await fetch(
     `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`,
     {
-      cache: "no-store",
+      // cache: "no-store",
+      next: {
+        revalidate: 3600,
+      },
     }
   );
   return res.json();
@@ -43,7 +49,10 @@ async function serviceItems() {
 }
 async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
-    cache: "no-store",
+    // cache: "no-store",
+    next: {
+      revalidate: 3600,
+    },
   });
   return res.json();
 }

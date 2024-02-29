@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
+import dynamic from "next/dynamic";
 import { Poppins } from "next/font/google";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,11 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import ReduxProvider from "@/redux/provider";
 import TopHeader from "@/components/header";
-import Navbar from "@/components/navbar";
+const Navbar = dynamic(() => import("@/components/navbar"));
 import MegaMenu from "@/components/megamenu";
 import { API_URL } from "@/constant";
 import { HomeApiResponse } from "@/types/home";
-import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("@/components/footer"));
 
 const Gotham = localFont({
@@ -61,10 +61,10 @@ export const metadata: Metadata = {
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    cache: "no-store",
-    /* next: {
+    // cache: "no-store",
+    next: {
       revalidate: 3600,
-    }, */
+    },
   });
 
   /* if (!res.ok) {
@@ -117,7 +117,7 @@ export default async function RootLayout({
               homeData={globalData.homePage}
               menus={footerMenus.data}
             />
-            {/* <Navbar logo={globalData.setting.logo} /> */}
+            <Navbar logo={globalData.setting.logo} />
             <MegaMenu menus={categories?.data?.rows} />
             {children}
             <Footer globalData={globalData} />
