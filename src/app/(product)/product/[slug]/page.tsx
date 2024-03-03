@@ -1003,7 +1003,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
       {isEmi && (
         <EmiPopup
           handleEmi={handleEmi}
-          price={product.product.discount_price}
+          price={
+            product.product.discount_price > 0
+              ? product.product.discount_price
+              : product.product.regular_price
+          }
         />
       )}
     </>
