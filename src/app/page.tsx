@@ -104,7 +104,6 @@ export default async function Home({
                   <ExploreCard
                     className="md:w-1/6 w-1/3 text-center p-2"
                     key={i}
-                    href={`/category/${category.title}`}
                     item={category}
                   />
                 ))}

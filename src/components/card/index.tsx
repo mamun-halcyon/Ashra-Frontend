@@ -28,12 +28,14 @@ interface IProps {
   isNew?: boolean;
   availability: any;
   quantity: number;
+  productAttribute?: any[];
 }
 const ProductCard: React.FC<IProps> = ({
   image,
   title,
   regular_price,
   discount_price,
+  productAttribute,
   url,
   isNew,
   product_id,
@@ -142,46 +144,59 @@ const ProductCard: React.FC<IProps> = ({
             <>
               {quantity > 0 ? (
                 <>
-                  <Button
-                    onClick={() =>
-                      dispatch(
-                        addToCart({
-                          product_id: product_id,
-                          price: Number(
-                            Number(discount_price) > 0
-                              ? discount_price
-                              : regular_price
-                          ),
-                          title: title,
-                          image: image,
-                          quantity: 1,
-                          regular_price: Number(regular_price),
-                        })
-                      )
-                    }
-                    className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
-                  >
-                    Add to Cart
-                  </Button>
-                  <Button
-                    onClick={() =>
-                      handleBuyNow({
-                        product_id,
-                        price: Number(
-                          Number(discount_price) > 0
-                            ? discount_price
-                            : regular_price
-                        ),
-                        title: title,
-                        image: image,
-                        quantity: 1,
-                        regular_price: Number(regular_price),
-                      })
-                    }
-                    className="font-gotham font-medium py-2 text-xs  w-[102px]"
-                  >
-                    Buy Now
-                  </Button>
+                  {productAttribute && productAttribute.length > 0 ? (
+                    <>
+                      <Link href={`/product/${url}`}>
+                        <Button className="font-gotham font-medium py-2 text-xs w-[102px] stock-out">
+                          View
+                        </Button>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <Button
+                        onClick={() =>
+                          dispatch(
+                            addToCart({
+                              product_id: product_id,
+                              price: Number(
+                                Number(discount_price) > 0
+                                  ? discount_price
+                                  : regular_price
+                              ),
+                              title: title,
+                              image: image,
+                              quantity: 1,
+                              regular_price: Number(regular_price),
+                            })
+                          )
+                        }
+                        className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
+                      >
+                        Add to Cart
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          handleBuyNow({
+                            product_id,
+                            price: Number(
+                              Number(discount_price) > 0
+                                ? discount_price
+                                : regular_price
+                            ),
+                            title: title,
+                            image: image,
+                            quantity: 1,
+                            regular_price: Number(regular_price),
+                          })
+                        }
+                        className="font-gotham font-medium py-2 text-xs  w-[102px]"
+                      >
+                        Buy Now
+                      </Button>
+                    </>
+                  )}
                 </>
               ) : (
                 <Button className="font-gotham font-medium py-2 text-xs w-[102px] stock-out">

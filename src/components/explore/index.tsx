@@ -1,19 +1,18 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import './index.scss';
-import { ICategoryData } from '@/types/category';
-import { API_ROOT } from '@/constant';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import "./index.scss";
+import { ICategoryData } from "@/types/category";
+import { API_ROOT } from "@/constant";
 
 interface IProps {
   item: ICategoryData;
   className?: string;
-  href: string;
+  href?: string;
 }
 const ExploreCard: React.FC<IProps> = ({
   item,
   className,
-  href,
 }): React.JSX.Element => {
   return (
     <div className={`${className} explore-card`}>
@@ -23,6 +22,7 @@ const ExploreCard: React.FC<IProps> = ({
           width={150}
           height={150}
           alt="explore"
+          quality={100}
         />
         <p className=" mt-5 text-sm font-gotham font-medium font-sm uppercase">
           {item.title}
