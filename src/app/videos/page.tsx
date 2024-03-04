@@ -1,36 +1,61 @@
-"use client";
 import dynamic from "next/dynamic";
 const VideoCard = dynamic(() => import("@/components/video-card"));
 import "./page.scss";
 import Link from "next/link";
 import { RiArrowDropRightLine } from "react-icons/ri";
-import Pagination from "@/components/pagination";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { API_URL } from "@/constant";
-import { IVideo } from "@/types/video";
+import { IVideoApiResponse } from "@/types/video";
 import axios from "axios";
 import { IBanner } from "@/types/banner";
+import ServerPagination from "@/components/pagination/pagination";
 
-function Videos() {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState<number | string>(16);
-  const [showTitle, setShowTitle] = useState<string>("Show");
-  const [videos, setVideos] = useState<IVideo[]>([]);
-  const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner);
-  const [count, setCount] = useState(0);
-  const [isLoading, setLoading] = useState(true);
-
-  async function adBanner() {
-    try {
-      const data = await axios.get(`${API_URL}/banners/video`);
-      setAdsBanner(data.data?.data[0]);
-    } catch (error) {
-      console.log("category ads banner" + error);
+async function adBanner() {
+  try {
+    const response = await fetch(`${API_URL}/banners/video`, {
+      // cache: "no-store",
+      next: {
+        revalidate: 3600,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch banner video");
     }
-  }
 
-  useEffect(() => {
+    const data = await response.json();
+    return data?.data?.data[0];
+  } catch (error) {
+    console.log("video ads banner" + error);
+  }
+}
+
+async function getVideos(page: number = 1, limit: number = 12) {
+  const url = `${API_URL}/frontend/videos?limit=${limit}&page=${page} `;
+  const res = await fetch(url, {
+    next: {
+      revalidate: 3600,
+    },
+  });
+  const data = await res.json();
+  return data;
+}
+
+async function Videos({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const page =
+    typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
+  const limit =
+    typeof searchParams.limit === "string" ? Number(searchParams.limit) : 12;
+  const adsBanner: IBanner = await adBanner();
+  const videos: IVideoApiResponse = await getVideos(page, limit);
+  /* const [showTitle, setShowTitle] = useState<string>("Show");
+  const [videos, setVideos] = useState<IVideo[]>([]);
+  const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner); */
+
+  /* useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -46,12 +71,12 @@ function Videos() {
     };
 
     fetchData();
-  }, [page, limit]);
+  }, [page, limit]); */
 
   /*  useEffect(() => {
     dispatch(getProducts({}));
   }, []); */
-  useEffect(() => {
+  /* useEffect(() => {
     adBanner();
   }, []);
 
@@ -64,13 +89,13 @@ function Videos() {
       setPage(page - 1);
     }
   };
-
-  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+ */
+  /*  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const clickedElement = event.target as HTMLLIElement;
     const innerText = clickedElement.innerText;
     setShowTitle(`Show ${innerText}`);
     setLimit(innerText);
-  };
+  }; */
 
   return (
     <main>
@@ -104,21 +129,17 @@ function Videos() {
         <section>
           <div className="container px-2 md:px-0">
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {!isLoading &&
-                videos.map((video, index) => (
-                  <VideoCard key={index} url={video.url} title={video.title} />
-                ))}
+              {videos.data.rows.map((video, index) => (
+                <VideoCard key={index} url={video.url} title={video.title} />
+              ))}
             </div>
           </div>
         </section>
         <div className="container">
-          <Pagination
+          <ServerPagination
+            showTitle={`Show ${limit}`}
             page={page}
-            totalPage={Math.ceil(count / Number(limit))}
-            incrementPage={incrementPage}
-            decrementPage={decrementPage}
-            showTitle={showTitle}
-            handleShow={handleShow}
+            totalPage={Math.ceil(videos.data?.count / limit)}
           />
         </div>
       </div>
