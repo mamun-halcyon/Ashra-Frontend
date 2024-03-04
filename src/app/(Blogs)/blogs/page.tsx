@@ -6,7 +6,6 @@ import "./page.scss";
 import Image from "next/image";
 import { IResponseBlog } from "@/types/blog";
 import { API_ROOT, API_URL } from "@/constant";
-import axios from "axios";
 import { IBanner } from "@/types/banner";
 import ServerPagination from "@/components/pagination/pagination";
 
