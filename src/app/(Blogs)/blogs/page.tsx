@@ -85,7 +85,7 @@ async function Blogs({
           <ServerPagination
             showTitle={`Show ${limit}`}
             page={page}
-            totalPage={Math.ceil(blogs.data?.count / limit)}
+            totalPage={Math.ceil((blogs.data?.count || 1) / limit)}
           />
         </div>
       </section>

@@ -94,7 +94,7 @@ async function Videos({
           <ServerPagination
             showTitle={`Show ${limit}`}
             page={page}
-            totalPage={Math.ceil(videos.data?.count / limit)}
+            totalPage={Math.ceil((videos.data?.count || 1) / limit)}
           />
         </div>
       </div>
