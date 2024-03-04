@@ -29,7 +29,7 @@ async function adBanner() {
     }
 
     const data = await response.json();
-    return data?.data?.data[0];
+    return data?.data[0];
   } catch (error) {
     console.log("Blog ads banner" + error);
   }

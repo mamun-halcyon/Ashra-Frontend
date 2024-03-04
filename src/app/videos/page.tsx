@@ -4,7 +4,7 @@ import "./page.scss";
 import Link from "next/link";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import Image from "next/image";
-import { API_URL } from "@/constant";
+import { API_ROOT, API_URL } from "@/constant";
 import { IVideoApiResponse } from "@/types/video";
 import axios from "axios";
 import { IBanner } from "@/types/banner";
@@ -13,17 +13,17 @@ import ServerPagination from "@/components/pagination/pagination";
 async function adBanner() {
   try {
     const response = await fetch(`${API_URL}/banners/video`, {
-      // cache: "no-store",
-      next: {
+      cache: "no-store",
+      /*  next: {
         revalidate: 3600,
-      },
+      }, */
     });
     if (!response.ok) {
       throw new Error("Failed to fetch banner video");
     }
 
     const data = await response.json();
-    return data?.data?.data[0];
+    return data?.data[0];
   } catch (error) {
     console.log("video ads banner" + error);
   }
@@ -51,51 +51,6 @@ async function Videos({
     typeof searchParams.limit === "string" ? Number(searchParams.limit) : 12;
   const adsBanner: IBanner = await adBanner();
   const videos: IVideoApiResponse = await getVideos(page, limit);
-  /* const [showTitle, setShowTitle] = useState<string>("Show");
-  const [videos, setVideos] = useState<IVideo[]>([]);
-  const [adsBanner, setAdsBanner] = useState<IBanner>({} as IBanner); */
-
-  /* useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${API_URL}/videos?page=${page}&limit=${limit}`
-        );
-        const data = await response.json();
-        setCount(data.data?.count);
-        setVideos(data.data?.rows);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [page, limit]); */
-
-  /*  useEffect(() => {
-    dispatch(getProducts({}));
-  }, []); */
-  /* useEffect(() => {
-    adBanner();
-  }, []);
-
-  const incrementPage = () => {
-    setPage(page + 1);
-  };
-
-  const decrementPage = () => {
-    if (page !== 1) {
-      setPage(page - 1);
-    }
-  };
- */
-  /*  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    const clickedElement = event.target as HTMLLIElement;
-    const innerText = clickedElement.innerText;
-    setShowTitle(`Show ${innerText}`);
-    setLimit(innerText);
-  }; */
 
   return (
     <main>
@@ -115,9 +70,9 @@ async function Videos({
             <Link href={"/"}>
               <Image
                 className="w-full"
-                src={"/assets/images/ads/Group 9.png"}
-                width={400}
-                height={300}
+                src={`${API_ROOT}/images/banner/${adsBanner.image}`}
+                width={1200}
+                height={340}
                 alt="ads"
               />
             </Link>
