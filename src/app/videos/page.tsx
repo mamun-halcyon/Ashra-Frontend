@@ -6,17 +6,16 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import Image from "next/image";
 import { API_ROOT, API_URL } from "@/constant";
 import { IVideoApiResponse } from "@/types/video";
-import axios from "axios";
 import { IBanner } from "@/types/banner";
 import ServerPagination from "@/components/pagination/pagination";
 
 async function adBanner() {
   try {
     const response = await fetch(`${API_URL}/banners/video`, {
-      cache: "no-store",
-      /*  next: {
+      // cache: "no-store",
+      next: {
         revalidate: 3600,
-      }, */
+      },
     });
     if (!response.ok) {
       throw new Error("Failed to fetch banner video");

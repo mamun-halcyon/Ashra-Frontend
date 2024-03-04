@@ -3,7 +3,6 @@ import { API_ROOT, API_URL } from "@/constant";
 import { HomeApiResponse } from "@/types/home";
 import { IProduct, IProductResponse } from "@/types/product";
 import { IService } from "@/types/service";
-import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -68,11 +67,7 @@ async function categoryAdBanner(slug: string) {
   return res.json();
 }
 
-export default async function Home({
-  searchParams: { q },
-}: {
-  searchParams: { q: string };
-}) {
+export default async function Home() {
   const homeData: HomeApiResponse = await getData();
   const gasStoveProducts: IProductResponse = await categoryProduct(
     homeData.homePage.category_one
