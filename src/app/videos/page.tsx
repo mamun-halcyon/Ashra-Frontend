@@ -84,7 +84,7 @@ async function Videos({
         <section>
           <div className="container px-2 md:px-0">
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {videos.data.rows.map((video, index) => (
+              {videos?.data?.rows.map((video, index) => (
                 <VideoCard key={index} url={video.url} title={video.title} />
               ))}
             </div>

@@ -40,13 +40,24 @@ async function categoryProduct(category_slug: string) {
 }
 async function serviceItems() {
   try {
-    const res = await axios.get(`${API_URL}/frontend/keypoints/home?limit=4`);
+    const response = await fetch(`${API_URL}/frontend/keypoints/home?limit=4`, {
+      next: {
+        revalidate: 3600,
+      },
+    });
 
-    return res.data?.data?.rows;
+    if (!response.ok) {
+      throw new Error("Failed to fetch service items");
+    }
+
+    const data = await response.json();
+
+    return data?.data?.rows;
   } catch (error) {
     console.log(error);
   }
 }
+
 async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
     // cache: "no-store",
@@ -56,6 +67,7 @@ async function categoryAdBanner(slug: string) {
   });
   return res.json();
 }
+
 export default async function Home({
   searchParams: { q },
 }: {
