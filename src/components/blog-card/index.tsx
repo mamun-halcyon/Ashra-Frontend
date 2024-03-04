@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import { FC } from 'react';
-import Button from '../button';
-import './index.scss';
-import Link from 'next/link';
-import { IBlog } from '@/types/blog';
-import { API_ROOT } from '@/constant';
-import { formatDate } from '../dateformate';
+import Image from "next/image";
+import { FC } from "react";
+import Button from "../button";
+import "./index.scss";
+import Link from "next/link";
+import { IBlog } from "@/types/blog";
+import { API_ROOT } from "@/constant";
+import { formatDate } from "../dateformate";
 
 interface IProps {
   blog: IBlog;
@@ -21,7 +21,7 @@ const BlogCard: FC<IProps> = ({ className, blog }) => {
             className=" w-full object-cover"
             src={`${API_ROOT}/images/blog/${blog.image}`}
             width={300}
-            height={400}
+            height={200}
             alt="gazi blog"
           />
         </Link>
