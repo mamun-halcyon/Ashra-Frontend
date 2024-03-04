@@ -236,7 +236,14 @@ const ListCard: FC<IProps> = ({ product }) => {
         )}
       </div>
       {isEmi && (
-        <EmiPopup price={product.discount_price} handleEmi={handleEmi} />
+        <EmiPopup
+          price={
+            product.discount_price > 0
+              ? product.discount_price
+              : product.regular_price
+          }
+          handleEmi={handleEmi}
+        />
       )}
     </div>
   );
