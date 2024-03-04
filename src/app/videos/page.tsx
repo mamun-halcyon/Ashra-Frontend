@@ -1,7 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
 const VideoCard = dynamic(() => import("@/components/video-card"));
-import { videoData } from "@/static/video";
 import "./page.scss";
 import Link from "next/link";
 import { RiArrowDropRightLine } from "react-icons/ri";

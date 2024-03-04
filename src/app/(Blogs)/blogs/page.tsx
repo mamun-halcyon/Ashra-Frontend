@@ -3,8 +3,6 @@ const BlogCard = dynamic(() => import("@/components/blog-card"));
 import Link from "next/link";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import "./page.scss";
-import { redirect } from "next/navigation";
-import Pagination from "@/components/pagination";
 import Image from "next/image";
 import { IResponseBlog } from "@/types/blog";
 import { API_ROOT, API_URL } from "@/constant";
@@ -41,26 +39,6 @@ async function Blogs({
 
   const adsBanner: IBanner = await adBanner();
 
-  /* const [page, setPage] = useState(1);
-  const [showTitle, setShowTitle] = useState<string>('Show');
-
-
-/*   const incrementPage = () => {
-    setPage(page + 1);
-  };
-
-  const decrementPage = () => {
-    if (page !== 1) {
-      setPage(page - 1);
-    }
-  };
-
-  const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    const clickedElement = event.target as HTMLLIElement;
-    const innerText = clickedElement.innerText;
-    setShowTitle(`Show ${innerText}`);
-  }; */
-
   return (
     <main>
       <section>
@@ -80,8 +58,8 @@ async function Blogs({
               <Image
                 className="w-full"
                 src={`${API_ROOT}/images/banner/${adsBanner.image}`}
-                width={400}
-                height={300}
+                width={1200}
+                height={340}
                 alt="ads"
               />
             </Link>
