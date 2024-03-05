@@ -73,12 +73,6 @@
           cursor: pointer;
         }
       }
-      .quantity {
-        color: $primary-color;
-      }
-      .total-price {
-        color: $primary-color;
-      }
     }
   }
 
@@ -87,9 +81,6 @@
 
     .summery-border {
       border-bottom: 1px solid $decenary-color;
-    }
-    .sub-total {
-      color: $primary-color;
     }
   }
 }

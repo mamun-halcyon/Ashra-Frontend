@@ -23,7 +23,7 @@ const CategoryFilter: FC<IProps> = ({
         .map((rootCategory) => {
           return (
             <SubCategory
-              key={rootCategory.slug}
+              key={rootCategory.title}
               categoryFilterItems={categoryFilterItems}
               rootCategory={rootCategory}
               handleMultipleCategory={handleMultipleCategory}

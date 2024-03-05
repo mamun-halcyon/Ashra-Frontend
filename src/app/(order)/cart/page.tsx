@@ -134,7 +134,7 @@ function Checkout() {
                         </div>
                       </div>
                       <div className="col-span-2 md:col-span-1">
-                        <p className=" font-gotham font-medium quantity text-sm">
+                        <p className=" font-gotham font-medium text-primary text-sm">
                           ৳ {item.price}
                         </p>
                       </div>
@@ -158,7 +158,7 @@ function Checkout() {
                         </div>
                       </div>
                       <div className=" col-span-2 md:col-span-1">
-                        <p className=" font-gotham font-medium total-price text-sm">
+                        <p className=" font-gotham font-medium text-primary text-sm">
                           ৳ {item.price * item.quantity}
                         </p>
                       </div>
@@ -196,10 +196,27 @@ function Checkout() {
                     <p className=" font-gotham font-medium text-sm text-black">
                       Sub Total
                     </p>
-                    <p className=" font-gotham font-medium text-sm sub-total">
+                    <p className=" font-gotham font-medium text-sm text-primary">
                       {sumWithInitial}
                     </p>
                   </div>
+
+                  {/*   <div className="flex justify-between items-center mt-3 summery-border pb-3">
+                    <p className=" font-gotham font-medium text-sm text-black">
+                      Shipping
+                    </p>
+                    <p className=" font-gotham font-medium text-sm text-black">
+                      Free Shipping
+                    </p>
+                  </div> */}
+                  {/*   <div className="flex justify-between items-center mt-3">
+                    <p className=" font-gotham font-medium text-base text-black">
+                      Total
+                    </p>
+                    <p className=" font-gotham font-medium text-base text-primary">
+                      ৳ {sumWithInitial}
+                    </p>
+                  </div> */}
                   <Link className=" mt-14 block" href={"/checkout"}>
                     <Button className="w-full font-gotham font-medium text-lg py-1">
                       Continue to Shipping

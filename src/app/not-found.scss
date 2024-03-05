@@ -1,9 +1,5 @@
 /* styles/Custom404.module.css */
-@import "../styles/index.scss";
 
-.not-found {
-  background: $white-color;
-}
 .custom-404 {
   text-align: center;
   padding: 2rem;
@@ -22,7 +18,4 @@
   color: #0070f3;
   text-decoration: none;
   font-weight: 600;
-}
-.back-btn {
-  background: $primary-color;
 }

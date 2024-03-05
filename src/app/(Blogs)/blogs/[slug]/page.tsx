@@ -162,7 +162,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                       </p>
                     </div>
                     <Link
-                      className="font-gotham font-normal text-xs mt-2 sudo-link"
+                      className="font-gotham font-normal text-xs mt-2 text-primary"
                       href={`/blogs/${blog.slug}`}
                     >
                       Read More

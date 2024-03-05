@@ -40,14 +40,11 @@ const ChildCategory: FC<IProps> = ({
         className="childCategory-checkbox"
         type="checkbox"
         checked={checked}
-        id={childCategory.title}
         onChange={onChangeHandler}
         value={childCategory.title}
         style={{ marginInline: 10 }}
       />
-      <label htmlFor={childCategory.title}>
-        {childCategory.title.toLowerCase()}
-      </label>
+      {childCategory.title.toLowerCase()}
     </div>
   );
 };
