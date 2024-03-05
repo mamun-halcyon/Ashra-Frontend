@@ -50,14 +50,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
 
   return (
     <div className="emi-popup">
-      <div className="text-right">
-        {/*  <div
-          className="  text-white bg-black inline-block p-2 mr-3 mt-3 cursor-pointer"
-          onClick={handleEmi}
-        >
-          <RxCross2 />
-        </div> */}
-      </div>
+      <div className="text-right"></div>
       <div className="main-wrapper flex-wrap">
         <div className="w-full ">
           <div className="w-full mb-5">

@@ -103,8 +103,8 @@ const ProductCard: React.FC<IProps> = ({
           <Image
             className="mb-5"
             src={`${API_ROOT}/images/product/${image}`}
-            width={300}
-            height={300}
+            width={220}
+            height={210}
             quality={100}
             alt="product"
           />

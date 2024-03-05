@@ -25,8 +25,8 @@ const ChildCategories: FC<IProps> = ({
   return (
     <div
       className={`childCategories ${
-        showChildCategories.toLocaleLowerCase() ===
-          subCategory.title.toLocaleLowerCase() && "childCategories-show"
+        showChildCategories.toLowerCase() === subCategory.title.toLowerCase() &&
+        "childCategories-show"
       }`}
     >
       {categoryFilterItems

@@ -610,7 +610,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           <div className="flex pt-5 font-gotham font-medium ">
                             <div className="mr-2 flex items-center text-primary border ">
                               <div
-                                className="quantity cursor-pointer hover:text-white hover:bg-primary "
+                                className="quantity cursor-pointer "
                                 onClick={decrement}
                               >
                                 <button>
@@ -621,7 +621,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 {quantity}
                               </div>
                               <div
-                                className="quantity cursor-pointer  hover:text-white hover:bg-primary"
+                                className="quantity cursor-pointer"
                                 onClick={increment}
                               >
                                 <button>

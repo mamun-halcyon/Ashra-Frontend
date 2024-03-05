@@ -1,4 +1,4 @@
-@import '../../../../styles/index.scss';
+@import "../../../../styles/index.scss";
 
 .blog-details {
   padding-bottom: 80px;
@@ -29,5 +29,10 @@
         color: $white-color;
       }
     }
+  }
+}
+.more-blog {
+  .sudo-link {
+    color: $primary-color;
   }
 }

@@ -1,25 +1,25 @@
-'use client';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
-import { MdVerified } from 'react-icons/md';
-import { RxCross2 } from 'react-icons/rx';
-import { GoDotFill } from 'react-icons/go';
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import { MdVerified } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
+import { GoDotFill } from "react-icons/go";
 
-import Button from '@/components/button';
-import ServiceCard from '@/components/service-card';
-import { API_ROOT, API_URL } from '@/constant';
+import Button from "@/components/button";
+import ServiceCard from "@/components/service-card";
+import { API_ROOT, API_URL } from "@/constant";
 import {
   decrementQuantity,
   incrementQuantity,
   removeFromCart,
-} from '@/redux/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { IService } from '@/types/service';
-import axios from 'axios';
-import Image from 'next/image';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import './page.scss';
+} from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { IService } from "@/types/service";
+import axios from "axios";
+import Image from "next/image";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import "./page.scss";
 
 function Checkout() {
   const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ function Checkout() {
       const data = await axios.get(`${API_URL}/frontend/keypoints/other`);
       setKeyPoints(data.data?.data?.rows);
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   };
   useEffect(() => {
@@ -134,7 +134,7 @@ function Checkout() {
                         </div>
                       </div>
                       <div className="col-span-2 md:col-span-1">
-                        <p className=" font-gotham font-medium text-primary text-sm">
+                        <p className=" font-gotham font-medium quantity text-sm">
                           ৳ {item.price}
                         </p>
                       </div>
@@ -158,7 +158,7 @@ function Checkout() {
                         </div>
                       </div>
                       <div className=" col-span-2 md:col-span-1">
-                        <p className=" font-gotham font-medium text-primary text-sm">
+                        <p className=" font-gotham font-medium total-price text-sm">
                           ৳ {item.price * item.quantity}
                         </p>
                       </div>
@@ -196,28 +196,11 @@ function Checkout() {
                     <p className=" font-gotham font-medium text-sm text-black">
                       Sub Total
                     </p>
-                    <p className=" font-gotham font-medium text-sm text-primary">
+                    <p className=" font-gotham font-medium text-sm sub-total">
                       {sumWithInitial}
                     </p>
                   </div>
-
-                  {/*   <div className="flex justify-between items-center mt-3 summery-border pb-3">
-                    <p className=" font-gotham font-medium text-sm text-black">
-                      Shipping
-                    </p>
-                    <p className=" font-gotham font-medium text-sm text-black">
-                      Free Shipping
-                    </p>
-                  </div> */}
-                  {/*   <div className="flex justify-between items-center mt-3">
-                    <p className=" font-gotham font-medium text-base text-black">
-                      Total
-                    </p>
-                    <p className=" font-gotham font-medium text-base text-primary">
-                      ৳ {sumWithInitial}
-                    </p>
-                  </div> */}
-                  <Link className=" mt-14 block" href={'/checkout'}>
+                  <Link className=" mt-14 block" href={"/checkout"}>
                     <Button className="w-full font-gotham font-medium text-lg py-1">
                       Continue to Shipping
                     </Button>

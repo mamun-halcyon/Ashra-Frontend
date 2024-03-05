@@ -1,4 +1,4 @@
-@import '../../../styles/index.scss';
+@import "../../../styles/index.scss";
 .cart-page {
   padding-top: 80px;
   padding-bottom: 80px;
@@ -13,12 +13,12 @@
 
       &::after {
         position: absolute;
-        content: '';
+        content: "";
         bottom: 0;
         left: 0;
         width: 100%;
         height: 5px;
-        background: url('/assets/images/line/line.jpg') no-repeat center;
+        background: url("/assets/images/line/line.jpg") no-repeat center;
         background-size: cover;
       }
       .item {
@@ -73,6 +73,12 @@
           cursor: pointer;
         }
       }
+      .quantity {
+        color: $primary-color;
+      }
+      .total-price {
+        color: $primary-color;
+      }
     }
   }
 
@@ -81,6 +87,9 @@
 
     .summery-border {
       border-bottom: 1px solid $decenary-color;
+    }
+    .sub-total {
+      color: $primary-color;
     }
   }
 }

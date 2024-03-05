@@ -1,6 +1,6 @@
-import { ICategoryData } from '@/types/category';
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import './index.scss';
+import { ICategoryData } from "@/types/category";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import "./index.scss";
 
 interface IProps {
   childCategory: ICategoryData;
@@ -40,11 +40,14 @@ const ChildCategory: FC<IProps> = ({
         className="childCategory-checkbox"
         type="checkbox"
         checked={checked}
+        id={childCategory.title}
         onChange={onChangeHandler}
         value={childCategory.title}
         style={{ marginInline: 10 }}
       />
-      {childCategory.title.toLowerCase()}
+      <label htmlFor={childCategory.title}>
+        {childCategory.title.toLowerCase()}
+      </label>
     </div>
   );
 };
