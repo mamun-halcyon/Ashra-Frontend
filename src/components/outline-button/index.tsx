@@ -1,4 +1,4 @@
-import './index.scss';
+import "./index.scss";
 
 interface IProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const OutlineButton: React.FC<IProps> = ({
 }) => {
   return (
     <button
-      className={`${className} px-2 py-[2px] border outline-button  cursor-pointer hover:text-white hover:bg-primary transition-all`}
+      className={`${className} px-2 py-[2px] border outline-button  cursor-pointer white-hover-text primary-hover-bg transition-all`}
       onClick={handleClick}
     >
       {children}

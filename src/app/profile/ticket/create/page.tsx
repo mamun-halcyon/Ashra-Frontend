@@ -90,7 +90,7 @@ const CreateTicket = () => {
                     }
                   />
                   <textarea
-                    className="border border-secondary mt-3 w-full p-2 font-gotham text-xs outline-none min-h-[100px]"
+                    className="border secondary-border mt-3 w-full p-2 font-gotham text-xs outline-none min-h-[100px]"
                     placeholder="Your replay"
                     onChange={(e: any) =>
                       e.target.value.trim() === ''

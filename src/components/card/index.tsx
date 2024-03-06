@@ -222,7 +222,7 @@ const ProductCard: React.FC<IProps> = ({
           Number(regular_price)) *
           100 !==
           0 && discount_price !== 0 ? (
-          <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+          <span className=" sudo inline-block discount font-gotham text-xs font-bold  px-2 py-1  rounded primary-text">
             {(
               ((Number(regular_price) - Number(discount_price)) /
                 Number(regular_price)) *
@@ -232,7 +232,7 @@ const ProductCard: React.FC<IProps> = ({
           </span>
         ) : null}
         {isNew ? (
-          <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded text-primary">
+          <span className=" sudo inline-block new font-gotham text-xs font-bold  px-2 py-1  rounded primary-text">
             New
           </span>
         ) : (
@@ -241,7 +241,7 @@ const ProductCard: React.FC<IProps> = ({
       </div>
       <div className=" absolute  feature top-2 right-2">
         <div className="mb-1 cursor-pointer action-item" onClick={addWishList}>
-          <AiOutlineHeart className=" hover:text-primary" />
+          <AiOutlineHeart className=" primary-hover" />
         </div>
         <div
           className="mb-1 cursor-pointer action-item"
@@ -259,7 +259,7 @@ const ProductCard: React.FC<IProps> = ({
             })
           }
         >
-          <BsArrowRepeat className=" hover:text-primary" />
+          <BsArrowRepeat className=" primary-hover" />
         </div>
       </div>
     </div>

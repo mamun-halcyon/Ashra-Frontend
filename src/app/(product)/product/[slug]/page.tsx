@@ -492,10 +492,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
                   </div>
 
                   <div>
-                    <h2 className=" font-gotham font-medium text-xl text-black mb-1 hover:text-hoverColor transition-all">
+                    <h2 className=" font-gotham font-medium text-xl black-text mb-1 hover-text-color transition-all">
                       {product?.product?.title}
                     </h2>
-                    <div className="flex items-center text-primary font-gotham">
+                    <div className="flex items-center primary-text font-gotham">
                       <div className="flex items-center">
                         <StarRating rating={product?.averageReview} />
                         <span className="ml-1 font-gotham text-xs">
@@ -507,14 +507,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
                     <div className="price-area py-3 mt-2">
                       <div className="flex items-center">
-                        <h3 className=" font-gotham font-normal text-xs text-black mr-3">
+                        <h3 className=" font-gotham font-normal text-xs black-text mr-3">
                           Regular Price:
                         </h3>
                         <h2
                           className={`font-gotham  text-xl font-medium ${
                             product?.product?.discount_price > 0
                               ? " line-through font-normal r-price "
-                              : "text-primary"
+                              : "primary-text"
                           }  `}
                         >
                           ৳{FormatPrice(product?.product?.regular_price)}
@@ -522,11 +522,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       </div>
                       {product?.product?.discount_price > 0 && (
                         <div className="flex items-center">
-                          <h3 className=" font-gotham font-normal text-xs text-black mr-3">
+                          <h3 className=" font-gotham font-normal text-xs black-text mr-3">
                             Discount Price:
                           </h3>
                           <div className="flex">
-                            <h2 className="font-gotham  text-2xl text-primary font-medium d-price">
+                            <h2 className="font-gotham  text-2xl primary-text font-medium d-price">
                               ৳{FormatPrice(product?.product?.discount_price)}
                             </h2>
                             <div>
@@ -541,7 +541,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       )}
                     </div>
                     <div className="e-emi">
-                      <h3 className=" font-gotham font-medium text-sm text-primary py-3 cursor-pointer">
+                      <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
                         <span
                           className="cursor-point"
                           onClick={() => setIsEmi(true)}
@@ -575,8 +575,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                   key={j}
                                                   className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
                                                     val?.checked === true
-                                                      ? "bg-primary text-white"
-                                                      : "bg-white text-black"
+                                                      ? "primary-bg white-text"
+                                                      : "white-bg black-text"
                                                   }`}
                                                   onClick={() =>
                                                     handleAttributeClick(
@@ -608,9 +608,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       product?.product?.quantity > 0 && (
                         <div className="action">
                           <div className="flex pt-5 font-gotham font-medium ">
-                            <div className="mr-2 flex items-center text-primary border ">
+                            <div className="mr-2 flex items-center primary-text border ">
                               <div
-                                className="quantity cursor-pointer hover:text-white hover:bg-primary "
+                                className="quantity cursor-pointer white-hover-text primary-hover-bg "
                                 onClick={decrement}
                               >
                                 <button>
@@ -621,7 +621,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 {quantity}
                               </div>
                               <div
-                                className="quantity cursor-pointer  hover:text-white hover:bg-primary"
+                                className="quantity cursor-pointer  white-hover-text primary-hover-bg"
                                 onClick={increment}
                               >
                                 <button>
@@ -699,7 +699,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           }}
                         >
                           {" "}
-                          <OutlineButton className="flex items-center font-gotham font-medium text-primary mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium primary-text mr-2">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
@@ -729,7 +729,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             );
                           }}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm text-primary mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm primary-text mr-2">
                             <span>
                               <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
@@ -738,7 +738,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </span>
 
                         <span className="mt-2 md:mt-0 share-item">
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm text-primary mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm primary-text mr-2">
                             <span>
                               <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
@@ -764,10 +764,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             />
                           </div>
                           <div className="details ml-2">
-                            <h3 className=" font-gotham font-medium text-bold text-base text-primary">
+                            <h3 className=" font-gotham font-medium text-bold text-base primary-text">
                               {service.title}
                             </h3>
-                            <h4 className=" font-gotham font-medium text-bold text-xs text-black">
+                            <h4 className=" font-gotham font-medium text-bold text-xs black-text">
                               {service.subtitle}
                             </h4>
                           </div>
@@ -775,7 +775,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       ))}
                     </div>
 
-                    <OutlineButton className="flex items-center font-gotham font-medium text-primary text-xs py-1">
+                    <OutlineButton className="flex items-center font-gotham font-medium primary-text text-xs py-1">
                       <span className="mr-2">
                         {/* <BsAwardFill /> */}
                         <FaAward className="award" />
@@ -840,15 +840,15 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             </div>
                             {/* Review Form */}
                             <div>
-                              <h2 className=" font-gotham font-semibold text-lg text-black">
+                              <h2 className=" font-gotham font-semibold text-lg black-text">
                                 BE THE FIRST TO REVIEW
                               </h2>
-                              <p className=" font-gotham font-normal text-xs text-black mt-4">
+                              <p className=" font-gotham font-normal text-xs black-text mt-4">
                                 Your email address will not be published.
                                 Required fields are marked *
                               </p>
                               <div className="flex items-center mt-9 mb-5">
-                                <p className="font-gotham font-normal text-xs text-black">
+                                <p className="font-gotham font-normal text-xs black-text">
                                   Your Rating *
                                 </p>
                                 <div className="ml-2 mb-1">
@@ -901,7 +901,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                       required
                                     />
                                   </div>
-                                  <p className=" font-gotham font-normal text-xs  text-black">
+                                  <p className=" font-gotham font-normal text-xs  black-text">
                                     Save my name, email, and website in this
                                     browser for the next time I comment.
                                   </p>

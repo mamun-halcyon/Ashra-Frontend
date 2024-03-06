@@ -52,7 +52,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                 />
                 <div className=" p-4">
                   <div className="border-area">
-                    <h2 className="font-gotham font-bold text-base text-black">
+                    <h2 className="font-gotham font-bold text-base black-text">
                       {blogData.data.title}
                     </h2>
                     <div className="flex justify-between py-2 social">
@@ -91,7 +91,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                           </Link>
                         </div>
                       </div>
-                      <div className="font-gotham font-normal text-xs text-black">
+                      <div className="font-gotham font-normal text-xs black-text">
                         {formatDate(blogData.data.created_at)}
                       </div>
                     </div>
@@ -107,7 +107,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                 </div>
               </div>
               <div className="shadow mt-5 p-4">
-                <h3 className=" font-gotham font-normal text-base text-black mb-3">
+                <h3 className=" font-gotham font-normal text-base black-text mb-3">
                   Write a comment
                 </h3>
                 <div>
@@ -131,7 +131,7 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
             </div>
           }
           <div className=" col-span-6 md:col-span-2">
-            <h2 className="font-gotham font-normal text-xl  text-black">
+            <h2 className="font-gotham font-normal text-xl  black-text">
               Popular Blogs
             </h2>
             <div className="mt-3 more-blog">
@@ -148,21 +148,21 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                   </div>
                   <div className="text w-3/4">
                     <Link href={`/blogs/${blog.slug}`}>
-                      <h4 className=" font-gotham  font-normal text-base text-black">
+                      <h4 className=" font-gotham  font-normal text-base black-text">
                         {blog.title}
                       </h4>
                     </Link>
 
                     <div className="flex justify-between items-center">
-                      <p className="font-gotham font-normal text-xs text-black">
+                      <p className="font-gotham font-normal text-xs black-text">
                         Publish in
                       </p>
-                      <p className="font-gotham font-normal text-xs mt-2 text-black">
+                      <p className="font-gotham font-normal text-xs mt-2 black-text">
                         {formatDate(blog.created_at)}
                       </p>
                     </div>
                     <Link
-                      className="font-gotham font-normal text-xs mt-2 text-primary"
+                      className="font-gotham font-normal text-xs mt-2 primary-text"
                       href={`/blogs/${blog.slug}`}
                     >
                       Read More

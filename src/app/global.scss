@@ -1,0 +1,43 @@
+@import "../styles/index.scss";
+
+.primary-text {
+  color: $primary-color;
+}
+.primary-hover {
+  &:hover {
+    color: $primary-color;
+  }
+}
+.primary-bg {
+  background: $primary-color;
+}
+.primary-hover-bg {
+  &:hover {
+    background: $primary-color;
+  }
+}
+.hover-text-color {
+  &:hover {
+    color: $hover-color;
+  }
+}
+.white-text {
+  color: $white-color;
+}
+.white-bg {
+  background: $white-color;
+}
+.white-hover-text {
+  &:hover {
+    color: $white-color;
+  }
+}
+.secondary-bg {
+  background: $secondary-color;
+}
+.secondary-border {
+  border-color: $secondary-color;
+}
+.black-text {
+  color: $black-color;
+}

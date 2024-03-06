@@ -39,7 +39,7 @@ function Compare() {
               {/* <ToggleButton isChecked={isTrue} onClick={handleToggle} /> */}
               {/* <p
                 className={`font-gotham font-normal text-sm ml-4 ${
-                  isTrue ? 'text-primary' : ''
+                  isTrue ? 'primary-text' : ''
                 }`}
               >
                 Highlight differences
@@ -69,7 +69,7 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <div className="header">
-                      <h4 className=" font-gotham font-medium text-xs text-black">
+                      <h4 className=" font-gotham font-medium text-xs black-text">
                         {item.title}
                       </h4>
                       {/* <LuSearch /> */}
@@ -85,10 +85,10 @@ function Compare() {
                   className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                 >
                   <div className="pt-3 px-2">
-                    <h3 className=" font-gotham font-medium text-xs text-black">
+                    <h3 className=" font-gotham font-medium text-xs black-text">
                       Products Comparison
                     </h3>
-                    <p className="font-gotham font-normal text-xs text-black mt-2">
+                    <p className="font-gotham font-normal text-xs black-text mt-2">
                       Find and select products to see the differences and
                       similarities between them
                     </p>
@@ -102,7 +102,7 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <div className="product">
-                      <p className=" font-gotham font-light text-xs text-black">
+                      <p className=" font-gotham font-light text-xs black-text">
                         {item.title}
                       </p>
                       <div className="flex items-center">
@@ -117,7 +117,7 @@ function Compare() {
                       {/*  <h3 className=" font-gotham font-medium text-xs my-3">
                         {item.title}
                       </h3> */}
-                      <div className=" bg-white">
+                      <div className=" white-bg">
                         <Image
                           className=" w-3/4 h-[200px] mx-auto my-3 object-contain"
                           src={`${API_ROOT}/images/product/${item.image}`}
@@ -153,7 +153,7 @@ function Compare() {
                   scope="col"
                   className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                 >
-                  <h3 className=" font-gotham font-medium text-black text-xs">
+                  <h3 className=" font-gotham font-medium black-text text-xs">
                     Rating
                   </h3>
                 </td>
@@ -174,7 +174,7 @@ function Compare() {
                   scope="col"
                   className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                 >
-                  <h3 className=" font-gotham font-medium text-black text-xs">
+                  <h3 className=" font-gotham font-medium black-text text-xs">
                     Description
                   </h3>
                 </td>
@@ -185,7 +185,7 @@ function Compare() {
                     className="px-2 py-3 min-w-[200px] md:min-w-[auto]"
                   >
                     <div
-                      className=" font-gotham  font-light text-black text-xs"
+                      className=" font-gotham  font-light black-text text-xs"
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     />
                   </td>
@@ -245,38 +245,38 @@ function Compare() {
         <div className="grid jobair">
           <div className="header"></div>
           <div className="header">
-            <h4 className=" font-gotham font-medium text-xs text-black">
+            <h4 className=" font-gotham font-medium text-xs black-text">
               GH-8203M - Gazi Smiss Gas..
             </h4>
           </div>
           <div className="header">
-            <h4 className=" font-gotham font-medium text-xs text-black">
+            <h4 className=" font-gotham font-medium text-xs black-text">
               GH-8203M - Gazi Smiss Gas..
             </h4>
           </div>
           <div className="header">
-            <h4 className=" font-gotham font-medium text-xs text-black">
+            <h4 className=" font-gotham font-medium text-xs black-text">
               GH-8203M - Gazi Smiss Gas..
             </h4>
           </div>
           <div className="header">
-            <h4 className=" font-gotham font-medium text-xs text-black">
+            <h4 className=" font-gotham font-medium text-xs black-text">
               GH-8203M - Gazi Smiss Gas..
             </h4>
           </div>
           <div className="flex p-3 pb-0 product-card">
             <div className="pt-3 px-2">
-              <h3 className=" font-gotham font-medium text-xs text-black">
+              <h3 className=" font-gotham font-medium text-xs black-text">
                 Products Comparison
               </h3>
-              <p className="font-gotham font-normal text-xs text-black mt-2">
+              <p className="font-gotham font-normal text-xs black-text mt-2">
                 Find and select products tosee the differences and similarities
                 between them
               </p>
             </div>
           </div>
           <div className="product-card">
-            <p className=" font-gotham font-light text-xs text-black">
+            <p className=" font-gotham font-light text-xs black-text">
               Kitchen Hood
             </p>
             <div className="flex items-center">
@@ -306,7 +306,7 @@ function Compare() {
             </div>
           </div>
           <div className="product-card">
-            <p className=" font-gotham font-light text-xs text-black">
+            <p className=" font-gotham font-light text-xs black-text">
               Kitchen Hood
             </p>
             <div className="flex items-center">
@@ -336,7 +336,7 @@ function Compare() {
             </div>
           </div>
           <div className="product-card">
-            <p className=" font-gotham font-light text-xs text-black">
+            <p className=" font-gotham font-light text-xs black-text">
               Kitchen Hood
             </p>
             <div className="flex items-center">
@@ -366,7 +366,7 @@ function Compare() {
             </div>
           </div>
           <div className="product-card">
-            <p className=" font-gotham font-light text-xs text-black">
+            <p className=" font-gotham font-light text-xs black-text">
               Kitchen Hood
             </p>
             <div className="flex items-center">
@@ -396,24 +396,24 @@ function Compare() {
             </div>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-medium text-black text-xs">
+            <h3 className=" font-gotham font-medium black-text text-xs">
               Brand
             </h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
+            <h3 className=" font-gotham font-light black-text text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
+            <h3 className=" font-gotham font-light black-text text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
+            <h3 className=" font-gotham font-light black-text text-xs">Gazi</h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-light text-black text-xs">Gazi</h3>
+            <h3 className=" font-gotham font-light black-text text-xs">Gazi</h3>
           </div>
           <div className="product-card">
-            <h3 className=" font-gotham font-medium text-black text-xs">
+            <h3 className=" font-gotham font-medium black-text text-xs">
               Rating
             </h3>
           </div>
@@ -430,40 +430,40 @@ function Compare() {
             <StarRating rating={4} />
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham font-medium text-black text-xs">
+            <h3 className=" font-gotham font-medium black-text text-xs">
               Description
             </h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham  font-light text-black text-xs">
+            <h3 className=" font-gotham  font-light black-text text-xs">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry standard dummy text
               ever since the 1500s,
             </h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham  font-light text-black text-xs">
+            <h3 className=" font-gotham  font-light black-text text-xs">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry standard dummy text
               ever since the 1500s,
             </h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham  font-light text-black text-xs">
+            <h3 className=" font-gotham  font-light black-text text-xs">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry standard dummy text
               ever since the 1500s,
             </h3>
           </div>
           <div className="p-4 product-row">
-            <h3 className=" font-gotham  font-light text-black text-xs">
+            <h3 className=" font-gotham  font-light black-text text-xs">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry standard dummy text
               ever since the 1500s,
             </h3>
           </div>
           <div className="product-card">
-            <h3 className=" font-gotham font-medium text-black text-xs"></h3>
+            <h3 className=" font-gotham font-medium black-text text-xs"></h3>
           </div>
           <div className="product-card">
             <Button className="px-3 py-1 font-gotham font-normal text-normal">

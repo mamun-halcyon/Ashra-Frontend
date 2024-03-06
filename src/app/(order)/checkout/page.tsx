@@ -331,7 +331,7 @@ function Checkout() {
             <div className="grid grid-cols-3 gap-4">
               <div className=" md:col-span-1 col-span-3">
                 <Box
-                  className=" text-primary"
+                  className=" primary-text"
                   step="1"
                   title="Customer Information"
                 >
@@ -377,13 +377,13 @@ function Checkout() {
                     <div>
                       <label
                         htmlFor="location"
-                        className=" font-gotham font-normal text-xs  text-black mb-2"
+                        className=" font-gotham font-normal text-xs  black-text mb-2"
                       >
                         Location
                       </label>
                       <select
                         id="location"
-                        className="bg-gray-50 border border-secondary mt-1 text-black text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
+                        className="bg-gray-50 border secondary-border mt-1 black-text text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:white-text dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
                         onChange={handleChangeLocation}
                       >
                         <option value="">Select Location</option>
@@ -410,11 +410,11 @@ function Checkout() {
               <div className=" md:col-span-2 col-span-3">
                 <div className="grid gap-4 grid-cols-2 ">
                   <Box
-                    className=" text-primary col-span-2 md:col-span-1"
+                    className=" primary-text col-span-2 md:col-span-1"
                     step="2"
                     title="Payment Method"
                   >
-                    <p className=" font-gotham font-normal text-xs text-black">
+                    <p className=" font-gotham font-normal text-xs black-text">
                       Select a payment method
                     </p>
                     <div className="py-2">
@@ -427,7 +427,7 @@ function Checkout() {
                           onChange={handlePaymentChange}
                         />
                         <label
-                          className="font-gotham font-normal text-xs text-black ml-1"
+                          className="font-gotham font-normal text-xs black-text ml-1"
                           htmlFor="cash"
                         >
                           Cash on Delivery
@@ -442,14 +442,14 @@ function Checkout() {
                           onChange={handlePaymentChange}
                         />
                         <label
-                          className="font-gotham font-normal text-xs text-black ml-1"
+                          className="font-gotham font-normal text-xs black-text ml-1"
                           htmlFor="online"
                         >
                           Online Payment
                         </label>
                       </div>
                     </div>
-                    <p className=" font-gotham font-normal text-xs text-black">
+                    <p className=" font-gotham font-normal text-xs black-text">
                       We Accept
                     </p>
                     <Image
@@ -462,11 +462,11 @@ function Checkout() {
                   </Box>
                   <div className="col-span-2 md:col-span-1">
                     <Box
-                      className=" text-primary"
+                      className=" primary-text"
                       step="3"
                       title="Delivery Method"
                     >
-                      <p className="font-gotham font-normal text-xs text-black">
+                      <p className="font-gotham font-normal text-xs black-text">
                         Select a delivery method
                       </p>
 
@@ -482,7 +482,7 @@ function Checkout() {
                             onChange={handlePaymentStatusChange}
                           />
                           <label
-                            className="font-gotham font-normal text-xs text-black ml-1"
+                            className="font-gotham font-normal text-xs black-text ml-1"
                             htmlFor="homeDelivery"
                           >
                             Free Home Delivery
@@ -497,7 +497,7 @@ function Checkout() {
                             onChange={handlePaymentStatusChange}
                           />
                           <label
-                            className="font-gotham font-normal text-xs text-black ml-1"
+                            className="font-gotham font-normal text-xs black-text ml-1"
                             htmlFor="online"
                           >
                             Regular Home Delivery
@@ -508,7 +508,7 @@ function Checkout() {
                     <div className="mt-4">
                       <div className="flex">
                         <input
-                          className="w-3/4 block form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs text-black promo-box"
+                          className="w-3/4 block form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs black-text promo-box"
                           type="text"
                           placeholder="Promo Code"
                           onChange={(e) => setApprovePromCode(e.target.value)}
@@ -564,90 +564,90 @@ function Checkout() {
                 >
                   <div className="summery-table w-full h-full">
                     <div className="grid grid-cols-5">
-                      <div className="heading-table col-span-2 md:col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table col-span-2 md:col-span-2 p-3 font-gotham font-normal text-xs black-text">
                         Product Name
                       </div>
-                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
                         Sub-total
                       </div>
-                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
                         Price
                       </div>
-                      <div className="heading-table col-span-1 p-3 font-gotham font-normal text-xs text-black">
+                      <div className="heading-table col-span-1 p-3 font-gotham font-normal text-xs black-text">
                         Total
                       </div>
                     </div>
                     {approvePromoData
                       ? discountCart.map((item: any, index: number) => (
                           <div key={index} className="grid grid-cols-5 pb-5">
-                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
                               {item.title}
                             </div>
 
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
                               ৳ {item.regular_price}
                             </div>
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
                               ৳ {item.price} x {item.quantity}
                             </div>
-                            <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
+                            <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
                               ৳{item.price * item.quantity}
                             </div>
                           </div>
                         ))
                       : cart.map((item, index) => (
                           <div key={index} className="grid grid-cols-5 pb-5">
-                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs text-black">
+                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
                               {item.title}
                             </div>
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
                               ৳ {item.regular_price}
                             </div>
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs text-black">
+                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
                               ৳ {item.price} x {item.quantity}
                             </div>
-                            <div className="p-3 col-span-1 font-gotham font-normal text-xs text-black">
+                            <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
                               ৳{item.price * item.quantity}
                             </div>
                           </div>
                         ))}
 
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
-                      <div className="p-3 col-span-2 md:col-span-1 font-gotham  text-xs text-primary font-medium">
+                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
+                      <div className="p-3 col-span-2 md:col-span-1 font-gotham  text-xs primary-text font-medium">
                         Sub-Total:
                       </div>
-                      <div className="p-3 font-gotham  text-xs text-primary font-medium">
+                      <div className="p-3 font-gotham  text-xs primary-text font-medium">
                         ৳ {totalCostBeforeCoupon}
                       </div>
                     </div>
                     {selectedPaymentDeliveryStatus && (
                       <div className="grid grid-cols-5 sub-border">
-                        <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
-                        <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs text-primary font-medium">
+                        <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
+                        <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs primary-text font-medium">
                           Delivery Charges :
                         </div>
-                        <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
+                        <div className="col-span-1 p-3 font-gotham text-xs primary-text font-medium">
                           ৳ {deliveryFee}
                         </div>
                       </div>
                     )}
 
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs text-black"></div>
-                      <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs text-primary font-medium">
+                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
+                      <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs primary-text font-medium">
                         Discount :
                       </div>
-                      <div className="col-span-1 p-3 font-gotham text-xs text-primary font-medium">
+                      <div className="col-span-1 p-3 font-gotham text-xs primary-text font-medium">
                         ৳ {totalCostBeforeCoupon - totalCostAfterCoupon}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham text-xs text-primary font-medium"></div>
-                      <div className="col-span-2 md:col-span-1 p-3 font-gotham text-xs text-primary font-medium">
+                      <div className="md:col-span-3 col-span-2 p-3 font-gotham text-xs primary-text font-medium"></div>
+                      <div className="col-span-2 md:col-span-1 p-3 font-gotham text-xs primary-text font-medium">
                         Total :
                       </div>
-                      <div className="p-3  font-gotham text-xs text-primary font-medium">
+                      <div className="p-3  font-gotham text-xs primary-text font-medium">
                         ৳ {finalPrice + deliveryFee}
                       </div>
                     </div>

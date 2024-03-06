@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import "./global.scss";
 import ReduxProvider from "@/redux/provider";
 import TopHeader from "@/components/header";
 const Navbar = dynamic(() => import("@/components/navbar"));

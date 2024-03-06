@@ -79,25 +79,25 @@ function Checkout() {
                   <div className="grid grid-cols-8 gap-1 md:gap-4 product-title">
                     <div className=" col-span-4 flex items-center justify-center">
                       <GoDotFill className="dot-icon" />
-                      <h3 className=" font-gotham font-medium text-base text-black text-center">
+                      <h3 className=" font-gotham font-medium text-base black-text text-center">
                         Product
                       </h3>
                     </div>
                     <div className="col-span-2 md:col-span-1 flex items-center ">
                       <GoDotFill className="dot-icon" />
-                      <h3 className=" font-gotham font-medium text-base text-black text-center">
+                      <h3 className=" font-gotham font-medium text-base black-text text-center">
                         Price
                       </h3>
                     </div>
                     <div className="col-span-2  items-center hidden md:flex">
                       <GoDotFill className="dot-icon" />
-                      <h3 className=" font-gotham font-medium text-base text-black text-center">
+                      <h3 className=" font-gotham font-medium text-base black-text text-center">
                         Quantity
                       </h3>
                     </div>
                     <div className="col-span-1 flex items-center">
                       <GoDotFill className="dot-icon" />
-                      <h3 className=" font-gotham font-medium text-base text-black text-center">
+                      <h3 className=" font-gotham font-medium text-base black-text text-center">
                         Total
                       </h3>
                     </div>
@@ -127,14 +127,14 @@ function Checkout() {
                             />
                           </div>
                           <div>
-                            <h3 className=" font-gotham font-medium text-[11px] md:text-sm text-black">
+                            <h3 className=" font-gotham font-medium text-[11px] md:text-sm black-text">
                               {item.title}
                             </h3>
                           </div>
                         </div>
                       </div>
                       <div className="col-span-2 md:col-span-1">
-                        <p className=" font-gotham font-medium text-primary text-sm">
+                        <p className=" font-gotham font-medium primary-text text-sm">
                           ৳ {item.price}
                         </p>
                       </div>
@@ -158,7 +158,7 @@ function Checkout() {
                         </div>
                       </div>
                       <div className=" col-span-2 md:col-span-1">
-                        <p className=" font-gotham font-medium text-primary text-sm">
+                        <p className=" font-gotham font-medium primary-text text-sm">
                           ৳ {item.price * item.quantity}
                         </p>
                       </div>
@@ -188,32 +188,32 @@ function Checkout() {
               {/* summery */}
               <div className=" col-span-12 md:col-span-4">
                 <div className="p-9 cart-summery">
-                  <h3 className="summery-border font-gotham font-medium text-base text-black pb-2">
+                  <h3 className="summery-border font-gotham font-medium text-base black-text pb-2">
                     Cart Summary
                   </h3>
 
                   <div className="flex justify-between items-center mt-14 summery-border pb-3">
-                    <p className=" font-gotham font-medium text-sm text-black">
+                    <p className=" font-gotham font-medium text-sm black-text">
                       Sub Total
                     </p>
-                    <p className=" font-gotham font-medium text-sm text-primary">
+                    <p className=" font-gotham font-medium text-sm primary-text">
                       {sumWithInitial}
                     </p>
                   </div>
 
                   {/*   <div className="flex justify-between items-center mt-3 summery-border pb-3">
-                    <p className=" font-gotham font-medium text-sm text-black">
+                    <p className=" font-gotham font-medium text-sm black-text">
                       Shipping
                     </p>
-                    <p className=" font-gotham font-medium text-sm text-black">
+                    <p className=" font-gotham font-medium text-sm black-text">
                       Free Shipping
                     </p>
                   </div> */}
                   {/*   <div className="flex justify-between items-center mt-3">
-                    <p className=" font-gotham font-medium text-base text-black">
+                    <p className=" font-gotham font-medium text-base black-text">
                       Total
                     </p>
-                    <p className=" font-gotham font-medium text-base text-primary">
+                    <p className=" font-gotham font-medium text-base primary-text">
                       ৳ {sumWithInitial}
                     </p>
                   </div> */}

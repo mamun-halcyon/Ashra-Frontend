@@ -265,7 +265,7 @@ function Category() {
                     onChange={handleAvailability}
                   />
                   <label
-                    className="ml-2 font-gotham font-normal text-sm hover:text-primary transition-all"
+                    className="ml-2 font-gotham font-normal text-sm primary-hover transition-all"
                     htmlFor="stock"
                   >
                     In Stock
@@ -280,7 +280,7 @@ function Category() {
                     onChange={handleAvailability}
                   />
                   <label
-                    className="ml-2 font-gotham font-normal text-sm hover:text-primary"
+                    className="ml-2 font-gotham font-normal text-sm primary-hover"
                     htmlFor="stockout"
                   >
                     Out of Stock
@@ -295,7 +295,7 @@ function Category() {
                     onChange={handleAvailability}
                   />
                   <label
-                    className="ml-2 font-gotham font-normal text-sm hover:text-primary"
+                    className="ml-2 font-gotham font-normal text-sm primary-hover"
                     htmlFor="upcoming"
                   >
                     Up Coming
@@ -480,7 +480,7 @@ function Category() {
                       ) : (
                         <>
                           <div className="py-5 text-center col-span-4">
-                            <p className=" font-gotham text-black text-sm text-center font-normal">
+                            <p className=" font-gotham black-text text-sm text-center font-normal">
                               Product not found
                             </p>
                           </div>

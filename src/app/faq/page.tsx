@@ -49,7 +49,7 @@ const Faq = () => {
 
   if (loading) {
     return (
-      <p className="py-4 font-gotham font-normal text-base text-black">
+      <p className="py-4 font-gotham font-normal text-base black-text">
         Loading...
       </p>
     );
@@ -58,7 +58,7 @@ const Faq = () => {
   return (
     <section className="faq">
       <div className="container">
-        <h2 className=" font-gotham font-medium text-base text-black">
+        <h2 className=" font-gotham font-medium text-base black-text">
           Questions
         </h2>
         {faqs.length <= 0 && (

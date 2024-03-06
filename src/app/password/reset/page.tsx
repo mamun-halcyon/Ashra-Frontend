@@ -35,10 +35,10 @@ function ResetPassword() {
     <main>
       <section className="flex justify-center items-center forget-page">
         <div className="md:w-[400px] w-[95%] forget-area px-4 py-6 ">
-          <h2 className=" font-gotham font-normal text-xl text-black">
+          <h2 className=" font-gotham font-normal text-xl black-text">
             Forget Password?
           </h2>
-          <p className="font-gotham font-light text-sm text-black mt-2">
+          <p className="font-gotham font-light text-sm black-text mt-2">
             Please Enter Your Phone Number Below & Set New Password.
           </p>
           <form onSubmit={handleReset}>

@@ -37,29 +37,29 @@ const Navbar = ({ logo }: { logo: string }) => {
             <div className="flex flex-row-reverse">
               <Link className="link-item" href={"/profile"}>
                 <div className=" link relative ml-6">
-                  <BiUserCircle className=" text-2xl text-primary" />
+                  <BiUserCircle className=" text-2xl primary-text" />
                 </div>
               </Link>
               <Link className="link-item" href={"/wishlist"}>
                 <div className="link relative ml-6">
-                  <AiOutlineHeart className=" text-2xl text-primary" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
+                  <AiOutlineHeart className=" text-2xl primary-text" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs white-text absolute-item translate-x-2/4 flex justify-center items-center">
                     {wishList.length}
                   </div>
                 </div>
               </Link>
               <Link className="link-item" href={"/cart"}>
                 <div className="link relative ml-6">
-                  <HiOutlineShoppingBag className=" text-2xl text-primary" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
+                  <HiOutlineShoppingBag className=" text-2xl primary-text" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs white-text absolute-item translate-x-2/4 flex justify-center items-center">
                     {cart.length}
                   </div>
                 </div>
               </Link>
               <Link className="link-item" href={"/compare"}>
                 <div className="link relative ml-6">
-                  <BsArrowRepeat className=" text-2xl text-primary" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs text-white absolute-item translate-x-2/4 flex justify-center items-center">
+                  <BsArrowRepeat className=" text-2xl primary-text" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full font-poppins font-normal text-xs white-text absolute-item translate-x-2/4 flex justify-center items-center">
                     {compareItems.length}
                   </div>
                 </div>

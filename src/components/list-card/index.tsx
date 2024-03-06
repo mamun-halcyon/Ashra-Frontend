@@ -49,7 +49,7 @@ const ListCard: FC<IProps> = ({ product }) => {
       <div className="image md:w-[30%] w-[30%] relative flex items-center justify-center pt-10 box-border">
         <Link
           href={`/product/${product.slug}`}
-          className="font-gotham font-medium text-sm inline-block text-black hover:text-primary w-full"
+          className="font-gotham font-medium text-sm inline-block black-text primary-hover w-full"
         >
           <div className=" w-[70%]">
             <Image
@@ -66,7 +66,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             Number(product.regular_price)) *
             100 !==
             0 && product.discount_price !== 0 ? (
-            <span className=" sudo inline-block discount font-gotham text-[10px] md:text-xs font-bold  px-1 md:px-2 py-1  rounded text-primary">
+            <span className=" sudo inline-block discount font-gotham text-[10px] md:text-xs font-bold  px-1 md:px-2 py-1  rounded primary-text">
               {(
                 ((Number(product.regular_price) -
                   Number(product.discount_price)) /
@@ -77,7 +77,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             </span>
           ) : null}
           {product.is_new ? (
-            <span className=" sudo inline-block new font-gotham text-[10px] md:text-xs font-medium px-1 md:px-2 py-1  rounded text-primary">
+            <span className=" sudo inline-block new font-gotham text-[10px] md:text-xs font-medium px-1 md:px-2 py-1  rounded primary-text">
               New
             </span>
           ) : (
@@ -88,7 +88,7 @@ const ListCard: FC<IProps> = ({ product }) => {
       <div className="details md:w-[50%] w-[40%] relative">
         <Link
           href={`/product/${product.slug}`}
-          className="font-gotham font-medium text-sm  text-black hover:text-primary"
+          className="font-gotham font-medium text-sm  black-text primary-hover"
         >
           {product.title}
         </Link>
@@ -98,11 +98,11 @@ const ListCard: FC<IProps> = ({ product }) => {
             Reviews ({4})
           </span>
         </div>
-        {/*  <h4 className=" font-gotham font-medium text-xs text-black md:mt-9 mt-5">
+        {/*  <h4 className=" font-gotham font-medium text-xs black-text md:mt-9 mt-5">
           Brand: Gazi
         </h4> */}
         <h3
-          className="font-gotham font-medium text-xs text-primary cursor-pointer md:mt-10 mt-4"
+          className="font-gotham font-medium text-xs primary-text cursor-pointer md:mt-10 mt-4"
           onClick={() => setIsEmi(true)}
         >
           Avail Bank EMI
@@ -183,7 +183,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             Number(product.discount_price) > 0
               ? "text-xs line-through font-normal"
               : "font-medium text-base"
-          } text-black`}
+          } black-text`}
         >
           ৳ {FormatPrice(product.regular_price)}
         </h4>
@@ -191,7 +191,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           {Number(product.discount_price) > 0 &&
             Number(product.discount_price) !==
               Number(product.regular_price) && (
-              <h3 className=" font-gotham font-medium text-base text-black">
+              <h3 className=" font-gotham font-medium text-base black-text">
                 ৳ {FormatPrice(product.discount_price)}
               </h3>
             )}

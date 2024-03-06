@@ -1,14 +1,14 @@
-'use client';
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import ProfileSidebar from '@/components/profile-sidebar';
-import { useAppSelector } from '@/redux/hooks';
-import { useRouter, useParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa6';
-import { toast } from 'react-toastify';
-import axiosInstance from '../../../../../utils/axiosInstance';
-import '../../page.scss';
+"use client";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter, useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../../../utils/axiosInstance";
+import "../../page.scss";
 
 const ViewTicket = () => {
   const route = useRouter();
@@ -16,7 +16,7 @@ const ViewTicket = () => {
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [messages, setMessages] = useState<any[]>([]);
-  const [details, setDetails] = useState<string>('');
+  const [details, setDetails] = useState<string>("");
   const [image, setImage] = useState(undefined);
 
   const getTicketDetails = async () => {
@@ -41,7 +41,7 @@ const ViewTicket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -53,32 +53,32 @@ const ViewTicket = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (details?.trim() !== '' && login?.user?.id && param?.slug) {
+    if (details?.trim() !== "" && login?.user?.id && param?.slug) {
       try {
         const formData = new FormData();
-        formData.append('subject', '');
-        formData.append('details', details?.trim());
-        formData.append('user_id', login?.user?.id?.toString());
-        formData.append('user_name', login?.user?.name);
+        formData.append("subject", "");
+        formData.append("details", details?.trim());
+        formData.append("user_id", login?.user?.id?.toString());
+        formData.append("user_name", login?.user?.name);
         if (image) {
-          formData.append('image', image);
+          formData.append("image", image);
         }
-        formData.append('parent_text_id', param?.slug?.toString());
-        formData.append('text_type', 'reply');
-        formData.append('upload_preset', 'w8omhp4w');
+        formData.append("parent_text_id", param?.slug?.toString());
+        formData.append("text_type", "reply");
+        formData.append("upload_preset", "w8omhp4w");
         const response = await axiosInstance.post(`/supports`, formData, {
           headers: {
             Authorization: `Bearer ${login?.accessToken}`,
           },
         });
         if (response?.status === 201) {
-          setDetails('');
+          setDetails("");
           setImage(undefined);
           getTicketDetails();
         }
       } catch (error) {
         console.log(error);
-        toast.error('Reply Error!');
+        toast.error("Reply Error!");
       }
     }
   };
@@ -104,13 +104,13 @@ const ViewTicket = () => {
                       message.parent_text_id == 0 ||
                       message.user_id === login?.user?.id ? (
                         <div className="py-2" key={index}>
-                          <p className=" font-gotham text-sm bg-hoverColor text-white inline-block px-2 py-1 rounded-md">
+                          <p className=" font-gotham text-sm bg-hoverColor white-text inline-block px-2 py-1 rounded-md">
                             {message?.details}
                           </p>
                         </div>
                       ) : (
                         <div className="text-right py-2" key={index}>
-                          <p className=" font-gotham text-sm bg-primary text-white inline-block px-2 py-1 rounded-md">
+                          <p className=" font-gotham text-sm primary-bg white-text inline-block px-2 py-1 rounded-md">
                             {message?.details}
                           </p>
                         </div>
@@ -127,7 +127,7 @@ const ViewTicket = () => {
                   ></label>
                   <textarea
                     id="message"
-                    className="border border-secondary mt-3 w-full p-2 font-gotham text-xs outline-none min-h-[100px]"
+                    className="border secondary-border mt-3 w-full p-2 font-gotham text-xs outline-none min-h-[100px]"
                     placeholder="Your replay"
                     value={details}
                     onChange={(e: any) => setDetails(e.target.value)}

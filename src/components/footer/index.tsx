@@ -66,39 +66,39 @@ const Footer = async ({ globalData }: IProps) => {
             />
             <div className="flex items-start mb-3">
               <span className="mr-4">
-                <FaLocationDot className=" w-5 h-5 text-black mt-1" />
+                <FaLocationDot className=" w-5 h-5 black-text mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-sm text-black ">
+              <p className=" font-gotham font-normal text-sm black-text ">
                 {globalData?.setting?.address}
               </p>
             </div>
             <div className="flex mb-3">
               <span className="mr-4">
-                <BsHeadphones className=" w-5 h-5 text-black mt-1" />
+                <BsHeadphones className=" w-5 h-5 black-text mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-sm text-black">
+              <p className=" font-gotham font-normal text-sm black-text">
                 {globalData?.setting?.contact_number}
               </p>
             </div>
             <div className="flex">
               <span className="mr-4">
-                <BsEnvelopeFill className=" w-5 h-5 text-black mt-1" />
+                <BsEnvelopeFill className=" w-5 h-5 black-text mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-sm text-black">
+              <p className=" font-gotham font-normal text-sm black-text">
                 {globalData?.setting?.contact_email}
               </p>
             </div>
           </div>
           <div>
             <div className="w-[60%] md:mx-auto">
-              <h3 className="font-gotham font-bold text-base text-black mb-4">
+              <h3 className="font-gotham font-bold text-base black-text mb-4">
                 Customer Service
               </h3>
               <ul className=" mx-auto">
                 {footerOneData?.length > 0 ? (
                   footerOneData?.map((item, index) => (
                     <li
-                      className="font-gotham font-normal text-sm text-black mb-1"
+                      className="font-gotham font-normal text-sm black-text mb-1"
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
@@ -115,14 +115,14 @@ const Footer = async ({ globalData }: IProps) => {
 
           <div>
             <div className="w-[60%] md:mx-auto">
-              <h3 className="font-gotham font-bold text-base text-black mb-4">
+              <h3 className="font-gotham font-bold text-base black-text mb-4">
                 Gazi Home Appliancee
               </h3>
               <ul className="mx-auto">
                 {footerTwoData?.length > 0 ? (
                   footerTwoData?.map((item, index) => (
                     <li
-                      className="font-gotham font-normal text-sm text-black mb-1"
+                      className="font-gotham font-normal text-sm black-text mb-1"
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
@@ -141,7 +141,7 @@ const Footer = async ({ globalData }: IProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div>
-            <p className=" font-gotham font-normal text-sm text-black mb-2 ">
+            <p className=" font-gotham font-normal text-sm black-text mb-2 ">
               Download our Mobile Apps
             </p>
             <div className="flex">
@@ -166,7 +166,7 @@ const Footer = async ({ globalData }: IProps) => {
             </div>
           </div>
           <div>
-            <p className=" font-gotham font-normal text-sm text-black mb-2">
+            <p className=" font-gotham font-normal text-sm black-text mb-2">
               Follow Us
             </p>
             <div className="flex">
@@ -219,11 +219,11 @@ const Footer = async ({ globalData }: IProps) => {
           <Subscriber />
         </div>
       </div>
-      <div className=" mt-10 py-2 bg-primary">
+      <div className=" mt-10 py-2 primary-bg">
         <div className="container px-2 md:px-0">
           <div className="flex justify-between items-center gap-2">
             <div>
-              <h4 className=" font-gotham font-light text-[10px] md:text-xs text-white">
+              <h4 className=" font-gotham font-light text-[10px] md:text-xs white-text">
                 © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
               </h4>
             </div>

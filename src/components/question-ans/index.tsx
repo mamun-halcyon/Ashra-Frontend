@@ -1,7 +1,7 @@
-import { IFaq } from '@/types/faq';
-import { IoIosArrowDown } from 'react-icons/io';
-import { FC } from 'react';
-import './index.scss';
+import { IFaq } from "@/types/faq";
+import { IoIosArrowDown } from "react-icons/io";
+import { FC } from "react";
+import "./index.scss";
 
 interface IProps {
   faq: IFaq;
@@ -14,13 +14,13 @@ const QuestionAndAnswer: FC<IProps> = ({ faq, onToggle }) => {
       <div
         onClick={onToggle}
         className={`flex items-center justify-between cursor-pointer title px-3 py-3 ${
-          faq.isOpen && 'open'
+          faq.isOpen && "open"
         }`}
       >
-        <h3 className={` font-gotham font-normal text-black`}>
+        <h3 className={` font-gotham font-normal black-text`}>
           {faq.question}
         </h3>
-        <IoIosArrowDown className="icon text-black" />
+        <IoIosArrowDown className="icon black-text" />
       </div>
       {faq.isOpen && (
         <p className={`answer px-3 py-5 font-gotham text-sm`}>{faq.answer}</p>

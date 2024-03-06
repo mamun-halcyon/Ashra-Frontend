@@ -1,32 +1,32 @@
-'use client';
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import { API_URL } from '@/constant';
-import { useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { RiArrowDropRightLine } from 'react-icons/ri';
-import { toast } from 'react-toastify';
-import './page.scss';
+"use client";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { RiArrowDropRightLine } from "react-icons/ri";
+import { toast } from "react-toastify";
+import "./page.scss";
 
 function Login() {
   const route = useRouter();
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
-  const [fullName, setFullName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [mobile, setMobile] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [emailError, setEmailError] = useState('');
-  const [mobileError, setMobileError] = useState('');
+  const [fullName, setFullName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [mobile, setMobile] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [emailError, setEmailError] = useState("");
+  const [mobileError, setMobileError] = useState("");
 
   // console.log(emailError);
 
   useEffect(() => {
     if (login?.accessToken) {
-      route.push('/profile');
+      route.push("/profile");
     } else {
       setIsLoggedIn(false);
     }
@@ -35,30 +35,30 @@ function Login() {
   const handleLogin = async (e: any) => {
     e.preventDefault();
     if (
-      fullName.trim() !== '' &&
-      email.trim() !== '' &&
-      mobile.trim() !== '' &&
-      password.trim() !== ''
+      fullName.trim() !== "" &&
+      email.trim() !== "" &&
+      mobile.trim() !== "" &&
+      password.trim() !== ""
     ) {
       try {
         const response = await axios.post(`${API_URL}/users`, {
           name: fullName,
           email: email,
-          mobile: mobile.startsWith('+88') ? mobile.split('+88')[1] : mobile,
+          mobile: mobile.startsWith("+88") ? mobile.split("+88")[1] : mobile,
           password: password,
           role_id: 2,
         });
         if (response.status === 201) {
-          toast.success('Registration Success!');
-          route.push('/login');
+          toast.success("Registration Success!");
+          route.push("/login");
         }
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setEmailError(error?.response?.data?.errors?.email);
           setMobileError(error?.response?.data?.errors?.mobile);
         }
-        console.error('Registration error:', error);
-        toast.error('Registration Error!');
+        console.error("Registration error:", error);
+        toast.error("Registration Error!");
       }
     }
   };
@@ -70,15 +70,15 @@ function Login() {
           <section className="md:block hidden">
             <div className="container">
               <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                <Link href={'/'}>Home</Link>
+                <Link href={"/"}>Home</Link>
                 <RiArrowDropRightLine className=" text-xl" />
-                <Link href={'/register'}> Register </Link>
+                <Link href={"/register"}> Register </Link>
               </div>
             </div>
           </section>
           <section className="flex justify-center items-center register">
             <div className="md:w-[400px] w-[95%] register-area p-8">
-              <h2 className=" font-gotham font-normal text-xl text-black">
+              <h2 className=" font-gotham font-normal text-xl black-text">
                 Create an Account
               </h2>
               <form onSubmit={handleLogin}>
@@ -118,12 +118,12 @@ function Login() {
                   Register
                 </Button>
               </form>
-              <h3 className="font-gotham font-normal text-sm text-black my-2 text-center relative auth-border">
+              <h3 className="font-gotham font-normal text-sm black-text my-2 text-center relative auth-border">
                 Already have an account?
               </h3>
-              <h3 className="font-gotham font-normal text-sm text-black">
-                If you already have an account with us, Please{' '}
-                <Link className="text-primary" href={'/login'}>
+              <h3 className="font-gotham font-normal text-sm black-text">
+                If you already have an account with us, Please{" "}
+                <Link className="primary-text" href={"/login"}>
                   Login
                 </Link>
                 .

@@ -24,21 +24,21 @@ const BlogSideCard: FC<IProps> = ({ blog }) => {
       </div>
       <div className="text w-3/4">
         <Link href={`/blogs/${blog.slug}`}>
-          <h4 className=" font-gotham  font-normal text-base text-black">
+          <h4 className=" font-gotham  font-normal text-base black-text">
             {blog.title}
           </h4>
         </Link>
 
         <div className="flex justify-between items-center">
-          <p className="font-gotham font-normal text-xs text-black">
+          <p className="font-gotham font-normal text-xs black-text">
             Publish in
           </p>
-          <p className="font-gotham font-normal text-xs mt-2 text-black">
+          <p className="font-gotham font-normal text-xs mt-2 black-text">
             {formatDate(blog.created_at)}
           </p>
         </div>
         <Link
-          className="font-gotham font-normal text-xs mt-2 text-primary"
+          className="font-gotham font-normal text-xs mt-2 primary-text"
           href={`/blogs/${blog.slug}`}
         >
           Read More

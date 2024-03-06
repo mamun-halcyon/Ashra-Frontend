@@ -83,7 +83,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                     onClick={() => setEmi(bank.id)}
                     key={index}
                     className={`font-gotham text-sm p-2 cursor-pointer ${
-                      bank.id == emi ? " bg-primary text-white" : ""
+                      bank.id == emi ? " primary-bg white-text" : ""
                     }`}
                   >
                     {bank.bank_name}
@@ -95,7 +95,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
               {emi ? (
                 <div className=" overflow-x-scroll md:overflow-x-visible">
                   <table className="w-full text-sm text-left border-collapse">
-                    <thead className=" bg-secondary">
+                    <thead className=" secondary-bg">
                       <tr className="table-heading">
                         <th
                           scope="col"

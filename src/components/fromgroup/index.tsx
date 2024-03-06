@@ -28,13 +28,13 @@ const FormGroup: FC<IProps> = ({
   return (
     <div className={`from-group ${className}`}>
       <label
-        className=" font-gotham font-normal text-xs  text-black mb-2"
+        className=" font-gotham font-normal text-xs  black-text mb-2"
         htmlFor={id}
       >
         {title}
       </label>
       <input
-        className="block mt-1 form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs w-full text-black"
+        className="block mt-1 form-input placeholder:text-xs  placeholder:font-gotham placeholder:font-normal text-xs w-full black-text"
         type={type ? type : "text"}
         name={name}
         placeholder={placeholder}

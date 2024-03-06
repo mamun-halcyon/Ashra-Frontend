@@ -1,25 +1,25 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { RxDashboard } from 'react-icons/rx';
-import { AiOutlineFilePpt, AiOutlineHeart } from 'react-icons/ai';
-import { LiaHandHoldingUsdSolid } from 'react-icons/lia';
-import { BsArrowRepeat } from 'react-icons/bs';
-import { BiMessageDetail } from 'react-icons/bi';
-import { RiPhoneCameraLine } from 'react-icons/ri';
-import { GrUserSettings } from 'react-icons/gr';
-import './index.scss';
-import { useAppSelector } from '@/redux/hooks';
-import { API_ROOT } from '@/constant';
+"use client";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { RxDashboard } from "react-icons/rx";
+import { AiOutlineFilePpt, AiOutlineHeart } from "react-icons/ai";
+import { LiaHandHoldingUsdSolid } from "react-icons/lia";
+import { BsArrowRepeat } from "react-icons/bs";
+import { BiMessageDetail } from "react-icons/bi";
+import { RiPhoneCameraLine } from "react-icons/ri";
+import { GrUserSettings } from "react-icons/gr";
+import "./index.scss";
+import { useAppSelector } from "@/redux/hooks";
+import { API_ROOT } from "@/constant";
 
 const ProfileSidebar = () => {
   const { login } = useAppSelector((state) => state.login);
   return (
-    <div className=" md:col-span-3 shadow pb-6 absolute md:static  bg-white">
+    <div className=" md:col-span-3 shadow pb-6 absolute md:static  white-bg">
       <div className="relative profile-top">
-        <div className="bg-primary h-28">
-          <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 bg-white flex justify-center items-center translate-y-[50%] translate-x-[-50%] overflow-hidden">
+        <div className="primary-bg h-28">
+          <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 white-bg flex justify-center items-center translate-y-[50%] translate-x-[-50%] overflow-hidden">
             {login?.user?.image ? (
               <Image
                 className="w-full"
@@ -31,7 +31,7 @@ const ProfileSidebar = () => {
             ) : (
               <Image
                 className="w-full"
-                src={'/assets/images/icon/profile.png'}
+                src={"/assets/images/icon/profile.png"}
                 width={80}
                 height={80}
                 alt="profile"
@@ -42,10 +42,10 @@ const ProfileSidebar = () => {
       </div>
       <div className="mt-16 text-center ">
         <div className="px-10">
-          <h3 className=" font-gotham font-medium text-base text-black">
+          <h3 className=" font-gotham font-medium text-base black-text">
             {login?.user?.name}
           </h3>
-          <p className=" font-gotham font-normal text-sm text-black bg-secondary mt-1">
+          <p className=" font-gotham font-normal text-sm black-text secondary-bg mt-1">
             {login?.user?.email}
           </p>
         </div>
@@ -55,8 +55,8 @@ const ProfileSidebar = () => {
               <RxDashboard />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/profile"}
             >
               Dashboard
             </Link>
@@ -66,8 +66,8 @@ const ProfileSidebar = () => {
               <AiOutlineFilePpt />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/order'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/profile/order"}
             >
               Purchase History
             </Link>
@@ -77,7 +77,7 @@ const ProfileSidebar = () => {
               <AiOutlineDownload />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
+              className="font-gotham font-normal text-sm black-text py-2"
               href={'/'}
             >
               Downloads
@@ -88,8 +88,8 @@ const ProfileSidebar = () => {
               <LiaHandHoldingUsdSolid />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/refund'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/profile/refund"}
             >
               Refund Requested
             </Link>
@@ -99,8 +99,8 @@ const ProfileSidebar = () => {
               <AiOutlineHeart />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/wishlist'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/wishlist"}
             >
               Wishlist
             </Link>
@@ -110,8 +110,8 @@ const ProfileSidebar = () => {
               <BsArrowRepeat />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/compare'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/compare"}
             >
               Compare
             </Link>
@@ -121,8 +121,8 @@ const ProfileSidebar = () => {
               <BiMessageDetail />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/conversations'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/profile/conversations"}
             >
               Conversations
             </Link>
@@ -132,8 +132,8 @@ const ProfileSidebar = () => {
               <RiPhoneCameraLine />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/ticket'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/profile/ticket"}
             >
               Support Ticket
             </Link>
@@ -143,8 +143,8 @@ const ProfileSidebar = () => {
               <GrUserSettings />
             </span>
             <Link
-              className="font-gotham font-normal text-sm text-black py-2"
-              href={'/profile/manage-profile'}
+              className="font-gotham font-normal text-sm black-text py-2"
+              href={"/profile/manage-profile"}
             >
               Manage Profile
             </Link>

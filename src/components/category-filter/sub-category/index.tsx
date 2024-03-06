@@ -54,7 +54,7 @@ const SubCategory: FC<IProps> = ({
                 >
                   <p
                     onClick={onClickSubCategoryHandler}
-                    className="capitalize subCategory-title font-gotham font-normal text-sm hover:text-primary mb-1 transition-all duration-300"
+                    className="capitalize subCategory-title font-gotham font-normal text-sm primary-hover mb-1 transition-all duration-300"
                   >
                     {subCategory.title.toLowerCase()}
                   </p>

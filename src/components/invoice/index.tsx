@@ -8,7 +8,7 @@ const Invoice = ({
   finalPrice,
 }: any) => {
   return (
-    <div className="invoice bg-white hidden">
+    <div className="invoice white-bg hidden">
       <div className="invoice-header">
         <div className="title">
           <Image
@@ -19,10 +19,10 @@ const Invoice = ({
             height={400}
           />
         </div>
-        <h4 className="customer-details bg-white text-black mt-5">
+        <h4 className="customer-details white-bg black-text mt-5">
           Customer Details
         </h4>
-        <div className="details bg-secondary mr-2 p-1">
+        <div className="details secondary-bg mr-2 p-1">
           <div className="left">
             <p className="font-gotham text-sm font-normal">
               Name: {order.name}
@@ -37,7 +37,7 @@ const Invoice = ({
               Address: {order.address}{" "}
             </p>
           </div>
-          <div className="order-details  bg-secondary p-1 right">
+          <div className="order-details  secondary-bg p-1 right">
             <p className=" font-gotham text-sm font-normal">
               Order No: {order.id}
             </p>
@@ -60,7 +60,7 @@ const Invoice = ({
       </div> */}
 
       <div className="invoice-table">
-        <div className="grid grid-cols-10 bg-secondary">
+        <div className="grid grid-cols-10 secondary-bg">
           <div className=" col-span-1 font-gotham text-sm font-normal">
             SL.{" "}
           </div>

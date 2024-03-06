@@ -50,7 +50,7 @@ const SearchArea = () => {
             onChange={handleSearch}
           />
           <button
-            className="button bg-primary h-9  px-6 font-gotham font-normal text-sm text-white"
+            className="button primary-bg h-9  px-6 font-gotham font-normal text-sm white-text"
             onClick={handleClick}
           >
             Search
