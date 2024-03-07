@@ -67,7 +67,7 @@
 
 @supports (-webkit-appearance: none) {
   #location option {
-    color: #000;
+    color: $black-color;
     background: $tertiary-background-color;
   }
 }
