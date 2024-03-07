@@ -42,7 +42,7 @@
           }
 
           &:hover {
-            background: $primary-color;
+            background: $primary-background-color;
             a {
               color: $white-color;
             }
@@ -54,7 +54,7 @@
         padding-right: 10px;
       }
       &:hover {
-        background: $primary-color;
+        background: $primary-background-color;
         color: $white-color;
         .children-item {
           opacity: 1;

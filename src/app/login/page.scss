@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 .login-page {
   padding-top: 80px;
   padding-bottom: 80px;
@@ -15,7 +15,7 @@
   transition: all linear 0.3s;
 
   &:hover {
-    background: $primary-color;
+    background: $primary-background-color;
     color: $white-color;
   }
 }

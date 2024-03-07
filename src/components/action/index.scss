@@ -1,4 +1,4 @@
-@import '../../styles//index.scss';
+@import "../../styles//index.scss";
 
 .action-area {
   padding: 7px 11px;
@@ -22,7 +22,7 @@
   }
   .action-item {
     &:hover {
-      background: $secondary-color;
+      background: $secondary-background-color;
     }
   }
   @media screen and (max-width: 768px) {

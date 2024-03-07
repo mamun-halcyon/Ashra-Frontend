@@ -40,9 +40,10 @@ async function categoryProduct(category_slug: string) {
 async function serviceItems() {
   try {
     const response = await fetch(`${API_URL}/frontend/keypoints/home?limit=4`, {
-      next: {
+      cache: "no-store",
+      /*  next: {
         revalidate: 3600,
-      },
+      }, */
     });
 
     if (!response.ok) {

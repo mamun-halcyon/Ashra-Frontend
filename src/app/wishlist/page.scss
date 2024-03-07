@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .wishlist-page {
   padding-top: 60px;
@@ -50,7 +50,7 @@
   }
 }
 .cart-service {
-  background: $primary-color;
+  background: $primary-background-color;
   margin-bottom: 80px;
   .service-card {
     color: $white-color;

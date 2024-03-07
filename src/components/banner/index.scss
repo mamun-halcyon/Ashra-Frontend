@@ -1,4 +1,4 @@
-@import './../../styles/index.scss';
+@import "./../../styles/index.scss";
 .banner {
   img {
     width: 100%;
@@ -16,7 +16,7 @@
       }
     }
     .slick-active {
-      background: $primary-color;
+      background: $primary-background-color;
     }
   }
   @media screen and (max-width: 768px) {

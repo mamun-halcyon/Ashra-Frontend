@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .list-card {
   border-bottom: 1px solid #e2e2e2;
@@ -52,7 +52,7 @@
   .sudo {
     border: 1px solid $primary-color;
     &:hover {
-      background: $primary-color;
+      background: $primary-background-color;
       color: $white-color;
     }
     margin-right: 5px;

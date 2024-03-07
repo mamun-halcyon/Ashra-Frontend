@@ -241,7 +241,7 @@ const ProductCard: React.FC<IProps> = ({
       </div>
       <div className=" absolute  feature top-2 right-2">
         <div className="mb-1 cursor-pointer action-item" onClick={addWishList}>
-          <AiOutlineHeart className=" hover:primary-text" />
+          <AiOutlineHeart className=" primary-hover" />
         </div>
         <div
           className="mb-1 cursor-pointer action-item"
@@ -259,7 +259,7 @@ const ProductCard: React.FC<IProps> = ({
             })
           }
         >
-          <BsArrowRepeat className=" hover:primary-text" />
+          <BsArrowRepeat className=" primary-hover" />
         </div>
       </div>
     </div>

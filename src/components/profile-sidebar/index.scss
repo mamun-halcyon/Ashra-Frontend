@@ -1,9 +1,9 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .profile-link {
   li {
     &:hover {
-      background: $secondary-color;
+      background: $secondary-background-color;
     }
   }
 }

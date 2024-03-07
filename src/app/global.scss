@@ -9,11 +9,11 @@
   }
 }
 .primary-bg {
-  background: $primary-color;
+  background: $primary-background-color;
 }
 .primary-hover-bg {
   &:hover {
-    background: $primary-color;
+    background: $primary-background-color;
   }
 }
 .hover-text-color {
@@ -33,7 +33,7 @@
   }
 }
 .secondary-bg {
-  background: $secondary-color;
+  background: $secondary-background-color;
 }
 .secondary-border {
   border-color: $secondary-color;
