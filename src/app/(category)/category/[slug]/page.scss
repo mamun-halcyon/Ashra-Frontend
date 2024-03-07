@@ -60,7 +60,7 @@
   }
 
   .active {
-    background: $white-color;
+    background: $tertiary-background-color;
 
     .icon {
       color: $black-color;
@@ -68,7 +68,7 @@
   }
   .action {
     .active {
-      background: $white-color;
+      background: $tertiary-background-color;
     }
   }
 }

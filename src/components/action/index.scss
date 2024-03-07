@@ -3,14 +3,14 @@
 .action-area {
   padding: 7px 11px;
   min-width: 70px;
-  background: $white-color;
+  background: $tertiary-background-color;
   .action-wrapper {
     opacity: 0;
     visibility: hidden;
     width: 100%;
     right: 0;
     top: 40px;
-    background: $white-color;
+    background: $tertiary-background-color;
     transition: all linear 0.3s;
     z-index: 1;
   }

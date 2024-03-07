@@ -23,7 +23,7 @@
       .header {
         display: flex;
         justify-content: space-between;
-        background: $white-color;
+        background: $tertiary-background-color;
         padding: 10px 5px;
       }
     }
@@ -37,7 +37,7 @@
         }
 
         &:nth-child(odd) {
-          background: $white-color;
+          background: $tertiary-background-color;
 
           &:hover {
             background: $quaternary-color;
