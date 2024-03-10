@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './loading.module.scss';
+import React from "react";
+import "./loading.scss";
 
 const Loader = () => {
   return (
-    <div className={styles.loadingContainer}>
-      <div className={styles.loadingSpinner}></div>
+    <div className="loadingContainer">
+      <div className="loadingSpinner"></div>
     </div>
   );
 };
