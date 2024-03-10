@@ -1,8 +1,8 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .from-group {
   .area-input {
-    border: 1px solid $border-color;
+    border: 1px solid $primary-border-color;
     min-height: 120px;
     padding: 10px 5px;
     resize: none;
@@ -10,7 +10,7 @@
       font-style: italic;
     }
     &:focus-visible {
-      outline: $border-color;
+      outline: $primary-border-color;
     }
   }
 }

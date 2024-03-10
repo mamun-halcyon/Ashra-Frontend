@@ -1,7 +1,7 @@
 @import "../../styles/index.scss";
 
 .category-title {
-  border-bottom: 2px solid $light-border;
+  border-bottom: 2px solid $secondary-border-color;
 }
 
 .view {
@@ -9,6 +9,6 @@
 
   &:hover {
     background: $primary-background-color;
-    color: $white-color;
+    color: $tertiary-color;
   }
 }

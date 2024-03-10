@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .service-card {
   border: 1px solid transparent;
@@ -19,7 +19,7 @@
       color: $primary-color;
     }
     h6 {
-      color: $black-color;
+      color: $quaternary-color;
     }
   }
   &:hover {

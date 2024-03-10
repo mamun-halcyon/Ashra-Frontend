@@ -3,9 +3,9 @@
   padding: 0;
 }
 body {
-  background-color: $white-color;
+  background-color: $tertiary-color;
   scroll-behavior: smooth;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 a {
   text-decoration: none;
@@ -23,8 +23,8 @@ button {
 }
 
 button:not(:disabled),
-[type='button']:not(:disabled),
-[type='reset']:not(:disabled),
-[type='submit']:not(:disabled) {
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
   cursor: pointer;
 }

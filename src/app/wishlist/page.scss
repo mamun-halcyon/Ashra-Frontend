@@ -5,25 +5,25 @@
   padding-bottom: 80px;
 
   .wish-heading {
-    border-bottom: 1px solid $decenary-color;
+    border-bottom: 1px solid $quinary-color;
   }
 
   .cart-elements {
     .product-title {
-      border-bottom: 1px solid $decenary-color;
+      border-bottom: 1px solid $quinary-color;
       padding-bottom: 6px;
       .dot-icon {
-        color: $decenary-color;
+        color: $quinary-color;
       }
     }
 
     .product-item {
       padding-top: 15px;
       padding-bottom: 15px;
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid $primary-border-color;
 
       .qnt-1 {
-        border: 1px solid $border-color;
+        border: 1px solid $primary-border-color;
         height: 20px;
         display: flex;
         justify-content: center;
@@ -53,12 +53,12 @@
   background: $primary-background-color;
   margin-bottom: 80px;
   .service-card {
-    color: $white-color;
+    color: $tertiary-color;
     h4 {
-      color: $white-color !important;
+      color: $tertiary-color !important;
     }
     h6 {
-      color: $white-color !important;
+      color: $tertiary-color !important;
     }
   }
 }

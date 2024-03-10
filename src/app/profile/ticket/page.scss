@@ -10,7 +10,7 @@
     tr {
       transition: all linear 0.3s;
       &:nth-child(even) {
-        background: $quaternary-color;
+        background: $quaternary-background-color;
       }
       &:hover {
         background: $secondary-background-color;

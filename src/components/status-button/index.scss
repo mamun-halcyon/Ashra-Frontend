@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .toggle-button {
   width: 35px;
@@ -28,5 +28,5 @@
 }
 
 .toggle-button .active {
-  background-color: $white-color;
+  background-color: $tertiary-color;
 }

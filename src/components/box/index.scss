@@ -1,21 +1,21 @@
 @import "../../styles/index.scss";
 
 .box {
-  border: 1px solid $border-color;
+  border: 1px solid $primary-border-color;
   .header {
     padding: 10px 20px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $primary-border-color;
     color: $primary-color;
     .step {
       width: 20px;
       height: 20px;
       background: $primary-background-color;
-      color: $white-color;
+      color: $tertiary-color;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-right: 10px;
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid $primary-border-color;
     }
   }
   .content {

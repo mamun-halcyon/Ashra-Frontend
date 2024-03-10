@@ -16,7 +16,7 @@
 
   &:hover {
     background: $primary-background-color;
-    color: $white-color;
+    color: $tertiary-color;
   }
 }
 
@@ -24,7 +24,7 @@
   box-shadow: $primary-shadow;
 }
 .warning {
-  color: $octonary-color;
+  color: $hexary-color;
 }
 @media screen and (max-width: 768px) {
   .login-page {

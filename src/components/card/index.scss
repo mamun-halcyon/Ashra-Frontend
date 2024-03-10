@@ -30,7 +30,7 @@
 
     &:hover {
       background: $primary-background-color;
-      color: $white-color;
+      color: $tertiary-color;
       cursor: pointer;
     }
   }
@@ -39,7 +39,7 @@
 
     &:hover {
       background: $primary-background-color;
-      color: $white-color;
+      color: $tertiary-color;
       cursor: pointer;
     }
   }
@@ -54,11 +54,11 @@
     }
     /*  .discount {
       //background: $primary-background-color;
-      // color: $white-color;
+      // color: $tertiary-color;
     }
     .new {
      background: $primary-background-color;
-      color: $white-color;
+      color: $tertiary-color;
     } */
     .product-title {
       color: $primary-color;

@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .from-group {
   .form-input {
@@ -8,7 +8,7 @@
       font-style: italic;
     }
     &:focus-visible {
-      outline: $border-color;
+      outline: $primary-border-color;
     }
   }
 }

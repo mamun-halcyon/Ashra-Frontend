@@ -43,7 +43,7 @@
 
   .slick-prev {
     left: -30px;
-    color: $tertiary-color;
+    color: $tertiary-border-color;
     &:hover {
       color: $secondary-color;
     }
@@ -51,7 +51,7 @@
 
   .slick-next {
     right: -35px;
-    color: $tertiary-color;
+    color: $tertiary-border-color;
     margin-left: 30px;
     &:hover {
       color: $secondary-color;
@@ -74,11 +74,11 @@
     }
   }
   .r-price {
-    color: $nonary-color;
+    color: #707070;
   }
   .discount {
-    background: $octonary-color;
-    color: $white-color;
+    background: $hexary-color;
+    color: $tertiary-color;
     font-size: 12px;
     margin-left: 16px;
     font-family: $secondary-font;
@@ -101,7 +101,7 @@
 }
 .related-products {
   .product-card {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid $primary-border-color;
   }
   &:last-child {
     border-color: transparent;
@@ -113,7 +113,7 @@
   .description {
     .desc {
       margin-top: 30px;
-      // border: 1px solid $border-color;
+      // border: 1px solid $primary-border-color;
       box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
       .react-tabs__tab-list {
         display: flex;
@@ -128,7 +128,7 @@
         padding: 8px 30px;
         font-family: "Gotham";
         font-weight: 700;
-        border-right: 1px solid $white-color;
+        border-right: 1px solid $tertiary-color;
         font-size: 15px;
 
         &--selected {
@@ -180,11 +180,11 @@
     transition: all linear 0.3s;
     &:hover {
       background: $primary-background-color;
-      color: $white-color;
+      color: $tertiary-color;
     }
   }
   .selected {
     background: $primary-background-color;
-    color: $white-color;
+    color: $tertiary-color;
   }
 }

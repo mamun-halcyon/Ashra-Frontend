@@ -22,14 +22,14 @@
   }
 }
 .white-text {
-  color: $white-color;
+  color: $tertiary-color;
 }
 .white-bg {
   background: $tertiary-background-color;
 }
 .white-hover-text {
   &:hover {
-    color: $white-color;
+    color: $tertiary-color;
   }
 }
 .secondary-bg {
@@ -39,5 +39,5 @@
   border-color: $secondary-color;
 }
 .black-text {
-  color: $black-color;
+  color: $quaternary-color;
 }

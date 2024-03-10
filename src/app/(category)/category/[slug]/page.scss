@@ -45,7 +45,7 @@
   width: 75px;
   height: 20px;
   text-align: center;
-  border: 1px solid $black-color;
+  border: 1px solid $quaternary-color;
   padding: 4px;
   &:focus-visible {
     outline: none;
@@ -56,14 +56,14 @@
   background: $secondary-background-color;
 
   .icon {
-    color: $nonary-color;
+    color: #707070;
   }
 
   .active {
     background: $tertiary-background-color;
 
     .icon {
-      color: $black-color;
+      color: $quaternary-color;
     }
   }
   .action {
@@ -76,7 +76,7 @@
 .filter-products {
   border-bottom: 1px solid $secondary-color;
   .product-card {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid $primary-border-color;
     &:nth-child(4n) {
       border: 0;
     }
@@ -95,7 +95,7 @@
 
 .bottom-filter {
   .action-area {
-    border: 1px solid $border-color;
+    border: 1px solid $primary-border-color;
   }
 }
 

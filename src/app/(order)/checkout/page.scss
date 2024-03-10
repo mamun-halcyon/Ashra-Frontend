@@ -1,16 +1,16 @@
 @import "../../../styles/index.scss";
 
 .promo-box {
-  border: 1px solid $border-color;
+  border: 1px solid $primary-border-color;
   padding: 10px 5px;
   &:focus-visible {
-    outline: $border-color;
+    outline: $primary-border-color;
   }
 }
 .wearing {
   .react-tabs__tab-list {
     display: flex;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $primary-border-color;
 
     .react-tabs__tab {
       &:focus-visible {
@@ -34,10 +34,10 @@
   }
   .content {
     padding: 9px 15px;
-    border: 1px solid $border-color;
+    border: 1px solid $primary-border-color;
     border-top: 0;
     .text {
-      color: $octonary-color;
+      color: $hexary-color;
     }
   }
 }
@@ -47,27 +47,27 @@
     padding: 0;
   }
   .heading-table {
-    border-right: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
+    border-right: 1px solid $primary-border-color;
+    border-bottom: 1px solid $primary-border-color;
     &:last-child {
       border-right: 0;
     }
   }
   .sub-border {
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $primary-border-color;
   }
 }
 
 .accepted {
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid $primary-border-color;
   .sudo {
-    color: $octonary-color;
+    color: $hexary-color;
   }
 }
 
 @supports (-webkit-appearance: none) {
   #location option {
-    color: $black-color;
+    color: $quaternary-color;
     background: $tertiary-background-color;
   }
 }

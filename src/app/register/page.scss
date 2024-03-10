@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .register {
   padding-top: 80px;
@@ -12,23 +12,23 @@
       top: 50%;
       left: 0;
       width: 22%;
-      content: '';
+      content: "";
       height: 1px;
-      background: $border-color;
+      background: $primary-border-color;
     }
     &::before {
       position: absolute;
       top: 50%;
       right: 0;
       width: 22%;
-      content: '';
+      content: "";
       height: 1px;
-      background: $border-color;
+      background: $primary-border-color;
     }
   }
 }
 .warning {
-  color: $octonary-color;
+  color: $hexary-color;
 }
 @media screen and (max-width: 768px) {
   .register {

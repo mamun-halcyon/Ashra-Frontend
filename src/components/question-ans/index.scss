@@ -7,15 +7,15 @@
     background: $primary-background-color;
 
     .icon {
-      color: $white-color;
+      color: $tertiary-color;
     }
 
     h3 {
-      color: $white-color;
+      color: $tertiary-color;
     }
   }
   .answer {
     // display: none;
-    background: $quaternary-color;
+    background: $quaternary-background-color;
   }
 }

@@ -1,16 +1,16 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .navbar {
-  background-color: $quaternary-color;
+  background-color: $quaternary-background-color;
 
   .select-categories {
-    background: $tertiary-color;
+    background: $tertiary-border-color;
   }
   .absolute-item {
-    background: $octonary-color;
+    background: $hexary-color;
   }
   .search-input {
-    border: 1px solid $border-color;
+    border: 1px solid $primary-border-color;
   }
   .logo {
     width: 150px;

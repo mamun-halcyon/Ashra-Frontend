@@ -1,16 +1,16 @@
 @import "../styles/index.scss";
 
 .service {
-  background: $quaternary-color;
+  background: $quaternary-background-color;
   margin-top: -7px;
 }
 .explore {
   padding-top: 80px;
   padding-bottom: 80px;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid $primary-border-color;
 
   h2 {
-    color: $black-color;
+    color: $quaternary-color;
   }
   @media screen and (max-width: 768) {
     margin-top: 50px;
@@ -37,7 +37,7 @@
   }
 
   .product-card {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid $primary-border-color;
     &:nth-child(4n) {
       border: 0;
     }
@@ -65,7 +65,7 @@
   padding-bottom: 80px;
 
   .product-card {
-    border-right: 1px solid $border-color;
+    border-right: 1px solid $primary-border-color;
     &:nth-child(5n) {
       border: 0;
     }
@@ -86,7 +86,7 @@
 .review-video {
   padding-top: 80px;
   padding-bottom: 60px;
-  background: $quaternary-color;
+  background: $quaternary-background-color;
 
   .more-btn {
     padding: 7px 15px;
