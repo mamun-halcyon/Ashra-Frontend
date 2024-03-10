@@ -1,9 +1,9 @@
-import { API_URL } from '@/constant';
-import './page.scss';
+import { API_URL } from "@/constant";
+import "./page.scss";
 
 async function getEmis() {
-  const res = await fetch(`${API_URL}/emis`, {
-    cache: 'no-store',
+  const res = await fetch(`${API_URL}/emis?limit=60`, {
+    cache: "no-store",
   });
 
   /*  if (!res.ok) {
@@ -90,49 +90,49 @@ async function Emi() {
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.three_months ? 'Yes' : 'No'}
+                  {emi.three_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.six_months ? 'Yes' : 'No'}
+                  {emi.six_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.nine_months ? 'Yes' : 'No'}
+                  {emi.nine_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.twelve_months ? 'Yes' : 'No'}
+                  {emi.twelve_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.eighteen_months ? 'Yes' : 'No'}
+                  {emi.eighteen_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.twenty_four_months ? 'Yes' : 'No'}
+                  {emi.twenty_four_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.thirty_months ? 'Yes' : 'No'}
+                  {emi.thirty_months ? "Yes" : "No"}
                 </td>
                 <td
                   scope="row"
                   className="px-6 py-3 font-gotham font-light border border-color"
                 >
-                  {emi.thirty_six_months ? 'Yes' : 'No'}
+                  {emi.thirty_six_months ? "Yes" : "No"}
                 </td>
               </tr>
             ))}
