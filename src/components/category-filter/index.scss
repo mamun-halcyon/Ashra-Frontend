@@ -1,4 +1,4 @@
-@import '../../styles/index.scss';
+@import "../../styles/index.scss";
 
 .filter-category {
   margin-bottom: 8px;
@@ -19,13 +19,13 @@
     border-bottom: 0;
 
     &:hover {
-      color: $primary-color;
+      color: $primary-text-color;
     }
   }
   .sub-link {
     transition: all linear 0.3s;
     &:hover {
-      color: $primary-color;
+      color: $primary-text-color;
     }
   }
 }

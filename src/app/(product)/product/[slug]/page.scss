@@ -132,7 +132,7 @@
         font-size: 15px;
 
         &--selected {
-          color: $primary-color;
+          color: $primary-text-color;
           position: relative;
           &::after {
             position: absolute;
@@ -163,7 +163,7 @@
         .review {
           .all-reviews {
             svg {
-              color: $primary-color;
+              color: $primary-text-color;
             }
           }
         }
@@ -176,7 +176,7 @@
   border-bottom: 1px solid $secondary-color;
 
   .select {
-    border: 1px solid $primary-color;
+    border: 1px solid $quaternary-border-color;
     transition: all linear 0.3s;
     &:hover {
       background: $primary-background-color;

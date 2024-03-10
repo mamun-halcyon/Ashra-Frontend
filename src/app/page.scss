@@ -30,8 +30,8 @@
         outline: none;
       }
       &--selected {
-        color: $primary-color;
-        border-bottom: 3px solid $primary-color;
+        color: $primary-text-color;
+        border-bottom: 3px solid $quaternary-border-color;
       }
     }
   }
@@ -95,7 +95,7 @@
     box-shadow: $primary-shadow;
 
     &:hover {
-      color: $primary-color;
+      color: $primary-text-color;
     }
   }
   @media screen and (max-width: 768px) {

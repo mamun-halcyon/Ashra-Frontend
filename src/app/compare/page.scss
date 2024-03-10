@@ -6,7 +6,7 @@
   .compare-button {
     background: transparent;
     color: $quaternary-color;
-    border: 1px solid $primary-color;
+    border: 1px solid $quaternary-border-color;
     transition: all linear 0.3s;
 
     &:hover {
@@ -50,7 +50,7 @@
         }
         .icons {
           svg {
-            color: $primary-color;
+            color: $primary-text-color;
           }
         }
       }

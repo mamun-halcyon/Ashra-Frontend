@@ -9,7 +9,7 @@
 .example-thumb-0 {
   width: 10px;
   height: 10px;
-  background-color: $primary-color;
+  background-color: $primary-background-color;
   border: 0;
   cursor: pointer;
   outline: none;
@@ -20,7 +20,7 @@
 .example-thumb-1 {
   width: 10px;
   height: 10px;
-  background-color: $primary-color;
+  background-color: $primary-background-color;
   border: 0;
   cursor: pointer;
   outline: none;
@@ -37,7 +37,7 @@
 }
 
 .example-track-1 {
-  background-color: $primary-color;
+  background-color: $primary-background-color;
   width: 90%;
 }
 
@@ -118,13 +118,13 @@
     border-bottom: 0;
 
     &:hover {
-      color: $primary-color;
+      color: $primary-text-color;
     }
   }
   .sub-link {
     transition: all linear 0.3s;
     &:hover {
-      color: $primary-color;
+      color: $primary-text-color;
     }
   }
 }
