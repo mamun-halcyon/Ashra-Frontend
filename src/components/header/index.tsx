@@ -74,7 +74,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
               <ul className="   bg-[#fff] font-gotham font-normal text-[13px] black-text">
                 {menus?.map((menu, index) => (
                   <li key={index} className="px-2 py-1 primary-hover">
-                    <Link href={`/${menu.slug}`}>{menu.name}</Link>
+                    <Link href={menu.slug}>{menu.name}</Link>
                   </li>
                 ))}
               </ul>
