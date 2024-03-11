@@ -44,7 +44,7 @@
           &:hover {
             background: $primary-background-color;
             a {
-              color: $tertiary-color;
+              color: $tertiary-text-color;
             }
           }
         }
@@ -55,13 +55,13 @@
       }
       &:hover {
         background: $primary-background-color;
-        color: $tertiary-color;
+        color: $tertiary-text-color;
         .children-item {
           opacity: 1;
           visibility: visible;
         }
         .sub-element {
-          color: $tertiary-color;
+          color: $tertiary-text-color;
         }
       }
     }
@@ -99,10 +99,10 @@
 
             .self:hover {
               svg {
-                color: $tertiary-color;
+                color: $tertiary-text-color;
               }
               a {
-                color: $tertiary-color;
+                color: $tertiary-text-color;
               }
             }
             &:hover {
@@ -124,10 +124,10 @@
 
         .self:hover {
           svg {
-            color: $tertiary-color;
+            color: $tertiary-text-color;
           }
           a {
-            color: $tertiary-color;
+            color: $tertiary-text-color;
           }
         }
         &:hover {

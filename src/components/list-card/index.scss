@@ -4,7 +4,7 @@
   border-bottom: 1px solid #e2e2e2;
 
   .save-text {
-    background: $hexary-color;
+    background: $hexary-background-color;
   }
 
   &:last-child {
@@ -12,7 +12,7 @@
   }
 
   .icon-area {
-    border: 1px solid $quaternary-color;
+    border: 1px solid $hexary-border-color;
     border-radius: 50%;
     /* 
     .icon {
@@ -30,7 +30,7 @@
       }
     }
     .icon-title {
-      color: $quaternary-color;
+      color: $quaternary-text-color;
       margin-left: 5px;
     }
     .interaction {
@@ -53,7 +53,7 @@
     border: 1px solid $quaternary-border-color;
     &:hover {
       background: $primary-background-color;
-      color: $tertiary-color;
+      color: $tertiary-text-color;
     }
     margin-right: 5px;
   }
@@ -61,7 +61,7 @@
     border-bottom: 2px solid #e0e0e0;
   }
   .save-money {
-    color: $tertiary-color;
+    color: $tertiary-text-color;
   }
   .product-btn {
     transition: all linear 0.3s;

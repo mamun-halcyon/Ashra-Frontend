@@ -2,13 +2,13 @@
 
 .from-group {
   .form-input {
-    border: 1px solid $secondary-color;
+    border: 1px solid $quinary-border-color;
     padding: 10px 5px;
     &::placeholder {
       font-style: italic;
     }
     &:focus-visible {
-      outline: $primary-border-color;
+      outline: $primary-outline-color;
     }
   }
 }

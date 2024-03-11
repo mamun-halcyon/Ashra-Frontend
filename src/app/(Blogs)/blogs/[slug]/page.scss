@@ -19,14 +19,14 @@
     background: transparent;
 
     svg {
-      color: $quaternary-color;
+      color: $quaternary-text-color;
     }
 
     &:hover {
       background: $primary-background-color;
 
       svg {
-        color: $tertiary-color;
+        color: $tertiary-text-color;
       }
     }
   }

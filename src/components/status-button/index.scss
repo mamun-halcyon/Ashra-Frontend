@@ -15,7 +15,7 @@
 .slider {
   width: 14px;
   height: 14px;
-  background-color: $tertiary-color;
+  background-color: $tertiary-background-color;
   border-radius: 50%;
   position: absolute;
   transition: 0.2s;
@@ -28,5 +28,5 @@
 }
 
 .toggle-button .active {
-  background-color: $tertiary-color;
+  background-color: $tertiary-background-color;
 }

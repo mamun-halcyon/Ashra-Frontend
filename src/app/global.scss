@@ -22,22 +22,22 @@
   }
 }
 .white-text {
-  color: $tertiary-color;
+  color: $tertiary-text-color;
 }
 .white-bg {
   background: $tertiary-background-color;
 }
 .white-hover-text {
   &:hover {
-    color: $tertiary-color;
+    color: $tertiary-text-color;
   }
 }
 .secondary-bg {
   background: $secondary-background-color;
 }
 .secondary-border {
-  border-color: $secondary-color;
+  border-color: $quinary-border-color;
 }
 .black-text {
-  color: $quaternary-color;
+  color: $quaternary-text-color;
 }

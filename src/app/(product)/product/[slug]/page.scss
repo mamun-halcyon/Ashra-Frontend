@@ -1,8 +1,8 @@
 @import "../../../../styles/index.scss";
 
 .product-details {
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  border-top: 1px solid $secondary-border-color;
+  border-bottom: 1px solid $secondary-border-color;
   padding-bottom: 20px;
 
   .pointer {
@@ -23,7 +23,7 @@
     height: 100px;
     padding: 4px;
     img {
-      border: 1px solid #ececec;
+      border: 1px solid $secondary-border-color;
       height: 90%;
       object-fit: cover;
     }
@@ -33,7 +33,7 @@
   }
 
   .view-image {
-    border: 1px solid #ececec;
+    border: 1px solid $secondary-border-color;
   }
 
   .slick-arrow {
@@ -45,7 +45,7 @@
     left: -30px;
     color: $tertiary-border-color;
     &:hover {
-      color: $secondary-color;
+      color: $secondary-text-color;
     }
   }
 
@@ -54,13 +54,13 @@
     color: $tertiary-border-color;
     margin-left: 30px;
     &:hover {
-      color: $secondary-color;
+      color: $secondary-text-color;
     }
   }
 
   .price-area {
-    border-top: 1px solid #ececec;
-    border-bottom: 1px solid #ececec;
+    border-top: 1px solid $secondary-border-color;
+    border-bottom: 1px solid $secondary-border-color;
   }
   .share-item {
     .share-popup {
@@ -77,8 +77,8 @@
     color: #707070;
   }
   .discount {
-    background: $hexary-color;
-    color: $tertiary-color;
+    background: $hexary-background-color;
+    color: $tertiary-text-color;
     font-size: 12px;
     margin-left: 16px;
     font-family: $secondary-font;
@@ -86,7 +86,7 @@
   }
 
   .e-emi {
-    border-bottom: 1px solid #ececec;
+    border-bottom: 1px solid $secondary-border-color;
   }
   .action {
     .quantity {
@@ -108,7 +108,7 @@
   }
 }
 .more-details {
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid $secondary-border-color;
   overflow-x: hidden;
   .description {
     .desc {
@@ -128,7 +128,7 @@
         padding: 8px 30px;
         font-family: "Gotham";
         font-weight: 700;
-        border-right: 1px solid $tertiary-color;
+        border-right: 1px solid $tertiary-text-color;
         font-size: 15px;
 
         &--selected {
@@ -173,18 +173,18 @@
 }
 
 .attribute {
-  border-bottom: 1px solid $secondary-color;
+  border-bottom: 1px solid $quinary-border-color;
 
   .select {
     border: 1px solid $quaternary-border-color;
     transition: all linear 0.3s;
     &:hover {
       background: $primary-background-color;
-      color: $tertiary-color;
+      color: $tertiary-text-color;
     }
   }
   .selected {
     background: $primary-background-color;
-    color: $tertiary-color;
+    color: $tertiary-text-color;
   }
 }

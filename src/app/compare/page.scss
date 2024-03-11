@@ -5,13 +5,13 @@
 
   .compare-button {
     background: transparent;
-    color: $quaternary-color;
+    color: $quaternary-text-color;
     border: 1px solid $quaternary-border-color;
     transition: all linear 0.3s;
 
     &:hover {
       background: $primary-background-color;
-      color: $tertiary-color;
+      color: $tertiary-text-color;
     }
   }
 
@@ -58,10 +58,10 @@
   }
 
   .danger-text {
-    color: $hexary-color;
+    color: $hexary-text-color;
   }
   .discount {
-    color: $tertiary-color;
-    background: $hexary-color;
+    color: $tertiary-text-color;
+    background: $hexary-background-color;
   }
 }

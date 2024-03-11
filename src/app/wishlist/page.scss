@@ -5,15 +5,15 @@
   padding-bottom: 80px;
 
   .wish-heading {
-    border-bottom: 1px solid $quinary-color;
+    border-bottom: 1px solid $septenary-border-color;
   }
 
   .cart-elements {
     .product-title {
-      border-bottom: 1px solid $quinary-color;
+      border-bottom: 1px solid $septenary-border-color;
       padding-bottom: 6px;
       .dot-icon {
-        color: $quinary-color;
+        color: $quinary-text-color;
       }
     }
 
@@ -53,7 +53,7 @@
   background: $primary-background-color;
   margin-bottom: 80px;
   .service-card {
-    color: $tertiary-color;
+    color: $tertiary-text-color;
     h4 {
       color: $tertiary-color !important;
     }

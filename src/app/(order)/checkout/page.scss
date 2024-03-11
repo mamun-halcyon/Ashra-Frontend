@@ -4,7 +4,7 @@
   border: 1px solid $primary-border-color;
   padding: 10px 5px;
   &:focus-visible {
-    outline: $primary-border-color;
+    outline: $primary-outline-color;
   }
 }
 .wearing {
@@ -37,7 +37,7 @@
     border: 1px solid $primary-border-color;
     border-top: 0;
     .text {
-      color: $hexary-color;
+      color: $hexary-text-color;
     }
   }
 }
@@ -61,13 +61,13 @@
 .accepted {
   border-bottom: 1px solid $primary-border-color;
   .sudo {
-    color: $hexary-color;
+    color: $hexary-text-color;
   }
 }
 
 @supports (-webkit-appearance: none) {
   #location option {
-    color: $quaternary-color;
+    color: $quaternary-text-color;
     background: $tertiary-background-color;
   }
 }

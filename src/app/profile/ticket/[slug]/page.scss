@@ -1,10 +1,12 @@
+@import "../../../../styles/index.scss";
+
 .scrollbar::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
 .scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: $secondary-background-color;
 }
 
 /* Handle */

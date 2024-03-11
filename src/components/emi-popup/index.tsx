@@ -38,7 +38,9 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
   useEffect(() => {
     const fetchBank = async () => {
       try {
-        const data = await axios.get(`${API_URL}/emis?bank_name=${search}`);
+        const data = await axios.get(
+          `${API_URL}/emis?limit=60&bank_name=${search}`
+        );
         setBankList(data.data);
       } catch (error) {
         console.error("Error fetching product:", error);

@@ -14,7 +14,7 @@
       width: 22%;
       content: "";
       height: 1px;
-      background: $primary-border-color;
+      background: $septenary-background-color;
     }
     &::before {
       position: absolute;
@@ -23,12 +23,12 @@
       width: 22%;
       content: "";
       height: 1px;
-      background: $primary-border-color;
+      background: $septenary-background-color;
     }
   }
 }
 .warning {
-  color: $hexary-color;
+  color: $hexary-text-color;
 }
 @media screen and (max-width: 768px) {
   .register {

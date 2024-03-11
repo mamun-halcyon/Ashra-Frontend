@@ -4,7 +4,7 @@
   box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.05);
 
   table {
-    border: 1px solid $quinary-color;
+    border: 1px solid $septenary-border-color;
   }
 
   .table-heading {
@@ -20,7 +20,7 @@
         background: $secondary-background-color;
       }
       td {
-        border-right: 1px solid $secondary-color;
+        border-right: 1px solid $quinary-border-color;
         &:last-child {
           border: 0;
         }

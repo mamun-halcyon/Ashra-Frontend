@@ -30,7 +30,7 @@ const MegaMenu = ({ menus }: IProps) => {
                 .map((menu, index) => (
                   <div className="mr-2 text-left relative heading" key={index}>
                     <div
-                      className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border mdd:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all"
+                      className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border md:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all"
                       onClick={() => {
                         route.push(`/category/filter?category=${menu.slug}`);
                         dispatch(
@@ -155,7 +155,7 @@ const MegaMenu = ({ menus }: IProps) => {
                   .map((menu, index) => (
                     <div key={index} className="menus">
                       <div
-                        className="py-2  cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border mdd:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all parent-category"
+                        className="py-2  cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border md:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all parent-category"
                         onClick={() =>
                           route.push(`/category/filter?category=${menu.slug}`)
                         }
@@ -176,7 +176,7 @@ const MegaMenu = ({ menus }: IProps) => {
                           )
                           .map((subCategory, index) => (
                             <div key={index} className="sub-category">
-                              <div className=" relative  sub-item cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border mdd:border-black black-text hover:border-primary self primary-hover-bg transition-all">
+                              <div className=" relative  sub-item cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border md:border-black black-text hover:border-primary self primary-hover-bg transition-all">
                                 <Link
                                   className=" font-gotham font-sm my-2 text-sm black-text sub-element"
                                   href={`/category/filter?category=${subCategory.slug}`}
@@ -203,7 +203,7 @@ const MegaMenu = ({ menus }: IProps) => {
                                   .map((childrenCategory, index) => (
                                     <div
                                       key={index}
-                                      className="   sub-item cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border mdd:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all self"
+                                      className="   sub-item cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border md:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all self"
                                     >
                                       <Link
                                         className=" font-gotham font-sm my-2 text-sm black-text sub-element"

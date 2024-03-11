@@ -1,9 +1,11 @@
+@import "../../styles/index.scss";
+
 .refund-request {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -35%);
-  background: #fff;
+  background: $tertiary-background-color;
   z-index: 1;
   width: 60%;
   //   height: 400px;
