@@ -46,6 +46,10 @@ import { addCategory } from "@/redux/features/category/categorySlice";
 const ZoomImage = dynamic(() => import("@/components/zoom-image"));
 const ProductCard = dynamic(() => import("@/components/card"));
 
+type IUniqueAttributes = {
+  [key: string]: string[];
+};
+
 type Props = {
   params: {
     slug: string;
@@ -121,6 +125,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
     try {
       const data = await getProduct(slug);
       setProduct(data?.data);
+      /* 
       let tempArr: any[] = [];
       data?.data?.productAttribute?.length > 0 &&
         data?.data?.productAttribute?.map((attr: any) => {
@@ -133,7 +138,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
             values: [...tempValuesArrObjs],
           });
         });
-      setAttributes([...tempArr]);
+      setAttributes([...tempArr]); */
     } catch (error) {
       console.error("Error fetching product:", error);
     }
@@ -554,54 +559,53 @@ const PageDetails = ({ params: { slug } }: Props) => {
                     {product.productAttribute &&
                       product.productAttribute.length > 0 && (
                         <div className="attribute py-2">
-                          {attributes?.length > 0 ? (
-                            <>
-                              {attributes?.map((attr, i) => {
-                                return (
+                          <>
+                            {(() => {
+                              const uniqueAttributes: IUniqueAttributes = {};
+
+                              product.productAttribute?.forEach((attr) => {
+                                if (!uniqueAttributes[attr.attribute_key]) {
+                                  uniqueAttributes[attr.attribute_key] = [];
+                                }
+                                uniqueAttributes[attr.attribute_key].push(
+                                  attr.attribute_value
+                                );
+                              });
+
+                              return Object.keys(uniqueAttributes).map(
+                                (key, i) => (
                                   <div
                                     key={i}
                                     className="flex items-center mb-1"
                                   >
-                                    <div className=" font-gotham font-normal text-xs mr-2">
-                                      {attr?.name} :{" "}
+                                    <div className="font-gotham font-normal text-xs mr-2">
+                                      {key.replace("_", " ")} :{" "}
                                     </div>
                                     <div className="flex">
-                                      {attr?.values?.length > 0 ? (
-                                        <>
-                                          {attr?.values?.map(
-                                            (val: any, j: number) => {
-                                              return (
-                                                <div
-                                                  key={j}
-                                                  className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
-                                                    val?.checked === true
-                                                      ? "primary-bg white-text"
-                                                      : "white-bg black-text"
-                                                  }`}
-                                                  onClick={() =>
-                                                    handleAttributeClick(
-                                                      attr?.name,
-                                                      val?.name
-                                                    )
-                                                  }
-                                                >
-                                                  {val?.name}
-                                                </div>
-                                              );
-                                            }
-                                          )}
-                                        </>
-                                      ) : (
-                                        <></>
-                                      )}
+                                      {uniqueAttributes[key].map((value, j) => (
+                                        <div
+                                          key={j}
+                                          className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1`}
+                                          onClick={() => {
+                                            handleAttributeClick(key, value);
+                                            handleViewImage(
+                                              product.productAttribute?.find(
+                                                (att) =>
+                                                  att.attribute_key === key &&
+                                                  att.attribute_value === value
+                                              )?.attrbute_image as string
+                                            );
+                                          }}
+                                        >
+                                          {value}
+                                        </div>
+                                      ))}
                                     </div>
                                   </div>
-                                );
-                              })}
-                            </>
-                          ) : (
-                            <></>
-                          )}
+                                )
+                              );
+                            })()}
+                          </>
                         </div>
                       )}
                     {product?.product?.availability === 1 &&

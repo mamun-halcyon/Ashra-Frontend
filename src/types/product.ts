@@ -48,6 +48,7 @@ interface IProductAttribute {
   product_id: number;
   attribute_key: string;
   attribute_value: string;
+  attrbute_image: string;
   created_at: string;
   updated_at: string;
 }
