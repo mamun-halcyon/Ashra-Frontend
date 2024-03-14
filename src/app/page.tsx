@@ -155,7 +155,7 @@ export default async function Home() {
                       product_id={Number(product.id)}
                       sort_description={product.sort_description}
                       availability={product.availability}
-                      quantity={product.quantity}
+                      quantity={product.default_quantity}
                     />
                   )
                 )}
@@ -178,7 +178,7 @@ export default async function Home() {
                     product_id={Number(product.id)}
                     sort_description={product.sort_description}
                     availability={product.availability}
-                    quantity={product.quantity}
+                    quantity={product.default_quantity}
                   />
                 ))}
               </div>
@@ -201,7 +201,7 @@ export default async function Home() {
                     product_id={Number(product.id)}
                     sort_description={product.sort_description}
                     availability={product.availability}
-                    quantity={product.quantity}
+                    quantity={product.default_quantity}
                   />
                 ))}
               </div>

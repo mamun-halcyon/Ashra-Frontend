@@ -86,6 +86,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
+  const [attributeId, setAttributeId] = useState<number | null>(null);
+  const [attributeName, setAttributeName] = useState("");
   const handleEmi = () => setIsEmi(!isEmi);
 
   const handleViewImage = (url: string) => {
@@ -389,7 +391,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
     }
   };
 
-  const handleAttributeClick = (attrName: string, valName: string) => {
+  const handleAttributeClick = (attribute: any) => {
+    setAttributeId(attribute.id);
+    setAttributeName(attribute.attribute_value);
+  };
+  /* const handleAttributeClick = (attrName: string, valName: string) => {
     setAttributes((prevState) => {
       return prevState.map((attr) => {
         if (attr.name === attrName) {
@@ -407,7 +413,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
         }
       });
     });
-  };
+  }; */
   const smallestOrderPhoto = product?.productPhotos.reduce((prev, current) =>
     prev.order_number < current.order_number ? prev : current
   );
@@ -582,24 +588,40 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                       {key.replace("_", " ")} :{" "}
                                     </div>
                                     <div className="flex">
-                                      {uniqueAttributes[key].map((value, j) => (
-                                        <div
-                                          key={j}
-                                          className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1`}
-                                          onClick={() => {
-                                            handleAttributeClick(key, value);
-                                            handleViewImage(
-                                              product.productAttribute?.find(
-                                                (att) =>
-                                                  att.attribute_key === key &&
-                                                  att.attribute_value === value
-                                              )?.attrbute_image as string
-                                            );
-                                          }}
-                                        >
-                                          {value}
-                                        </div>
-                                      ))}
+                                      {uniqueAttributes[key].map((value, j) => {
+                                        const findAttribute =
+                                          product.productAttribute?.find(
+                                            (att) =>
+                                              att.attribute_key === key &&
+                                              att.attribute_value === value
+                                          );
+                                        return (
+                                          <div
+                                            key={j}
+                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
+                                              findAttribute?.attribute_value ===
+                                              attributeName
+                                                ? "bg-primary white-text"
+                                                : ""
+                                            }`}
+                                            onClick={() => {
+                                              handleAttributeClick(
+                                                findAttribute
+                                              );
+                                              handleViewImage(
+                                                product.productAttribute?.find(
+                                                  (att) =>
+                                                    att.attribute_key === key &&
+                                                    att.attribute_value ===
+                                                      value
+                                                )?.attrbute_image as string
+                                              );
+                                            }}
+                                          >
+                                            {value}
+                                          </div>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 )
@@ -609,7 +631,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </div>
                       )}
                     {product?.product?.availability === 1 &&
-                      product?.product?.quantity > 0 && (
+                      product?.product?.default_quantity > 0 && (
                         <div className="action">
                           <div className="flex pt-5 font-gotham font-medium ">
                             <div className="mr-2 flex items-center primary-text border ">
@@ -637,8 +659,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               className=" px-5 py-1 mr-2"
                               onClick={() => {
                                 if (
-                                  attributes?.length !==
-                                  selectAttributes?.length
+                                  product?.productAttribute &&
+                                  !attributeName
                                 ) {
                                   toast.error("Please Select Variant");
                                   return;
@@ -654,6 +676,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   quantity: quantity,
                                   regular_price: product.product.regular_price,
                                   product_attribute: selectAttributes,
+                                  attribute_id: attributeId,
+                                  attribute_name: attributeName,
                                 });
                               }}
                             >
@@ -663,8 +687,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               className=" px-5 py-1"
                               onClick={() => {
                                 if (
-                                  attributes?.length !==
-                                  selectAttributes?.length
+                                  product?.productAttribute &&
+                                  !attributeName
                                 ) {
                                   toast.error("Please Select Variant");
                                   return;
@@ -682,6 +706,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                     regular_price:
                                       product.product.regular_price,
                                     product_attribute: selectAttributes,
+                                    attribute_id: attributeId,
+                                    attribute_name: attributeName,
                                   })
                                 );
                               }}
@@ -983,7 +1009,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       product_id={Number(product.id)}
                       sort_description={product.sort_description}
                       availability={product.availability}
-                      quantity={product.quantity}
+                      quantity={product.default_quantity}
                     />
                   ))}
                 </div>

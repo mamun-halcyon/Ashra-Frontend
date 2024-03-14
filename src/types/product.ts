@@ -6,7 +6,7 @@ export type IProduct = {
   sort_description: string;
   image: string;
   category_slug?: string;
-  quantity: number;
+  default_quantity: number;
   regular_price: number;
   discount_price: number;
   delivery_fee?: number;
