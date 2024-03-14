@@ -55,10 +55,10 @@
   .service-card {
     color: $tertiary-text-color;
     h4 {
-      color: $tertiary-color !important;
+      color: $tertiary-text-color !important;
     }
     h6 {
-      color: $tertiary-color !important;
+      color: $tertiary-text-color !important;
     }
   }
 }
