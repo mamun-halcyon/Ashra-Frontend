@@ -147,7 +147,7 @@ const ProductCard: React.FC<IProps> = ({
                   {productAttribute && productAttribute.length > 0 ? (
                     <>
                       <Link href={`/product/${url}`}>
-                        <Button className="font-gotham font-medium py-2 text-xs w-[102px] stock-out">
+                        <Button className="font-gotham font-medium py-2 text-xs w-[102px] ">
                           View
                         </Button>
                       </Link>

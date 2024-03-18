@@ -475,6 +475,7 @@ function Category() {
                             sort_description={product.sort_description}
                             availability={product.availability}
                             quantity={product.default_quantity}
+                            productAttribute={product["product-attributes"]}
                           />
                         ))
                       ) : (
@@ -500,7 +501,9 @@ function Category() {
                   )}
                 </div>
               ) : (
-                <div>Loading...</div>
+                <div className=" py-5 text-center">
+                  <p className=" font-gotham text-sm">Loading...</p>
+                </div>
               )}
 
               <Pagination

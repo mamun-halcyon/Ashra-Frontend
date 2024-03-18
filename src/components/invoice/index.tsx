@@ -68,7 +68,7 @@ const Invoice = ({
             Description
           </div>
           <div className=" col-span-1 font-gotham text-sm font-normal">
-            Attribute
+            Variant
           </div>
           <div className=" col-span-1 font-gotham text-sm font-normal">Qty</div>
           <div className=" col-span-2 font-gotham text-sm font-normal">

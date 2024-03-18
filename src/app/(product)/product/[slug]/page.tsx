@@ -86,9 +86,41 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
-  const [attributeId, setAttributeId] = useState<number | null>(null);
-  const [attributeName, setAttributeName] = useState("");
+  const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
   const handleEmi = () => setIsEmi(!isEmi);
+
+  const handleAttributeClick = (attribute: any) => {
+    const isExists = selectedAttributes.filter(
+      (attr) =>
+        attr.attribute_id === attribute.id ||
+        attr.attribute_key === attribute.attribute_key ||
+        attr.attribute_name === attribute.attribute_value
+    );
+    if (isExists.length < 1) {
+      setSelectedAttributes((prev) => [
+        ...prev,
+        {
+          attribute_id: attribute.id,
+          attribute_name: attribute.attribute_value,
+          attribute_quantity: quantity,
+          attribute_key: attribute.attribute_key,
+        },
+      ]);
+    } else {
+      const sameType = selectedAttributes.filter(
+        (attr) => attr.attribute_key !== attribute.attribute_key
+      );
+      setSelectedAttributes([
+        ...sameType,
+        {
+          attribute_id: attribute.id,
+          attribute_name: attribute.attribute_value,
+          attribute_quantity: quantity,
+          attribute_key: attribute.attribute_key,
+        },
+      ]);
+    }
+  };
 
   const handleViewImage = (url: string) => {
     setViewImag(url);
@@ -391,10 +423,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
     }
   };
 
-  const handleAttributeClick = (attribute: any) => {
-    setAttributeId(attribute.id);
-    setAttributeName(attribute.attribute_value);
-  };
   /* const handleAttributeClick = (attrName: string, valName: string) => {
     setAttributes((prevState) => {
       return prevState.map((attr) => {
@@ -595,12 +623,22 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                               att.attribute_key === key &&
                                               att.attribute_value === value
                                           );
+                                        // TODO:
+                                        // ${
+                                        //     findAttribute?.attribute_value ===
+                                        //     attributeName
+                                        //       ? "bg-primary white-text"
+                                        //       : ""
+                                        //   }
                                         return (
                                           <div
                                             key={j}
                                             className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
-                                              findAttribute?.attribute_value ===
-                                              attributeName
+                                              selectedAttributes.find(
+                                                (item) =>
+                                                  item.attribute_id ===
+                                                  findAttribute?.id
+                                              )
                                                 ? "bg-primary white-text"
                                                 : ""
                                             }`}
@@ -660,7 +698,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               onClick={() => {
                                 if (
                                   product?.productAttribute &&
-                                  !attributeName
+                                  product?.productAttribute.length > 0 &&
+                                  selectedAttributes.length < 1
                                 ) {
                                   toast.error("Please Select Variant");
                                   return;
@@ -675,9 +714,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   image: product.product.image,
                                   quantity: quantity,
                                   regular_price: product.product.regular_price,
-                                  product_attribute: selectAttributes,
-                                  attribute_id: attributeId,
-                                  attribute_name: attributeName,
+                                  attribute: selectedAttributes,
                                 });
                               }}
                             >
@@ -688,7 +725,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               onClick={() => {
                                 if (
                                   product?.productAttribute &&
-                                  !attributeName
+                                  product?.productAttribute.length > 0 &&
+                                  selectedAttributes.length < 1
                                 ) {
                                   toast.error("Please Select Variant");
                                   return;
@@ -705,9 +743,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                     quantity: quantity,
                                     regular_price:
                                       product.product.regular_price,
-                                    product_attribute: selectAttributes,
-                                    attribute_id: attributeId,
-                                    attribute_name: attributeName,
+                                    attribute: selectedAttributes,
                                   })
                                 );
                               }}
@@ -1010,6 +1046,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       sort_description={product.sort_description}
                       availability={product.availability}
                       quantity={product.default_quantity}
+                      productAttribute={product["product-attributes"]}
                     />
                   ))}
                 </div>

@@ -7,5 +7,5 @@ export interface ICartItem {
   attribute_id?: number | null;
   attribute_name?: string;
   regular_price: number;
-  product_attribute?: any;
+  attribute?: any[];
 }

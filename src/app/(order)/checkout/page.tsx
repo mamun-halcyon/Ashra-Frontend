@@ -71,11 +71,11 @@ function Checkout() {
       setSelectedPaymentDeliveryStatus(selectedPaymentDeliveryStatusValue);
     }
   };
-
+  console.log(cart);
   const orderItem = cart.map((item) => ({
     product_id: item.product_id,
     quantity: item.quantity,
-    product_attribute: item.product_attribute,
+    attribute: item?.attribute,
   }));
 
   const subTotal = cart.reduce(

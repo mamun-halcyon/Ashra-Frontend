@@ -56,6 +56,7 @@ const Featured: FC<IProps> = ({
                           sort_description={product.sort_description}
                           availability={product.availability}
                           quantity={product.default_quantity}
+                          productAttribute={product["product-attributes"]}
                         />
                       ))}
                     </div>
@@ -75,6 +76,7 @@ const Featured: FC<IProps> = ({
                           sort_description={product.sort_description}
                           availability={product.availability}
                           quantity={product.default_quantity}
+                          productAttribute={product["product-attributes"]}
                         />
                       ))}
                     </div>
@@ -94,6 +96,7 @@ const Featured: FC<IProps> = ({
                           sort_description={product.sort_description}
                           availability={product.availability}
                           quantity={product.default_quantity}
+                          productAttribute={product["product-attributes"]}
                         />
                       ))}
                     </div>
