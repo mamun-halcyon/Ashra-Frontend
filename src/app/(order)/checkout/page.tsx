@@ -71,7 +71,6 @@ function Checkout() {
       setSelectedPaymentDeliveryStatus(selectedPaymentDeliveryStatusValue);
     }
   };
-  console.log(cart);
   const orderItem = cart.map((item) => ({
     product_id: item.product_id,
     quantity: item.quantity,

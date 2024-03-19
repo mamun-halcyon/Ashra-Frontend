@@ -25,6 +25,7 @@ export type IProduct = {
   meta_description?: string;
   created_at?: string;
   updated_at?: string;
+  "product-attributes"?: any;
 };
 
 export type IProductResponse = {

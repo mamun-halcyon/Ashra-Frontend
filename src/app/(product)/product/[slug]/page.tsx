@@ -623,13 +623,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                               att.attribute_key === key &&
                                               att.attribute_value === value
                                           );
-                                        // TODO:
-                                        // ${
-                                        //     findAttribute?.attribute_value ===
-                                        //     attributeName
-                                        //       ? "bg-primary white-text"
-                                        //       : ""
-                                        //   }
+
                                         return (
                                           <div
                                             key={j}
