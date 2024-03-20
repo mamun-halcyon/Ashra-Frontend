@@ -20,7 +20,7 @@ const Navbar = ({ logo }: { logo: string }) => {
       <div className="container px-2 md:px-0">
         <div className=" flex justify-between items-center py-5">
           <div className=" w-[33%]">
-            <Link href={"/"}>
+            <Link href={"/"} className="inline-block">
               <Image
                 className="logo"
                 src={`${API_ROOT}/images/setting/${logo}`}
@@ -28,7 +28,7 @@ const Navbar = ({ logo }: { logo: string }) => {
                 width={200}
                 height={80}
                 quality={100}
-                alt="gazi group logo"
+                alt="logo"
               />
             </Link>
           </div>

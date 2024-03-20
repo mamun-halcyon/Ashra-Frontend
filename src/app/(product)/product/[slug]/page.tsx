@@ -43,6 +43,7 @@ import axiosInstance from "../../../../../utils/axiosInstance";
 import "./page.scss";
 import "react-quill/dist/quill.snow.css";
 import { addCategory } from "@/redux/features/category/categorySlice";
+import Loader from "@/components/loader/loading";
 const ZoomImage = dynamic(() => import("@/components/zoom-image"));
 const ProductCard = dynamic(() => import("@/components/card"));
 
@@ -460,7 +461,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
   }, []);
 
   if (!product) {
-    return <div className="py-5 container">Loading...</div>;
+    return <Loader />;
   }
   return (
     <>
@@ -486,8 +487,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
                   >
                     {product.product.category_slug}{" "}
                   </Link>
-                  {/* <RiArrowDropRightLine className=" text-xl" />
-                  <Link href={"/subcagory/Commode"}> Commode </Link> */}
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
