@@ -58,8 +58,83 @@ const Invoice = ({
         <p>Email: iftebmw@gmail.com</p>
         <p>Phone: 01976100280</p>
       </div> */}
+      <table className="w-full">
+        <thead>
+          <tr className="secondary-bg text-left table-border">
+            <th className="table-border">SL.</th>
+            <th className="table-border">Description</th>
+            <th className="table-border">Attribute</th>
+            <th className="table-border">Qty</th>
+            <th className="table-border">Unit Price (BDT)</th>
+            <th className="table-border">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {order?.orderItems?.map((product: any, index: any) => (
+            <tr key={index} className="product-a">
+              <td className="table-border">{index + 1}</td>
+              <td className="table-border">{product.product_name}</td>
+              <td className="table-border">
+                {product.product_attribute
+                  ? JSON.parse(product.product_attribute).map(
+                      (v: any, i: number) => (
+                        <span className="variant" key={i}>
+                          {`${i ? "," : ""}${v.attribute_name}`}
+                        </span>
+                      )
+                    )
+                  : "-"}
+              </td>
+              <td className="table-border"> {product.quantity}</td>
+              <td className="table-border"> ৳ {product.discount_price}</td>
+              <td className="table-border">
+                {" "}
+                ৳ {product.discount_price * product.quantity}
+              </td>
+            </tr>
+          ))}
 
-      <div className="invoice-table">
+          <tr>
+            <td colSpan={4}>
+              <h3>Notes:</h3>
+              <p>1. Please check the product carefully before payment.</p>
+              <p>
+                2. After payment there will be no option for refund &amp;
+                exchange.
+              </p>
+              <p>3. No claim will be accepted after receiving the product.</p>
+            </td>
+            <td>Regular Price</td>
+            <td> ৳ {amountBeforeCoupon} </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Delivery</td>
+            <td> ৳ {shipingCost}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Discount</td>
+            <td>৳ {amountBeforeCoupon - finalPrice}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td> ৳ {finalPrice + shipingCost} </td>
+          </tr>
+        </tbody>
+      </table>
+
+      {/* <div className="invoice-table">
         <div className="grid grid-cols-10 secondary-bg">
           <div className=" col-span-1 font-gotham text-sm font-normal">
             SL.{" "}
@@ -143,7 +218,7 @@ const Invoice = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

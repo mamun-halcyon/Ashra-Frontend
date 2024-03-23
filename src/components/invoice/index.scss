@@ -1,6 +1,13 @@
 @import "../../styles/index.scss";
 
 .invoice {
+  .product-a {
+    height: 100px;
+  }
+  .table-border {
+    border: 1px solid #dddddd;
+    padding: 8px;
+  }
   padding: 40px;
   .invoice-header {
     padding: 10px 0;
