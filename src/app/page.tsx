@@ -119,9 +119,7 @@ export default async function Home() {
           </div>
         </section>
         <Featured
-          featureProduct={homeData.featureProduct}
-          topSale={homeData.topSale}
-          newArrival={homeData.newArrival}
+          homeData={homeData}
           adsbanner={verticalBanner?.data[0]?.image}
           bannerUrl={verticalBanner?.data[0]?.url}
         />

@@ -6,22 +6,15 @@ import Link from "next/link";
 import { FC } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import ProductCard from "../card";
+import { HomeApiResponse } from "@/types/home";
 
 type IProps = {
-  topSale: IProduct[];
-  newArrival: IProduct[];
-  featureProduct: IProduct[];
+  homeData: HomeApiResponse;
   adsbanner: string;
   bannerUrl: string;
 };
 
-const Featured: FC<IProps> = ({
-  topSale,
-  newArrival,
-  featureProduct,
-  adsbanner,
-  bannerUrl,
-}) => {
+const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
   return (
     <div>
       <section className="popular-product">
@@ -43,7 +36,7 @@ const Featured: FC<IProps> = ({
                 <div className="col-span-6  md:col-span-5">
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {topSale.map((product, i) => (
+                      {homeData?.topSale.map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}
@@ -63,7 +56,7 @@ const Featured: FC<IProps> = ({
                   </TabPanel>
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {newArrival.splice(0, 8).map((product, i) => (
+                      {homeData?.newArrival.splice(0, 8).map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}
@@ -83,7 +76,7 @@ const Featured: FC<IProps> = ({
                   </TabPanel>
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {featureProduct.map((product, i) => (
+                      {homeData?.featureProduct.map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}
