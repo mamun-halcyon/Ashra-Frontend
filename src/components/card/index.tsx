@@ -29,6 +29,8 @@ interface IProps {
   availability: any;
   quantity: number;
   productAttribute?: any[];
+  camping_start_date: string;
+  camping_end_date: string;
 }
 const ProductCard: React.FC<IProps> = ({
   image,
@@ -42,11 +44,19 @@ const ProductCard: React.FC<IProps> = ({
   sort_description,
   availability,
   quantity,
+  camping_end_date,
+  camping_start_date,
 }) => {
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const isCampaign =
+    camping_start_date &&
+    camping_end_date &&
+    new Date(camping_start_date).getTime() <= Date.now() &&
+    new Date(camping_end_date).getTime() >= Date.now();
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
@@ -121,19 +131,17 @@ const ProductCard: React.FC<IProps> = ({
           </Link>
         </div>
         <p className=" mb-6 text-center text-sm h-5">
-          {Number(regular_price) !== Number(discount_price) && (
+          {Number(regular_price) && (
             <span
               className={`mr-3 font-gotham ${
-                Number(discount_price) > 0
-                  ? "line-through font-normal "
-                  : "font-bold"
+                isCampaign ? "line-through font-normal " : "font-bold"
               } text-sm`}
             >
               ৳ {FormatPrice(regular_price)}
             </span>
           )}
 
-          {Number(discount_price) > 0 && (
+          {Number(discount_price) > 0 && isCampaign && (
             <span className=" font-gotham font-bold text-sm">
               ৳ {FormatPrice(discount_price)}
             </span>
@@ -161,7 +169,7 @@ const ProductCard: React.FC<IProps> = ({
                             addToCart({
                               product_id: product_id,
                               price: Number(
-                                Number(discount_price) > 0
+                                Number(discount_price) > 0 && isCampaign
                                   ? discount_price
                                   : regular_price
                               ),
@@ -181,7 +189,7 @@ const ProductCard: React.FC<IProps> = ({
                           handleBuyNow({
                             product_id,
                             price: Number(
-                              Number(discount_price) > 0
+                              Number(discount_price) > 0 && isCampaign
                                 ? discount_price
                                 : regular_price
                             ),

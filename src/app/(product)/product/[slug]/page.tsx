@@ -88,6 +88,13 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
+
+  const isCampaign =
+    product?.product?.camping_start_date &&
+    product?.product?.camping_end_date &&
+    new Date(product.product.camping_start_date).getTime() <= Date.now() &&
+    new Date(product.product.camping_end_date).getTime() >= Date.now();
+
   const handleEmi = () => setIsEmi(!isEmi);
 
   const handleAttributeClick = (attribute: any) => {
@@ -554,7 +561,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </h3>
                         <h2
                           className={`font-gotham  text-xl font-medium ${
-                            product?.product?.discount_price > 0
+                            product?.product?.discount_price > 0 && isCampaign
                               ? " line-through font-normal r-price "
                               : "primary-text"
                           }  `}
@@ -562,25 +569,28 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           ৳{FormatPrice(product?.product?.regular_price)}
                         </h2>
                       </div>
-                      {product?.product?.discount_price > 0 && (
-                        <div className="flex items-center">
-                          <h3 className=" font-gotham font-normal text-xs black-text mr-3">
-                            Discount Price:
-                          </h3>
-                          <div className="flex">
-                            <h2 className="font-gotham  text-2xl primary-text font-medium d-price">
-                              ৳{FormatPrice(product?.product?.discount_price)}
-                            </h2>
-                            <div>
-                              <span className="discount">
-                                Save ৳
-                                {product.product.regular_price -
-                                  product.product.discount_price}
-                              </span>
+                      {product?.product?.discount_price > 0 &&
+                        isCampaign &&
+                        product?.product?.discount_price !==
+                          product.product.regular_price && (
+                          <div className="flex items-center">
+                            <h3 className=" font-gotham font-normal text-xs black-text mr-3">
+                              Discount Price:
+                            </h3>
+                            <div className="flex">
+                              <h2 className="font-gotham  text-2xl primary-text font-medium d-price">
+                                ৳{FormatPrice(product?.product?.discount_price)}
+                              </h2>
+                              <div>
+                                <span className="discount">
+                                  Save ৳
+                                  {product.product.regular_price -
+                                    product.product.discount_price}
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
+                        )}
                     </div>
                     <div className="e-emi">
                       <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
@@ -588,8 +598,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           className="cursor-point"
                           onClick={() => setIsEmi(true)}
                         >
-                          Avail Bank EMI | EMI From {Math.ceil(emiPRice)}{" "}
-                          Tk/month
+                          Avail Bank EMI | EMI From{" "}
+                          {FormatPrice(Math.ceil(emiPRice))} Tk/month
                         </span>
                       </h3>
                     </div>
@@ -638,11 +648,17 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                               )
                                                 ? "bg-primary white-text"
                                                 : ""
+                                            } ${
+                                              (findAttribute?.attribute_quantity as number) <=
+                                              0
+                                                ? "disabled-attribute"
+                                                : ""
                                             }`}
                                             onClick={() => {
-                                              handleAttributeClick(
-                                                findAttribute
-                                              );
+                                              findAttribute?.attribute_quantity &&
+                                                handleAttributeClick(
+                                                  findAttribute
+                                                );
                                               handleViewImage(
                                                 product.productAttribute?.find(
                                                   (att) =>
@@ -704,7 +720,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 handleBuyNow({
                                   product_id: Number(product.product.id),
                                   price:
-                                    product.product.discount_price > 0
+                                    product.product.discount_price > 0 &&
+                                    isCampaign
                                       ? product.product.discount_price
                                       : product.product.regular_price,
                                   title: product.product.title,
@@ -732,7 +749,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   addToCart({
                                     product_id: Number(product.product.id),
                                     price:
-                                      product.product.discount_price > 0
+                                      product.product.discount_price > 0 &&
+                                      isCampaign
                                         ? product.product.discount_price
                                         : product?.product?.regular_price,
                                     title: product.product.title,

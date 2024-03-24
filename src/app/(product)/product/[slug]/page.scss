@@ -182,6 +182,14 @@
       background: $primary-background-color;
       color: $tertiary-text-color;
     }
+    &.disabled-attribute {
+      border: 1px solid $primary-border-color;
+      color: $quinary-text-color;
+      &:hover {
+        background: transparent;
+        cursor: not-allowed;
+      }
+    }
   }
   .selected {
     background: $primary-background-color;

@@ -20,6 +20,7 @@ import axios from "axios";
 import Image from "next/image";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import "./page.scss";
+import FormatPrice from "@/components/price-formate";
 
 function Checkout() {
   const dispatch = useAppDispatch();
@@ -135,7 +136,7 @@ function Checkout() {
                       </div>
                       <div className="col-span-2 md:col-span-1">
                         <p className=" font-gotham font-medium primary-text text-sm">
-                          ৳ {item.price}
+                          ৳ {FormatPrice(item.price)}
                         </p>
                       </div>
                       <div className="col-span-2 hidden md:block">
@@ -159,7 +160,7 @@ function Checkout() {
                       </div>
                       <div className=" col-span-2 md:col-span-1">
                         <p className=" font-gotham font-medium primary-text text-sm">
-                          ৳ {item.price * item.quantity}
+                          ৳ {FormatPrice(item.price * item.quantity)}
                         </p>
                       </div>
                       <div className=" flex justify-center col-span-8 md:hidden">
@@ -197,7 +198,7 @@ function Checkout() {
                       Sub Total
                     </p>
                     <p className=" font-gotham font-medium text-sm primary-text">
-                      {sumWithInitial}
+                      ৳ {FormatPrice(sumWithInitial)}
                     </p>
                   </div>
 

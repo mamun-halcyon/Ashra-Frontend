@@ -50,6 +50,7 @@ interface IProductAttribute {
   attribute_key: string;
   attribute_value: string;
   attrbute_image: string;
+  attribute_quantity: number;
   created_at: string;
   updated_at: string;
 }
