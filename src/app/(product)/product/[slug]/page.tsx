@@ -394,6 +394,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (rating <= 0) {
+      toast.error("Please select rating.");
+      return;
+    }
     if (
       review !== "" &&
       firstName !== "" &&
