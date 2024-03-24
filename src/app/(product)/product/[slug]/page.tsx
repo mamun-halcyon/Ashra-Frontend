@@ -1062,6 +1062,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       availability={product.availability}
                       quantity={product.default_quantity}
                       productAttribute={product["product-attributes"]}
+                      camping_end_date={product.camping_end_date as string}
+                      camping_start_date={product.camping_start_date as string}
                     />
                   ))}
                 </div>

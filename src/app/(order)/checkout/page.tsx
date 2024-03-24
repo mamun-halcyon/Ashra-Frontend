@@ -14,6 +14,7 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { toast } from "react-toastify";
 import "./page.scss";
+import FormatPrice from "@/components/price-formate";
 
 function Checkout() {
   const router = useRouter();
@@ -584,13 +585,13 @@ function Checkout() {
                             </div>
 
                             <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳ {item.regular_price}
+                              ৳ {FormatPrice(item.regular_price)}
                             </div>
                             <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳ {item.price} x {item.quantity}
+                              ৳ {FormatPrice(item.price)} x {item.quantity}
                             </div>
                             <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳{item.price * item.quantity}
+                              ৳{FormatPrice(item.price * item.quantity)}
                             </div>
                           </div>
                         ))
@@ -600,13 +601,13 @@ function Checkout() {
                               {item.title}
                             </div>
                             <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳ {item.regular_price}
+                              ৳ {FormatPrice(item.regular_price)}
                             </div>
                             <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳ {item.price} x {item.quantity}
+                              ৳ {FormatPrice(item.price)} x {item.quantity}
                             </div>
                             <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳{item.price * item.quantity}
+                              ৳{FormatPrice(item.price * item.quantity)}
                             </div>
                           </div>
                         ))}
@@ -617,7 +618,7 @@ function Checkout() {
                         Sub-Total:
                       </div>
                       <div className="p-3 font-gotham  text-xs primary-text font-medium">
-                        ৳ {totalCostBeforeCoupon}
+                        ৳ {FormatPrice(totalCostBeforeCoupon)}
                       </div>
                     </div>
                     {selectedPaymentDeliveryStatus && (
@@ -627,7 +628,7 @@ function Checkout() {
                           Delivery Charges :
                         </div>
                         <div className="col-span-1 p-3 font-gotham text-xs primary-text font-medium">
-                          ৳ {deliveryFee}
+                          ৳ {FormatPrice(deliveryFee)}
                         </div>
                       </div>
                     )}
@@ -638,7 +639,10 @@ function Checkout() {
                         Discount :
                       </div>
                       <div className="col-span-1 p-3 font-gotham text-xs primary-text font-medium">
-                        ৳ {totalCostBeforeCoupon - totalCostAfterCoupon}
+                        ৳{" "}
+                        {FormatPrice(
+                          totalCostBeforeCoupon - totalCostAfterCoupon
+                        )}
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
@@ -647,7 +651,7 @@ function Checkout() {
                         Total :
                       </div>
                       <div className="p-3  font-gotham text-xs primary-text font-medium">
-                        ৳ {finalPrice + deliveryFee}
+                        ৳ {FormatPrice(finalPrice + deliveryFee)}
                       </div>
                     </div>
                   </div>

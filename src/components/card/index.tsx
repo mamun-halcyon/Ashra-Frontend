@@ -29,8 +29,8 @@ interface IProps {
   availability: any;
   quantity: number;
   productAttribute?: any[];
-  camping_start_date: string;
-  camping_end_date: string;
+  camping_start_date?: string;
+  camping_end_date?: string;
 }
 const ProductCard: React.FC<IProps> = ({
   image,
