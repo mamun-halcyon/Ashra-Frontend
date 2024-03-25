@@ -763,7 +763,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 );
                               }}
                             >
-                              Add to cart
+                              Add to Cart
                             </Button>
                           </div>
                         </div>

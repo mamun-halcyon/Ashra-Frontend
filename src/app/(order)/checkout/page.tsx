@@ -256,7 +256,7 @@ function Checkout() {
   useEffect(() => {
     const getLocations = async () => {
       try {
-        const response = await axios.get(`${API_URL}/shippings`);
+        const response = await axios.get(`${API_URL}/shippings?limit=100`);
         if (response?.status === 200) {
           setLocations(response?.data?.data?.rows);
         }
