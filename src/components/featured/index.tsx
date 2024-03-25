@@ -107,9 +107,9 @@ const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
                     </div>
                   </TabPanel>
                 </div>
-                {bannerUrl && adsbanner && (
+                {adsbanner && (
                   <div className=" hidden md:block">
-                    <Link href={bannerUrl}>
+                    <Link href={bannerUrl ?? "/"}>
                       <Image
                         className=" w-full max-h-[852px] transition-all duration-100 hover:scale-[1.01]"
                         src={`${API_ROOT}/images/banner/${adsbanner}`}
