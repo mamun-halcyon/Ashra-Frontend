@@ -60,7 +60,7 @@ const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
                   </TabPanel>
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {homeData?.newArrival.splice(0, 8).map((product, i) => (
+                      {homeData?.newArrival.map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}
@@ -107,17 +107,19 @@ const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
                     </div>
                   </TabPanel>
                 </div>
-                <div className=" hidden md:block">
-                  <Link href={bannerUrl}>
-                    <Image
-                      className=" w-full max-h-[852px] transition-all duration-100 hover:scale-[1.01]"
-                      src={`${API_ROOT}/images/banner/${adsbanner}`}
-                      width={100}
-                      height={100}
-                      alt="ads"
-                    />
-                  </Link>
-                </div>
+                {bannerUrl && adsbanner && (
+                  <div className=" hidden md:block">
+                    <Link href={bannerUrl}>
+                      <Image
+                        className=" w-full max-h-[852px] transition-all duration-100 hover:scale-[1.01]"
+                        src={`${API_ROOT}/images/banner/${adsbanner}`}
+                        width={100}
+                        height={100}
+                        alt="ads"
+                      />
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </Tabs>

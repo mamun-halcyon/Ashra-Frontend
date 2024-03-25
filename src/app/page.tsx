@@ -118,11 +118,11 @@ export default async function Home() {
             </div>
           </div>
         </section>
-        {/* <Featured
+        <Featured
           homeData={homeData}
           adsbanner={verticalBanner?.data[0]?.image}
           bannerUrl={verticalBanner?.data[0]?.url}
-        /> */}
+        />
         <section className="promotion">
           <Link href={homeData?.homePage?.special_product_link}>
             <Image
