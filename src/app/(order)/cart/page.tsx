@@ -136,7 +136,7 @@ function Checkout() {
                       </div>
                       <div className="col-span-2 md:col-span-1">
                         <p className=" font-gotham font-medium primary-text text-sm">
-                          ৳ {FormatPrice(item.price)}
+                          {/* formate price */}৳ {FormatPrice(item.price)}
                         </p>
                       </div>
                       <div className="col-span-2 hidden md:block">
