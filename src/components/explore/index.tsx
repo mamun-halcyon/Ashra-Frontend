@@ -16,7 +16,10 @@ const ExploreCard: React.FC<IProps> = ({
 }): React.JSX.Element => {
   return (
     <div className={`${className} explore-card`}>
-      <Link className="explore-item" href={`/category/${item.slug}`}>
+      <Link
+        className="explore-item"
+        href={`/category/filter?category=${item.slug}`}
+      >
         <Image
           src={`${API_ROOT}/images/category/${item.image}`}
           width={150}
