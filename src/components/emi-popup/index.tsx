@@ -57,7 +57,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
           <div className="w-full mb-5">
             <div className="emi-header flex justify-between">
               <div>
-                <h3 className=" font-gotham text-sm">BANK EMI</h3>
+                <h3 className=" font-gotham font-medium text-sm">BANK EMI </h3>
               </div>
               <div
                 className="  inline-block p-2  cursor-pointer"
@@ -67,7 +67,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
               </div>
             </div>
           </div>
-          <p className=" font-gotham text-sm mb-2">Credit Card</p>
+          <p className=" font-gotham font-medium text-sm mb-2">Credit Card</p>
           <div className="grid w-full grid-cols-7 gap-4">
             <div className="md:col-span-2 col-span-7  md:h-[400px]  h-[150px] overflow-y-scroll border border-color">
               <div className="px-1">

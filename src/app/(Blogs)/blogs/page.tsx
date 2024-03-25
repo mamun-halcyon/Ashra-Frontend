@@ -11,7 +11,7 @@ import ServerPagination from "@/components/pagination/pagination";
 
 async function getBlogs(page: number = 1, limit: number = 12) {
   const url = `${API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
-  const res = await fetch(url, { cache: "no-store" });
+  const res = await fetch(url, { next: { revalidate: 3600 } });
   const data = await res.json();
   return data;
 }
