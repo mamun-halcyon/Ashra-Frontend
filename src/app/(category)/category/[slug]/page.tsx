@@ -129,6 +129,10 @@ function Category() {
     categoryAdBanner();
   }, [searchParams]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [searchParams.get("category")]);
+
   const fetchData = async () => {
     setIsLoading(true);
     const search: string = searchParams.get("search")?.trim() || "";
