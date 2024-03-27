@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./page.scss";
 import { API_URL } from "@/constant";
+import "react-quill/dist/quill.snow.css";
 
 type Props = {
   params: {
@@ -43,7 +44,7 @@ const CustomPage = ({ params: { slug } }: Props) => {
           />
         </div> */}
         <div
-          className=" font-gotham mt-5"
+          className=" font-gotham mt-5 ql-editor"
           dangerouslySetInnerHTML={{ __html: pageData?.content }}
         />
       </div>
