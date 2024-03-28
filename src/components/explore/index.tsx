@@ -1,9 +1,12 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import "./index.scss";
 import { ICategoryData } from "@/types/category";
 import { API_ROOT } from "@/constant";
+import { useAppDispatch } from "@/redux/hooks";
+import { addCategory } from "@/redux/features/category/categorySlice";
 
 interface IProps {
   item: ICategoryData;
@@ -14,8 +17,14 @@ const ExploreCard: React.FC<IProps> = ({
   item,
   className,
 }): React.JSX.Element => {
+  const dispatch = useAppDispatch();
   return (
-    <div className={`${className} explore-card`}>
+    <div
+      className={`${className} explore-card`}
+      onClick={() =>
+        dispatch(addCategory({ title: item.title, slug: item.slug }))
+      }
+    >
       <Link
         className="explore-item"
         href={`/category/filter?category=${item.slug}`}

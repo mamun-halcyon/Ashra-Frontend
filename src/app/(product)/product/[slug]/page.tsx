@@ -655,7 +655,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                 : ""
                                             }`}
                                             onClick={() => {
-                                              findAttribute?.attribute_quantity &&
+                                              (findAttribute?.attribute_quantity as number) >
+                                                0 &&
                                                 handleAttributeClick(
                                                   findAttribute
                                                 );

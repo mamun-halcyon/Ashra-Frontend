@@ -17,6 +17,8 @@ import EmiPopup from "../emi-popup";
 import FormatPrice from "../price-formate";
 import StarRating from "../rating";
 import "./index.scss";
+import axiosInstance from "../../../utils/axiosInstance";
+import { addToWishList } from "@/redux/features/wish-list/wishListSlice";
 
 interface IProps {
   product: any;
@@ -25,7 +27,13 @@ interface IProps {
 const ListCard: FC<IProps> = ({ product }) => {
   const [isEmi, setIsEmi] = useState(false);
   const handleEmi = () => setIsEmi(!isEmi);
+  const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
+  const isCampaign =
+    product.camping_start_date &&
+    product.camping_end_date &&
+    new Date(product.camping_start_date).getTime() <= Date.now() &&
+    new Date(product.camping_end_date).getTime() >= Date.now();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -41,6 +49,39 @@ const ListCard: FC<IProps> = ({ product }) => {
       toast.error(
         "You already have added 4 products in your compare list. Please remove one of them from compare page to add a new one."
       );
+    }
+  };
+
+  const addWishList = async () => {
+    if (login?.accessToken && login?.user?.id) {
+      try {
+        const response = await axiosInstance.post(
+          `/wishlists`,
+          {
+            product_id: product.id,
+            user_id: login?.user?.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${login?.accessToken}`,
+            },
+          }
+        );
+        if (response.status == 201) {
+          dispatch(
+            addToWishList({
+              product_id: response.data.data.product_id,
+              user_id: response.data.data.user_id,
+            })
+          );
+        } else {
+          console.log("Status : ", response.status);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      router.push("/login");
     }
   };
 
@@ -132,7 +173,10 @@ const ListCard: FC<IProps> = ({ product }) => {
               Compare
             </p>
           </div>
-          <div className="flex items-center mr-2 mt-2 md:mt-0 cursor-pointer interaction">
+          <div
+            className="flex items-center mr-2 mt-2 md:mt-0 cursor-pointer interaction"
+            onClick={addWishList}
+          >
             <div className="icon-area p-1">
               <BsHeart className=" text-xs icon" />
             </div>
@@ -180,7 +224,7 @@ const ListCard: FC<IProps> = ({ product }) => {
         </h3>
         <h4
           className={` font-gotham  ${
-            Number(product.discount_price) > 0
+            isCampaign
               ? "text-xs line-through font-normal"
               : "font-medium text-base"
           } black-text`}
@@ -188,14 +232,12 @@ const ListCard: FC<IProps> = ({ product }) => {
           ৳ {FormatPrice(product.regular_price)}
         </h4>
         <div className="flex justify-between flex-wrap items-center">
-          {Number(product.discount_price) > 0 &&
-            Number(product.discount_price) !==
-              Number(product.regular_price) && (
-              <h3 className=" font-gotham font-medium text-base black-text">
-                ৳ {FormatPrice(product.discount_price)}
-              </h3>
-            )}
-          {product.discount_price > 0 && (
+          {Number(product.discount_price) > 0 && isCampaign && (
+            <h3 className=" font-gotham font-medium text-base black-text">
+              ৳ {FormatPrice(product.discount_price)}
+            </h3>
+          )}
+          {product.discount_price > 0 && isCampaign && (
             <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] save-text save-money">
               Save ৳{" "}
               {FormatPrice(
@@ -205,24 +247,39 @@ const ListCard: FC<IProps> = ({ product }) => {
           )}
         </div>
         {product.availability === 1 ? (
-          <Button
-            className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn"
-            onClick={() => {
-              handleBuyNow({
-                product_id: product.id,
-                price:
-                  Number(product.discount_price) > 0
-                    ? Number(product.discount_price)
-                    : Number(product.regular_price),
-                title: product.title,
-                image: product.image,
-                quantity: 1,
-                regular_price: Number(product.regular_price),
-              });
-            }}
-          >
-            Buy Now
-          </Button>
+          <>
+            {product["product-attributes"] &&
+            product["product-attributes"].length > 0 ? (
+              <>
+                <Link href={`/product/${product.slug}`}>
+                  <Button className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn">
+                    View
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Button
+                  className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn"
+                  onClick={() => {
+                    handleBuyNow({
+                      product_id: product.id,
+                      price:
+                        Number(product.discount_price) > 0
+                          ? Number(product.discount_price)
+                          : Number(product.regular_price),
+                      title: product.title,
+                      image: product.image,
+                      quantity: 1,
+                      regular_price: Number(product.regular_price),
+                    });
+                  }}
+                >
+                  Buy Now
+                </Button>
+              </>
+            )}
+          </>
         ) : product.availability === 2 ? (
           <Button className="md:w-full px-3 md:px-0 font-gotham font-medium text-[14px] md:text-sm py-1 mt-4 product-btn stock-out">
             Out of Stock
