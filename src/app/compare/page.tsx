@@ -20,7 +20,7 @@ import FormatPrice from "@/components/price-formate";
 function Compare() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const [isTrue, setIsTrue] = useState(false);
+  // const [isTrue, setIsTrue] = useState(false);
   const { data: compareItems } = useAppSelector((state) => state.compare);
   // const handleToggle = () => setIsTrue(!isTrue);
   const handleClearCompare = () => dispatch(clearCompare());
