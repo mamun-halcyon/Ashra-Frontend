@@ -796,15 +796,17 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               addCompare({
                                 product_id: product?.product?.id,
                                 description:
-                                  product?.product?.description ?? "",
+                                  product?.product?.sort_description ?? "",
                                 image: product?.product?.image,
                                 title: product?.product?.title,
                                 regular_price: Number(
                                   product?.product?.regular_price
                                 ),
-                                price: Number(product?.product?.discount_price),
+                                price: isCampaign
+                                  ? Number(product?.product?.discount_price)
+                                  : Number(product?.product?.regular_price),
                                 quantity: 1,
-                                rating: 5,
+                                rating: product.averageReview,
                                 availability: product.product
                                   .availability as number,
                               })

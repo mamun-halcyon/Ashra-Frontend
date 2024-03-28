@@ -260,7 +260,9 @@ const ProductCard: React.FC<IProps> = ({
               image,
               title,
               regular_price: Number(regular_price),
-              price: Number(discount_price),
+              price: isCampaign
+                ? Number(discount_price)
+                : Number(regular_price),
               quantity: 1,
               rating: 5,
               availability: availability,

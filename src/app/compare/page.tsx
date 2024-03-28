@@ -126,7 +126,12 @@ function Compare() {
                           alt="product"
                         />
                       </div>
-                      <p className=" font-gotham font-normal text-xs line-through">
+
+                      <p
+                        className={`font-gotham font-normal text-xs line-through ${
+                          item.price === item.regular_price ? `opacity-0` : ""
+                        }`}
+                      >
                         ৳ {FormatPrice(item.regular_price)}
                       </p>
                       {/*  {

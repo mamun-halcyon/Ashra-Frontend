@@ -134,9 +134,11 @@ const ListCard: FC<IProps> = ({ product }) => {
           {product.title}
         </Link>
         <div className="flex flex-wrap items-center mt-1 md:mt-3 review">
-          <StarRating rating={4} />
+          <StarRating
+            rating={Math.round(product?.reviews[0]?.average_rating ?? 0)}
+          />
           <span className="font-gotham font-normal w-full md:w-auto text-xs ml-0 md:ml-2">
-            Reviews ({4})
+            Reviews ({Math.round(product?.reviews[0]?.average_rating ?? 0)})
           </span>
         </div>
         {/*  <h4 className=" font-gotham font-medium text-xs black-text md:mt-9 mt-5">
@@ -159,9 +161,11 @@ const ListCard: FC<IProps> = ({ product }) => {
                 image: product.image,
                 title: product.title,
                 regular_price: Number(product.regular_price),
-                price: Number(product.discount_price),
+                price: isCampaign
+                  ? Number(product.discount_price)
+                  : Number(product.regular_price),
                 quantity: 1,
-                rating: 5,
+                rating: Math.round(product?.reviews[0]?.average_rating),
                 availability: product.availability,
               })
             }
