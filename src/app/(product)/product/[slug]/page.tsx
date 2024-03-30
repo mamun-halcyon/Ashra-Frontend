@@ -44,7 +44,8 @@ import "./page.scss";
 import "react-quill/dist/quill.snow.css";
 import { addCategory } from "@/redux/features/category/categorySlice";
 import Loader from "@/components/loader/loading";
-const ZoomImage = dynamic(() => import("@/components/zoom-image"));
+import ZoomImage from "@/components/zoom-image";
+// const ZoomImage = dynamic(() => import("@/components/zoom-image"));
 const ProductCard = dynamic(() => import("@/components/card"));
 
 type IUniqueAttributes = {
@@ -454,9 +455,12 @@ const PageDetails = ({ params: { slug } }: Props) => {
       });
     });
   }; */
-  const smallestOrderPhoto = product?.productPhotos.reduce((prev, current) =>
-    prev.order_number < current.order_number ? prev : current
-  );
+  const smallestOrderPhoto =
+    (product?.productPhotos?.length as number) > 0
+      ? (product as ISingleProduct).productPhotos.reduce((prev, current) =>
+          prev.order_number < current.order_number ? prev : current
+        )
+      : null;
 
   useEffect(() => {
     const fetchBank = async () => {

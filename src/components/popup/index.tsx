@@ -11,7 +11,6 @@ interface PopupProps {
 
 const Popup: React.FC<PopupProps> = ({ popup_url }) => {
   const [isVisible, setIsVisible] = useState(false);
-  console.log(`${API_ROOT}/images/setting/${popup_url}`);
 
   const handleClose = () => {
     setIsVisible(false);
