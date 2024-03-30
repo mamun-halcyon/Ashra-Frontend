@@ -14,6 +14,7 @@ const Navbar = dynamic(() => import("@/components/navbar"));
 import MegaMenu from "@/components/megamenu";
 import { API_URL } from "@/constant";
 import { HomeApiResponse } from "@/types/home";
+import Popup from "@/components/popup";
 const Footer = dynamic(() => import("@/components/footer"));
 
 const Gotham = localFont({
@@ -121,6 +122,9 @@ export default async function RootLayout({
             <Navbar logo={globalData.setting.logo} />
             <MegaMenu menus={categories?.data?.rows} />
             {children}
+            {globalData?.setting?.active_popup && (
+              <Popup popup_url={globalData?.setting?.popup_image as string} />
+            )}
             <Footer globalData={globalData} />
             <ToastContainer />
           </ReduxProvider>

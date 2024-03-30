@@ -22,6 +22,7 @@ export interface ISetting {
   online_payment_message?: string;
   popup_image?: string;
   is_popup_visible?: boolean;
+  active_popup: boolean;
   created_at?: string;
   updated_at?: string;
 }

@@ -1,39 +1,57 @@
 "use client";
 import { useState, useEffect } from "react";
-import useCookie from "./useCookie"; // Assuming your custom hook location
+import "./index.scss";
+import Image from "next/image";
+import { RxCross1 } from "react-icons/rx";
+import { API_ROOT } from "@/constant";
 
 interface PopupProps {
-  onClose: () => void;
+  popup_url: string;
 }
 
-const Popup: React.FC<PopupProps> = () => {
-  const { value, setValue, removeCookie } = useCookie("popupSeen", "false");
-  const [isVisible, setIsVisible] = useState(value === "false");
+const Popup: React.FC<PopupProps> = ({ popup_url }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  console.log(`${API_ROOT}/images/setting/${popup_url}`);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    setCookieWithExpiration("popupSeen", "true", 30);
+  };
 
   useEffect(() => {
-    if (isVisible) {
-      const timeoutId = setTimeout(() => {
-        setIsVisible(false);
-        setValue("true");
-      }, 30 * 60 * 1000);
-
-      return () => clearTimeout(timeoutId);
+    const popupSeenCookie = document.cookie
+      .split(";")
+      .find((cookie) => cookie.trim().startsWith("popupSeen="));
+    if (!popupSeenCookie) {
+      setIsVisible(true); // Show popup if cookie is not set
     }
-  }, [isVisible, setValue]);
+  }, []);
 
-  /* const handleClose = () => {
-    setIsVisible(false);
-    removeCookie("popupSeen"); // Remove cookie for immediate hide (optional)
-  }; */
+  const setCookieWithExpiration = (
+    cname: string,
+    cvalue: string,
+    exminutes: number
+  ) => {
+    const d = new Date();
+    d.setTime(d.getTime() + exminutes * 60 * 1000);
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  };
 
   return (
     isVisible && (
       <div className="popup">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio molestias
-        architecto consectetur dicta corrupti eos nisi consequuntur suscipit
-        nobis facilis facere nemo, recusandae illo sint magni exercitationem
-        molestiae officiis esse!
-        <button>Close</button>
+        <div className="popup-content">
+          <button onClick={handleClose} className="close-button">
+            <RxCross1 />
+          </button>
+          <Image
+            src={`${API_ROOT}/images/setting/${popup_url}`}
+            alt="popup"
+            width={600}
+            height={600}
+          />
+        </div>
       </div>
     )
   );
