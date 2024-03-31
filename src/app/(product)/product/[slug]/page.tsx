@@ -95,7 +95,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
     product?.product?.camping_end_date &&
     new Date(product.product.camping_start_date).getTime() <= Date.now() &&
     new Date(product.product.camping_end_date).getTime() >= Date.now();
-
   const handleEmi = () => setIsEmi(!isEmi);
 
   const handleAttributeClick = (attribute: any) => {

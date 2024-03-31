@@ -339,7 +339,7 @@ function Category() {
                 </div>
               </FilterBox>
             </div>
-            <div className="md:w-[925px] ">
+            <div className="md:w-[925px] w-full">
               {adsBanner?.image && (
                 <div className="category-banner mb-5">
                   <div className="h-[235px]">
