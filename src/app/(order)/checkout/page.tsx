@@ -567,10 +567,10 @@ function Checkout() {
                       <div className="heading-table col-span-2 md:col-span-2 p-3 font-gotham font-normal text-xs black-text">
                         Product Name
                       </div>
-                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
+                      <div className="heading-table col-span-1 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
                         Sub-total
                       </div>
-                      <div className="heading-table col-span-2 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
+                      <div className="heading-table col-span-1 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
                         Price
                       </div>
                       <div className="heading-table col-span-1 p-3 font-gotham font-normal text-xs black-text">
@@ -584,10 +584,10 @@ function Checkout() {
                               {item.title}
                             </div>
 
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
                               ৳ {FormatPrice(item.regular_price)}
                             </div>
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
                               ৳ {FormatPrice(item.price)} x {item.quantity}
                             </div>
                             <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
@@ -600,10 +600,10 @@ function Checkout() {
                             <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
                               {item.title}
                             </div>
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
                               ৳ {FormatPrice(item.regular_price)}
                             </div>
-                            <div className="p-3 col-span-2 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
                               ৳ {FormatPrice(item.price)} x {item.quantity}
                             </div>
                             <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
