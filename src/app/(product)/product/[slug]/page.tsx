@@ -595,19 +595,21 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </div>
                         )}
                     </div>
-                    {emiPRice > 5000 && (
-                      <div className="e-emi">
-                        <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
-                          <span
-                            className="cursor-point"
-                            onClick={() => setIsEmi(true)}
-                          >
-                            Avail Bank EMI | EMI From{" "}
-                            {FormatPrice(Math.ceil(emiPRice))} Tk/month
-                          </span>
-                        </h3>
-                      </div>
-                    )}
+                    {isCampaign
+                      ? product?.product?.discount_price
+                      : product?.product?.regular_price > 5000 && (
+                          <div className="e-emi">
+                            <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
+                              <span
+                                className="cursor-point"
+                                onClick={() => setIsEmi(true)}
+                              >
+                                Avail Bank EMI | EMI From{" "}
+                                {FormatPrice(Math.ceil(emiPRice))} Tk/month
+                              </span>
+                            </h3>
+                          </div>
+                        )}
 
                     {product.productAttribute &&
                       product.productAttribute.length > 0 && (
