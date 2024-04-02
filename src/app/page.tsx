@@ -130,6 +130,7 @@ export default async function Home() {
               alt="promotion banner"
               width={1800}
               height={500}
+              quality={100}
             />
           </Link>
         </section>

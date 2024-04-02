@@ -13,7 +13,7 @@ const Invoice = ({
         <div className="title">
           <Image
             className="w-full"
-            src="/assets/images/invoice-header.png"
+            src="/assets/images/invoice/home_appliance.png"
             alt="invoice"
             width={800}
             height={400}

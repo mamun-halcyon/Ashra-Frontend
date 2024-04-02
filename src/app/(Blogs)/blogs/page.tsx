@@ -68,6 +68,7 @@ async function Blogs({
                 src={`${API_ROOT}/images/banner/${adsBanner.image}`}
                 width={1200}
                 height={340}
+                quality={100}
                 alt="ads"
               />
             </Link>
