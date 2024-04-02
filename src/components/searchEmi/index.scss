@@ -1,0 +1,11 @@
+@import "../../styles/index.scss";
+
+.emi-wrapper {
+  background: $quaternary-background-color;
+  border: 1px solid $septenary-border-color;
+  border-bottom: 0;
+  .emi-form {
+    text-align: right;
+    padding: 5px;
+  }
+}

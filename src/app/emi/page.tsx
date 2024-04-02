@@ -1,13 +1,17 @@
 import { API_URL } from "@/constant";
 import "./page.scss";
 import ServerPagination from "@/components/pagination/pagination";
+import SearchEmi from "@/components/searchEmi";
 
-async function getEmis(page: number, limit: number) {
-  const res = await fetch(`${API_URL}/emis?page=${page}&limit=${limit}`, {
-    next: {
-      revalidate: 3600,
-    },
-  });
+async function getEmis(page: number, limit: number, search: string) {
+  const res = await fetch(
+    `${API_URL}/emis?page=${page}&limit=${limit}&bank_name=${search}`,
+    {
+      next: {
+        revalidate: 3600,
+      },
+    }
+  );
 
   /*  if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -25,12 +29,15 @@ async function Emi({
     typeof searchParams.page === "string" ? Number(searchParams.page) : 1;
   const limit =
     typeof searchParams.limit === "string" ? Number(searchParams.limit) : 12;
+  const search =
+    typeof searchParams.bank_name === "string" ? searchParams.bank_name : "";
 
-  const emisData: IEmiResponse = await getEmis(page, limit);
+  const emisData: IEmiResponse = await getEmis(page, limit, search);
 
   return (
     <section className="emi">
       <div className="container md:overflow-x-auto overflow-x-scroll emi-table">
+        <SearchEmi />
         <table className="w-full text-sm text-left emi-table shadow">
           <thead>
             <tr className="table-heading">
@@ -91,64 +98,76 @@ async function Emi({
             </tr>
           </thead>
           <tbody>
-            {emisData?.data.rows.map((emi, index) => (
-              <tr className="table-border" key={index}>
-                <td
-                  scope="row "
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.bank_name}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.three_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.six_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.nine_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.twelve_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.eighteen_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.twenty_four_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.thirty_months ? "Yes" : "No"}
-                </td>
-                <td
-                  scope="row"
-                  className="px-6 py-3 font-gotham font-light border-color"
-                >
-                  {emi.thirty_six_months ? "Yes" : "No"}
+            {emisData.data && emisData.data.rows ? (
+              <>
+                {emisData?.data.rows.map((emi, index) => (
+                  <tr className="table-border" key={index}>
+                    <td
+                      scope="row "
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.bank_name}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.three_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.six_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.nine_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.twelve_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.eighteen_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.twenty_four_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.thirty_months ? "Yes" : "No"}
+                    </td>
+                    <td
+                      scope="row"
+                      className="px-6 py-3 font-gotham font-light border-color"
+                    >
+                      {emi.thirty_six_months ? "Yes" : "No"}
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <tr>
+                <td colSpan={9}>
+                  <p className="py-5 text-center font-gotham text-sm">
+                    Bank is not available
+                  </p>
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

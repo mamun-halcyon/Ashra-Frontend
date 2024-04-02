@@ -13,6 +13,10 @@
     .table-heading {
       background: $secondary-background-color;
     }
+    th:first-child,
+    td:first-child {
+      width: 250px;
+    }
     tbody {
       tr {
         transition: all linear 0.3s;
