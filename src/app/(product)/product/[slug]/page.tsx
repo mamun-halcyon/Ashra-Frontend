@@ -559,7 +559,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
                     <div className="price-area py-3 mt-2">
                       <div className="flex items-center">
-                        <h3 className=" font-gotham font-normal text-xs black-text mr-3">
+                        <h3 className=" font-gotham font-medium text-xs black-text mr-3">
                           Regular Price:
                         </h3>
                         <h2
@@ -577,7 +577,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         product?.product?.discount_price !==
                           product.product.regular_price && (
                           <div className="flex items-center">
-                            <h3 className=" font-gotham font-normal text-xs black-text mr-3">
+                            <h3 className=" font-gotham font-medium text-xs black-text mr-3">
                               Discount Price:
                             </h3>
                             <div className="flex">
@@ -595,17 +595,20 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </div>
                         )}
                     </div>
-                    <div className="e-emi">
-                      <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
-                        <span
-                          className="cursor-point"
-                          onClick={() => setIsEmi(true)}
-                        >
-                          Avail Bank EMI | EMI From{" "}
-                          {FormatPrice(Math.ceil(emiPRice))} Tk/month
-                        </span>
-                      </h3>
-                    </div>
+                    {emiPRice > 5000 && (
+                      <div className="e-emi">
+                        <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
+                          <span
+                            className="cursor-point"
+                            onClick={() => setIsEmi(true)}
+                          >
+                            Avail Bank EMI | EMI From{" "}
+                            {FormatPrice(Math.ceil(emiPRice))} Tk/month
+                          </span>
+                        </h3>
+                      </div>
+                    )}
+
                     {product.productAttribute &&
                       product.productAttribute.length > 0 && (
                         <div className="attribute py-2">
