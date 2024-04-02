@@ -96,7 +96,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
     new Date(product.product.camping_start_date).getTime() <= Date.now() &&
     new Date(product.product.camping_end_date).getTime() >= Date.now();
   const handleEmi = () => setIsEmi(!isEmi);
-
+  const productPrice = isCampaign
+    ? product?.product?.discount_price
+    : product?.product?.regular_price;
   const handleAttributeClick = (attribute: any) => {
     const isExists = selectedAttributes.filter(
       (attr) =>
@@ -595,21 +597,19 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </div>
                         )}
                     </div>
-                    {isCampaign
-                      ? product?.product?.discount_price
-                      : product?.product?.regular_price > 5000 && (
-                          <div className="e-emi">
-                            <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
-                              <span
-                                className="cursor-point"
-                                onClick={() => setIsEmi(true)}
-                              >
-                                Avail Bank EMI | EMI From{" "}
-                                {FormatPrice(Math.ceil(emiPRice))} Tk/month
-                              </span>
-                            </h3>
-                          </div>
-                        )}
+                    {productPrice > 5000 && (
+                      <div className="e-emi">
+                        <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
+                          <span
+                            className="cursor-point"
+                            onClick={() => setIsEmi(true)}
+                          >
+                            Avail Bank EMI | EMI From{" "}
+                            {FormatPrice(Math.ceil(emiPRice))} Tk/month
+                          </span>
+                        </h3>
+                      </div>
+                    )}
 
                     {product.productAttribute &&
                       product.productAttribute.length > 0 && (
