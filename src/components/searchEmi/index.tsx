@@ -36,12 +36,12 @@ const SearchEmi = () => {
     <div className="emi-wrapper">
       <form className="emi-form" onSubmit={handleSearch}>
         <input
-          className=" px-3 py-1 focus:outline-0"
+          className=" px-2 py-1 focus:outline-0 text-sm placeholder:font-gotham"
           type="text"
           placeholder="Search bank here..."
           onBlur={handleChange}
         />
-        <Button type="submit" className=" px-3 py-1 font-gotham">
+        <Button type="submit" className=" px-2 py-1 font-gotham text-sm">
           Search
         </Button>
       </form>

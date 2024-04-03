@@ -36,6 +36,11 @@ async function Emi({
 
   return (
     <section className="emi">
+      <div className="container">
+        <h2 className=" font-gotham text-base mb-2 font-medium">
+          Emi Bank List
+        </h2>
+      </div>
       <div className="container md:overflow-x-auto overflow-x-scroll emi-table">
         <SearchEmi />
         <table className="w-full text-sm text-left emi-table shadow">
