@@ -41,6 +41,10 @@ function Checkout() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [thana, setThana] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [mobileError, setMobileError] = useState("");
+  const [addressError, setAddressError] = useState("");
 
   const [totalCostBeforeCoupon, setTotalCostBeforeCoupon] = useState<number>(0);
   const [totalCostAfterCoupon, setTotalCostAfterCoupon] = useState<number>(0);
@@ -108,21 +112,38 @@ function Checkout() {
     if (!selectedPaymentDeliveryStatus) {
       return toast.error("Please Select delivery method");
     }
-    await axios
-      .post(`${API_URL}/orders`, orderData)
-      .then((res) => {
-        toast.success("Order create successfully");
-        dispatch(clearCart());
-        router.push("/profile/order");
-      })
-      .catch((error) => {
-        if (error instanceof AxiosError) {
-          toast.error(error.response?.data?.message);
-        } else if (error?.response?.status === 400) {
-          toast.error("This Email or Phone already used in another account!");
-        }
-        console.log("error : ", error);
-      });
+
+    // Reset all error states
+    setNameError("");
+    setEmailError("");
+    setAddressError("");
+    setMobileError("");
+
+    if (!/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(name)) {
+      setNameError("Please enter a valid text");
+    } else if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+      setEmailError("Please enter a valid email address");
+    } else if (!/^\d+$/.test(mobile)) {
+      setMobileError("Please enter a valid mobile number");
+    } else if (!/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(address)) {
+      setAddressError("Please enter a valid address");
+    } else {
+      await axios
+        .post(`${API_URL}/orders`, orderData)
+        .then((res) => {
+          toast.success("Order create successfully");
+          dispatch(clearCart());
+          router.push("/profile/order");
+        })
+        .catch((error) => {
+          if (error instanceof AxiosError) {
+            toast.error(error.response?.data?.message);
+          } else if (error?.response?.status === 400) {
+            toast.error("This Email or Phone already used in another account!");
+          }
+          console.log("error : ", error);
+        });
+    }
   };
 
   const handleApplyPromo = async () => {
@@ -341,6 +362,9 @@ function Checkout() {
                     onChange={(e) => setName(e.target.value)}
                     required
                   />
+                  {nameError && (
+                    <p className=" font-gotham text-xs warning">{nameError}</p>
+                  )}
                   <FormGroup
                     className="mb-1"
                     type="email"
@@ -350,6 +374,9 @@ function Checkout() {
                     value={login?.user?.email ? login?.user?.email : email}
                     disabled={login?.accessToken ? true : false}
                   />
+                  {emailError && (
+                    <p className=" font-gotham text-xs warning">{emailError}</p>
+                  )}
                   <FormGroup
                     className="mb-1"
                     title="Mobile*"
@@ -359,6 +386,11 @@ function Checkout() {
                     value={login?.user?.mobile ? login?.user?.mobile : mobile}
                     disabled={login?.accessToken ? true : false}
                   />
+                  {mobileError && (
+                    <p className=" font-gotham text-xs warning">
+                      {mobileError}
+                    </p>
+                  )}
                   <FormGroup
                     className="mb-1"
                     title="Address*"
@@ -366,6 +398,11 @@ function Checkout() {
                     onChange={(e) => setAddress(e.target.value)}
                     required
                   />
+                  {addressError && (
+                    <p className=" font-gotham text-xs warning">
+                      {addressError}
+                    </p>
+                  )}
                   <div className="grid grid-cols-2 gap-4">
                     <FormGroup
                       className="mb-1"
