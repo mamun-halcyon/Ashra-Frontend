@@ -26,31 +26,6 @@ async function getFooterOneData(slug: string) {
 const Footer = async ({ globalData }: IProps) => {
   const footerOneData: IMenu[] = await getFooterOneData("customer_service");
   const footerTwoData: IMenu[] = await getFooterOneData("home_appliance");
-  /* 
-  useEffect(() => {
-    const getFooterOneData = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/menus/customer_service`);
-        if (response?.status === 200) {
-          setFooterOneData(response.data?.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getFooterTwoData = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/menus/home_appliance`);
-        if (response?.status === 200) {
-          setFooterTwoData(response.data?.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getFooterOneData();
-    getFooterTwoData();
-  }, []); */
 
   return (
     <footer>
@@ -145,7 +120,10 @@ const Footer = async ({ globalData }: IProps) => {
               Download our Mobile Apps
             </p>
             <div className="flex">
-              <Link href={globalData?.setting?.play_store_url as string}>
+              <Link
+                href={globalData?.setting?.play_store_url as string}
+                target="_blank"
+              >
                 <Image
                   className="mr-2 download-apps"
                   src="/assets/images/service/playstore.png"
@@ -154,7 +132,10 @@ const Footer = async ({ globalData }: IProps) => {
                   height={45}
                 />
               </Link>
-              <Link href={globalData?.setting?.app_store_url as string}>
+              <Link
+                href={globalData?.setting?.app_store_url as string}
+                target="_blank"
+              >
                 <Image
                   className="download-apps"
                   src="/assets/images/service/appstore.png"

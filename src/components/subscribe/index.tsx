@@ -1,10 +1,10 @@
 "use client";
 import { API_URL } from "@/constant";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { PiEnvelopeThin } from "react-icons/pi";
 import { toast } from "react-toastify";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 type Inputs = {
   email: string;
 };

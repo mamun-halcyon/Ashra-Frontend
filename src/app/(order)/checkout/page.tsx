@@ -103,11 +103,10 @@ function Checkout() {
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedPayment) {
-      toast.error("Please Select payment method");
-      return;
+      return toast.error("Please Select payment method");
     }
     if (!selectedPaymentDeliveryStatus) {
-      toast.error("Please Select delivery method");
+      return toast.error("Please Select delivery method");
     }
     await axios
       .post(`${API_URL}/orders`, orderData)

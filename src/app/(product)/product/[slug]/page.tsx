@@ -31,6 +31,7 @@ import {
   AiOutlinePlus,
   AiOutlineShareAlt,
 } from "react-icons/ai";
+import { Controller, useForm } from "react-hook-form";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FaAward } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -51,7 +52,12 @@ const ProductCard = dynamic(() => import("@/components/card"));
 type IUniqueAttributes = {
   [key: string]: string[];
 };
-
+type Inputs = {
+  email: string;
+  comment: string;
+  name: string;
+  rating: number;
+};
 type Props = {
   params: {
     slug: string;
@@ -65,6 +71,11 @@ async function getProduct(slug: string) {
 }
 
 const PageDetails = ({ params: { slug } }: Props) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
   const [product, setProduct] = useState<ISingleProduct | null>(null);
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
@@ -76,10 +87,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
     product?.productPhotos[0]?.image as string
   );
   const dispatch = useAppDispatch();
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
   const [isEmi, setIsEmi] = useState(false);
   const [number, setNumber] = useState<string>("");
@@ -401,34 +408,26 @@ const PageDetails = ({ params: { slug } }: Props) => {
     }
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    if (rating <= 0) {
-      toast.error("Please select rating.");
-      return;
-    }
-    if (
-      review !== "" &&
-      firstName !== "" &&
-      email !== "" &&
-      product?.product?.id
-    ) {
+  const onSubmit = async (data: any) => {
+    console.log(data);
+    if (product?.product?.id) {
       try {
         const response = await axios.post(`${API_URL}/reviews`, {
           product_id: product?.product?.id,
           product_name: product?.product?.title,
           user_id: login?.user?.id,
-          name: firstName,
+          ...data,
+          /* name: firstName,
           comment: review,
-          rating: rating,
+          rating: rating, */
           is_visible: "0",
         });
         if (response?.status === 201) {
           toast.success("Review post success!");
-          setRating(0);
+          /* setRating(0);
           setReview("");
           setFirstName("");
-          setEmail("");
+          setEmail(""); */
           fetchProduct();
         }
       } catch (error) {
@@ -943,62 +942,125 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 <p className="font-gotham font-normal text-xs black-text">
                                   Your Rating *
                                 </p>
-                                <div className="ml-2 mb-1">
-                                  <StarRatings
-                                    rating={rating}
-                                    starRatedColor="#164194"
-                                    changeRating={(newRating) =>
-                                      setRating(newRating)
-                                    }
-                                    numberOfStars={5}
-                                    name="rating"
-                                    starDimension="15px"
-                                    starSpacing="5px"
-                                    starHoverColor="#2456b5"
-                                  />
-                                </div>
                               </div>
-                              <form onSubmit={handleSubmit}>
-                                <FormGroup
-                                  title="Full Name *"
-                                  required
-                                  value={firstName}
-                                  onChange={(e: any) =>
-                                    setFirstName(e.target.value)
-                                  }
-                                />
-                                <FormGroup
-                                  title="Email *"
-                                  type="email"
-                                  required
-                                  value={email}
-                                  onChange={(e: any) =>
-                                    setEmail(e.target.value)
-                                  }
-                                />
-                                <TextAreaGroup
-                                  title="Your Review *"
-                                  required
-                                  value={review}
-                                  onChange={(e: any) =>
-                                    setReview(e.target.value)
-                                  }
-                                />
-                                {/* <div className="flex items-center mt-1">
-                                  <div className="mr-2">
-                                    <input
-                                      type="checkbox"
-                                      name="d"
-                                      id="d"
+                              <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="ml-2 mb-1">
+                                  <Controller
+                                    name="rating"
+                                    control={control}
+                                    defaultValue={0}
+                                    rules={{
+                                      required: "Rating is required",
+                                      min: {
+                                        value: 1,
+                                        message: "Rating must be at least 1",
+                                      },
+                                    }}
+                                    render={({ field }) => (
+                                      <StarRatings
+                                        rating={field.value}
+                                        starRatedColor="#164194"
+                                        changeRating={(newRating) =>
+                                          field.onChange(newRating)
+                                        }
+                                        numberOfStars={5}
+                                        name={field.name}
+                                        starDimension="15px"
+                                        starSpacing="5px"
+                                        starHoverColor="#2456b5"
+                                      />
+                                    )}
+                                  />
+                                  {errors.rating && (
+                                    <p className=" font-gotham text-xs warning">
+                                      {errors.rating.message}
+                                    </p>
+                                  )}
+                                </div>
+                                <Controller
+                                  name="name"
+                                  control={control}
+                                  defaultValue=""
+                                  rules={{
+                                    required: "Full Name is required",
+                                    pattern: {
+                                      value: /^[A-Za-z]+/,
+                                      message:
+                                        "Full Name must start with a letter",
+                                    },
+                                  }}
+                                  render={({ field }) => (
+                                    <FormGroup
+                                      title="Full Name *"
                                       required
+                                      value={field.value}
+                                      onChange={(e) =>
+                                        field.onChange(e.target.value)
+                                      }
                                     />
-                                  </div>
-                                  <p className=" font-gotham font-normal text-xs  black-text">
-                                    Save my name, email, and website in this
-                                    browser for the next time I comment.
+                                  )}
+                                />
+                                {errors.name && (
+                                  <p className=" font-gotham text-xs warning">
+                                    {errors.name.message}
                                   </p>
-                                </div> */}
-
+                                )}
+                                <Controller
+                                  name="email"
+                                  control={control}
+                                  defaultValue=""
+                                  rules={{
+                                    required: "Email is required",
+                                    pattern: {
+                                      value:
+                                        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
+                                      message: "Invalid email address",
+                                    },
+                                  }}
+                                  render={({ field }) => (
+                                    <FormGroup
+                                      title="Email *"
+                                      type="email"
+                                      required
+                                      value={field.value}
+                                      onChange={(e) =>
+                                        field.onChange(e.target.value)
+                                      }
+                                    />
+                                  )}
+                                />
+                                {errors.email && (
+                                  <p className=" font-gotham text-xs warning">
+                                    {errors.email.message}
+                                  </p>
+                                )}
+                                <Controller
+                                  name="comment"
+                                  control={control}
+                                  defaultValue=""
+                                  rules={{
+                                    required: "Review is required",
+                                    pattern: {
+                                      value: /^[A-Za-z]+/,
+                                      message: "Review start with a letter",
+                                    },
+                                  }}
+                                  render={({ field }) => (
+                                    <TextAreaGroup
+                                      title="Your Review *"
+                                      required
+                                      value={field.value}
+                                      onChange={(e: any) =>
+                                        field.onChange(e.target.value)
+                                      }
+                                    />
+                                  )}
+                                />
+                                {errors.comment && (
+                                  <p className=" font-gotham text-xs warning">
+                                    {errors.comment.message}
+                                  </p>
+                                )}
                                 <Button
                                   type="submit"
                                   className="my-4 px-10 py-1 font-gotham font-medium text-sm hover:bg-[#2456b5]"
