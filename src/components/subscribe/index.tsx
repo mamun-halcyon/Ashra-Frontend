@@ -4,45 +4,58 @@ import axios from "axios";
 import React, { useState } from "react";
 import { PiEnvelopeThin } from "react-icons/pi";
 import { toast } from "react-toastify";
+import { useForm, SubmitHandler } from "react-hook-form";
+type Inputs = {
+  email: string;
+};
 
-const Subscriber = () => {
-  const [email, setEmail] = useState<string>("");
+const Subscriber = (data: any) => {
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  console.log(setValue), console.log(errors);
+
   const handleSubscribe = async (e: any) => {
-    e.preventDefault();
-    if (email.trim() !== "") {
-      try {
-        const response = await axios.post(`${API_URL}/subscribes`, {
-          email: email,
-        });
-        if (response?.status === 201) {
-          setEmail("");
-          toast.success("Subscribed Successfully!");
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error("Subscribtion Error!");
+    try {
+      const response = await axios.post(`${API_URL}/subscribes`, data);
+      if (response?.status === 201) {
+        toast.success("Subscribed Successfully!");
       }
+    } catch (error) {
+      console.log(error);
+      toast.error("Subscribtion Error!");
     }
   };
   return (
     <div className="flex items-end">
       <form
         className="relative inline-block subscribe-form"
-        onSubmit={handleSubscribe}
+        onSubmit={handleSubmit(handleSubscribe)}
       >
         <input
           type="email"
           className="px-3 py-2 border-b-2  focus:ring-0 focus:border-blue-500 outline-none placeholder:font-gotham  placeholder:font-light placeholder:text-sm"
+          {...register("email", {
+            required: "Email Address is required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: "Invalid email address",
+            },
+          })}
           placeholder="Enter your email..."
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
         />
+
         <button type="submit">
           <span className=" absolute top-[50%] translate-y-[-50%] right-0">
             <PiEnvelopeThin className="subscribe-icon w-5 h-5" />
           </span>
         </button>
+        {errors.email && (
+          <p className=" font-gotham text-xs warning">{errors.email.message}</p>
+        )}
       </form>
     </div>
   );
