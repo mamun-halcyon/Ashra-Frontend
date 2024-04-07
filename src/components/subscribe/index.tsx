@@ -9,26 +9,27 @@ type Inputs = {
   email: string;
 };
 
-const Subscriber = (data: any) => {
+const Subscriber = () => {
   const {
     register,
     setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  console.log(setValue), console.log(errors);
 
-  const handleSubscribe = async (e: any) => {
+  const handleSubscribe = async (data: any) => {
     try {
       const response = await axios.post(`${API_URL}/subscribes`, data);
       if (response?.status === 201) {
         toast.success("Subscribed Successfully!");
+        setValue("email", "");
       }
     } catch (error) {
       console.log(error);
       toast.error("Subscribtion Error!");
     }
   };
+
   return (
     <div className="flex items-end">
       <form
