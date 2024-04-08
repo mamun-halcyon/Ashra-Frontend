@@ -82,10 +82,10 @@ function Checkout() {
     attribute: item?.attribute,
   }));
 
-  const subTotal = cart.reduce(
+  /* const subTotal = cart.reduce(
     (sum: any, item: any) => (sum += item.price * item.quantity),
     0
-  );
+  ); */
 
   const orderData = {
     name,
@@ -97,11 +97,13 @@ function Checkout() {
     order_form: "web",
     delivery_fee: deliveryFee,
     coupon_id: couponId,
-    payment_method: selectedPayment,
+    payment_method: selectedPayment === "onlinePayment" ? "online" : "cod",
     order_status: "pending",
     order_prefix: "GHA",
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
+    final_amount: finalPrice + deliveryFee,
+    // final_amount: 1,
   };
 
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -120,20 +122,24 @@ function Checkout() {
     setMobileError("");
 
     if (!/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(name)) {
-      setNameError("Please enter a valid text");
+      setNameError("Please enter a valid Name");
     } else if (email && !/^\S+@\S+\.\S+$/.test(email)) {
       setEmailError("Please enter a valid email address");
     } else if (!/^\d+$/.test(mobile)) {
       setMobileError("Please enter a valid mobile number");
-    } else if (!/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(address)) {
+    } else if (!/^[a-zA-Z0-9\s.,'-]+$/.test(address)) {
       setAddressError("Please enter a valid address");
     } else {
       await axios
         .post(`${API_URL}/orders`, orderData)
         .then((res) => {
-          toast.success("Order create successfully");
-          dispatch(clearCart());
-          router.push("/profile/order");
+          if (res.data.url) {
+            window.location.href = res.data.url;
+          } else {
+            toast.success(res.data.message);
+            dispatch(clearCart());
+            router.push("/profile/order");
+          }
         })
         .catch((error) => {
           if (error instanceof AxiosError) {
