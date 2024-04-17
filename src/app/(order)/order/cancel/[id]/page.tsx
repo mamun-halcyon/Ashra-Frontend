@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect } from "react";
-import { RxCross1 } from "react-icons/rx";
 import "./page.scss";
 import { clearCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
