@@ -484,7 +484,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
           <div className="product-details overflow-hidden">
             <div className="container px-2 md:px-1">
               <div className="product-specification">
-                <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-6">
                   <div>
                     <div className="view-image mt-3 md:mt-0 overflow-hidden">
                       <ZoomImage
