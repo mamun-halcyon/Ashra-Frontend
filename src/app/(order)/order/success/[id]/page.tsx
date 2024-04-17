@@ -14,7 +14,7 @@ const ConfirmOrder = () => {
     dispatch(clearCart());
     setTimeout(() => {
       router.push("/profile/order");
-    }, 500000);
+    }, 50000);
   }, [dispatch, router]);
 
   return (
