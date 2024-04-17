@@ -5,6 +5,7 @@ import "./page.scss";
 import { clearCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
+import Image from "next/image";
 
 type Props = {
   params: {
@@ -25,13 +26,18 @@ const CancelOrder = ({ params: { id } }: Props) => {
 
   return (
     <div className="order-cancel">
-      <div className="wrapper shadow">
+      <div className="wrapper">
         <div className="icon">
-          <RxCross1 className="check" />
+          <Image
+            src={"/assets/images/payment/Canceled.png"}
+            alt="success"
+            width={400}
+            height={400}
+          />
         </div>
         <h2 className=" font-gotham font-medium title">Canceled !</h2>
         <p className=" font-gotham text">
-          We don&apos;t received your purchase request with TrxID: {id}
+          We don&apos;t received your purchase request.
           <br />
           Please Try Again !
         </p>
