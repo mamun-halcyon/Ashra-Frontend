@@ -21,7 +21,7 @@ const CancelOrder = ({ params: { id } }: Props) => {
     dispatch(clearCart());
     setTimeout(() => {
       router.push("/");
-    }, 5000);
+    }, 50000);
   }, [dispatch, router]);
 
   return (
