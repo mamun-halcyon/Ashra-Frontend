@@ -409,7 +409,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
   };
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     if (product?.product?.id) {
       try {
         const response = await axios.post(`${API_URL}/reviews`, {
@@ -485,25 +484,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
           <div className="product-details overflow-hidden">
             <div className="container px-2 md:px-1">
               <div className="product-specification">
-                <div className=" hidden md:flex items-center font-gotham font-normal text-sm mt-3 mb-3">
-                  <Link href={"/"}>Home</Link>
-                  <RiArrowDropRightLine className=" text-xl" />
-                  <Link
-                    className=" capitalize"
-                    href={`/category/filter?category=${product.product.category_slug}`}
-                    onClick={() =>
-                      dispatch(
-                        addCategory({
-                          title: product.product.category_slug as string,
-                          slug: product.product.category_slug as string,
-                        })
-                      )
-                    }
-                  >
-                    {product.product.category_slug}{" "}
-                  </Link>
-                </div>
-
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                   <div>
                     <div className="view-image mt-3 md:mt-0 overflow-hidden">
