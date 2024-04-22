@@ -96,6 +96,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
+  const [numberError, setNumberError] = useState("");
 
   const isCampaign =
     product?.product?.camping_start_date &&
@@ -341,6 +342,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
   const handleSubmitQuestion = async (e: any) => {
     e.preventDefault();
+    if (/^01[3-9]\d{8}$/.test(number.trim())) {
+      return setNumberError("Enter a valid number");
+    }
     if (
       number.trim() !== "" &&
       question.trim() !== "" &&
@@ -1074,6 +1078,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 onChange={(e) => setNumber(e.target.value)}
                                 required
                               />
+                              {numberError && (
+                                <p className=" font-gotham text-[11px] warning">
+                                  {numberError}
+                                </p>
+                              )}
                               <TextAreaGroup
                                 title="Ask Question *"
                                 value={question}
