@@ -12,7 +12,7 @@ const Pagination = dynamic(() => import("@/components/pagination"));
 import { API_ROOT, API_URL } from "@/constant";
 import { IBanner } from "@/types/banner";
 import { ICategoryData, ICategoryResponse } from "@/types/category";
-import { IProduct, IProductResponse } from "@/types/product";
+import { ICategoryProductResponse, IProduct } from "@/types/product";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -133,7 +133,7 @@ function Category() {
     setPage(1);
   }, [searchParams.get("category")]);
 
-  const fetchData = async () => {
+  /*  const fetchData = async () => {
     setIsLoading(true);
     const search: string = searchParams.get("search")?.trim() || "";
     const mainCategory: string = searchParams.get("category")?.trim() || "";
@@ -183,16 +183,71 @@ function Category() {
       console.error("Error fetching data:", error);
       setIsLoading(false);
     }
+  }; */
+  const fetchData = async () => {
+    setIsLoading(true);
+    const search: string = searchParams.get("search")?.trim() || "";
+    const mainCategory: string = searchParams.get("category")?.trim() || "";
+    const availability: string =
+      (availabilities.length > 0 && availabilities.join(",")) || "";
+    let sort_by: string = "";
+    switch (sortBy) {
+      case "Newest":
+        sort_by = "newest";
+        break;
+      case "Oldest":
+        sort_by = "oldest";
+        break;
+      case "Price low to high":
+        sort_by = "low";
+        break;
+      case "Price high to low":
+        sort_by = "high";
+        break;
+    }
+    const tempCategories: string[] =
+      çategories.length > 0 ? [...çategories] : [mainCategory, ...çategories];
+    const category: string =
+      (tempCategories.length > 0 && tempCategories.join(",")) || "";
+    try {
+      const response = await axios.get<ICategoryProductResponse>(
+        `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
+          `${category !== "" ? "&category=" + category : ""}` +
+          `${search !== "" ? "&search=" + search : ""}` +
+          `${
+            priceRange[0] > 0 || priceRange[1] < 200000
+              ? "&min_price=" + priceRange[0]
+              : ""
+          }` +
+          `${
+            priceRange[0] > 0 || priceRange[1] < 200000
+              ? "&max_price=" + priceRange[1]
+              : ""
+          }` +
+          `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
+          `${availability !== "" ? "&availability=" + availability : ""}`
+      );
+      setProducts(response?.data?.rows);
+      setCount(response.data?.count);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setIsLoading(false);
+    }
   };
 
-  let timeOutId: any = 0;
+  // let timeOutId: any = 0;
   useEffect(() => {
-    if (timeOutId === 0) {
+    /* if (timeOutId === 0) {
       timeOutId = setTimeout(() => {
         fetchData();
       }, 1000);
       return () => clearTimeout(timeOutId);
-    }
+    } */
+    const loadData = async () => {
+      await fetchData();
+    };
+    loadData();
   }, [
     limit,
     page,
@@ -202,7 +257,6 @@ function Category() {
     sortBy,
     availabilities,
   ]);
-
   const handleMultipleCategory = (title: string, removeUnselected: boolean) => {
     if (removeUnselected) {
       setCategories((prevState) =>
