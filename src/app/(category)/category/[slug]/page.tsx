@@ -5,10 +5,6 @@ const CategoryFilter = dynamic(() => import("@/components/category-filter"));
 const FilterBox = dynamic(() => import("@/components/filterbox"));
 const ListCard = dynamic(() => import("@/components/list-card"));
 const Pagination = dynamic(() => import("@/components/pagination"));
-// import CategoryFilter from ;
-// import FilterBox from '@/components/filterbox';
-// import ListCard from '@/components/list-card';
-// import Pagination from '@/components/pagination';
 import { API_ROOT, API_URL } from "@/constant";
 import { IBanner } from "@/types/banner";
 import { ICategoryData, ICategoryResponse } from "@/types/category";
@@ -27,16 +23,6 @@ const ReactSlider = dynamic(() => import("react-slider"));
 import "./page.scss";
 import { useAppSelector } from "@/redux/hooks";
 const ProductCard = dynamic(() => import("@/components/card"));
-
-/* const categoryProducts = async (position: string) => {
-  const res = await fetch(`${API_URL}/menus/${position}`, {
-    cache: 'no-store',
-  });
-
-  
-
-  return res.json();
-}; */
 
 function Category() {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
@@ -79,10 +65,6 @@ function Category() {
       setPage(page - 1);
     }
   };
-
-  /*  const handlePriceChange = (newValue: [number, number]) => {
-    setPriceRange(newValue);
-  }; */
 
   const handleMinPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPrice = parseFloat(e.target.value);
@@ -133,57 +115,6 @@ function Category() {
     setPage(1);
   }, [searchParams.get("category")]);
 
-  /*  const fetchData = async () => {
-    setIsLoading(true);
-    const search: string = searchParams.get("search")?.trim() || "";
-    const mainCategory: string = searchParams.get("category")?.trim() || "";
-    const availability: string =
-      (availabilities.length > 0 && availabilities.join(",")) || "";
-    let sort_by: string = "";
-    switch (sortBy) {
-      case "Newest":
-        sort_by = "newest";
-        break;
-      case "Oldest":
-        sort_by = "oldest";
-        break;
-      case "Price low to high":
-        sort_by = "low";
-        break;
-      case "Price high to low":
-        sort_by = "high";
-        break;
-    }
-    const tempCategories: string[] =
-      çategories.length > 0 ? [...çategories] : [mainCategory, ...çategories];
-    const category: string =
-      (tempCategories.length > 0 && tempCategories.join(",")) || "";
-    try {
-      const response = await axios.get<IProductResponse>(
-        `${API_URL}/frontend/products?limit=${limit}&page=${page}
-        ${category !== "" ? "&category=" + category : ""}
-        ${search !== "" ? "&search=" + search : ""}
-        ${
-          priceRange[0] > 0 || priceRange[1] < 200000
-            ? "&min_price=" + priceRange[0]
-            : ""
-        }
-        ${
-          priceRange[0] > 0 || priceRange[1] < 200000
-            ? "&max_price=" + priceRange[1]
-            : ""
-        }
-        ${sort_by !== "" ? "&sort_by=" + sort_by : ""}
-        ${availability !== "" ? "&availability=" + availability : ""}`
-      );
-      setProducts(response.data?.data?.rows);
-      setCount(response.data?.data?.count);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setIsLoading(false);
-    }
-  }; */
   const fetchData = async () => {
     setIsLoading(true);
     const search: string = searchParams.get("search")?.trim() || "";
@@ -236,14 +167,7 @@ function Category() {
     }
   };
 
-  // let timeOutId: any = 0;
   useEffect(() => {
-    /* if (timeOutId === 0) {
-      timeOutId = setTimeout(() => {
-        fetchData();
-      }, 1000);
-      return () => clearTimeout(timeOutId);
-    } */
     const loadData = async () => {
       await fetchData();
     };
