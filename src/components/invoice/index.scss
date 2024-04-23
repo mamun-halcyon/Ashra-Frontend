@@ -9,24 +9,59 @@
     padding: 8px;
   }
   padding: 40px;
+
   .invoice-header {
+    margin-top: 30px;
     padding: 10px 0;
     .title {
       display: flex;
       justify-content: space-between;
     }
+    .customer-details {
+      display: inline-block;
+      padding: 10px 15px;
+      color: $primary-text-color;
+      background: $tertiary-text-color;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      transform: translateY(-50%);
+      font-size: 16px;
+    }
     .details {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: -50px;
+
+      .left {
+        background: $secondary-background-color;
+        width: 63%;
+        padding: 10px 15px;
+        padding-top: 25px;
+        box-sizing: border-box;
+        p {
+          margin-bottom: 5px;
+          text-transform: capitalize;
+        }
+      }
+
+      .right {
+        background: $secondary-background-color;
+        width: 37%;
+        padding: 10px 15px;
+        box-sizing: border-box;
+        p {
+          margin-bottom: 5px;
+          text-transform: capitalize;
+        }
+      }
+
+      .heading {
+        border: 1px solid $secondary-border-color;
+      }
 
       p {
-        font-family: $secondary-font;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 400;
-      }
-      .order-details {
-        align-self: flex-end;
       }
     }
   }
@@ -38,47 +73,28 @@
     }
   }
 
-  .invoice-table {
+  .invoice-details-table {
+    border-collapse: collapse;
     width: 100%;
-    margin-top: 20px;
-    font-family: $secondary-font;
-
-    thead {
-      background: $quinary-background-color;
-      th {
-        text-align: left !important;
-        padding: 10px;
-        font-size: 14px;
-        font-weight: 600;
-      }
+    font-size: 13px;
+    th,
+    td {
+      border: 1px solid $secondary-border-color;
+      text-align: center;
+      padding: 4px;
     }
-    tbody {
-      tr {
-        td {
-          padding: 10px;
-          font-size: 14px;
-        }
-      }
+    .table-heading {
+      background: $secondary-background-color;
     }
-  }
-
-  .summery {
-    width: 400px;
-    margin-left: auto;
-    margin-top: 20px;
-    font-family: $secondary-font;
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+    .span-item {
+      border: 0;
     }
-    p {
-      width: 50%;
-      font-size: 14px;
-
-      &:nth-child(even) {
-        text-align: right;
+    .heading-title {
+      font-weight: 700;
+    }
+    .order-item {
+      td {
+        height: 40px;
       }
     }
   }

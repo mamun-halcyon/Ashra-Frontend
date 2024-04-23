@@ -1,5 +1,9 @@
+"use client";
 import Image from "next/image";
 import "./index.scss";
+import FormatPrice from "../price-formate";
+import { useState, useEffect } from "react";
+import { formatDate } from "../dateformate";
 
 const Invoice = ({
   order,
@@ -7,58 +11,196 @@ const Invoice = ({
   shipingCost,
   finalPrice,
 }: any) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [orderItems, setOrderItems] = useState<any[]>(
+    order?.orderItems?.length > 0 ? order?.orderItems : []
+  );
+  const advancePayment = order.advance_payment ?? 0;
+  // const [amountBeforeCoupon, setAmountBeforeCoupon] = useState<number>(0);
+
+  useEffect(() => {
+    if (orderItems?.length > 0) {
+      let totalRegularPrice = 0;
+
+      orderItems?.forEach((item: any) => {
+        totalRegularPrice += item?.regular_price * item?.quantity;
+      });
+
+      // setAmountBeforeCoupon(totalRegularPrice);
+
+      if (order?.coupon) {
+        let finalPrice = 0;
+        orderItems?.map((item: any) => {
+          finalPrice += item?.discount_price * item?.quantity;
+        });
+        setTotalPrice(finalPrice);
+      } else {
+        let finalPrice = 0;
+        orderItems?.map((item: any) => {
+          finalPrice += item?.discount_price
+            ? item?.discount_price
+            : item?.regular_price * item?.quantity;
+        });
+        setTotalPrice(finalPrice);
+      }
+    }
+  }, [order, orderItems]);
+
   return (
     <div className="invoice white-bg hidden">
-      <div className="invoice-header">
+      <div className="invoice-header font-gotham text-xs">
         <div className="title">
-          <Image
-            className="w-full"
-            src="/assets/images/invoice/home_appliance.png"
-            alt="invoice"
-            width={800}
-            height={400}
-          />
+          {order.order_prefix === "GHA" ? (
+            <img src="/assets/invoice/homeappliance.png" alt="invoice" />
+          ) : (
+            <img src="/assets/invoice/pump.png" alt="invoice" />
+          )}
         </div>
-        <h4 className="customer-details white-bg black-text mt-5">
+        <h4 className="customer-details font-gotham font-medium">
           Customer Details
         </h4>
-        <div className="details secondary-bg mr-2 p-1">
+        <div className="details">
           <div className="left">
-            <p className="font-gotham text-sm font-normal">
-              Name: {order.name}
+            <p>
+              <span className="invoice-title">Invoice:</span>{" "}
+              {order.order_prefix}-{order.id}
             </p>
-            <p className="font-gotham text-sm font-normal">
-              Email: {order.email}
+            <p>
+              {" "}
+              <span className="invoice-title">Name: </span> {order.name}
             </p>
-            <p className="font-gotham text-sm font-normal">
-              Phone: {order.mobile}{" "}
+            <p>
+              <span className="invoice-title">Email: </span> {order.email}
             </p>
-            <p className="font-gotham text-sm font-normal max-w-[250px]">
-              Address: {order.address}{" "}
+            <p>
+              <span className="invoice-title">Phone: </span>{" "}
+              {`+88${order.mobile}`}{" "}
+            </p>
+            <p>
+              <span className="invoice-title"> Address: </span> {order.address}{" "}
+              {order.city ? `, ${order.city}` : ""}{" "}
             </p>
           </div>
-          <div className="order-details  secondary-bg p-1 right">
-            <p className=" font-gotham text-sm font-normal">
-              Order No: {order.id}
+          <div className="order-details right">
+            <p>
+              <span className="invoice-title">Order Date: </span>{" "}
+              {formatDate(order.created_at)}
             </p>
-            <p className="">Order Status: {order.order_status}</p>
-            <p className="">Shipping method: {order?.delivery_method}</p>
-            <p className=" font-gotham text-sm font-normal">
-              Invoice No: {order.order_prefix}-{order.id}
+            <p>
+              <span className="invoice-title"> Order Status:</span>{" "}
+              {order?.order_status}
             </p>
-            <p className="">Total: ৳{finalPrice + order.delivery_fee}</p>
+            <p>
+              <span className="invoice-title"> Total Order Amount : </span>{" "}
+              {totalPrice + order.delivery_fee - order.custom_discount}
+            </p>
+            <p>
+              <span className="invoice-title"> Shipping Method: </span>{" "}
+              {order?.delivery_method === "homeDelivery"
+                ? "Free Delivery"
+                : "Express Delivery"}
+            </p>
+            <p>
+              <span className="invoice-title"> Payment Method: </span>{" "}
+              {order?.payment_method === "cod"
+                ? "Cash on Delivery"
+                : "Online Payment"}
+            </p>
+            <p>
+              <span className="invoice-title"> Payment Status: </span>{" "}
+              {order?.payment_status}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* <div className="invoice-body">
-        <p>Bill to:</p>
-        <p>Iftakher</p>
-        <p> House: 12, Road: 01, Block I. Basundhara R/A, Dhaka, Bangladesh </p>
-        <p>Email: iftebmw@gmail.com</p>
-        <p>Phone: 01976100280</p>
-      </div> */}
-      <table className="w-full">
+      <table className="invoice-details-table">
+        <tr className="table-heading">
+          <th>SL.</th>
+          <th>Description</th>
+          <th>Attribute</th>
+          <th>Qty</th>
+          <th>Unit price (BDT)</th>
+          <th>Total</th>
+        </tr>
+        {orderItems?.length > 0 &&
+          orderItems?.map((product, index) => (
+            <tr key={index} className="order-item">
+              <td>{index + 1}</td>
+              <td>{product.product_name}</td>
+              <td>
+                {/* Attribute */}
+                {product.product_attribute
+                  ? JSON.parse(product.product_attribute).map(
+                      (v: any, i: number) => (
+                        <span className="variant" key={i}>
+                          {`${i ? "," : ""}${v.attribute_name}`}
+                        </span>
+                      )
+                    )
+                  : "-"}
+              </td>
+              <td> {product.quantity}</td>
+              <td>{FormatPrice(product.regular_price)}</td>
+              <td> {FormatPrice(product.regular_price * product.quantity)}</td>
+            </tr>
+          ))}
+        <tr>
+          <td className="span-item" colSpan={4}></td>
+          <td className="heading-title">Sub Total</td>
+          <td>{` ${FormatPrice(amountBeforeCoupon)}`}</td>
+        </tr>
+        <tr>
+          <td className="span-item" colSpan={4}></td>
+          <td className="heading-title">Delivery</td>
+          <td>{FormatPrice(order.delivery_fee)}</td>
+        </tr>
+        <tr>
+          <td className="span-item" colSpan={4}></td>
+          <td className="heading-title">Discount</td>
+          <td>
+            {FormatPrice(
+              amountBeforeCoupon - totalPrice + order.custom_discount
+            )}
+          </td>
+        </tr>
+        <tr>
+          <td className="span-item" colSpan={4}></td>
+          <td className="heading-title">Advance</td>
+          <td>{FormatPrice(order.advance_payment ?? 0)}</td>
+        </tr>
+        <tr>
+          <td className="span-item" colSpan={4}></td>
+          <td className="heading-title">Due Amount</td>
+          <td>
+            {FormatPrice(
+              totalPrice +
+                order.delivery_fee -
+                order.custom_discount -
+                advancePayment
+            )}
+          </td>
+        </tr>
+      </table>
+      <div className="notes">
+        <h3 className=" font-gotham font-medium text-sm">Notes:</h3>
+        <p className=" font-gotham text-xs font-light">
+          1. All our products come with a{" "}
+          {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
+          warranty. To claim the warranty, please present this invoice.
+        </p>
+        <p className=" font-gotham text-xs font-light">
+          2. Please ensure to check for any physical damage to the product upon
+          receiving it. After receiving the product, no claims for physical
+          damage will be accepted.
+        </p>
+        <p className=" font-gotham text-xs font-light">
+          3. For official installation, please inform us upon receiving the
+          product if the customer wishes for us to install it. We will require
+          24 hours to complete the installation.
+        </p>
+      </div>
+      {/* <table className="w-full">
         <thead>
           <tr className="secondary-bg text-left table-border">
             <th className="table-border">SL.</th>
@@ -140,93 +282,7 @@ const Invoice = ({
             <td> ৳ {finalPrice + shipingCost} </td>
           </tr>
         </tbody>
-      </table>
-
-      {/* <div className="invoice-table">
-        <div className="grid grid-cols-10 secondary-bg">
-          <div className=" col-span-1 font-gotham text-sm font-normal">
-            SL.{" "}
-          </div>
-          <div className=" col-span-4 font-gotham text-sm font-normal px-1">
-            Description
-          </div>
-          <div className=" col-span-1 font-gotham text-sm font-normal">
-            Variant
-          </div>
-          <div className=" col-span-1 font-gotham text-sm font-normal">Qty</div>
-          <div className=" col-span-2 font-gotham text-sm font-normal">
-            Unit price (BDT)
-          </div>
-          <div className=" col-span-1 font-gotham text-sm font-normal">
-            Total
-          </div>
-        </div>
-        {
-          <>
-            {order?.orderItems?.map((product: any, index: any) => (
-              <div
-                className="grid grid-cols-10 font-gotham text-sm font-normal"
-                key={index}
-              >
-                <div className=" col-span-1 font-gotham text-sm font-normal">
-                  {index + 1}
-                </div>
-                <div className=" col-span-4 px-1">{product.product_name}</div>
-                <div className=" col-span-1 font-gotham text-sm font-normal">
-                  -
-                </div>
-                <div className=" col-span-1 font-gotham text-sm font-normal">
-                  {product.quantity}
-                </div>
-                <div className=" col-span-2 font-gotham text-sm font-normal">
-                  {product.discount_price}
-                </div>
-                <div className="col-span-1 font-gotham text-sm font-normal">
-                  ৳ {product.discount_price * product.quantity}
-                </div>
-              </div>
-            ))}
-          </>
-        }
-        <div className="grid grid-cols-8 mt-5">
-          <div className=" col-span-5">
-            <h3 className=" font-gotham text-sm font-medium">Notes:</h3>
-            <p className="font-gotham text-sm font-normal">
-              1.Please check the product carefully before payment.
-            </p>
-            <p className="font-gotham text-sm font-normal">
-              2.After payment there will be no option for refund & exchange.
-            </p>
-            <p className="font-gotham text-sm font-normal">
-              3.No claim will be accepted after receiving the product.
-            </p>
-          </div>
-          <div className=" col-span-3">
-            <div className=" font-gotham text-sm font-semibold">
-              <div className="grid grid-cols-2">
-                <p className=" font-gotham text-sm font-semibold">
-                  Regular Price
-                </p>
-                <p className=" font-gotham text-sm font-semibold">
-                  ৳ {amountBeforeCoupon}{" "}
-                </p>
-                <p className=" font-gotham text-sm font-semibold">Delivery</p>
-                <p className=" font-gotham text-sm font-semibold">
-                  ৳ {shipingCost}
-                </p>
-                <p className=" font-gotham text-sm font-semibold">Discount</p>
-                <p className=" font-gotham text-sm font-semibold">
-                  ৳ {amountBeforeCoupon - finalPrice}
-                </p>
-                <p className=" font-gotham text-sm font-semibold">Total</p>
-                <p className=" font-gotham text-sm font-semibold">
-                  ৳ {finalPrice + shipingCost}{" "}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      </table> */}
     </div>
   );
 };
