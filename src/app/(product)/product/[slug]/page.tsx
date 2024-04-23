@@ -54,6 +54,8 @@ type Inputs = {
   comment: string;
   name: string;
   rating: number;
+  number: number | string;
+  question: string;
 };
 type Props = {
   params: {
@@ -71,6 +73,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<Inputs>();
   const [product, setProduct] = useState<ISingleProduct | null>(null);
@@ -337,32 +340,26 @@ const PageDetails = ({ params: { slug } }: Props) => {
     ],
   };
 
-  const handleSubmitQuestion = async (e: any) => {
-    e.preventDefault();
-    if (/^01[3-9]\d{8}$/.test(number.trim())) {
-      return setNumberError("Enter a valid number");
-    }
-    if (
-      number.trim() !== "" &&
-      question.trim() !== "" &&
-      product?.product?.id &&
-      product?.product?.title
-    ) {
-      try {
-        const response = await axios.post(`${API_URL}/product-querys`, {
-          product_id: product?.product?.id,
-          product_name: product?.product?.title,
-          mobile: number.trim(),
-          question: question.trim(),
-        });
-        if (response.status === 201) {
-          toast.success(response?.data?.message);
-          setNumber("");
-          setQuestion("");
-        }
-      } catch (error) {
-        console.log(error);
+  const handleSubmitQuestion = async (data: any) => {
+    const { question, number } = data;
+    const reviewData = {
+      question,
+      number,
+      product_id: product?.product?.id,
+      product_name: product?.product?.title,
+    };
+    try {
+      const response = await axios.post(
+        `${API_URL}/product-querys`,
+        reviewData
+      );
+      if (response.status === 201) {
+        toast.success(response?.data?.message);
+        setValue("number", "");
+        setValue("question", "");
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -424,6 +421,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
         });
         if (response?.status === 201) {
           toast.success("Review post success!");
+          setValue("rating", 0);
+          setValue("comment", "");
+          setValue("name", "");
+          setValue("email", "");
+
           /* setRating(0);
           setReview("");
           setFirstName("");
@@ -1066,29 +1068,66 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         )}
                       </TabPanel>
                       <TabPanel>
-                        <form onSubmit={handleSubmitQuestion}>
+                        <form onSubmit={handleSubmit(handleSubmitQuestion)}>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                              <FormGroup
-                                title="Your Number *"
-                                value={number}
-                                onChange={(e) => setNumber(e.target.value)}
-                                required
+                              <Controller
+                                name="number"
+                                control={control}
+                                rules={{
+                                  required: "Your Number is required",
+                                  pattern: {
+                                    value: /^[0-9]+$/,
+                                    message:
+                                      "Your Number must contain only numbers",
+                                  },
+                                }}
+                                render={({ field }) => (
+                                  <>
+                                    <FormGroup
+                                      title="Your Number *"
+                                      value={field.value}
+                                      onChange={(e) =>
+                                        field.onChange(e.target.value)
+                                      }
+                                      required
+                                    />
+                                    {errors.number && (
+                                      <p className="font-gotham text-[11px] warning">
+                                        {errors.number.message}
+                                      </p>
+                                    )}
+                                  </>
+                                )}
                               />
-                              {numberError && (
-                                <p className=" font-gotham text-[11px] warning">
-                                  {numberError}
+                              <Controller
+                                name="question"
+                                control={control}
+                                rules={{
+                                  required: "Ask Question is required",
+                                  pattern: {
+                                    value: /\S/,
+                                    message: "Enter valid message",
+                                  },
+                                }}
+                                render={({ field }) => (
+                                  <TextAreaGroup
+                                    title="Ask Question *"
+                                    value={field.value}
+                                    id="question"
+                                    onChange={(e: any) =>
+                                      field.onChange(e.target.value)
+                                    }
+                                    required
+                                  />
+                                )}
+                              />
+
+                              {errors.question && (
+                                <p className="font-gotham text-[11px] warning">
+                                  {errors.question.message}
                                 </p>
                               )}
-                              <TextAreaGroup
-                                title="Ask Question *"
-                                value={question}
-                                id="question"
-                                onChange={(e: any) =>
-                                  setQuestion(e.target.value)
-                                }
-                                required
-                              />
                               <Button
                                 className=" font-gotham font-normal px-2 py-1 text-sm"
                                 type="submit"
