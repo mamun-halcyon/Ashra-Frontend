@@ -89,14 +89,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const dispatch = useAppDispatch();
   const [keyPoints, setKeyPoints] = useState<IService[]>([]);
   const [isEmi, setIsEmi] = useState(false);
-  const [number, setNumber] = useState<string>("");
-  const [question, setQuestion] = useState<string>("");
   const [emiPRice, setEmiPrice] = useState<number>(0);
   const [attributes, setAttributes] = useState<any[]>([]);
   const [selectAttributes, setSelectedAttribute] = useState<any[]>([]);
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
-  const [numberError, setNumberError] = useState("");
 
   const isCampaign =
     product?.product?.camping_start_date &&
