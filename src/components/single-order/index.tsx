@@ -1,15 +1,15 @@
-'use client';
-import { API_URL } from '@/constant';
-import { useAppSelector } from '@/redux/hooks';
-import axios from 'axios';
-import { FC, useEffect, useRef, useState } from 'react';
-import { LiaDownloadSolid, LiaEye } from 'react-icons/lia';
-import { RxCross2 } from 'react-icons/rx';
-import ReactToPrint from 'react-to-print';
-import { formatDate } from '../dateformate';
-import Invoice from '../invoice';
-import SingleOrderDetails from '../orderDetails';
-import './index.scss';
+"use client";
+import { API_URL } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
+import axios from "axios";
+import { FC, useEffect, useRef, useState } from "react";
+import { LiaDownloadSolid, LiaEye } from "react-icons/lia";
+import { RxCross2 } from "react-icons/rx";
+import ReactToPrint from "react-to-print";
+import { formatDate } from "../dateformate";
+import Invoice from "../invoice";
+import SingleOrderDetails from "../orderDetails";
+import "./index.scss";
 
 export interface IProps {
   order: any;
@@ -48,12 +48,12 @@ const SingleOrder: FC<IProps> = ({ order }) => {
 
   useEffect(() => {
     if (orderDetails?.coupon) {
-      if (orderDetails?.coupon?.discount_type === 'flat') {
+      if (orderDetails?.coupon?.discount_type === "flat") {
         let tempDisCart = orderDetails?.orderItems;
         if (orderDetails?.coupon?.product_id) {
           let tempIdsArr: any[] = [];
-          if (orderDetails?.coupon?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = orderDetails?.coupon?.product_id?.split(',');
+          if (orderDetails?.coupon?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = orderDetails?.coupon?.product_id?.split(",");
           } else {
             tempIdsArr = [orderDetails?.coupon?.product_id];
           }
@@ -86,8 +86,8 @@ const SingleOrder: FC<IProps> = ({ order }) => {
         let tempDisCart = orderDetails?.orderItems;
         if (orderDetails?.coupon?.product_id) {
           let tempIdsArr: any[] = [];
-          if (orderDetails?.coupon?.product_id?.split(',')?.length > 0) {
-            tempIdsArr = orderDetails?.coupon?.product_id?.split(',');
+          if (orderDetails?.coupon?.product_id?.split(",")?.length > 0) {
+            tempIdsArr = orderDetails?.coupon?.product_id?.split(",");
           } else {
             tempIdsArr = [orderDetails?.coupon?.product_id];
           }
@@ -160,9 +160,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       <td className="px-6 py-4">{formatDate(order?.created_at)}</td>
       <td className="px-6 py-4">৳{finalPrice + order.delivery_fee}</td>
       <td className="px-6 py-4 capitalize">{order?.order_status}</td>
-      <td className="px-6 py-4 capitalize	">
-        {order.payment_method === 'cashOnDelivery' ? 'Unpaid' : 'Paid'}
-      </td>
+      <td className="px-6 py-4 capitalize	">{order?.payment_status}</td>
       <td className="px-6 py-2">
         <div className="flex justify-center info-icons">
           <div onClick={() => setIsOpen(true)}>
@@ -200,7 +198,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div className="w-full md:w-auto">
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Invoice No:{'  '}
+                      Invoice No:{"  "}
                     </p>
                     <p className=" font-gotham text-sm ml-1">
                       {order.order_prefix}-{order.id}
@@ -208,7 +206,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Customer Name:{' '}
+                      Customer Name:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-1">
                       {orderDetails?.name}
@@ -216,7 +214,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Email:{' '}
+                      Email:{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-1">
                       {orderDetails?.email}
@@ -224,7 +222,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold ">
-                      Shipping Address:{' '}
+                      Shipping Address:{" "}
                     </p>
                     <p className="max-w-[250px] font-gotham text-sm ml-1">
                       {orderDetails?.address}
@@ -232,7 +230,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold ">
-                      Mobile:{' '}
+                      Mobile:{" "}
                     </p>
                     <p className="max-w-[250px] font-gotham text-sm ml-1">
                       {orderDetails?.mobile}
@@ -242,7 +240,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                 <div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Date :{' '}
+                      Order Date :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       {formatDate(orderDetails?.created_at)}
@@ -250,7 +248,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Order Status :{' '}
+                      Order Status :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2 capitalize">
                       {orderDetails?.order_status}
@@ -258,7 +256,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Total Order Amount :{' '}
+                      Total Order Amount :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
                       ৳ {finalPrice + order.delivery_fee}
@@ -266,22 +264,22 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Shipping method :{' '}
+                      Shipping method :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
-                      {orderDetails?.delivery_method === 'homeDelivery'
-                        ? 'Home Delivery'
-                        : 'Express Delivery'}
+                      {orderDetails?.delivery_method === "homeDelivery"
+                        ? "Home Delivery"
+                        : "Express Delivery"}
                     </p>
                   </div>
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
-                      Payment method :{' '}
+                      Payment method :{" "}
                     </p>
                     <p className=" font-gotham text-sm ml-2">
-                      {orderDetails?.payment_method === 'cashOnDelivery'
-                        ? 'Cash on Delivery'
-                        : 'Online Payment'}
+                      {orderDetails === "cashOnDelivery"
+                        ? "Cash on Delivery"
+                        : "Online Payment"}
                     </p>
                   </div>
                 </div>
