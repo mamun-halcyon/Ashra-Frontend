@@ -12,11 +12,7 @@ const Pagination = dynamic(() => import("@/components/pagination"));
 import { API_ROOT, API_URL } from "@/constant";
 import { IBanner } from "@/types/banner";
 import { ICategoryData, ICategoryResponse } from "@/types/category";
-import {
-  ICategoryProductResponse,
-  IProduct,
-  IProductResponse,
-} from "@/types/product";
+import { IProduct, IProductResponse } from "@/types/product";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
