@@ -1,39 +1,45 @@
 import { API_URL } from "@/constant";
 import { useAppSelector } from "@/redux/hooks";
 import axios from "axios";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Button from "../button";
 import FormatPrice from "../price-formate";
 import TextAreaGroup from "../textarea";
 import "./index.scss";
 
+type Inputs = {
+  message: string;
+};
 type IProps = {
   item: any;
 };
 const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<Inputs>();
   const { login } = useAppSelector((state) => state.login);
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
   const [attributes, setAttributes] = useState<any[]>([]);
 
-  const handleSetMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
-  };
-  const data = {
-    customer_id: login?.user.id,
-    order_id: item.order_id,
-    product_id: item.product_id,
-    product_name: item.product_name,
-    product_price: item.discount_price ?? item.regular_price,
-    refund_status: "pending",
-    message,
-  };
+  const handleRefunds = async (data: { message: string }) => {
+    const { message } = data;
+    const refundData = {
+      customer_id: login?.user.id,
+      order_id: item.order_id,
+      product_id: item.product_id,
+      product_name: item.product_name,
+      product_price: item.discount_price ?? item.regular_price,
+      refund_status: "pending",
+      message,
+    };
 
-  const handleRefunds = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}/refunds`, data, {
+      const response = await axios.post(`${API_URL}/refunds`, refundData, {
         headers: {
           Authorization: `Bearer ${login?.accessToken}`,
         },
@@ -85,12 +91,36 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
         </td>
         <td className="px-6 py-4">
           {isOpen ? (
-            <form onSubmit={handleRefunds} className="refund-area">
-              <TextAreaGroup
-                title="Message"
-                onChange={handleSetMessage}
-                required
+            <form
+              onSubmit={handleSubmit(handleRefunds)}
+              className="refund-area"
+            >
+              <Controller
+                name="message"
+                control={control}
+                rules={{
+                  required: "Message is required",
+                  pattern: {
+                    value: /\S/,
+                    message: "Enter valid message",
+                  },
+                }}
+                render={({ field }) => (
+                  <TextAreaGroup
+                    title="Message *"
+                    value={field.value}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      field.onChange(e.target.value)
+                    }
+                    required
+                  />
+                )}
               />
+              {errors.message && (
+                <p className=" font-gotham text-xs warning">
+                  {errors.message.message}
+                </p>
+              )}
               <Button type="submit" className="px-3 py-1">
                 Apply Now
               </Button>
