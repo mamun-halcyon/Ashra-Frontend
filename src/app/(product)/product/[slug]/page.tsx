@@ -22,7 +22,6 @@ import { IService } from "@/types/service";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
@@ -35,7 +34,6 @@ import { Controller, useForm } from "react-hook-form";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FaAward } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { RiArrowDropRightLine } from "react-icons/ri";
 import Slider from "react-slick";
 import StarRatings from "react-star-ratings";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -43,10 +41,9 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../../../../utils/axiosInstance";
 import "./page.scss";
 import "react-quill/dist/quill.snow.css";
-import { addCategory } from "@/redux/features/category/categorySlice";
-import Loader from "@/components/loader/loading";
-import ZoomImage from "@/components/zoom-image";
-// const ZoomImage = dynamic(() => import("@/components/zoom-image"));
+// import ZoomImage from "@/components/zoom-image";
+import CircleLoader from "@/components/css-loader";
+const ZoomImage = dynamic(() => import("@/components/zoom-image"));
 const ProductCard = dynamic(() => import("@/components/card"));
 
 type IUniqueAttributes = {
@@ -479,7 +476,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
   }, []);
 
   if (!product) {
-    return <Loader />;
+    return <CircleLoader />;
   }
   return (
     <>
