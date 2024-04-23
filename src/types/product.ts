@@ -34,10 +34,7 @@ export type IProductResponse = {
     rows: IProduct[];
   };
 };
-export type ICategoryProductResponse = {
-  count: number;
-  rows: IProduct[];
-};
+
 interface ProductPhoto {
   id: number;
   product_id: number;

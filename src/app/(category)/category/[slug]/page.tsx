@@ -12,7 +12,11 @@ const Pagination = dynamic(() => import("@/components/pagination"));
 import { API_ROOT, API_URL } from "@/constant";
 import { IBanner } from "@/types/banner";
 import { ICategoryData, ICategoryResponse } from "@/types/category";
-import { ICategoryProductResponse, IProduct } from "@/types/product";
+import {
+  ICategoryProductResponse,
+  IProduct,
+  IProductResponse,
+} from "@/types/product";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -128,7 +132,7 @@ function Category() {
   useEffect(() => {
     categoryAdBanner();
   }, [searchParams]);
-
+  console.log(products);
   useEffect(() => {
     setPage(1);
   }, [searchParams.get("category")]);
@@ -210,7 +214,7 @@ function Category() {
     const category: string =
       (tempCategories.length > 0 && tempCategories.join(",")) || "";
     try {
-      const response = await axios.get<ICategoryProductResponse>(
+      const response = await axios.get<IProductResponse>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
           `${category !== "" ? "&category=" + category : ""}` +
           `${search !== "" ? "&search=" + search : ""}` +
@@ -227,8 +231,8 @@ function Category() {
           `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
           `${availability !== "" ? "&availability=" + availability : ""}`
       );
-      setProducts(response?.data?.rows);
-      setCount(response.data?.count);
+      setProducts(response?.data?.data?.rows);
+      setCount(response.data?.data?.count);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
