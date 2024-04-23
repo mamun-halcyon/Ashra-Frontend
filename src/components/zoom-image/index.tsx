@@ -9,7 +9,7 @@ const ZoomImage = ({ image }: { image: string }) => {
     zoomPosition: "original",
     zoomStyle: "opacity: 1;background-color: #fff",
     img: image,
-    zoom: "1500",
+    zoom: "800",
   };
 
   return <ImageZoom className="gallery-img" {...zoomProps} />;
