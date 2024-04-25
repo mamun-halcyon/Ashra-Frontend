@@ -151,7 +151,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       setAmountBeforeCoupon(amountBeforeCoupon);
     }
   }, [orderDetails?.coupon, orderDetails?.orderItems]);
-
+  console.log(finalPrice);
   return (
     <tr className=" font-normal font-gotham text-sm table-border">
       <td scope="row" className="px-6 py-4  ">
