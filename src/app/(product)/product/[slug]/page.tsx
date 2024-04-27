@@ -95,11 +95,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
 
-  const isCampaign =
+  /* const isCampaign =
     product?.product?.camping_start_date &&
     product?.product?.camping_end_date &&
     new Date(product.product.camping_start_date).getTime() <= Date.now() &&
-    new Date(product.product.camping_end_date).getTime() >= Date.now();
+    new Date(product.product.camping_end_date).getTime() >= Date.now(); */
   const handleEmi = () => setIsEmi(!isEmi);
   const productPrice = isCampaign
     ? product?.product?.discount_price
@@ -545,7 +545,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </h3>
                         <h2
                           className={`font-gotham  text-xl font-medium ${
-                            product?.product?.discount_price > 0 && isCampaign
+                            product?.product?.discount_price > 0
                               ? " line-through font-normal r-price "
                               : "primary-text"
                           }  `}
@@ -554,7 +554,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </h2>
                       </div>
                       {product?.product?.discount_price > 0 &&
-                        isCampaign &&
                         product?.product?.discount_price !==
                           product.product.regular_price && (
                           <div className="flex items-center">
@@ -708,8 +707,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 handleBuyNow({
                                   product_id: Number(product.product.id),
                                   price:
-                                    product.product.discount_price > 0 &&
-                                    isCampaign
+                                    product.product.discount_price > 0
                                       ? product.product.discount_price
                                       : product.product.regular_price,
                                   title: product.product.title,
@@ -737,8 +735,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   addToCart({
                                     product_id: Number(product.product.id),
                                     price:
-                                      product.product.discount_price > 0 &&
-                                      isCampaign
+                                      product.product.discount_price > 0
                                         ? product.product.discount_price
                                         : product?.product?.regular_price,
                                     title: product.product.title,
@@ -789,9 +786,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 regular_price: Number(
                                   product?.product?.regular_price
                                 ),
-                                price: isCampaign
-                                  ? Number(product?.product?.discount_price)
-                                  : Number(product?.product?.regular_price),
+                                price:
+                                  product.product.discount_price > 0
+                                    ? Number(product?.product?.discount_price)
+                                    : Number(product?.product?.regular_price),
                                 quantity: 1,
                                 rating: product.averageReview,
                                 availability: product.product
