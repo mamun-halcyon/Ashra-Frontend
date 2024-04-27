@@ -52,11 +52,11 @@ const ProductCard: React.FC<IProps> = ({
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const isCampaign =
+  /*  const isCampaign =
     camping_start_date &&
     camping_end_date &&
     new Date(camping_start_date).getTime() <= Date.now() &&
-    new Date(camping_end_date).getTime() >= Date.now();
+    new Date(camping_end_date).getTime() >= Date.now(); */
 
   const handleBuyNow = (data: ICartItem) => {
     dispatch(addToCart(data));
@@ -127,7 +127,7 @@ const ProductCard: React.FC<IProps> = ({
             href={`/product/${url}`}
             className=" font-gotham product-title font-normal text-center text-sm"
           >
-            {title?.substring(0, 46)}
+            {title?.substring(0, 44)}
           </Link>
         </div>
         <p className=" mb-6 text-center text-sm h-5">
