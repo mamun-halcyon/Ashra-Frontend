@@ -25,7 +25,7 @@ const Banner = ({ banners }: IProps) => {
   return (
     <div className="banner">
       <Slider {...settings}>
-        {banners.map((banner, index) => (
+        {banners?.map((banner, index) => (
             <div className="outline-none" key={index}>
               <Link href={`/${banner.url}`}>
                 <Image

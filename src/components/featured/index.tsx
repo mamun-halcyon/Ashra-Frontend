@@ -36,7 +36,7 @@ const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
                 <div className="col-span-6  md:col-span-5">
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {homeData?.topSale.map((product, i) => (
+                      {homeData?.topSale?.map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}
@@ -60,7 +60,7 @@ const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
                   </TabPanel>
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {homeData?.newArrival.map((product, i) => (
+                      {homeData?.newArrival?.map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}
@@ -84,7 +84,7 @@ const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {
                   </TabPanel>
                   <TabPanel>
                     <div className="grid md:grid-cols-4 grid-cols-2 gap-1">
-                      {homeData?.featureProduct.map((product, i) => (
+                      {homeData?.featureProduct?.map((product, i) => (
                         <ProductCard
                           key={i}
                           url={product.slug}

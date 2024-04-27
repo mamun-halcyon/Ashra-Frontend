@@ -121,7 +121,7 @@ export default async function RootLayout({
               homeData={globalData.homePage}
               menus={footerMenus.data}
             />
-            <Navbar logo={globalData.setting.logo} />
+            <Navbar logo={globalData?.setting?.logo} />
             <MegaMenu menus={categories?.data?.rows} />
             {children}
             {globalData?.setting?.active_popup && (

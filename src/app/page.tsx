@@ -71,14 +71,14 @@ async function categoryAdBanner(slug: string) {
 export default async function Home() {
   const homeData: HomeApiResponse = await getData();
   const gasStoveProducts: IProductResponse = await categoryProduct(
-    homeData.homePage.category_one
+    homeData?.homePage?.category_one
   );
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
-    homeData.homePage.category_two
+    homeData?.homePage?.category_two
   );
   const services: IService[] = await serviceItems();
   const digitalScaleProducts: IProductResponse = await categoryProduct(
-    homeData.homePage.category_three
+    homeData?.homePage?.category_three
   );
   const addBanner = await categoryAdBanner("home");
   const verticalBanner = await categoryAdBanner("home-v");
@@ -106,8 +106,7 @@ export default async function Home() {
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
-              {homeData?.category
-                .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
+              {homeData?.category?.sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
                 .map((category, i) => (
                   <ExploreCard
                     className="md:w-1/6 w-1/3 text-center p-2"
@@ -234,7 +233,7 @@ export default async function Home() {
               PRODUCT REVIEWS & UNBOXING VIDEOS
             </h2>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {homeData.video.map((video, index) => (
+              {homeData?.video?.map((video, index) => (
                 <VideoCard key={index} url={video.url} title={video.title} />
               ))}
             </div>

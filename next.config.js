@@ -8,8 +8,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "52.76.145.7",
+        protocol: "https",
+        hostname: "api.gcart.com.bd",
         port: "",
         pathname: "/**",
       },
