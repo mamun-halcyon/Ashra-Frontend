@@ -141,7 +141,7 @@ function Category() {
     const category: string =
       (tempCategories.length > 0 && tempCategories.join(",")) || "";
     try {
-      const response = await axios.get<IProductResponse>(
+      const response = await axios.get<any>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
           `${category !== "" ? "&category=" + category : ""}` +
           `${search !== "" ? "&search=" + search : ""}` +
@@ -158,8 +158,12 @@ function Category() {
           `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
           `${availability !== "" ? "&availability=" + availability : ""}`
       );
-      setProducts(response?.data?.data?.rows);
-      setCount(response.data?.data?.count);
+      setProducts(
+        response?.data?.data ? response.data?.data?.rows : response?.data?.rows
+      );
+      setCount(
+        response.data?.data ? response.data?.data?.count : response?.data?.count
+      );
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
