@@ -101,9 +101,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
     new Date(product.product.camping_start_date).getTime() <= Date.now() &&
     new Date(product.product.camping_end_date).getTime() >= Date.now(); */
   const handleEmi = () => setIsEmi(!isEmi);
-  const productPrice = isCampaign
-    ? product?.product?.discount_price
-    : product?.product?.regular_price;
+  const productPrice =   product?.product?.discount_price  ? product?.product?.discount_price:   product?.product?.regular_price;
   const handleAttributeClick = (attribute: any) => {
     const isExists = selectedAttributes.filter(
       (attr) =>
