@@ -32,7 +32,7 @@ const UpdateProfile = () => {
     } else {
       route.push("/login");
     }
-  }, [login]);
+  }, [login, route]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

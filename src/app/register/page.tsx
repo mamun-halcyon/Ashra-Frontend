@@ -30,7 +30,7 @@ function Login() {
     } else {
       setIsLoggedIn(false);
     }
-  }, [login]);
+  }, [login, route]);
 
   const handleLogin = async (e: any) => {
     e.preventDefault();

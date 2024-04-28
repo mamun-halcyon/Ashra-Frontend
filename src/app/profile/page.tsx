@@ -32,7 +32,7 @@ const Profile = () => {
     } else {
       route.push("/login");
     }
-  }, [login]);
+  }, [login, route]);
 
   return (
     <>

@@ -106,7 +106,8 @@ export default async function Home() {
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
-              {homeData?.category?.sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
+              {homeData?.category
+                ?.sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
                 .map((category, i) => (
                   <ExploreCard
                     className="md:w-1/6 w-1/3 text-center p-2"
@@ -123,7 +124,7 @@ export default async function Home() {
           bannerUrl={verticalBanner?.data[0]?.url}
         />
         <section className="promotion">
-          <Link href={homeData?.homePage?.special_product_link}>
+          <Link href={homeData?.homePage?.special_product_link ?? "/"}>
             <Image
               src={`${API_ROOT}/images/home-page/${homeData?.homePage?.special_product_photo}`}
               alt="promotion banner"
@@ -217,7 +218,7 @@ export default async function Home() {
         </section>
         <section className="review-video">
           <div className="container ">
-            <Link href={addBanner?.data[0]?.url}>
+            <Link href={addBanner?.data[0]?.url ?? "/"}>
               <Image
                 className=" transition-all duration-100 hover:scale-[1.01]"
                 src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}

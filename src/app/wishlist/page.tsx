@@ -93,7 +93,7 @@ function WishlistPage() {
     }
     getWishListItems();
     fetchService();
-  }, [login?.accessToken]);
+  }, [login?.accessToken, route, getWishListItems]);
 
   return (
     <main>

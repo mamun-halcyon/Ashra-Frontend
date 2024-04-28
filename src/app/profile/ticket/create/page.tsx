@@ -1,13 +1,13 @@
-'use client';
-import Button from '@/components/button';
-import FormGroup from '@/components/fromgroup';
-import ProfileSidebar from '@/components/profile-sidebar';
-import { useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa6';
-import { toast } from 'react-toastify';
-import axiosInstance from '../../../../../utils/axiosInstance';
+"use client";
+import Button from "@/components/button";
+import FormGroup from "@/components/fromgroup";
+import ProfileSidebar from "@/components/profile-sidebar";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import { toast } from "react-toastify";
+import axiosInstance from "../../../../../utils/axiosInstance";
 
 const CreateTicket = () => {
   const route = useRouter();
@@ -21,9 +21,9 @@ const CreateTicket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
-  }, [login]);
+  }, [login, route]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -31,16 +31,16 @@ const CreateTicket = () => {
       try {
         const formData = new FormData();
 
-        formData.append('subject', subject);
-        formData.append('user_name', login?.user?.name);
-        formData.append('details', details);
-        formData.append('user_id', login?.user?.id?.toString());
+        formData.append("subject", subject);
+        formData.append("user_name", login?.user?.name);
+        formData.append("details", details);
+        formData.append("user_id", login?.user?.id?.toString());
         if (image) {
-          formData.append('image', image);
+          formData.append("image", image);
         }
-        formData.append('parent_text_id', '0');
-        formData.append('text_type', 'query');
-        formData.append('upload_preset', 'w8omhp4w');
+        formData.append("parent_text_id", "0");
+        formData.append("text_type", "query");
+        formData.append("upload_preset", "w8omhp4w");
 
         const response = await axiosInstance.post(`/supports`, formData, {
           headers: {
@@ -48,12 +48,12 @@ const CreateTicket = () => {
           },
         });
         if (response?.status === 201) {
-          toast.success('Ticket Created Successfuly!');
-          route.push('/profile/ticket');
+          toast.success("Ticket Created Successfuly!");
+          route.push("/profile/ticket");
         }
       } catch (error) {
         console.log(error);
-        toast.error('Ticket Create Error!');
+        toast.error("Ticket Create Error!");
       }
     }
   };
@@ -84,7 +84,7 @@ const CreateTicket = () => {
                     placeholder="subject"
                     required
                     onChange={(e: any) =>
-                      e.target.value.trim() === ''
+                      e.target.value.trim() === ""
                         ? setSubject(null)
                         : setSubject(e.target.value.trim())
                     }
@@ -93,7 +93,7 @@ const CreateTicket = () => {
                     className="border secondary-border mt-3 w-full p-2 font-gotham text-xs outline-none min-h-[100px]"
                     placeholder="Your replay"
                     onChange={(e: any) =>
-                      e.target.value.trim() === ''
+                      e.target.value.trim() === ""
                         ? setDetails(null)
                         : setDetails(e.target.value.trim())
                     }

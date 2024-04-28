@@ -44,7 +44,7 @@ const ViewTicket = () => {
     } else {
       route.push("/login");
     }
-  }, [login]);
+  }, [login, route]);
 
   useEffect(() => {
     if (login?.accessToken && param?.slug) {

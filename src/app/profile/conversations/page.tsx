@@ -50,7 +50,7 @@ const Conversations = () => {
       };
       getAllConversations();
     }
-  }, [login, page]);
+  }, [login, page, route]);
 
   return (
     <>
