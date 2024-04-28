@@ -45,7 +45,6 @@ function Checkout() {
   const [emailError, setEmailError] = useState("");
   const [mobileError, setMobileError] = useState("");
   const [addressError, setAddressError] = useState("");
-
   const [totalCostBeforeCoupon, setTotalCostBeforeCoupon] = useState<number>(0);
   const [totalCostAfterCoupon, setTotalCostAfterCoupon] = useState<number>(0);
 
@@ -333,6 +332,13 @@ function Checkout() {
     });
     setTotalCostAfterCoupon(tempTotalCostAfterCoupon);
   }, [cart, discountCart]);
+
+  useEffect(() => {
+    if (login) {
+      setEmail(login.user.email);
+      setMobile(login.user.mobile);
+    }
+  }, []);
 
   const handleChangeLocation = (e: any) => {
     setLocation(e.target.value);
