@@ -17,7 +17,7 @@ const Maintenance = () => {
         Site is under maintenance
       </h2>
       <p className=" font-gotham text-sm mt-2">
-        We're working hard to improve the user experience. Stay turned
+        We&apos;re working hard to improve the user experience. Stay turned
       </p>
     </div>
   );
