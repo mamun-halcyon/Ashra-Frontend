@@ -110,7 +110,6 @@ function Category() {
   useEffect(() => {
     categoryAdBanner();
   }, [searchParams]);
-  console.log(products);
   useEffect(() => {
     setPage(1);
   }, [searchParams.get("category")]);
