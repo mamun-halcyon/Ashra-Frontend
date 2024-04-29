@@ -70,13 +70,13 @@ async function categoryAdBanner(slug: string) {
 
 export default async function Home() {
   const homeData: HomeApiResponse = await getData();
+  const services: IService[] = await serviceItems();
   const gasStoveProducts: IProductResponse = await categoryProduct(
     homeData?.homePage?.category_one
   );
   const kitchenHoodProducts: IProductResponse = await categoryProduct(
     homeData?.homePage?.category_two
   );
-  const services: IService[] = await serviceItems();
   const digitalScaleProducts: IProductResponse = await categoryProduct(
     homeData?.homePage?.category_three
   );
