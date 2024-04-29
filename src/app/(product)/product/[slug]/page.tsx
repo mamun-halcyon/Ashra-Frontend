@@ -101,7 +101,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
     new Date(product.product.camping_start_date).getTime() <= Date.now() &&
     new Date(product.product.camping_end_date).getTime() >= Date.now(); */
   const handleEmi = () => setIsEmi(!isEmi);
-  const productPrice =   product?.product?.discount_price  ? product?.product?.discount_price:   product?.product?.regular_price;
+  const productPrice = product?.product?.discount_price
+    ? product?.product?.discount_price
+    : product?.product?.regular_price;
   const handleAttributeClick = (attribute: any) => {
     const isExists = selectedAttributes.filter(
       (attr) =>
@@ -543,7 +545,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </h3>
                         <h2
                           className={`font-gotham  text-xl font-medium ${
-                            product?.product?.discount_price > 0
+                            product?.product?.discount_price > 0 &&
+                            product?.product?.regular_price !==
+                              product?.product?.discount_price
                               ? " line-through font-normal r-price "
                               : "primary-text"
                           }  `}
