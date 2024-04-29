@@ -1,19 +1,19 @@
-import { ICompareItem } from '@/types/compare';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import { ICompareItem } from "@/types/compare";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 interface CompareState {
   data: ICompareItem[];
 }
 
 const initialCart =
-  typeof window !== 'undefined' ? localStorage.getItem('compare') : null;
+  typeof window !== "undefined" ? localStorage.getItem("compare") : null;
 const initialState: CompareState = {
   data: initialCart ? JSON.parse(initialCart) : [],
 };
 
 export const compareSlice = createSlice({
-  name: 'compare',
+  name: "compare",
   initialState,
   reducers: {
     // Add to cart
@@ -24,12 +24,13 @@ export const compareSlice = createSlice({
       );
 
       if (existingItem) {
+        toast.warning("Item already added in your list!");
         state.data = state.data;
       } else {
         state.data = [...state.data, newItem];
-        toast.success('Item added to your compare list!');
+        toast.success("Item added to your compare list!");
       }
-      localStorage.setItem('compare', JSON.stringify(state.data));
+      localStorage.setItem("compare", JSON.stringify(state.data));
     },
 
     // Remove cart item
@@ -37,13 +38,13 @@ export const compareSlice = createSlice({
       state.data = state.data.filter(
         (i) => i.product_id !== action.payload.product_id
       );
-      localStorage.setItem('compare', JSON.stringify(state.data));
+      localStorage.setItem("compare", JSON.stringify(state.data));
     },
 
     // clear cart
     clearCompare: (state) => {
       state.data = [];
-      localStorage.removeItem('compare');
+      localStorage.removeItem("compare");
     },
   },
 });

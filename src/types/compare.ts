@@ -8,4 +8,5 @@ export interface ICompareItem {
   description: string;
   rating: number;
   availability?: number;
+  attribute?: any;
 }
