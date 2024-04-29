@@ -33,7 +33,10 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
       order_id: item.order_id,
       product_id: item.product_id,
       product_name: item.product_name,
-      product_price: item.discount_price ?? item.regular_price,
+      product_price:
+        item.discount_price > 0
+          ? item.discount_price * 0.95
+          : item.regular_price * 0.95,
       refund_status: "pending",
       message,
     };
@@ -45,6 +48,7 @@ const SingleOrderDetails: React.FC<IProps> = ({ item }) => {
         },
       });
       if (response?.status === 201) {
+        setValue("message", "");
         toast.success(response.data.message);
         setIsOpen(false);
       }

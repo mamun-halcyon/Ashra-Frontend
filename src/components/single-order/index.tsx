@@ -10,6 +10,7 @@ import { formatDate } from "../dateformate";
 import Invoice from "../invoice";
 import SingleOrderDetails from "../orderDetails";
 import "./index.scss";
+import FormatPrice from "../price-formate";
 
 export interface IProps {
   order: any;
@@ -22,7 +23,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
   const [orderDetails, setOrderDetails] = useState<any>({});
   const [finalPrice, setFinalPrice] = useState<number>(0);
   const [amountBeforeCoupon, setAmountBeforeCoupon] = useState<number>(0);
-
+  const advancePayment = orderDetails.advance_payment ?? 0;
   useEffect(() => {
     if (order?.id) {
       const getOrderDetails = async () => {
@@ -151,7 +152,6 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       setAmountBeforeCoupon(amountBeforeCoupon);
     }
   }, [orderDetails?.coupon, orderDetails?.orderItems]);
-  console.log(finalPrice);
   return (
     <tr className=" font-normal font-gotham text-sm table-border">
       <td scope="row" className="px-6 py-4  ">
@@ -339,27 +339,42 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                       Sub-Total:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Delivery Charges:
+                      Delivery:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
                       Discount:
                     </h3>
                     <h3 className=" font-gotham text-sm font-semibold mb-3">
-                      Total:
+                      Advanced:
+                    </h3>
+                    <h3 className=" font-gotham text-sm font-semibold mb-3">
+                      Due Amount:
                     </h3>
                   </div>
                   <div className="ml-6">
                     <p className=" font-gotham text-sm mb-3">
-                      ৳ {amountBeforeCoupon}
+                      ৳ {FormatPrice(amountBeforeCoupon)}
                     </p>
                     <p className=" font-gotham text-sm mb-3">
-                      ৳ {orderDetails.delivery_fee}
+                      ৳ {FormatPrice(orderDetails.delivery_fee)}
                     </p>
                     <p className=" font-gotham text-sm mb-3">
-                      ৳ {amountBeforeCoupon - finalPrice}
+                      ৳{" "}
+                      {FormatPrice(
+                        amountBeforeCoupon -
+                          finalPrice +
+                          orderDetails.custom_discount
+                      )}
                     </p>
                     <p className=" font-gotham text-sm mb-3">
-                      ৳ {finalPrice + order.delivery_fee}
+                      ৳ {orderDetails.advance_payment ?? 0}
+                    </p>
+                    <p className=" font-gotham text-sm mb-3">
+                      ৳{" "}
+                      {amountBeforeCoupon -
+                        orderDetails.delivery_fee -
+                        orderDetails.custom_discount -
+                        advancePayment}
                     </p>
                   </div>
                 </div>
