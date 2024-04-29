@@ -308,13 +308,13 @@ function Category() {
                     className="price-input font-gotham font-medium text-xs"
                     type="number"
                     min={0}
-                    value={priceRange[0]}
+                    defaultValue={priceRange[0]}
                     onChange={handleMinPrice}
                   />
                   <input
                     className="price-input font-gotham font-medium text-xs"
                     type="number"
-                    value={priceRange[1]}
+                    defaultValue={priceRange[1]}
                     onChange={handleMaxPrice}
                   />
                 </div>
