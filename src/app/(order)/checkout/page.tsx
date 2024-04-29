@@ -335,8 +335,8 @@ function Checkout() {
 
   useEffect(() => {
     if (login) {
-      setEmail(login.user.email);
-      setMobile(login.user.mobile);
+      setEmail(login?.user?.email);
+      setMobile(login?.user?.mobile);
     }
   }, []);
 
