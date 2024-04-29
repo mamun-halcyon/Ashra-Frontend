@@ -144,11 +144,12 @@ const ProductCard: React.FC<IProps> = ({
             </span>
           )}
 
-          {Number(discount_price) > 0 && (
-            <span className=" font-gotham font-bold text-sm">
-              ৳ {FormatPrice(discount_price)}
-            </span>
-          )}
+          {Number(discount_price) > 0 &&
+            Number(discount_price) !== Number(regular_price) && (
+              <span className=" font-gotham font-bold text-sm">
+                ৳ {FormatPrice(discount_price)}
+              </span>
+            )}
         </p>
         <div className="flex justify-center">
           {availability === 1 && (
