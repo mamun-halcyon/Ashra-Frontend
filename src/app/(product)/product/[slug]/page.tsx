@@ -341,7 +341,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
     const { question, number } = data;
     const reviewData = {
       question,
-      number,
+      mobile: number,
       product_id: product?.product?.id,
       product_name: product?.product?.title,
     };
@@ -777,6 +777,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         <span
                           className="mt-2 md:mt-0"
                           onClick={() => {
+                            if (
+                              product?.productAttribute &&
+                              product?.productAttribute.length > 0 &&
+                              selectedAttributes.length < 1
+                            ) {
+                              toast.error("Please Select Variant");
+                              return;
+                            }
                             return (
                               product?.product?.id &&
                               addCompare({
@@ -796,6 +804,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 rating: product.averageReview,
                                 availability: product.product
                                   .availability as number,
+                                attribute: selectedAttributes,
                               })
                             );
                           }}
