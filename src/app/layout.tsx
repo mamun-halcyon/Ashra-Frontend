@@ -55,13 +55,13 @@ const poppins = Poppins({
   variable: "--font-poppins",
   preload: true,
 });
-
+/* 
 export const metadata: Metadata = {
   title: "Gazi Home Appliance",
   description:
     "Gazi Home Appliances is a division of the Gazi Group, based in Bangladesh. It specializes in the production and distribution of home appliances.",
   authors: [{ name: "Talha", url: "https://t-soft.netlify.app" }],
-};
+}; */
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
@@ -101,6 +101,17 @@ async function getMenus(position: string) {
   } */
 
   return res.json();
+}
+export async function generateMetadata(): Promise<Metadata> {
+  const homeData: HomeApiResponse = await getData();
+  return {
+    title: homeData.homePage.meta_title,
+    description: homeData.homePage.meta_description,
+    authors: [
+      { name: "Halcyon Digital", url: "https://halcyonbd.com" },
+      { name: "Talha", url: "https://t-soft.netlify.app" },
+    ],
+  };
 }
 
 export default async function RootLayout({
