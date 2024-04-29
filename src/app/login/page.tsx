@@ -124,7 +124,7 @@ function Login() {
                       className="font-gotham font-normal text-sm black-text primary-hover"
                       href={"/password/reset"}
                     >
-                      Forget Password?
+                      Forgot Password?
                     </Link>
                   </div>
                 </div>

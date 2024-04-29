@@ -92,9 +92,8 @@ function Login() {
                 <FormGroup
                   className="mt-2"
                   type="email"
-                  title="E-Mail*"
+                  title="E-Mail"
                   placeholder="Your Email"
-                  required
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <p className=" font-gotham text-xs warning">{emailError}</p>
