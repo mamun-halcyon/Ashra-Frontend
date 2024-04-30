@@ -8,7 +8,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "api.gcart.com.bd",
         port: "3001",
         pathname: "/**",
