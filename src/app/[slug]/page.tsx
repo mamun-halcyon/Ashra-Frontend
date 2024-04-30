@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import "./page.scss";
 import { API_URL } from "@/constant";
 import "react-quill/dist/quill.snow.css";
+import "../not-found.scss";
+import Image from "next/image";
+import Link from "next/link";
+import CircleLoader from "@/components/css-loader";
 
 type Props = {
   params: {
@@ -21,18 +25,52 @@ async function getPages(slug: string) {
 
 const CustomPage = ({ params: { slug } }: Props) => {
   const [pageData, setPageData] = useState<IPage>({} as IPage);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
-      const data = await getPages(slug);
-      setPageData(data.data);
+      try {
+        const data = await getPages(slug);
+        setPageData(data.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
     };
     fetchData();
   }, [slug]);
 
+  if (loading) {
+    return <CircleLoader />;
+  }
+  if (!pageData?.content) {
+    return (
+      <>
+        <section className="white-bg dark:bg-gray-900 ">
+          <div className="container flex items-center min-h-screen px-6 py-12 mx-auto">
+            <div className="flex flex-col items-center max-w-sm mx-auto text-center">
+              <Image
+                className="w-[400px] h-[200px]"
+                width={200}
+                height={200}
+                alt="404"
+                src={"/assets/images/404/illustration.svg"}
+                property="true"
+              />
+              <Link className="px-2 py-1 primary-bg text-[#fff]" href={"/"}>
+                Back to Homepage
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
   return (
     <section className="custom">
       <div className="container">
