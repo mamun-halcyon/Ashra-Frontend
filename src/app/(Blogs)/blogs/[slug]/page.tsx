@@ -8,6 +8,7 @@ import { BiLogoFacebook, BiLogoLinkedin } from "react-icons/bi";
 import { FiInstagram } from "react-icons/fi";
 import "./page.scss";
 import BlogComment from "@/components/blog-from";
+// import { FaCircleUser } from "react-icons/fa6";
 
 type Props = {
   params: {
@@ -35,6 +36,8 @@ async function popularBlogs() {
 const BlogDetails = async ({ params: { slug } }: Props) => {
   const blogData: IResponse = await getBlog(slug);
   const popular: IResponseBlog = await popularBlogs();
+
+  console.log(blogData);
 
   return (
     <section className="blog-details mt-5">
@@ -106,6 +109,25 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
                   />
                 </div>
               </div>
+              {/*  <div className="shadow mt-5 p-4">
+                <h3 className=" font-gotham font-normal text-base black-text mb-3">
+                  Comments
+                </h3>
+                <div className="flex mt-2  items-center">
+                  <div className="mr-2">
+                    <FaCircleUser />
+                  </div>
+                  <div>
+                    <h4 className="font-gotham font-medium text-sm">
+                      Md Shekh Talha
+                    </h4>
+                    <p className="font-gotham font-normal text-xs">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Vero, illum!
+                    </p>
+                  </div>
+                </div>
+              </div> */}
               <div className="shadow mt-5 p-4">
                 <h3 className=" font-gotham font-normal text-base black-text mb-3">
                   Write a comment
