@@ -473,6 +473,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
     fetchBank();
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!product) {
     return <CircleLoader />;

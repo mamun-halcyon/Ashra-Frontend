@@ -113,6 +113,9 @@ function Category() {
   useEffect(() => {
     setPage(1);
   }, [searchParams.get("category")]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [searchParams.get("category"), page]);
 
   const fetchData = async () => {
     setIsLoading(true);
