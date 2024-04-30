@@ -36,18 +36,21 @@ function Login() {
     e.preventDefault();
     if (
       fullName.trim() !== "" &&
-      email.trim() !== "" &&
       mobile.trim() !== "" &&
       password.trim() !== ""
     ) {
+      const data: any = {
+        name: fullName,
+        mobile: mobile.startsWith("+88") ? mobile.split("+88")[1] : mobile,
+        password: password,
+        role_id: 2,
+      };
+      if (email) {
+        data.email = email;
+      }
+
       try {
-        const response = await axios.post(`${API_URL}/users`, {
-          name: fullName,
-          email: email,
-          mobile: mobile.startsWith("+88") ? mobile.split("+88")[1] : mobile,
-          password: password,
-          role_id: 2,
-        });
+        const response = await axios.post(`${API_URL}/users`, data);
         if (response.status === 201) {
           toast.success("Registration Success!");
           route.push("/login");
