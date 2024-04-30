@@ -10,7 +10,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "api.gcart.com.bd",
-        port: "3001",
+        port: "",
         pathname: "/**",
       },
       {

@@ -1,5 +1,4 @@
 "use client";
-import { API_URL } from "@/constant";
 import { useAppSelector } from "@/redux/hooks";
 import axiosInstance from "../../lib/axios";
 import React, { useState } from "react";
