@@ -6,11 +6,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import "./page.scss";
+import CircleLoader from "@/components/css-loader";
 
 const Faq = () => {
   const [faqs, setFaqs] = useState<IFaq[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState(1);
 
   const increment = () => {
     if (page >= 1) {
@@ -36,7 +38,8 @@ const Faq = () => {
       setLoading(true);
       try {
         const res = await axios.get(`${API_URL}/faqs?page=${page}`);
-        setFaqs(res.data.data.rows);
+        setTotalPage(res.data?.data?.count / 10);
+        setFaqs(res.data?.data?.rows);
         setLoading(false);
       } catch (error) {
         setFaqs([]);
@@ -47,12 +50,12 @@ const Faq = () => {
     getEmis();
   }, [page]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
   if (loading) {
-    return (
-      <p className="py-4 font-gotham font-normal text-base black-text">
-        Loading...
-      </p>
-    );
+    return <CircleLoader />;
   }
 
   return (
@@ -74,12 +77,20 @@ const Faq = () => {
             />
           ))}
         </div>
-        <div className="flex justify-between">
-          <button onClick={decrement}>
-            <FaLongArrowAltLeft />
+        <div className="flex justify-between mt-2">
+          <button
+            onClick={decrement}
+            disabled={page <= 1}
+            className={`${page <= 1 ? "disable" : ""}`}
+          >
+            <FaLongArrowAltLeft className="icon" />
           </button>
-          <button onClick={increment}>
-            <FaLongArrowAltRight />
+          <button
+            className={`${totalPage > page ? "" : "disable"}`}
+            onClick={totalPage > page ? increment : () => {}}
+            disabled={totalPage <= page}
+          >
+            <FaLongArrowAltRight className="icon" />
           </button>
         </div>
       </div>
