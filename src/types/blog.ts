@@ -1,3 +1,8 @@
+type IComment = {
+  name: string;
+  email: string;
+  comment: string;
+};
 export type IBlog = {
   id?: number | string;
   title: string;
@@ -11,6 +16,7 @@ export type IBlog = {
   slug: string;
   created_at: string;
   updated_at?: string;
+  "blog-comments": IComment[];
 };
 
 export interface IResponseBlog {

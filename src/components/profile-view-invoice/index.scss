@@ -89,6 +89,9 @@
       border: 1px solid $secondary-border-color;
       text-align: center;
       padding: 4px;
+      &:last-child {
+        border-right: 1px solid $quinary-border-color;
+      }
     }
     .table-heading {
       background: $secondary-background-color;
