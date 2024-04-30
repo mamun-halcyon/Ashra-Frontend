@@ -11,6 +11,7 @@ import Invoice from "../invoice";
 import SingleOrderDetails from "../orderDetails";
 import "./index.scss";
 import FormatPrice from "../price-formate";
+import ProfileViewInvoice from "../profile-view-invoice";
 
 export interface IProps {
   order: any;
@@ -193,8 +194,13 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                   <RxCross2 />
                 </span>
               </div>
-
-              <div className="flex justify-between flex-wrap mb-4">
+              <ProfileViewInvoice
+                order={order}
+                amountBeforeCoupon={amountBeforeCoupon}
+                shipingCost={order.delivery_fee}
+                finalPrice={finalPrice}
+              />
+              {/*  <div className="flex justify-between flex-wrap mb-4">
                 <div className="w-full md:w-auto">
                   <div className="flex py-1">
                     <p className=" font-gotham text-sm font-semibold">
@@ -378,7 +384,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
