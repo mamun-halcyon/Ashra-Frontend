@@ -45,6 +45,7 @@ function Checkout() {
   const [emailError, setEmailError] = useState("");
   const [mobileError, setMobileError] = useState("");
   const [addressError, setAddressError] = useState("");
+  const [loading, setIsLoading] = useState(false);
   const [totalCostBeforeCoupon, setTotalCostBeforeCoupon] = useState<number>(0);
   const [totalCostAfterCoupon, setTotalCostAfterCoupon] = useState<number>(0);
 
@@ -129,6 +130,7 @@ function Checkout() {
     } else if (!/^[a-zA-Z0-9\s.,'-]+$/.test(address)) {
       setAddressError("Please enter a valid address");
     } else {
+      setIsLoading(true);
       await axios
         .post(`${API_URL}/orders`, orderData)
         .then((res) => {
@@ -149,6 +151,7 @@ function Checkout() {
           } else if (error?.response?.status === 400) {
             toast.error("This Email or Phone already used in another account!");
           }
+          setIsLoading(false);
           console.log("error : ", error);
         });
     }
@@ -735,6 +738,7 @@ function Checkout() {
 
                 <div className="text-right mt-6">
                   <Button
+                    disable={loading}
                     className="font-gotham font-medium py-2 text-xs w-[142px] button"
                     type="submit"
                   >
