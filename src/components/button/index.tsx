@@ -5,11 +5,23 @@ interface IProps {
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
   onClick?: () => void;
+  disable?: boolean;
 }
 
-const Button = ({ children, className, type, onClick }: IProps | any) => {
+const Button = ({
+  children,
+  className,
+  type,
+  onClick,
+  disable,
+}: IProps | any) => {
   return (
-    <button type={type} className={`${className} button`} onClick={onClick}>
+    <button
+      type={type}
+      className={`${className} button`}
+      onClick={onClick}
+      disabled={disable}
+    >
       {children}
     </button>
   );
