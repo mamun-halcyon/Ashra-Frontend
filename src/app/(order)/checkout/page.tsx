@@ -143,6 +143,9 @@ function Checkout() {
         .catch((error) => {
           if (error instanceof AxiosError) {
             toast.error(error.response?.data?.message);
+            setEmailError(
+              error.response?.data?.message?.errors[0]?.instance?.message
+            );
           } else if (error?.response?.status === 400) {
             toast.error("This Email or Phone already used in another account!");
           }
@@ -616,7 +619,7 @@ function Checkout() {
                         Product Name
                       </div>
                       <div className="heading-table col-span-1 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
-                        Sub-total
+                        Regular Price
                       </div>
                       <div className="heading-table col-span-1 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
                         Price
