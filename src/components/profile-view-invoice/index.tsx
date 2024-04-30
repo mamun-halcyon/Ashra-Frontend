@@ -1,9 +1,10 @@
 "use client";
-import Image from "next/image";
 import "./index.scss";
 import FormatPrice from "../price-formate";
 import { useState, useEffect } from "react";
 import { formatDate } from "../dateformate";
+
+import SingleItem from "./singleItem";
 
 const ProfileViewInvoice = ({
   order,
@@ -15,6 +16,7 @@ const ProfileViewInvoice = ({
   const [orderItems, setOrderItems] = useState<any[]>(
     order?.orderItems?.length > 0 ? order?.orderItems : []
   );
+
   const advancePayment = order.advance_payment ?? 0;
   // const [amountBeforeCoupon, setAmountBeforeCoupon] = useState<number>(0);
 
@@ -122,28 +124,11 @@ const ProfileViewInvoice = ({
           <th>Qty</th>
           <th>Unit price (BDT)</th>
           <th>Total</th>
+          <th></th>
         </tr>
         {orderItems?.length > 0 &&
           orderItems?.map((product, index) => (
-            <tr key={index} className="order-item">
-              <td>{index + 1}</td>
-              <td>{product.product_name}</td>
-              <td>
-                {/* Attribute */}
-                {product.product_attribute
-                  ? JSON.parse(product.product_attribute).map(
-                      (v: any, i: number) => (
-                        <span className="variant" key={i}>
-                          {`${i ? "," : ""}${v.attribute_name}`}
-                        </span>
-                      )
-                    )
-                  : "-"}
-              </td>
-              <td> {product.quantity}</td>
-              <td>{FormatPrice(product.regular_price)}</td>
-              <td> {FormatPrice(product.regular_price * product.quantity)}</td>
-            </tr>
+            <SingleItem product={product} key={index} serial={index + 1} />
           ))}
         <tr>
           <td className="span-item" colSpan={4}></td>
