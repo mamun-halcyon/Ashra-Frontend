@@ -6,6 +6,7 @@ import { API_URL } from "@/constant";
 import { RxCross2 } from "react-icons/rx";
 import FormGroup from "../fromgroup";
 import { useDebounce } from "use-debounce";
+import FormatPrice from "../price-formate";
 
 type IProps = {
   handleEmi: () => void;
@@ -150,22 +151,27 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.three_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price + (emiData.three_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price + (emiData.three_months * price) / 100) / 3
+                            {FormatPrice(
+                              Math.ceil(
+                                (price + (emiData.three_months * price) / 100) /
+                                  3
+                              )
                             )}
                           </td>
                         </tr>
@@ -188,22 +194,26 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.six_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price + (emiData.six_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price + (emiData.six_months * price) / 100) / 6
+                            {FormatPrice(
+                              Math.ceil(
+                                (price + (emiData.six_months * price) / 100) / 6
+                              )
                             )}
                           </td>
                         </tr>
@@ -226,22 +236,27 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.nine_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price + (emiData.nine_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price + (emiData.nine_months * price) / 100) / 9
+                            {FormatPrice(
+                              Math.ceil(
+                                (price + (emiData.nine_months * price) / 100) /
+                                  9
+                              )
                             )}
                           </td>
                         </tr>
@@ -264,23 +279,28 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.thirty_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price + (emiData.thirty_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price + (emiData.twelve_months * price) / 100) /
-                                12
+                            {FormatPrice(
+                              Math.ceil(
+                                (price +
+                                  (emiData.twelve_months * price) / 100) /
+                                  12
+                              )
                             )}
                           </td>
                         </tr>
@@ -303,24 +323,28 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.eighteen_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price + (emiData.eighteen_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price +
-                                (emiData.eighteen_months * price) / 100) /
-                                18
+                            {FormatPrice(
+                              Math.ceil(
+                                (price +
+                                  (emiData.eighteen_months * price) / 100) /
+                                  18
+                              )
                             )}
                           </td>
                         </tr>
@@ -343,24 +367,29 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.twenty_four_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price +
+                                  (emiData.twenty_four_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price +
-                                (emiData.twenty_four_months * price) / 100) /
-                                24
+                            {FormatPrice(
+                              Math.ceil(
+                                (price +
+                                  (emiData.twenty_four_months * price) / 100) /
+                                  24
+                              )
                             )}
                           </td>
                         </tr>
@@ -383,23 +412,28 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.thirty_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price + (emiData.thirty_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price + (emiData.thirty_months * price) / 100) /
-                                30
+                            {FormatPrice(
+                              Math.ceil(
+                                (price +
+                                  (emiData.thirty_months * price) / 100) /
+                                  30
+                              )
                             )}
                           </td>
                         </tr>
@@ -422,24 +456,29 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {price}
+                            {FormatPrice(price)}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.round(
-                              price + (emiData.thirty_six_months * price) / 100
+                            {FormatPrice(
+                              Math.round(
+                                price +
+                                  (emiData.thirty_six_months * price) / 100
+                              )
                             )}
                           </td>
                           <td
                             scope="col"
                             className="px-6 py-3 font-gotham font-medium border border-color"
                           >
-                            {Math.ceil(
-                              (price +
-                                (emiData.thirty_six_months * price) / 100) /
-                                36
+                            {FormatPrice(
+                              Math.ceil(
+                                (price +
+                                  (emiData.thirty_six_months * price) / 100) /
+                                  36
+                              )
                             )}
                           </td>
                         </tr>
