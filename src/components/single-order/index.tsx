@@ -137,9 +137,9 @@ const SingleOrder: FC<IProps> = ({ order }) => {
       } else {
         let finalPrice = 0;
         orderDetails?.orderItems?.map((item: any) => {
-          finalPrice += item?.discount_price
+          finalPrice += (item?.discount_price
             ? item?.discount_price
-            : item?.regular_price * item?.quantity;
+            : item?.regular_price) * item?.quantity;
         });
         setFinalPrice(finalPrice);
       }
@@ -159,7 +159,7 @@ const SingleOrder: FC<IProps> = ({ order }) => {
         {order?.order_prefix}-{order.id}
       </td>
       <td className="px-6 py-4">{formatDate(order?.created_at)}</td>
-      <td className="px-6 py-4">৳{finalPrice + order.delivery_fee}</td>
+      <td className="px-6 py-4">৳{(finalPrice + Number(order.delivery_fee) )- (Number(order.advance_payment)+ Number(order.custom_discount))}</td>
       <td className="px-6 py-4 capitalize">{order?.order_status}</td>
       <td className="px-6 py-4 capitalize	">{order?.payment_status}</td>
       <td className="px-6 py-2">
