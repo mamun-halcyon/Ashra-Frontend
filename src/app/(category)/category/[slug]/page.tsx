@@ -145,20 +145,18 @@ function Category() {
     try {
       const response = await axios.get<any>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
-          `${category !== "" ? "&category=" + category : ""}` +
-          `${search !== "" ? "&search=" + search : ""}` +
-          `${
-            priceRange[0] > 0 || priceRange[1] < 200000
-              ? "&min_price=" + priceRange[0]
-              : ""
-          }` +
-          `${
-            priceRange[0] > 0 || priceRange[1] < 200000
-              ? "&max_price=" + priceRange[1]
-              : ""
-          }` +
-          `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
-          `${availability !== "" ? "&availability=" + availability : ""}`
+        `${category !== "" ? "&category=" + category : ""}` +
+        `${search !== "" ? "&search=" + search : ""}` +
+        `${priceRange[0] > 0 || priceRange[1] < 200000
+          ? "&min_price=" + priceRange[0]
+          : ""
+        }` +
+        `${priceRange[0] > 0 || priceRange[1] < 200000
+          ? "&max_price=" + priceRange[1]
+          : ""
+        }` +
+        `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
+        `${availability !== "" ? "&availability=" + availability : ""}`
       );
       setProducts(
         response?.data?.data ? response.data?.data?.rows : response?.data?.rows
@@ -187,6 +185,8 @@ function Category() {
     sortBy,
     availabilities,
   ]);
+
+  console.log('priceRange', priceRange)
   const handleMultipleCategory = (title: string, removeUnselected: boolean) => {
     if (removeUnselected) {
       setCategories((prevState) =>
@@ -218,7 +218,7 @@ function Category() {
           <div className="flex items-center font-gotham font-normal text-sm mt-3 mb-3">
             <Link href={"/"}>Home</Link>
             {searchParams.get("category")?.trim() !== "" &&
-            çategories?.length == 0 ? (
+              çategories?.length == 0 ? (
               <>
                 <RiArrowDropRightLine className=" text-xl" />
                 <Link href={`/category/filter?category=${slug}`}>
@@ -299,7 +299,7 @@ function Category() {
                     value={priceRange}
                     min={0}
                     max={200000}
-                    step={1} // Adjust step size as needed
+                    step={10} // Adjust step size as needed
                     minDistance={500}
                     onChange={(newValue) => {
                       setPriceRange(newValue as [number, number]);
@@ -311,13 +311,13 @@ function Category() {
                     className="price-input font-gotham font-medium text-xs"
                     type="number"
                     min={0}
-                    defaultValue={priceRange[0]}
+                    value={priceRange[0]}
                     onChange={handleMinPrice}
                   />
                   <input
                     className="price-input font-gotham font-medium text-xs"
                     type="number"
-                    defaultValue={priceRange[1]}
+                    value={priceRange[1]}
                     onChange={handleMaxPrice}
                   />
                 </div>
