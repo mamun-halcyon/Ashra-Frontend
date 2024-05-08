@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../../utils/axiosInstance";
 import axios from "../../lib/axios";
 import "./page.scss";
+import { FaLock, FaLockOpen } from "react-icons/fa";
 
 function Login() {
   const route = useRouter();
@@ -21,6 +22,7 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false)
   const [error, setError] = useState("");
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -100,14 +102,21 @@ function Login() {
                   required
                   onChange={(e) => setEmail(e.target.value)}
                 />
+
                 <FormGroup
-                  type="password"
+                  type={isPasswordShow ? "text" : "password"}
                   className="mt-2"
                   title="Password*"
                   placeholder="Enter Password"
                   required
                   onChange={(e) => setPassword(e.target.value)}
-                />
+                >
+                  <div onClick={() => setIsPasswordShow(!isPasswordShow)} className="children">
+                    {
+                      !isPasswordShow ? <FaLock /> : <FaLockOpen />
+                    }
+                  </div>
+                </FormGroup>
 
                 <div className="mt-3 flex justify-between items-center">
                   <div className="flex">

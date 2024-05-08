@@ -1,6 +1,7 @@
 @import "../../styles/index.scss";
 
 .from-group {
+  position: relative;
   .form-input {
     border: 1px solid $quinary-border-color;
     padding: 10px 5px;
@@ -10,5 +11,10 @@
     &:focus-visible {
       outline: $primary-outline-color;
     }
+  }
+  .children{
+    position: absolute;
+    right: 4px;
+    bottom: 12px;
   }
 }

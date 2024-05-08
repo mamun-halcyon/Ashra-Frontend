@@ -1,5 +1,6 @@
 import { ChangeEvent, FC } from "react";
 import "./index.scss";
+import { FaLock } from "react-icons/fa";
 
 interface IProps {
   name?: string;
@@ -12,6 +13,7 @@ interface IProps {
   type?: string;
   value?: any;
   disabled?: boolean;
+  children?: any;
 }
 const FormGroup: FC<IProps> = ({
   className,
@@ -24,6 +26,7 @@ const FormGroup: FC<IProps> = ({
   type,
   value,
   disabled,
+  children
 }) => {
   return (
     <div className={`from-group ${className}`}>
@@ -43,6 +46,9 @@ const FormGroup: FC<IProps> = ({
         value={value}
         disabled={disabled}
       />
+      {
+        children ? children : null
+      }
     </div>
   );
 };
