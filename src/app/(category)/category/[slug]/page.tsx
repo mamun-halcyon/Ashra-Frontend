@@ -158,6 +158,7 @@ function Category() {
         `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
         `${availability !== "" ? "&availability=" + availability : ""}`
       );
+      console.log("response", response)
       setProducts(
         response?.data?.data ? response.data?.data?.rows : response?.data?.rows
       );

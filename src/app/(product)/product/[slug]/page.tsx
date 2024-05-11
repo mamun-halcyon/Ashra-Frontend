@@ -43,6 +43,7 @@ import "./page.scss";
 import "react-quill/dist/quill.snow.css";
 // import ZoomImage from "@/components/zoom-image";
 import CircleLoader from "@/components/css-loader";
+import Link from "next/link";
 const ZoomImage = dynamic(() => import("@/components/zoom-image"));
 const ProductCard = dynamic(() => import("@/components/card"));
 
@@ -457,8 +458,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const smallestOrderPhoto =
     (product?.productPhotos?.length as number) > 0
       ? (product as ISingleProduct).productPhotos.reduce((prev, current) =>
-          prev.order_number < current.order_number ? prev : current
-        )
+        prev.order_number < current.order_number ? prev : current
+      )
       : null;
 
   useEffect(() => {
@@ -547,20 +548,19 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           Regular Price:
                         </h3>
                         <h2
-                          className={`font-gotham  text-xl font-medium ${
-                            product?.product?.discount_price > 0 &&
-                            product?.product?.regular_price !==
+                          className={`font-gotham  text-xl font-medium ${product?.product?.discount_price > 0 &&
+                              product?.product?.regular_price !==
                               product?.product?.discount_price
                               ? " line-through font-normal r-price "
                               : "primary-text"
-                          }  `}
+                            }  `}
                         >
                           ৳{FormatPrice(product?.product?.regular_price)}
                         </h2>
                       </div>
                       {product?.product?.discount_price > 0 &&
                         product?.product?.discount_price !==
-                          product.product.regular_price && (
+                        product.product.regular_price && (
                           <div className="flex items-center">
                             <h3 className=" font-gotham font-medium text-xs black-text mr-3">
                               Discount Price:
@@ -631,20 +631,18 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                         return (
                                           <div
                                             key={j}
-                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${
-                                              selectedAttributes.find(
-                                                (item) =>
-                                                  item.attribute_id ===
-                                                  findAttribute?.id
-                                              )
+                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${selectedAttributes.find(
+                                              (item) =>
+                                                item.attribute_id ===
+                                                findAttribute?.id
+                                            )
                                                 ? "bg-primary white-text"
                                                 : ""
-                                            } ${
-                                              (findAttribute?.attribute_quantity as number) <=
-                                              0
+                                              } ${(findAttribute?.attribute_quantity as number) <=
+                                                0
                                                 ? "disabled-attribute"
                                                 : ""
-                                            }`}
+                                              }`}
                                             onClick={() => {
                                               (findAttribute?.attribute_quantity as number) >
                                                 0 &&
@@ -656,7 +654,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                   (att) =>
                                                     att.attribute_key === key &&
                                                     att.attribute_value ===
-                                                      value
+                                                    value
                                                 )?.attrbute_image as string
                                               );
                                             }}
@@ -836,25 +834,27 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
                     <div className="services py-3">
                       {keyPoints.map((service, index) => (
-                        <div key={index} className="flex items-center mb-3">
-                          <div className=" w-8">
-                            <Image
-                              className="w-full"
-                              src={`${API_ROOT}/images/key-point/${service.image}`}
-                              width={40}
-                              height={40}
-                              alt="service"
-                            />
+                        <Link href={service?.url}>
+                          <div key={index} className="flex items-center mb-3">
+                            <div className=" w-8">
+                              <Image
+                                className="w-full"
+                                src={`${API_ROOT}/images/key-point/${service.image}`}
+                                width={40}
+                                height={40}
+                                alt="service"
+                              />
+                            </div>
+                            <div className="details ml-2">
+                              <h3 className=" font-gotham font-medium text-bold text-base primary-text">
+                                {service.title}
+                              </h3>
+                              <h4 className=" font-gotham font-medium text-bold text-xs black-text">
+                                {service.subtitle}
+                              </h4>
+                            </div>
                           </div>
-                          <div className="details ml-2">
-                            <h3 className=" font-gotham font-medium text-bold text-base primary-text">
-                              {service.title}
-                            </h3>
-                            <h4 className=" font-gotham font-medium text-bold text-xs black-text">
-                              {service.subtitle}
-                            </h4>
-                          </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
 
