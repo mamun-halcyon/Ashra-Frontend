@@ -174,7 +174,8 @@ function WishlistPage() {
                     <div>
                       {item.availability === 1 ? (
                         <Button
-                          className="px-6 py-1 font-gotham font-medium text-sm w-btn"
+                        
+                          className="px-6 py-1 font-gotham font-medium text-sm w-btn btn__disable"
                           onClick={() =>
                             dispatch(
                               addToCart({
@@ -191,7 +192,7 @@ function WishlistPage() {
                           Add to Cart
                         </Button>
                       ) : item.availability === 2 ? (
-                        <Button className="px-4 py-1 font-gotham font-medium text-sm w-btn">
+                        <Button className="px-4 py-1 font-gotham font-medium text-sm w-btn btn__disable">
                           Out of Stock
                         </Button>
                       ) : (

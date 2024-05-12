@@ -158,7 +158,6 @@ function Category() {
         `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
         `${availability !== "" ? "&availability=" + availability : ""}`
       );
-      console.log("response", response)
       setProducts(
         response?.data?.data ? response.data?.data?.rows : response?.data?.rows
       );
@@ -187,7 +186,6 @@ function Category() {
     availabilities,
   ]);
 
-  console.log('priceRange', priceRange)
   const handleMultipleCategory = (title: string, removeUnselected: boolean) => {
     if (removeUnselected) {
       setCategories((prevState) =>
@@ -496,7 +494,7 @@ function Category() {
                   )}
                 </div>
               ) : (
-                <div className=" py-5 text-center">
+                <div className="loading-container py-5 text-center">
                   <p className=" font-gotham text-sm">Loading...</p>
                 </div>
               )}

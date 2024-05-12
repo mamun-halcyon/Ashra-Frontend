@@ -121,7 +121,7 @@ function Checkout() {
     setAddressError("");
     setMobileError("");
 
-    if (!/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(name)) {
+    if (!/^[a-zA-Z\s.']+$/.test(name)) {
       setNameError("Please enter a valid Name");
     } else if (email && !/^\S+@\S+\.\S+$/.test(email)) {
       setEmailError("Please enter a valid email address");
@@ -175,7 +175,6 @@ function Checkout() {
         }
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
-          console.log(error);
           setApprovePromoData(null);
           setCouponId(null);
           setApprovePromStatus(
@@ -424,9 +423,9 @@ function Checkout() {
                   <div className="grid grid-cols-2 gap-4">
                     <FormGroup
                       className="mb-1"
-                      title="City*"
+                      title="Thana*"
                       onChange={(e) => setCity(e.target.value)}
-                      placeholder="Type your city*"
+                      placeholder="Type your thana*"
                     />
                     <div>
                       <label
@@ -469,7 +468,7 @@ function Checkout() {
                     title="Payment Method"
                   >
                     <p className=" font-gotham font-normal text-xs black-text">
-                      Select a payment method
+                      Select a payment methoddd
                     </p>
                     <div className="py-2">
                       <div className="flex  items-center">
@@ -507,7 +506,7 @@ function Checkout() {
                       We Accept
                     </p>
                     <Image
-                      src={"/assets/images/service/card-logo.png"}
+                      src={"/assets/images/service/payment_2.png"}
                       className="w-9/12 mt-2"
                       width={300}
                       height={100}

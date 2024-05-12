@@ -72,7 +72,10 @@
     }
   }
 }
-
+.loading-container{
+  min-height: 100vh;
+  height: 100%;
+}
 .filter-products {
   border-bottom: 1px solid $quinary-border-color;
   .product-card {

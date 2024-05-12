@@ -39,7 +39,7 @@ const Footer = async ({ globalData }: IProps) => {
               height={80}
               alt="gazi group logo"
             />
-            <div className="flex items-start mb-3">
+            <div className="flex mb-3">
               <span className="mr-4">
                 <FaLocationDot className=" w-5 h-5 black-text mt-1" />
               </span>
@@ -47,22 +47,22 @@ const Footer = async ({ globalData }: IProps) => {
                 {globalData?.setting?.address}
               </p>
             </div>
-            <div className="flex mb-3">
+            <a className="flex mb-3" href={"tel:" + globalData?.setting?.contact_number}>
               <span className="mr-4">
                 <BsHeadphones className=" w-5 h-5 black-text mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm black-text">
                 {globalData?.setting?.contact_number}
               </p>
-            </div>
-            <div className="flex">
+            </a>
+            <a className="flex items-start " href={"mailto: " + globalData?.setting?.address}>
               <span className="mr-4">
                 <BsEnvelopeFill className=" w-5 h-5 black-text mt-1" />
               </span>
               <p className=" font-gotham font-normal text-sm black-text">
                 {globalData?.setting?.contact_email}
               </p>
-            </div>
+            </a>
           </div>
           <div>
             <div className="w-[60%] md:mx-auto">
@@ -211,7 +211,7 @@ const Footer = async ({ globalData }: IProps) => {
             <div className="w-[60%] md:w-auto">
               <Image
                 className=" md:h-6 bottom-image "
-                src={"/assets/images/footer/payment.png"}
+                src={"/assets/images/footer/payment-logo.png"}
                 width={400}
                 height={50}
                 alt="payment"

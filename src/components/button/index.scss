@@ -10,3 +10,9 @@
     background: $hover-color;
   }
 }
+
+.btn__disable{
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: .75;
+}

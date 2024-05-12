@@ -227,19 +227,20 @@ const ListCard: FC<IProps> = ({ product }) => {
             ? "Upcoming"
             : "Not Available"}
         </h3>
-        <h4
-          className={` font-gotham  ${
-            product.discount_price > 0
-              ? "text-xs line-through font-normal"
-              : "font-medium text-base"
-          } black-text`}
-        >
-          ৳ {FormatPrice(product.regular_price)}
-        </h4>
+        {
+          product.discount_price > 0
+          &&Number(product?.discount_price) != Number(product?.regular_price)?
+            <h4
+            className={` font-gotham text-xs line-through font-normal black-text`}
+          >
+            ৳ {FormatPrice(product.regular_price)} 
+          </h4>:null
+        }
+       
         <div className="flex justify-between flex-wrap items-center">
-          {Number(product.discount_price) > 0 && (
+          {Number(product.regular_price)&& (
             <h3 className=" font-gotham font-medium text-base black-text">
-              ৳ {FormatPrice(product.discount_price)}
+              ৳ {FormatPrice(product.regular_price)}
             </h3>
           )}
           {product.discount_price > 0 && (
