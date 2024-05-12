@@ -13,8 +13,8 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../utils/axiosInstance";
 import axios from "../../lib/axios";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import "./page.scss";
-import { FaLock, FaLockOpen } from "react-icons/fa";
 
 function Login() {
   const route = useRouter();
@@ -113,7 +113,7 @@ function Login() {
                 >
                   <div onClick={() => setIsPasswordShow(!isPasswordShow)} className="children">
                     {
-                      !isPasswordShow ? <FaLock /> : <FaLockOpen />
+                      !isPasswordShow ? <IoMdEye /> : <IoMdEyeOff />
                     }
                   </div>
                 </FormGroup>
