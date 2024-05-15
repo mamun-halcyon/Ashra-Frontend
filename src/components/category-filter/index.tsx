@@ -5,11 +5,13 @@ import SubCategory from "./sub-category";
 interface IProps {
   categoryFilterItems: ICategoryData[];
   handleMultipleCategory: (title: string, removeUnselected: boolean) => void;
+  activeCategories:string[]
 }
 
 const CategoryFilter: FC<IProps> = ({
   categoryFilterItems,
   handleMultipleCategory,
+  activeCategories
 }) => {
   return (
     <>
@@ -27,6 +29,7 @@ const CategoryFilter: FC<IProps> = ({
               categoryFilterItems={categoryFilterItems}
               rootCategory={rootCategory}
               handleMultipleCategory={handleMultipleCategory}
+              activeCategories={activeCategories}
             />
           );
         })}

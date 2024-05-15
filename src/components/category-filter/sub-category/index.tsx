@@ -11,11 +11,13 @@ interface IProps {
   categoryFilterItems: ICategoryData[];
   rootCategory: ICategoryData;
   handleMultipleCategory: (title: string, removeUnselected: boolean) => void;
+  activeCategories:string[]
 }
 
 const SubCategory: FC<IProps> = ({
   categoryFilterItems,
   rootCategory,
+  activeCategories,
   handleMultipleCategory,
 }) => {
   const dispatch = useAppDispatch();
@@ -26,7 +28,6 @@ const SubCategory: FC<IProps> = ({
   const onClickSubCategoryHandler = (event: any) => {
     setShowChildCatefories(event.target.innerText);
   };
-
   return (
     <div className="subCategory">
       {categoryFilterItems.filter(
@@ -36,6 +37,7 @@ const SubCategory: FC<IProps> = ({
           .filter((category) => category.parent_category === rootCategory.slug)
           .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
           .map((subCategory) => {
+            if(subCategory?.isActive)
             return (
               <Link
                 href={`/category/filter?category=${subCategory.slug}`}

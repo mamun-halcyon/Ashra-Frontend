@@ -13,7 +13,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { PiDotsNineBold } from "react-icons/pi";
@@ -38,9 +38,13 @@ function Category() {
   const [çategories, setCategories] = useState<string[]>([]);
   const [availabilities, setAvailabilities] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mainCategory, setMainCategory] = useState<
+    ICategoryData[]
+  >([]);
   const [categoryFilterItems, setCategoryFilterItems] = useState<
     ICategoryData[]
   >([]);
+  const [activeCategories, setActiveCategories] = useState<string[]>([])
   const [count, setCount] = useState(0);
 
   const handleShow = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -98,7 +102,8 @@ function Category() {
           `${API_URL}/categories?page=1&limit=100`
         );
         if (response.status == 200) {
-          setCategoryFilterItems(response.data?.data?.rows);
+          ds(response.data?.data?.rows)
+          setMainCategory(response.data?.data?.rows);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -109,6 +114,7 @@ function Category() {
   }, []);
   useEffect(() => {
     categoryAdBanner();
+    ds(mainCategory)
   }, [searchParams]);
   useEffect(() => {
     setPage(1);
@@ -116,6 +122,82 @@ function Category() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [searchParams.get("category"), page]);
+
+  const getParentCategory = (list: any, text: string) => {
+    for (let i = 0; i < list?.length; i++) {
+      if (list[i].slug?.trim() == text?.trim() && (list[i].parent_category === "0" ||
+        list[i].parent_category === null ||
+        list[i].parent_category === "")) {
+
+
+        return list[i].slug;
+      }
+      else if (list[i].slug?.trim() == text?.trim()) {
+
+        for (let j = 0; j < list?.length; j++) {
+          if (list[i].parent_category?.trim() == list[j].slug?.trim() &&
+            (list[j].parent_category === "0" ||
+              list[j].parent_category === null ||
+              list[j].parent_category === "")
+          ) {
+            return list[j].slug;
+
+          }
+          else if (list[i].parent_category?.trim() == list[j].slug?.trim()) {
+            for (let k = 0; k < list?.length; k++) {
+              if (list[j].parent_category?.trim() == list[k].slug?.trim() &&
+                (list[k].parent_category === "0" ||
+                  list[k].parent_category === null ||
+                  list[k].parent_category === "")
+              ) {
+                return list[k].slug;
+
+              }
+            }
+          }
+        }
+
+        // getParentCategory(list, list[i].parent_category)
+      }
+    }
+    return ''
+  }
+
+  const ds = (data: any) => {
+    setCategoryFilterItems([])
+    let paramCatagory = searchParams.get("category")?.trim() || '';
+    let temp = JSON.parse(JSON.stringify(data))
+    let category: any[] = [];
+    let finalCategory: any[] = [];
+    let parentCategory: string = getParentCategory(temp, paramCatagory) || ''
+
+    if (parentCategory != '') {
+      for (let i = 0; i < temp?.length; i++) {
+
+      }
+      for (let i = 0; i < temp?.length; i++) {
+        if (parentCategory?.trim() == temp[i]?.parent_category?.trim() || (parentCategory?.trim() == temp[i]?.slug?.trim())) category.push(temp[i]?.slug)
+      }
+      for (let i = 0; i < category?.length; i++) {
+        if (category[i])
+          for (let j = 0; j < temp?.length; j++) {
+            if (category[i]?.trim() == temp[j]?.parent_category?.trim() || (category[i]?.trim() == temp[j]?.slug?.trim())) finalCategory.push(temp[j]?.slug)
+
+          }
+      }
+      for (let i = 0; i < finalCategory?.length; i++) {
+        for (let j = 0; j < temp?.length; j++) {
+          if (finalCategory[i]?.trim() == temp[j].slug?.trim()) {
+            temp[j].isActive = true;
+
+          }
+        }
+      }
+    }
+    finalCategory = finalCategory.filter((item, i, ar) => ar.indexOf(item) === i);
+    setCategoryFilterItems([...temp])
+    setActiveCategories(finalCategory)
+  }
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -211,6 +293,9 @@ function Category() {
   };
 
   return (
+
+    // <Suspense key={searchParams.get("category")} fallback={<p>commming...</p>}>
+
     <main>
       <section className=" hidden md:block">
         <div className="container">
@@ -233,285 +318,304 @@ function Category() {
       </section>
       <section className="pb-12">
         <div className="container">
-          <div className="flex justify-between">
-            <div className=" hidden md:block md:w-[250px]">
-              <FilterBox title="Category">
-                <CategoryFilter
-                  categoryFilterItems={categoryFilterItems}
-                  handleMultipleCategory={handleMultipleCategory}
-                />
-              </FilterBox>
+          {
+            mainCategory?.length ?
+              <div className="flex justify-between">
+                {
+                  categoryFilterItems?.length ?
+                    <div className=" hidden md:block md:w-[250px]">
+                      <FilterBox title="Category">
+                        <CategoryFilter
+                          activeCategories={activeCategories}
+                          categoryFilterItems={categoryFilterItems}
+                          handleMultipleCategory={handleMultipleCategory}
+                        />
+                      </FilterBox>
 
-              <FilterBox title="Availability">
-                <div className="flex mb-2">
-                  <input
-                    type="checkbox"
-                    name="stock"
-                    id="stock"
-                    value={1}
-                    onChange={handleAvailability}
-                  />
-                  <label
-                    className="ml-2 font-gotham font-normal text-sm primary-hover transition-all"
-                    htmlFor="stock"
-                  >
-                    In Stock
-                  </label>
-                </div>
-                <div className="flex mb-2">
-                  <input
-                    type="checkbox"
-                    name="stock-out"
-                    id="stockout"
-                    value={2}
-                    onChange={handleAvailability}
-                  />
-                  <label
-                    className="ml-2 font-gotham font-normal text-sm primary-hover"
-                    htmlFor="stockout"
-                  >
-                    Out of Stock
-                  </label>
-                </div>
-                <div className="flex">
-                  <input
-                    type="checkbox"
-                    name="instock"
-                    id="upcoming"
-                    value={3}
-                    onChange={handleAvailability}
-                  />
-                  <label
-                    className="ml-2 font-gotham font-normal text-sm primary-hover"
-                    htmlFor="upcoming"
-                  >
-                    Up Coming
-                  </label>
-                </div>
-              </FilterBox>
-              <FilterBox title="Price">
-                <div className="double-slider-container">
-                  <ReactSlider
-                    className="horizontal-slider"
-                    thumbClassName="example-thumb"
-                    trackClassName="example-track"
-                    value={priceRange}
-                    min={0}
-                    max={200000}
-                    step={10} // Adjust step size as needed
-                    minDistance={500}
-                    onChange={(newValue) => {
-                      setPriceRange(newValue as [number, number]);
-                    }}
-                  />
-                </div>
-                <div className="flex w-full justify-between mt-2">
-                  <input
-                    className="price-input font-gotham font-medium text-xs"
-                    type="number"
-                    min={0}
-                    value={priceRange[0]}
-                    onChange={handleMinPrice}
-                  />
-                  <input
-                    className="price-input font-gotham font-medium text-xs"
-                    type="number"
-                    value={priceRange[1]}
-                    onChange={handleMaxPrice}
-                  />
-                </div>
-              </FilterBox>
-            </div>
-            <div className="md:w-[925px] w-full">
-              {adsBanner?.image && (
-                <div className="category-banner mb-5">
-                  <div className="h-[235px]">
-                    <Link href={adsBanner.url}>
-                      <Image
-                        className="w-full h-full transition-all duration-100 hover:scale-[1.01]"
-                        src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
-                        width={1000}
-                        height={300}
-                        alt="gazi category-banner"
-                      />
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5 shadow-sm">
-                <div className=" flex items-center">
-                  <span
-                    className={`${isRow ? "active" : null} p-1 mr-2 `}
-                    onClick={() => setIsRow(true)}
-                  >
-                    <PiDotsNineBold className="text-xl icon" />
-                  </span>
-                  <span
-                    className={`${!isRow ? "active" : null} p-1 `}
-                    onClick={() => setIsRow(false)}
-                  >
-                    <AiOutlineBars className="text-xl icon" />
-                  </span>
-                </div>
-                <div className="action flex items-center">
-                  <div>
-                    <ActionButton title={sortBy}>
-                      <ul>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleSortBy}
-                        >
-                          Newest
-                        </li>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleSortBy}
-                        >
-                          Oldest
-                        </li>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleSortBy}
-                        >
-                          Price low to high
-                        </li>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleSortBy}
-                        >
-                          Price high to low
-                        </li>
-                      </ul>
-                    </ActionButton>
-                  </div>
-
-                  <div className="ml-2">
-                    <ActionButton title={showTitle}>
-                      <ul>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleShow}
-                        >
-                          12
-                        </li>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleShow}
-                        >
-                          16
-                        </li>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleShow}
-                        >
-                          20
-                        </li>
-                        <li
-                          className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
-                          onClick={handleShow}
-                        >
-                          24
-                        </li>
-                      </ul>
-                    </ActionButton>
-                  </div>
-                  <div className="flex items-center ml-2">
-                    {page > 1 && (
-                      <div
-                        className=" cursor-pointer p-1"
-                        onClick={decrementPage}
-                      >
-                        <IoMdArrowDropleft />
-                      </div>
-                    )}
-
-                    <div className=" font-gotham font-normal text-xs flex items-center">
-                      <div className="active w-[30px] h-[26px] mr-[6px] flex items-center justify-center ">
-                        {page}
-                      </div>
-                      <p>of {Math.ceil(count / Number(limit))}</p>
-                    </div>
-                    {page < Math.ceil(count / Number(limit)) && (
-                      <div
-                        className=" cursor-pointer p-1"
-                        onClick={incrementPage}
-                      >
-                        <IoMdArrowDropright />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {!isLoading ? (
-                <div className="filter-products px-2 md:px-0 mx-1 md:mx-0">
-                  {isRow ? (
-                    <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
-                      {products?.length > 0 ? (
-                        products?.map((product, i) => (
-                          <ProductCard
-                            key={i}
-                            url={product.slug}
-                            image={product.image}
-                            title={product.title}
-                            regular_price={product.regular_price}
-                            discount_price={product.discount_price}
-                            isNew={product.is_new}
-                            product_id={Number(product.id)}
-                            sort_description={product.sort_description}
-                            availability={product.availability}
-                            quantity={product.default_quantity}
-                            productAttribute={product["product-attributes"]}
-                            camping_end_date={
-                              product.camping_end_date as string
-                            }
-                            camping_start_date={
-                              product.camping_start_date as string
-                            }
+                      <FilterBox title="Availability">
+                        <div className="flex mb-2">
+                          <input
+                            type="checkbox"
+                            name="stock"
+                            id="stock"
+                            value={1}
+                            onChange={handleAvailability}
                           />
-                        ))
-                      ) : (
-                        <>
-                          <div className="py-5 text-center col-span-4">
-                            <p className=" font-gotham black-text text-sm text-center font-normal">
-                              Product not found
-                            </p>
+                          <label
+                            className="ml-2 font-gotham font-normal text-sm primary-hover transition-all"
+                            htmlFor="stock"
+                          >
+                            In Stock
+                          </label>
+                        </div>
+                        <div className="flex mb-2">
+                          <input
+                            type="checkbox"
+                            name="stock-out"
+                            id="stockout"
+                            value={2}
+                            onChange={handleAvailability}
+                          />
+                          <label
+                            className="ml-2 font-gotham font-normal text-sm primary-hover"
+                            htmlFor="stockout"
+                          >
+                            Out of Stock
+                          </label>
+                        </div>
+                        <div className="flex">
+                          <input
+                            type="checkbox"
+                            name="instock"
+                            id="upcoming"
+                            value={3}
+                            onChange={handleAvailability}
+                          />
+                          <label
+                            className="ml-2 font-gotham font-normal text-sm primary-hover"
+                            htmlFor="upcoming"
+                          >
+                            Up Coming
+                          </label>
+                        </div>
+                      </FilterBox>
+                      <FilterBox title="Price">
+                        <div className="double-slider-container">
+                          <ReactSlider
+                            className="horizontal-slider"
+                            thumbClassName="example-thumb"
+                            trackClassName="example-track"
+                            value={priceRange}
+                            min={0}
+                            max={200000}
+                            step={10} // Adjust step size as needed
+                            minDistance={500}
+                            onChange={(newValue) => {
+                              setPriceRange(newValue as [number, number]);
+                            }}
+                          />
+                        </div>
+                        <div className="flex w-full justify-between mt-2">
+                          <input
+                            className="price-input font-gotham font-medium text-xs"
+                            type="number"
+                            min={0}
+                            value={priceRange[0]}
+                            onChange={handleMinPrice}
+                          />
+                          <input
+                            className="price-input font-gotham font-medium text-xs"
+                            type="number"
+                            value={priceRange[1]}
+                            onChange={handleMaxPrice}
+                          />
+                        </div>
+                      </FilterBox>
+                    </div>
+                    : ''
+                }
+
+                <div className="md:w-[925px] w-full">
+                  {adsBanner?.image && (
+                    <div className="category-banner mb-5">
+                      <div className="h-[235px]">
+                        <Link href={adsBanner.url}>
+                          <Image
+                            className="w-full h-full transition-all duration-100 hover:scale-[1.01]"
+                            src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
+                            width={1000}
+                            height={300}
+                            alt="gazi category-banner"
+                          />
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex justify-between items-center filter-bar py-2 px-5 mb-5 shadow-sm">
+                    <div className=" flex items-center">
+                      <span
+                        className={`${isRow ? "active" : null} p-1 mr-2 `}
+                        onClick={() => setIsRow(true)}
+                      >
+                        <PiDotsNineBold className="text-xl icon" />
+                      </span>
+                      <span
+                        className={`${!isRow ? "active" : null} p-1 `}
+                        onClick={() => setIsRow(false)}
+                      >
+                        <AiOutlineBars className="text-xl icon" />
+                      </span>
+                    </div>
+                    <div className="action flex items-center">
+                      <div >
+                        <ActionButton title={sortBy}>
+                          <ul>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleSortBy}
+                            >
+                              Newest
+                            </li>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleSortBy}
+                            >
+                              Oldest
+                            </li>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleSortBy}
+                            >
+                              Price low to high
+                            </li>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleSortBy}
+                            >
+                              Price high to low
+                            </li>
+                          </ul>
+                        </ActionButton>
+                      </div>
+
+                      <div className="ml-2">
+                        <ActionButton title={showTitle}>
+                          <ul>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleShow}
+                            >
+                              12
+                            </li>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleShow}
+                            >
+                              16
+                            </li>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleShow}
+                            >
+                              20
+                            </li>
+                            <li
+                              className="py-1 cursor-pointer action-item px-1 font-gotham text-xs font-normal"
+                              onClick={handleShow}
+                            >
+                              24
+                            </li>
+                          </ul>
+                        </ActionButton>
+                      </div>
+                      <div className="flex items-center ml-2">
+                        {page > 1 && (
+                          <div
+                            className=" cursor-pointer p-1"
+                            onClick={decrementPage}
+                          >
+                            <IoMdArrowDropleft />
                           </div>
-                        </>
+                        )}
+
+                        <div className=" font-gotham font-normal text-xs flex items-center">
+                          <div className="active w-[30px] h-[26px] mr-[6px] flex items-center justify-center ">
+                            {page}
+                          </div>
+                          <p>of {Math.ceil(count / Number(limit))}</p>
+                        </div>
+                        {page < Math.ceil(count / Number(limit)) && (
+                          <div
+                            className=" cursor-pointer p-1"
+                            onClick={incrementPage}
+                          >
+                            <IoMdArrowDropright />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {!isLoading ? (
+                    <div className="filter-products px-2 md:px-0 mx-1 md:mx-0">
+                      {isRow ? (
+                        <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
+                          {products?.length > 0 ? (
+                            products?.map((product, i) => (
+                              <ProductCard
+                                key={i}
+                                url={product.slug}
+                                image={product.image}
+                                title={product.title}
+                                regular_price={product.regular_price}
+                                discount_price={product.discount_price}
+                                isNew={product.is_new}
+                                product_id={Number(product.id)}
+                                sort_description={product.sort_description}
+                                availability={product.availability}
+                                quantity={product.default_quantity}
+                                productAttribute={product["product-attributes"]}
+                                camping_end_date={
+                                  product.camping_end_date as string
+                                }
+                                camping_start_date={
+                                  product.camping_start_date as string
+                                }
+                              />
+                            ))
+                          ) : (
+                            <>
+                              <div className="py-5 text-center col-span-4">
+                                <p className=" font-gotham black-text text-sm text-center font-normal">
+                                  Product not found
+                                </p>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 mb-5">
+                          {products?.length > 0 ? (
+                            products?.map((product, i) => (
+                              <ListCard key={i} product={product} />
+                            ))
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       )}
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 mb-5">
-                      {products?.length > 0 ? (
-                        products?.map((product, i) => (
-                          <ListCard key={i} product={product} />
-                        ))
-                      ) : (
-                        <></>
-                      )}
+                    <div className="loading-container py-5 text-center">
+                      <p className=" font-gotham text-sm">Loading...</p>
                     </div>
                   )}
-                </div>
-              ) : (
-                <div className="loading-container py-5 text-center">
-                  <p className=" font-gotham text-sm">Loading...</p>
-                </div>
-              )}
 
-              <Pagination
-                page={page}
-                incrementPage={incrementPage}
-                decrementPage={decrementPage}
-                showTitle={showTitle}
-                handleShow={handleShow}
-                totalPage={Math.ceil(count / Number(limit))}
-              />
-            </div>
-          </div>
+                  <Pagination
+                    page={page}
+                    incrementPage={incrementPage}
+                    decrementPage={decrementPage}
+                    showTitle={showTitle}
+                    handleShow={handleShow}
+                    totalPage={Math.ceil(count / Number(limit))}
+                  />
+                </div>
+              </div>
+              :
+              <>
+                <div className="py-5 text-center col-span-4">
+                  <p className=" font-gotham black-text text-sm text-center font-normal">
+                    Loading...
+                  </p>
+                </div>
+              </>
+          }
+
         </div>
       </section>
     </main>
+    // </Suspense>
   );
 }
 

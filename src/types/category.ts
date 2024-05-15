@@ -11,6 +11,7 @@ export interface ICategoryData {
   created_at: string;
   updated_at: string;
   isOpen?: boolean;
+  isActive?:boolean
 }
 
 export interface ICategoryResponse {

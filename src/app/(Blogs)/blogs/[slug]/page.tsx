@@ -37,8 +37,6 @@ const BlogDetails = async ({ params: { slug } }: Props) => {
   const blogData: IResponse = await getBlog(slug);
   const popular: IResponseBlog = await popularBlogs();
 
-  console.log(blogData);
-
   return (
     <section className="blog-details mt-5">
       <div className="container px-2 md:px-0">
