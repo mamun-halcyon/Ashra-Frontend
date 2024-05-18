@@ -11,6 +11,7 @@ import axiosInstance from "../../../../utils/axiosInstance";
 import "../page.scss";
 import "./page.scss";
 import { AxiosError } from "axios";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const UpdateProfile = () => {
   const route = useRouter();
@@ -25,6 +26,8 @@ const UpdateProfile = () => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [errors, setErrors] = useState<any>({});
+  const [isShowPass, setIsShowPass] = useState<boolean>(false)
+  const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false)
 
   useEffect(() => {
     if (login?.accessToken) {
@@ -165,18 +168,40 @@ const UpdateProfile = () => {
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                       />
+                      
                       <FormGroup
-                        type="password"
-                        title="Your Password"
+                        type={isShowPass ? "text" : "password"}
+                        className="mt-2"
+                        title="Password*"
+                        placeholder="Enter Password"
+                        required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                      />
+                      >
+                        <div onClick={() => setIsShowPass(!isShowPass)} className="children">
+                          {
+                            !isShowPass ? <IoMdEye /> : <IoMdEyeOff />
+                          }
+                        </div>
+                      </FormGroup>
                       <FormGroup
-                        type="password"
-                        title="Confirm Password"
+                        type={isShowConfirm ? "text" : "password"}
+                        className="mt-2"
+                        title="Confirm Password*"
+                        placeholder="Enter Password"
+                        required
                         value={confirmPassword}
+
+
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                      />
+                      >
+                        <div onClick={() => setIsShowConfirm(!isShowConfirm)} className="children">
+                          {
+                            !isShowConfirm ? <IoMdEye /> : <IoMdEyeOff />
+                          }
+                        </div>
+                      </FormGroup>
+
                     </div>
 
                     <Button

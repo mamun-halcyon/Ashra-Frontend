@@ -7,6 +7,7 @@ import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
 import "./index.scss";
 import { useAppDispatch } from "@/redux/hooks";
 import { addCategory } from "@/redux/features/category/categorySlice";
+import { useEffect, useState } from "react";
 
 type IProps = {
   menus: ICategoryData[];
@@ -14,8 +15,22 @@ type IProps = {
 const MegaMenu = ({ menus }: IProps) => {
   const dispatch = useAppDispatch();
   const route = useRouter();
+  const [stickyClass, setStickyClass] =useState('')
+
+  function stickNavbar() {
+    let windowHeight = window.scrollY;
+    windowHeight >= 140 ?setStickyClass("sticky-nav"): setStickyClass("")
+}
+
+useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+    return () => {
+      window.removeEventListener('scroll', stickNavbar);
+    }
+}, []);
+
   return (
-    <>
+    <section className={stickyClass}>
       <div className="py-2 shadow hidden md:block">
         <div className="container px-2 md:px-0">
           <div className="flex justify-between items-center ">
@@ -238,7 +253,7 @@ const MegaMenu = ({ menus }: IProps) => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

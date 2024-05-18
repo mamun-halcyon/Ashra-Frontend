@@ -175,7 +175,7 @@ function WishlistPage() {
                       {item.availability === 1 ? (
                         <Button
                         
-                          className="px-6 py-1 font-gotham font-medium text-sm w-btn btn__disable"
+                          className="px-6 py-1 font-gotham font-medium text-sm w-btn"
                           onClick={() =>
                             dispatch(
                               addToCart({

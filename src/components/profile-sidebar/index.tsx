@@ -122,9 +122,9 @@ const ProfileSidebar = () => {
             </span>
             <Link
               className="font-gotham font-normal text-sm black-text py-2"
-              href={"/profile/conversations"}
+              href={"/profile/questions"}
             >
-              Conversations
+              Questions
             </Link>
           </li>
           <li className="flex items-center pl-3 mt-1">

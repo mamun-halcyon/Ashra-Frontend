@@ -200,6 +200,15 @@ const Invoice = ({
           24 hours to complete the installation.
         </p>
       </div>
+      <div className="invoice-footer">
+        <div className="title">
+          {order.order_prefix === "GHA" ? (
+            <img src="/assets/invoice/home-footer.png" alt="invoice" />
+          ) : (
+            <img src="/assets/invoice/pump-footer.png" alt="invoice" />
+          )}
+        </div>
+      </div>
       {/* <table className="w-full">
         <thead>
           <tr className="secondary-bg text-left table-border">

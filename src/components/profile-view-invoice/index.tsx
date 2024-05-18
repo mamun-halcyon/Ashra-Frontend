@@ -96,12 +96,12 @@ const ProfileViewInvoice = ({
               <span className="invoice-title"> Total Order Amount : </span>{" "}
               {totalPrice + order.delivery_fee - order.custom_discount}
             </p>
-            <p>
+            {/* <p>
               <span className="invoice-title"> Shipping Method: </span>{" "}
               {order?.delivery_method === "homeDelivery"
                 ? "Free Delivery"
                 : "Express Delivery"}
-            </p>
+            </p> */}
             <p>
               <span className="invoice-title"> Payment Method: </span>{" "}
               {order?.payment_method === "cod"
@@ -184,6 +184,15 @@ const ProfileViewInvoice = ({
           product if the customer wishes for us to install it. We will require
           24 hours to complete the installation.
         </p>
+      </div>
+      <div className="invoice-footer">
+        <div className="title">
+          {order.order_prefix === "GHA" ? (
+            <img src="/assets/invoice/home-footer.png" alt="invoice" />
+          ) : (
+            <img src="/assets/invoice/pump-footer.png" alt="invoice" />
+          )}
+        </div>
       </div>
       {/* <table className="w-full">
         <thead>
