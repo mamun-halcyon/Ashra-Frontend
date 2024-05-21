@@ -12,10 +12,11 @@ import ReduxProvider from "@/redux/provider";
 import TopHeader from "@/components/header";
 const Navbar = dynamic(() => import("@/components/navbar"));
 import MegaMenu from "@/components/megamenu";
-import { API_URL } from "@/constant";
+import { API_ROOT, API_URL } from "@/constant";
 import { HomeApiResponse } from "@/types/home";
 import Popup from "@/components/popup";
 const Footer = dynamic(() => import("@/components/footer"));
+import fav from './favicon.ico'
 
 const Gotham = localFont({
   src: [
@@ -111,8 +112,19 @@ export async function generateMetadata(): Promise<Metadata> {
       { name: "Halcyon Digital", url: "https://halcyonbd.com" },
       { name: "Talha", url: "https://t-soft.netlify.app" },
     ],
+    openGraph: {
+			title:homeData.homePage.meta_title,
+			description:homeData.homePage.meta_description,
+			images: [{
+        url:`${API_ROOT}/images/${homeData?.setting?.favicon}`,
+        width: 800,
+        height: 600,
+      },],
+		},
+    icons: [{ rel: 'icon', url: `${API_ROOT}/images/${homeData?.setting?.favicon}` }],
   };
 }
+
 
 export default async function RootLayout({
   children,

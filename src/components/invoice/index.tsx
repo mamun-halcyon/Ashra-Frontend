@@ -48,7 +48,8 @@ const Invoice = ({
 
   return (
     <div className="invoice white-bg hidden">
-      <div className="invoice-header font-gotham text-xs">
+      <div className="invoice-body">
+      <div className="invoice-header font-gotham text-xs" >
         <div className="title">
           {order.order_prefix === "GHA" ? (
             <img src="/assets/invoice/homeappliance.png" alt="invoice" />
@@ -114,7 +115,7 @@ const Invoice = ({
         </div>
       </div>
 
-      <table className="invoice-details-table">
+      <table className="invoice-details-table" style={{background:'green'}}>
         <tr className="table-heading">
           <th>SL.</th>
           <th>Description</th>
@@ -182,7 +183,7 @@ const Invoice = ({
           </td>
         </tr>
       </table>
-      <div className="notes">
+      <div className="notes" style={{background:'red'}}>
         <h3 className=" font-gotham font-medium text-sm">Notes:</h3>
         <p className=" font-gotham text-xs font-light">
           1. All our products come with a{" "}
@@ -200,7 +201,8 @@ const Invoice = ({
           24 hours to complete the installation.
         </p>
       </div>
-      <div className="invoice-footer">
+      </div>
+      <div className="invoice-footer" style={{background:'green'}}>
         <div className="title">
           {order.order_prefix === "GHA" ? (
             <img src="/assets/invoice/home-footer.png" alt="invoice" />

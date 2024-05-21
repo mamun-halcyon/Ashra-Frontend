@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import './index.scss';
@@ -22,24 +22,40 @@ type IProps = {
   banners: IBanner[];
 };
 const Banner = ({ banners }: IProps) => {
+
+  const [data, setData] = useState<IBanner[]>([])
+
+  useEffect(() => {
+    if (banners?.length)
+      setData(banners?.filter((item) => item?.is_visible))
+  }, [])
+
   return (
-    <div className="banner">
-      <Slider {...settings}>
-        {banners?.map((banner, index) => (
-            <div className="outline-none" key={index}>
-              <Link href={'/'+banner.url}>
-                <Image
-                  src={`${API_ROOT}/images/banner/${banner.image}`}
-                  width={2400}
-                  height={500}
-                  alt="banner"
-                  priority={true}
-                />
-              </Link>
-            </div>
-        ))}
-      </Slider>
-    </div>
+    <>
+      {
+        data?.length ?
+          <div className="banner">
+            <Slider {...settings}>
+              {data?.map((banner, index) => (
+                <div className="outline-none" key={index}>
+                  <Link href={'/' + banner.url}>
+                    <Image
+                      src={`${API_ROOT}/images/banner/${banner.image}`}
+                      width={2400}
+                      height={500}
+                      alt="banner"
+                      priority={true}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </Slider>
+          </div>
+          : ''
+      }
+
+    </>
+
   );
 };
 

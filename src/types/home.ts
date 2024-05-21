@@ -32,4 +32,6 @@ export interface HomeApiResponse {
   newArrival: IProduct[];
   featureProduct: IProduct[];
   setting: ISetting;
+  meta_title?:string;
+  meta_description?:string;
 }

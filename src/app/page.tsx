@@ -17,7 +17,7 @@ const VideoCard = dynamic(() => import("@/components/video-card"));
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
-    // cache: "no-store",
+    cache: "no-store",
     next: {
       revalidate: 3600,
     },
@@ -29,7 +29,7 @@ async function categoryProduct(category_slug: string) {
   const res = await fetch(
     `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`,
     {
-      // cache: "no-store",
+      cache: "no-store",
       next: {
         revalidate: 3600,
       },
@@ -37,6 +37,7 @@ async function categoryProduct(category_slug: string) {
   );
   return res.json();
 }
+
 async function serviceItems() {
   try {
     const response = await fetch(`${API_URL}/frontend/keypoints/home?limit=4`, {
@@ -60,7 +61,7 @@ async function serviceItems() {
 
 async function categoryAdBanner(slug: string) {
   const res = await fetch(`${API_URL}/banners/${slug}`, {
-    // cache: "no-store",
+    cache: "no-store",
     next: {
       revalidate: 3600,
     },
@@ -229,25 +230,32 @@ export default async function Home() {
               />
             </Link>
           </div>
-          <div className="container px-2 md:px-0">
-            <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">
-              PRODUCT REVIEWS & UNBOXING VIDEOS
-            </h2>
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-              {homeData?.video?.map((video, index) => (
-                <VideoCard key={index} url={video.url} title={video.title} />
-              ))}
-            </div>
-          </div>
-          <div className="text-center mt-7">
-            <Link
-              className=" font-gotham font-normal text-sm  more-btn"
-              href={"/videos"}
-            >
-              More Videos
-              <BsArrowRightShort className="inline text-xl font-bold" />
-            </Link>
-          </div>
+          {
+            homeData?.video?.length ?
+              <><div className="container px-2 md:px-0">
+                <h2 className=" py-12 uppercase text-center font-gotham text-xl font-medium">
+                  PRODUCT REVIEWS & UNBOXING VIDEOS
+                </h2>
+                <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+                  {homeData?.video?.map((video, index) => (
+                    <VideoCard key={index} url={video.url} title={video.title} />
+                  ))}
+                </div>
+              </div>
+                <div className="text-center mt-7">
+                  <Link
+                    className=" font-gotham font-normal text-sm  more-btn"
+                    href={"/videos"}
+                  >
+                    More Videos
+                    <BsArrowRightShort className="inline text-xl font-bold" />
+                  </Link>
+                </div>
+
+              </>
+              : ''
+          }
+
         </section>
       </main>
     </>
