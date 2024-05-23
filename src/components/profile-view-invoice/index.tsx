@@ -124,7 +124,7 @@ const ProfileViewInvoice = ({
           <th>Qty</th>
           <th>Unit price (BDT)</th>
           <th>Total</th>
-          <th></th>
+          <th>Refund Request</th>
         </tr>
         {orderItems?.length > 0 &&
           orderItems?.map((product, index) => (

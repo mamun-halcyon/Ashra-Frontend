@@ -16,7 +16,6 @@ import { API_ROOT, API_URL } from "@/constant";
 import { HomeApiResponse } from "@/types/home";
 import Popup from "@/components/popup";
 const Footer = dynamic(() => import("@/components/footer"));
-import fav from './favicon.ico'
 
 const Gotham = localFont({
   src: [
@@ -56,13 +55,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
   preload: true,
 });
-/* 
-export const metadata: Metadata = {
-  title: "Gazi Home Appliance",
-  description:
-    "Gazi Home Appliances is a division of the Gazi Group, based in Bangladesh. It specializes in the production and distribution of home appliances.",
-  authors: [{ name: "Talha", url: "https://t-soft.netlify.app" }],
-}; */
+
 
 async function getData() {
   const res = await fetch(`${API_URL}/home-page`, {
@@ -116,12 +109,12 @@ export async function generateMetadata(): Promise<Metadata> {
 			title:homeData.homePage.meta_title,
 			description:homeData.homePage.meta_description,
 			images: [{
-        url:`${API_ROOT}/images/${homeData?.setting?.favicon}`,
+        url:`${API_ROOT}/images/setting/${homeData?.setting?.favicon}`,
         width: 800,
         height: 600,
       },],
 		},
-    icons: [{ rel: 'icon', url: `${API_ROOT}/images/${homeData?.setting?.favicon}` }],
+    icons: [{ rel: 'icon', url: `${API_ROOT}/images/setting/${homeData?.setting?.favicon}` }],
   };
 }
 

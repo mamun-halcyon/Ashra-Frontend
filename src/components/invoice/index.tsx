@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import "./index.scss";
 import FormatPrice from "../price-formate";
 import { useState, useEffect } from "react";
@@ -12,6 +11,7 @@ const Invoice = ({
   finalPrice,
 }: any) => {
   const [totalPrice, setTotalPrice] = useState(0);
+  // const [hasData,setHasData] = useState<boolean>
   const [orderItems, setOrderItems] = useState<any[]>(
     order?.orderItems?.length > 0 ? order?.orderItems : []
   );
@@ -45,6 +45,7 @@ const Invoice = ({
       }
     }
   }, [order, orderItems]);
+
 
   return (
     <div className="invoice white-bg hidden">
@@ -132,14 +133,21 @@ const Invoice = ({
                 <td>
                   {/* Attribute */}
                   {product.product_attribute
-                    ? JSON.parse(product.product_attribute).map(
-                      (v: any, i: number) => (
-                        <span className="variant" key={i}>
-                          {`${i ? "," : ""}${v.attribute_name}`}
-                        </span>
-                      )
-                    )
-                    : "-"}
+                  ? <>
+                    {
+                      product.product_attribute.charAt(0) == '[' ?  //need to modify
+                        JSON.parse(product.product_attribute).map(
+                          (v: any, i: number) => (
+                            <span className="variant" key={i}>
+                              {`${i ? "," : ""}${v.attribute_name}`}
+                            </span>
+                          )
+                        )
+                        : product.product_attribute
+
+                    }
+                  </>
+                  : "-"}
                 </td>
                 <td> {product.quantity}</td>
                 <td>{FormatPrice(product.regular_price)}</td>
