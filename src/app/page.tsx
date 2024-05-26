@@ -83,7 +83,6 @@ export default async function Home() {
   );
   const addBanner = await categoryAdBanner("home");
   const verticalBanner = await categoryAdBanner("home-v");
-
   return (
     <>
       <main>

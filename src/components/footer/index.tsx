@@ -24,6 +24,7 @@ async function getFooterOneData(slug: string) {
 }
 
 const Footer = async ({ globalData }: IProps) => {
+
   const footerOneData: IMenu[] = await getFooterOneData("customer_service");
   const footerTwoData: IMenu[] = await getFooterOneData("home_appliance");
 
@@ -205,7 +206,7 @@ const Footer = async ({ globalData }: IProps) => {
           <div className="flex justify-between items-center gap-2">
             <div>
               <h4 className=" font-gotham font-light text-[10px] md:text-xs white-text">
-                © 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group
+               {globalData?.setting?.footer_copywrite||'© 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group'} 
               </h4>
             </div>
             <div className="w-[60%] md:w-auto">

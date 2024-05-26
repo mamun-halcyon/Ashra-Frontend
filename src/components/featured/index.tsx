@@ -11,7 +11,7 @@ import { HomeApiResponse } from "@/types/home";
 type IProps = {
   homeData: HomeApiResponse;
   adsbanner: string;
-  bannerUrl: string;
+  bannerUrl: any;
 };
 
 const Featured: FC<IProps> = ({ homeData, adsbanner, bannerUrl }) => {

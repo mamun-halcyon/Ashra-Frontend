@@ -12,7 +12,7 @@ import ServerPagination from "@/components/pagination/pagination";
 async function adBanner() {
   try {
     const response = await fetch(`${API_URL}/banners/video`, {
-      // cache: "no-store",
+      cache: "no-store",
       next: {
         revalidate: 3600,
       },
@@ -89,13 +89,17 @@ async function Videos({
             </div>
           </div>
         </section>
-        <div className="container">
-          <ServerPagination
-            showTitle={`Show ${limit}`}
-            page={page}
-            totalPage={Math.ceil((videos.data?.count || 1) / limit)}
-          />
-        </div>
+        {
+          videos?.data?.rows?.length ?
+            <div className="container">
+              <ServerPagination
+                showTitle={`Show ${limit}`}
+                page={page}
+                totalPage={Math.ceil((videos.data?.count || 1) / limit)}
+              />
+            </div> : null
+        }
+
       </div>
     </main>
   );

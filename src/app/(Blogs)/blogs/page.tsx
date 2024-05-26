@@ -11,7 +11,7 @@ import ServerPagination from "@/components/pagination/pagination";
 
 async function getBlogs(page: number = 1, limit: number = 12) {
   const url = `${API_URL}/frontend/blogs?limit=${limit}&page=${page} `;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const res = await fetch(url, { cache: "no-store", });
   const data = await res.json();
   return data;
 }
@@ -19,9 +19,9 @@ async function adBanner() {
   try {
     const response = await fetch(`${API_URL}/banners/blog`, {
       // cache: "no-store",
-      next: {
-        revalidate: 3600,
-      },
+      // next: {
+      //   revalidate: 3600,
+      // },
     });
     if (!response.ok) {
       throw new Error("Failed to fetch banner blog");
@@ -82,11 +82,14 @@ async function Blogs({
               <BlogCard key={index} blog={blog} />
             ))}
           </div>
-          <ServerPagination
-            showTitle={`Show ${limit}`}
-            page={page}
-            totalPage={Math.ceil((blogs.data?.count || 1) / limit)}
-          />
+          {
+            blogs.data?.rows?.length ?
+              <ServerPagination
+                showTitle={`Show ${limit}`}
+                page={page}
+                totalPage={Math.ceil((blogs.data?.count || 1) / limit)}
+              /> : ''
+          }
         </div>
       </section>
     </main>
