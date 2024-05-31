@@ -246,8 +246,10 @@ function Checkout() {
           });
         }
         setDiscountCart(tempDisCart);
+
       }
     }
+
   }, [approvePromoData]);
 
   useEffect(() => {
@@ -632,38 +634,38 @@ function Checkout() {
                     </div>
                     {approvePromoData
                       ? discountCart.map((item: any, index: number) => (
-                          <div key={index} className="grid grid-cols-5 pb-5">
-                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
-                              {item.title}
-                            </div>
+                        <div key={index} className="grid grid-cols-5 pb-5">
+                          <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
+                            {item.title}
+                          </div>
 
-                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳ {FormatPrice(item.regular_price)}
-                            </div>
-                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
-                              ৳ {FormatPrice(item.price)} x {item.quantity}
-                            </div>
-                            <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳{FormatPrice(item.price * item.quantity)}
-                            </div>
+                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            ৳ {FormatPrice(item.regular_price)}
                           </div>
-                        ))
+                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
+                            ৳ {FormatPrice(item.price)} x {item.quantity}
+                          </div>
+                          <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
+                            ৳{FormatPrice(item.price * item.quantity)}
+                          </div>
+                        </div>
+                      ))
                       : cart.map((item, index) => (
-                          <div key={index} className="grid grid-cols-5 pb-5">
-                            <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
-                              {item.title}
-                            </div>
-                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳ {FormatPrice(item.regular_price)}
-                            </div>
-                            <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
-                              ৳ {FormatPrice(item.price)} x {item.quantity}
-                            </div>
-                            <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
-                              ৳{FormatPrice(item.price * item.quantity)}
-                            </div>
+                        <div key={index} className="grid grid-cols-5 pb-5">
+                          <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
+                            {item.title}
                           </div>
-                        ))}
+                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            ৳ {FormatPrice(item.regular_price)}
+                          </div>
+                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
+                            ৳ {FormatPrice(item.price)} x {item.quantity}
+                          </div>
+                          <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
+                            ৳{FormatPrice(item.price * item.quantity)}
+                          </div>
+                        </div>
+                      ))}
 
                     <div className="grid grid-cols-5 sub-border">
                       <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
