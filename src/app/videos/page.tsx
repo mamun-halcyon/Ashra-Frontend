@@ -13,9 +13,6 @@ async function adBanner() {
   try {
     const response = await fetch(`${API_URL}/banners/video`, {
       cache: "no-store",
-      next: {
-        revalidate: 3600,
-      },
     });
     if (!response.ok) {
       throw new Error("Failed to fetch banner video");
@@ -31,9 +28,9 @@ async function adBanner() {
 async function getVideos(page: number = 1, limit: number = 12) {
   const url = `${API_URL}/frontend/videos?limit=${limit}&page=${page} `;
   const res = await fetch(url, {
-    next: {
-      revalidate: 3600,
-    },
+    cache: "no-store",
+
+
   });
   const data = await res.json();
   return data;
