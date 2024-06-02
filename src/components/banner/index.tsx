@@ -38,7 +38,7 @@ const Banner = ({ banners }: IProps) => {
             <Slider {...settings}>
               {data?.map((banner, index) => (
                 <div className="outline-none" key={index}>
-                  <Link href={'/' + banner.url}>
+                  <Link href={ banner.url}>
                     <Image
                       src={`${API_ROOT}/images/banner/${banner.image}`}
                       width={2400}

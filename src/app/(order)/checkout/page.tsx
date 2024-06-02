@@ -99,7 +99,7 @@ function Checkout() {
     coupon_id: couponId,
     payment_method: selectedPayment === "onlinePayment" ? "online" : "cod",
     order_status: "pending",
-    order_prefix: "GHA",
+    order_prefix: "GCW",
     delivery_method: selectedPaymentDeliveryStatus,
     orderItem,
     final_amount: finalPrice + deliveryFee,
