@@ -50,7 +50,7 @@ const SearchArea = () => {
             onChange={handleSearch}
           />
           <button
-            className="button primary-bg h-9  px-6 font-gotham font-normal text-sm white-text"
+            className="button primary-bg hover:bg-[#252022] h-9  px-6 font-gotham font-normal text-sm white-text"
             onClick={handleClick}
           >
             Search

@@ -4,6 +4,12 @@
   border-bottom: 2px solid $secondary-border-color;
 }
 
+.capital{
+  text-transform: uppercase;
+  // text-transform: lowercase;
+  // text-transform: capitalize !important;
+}
+
 .view {
   transition: all linear 0.3s;
 

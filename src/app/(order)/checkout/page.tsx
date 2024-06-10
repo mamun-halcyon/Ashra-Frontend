@@ -370,7 +370,7 @@ function Checkout() {
             <div className="grid grid-cols-3 gap-4">
               <div className=" md:col-span-1 col-span-3">
                 <Box
-                  className=" primary-text"
+                  className=""
                   step="1"
                   title="Customer Information"
                 >
@@ -465,7 +465,7 @@ function Checkout() {
               <div className=" md:col-span-2 col-span-3">
                 <div className="grid gap-4 grid-cols-2 ">
                   <Box
-                    className=" primary-text col-span-2 md:col-span-1"
+                    className="  col-span-2 md:col-span-1 "
                     step="2"
                     title="Payment Method"
                   >
@@ -476,6 +476,7 @@ function Checkout() {
                       <div className="flex  items-center">
                         <input
                           type="checkbox"
+                          className="accent-[#E30513]"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
                           checked={selectedPayment === "cashOnDelivery"}
@@ -491,6 +492,7 @@ function Checkout() {
                       <div>
                         <input
                           type="checkbox"
+                          className="accent-[#E30513]"
                           name="onlinePayment"
                           id="onlinePayment"
                           checked={selectedPayment === "onlinePayment"}
@@ -517,7 +519,7 @@ function Checkout() {
                   </Box>
                   <div className="col-span-2 md:col-span-1">
                     <Box
-                      className=" primary-text"
+                      className=""
                       step="3"
                       title="Delivery Method"
                     >
@@ -529,6 +531,7 @@ function Checkout() {
                         <div className="flex  items-center">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
@@ -546,6 +549,7 @@ function Checkout() {
                         {/* <div>
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="pickup"
                             id="pickup"
                             checked={selectedPaymentDeliveryStatus === 'pickup'}
@@ -613,7 +617,7 @@ function Checkout() {
                   </Tabs>
                 </div>
                 <Box
-                  className="mt-6 order-summery"
+                  className="mt-6 order-summery "
                   step="4"
                   title="Order Summary"
                 >
@@ -715,7 +719,7 @@ function Checkout() {
                   <div className="py-6">
                     <div className="flex">
                       <input
-                        className="mr-2"
+                        className="mr-2 accent-[#E30513]"
                         type="checkbox"
                         name="accept"
                         id="accept"

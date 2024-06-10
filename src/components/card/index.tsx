@@ -125,7 +125,7 @@ const ProductCard: React.FC<IProps> = ({
         <div className=" h-10 leading-3 text-center mb-1">
           <Link
             href={`/product/${url}`}
-            className=" font-gotham product-title font-normal text-center text-sm"
+            className=" font-gotham product-title font-medium text-center text-sm"
           >
             {title?.substring(0, 44)}
           </Link>
@@ -136,7 +136,7 @@ const ProductCard: React.FC<IProps> = ({
               className={`mr-3 font-gotham ${
                 Number(discount_price) > 0 &&
                 Number(discount_price) != Number(regular_price)
-                  ? "line-through font-normal "
+                  ? "line-through font-medium "
                   : "font-bold"
               } text-sm`}
             >

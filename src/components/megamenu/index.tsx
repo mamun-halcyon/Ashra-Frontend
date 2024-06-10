@@ -45,7 +45,7 @@ useEffect(() => {
                 .map((menu, index) => (
                   <div className="mr-2 text-left relative heading" key={index}>
                     <div
-                      className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group md:border md:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all"
+                      className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group black-text  white-hover-text primary-hover-bg transition-all"
                       onClick={() => {
                         route.push(`/category/filter?category=${menu.slug}`);
                         dispatch(
@@ -138,13 +138,13 @@ useEffect(() => {
             </div>
             <div>
               <Link
-                className=" font-gotham font-medium text-sm black-text primary-hover "
+                className=" font-gotham font-medium text-sm black-text hover-text-color "
                 href={"/videos"}
               >
                 Videos
               </Link>
               <Link
-                className=" font-gotham font-medium text-sm black-text primary-hover ml-4 md:ml-14"
+                className=" font-gotham font-medium text-sm black-text hover-text-color ml-4 md:ml-14"
                 href={"/blogs"}
               >
                 Blogs
@@ -170,7 +170,7 @@ useEffect(() => {
                   .map((menu, index) => (
                     <div key={index} className="menus">
                       <div
-                        className="py-2  cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center   group md:border md:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all parent-category"
+                        className="py-2  cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center group black-text white-hover-text primary-hover-bg transition-all parent-category"
                         onClick={() =>
                           route.push(`/category/filter?category=${menu.slug}`)
                         }
@@ -238,13 +238,13 @@ useEffect(() => {
             </div>
             <div>
               <Link
-                className=" font-gotham font-medium text-sm black-text primary-hover "
+                className=" font-gotham font-medium text-sm black-text hover-text-color "
                 href={"/videos"}
               >
                 Videos
               </Link>
               <Link
-                className=" font-gotham font-medium text-sm black-text primary-hover ml-4 md:ml-14"
+                className=" font-gotham font-medium text-sm black-text hover-text-color ml-4 md:ml-14"
                 href={"/blogs"}
               >
                 Blogs

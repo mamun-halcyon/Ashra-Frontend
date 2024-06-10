@@ -31,7 +31,7 @@
       }
       &--selected {
         color: $primary-text-color;
-        border-bottom: 3px solid $quaternary-border-color;
+        border-bottom: 3px solid $hover-color;
       }
     }
   }

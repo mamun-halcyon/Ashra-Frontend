@@ -1,9 +1,7 @@
 @import "../../styles/index.scss";
 
 .service-card {
-  border: 1px solid transparent;
   padding: 10px;
-  transition: all linear 0.3s;
   .image {
     width: 20%;
     margin-right: 6px;
@@ -23,7 +21,7 @@
     }
   }
   &:hover {
-    border: 1px solid $quaternary-border-color;
+    color: #414141;
   }
 }
 
