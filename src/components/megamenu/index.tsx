@@ -19,7 +19,7 @@ const MegaMenu = ({ menus }: IProps) => {
 
   function stickNavbar() {
     let windowHeight = window.scrollY;
-    windowHeight >= 140 ?setStickyClass("sticky-nav"): setStickyClass("")
+    windowHeight >= 10 ?setStickyClass("sticky-navbar"): setStickyClass("")
 }
 
 useEffect(() => {

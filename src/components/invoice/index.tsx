@@ -52,11 +52,18 @@ const Invoice = ({
       <div className="invoice-body">
         <div className="invoice-header font-gotham text-xs" >
           <div className="title">
-            {order.order_prefix === "GHA" ? (
-              <img src="/assets/invoice/homeappliance.png" alt="invoice" />
-            ) : (
-              <img src="/assets/invoice/pump.png" alt="invoice" />
-            )}
+            {
+              order?.order_form == "web" || order.order_prefix === "GCW" ?
+                <>
+                  <img src="/assets/invoice/web-header.png" alt="invoice" />
+                </> : <>
+                  {order.order_prefix === "GHA" ? (
+                    <img src="/assets/invoice/homeappliance.png" alt="invoice" />
+                  ) : (
+                    <img src="/assets/invoice/pump.png" alt="invoice" />
+                  )}
+                </>
+            }
           </div>
           <h4 className="customer-details font-gotham font-medium">
             Customer Details
@@ -116,7 +123,7 @@ const Invoice = ({
           </div>
         </div>
 
-        <table className="invoice-details-table" style={{ background: 'green' }}>
+        <table className="invoice-details-table" >
           <tr className="table-heading">
             <th>SL.</th>
             <th>Description</th>
@@ -133,21 +140,21 @@ const Invoice = ({
                 <td>
                   {/* Attribute */}
                   {product.product_attribute
-                  ? <>
-                    {
-                      product.product_attribute.charAt(0) == '[' ?  //need to modify
-                        JSON.parse(product.product_attribute).map(
-                          (v: any, i: number) => (
-                            <span className="variant" key={i}>
-                              {`${i ? "," : ""}${v.attribute_name}`}
-                            </span>
+                    ? <>
+                      {
+                        product.product_attribute.charAt(0) == '[' ?  //need to modify
+                          JSON.parse(product.product_attribute).map(
+                            (v: any, i: number) => (
+                              <span className="variant" key={i}>
+                                {`${i ? "," : ""}${v.attribute_name}`}
+                              </span>
+                            )
                           )
-                        )
-                        : product.product_attribute
+                          : product.product_attribute
 
-                    }
-                  </>
-                  : "-"}
+                      }
+                    </>
+                    : "-"}
                 </td>
                 <td> {product.quantity}</td>
                 <td>{FormatPrice(product.regular_price)}</td>
@@ -210,32 +217,66 @@ const Invoice = ({
 
           </div>
         </table>
-        <div className="notes" style={{ background: 'red' }}>
+        <div className="notes mt-3">
           <h3 className=" font-gotham font-medium text-sm">Notes:</h3>
-          <p className=" font-gotham text-xs font-light">
-            1. All our products come with a{" "}
-            {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
-            warranty. To claim the warranty, please present this invoice.
-          </p>
-          <p className=" font-gotham text-xs font-light">
-            2. Please ensure to check for any physical damage to the product upon
-            receiving it. After receiving the product, no claims for physical
-            damage will be accepted.
-          </p>
-          <p className=" font-gotham text-xs font-light">
-            3. For official installation, please inform us upon receiving the
-            product if the customer wishes for us to install it. We will require
-            24 hours to complete the installation.
-          </p>
+
+          {
+            order?.order_form == "web" || order.order_prefix === "GC" ?
+              <>
+                <p className=" font-gotham text-xs font-light">
+                  1. Please ensure to check for any physical damage to the product upon
+                  receiving it. After receiving the product, no claims for physical
+                  damage will be accepted.
+                </p>
+              </> : <>
+                {order.order_prefix === "GHA" ? (
+                  <img src="/assets/invoice/home-footer.png" alt="invoice" />
+                ) : (
+                  <><p className=" font-gotham text-xs font-light">
+                    1. All our products come with a{" "}
+                    {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
+                    warranty. To claim the warranty, please present this invoice.
+                  </p>
+                    <p className=" font-gotham text-xs font-light">
+                      2. Please ensure to check for any physical damage to the product upon
+                      receiving it. After receiving the product, no claims for physical
+                      damage will be accepted.
+                    </p></>
+                )}
+              </>
+          }
+          {/* 
+        <p className=" font-gotham text-xs font-light">
+          1. All our products come with a{" "}
+          {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
+          warranty. To claim the warranty, please present this invoice.
+        </p>
+        <p className=" font-gotham text-xs font-light">
+          2. Please ensure to check for any physical damage to the product upon
+          receiving it. After receiving the product, no claims for physical
+          damage will be accepted.
+        </p>
+        <p className=" font-gotham text-xs font-light">
+          3. For official installation, please inform us upon receiving the
+          product if the customer wishes for us to install it. We will require
+          24 hours to complete the installation.
+        </p> */}
         </div>
       </div>
-      <div className="invoice-footer" style={{ background: 'green' }}>
+      <div className="invoice-footer" >
         <div className="title">
-          {order.order_prefix === "GHA" ? (
-            <img src="/assets/invoice/home-footer.png" alt="invoice" />
-          ) : (
-            <img src="/assets/invoice/pump-footer.png" alt="invoice" />
-          )}
+          {
+            order?.order_form == "web" || order.order_prefix === "GC" ?
+              <>
+                <img src="/assets/invoice/web-footer.jpg" alt="invoice" />
+              </> : <>
+                {order.order_prefix === "GHA" ? (
+                  <img src="/assets/invoice/home-footer.png" alt="invoice" />
+                ) : (
+                  <img src="/assets/invoice/pump-footer.png" alt="invoice" />
+                )}
+              </>
+          }
         </div>
       </div>
       {/* <table className="w-full">

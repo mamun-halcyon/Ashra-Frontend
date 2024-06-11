@@ -336,6 +336,7 @@ function Category() {
                         <div className="flex mb-2">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="stock"
                             id="stock"
                             value={1}
@@ -351,6 +352,7 @@ function Category() {
                         <div className="flex mb-2">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="stock-out"
                             id="stockout"
                             value={2}
@@ -366,6 +368,7 @@ function Category() {
                         <div className="flex">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="instock"
                             id="upcoming"
                             value={3}

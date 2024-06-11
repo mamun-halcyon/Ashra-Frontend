@@ -17,10 +17,11 @@
   padding: 40px;
 
   .invoice-header {
-    margin-top: 30px;
+    // margin-top: 30px;
     padding: 10px 0;
 
     .title {
+      margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
     }

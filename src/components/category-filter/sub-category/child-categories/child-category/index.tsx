@@ -37,7 +37,7 @@ const ChildCategory: FC<IProps> = ({
   return (
     <div className="childCategory font-gotham font-normal text-sm capitalize mb-1 primary-hover transition-all duration-300">
       <input
-        className="childCategory-checkbox"
+        className="childCategory-checkbox accent-[#E30513]"
         type="checkbox"
         checked={checked}
         onChange={onChangeHandler}

@@ -1,14 +1,25 @@
 @import "../../styles/index.scss";
 
-.sticky-nav{
+.sticky-navbar{
   position: fixed;
-  top: 0;
+  top: 100px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 40;
   background: #fff;
-  margin-bottom: 54px;
+  margin-bottom: 100px;
 }
+
+
+@media screen and (max-width: 575.98px) {
+  .sticky-navbar{
+    top: 64px;
+    margin-bottom: 54px;
+  }
+  
+}
+
+
 .heading {
   .mega-arrow {
     position: absolute;

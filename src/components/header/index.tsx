@@ -73,7 +73,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
             <div className="absolute  invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
               <ul className="   bg-[#fff] font-gotham font-medium hover:text-[#E30513] text-[13px] black-text">
                 {menus?.map((menu, index) => (
-                  <li key={index} className="px-2 py-1 primary-hover">
+                  <li key={index} className="px-2 py-1 hover:text-[#E30513] ">
                     <Link href={menu.slug}>{menu.name}</Link>
                   </li>
                 ))}
