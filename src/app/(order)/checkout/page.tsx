@@ -15,6 +15,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { toast } from "react-toastify";
 import "./page.scss";
 import FormatPrice from "@/components/price-formate";
+import CustomDropdown from "@/components/custom-dropdown-location";
 
 function Checkout() {
   const router = useRouter();
@@ -436,7 +437,7 @@ function Checkout() {
                       >
                         Location
                       </label>
-                      <select
+                      {/* <select
                         id="location"
                         className="bg-gray-50 border secondary-border mt-1 black-text text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:white-text dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
                         onChange={handleChangeLocation}
@@ -451,7 +452,8 @@ function Checkout() {
                         ) : (
                           <></>
                         )}
-                      </select>
+                      </select> */}
+                      <CustomDropdown locations={locations} handleChangeLocation={handleChangeLocation} />
                     </div>
                     {/* <FormGroup
                       className="mb-1"

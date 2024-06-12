@@ -1,20 +1,18 @@
 @import "../../styles/index.scss";
 
 .sticky-navbar{
-  position: fixed;
+  position: sticky;
   top: 100px;
   left: 0;
   right: 0;
-  z-index: 40;
+  z-index: 1000;
   background: #fff;
-  margin-bottom: 100px;
 }
 
 
-@media screen and (max-width: 575.98px) {
+@media screen and (max-width: 768px) {
   .sticky-navbar{
     top: 64px;
-    margin-bottom: 54px;
   }
   
 }
@@ -62,9 +60,9 @@
           }
 
           &:hover {
-            background: $primary-background-color;
+
             a {
-              color: $tertiary-text-color;
+              color: $hover-color;
             }
           }
         }
@@ -74,14 +72,13 @@
         padding-right: 10px;
       }
       &:hover {
-        background: $primary-background-color;
-        color: $tertiary-text-color;
+        color: $hover-color;
         .children-item {
           opacity: 1;
           visibility: visible;
         }
         .sub-element {
-          color: $tertiary-text-color;
+          color: $hover-color;
         }
       }
     }

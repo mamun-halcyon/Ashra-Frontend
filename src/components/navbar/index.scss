@@ -1,12 +1,11 @@
 @import "../../styles/index.scss";
 
-.sticky-nav{
-  position: fixed;
+.sticky-nav {
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
-  background: #fff;
+  z-index: 999;
 }
 
 .navbar {
@@ -24,6 +23,7 @@
   .logo {
     width: 150px;
     height: auto;
+    transition: all 0.3s ease-in-out; 
   }
 
   .link-item {

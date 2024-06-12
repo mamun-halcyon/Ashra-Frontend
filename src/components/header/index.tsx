@@ -39,7 +39,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
   };
 
   return (
-    <div className="container p-2 md:p-0">
+    <div className="container h-[40px]">
       <div className="flex justify-between items-center flex-wrap py-2">
         <div className="flex justify-between md:justify-start w-[100%]  md:w-[auto] items-center">
           <div className="flex items-center">

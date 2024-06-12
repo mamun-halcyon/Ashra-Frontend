@@ -8,6 +8,7 @@ import "./index.scss";
 import { useAppDispatch } from "@/redux/hooks";
 import { addCategory } from "@/redux/features/category/categorySlice";
 import { useEffect, useState } from "react";
+import SearchArea from "../search";
 
 type IProps = {
   menus: ICategoryData[];
@@ -19,7 +20,7 @@ const MegaMenu = ({ menus }: IProps) => {
 
   function stickNavbar() {
     let windowHeight = window.scrollY;
-    windowHeight >= 10 ?setStickyClass("sticky-navbar"): setStickyClass("")
+    windowHeight >= 40 ?setStickyClass("sticky-navbar"): setStickyClass("")
 }
 
 useEffect(() => {
@@ -45,7 +46,7 @@ useEffect(() => {
                 .map((menu, index) => (
                   <div className="mr-2 text-left relative heading" key={index}>
                     <div
-                      className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group black-text  white-hover-text primary-hover-bg transition-all"
+                      className="py-2  md:cursor-pointer px-1 md:px-5 font-gotham font-medium text-[10px] md:text-sm  flex justify-between items-center  pr-5 group black-text hover-text-color transition-all"
                       onClick={() => {
                         route.push(`/category/filter?category=${menu.slug}`);
                         dispatch(
@@ -156,7 +157,7 @@ useEffect(() => {
       {/* Mobile Menu */}
       <div className="shadow py-2 md:hidden mobile-menu">
         <div className="container px-2">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div className="relative main-button">
               <FaBars />
               <div className="absolute white-bg mt-4 z-10 w-[180px] shadow">
@@ -170,7 +171,7 @@ useEffect(() => {
                   .map((menu, index) => (
                     <div key={index} className="menus">
                       <div
-                        className="py-2  cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center group black-text white-hover-text primary-hover-bg transition-all parent-category"
+                        className="py-2  cursor-pointer px-1  font-gotham font-medium  text-sm  flex justify-between items-center group black-text hover-text-color transition-all parent-category"
                         onClick={() =>
                           route.push(`/category/filter?category=${menu.slug}`)
                         }
@@ -236,6 +237,9 @@ useEffect(() => {
                   ))}
               </div>
             </div>
+            
+            <SearchArea  />
+           
             <div>
               <Link
                 className=" font-gotham font-medium text-sm black-text hover-text-color "

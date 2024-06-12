@@ -582,7 +582,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                     </div>
                     {(productPrice as number) > 5000 && (
                       <div className="e-emi">
-                        <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
+                        <h3 className=" font-gotham font-medium text-sm primary-text hover-text-color py-3 cursor-pointer">
                           <span
                             className="cursor-point"
                             onClick={() => setIsEmi(true)}
@@ -768,7 +768,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           }}
                         >
                           {" "}
-                          <OutlineButton className="flex items-center font-gotham font-medium primary-text mr-2 outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium mr-2  outline-hidden">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
@@ -810,7 +810,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             );
                           }}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm primary-text mr-2 outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
                             <span>
                               <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
@@ -819,7 +819,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </span>
 
                         <span className="mt-2 md:mt-0 share-item">
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm primary-text mr-2 outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
                             <span>
                               <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
@@ -858,7 +858,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       ))}
                     </div>
 
-                    <OutlineButton className="flex items-center font-gotham font-medium primary-text text-xs py-1 outline-hidden">
+                    <OutlineButton className="flex items-center font-gotham font-medium text-xs py-1 outline-hidden">
                       <span className="mr-2">
                         {/* <BsAwardFill /> */}
                         <FaAward className="award" />
