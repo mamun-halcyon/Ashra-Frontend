@@ -393,6 +393,7 @@ function Checkout() {
                     onChange={(e) => setEmail(e.target.value)}
                     value={login?.user?.email ? login?.user?.email : email}
                     disabled={login?.accessToken ? true : false}
+                    required
                   />
                   {emailError && (
                     <p className=" font-gotham text-xs warning">{emailError}</p>

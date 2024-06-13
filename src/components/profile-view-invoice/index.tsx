@@ -49,7 +49,7 @@ const ProfileViewInvoice = ({
   }, [order, orderItems]);
 
   return (
-    <div className="profile-invoice white-bg">
+    <div className="profile-invoice white-bg md:p-[40px] p-1">
       <div className="invoice-header font-gotham text-xs">
         <div className="title">
         {
@@ -187,7 +187,21 @@ const ProfileViewInvoice = ({
         </p>
             </> : <>
               {order.order_prefix === "GHA" ? (
-                <img src="/assets/invoice/home-footer.png" alt="invoice" />
+                <> <p className=" font-gotham text-xs font-light">
+                1. All our products come with a{" "}
+                {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
+                warranty. To claim the warranty, please present this invoice.
+              </p>
+              <p className=" font-gotham text-xs font-light">
+                2. Please ensure to check for any physical damage to the product upon
+                receiving it. After receiving the product, no claims for physical
+                damage will be accepted.
+              </p>
+              <p className=" font-gotham text-xs font-light">
+                3. For official installation, please inform us upon receiving the
+                product if the customer wishes for us to install it. We will require
+                24 hours to complete the installation.
+              </p> </>
               ) : (
                 <><p className=" font-gotham text-xs font-light">
                 1. All our products come with a{" "}

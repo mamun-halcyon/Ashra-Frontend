@@ -94,7 +94,7 @@ export default async function Home() {
 
         <section className="explore">
           <div className="container">
-            <h2 className="mb-6 uppercase text-center font-gotham text-xl font-bold ">
+            <h2 className="mb-6 uppercase text-center font-gotham text-[18px] md:text-xl font-bold ">
               EXPLORE HOME APPLIANCES
             </h2>
             <div className="flex flex-wrap justify-center  ">
@@ -123,6 +123,7 @@ export default async function Home() {
               width={1800}
               height={500}
               quality={100}
+              className='h-[170px] md:h-[400px] md:max-h-[500px]'
             />
           </Link>
         </section>
@@ -212,7 +213,7 @@ export default async function Home() {
           <div className="container ">
             <Link href={addBanner?.data[0]?.url ?? "/"}>
               <Image
-                className=" transition-all duration-100 hover:scale-[1.01]"
+                className=" transition-all duration-100 hover:scale-[1.01] h-[170px] md:h-[400px] md:max-h-[500px]"
                 src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
                 alt="ads"
                 width={1300}

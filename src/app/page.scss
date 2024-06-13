@@ -9,6 +9,11 @@
   padding-bottom: 80px;
   border-bottom: 1px solid $primary-border-color;
 
+  @media screen and (max-width: 768) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
   h2 {
     color: $quaternary-text-color;
   }
@@ -99,8 +104,8 @@
     }
   }
   @media screen and (max-width: 768px) {
-    padding-top: 50px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
   }
 }
 .btn__disable{
