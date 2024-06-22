@@ -15,6 +15,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { toast } from "react-toastify";
 import "./page.scss";
 import FormatPrice from "@/components/price-formate";
+import CustomDropdown from "@/components/custom-dropdown-location";
 
 function Checkout() {
   const router = useRouter();
@@ -370,7 +371,7 @@ function Checkout() {
             <div className="grid grid-cols-3 gap-4">
               <div className=" md:col-span-1 col-span-3">
                 <Box
-                  className=" primary-text"
+                  className=""
                   step="1"
                   title="Customer Information"
                 >
@@ -392,6 +393,7 @@ function Checkout() {
                     onChange={(e) => setEmail(e.target.value)}
                     value={login?.user?.email ? login?.user?.email : email}
                     disabled={login?.accessToken ? true : false}
+                    required
                   />
                   {emailError && (
                     <p className=" font-gotham text-xs warning">{emailError}</p>
@@ -436,7 +438,7 @@ function Checkout() {
                       >
                         Location
                       </label>
-                      <select
+                      {/* <select
                         id="location"
                         className="bg-gray-50 border secondary-border mt-1 black-text text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:white-text dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
                         onChange={handleChangeLocation}
@@ -451,7 +453,8 @@ function Checkout() {
                         ) : (
                           <></>
                         )}
-                      </select>
+                      </select> */}
+                      <CustomDropdown locations={locations} handleChangeLocation={handleChangeLocation} />
                     </div>
                     {/* <FormGroup
                       className="mb-1"
@@ -465,7 +468,7 @@ function Checkout() {
               <div className=" md:col-span-2 col-span-3">
                 <div className="grid gap-4 grid-cols-2 ">
                   <Box
-                    className=" primary-text col-span-2 md:col-span-1"
+                    className="  col-span-2 md:col-span-1 "
                     step="2"
                     title="Payment Method"
                   >
@@ -476,6 +479,7 @@ function Checkout() {
                       <div className="flex  items-center">
                         <input
                           type="checkbox"
+                          className="accent-[#E30513]"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
                           checked={selectedPayment === "cashOnDelivery"}
@@ -491,6 +495,7 @@ function Checkout() {
                       <div>
                         <input
                           type="checkbox"
+                          className="accent-[#E30513]"
                           name="onlinePayment"
                           id="onlinePayment"
                           checked={selectedPayment === "onlinePayment"}
@@ -517,7 +522,7 @@ function Checkout() {
                   </Box>
                   <div className="col-span-2 md:col-span-1">
                     <Box
-                      className=" primary-text"
+                      className=""
                       step="3"
                       title="Delivery Method"
                     >
@@ -529,6 +534,7 @@ function Checkout() {
                         <div className="flex  items-center">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
@@ -546,6 +552,7 @@ function Checkout() {
                         {/* <div>
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="pickup"
                             id="pickup"
                             checked={selectedPaymentDeliveryStatus === 'pickup'}
@@ -613,7 +620,7 @@ function Checkout() {
                   </Tabs>
                 </div>
                 <Box
-                  className="mt-6 order-summery"
+                  className="mt-6 order-summery "
                   step="4"
                   title="Order Summary"
                 >
@@ -715,7 +722,7 @@ function Checkout() {
                   <div className="py-6">
                     <div className="flex">
                       <input
-                        className="mr-2"
+                        className="mr-2 accent-[#E30513]"
                         type="checkbox"
                         name="accept"
                         id="accept"

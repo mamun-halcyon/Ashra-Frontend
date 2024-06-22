@@ -49,14 +49,21 @@ const ProfileViewInvoice = ({
   }, [order, orderItems]);
 
   return (
-    <div className="profile-invoice white-bg">
+    <div className="profile-invoice white-bg md:p-[40px] p-1">
       <div className="invoice-header font-gotham text-xs">
         <div className="title">
-          {order.order_prefix === "GHA" ? (
-            <img src="/assets/invoice/homeappliance.png" alt="invoice" />
-          ) : (
-            <img src="/assets/invoice/pump.png" alt="invoice" />
-          )}
+        {
+          order?.order_form == "web" || order.order_prefix === "GC" ?
+            <>
+              <img src="/assets/invoice/web-header.png" alt="invoice" />
+            </> : <>
+              {order.order_prefix === "GHA" ? (
+                <img src="/assets/invoice/homeappliance.png" alt="invoice" />
+              ) : (
+                <img src="/assets/invoice/pump.png" alt="invoice" />
+              )}
+            </>
+        }
         </div>
         <h4 className="customer-details font-gotham font-medium">
           Customer Details
@@ -169,6 +176,47 @@ const ProfileViewInvoice = ({
       </table>
       <div className="notes mt-3">
         <h3 className=" font-gotham font-medium text-sm">Notes:</h3>
+
+        {
+          order?.order_form == "web" || order.order_prefix === "GC" ?
+            <>
+             <p className=" font-gotham text-xs font-light">
+          1. Please ensure to check for any physical damage to the product upon
+          receiving it. After receiving the product, no claims for physical
+          damage will be accepted.
+        </p>
+            </> : <>
+              {order.order_prefix === "GHA" ? (
+                <> <p className=" font-gotham text-xs font-light">
+                1. All our products come with a{" "}
+                {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
+                warranty. To claim the warranty, please present this invoice.
+              </p>
+              <p className=" font-gotham text-xs font-light">
+                2. Please ensure to check for any physical damage to the product upon
+                receiving it. After receiving the product, no claims for physical
+                damage will be accepted.
+              </p>
+              <p className=" font-gotham text-xs font-light">
+                3. For official installation, please inform us upon receiving the
+                product if the customer wishes for us to install it. We will require
+                24 hours to complete the installation.
+              </p> </>
+              ) : (
+                <><p className=" font-gotham text-xs font-light">
+                1. All our products come with a{" "}
+                {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
+                warranty. To claim the warranty, please present this invoice.
+              </p>
+              <p className=" font-gotham text-xs font-light">
+                2. Please ensure to check for any physical damage to the product upon
+                receiving it. After receiving the product, no claims for physical
+                damage will be accepted.
+              </p></>
+              )}
+            </>
+        }
+{/* 
         <p className=" font-gotham text-xs font-light">
           1. All our products come with a{" "}
           {order.order_prefix === "GHA" ? "one-year" : "two-years"} service
@@ -183,15 +231,22 @@ const ProfileViewInvoice = ({
           3. For official installation, please inform us upon receiving the
           product if the customer wishes for us to install it. We will require
           24 hours to complete the installation.
-        </p>
+        </p> */}
       </div>
       <div className="invoice-footer">
         <div className="title">
-          {order.order_prefix === "GHA" ? (
-            <img src="/assets/invoice/home-footer.png" alt="invoice" />
-          ) : (
-            <img src="/assets/invoice/pump-footer.png" alt="invoice" />
-          )}
+        {
+          order?.order_form == "web" || order.order_prefix === "GC" ?
+            <>
+              <img src="/assets/invoice/web-footer.jpg" alt="invoice" />
+            </> : <>
+              {order.order_prefix === "GHA" ? (
+                <img src="/assets/invoice/home-footer.png" alt="invoice" />
+              ) : (
+                <img src="/assets/invoice/pump-footer.png" alt="invoice" />
+              )}
+            </>
+        }
         </div>
       </div>
       {/* <table className="w-full">

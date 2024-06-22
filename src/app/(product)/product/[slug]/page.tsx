@@ -570,7 +570,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 ৳{FormatPrice(product?.product?.discount_price)}
                               </h2>
                               <div>
-                                <span className="discount">
+                                <span className="discount font-medium">
                                   Save ৳
                                   {product.product.regular_price -
                                     product.product.discount_price}
@@ -582,7 +582,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                     </div>
                     {(productPrice as number) > 5000 && (
                       <div className="e-emi">
-                        <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
+                        <h3 className=" font-gotham font-medium text-sm primary-text hover-text-color py-3 cursor-pointer">
                           <span
                             className="cursor-point"
                             onClick={() => setIsEmi(true)}
@@ -768,7 +768,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           }}
                         >
                           {" "}
-                          <OutlineButton className="flex items-center font-gotham font-medium primary-text mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium mr-2  outline-hidden">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
@@ -810,7 +810,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             );
                           }}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm primary-text mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
                             <span>
                               <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
@@ -819,7 +819,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </span>
 
                         <span className="mt-2 md:mt-0 share-item">
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm primary-text mr-2">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
                             <span>
                               <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
@@ -834,8 +834,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
                     <div className="services py-3">
                       {keyPoints.map((service, index) => (
-                        <Link href={service?.url}>
-                          <div key={index} className="flex items-center mb-3">
+                        <Link href={service?.url} key={index}>
+                          <div className="flex items-center mb-3">
                             <div className=" w-8">
                               <Image
                                 className="w-full"
@@ -858,7 +858,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       ))}
                     </div>
 
-                    <OutlineButton className="flex items-center font-gotham font-medium primary-text text-xs py-1">
+                    <OutlineButton className="flex items-center font-gotham font-medium text-xs py-1 outline-hidden">
                       <span className="mr-2">
                         {/* <BsAwardFill /> */}
                         <FaAward className="award" />
@@ -951,7 +951,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                     render={({ field }) => (
                                       <StarRatings
                                         rating={field.value}
-                                        starRatedColor="#164194"
+                                        starRatedColor="#E30513"
                                         changeRating={(newRating) =>
                                           field.onChange(newRating)
                                         }
@@ -959,7 +959,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                         name={field.name}
                                         starDimension="15px"
                                         starSpacing="5px"
-                                        starHoverColor="#2456b5"
+                                        starHoverColor="#e30514dc"
                                       />
                                     )}
                                   />

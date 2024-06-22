@@ -44,7 +44,7 @@ const Footer = async ({ globalData }: IProps) => {
               <span className="mr-4">
                 <FaLocationDot className=" w-5 h-5 black-text mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-sm black-text ">
+              <p className=" font-gotham font-medium text-sm black-text ">
                 {globalData?.setting?.address}
               </p>
             </div>
@@ -52,7 +52,7 @@ const Footer = async ({ globalData }: IProps) => {
               <span className="mr-4">
                 <BsHeadphones className=" w-5 h-5 black-text mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-sm black-text">
+              <p className=" font-gotham font-medium text-sm black-text">
                 {globalData?.setting?.contact_number}
               </p>
             </a>
@@ -60,21 +60,21 @@ const Footer = async ({ globalData }: IProps) => {
               <span className="mr-4">
                 <BsEnvelopeFill className=" w-5 h-5 black-text mt-1" />
               </span>
-              <p className=" font-gotham font-normal text-sm black-text">
+              <p className=" font-gotham font-medium text-sm black-text">
                 {globalData?.setting?.contact_email}
               </p>
             </a>
           </div>
           <div>
             <div className="w-[60%] md:mx-auto">
-              <h3 className="font-gotham font-bold text-base black-text mb-4">
+              <h3 className="font-gotham font-[600] text-base black-text mb-4">
                 Customer Service
               </h3>
               <ul className=" mx-auto">
                 {footerOneData?.length > 0 ? (
                   footerOneData?.map((item, index) => (
                     <li
-                      className="font-gotham font-normal text-sm black-text mb-1"
+                      className="font-gotham font-medium text-sm black-text mb-1"
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
@@ -91,14 +91,14 @@ const Footer = async ({ globalData }: IProps) => {
 
           <div>
             <div className="w-[60%] md:mx-auto">
-              <h3 className="font-gotham font-bold text-base black-text mb-4">
+              <h3 className="font-gotham font-[600] text-base black-text mb-4">
                 Gazi Home Appliancee
               </h3>
               <ul className="mx-auto">
                 {footerTwoData?.length > 0 ? (
                   footerTwoData?.map((item, index) => (
                     <li
-                      className="font-gotham font-normal text-sm black-text mb-1"
+                      className="font-gotham font-medium  text-sm black-text mb-1"
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
@@ -117,7 +117,7 @@ const Footer = async ({ globalData }: IProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div>
-            <p className=" font-gotham font-normal text-sm black-text mb-2 ">
+            <p className=" font-gotham font-medium text-sm black-text mb-2 ">
               Download our Mobile Apps
             </p>
             <div className="flex">
@@ -148,7 +148,7 @@ const Footer = async ({ globalData }: IProps) => {
             </div>
           </div>
           <div>
-            <p className=" font-gotham font-normal text-sm black-text mb-2">
+            <p className=" font-gotham font-medium text-sm black-text mb-2">
               Follow Us
             </p>
             <div className="flex">

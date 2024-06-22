@@ -1,14 +1,23 @@
 @import "../../styles/index.scss";
 
-.sticky-nav{
-  position: fixed;
-  top: 0;
+.sticky-navbar{
+  position: sticky;
+  top: 100px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 1000;
   background: #fff;
-  margin-bottom: 54px;
 }
+
+
+@media screen and (max-width: 768px) {
+  .sticky-navbar{
+    top: 64px;
+  }
+  
+}
+
+
 .heading {
   .mega-arrow {
     position: absolute;
@@ -51,9 +60,9 @@
           }
 
           &:hover {
-            background: $primary-background-color;
+
             a {
-              color: $tertiary-text-color;
+              color: $hover-color;
             }
           }
         }
@@ -63,14 +72,13 @@
         padding-right: 10px;
       }
       &:hover {
-        background: $primary-background-color;
-        color: $tertiary-text-color;
+        color: $hover-color;
         .children-item {
           opacity: 1;
           visibility: visible;
         }
         .sub-element {
-          color: $tertiary-text-color;
+          color: $hover-color;
         }
       }
     }

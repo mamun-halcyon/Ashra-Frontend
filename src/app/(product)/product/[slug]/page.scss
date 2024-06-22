@@ -82,7 +82,7 @@
     font-size: 12px;
     margin-left: 16px;
     font-family: $secondary-font;
-    padding: 3px;
+    padding: 5px;
   }
 
   .e-emi {
@@ -195,4 +195,8 @@
     background: $primary-background-color;
     color: $tertiary-text-color;
   }
+}
+
+.outline-hidden{
+  border: none ;
 }

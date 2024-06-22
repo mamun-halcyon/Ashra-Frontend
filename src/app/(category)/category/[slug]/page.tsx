@@ -336,6 +336,7 @@ function Category() {
                         <div className="flex mb-2">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="stock"
                             id="stock"
                             value={1}
@@ -351,6 +352,7 @@ function Category() {
                         <div className="flex mb-2">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="stock-out"
                             id="stockout"
                             value={2}
@@ -366,6 +368,7 @@ function Category() {
                         <div className="flex">
                           <input
                             type="checkbox"
+                            className="accent-[#E30513]"
                             name="instock"
                             id="upcoming"
                             value={3}
@@ -418,10 +421,10 @@ function Category() {
                 <div className="md:w-[925px] w-full">
                   {adsBanner?.image && (
                     <div className="category-banner mb-5">
-                      <div className="h-[235px]">
+                      <div className="">
                         <Link href={adsBanner.url}>
                           <Image
-                            className="w-full h-full transition-all duration-100 hover:scale-[1.01]"
+                            className="w-full  transition-all duration-100 hover:scale-[1.01] h-[170px] md:h-full md:max-h-[500px]"
                             src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                             width={1000}
                             height={300}
