@@ -99,6 +99,7 @@ async function getMenus(position: string) {
 export async function generateMetadata(): Promise<Metadata> {
   const homeData: HomeApiResponse = await getData();
   return {
+    metadataBase: new URL('https://gazifrontend.vercel.app/'),
     title: homeData.homePage.meta_title,
     description: homeData.homePage.meta_description,
     authors: [

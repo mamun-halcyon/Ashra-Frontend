@@ -7,7 +7,7 @@ import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
 import "./index.scss";
 import { useAppDispatch } from "@/redux/hooks";
 import { addCategory } from "@/redux/features/category/categorySlice";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import SearchArea from "../search";
 
 type IProps = {
@@ -243,8 +243,9 @@ const MegaMenu = ({ menus }: IProps) => {
                 </div>
               )}
             </div>
-
+              <Suspense>
             <SearchArea />
+              </Suspense>
 
             <div>
               <Link
