@@ -10,7 +10,7 @@ import "./index.scss";
 import { useAppSelector } from "@/redux/hooks";
 import SearchArea from "../search";
 import { API_ROOT } from "@/constant";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const Navbar = ({ logo }: { logo: string }) => {
   const { cart } = useAppSelector((state) => state.cart);
@@ -52,7 +52,9 @@ const Navbar = ({ logo }: { logo: string }) => {
             </Link>
           </div>
           <div className=" hidden md:block">
+            <Suspense>
           <SearchArea />
+            </Suspense>
           </div>
           <div className="w-[33%]">
             <div className="flex flex-row-reverse">

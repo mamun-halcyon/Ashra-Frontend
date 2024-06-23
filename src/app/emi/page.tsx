@@ -2,6 +2,7 @@ import { API_URL } from "@/constant";
 import "./page.scss";
 import ServerPagination from "@/components/pagination/pagination";
 import SearchEmi from "@/components/searchEmi";
+import { Suspense } from "react";
 
 async function getEmis(page: number, limit: number, search: string) {
   const res = await fetch(
@@ -42,7 +43,9 @@ async function Emi({
         </h2>
       </div>
       <div className="container md:overflow-x-auto overflow-x-scroll emi-table">
+        <Suspense>
         <SearchEmi />
+        </Suspense>
         <table className="w-full text-sm text-left emi-table shadow">
           <thead>
             <tr className="table-heading">
