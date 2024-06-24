@@ -59,7 +59,7 @@ const CustomPage = ({ params: { slug } }: Props) => {
                 width={200}
                 height={200}
                 alt="404"
-                src={"/assets/images/404/illustration.svg"}
+                src={"/assets/images/404/error.png"}
                 property="true"
               />
               <Link className="px-2 py-1 primary-bg text-[#fff]" href={"/"}>

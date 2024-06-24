@@ -1,6 +1,7 @@
 "use client"; // Error components must be Client Components
 
 import Button from "@/components/button";
+import Image from "next/image";
 import { useEffect } from "react";
 
 export default function Error({
@@ -17,6 +18,16 @@ export default function Error({
 
   return (
     <div className="text-center">
+      <div className="flex flex-col items-center max-w-sm mx-auto text-center">
+            <Image
+              className="w-[400px] h-[200px]"
+              width={200}
+              height={200}
+              alt="404"
+              src={"/assets/images/404/error.png"}
+              property="true"
+            />
+          </div>
       <h2 className="text-center py-52 font-gotham text-3xl">
         Something went wrong!
       </h2>
