@@ -49,7 +49,7 @@ const ProfileViewInvoice = ({
   }, [order, orderItems]);
 
   return (
-    <div className="profile-invoice white-bg md:p-[40px] p-1">
+    <div className="profile-invoice white-bg md:p-[40px] md:pt-0 p-1">
       <div className="invoice-header font-gotham text-xs">
         <div className="title">
         {
@@ -122,7 +122,7 @@ const ProfileViewInvoice = ({
           </div>
         </div>
       </div>
-
+      <div className="overflow-x-scroll md:overflow-x-visible md:col-span-9 col-span-12">
       <table className="invoice-details-table">
         <tr className="table-heading">
           <th>SL.</th>
@@ -174,6 +174,7 @@ const ProfileViewInvoice = ({
           </td>
         </tr>
       </table>
+      </div>
       <div className="notes mt-3">
         <h3 className=" font-gotham font-medium text-sm">Notes:</h3>
 

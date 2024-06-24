@@ -529,7 +529,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                   </div>
 
                   <div>
-                    <h2 className=" font-gotham font-medium text-xl black-text mb-1 hover-text-color transition-all">
+                    <h2 className=" font-gotham font-medium text-xl black-text mb-1  transition-all">
                       {product?.product?.title}
                     </h2>
                     <div className="flex items-center primary-text font-gotham">
@@ -549,10 +549,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </h3>
                         <h2
                           className={`font-gotham  text-xl font-medium ${product?.product?.discount_price > 0 &&
-                              product?.product?.regular_price !==
-                              product?.product?.discount_price
-                              ? " line-through font-normal r-price "
-                              : "primary-text"
+                            product?.product?.regular_price !==
+                            product?.product?.discount_price
+                            ? " line-through font-normal r-price "
+                            : "primary-text"
                             }  `}
                         >
                           ৳{FormatPrice(product?.product?.regular_price)}
@@ -572,8 +572,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               <div>
                                 <span className="discount font-medium">
                                   Save ৳
-                                  {product.product.regular_price -
-                                    product.product.discount_price}
+                                  {FormatPrice(product.product.regular_price -
+                                    product.product.discount_price)}
                                 </span>
                               </div>
                             </div>
@@ -636,8 +636,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                 item.attribute_id ===
                                                 findAttribute?.id
                                             )
-                                                ? "bg-primary white-text"
-                                                : ""
+                                              ? "bg-primary white-text"
+                                              : ""
                                               } ${(findAttribute?.attribute_quantity as number) <=
                                                 0
                                                 ? "disabled-attribute"
@@ -756,9 +756,24 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </div>
                         </div>
                       )}
+                    {(product?.product?.availability === 2 || (product?.product?.availability === 1 && product?.product?.default_quantity === 0)) &&  (
+                        <div className="pt-5">
+                          <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] stock-out">
+                            Out of Stock
+                          </Button>
+                        </div>
+                      )}
+                    {product?.product?.availability === 3 && (
+                      <div className="pt-5">
+                        <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px]">
+                          Up Coming
+                        </Button>
+                      </div>
+
+                    )}
 
                     <div className="more-action pt-5">
-                      <div className="flex flex-col md:flex-row">
+                      <div className="flex flex-row items-center">
                         <span
                           onClick={() => {
                             return (
@@ -1067,7 +1082,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       <TabPanel>
                         {product.product.video_url && (
                           <iframe
-                            className=" w-full"
+                            className="w-full h-[350px] md:h-[500px] lg:h-[700px]"
                             height="700px"
                             src={product.product.video_url}
                             title="YouTube video player"

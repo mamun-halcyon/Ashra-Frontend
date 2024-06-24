@@ -25,10 +25,10 @@ const ServiceCard: React.FC<IProps> = ({ service }) => {
               />
             </div>
             <div className="text">
-              <h4 className=" font-gotham font-medium text-base md:text-xl">
+              <h4 className=" font-gotham font-medium text-[15px] md:text-xl">
                 {service.title}
               </h4>
-              <h6 className=" font-gotham font-medium text-xs md:text-base">
+              <h6 className=" font-gotham font-medium text-[11px] md:text-base">
                 {service.subtitle}
               </h6>
             </div>

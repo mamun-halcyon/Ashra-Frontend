@@ -5,14 +5,14 @@
   top: 100px;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 999;
   background: #fff;
 }
 
 
 @media screen and (max-width: 768px) {
   .sticky-navbar{
-    top: 64px;
+    top: 60px;
   }
   
 }
@@ -116,10 +116,10 @@
 
             .self:hover {
               svg {
-                color: $tertiary-text-color;
+                color: $hover-color;
               }
               a {
-                color: $tertiary-text-color;
+                color: $hover-color;
               }
             }
             &:hover {
@@ -141,10 +141,10 @@
 
         .self:hover {
           svg {
-            color: $tertiary-text-color;
+            color: $hover-color;
           }
           a {
-            color: $tertiary-text-color;
+            color: $hover-color;
           }
         }
         &:hover {

@@ -1,7 +1,7 @@
 @import "../../styles/index.scss";
 
 .popup {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -10,8 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 25px;
-  z-index: 1;
+  padding: 20px;
+  z-index: 999;
 
   .popup-content {
     position: relative;
@@ -31,4 +31,11 @@
       color: $tertiary-text-color;
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+  .popup{
+    top: 0;
+  }
+  
 }
