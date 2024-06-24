@@ -626,81 +626,81 @@ function Checkout() {
                 >
                   <div className="summery-table w-full h-full">
                     <div className="grid grid-cols-5">
-                      <div className="heading-table col-span-2 md:col-span-2 p-3 font-gotham font-normal text-xs black-text">
+                      <div className="heading-table col-span-2 md:col-span-2 p-1.5 md:p-3 font-gotham font-normal text-xs black-text">
                         Product Name
                       </div>
-                      <div className="heading-table col-span-1 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
+                      <div className="heading-table col-span-1 md:col-span-1 p-1.5 md:p-3 font-gotham font-normal text-xs black-text">
                         Regular Price
                       </div>
-                      <div className="heading-table col-span-1 md:col-span-1 p-3 font-gotham font-normal text-xs black-text">
+                      <div className="heading-table col-span-1 md:col-span-1 p-1.5 md:p-3 font-gotham font-normal text-xs black-text">
                         Price
                       </div>
-                      <div className="heading-table col-span-1 p-3 font-gotham font-normal text-xs black-text">
+                      <div className="heading-table col-span-1 p-1.5 md:p-3 font-gotham font-normal text-xs black-text">
                         Total
                       </div>
                     </div>
                     {approvePromoData
                       ? discountCart.map((item: any, index: number) => (
                         <div key={index} className="grid grid-cols-5 pb-5">
-                          <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
+                          <div className="md:col-span-2 col-span-2 p-1.5 md:p-3 font-gotham font-normal text-xs black-text">
                             {item.title}
                           </div>
 
-                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
-                            ৳ {FormatPrice(item.regular_price)}
+                          <div className="p-1.5 md:p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            ৳{FormatPrice(item.regular_price)}
                           </div>
-                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
-                            ৳ {FormatPrice(item.price)} x {item.quantity}
+                          <div className="p-1.5 md:p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
+                            ৳{FormatPrice(item.price)} x {item.quantity}
                           </div>
-                          <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
+                          <div className="p-1.5 md:p-3 col-span-1 font-gotham font-normal text-xs black-text">
                             ৳{FormatPrice(item.price * item.quantity)}
                           </div>
                         </div>
                       ))
                       : cart.map((item, index) => (
                         <div key={index} className="grid grid-cols-5 pb-5">
-                          <div className="md:col-span-2 col-span-2 p-3 font-gotham font-normal text-xs black-text">
+                          <div className="md:col-span-2 col-span-2 p-1.5 md:p-3 font-gotham font-normal text-xs black-text">
                             {item.title}
                           </div>
-                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
-                            ৳ {FormatPrice(item.regular_price)}
+                          <div className="p-1.5 md:p-3 col-span-1 md:col-span-1 font-gotham font-normal text-xs black-text">
+                            ৳{FormatPrice(item.regular_price)}
                           </div>
-                          <div className="p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
-                            ৳ {FormatPrice(item.price)} x {item.quantity}
+                          <div className="p-1.5 md:p-3 col-span-1 md:col-span-1 font-gotham font-normal text-[11px] black-text">
+                            ৳{FormatPrice(item.price)} x {item.quantity}
                           </div>
-                          <div className="p-3 col-span-1 font-gotham font-normal text-xs black-text">
+                          <div className="p-1.5 md:p-3 col-span-1 font-gotham font-normal text-xs black-text">
                             ৳{FormatPrice(item.price * item.quantity)}
                           </div>
                         </div>
                       ))}
 
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
-                      <div className="p-3 col-span-2 md:col-span-1 font-gotham  text-xs primary-text font-medium">
+                      <div className="md:col-span-3 col-span-2 p-1.5 md:p-3 font-gotham font-normal text-xs black-text"></div>
+                      <div className="p-1.5 md:p-3 col-span-2 md:col-span-1 font-gotham  text-xs primary-text font-medium">
                         Sub-Total:
                       </div>
-                      <div className="p-3 font-gotham  text-xs primary-text font-medium">
+                      <div className="p-1.5 md:p-3 font-gotham  text-xs primary-text font-medium">
                         ৳ {FormatPrice(totalCostBeforeCoupon)}
                       </div>
                     </div>
                     {selectedPaymentDeliveryStatus && (
                       <div className="grid grid-cols-5 sub-border">
-                        <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
-                        <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs primary-text font-medium">
+                        <div className="md:col-span-3 col-span-2 p-1.5 md:p-3 font-gotham font-normal text-xs black-text"></div>
+                        <div className="p-1.5 md:p-3 font-gotham col-span-2 md:col-span-1 text-xs primary-text font-medium">
                           Delivery Charges :
                         </div>
-                        <div className="col-span-1 p-3 font-gotham text-xs primary-text font-medium">
+                        <div className="col-span-1 p-1.5 md:p-3 font-gotham text-xs primary-text font-medium">
                           ৳ {FormatPrice(deliveryFee)}
                         </div>
                       </div>
                     )}
 
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham font-normal text-xs black-text"></div>
-                      <div className="p-3 font-gotham col-span-2 md:col-span-1 text-xs primary-text font-medium">
+                      <div className="md:col-span-3 col-span-2 p-1.5 md:p-3 font-gotham font-normal text-xs black-text"></div>
+                      <div className="p-1.5 md:p-3 font-gotham col-span-2 md:col-span-1 text-xs primary-text font-medium">
                         Discount :
                       </div>
-                      <div className="col-span-1 p-3 font-gotham text-xs primary-text font-medium">
+                      <div className="col-span-1 p-1.5 md:p-3 font-gotham text-xs primary-text font-medium">
                         ৳{" "}
                         {FormatPrice(
                           totalCostBeforeCoupon - totalCostAfterCoupon
@@ -708,11 +708,11 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="grid grid-cols-5 sub-border">
-                      <div className="md:col-span-3 col-span-2 p-3 font-gotham text-xs primary-text font-medium"></div>
-                      <div className="col-span-2 md:col-span-1 p-3 font-gotham text-xs primary-text font-medium">
+                      <div className="md:col-span-3 col-span-2 p-1.5 md:p-3 font-gotham text-xs primary-text font-medium"></div>
+                      <div className="col-span-2 md:col-span-1 p-1.5 md:p-3 font-gotham text-xs primary-text font-medium">
                         Total :
                       </div>
-                      <div className="p-3  font-gotham text-xs primary-text font-medium">
+                      <div className="p-1.5 md:p-3  font-gotham text-xs primary-text font-medium">
                         ৳ {FormatPrice(finalPrice + deliveryFee)}
                       </div>
                     </div>

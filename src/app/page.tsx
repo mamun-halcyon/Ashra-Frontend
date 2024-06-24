@@ -84,7 +84,7 @@ export default async function Home() {
 
         <section className="service">
           <div className="container px-2 md:px-0">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
               {services?.map((service, i) => (
                 <ServiceCard key={i} service={service} />
               ))}
@@ -123,7 +123,7 @@ export default async function Home() {
               width={1800}
               height={500}
               quality={100}
-              className='h-[170px] md:h-[400px] md:max-h-[500px]'
+              className='h-[170px] md:h-auto'
             />
           </Link>
         </section>
@@ -213,7 +213,7 @@ export default async function Home() {
           <div className="container ">
             <Link href={addBanner?.data[0]?.url ?? "/"}>
               <Image
-                className=" transition-all duration-100 hover:scale-[1.01] h-[170px] md:h-[400px] md:max-h-[500px]"
+                className=" transition-all duration-100 hover:scale-[1.01] h-[170px] md:h-auto"
                 src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
                 alt="ads"
                 width={1300}

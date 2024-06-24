@@ -62,8 +62,8 @@ const MegaMenu = ({ menus }: IProps) => {
                         {menus.filter(
                           (category) => category.parent_category === menu.slug
                         ).length > 1 && (
-                          <RiArrowDropDownLine className="text-xl" />
-                        )}
+                            <RiArrowDropDownLine className="text-xl" />
+                          )}
                       </span>
                     </div>
                     <div className="absolute z-10 sub-heading shadow">
@@ -93,10 +93,10 @@ const MegaMenu = ({ menus }: IProps) => {
                                 (children) =>
                                   children.parent_category === subCategory.slug
                               ).length > 0 && (
-                                <span>
-                                  <RiArrowDropRightLine className="text-xl" />
-                                </span>
-                              )}
+                                  <span>
+                                    <RiArrowDropRightLine className="text-xl" />
+                                  </span>
+                                )}
                               <div className="absolute children-item shadow">
                                 <ul>
                                   {menus
@@ -175,40 +175,33 @@ const MegaMenu = ({ menus }: IProps) => {
                       <div key={index} className="menus">
                         <div
                           className="py-2 cursor-pointer px-1 font-gotham font-medium text-sm flex justify-between items-center group black-text hover-text-color transition-all parent-category"
-                          onClick={() =>
-                            route.push(`/category/filter?category=${menu.slug}`)
-                          }
+                          onClick={() => {
+                            route.push(`/category/filter?category=${menu.slug}`);
+                            dispatch(addCategory({ title: menu.title, slug: menu.slug }));
+                          }}
                         >
-                          <Link href={menu.slug}>{menu.title}</Link>
+                          <Link href={`/category/filter?category=${menu.slug}`}>{menu.title}</Link>
                           <span className="text-xl">
-                            {menus.filter(
-                              (category) =>
-                                category.parent_category === menu.slug
-                            ).length > 0 && (
+                            {menus.filter((category) => category.parent_category === menu.slug).length > 0 && (
                               <RiArrowDropDownLine className="text-xl" />
                             )}
                           </span>
                         </div>
                         <div className="sub-categories">
                           {menus
-                            .filter(
-                              (category) =>
-                                category.parent_category === menu.slug
-                            )
+                            .filter((category) => category.parent_category === menu.slug)
+                            .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
                             .map((subCategory, index) => (
                               <div key={index} className="sub-category">
-                                <div className="relative sub-item cursor-pointer px-1 font-gotham font-medium text-sm flex justify-between items-center group md:border md:border-black black-text hover:border-primary self primary-hover-bg transition-all">
+                                <div className="relative sub-item cursor-pointer px-1 font-gotham font-medium text-sm flex justify-between items-center group  black-text hover-text-color  self  transition-all">
                                   <Link
                                     className="font-gotham font-sm my-2 text-sm black-text sub-element"
                                     href={`/category/filter?category=${subCategory.slug}`}
+                                    onClick={() => dispatch(addCategory({ title: subCategory.title, slug: subCategory.slug }))}
                                   >
                                     {subCategory.title}
                                   </Link>
-                                  {menus.filter(
-                                    (children) =>
-                                      children.parent_category ===
-                                      subCategory.slug
-                                  ).length > 0 && (
+                                  {menus.filter((children) => children.parent_category === subCategory.slug).length > 0 && (
                                     <span>
                                       <RiArrowDropRightLine className="text-xl" />
                                     </span>
@@ -216,15 +209,13 @@ const MegaMenu = ({ menus }: IProps) => {
                                 </div>
                                 <div className="children-category">
                                   {menus
-                                    .filter(
-                                      (children) =>
-                                        children.parent_category ===
-                                        subCategory.slug
-                                    )
+                                    .filter((children) => children.parent_category === subCategory.slug)
+                                    .sort((a, b) => (a.order_id || 0) - (b.order_id || 0))
                                     .map((childrenCategory, index) => (
                                       <div
                                         key={index}
-                                        className="sub-item cursor-pointer px-1 font-gotham font-medium text-sm flex justify-between items-center group md:border md:border-black black-text hover:border-primary white-hover-text primary-hover-bg transition-all self"
+                                        className="sub-item cursor-pointer px-1 font-gotham font-medium text-sm flex justify-between items-center group black-text hover-text-color transition-all self"
+                                        onClick={() => dispatch(addCategory({ title: childrenCategory.title, slug: childrenCategory.slug }))}
                                       >
                                         <Link
                                           className="font-gotham font-sm my-2 text-sm black-text sub-element"
@@ -243,9 +234,9 @@ const MegaMenu = ({ menus }: IProps) => {
                 </div>
               )}
             </div>
-              <Suspense>
-            <SearchArea />
-              </Suspense>
+            <Suspense>
+              <SearchArea />
+            </Suspense>
 
             <div>
               <Link
@@ -255,7 +246,7 @@ const MegaMenu = ({ menus }: IProps) => {
                 Videos
               </Link>
               <Link
-                className="font-gotham font-medium text-sm black-text hover-text-color ml-4 md:ml-14"
+                className="font-gotham font-medium text-sm black-text hover-text-color ml-4 mr-2 md:mr-0 md:ml-14"
                 href={"/blogs"}
               >
                 Blogs

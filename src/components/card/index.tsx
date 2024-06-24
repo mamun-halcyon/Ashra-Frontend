@@ -159,7 +159,7 @@ const ProductCard: React.FC<IProps> = ({
                   {productAttribute && productAttribute.length > 0 ? (
                     <>
                       <Link href={`/product/${url}`}>
-                        <Button className="font-gotham font-medium py-2 text-xs w-[102px] ">
+                        <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] ">
                           View
                         </Button>
                       </Link>
@@ -184,7 +184,7 @@ const ProductCard: React.FC<IProps> = ({
                             })
                           )
                         }
-                        className="font-gotham font-medium py-2 text-xs mr-2 w-[102px]"
+                        className="font-gotham font-medium py-2 px-2 text-xs mr-2 w-[102px]"
                       >
                         Add to Cart
                       </Button>
@@ -203,7 +203,7 @@ const ProductCard: React.FC<IProps> = ({
                             regular_price: Number(regular_price),
                           })
                         }
-                        className="font-gotham font-medium py-2 text-xs  w-[102px]"
+                        className="font-gotham font-medium py-2 px-2 text-xs  w-[102px]"
                       >
                         Buy Now
                       </Button>
@@ -211,19 +211,19 @@ const ProductCard: React.FC<IProps> = ({
                   )}
                 </>
               ) : (
-                <Button className="font-gotham font-medium py-2 text-xs w-[102px] stock-out">
+                <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] stock-out">
                   Out of Stock
                 </Button>
               )}
             </>
           )}
           {availability === 2 ? (
-            <Button className="font-gotham font-medium py-2 text-xs  w-[102px] stock-out">
+            <Button className="font-gotham font-medium py-2 px-2 text-xs  w-[102px] stock-out">
               Out of Stock
             </Button>
           ) : null}
           {availability === 3 && (
-            <Button className="font-gotham font-medium py-2 text-xs w-[102px]">
+            <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px]">
               Up Coming
             </Button>
           )}

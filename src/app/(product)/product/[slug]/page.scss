@@ -200,3 +200,9 @@
 .outline-hidden{
   border: none ;
 }
+.stock-out {
+  background: #92989d;
+  &:hover {
+    background: #92989d;
+  }
+}

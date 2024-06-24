@@ -55,7 +55,7 @@ const BlogComment = ({ blogId }: { blogId: number }) => {
           type="submit"
           className="px-3 py-1 font-gotham font-normal text-sm mt-2"
         >
-          Summit
+          Submit
         </Button>
       </form>
     </div>
