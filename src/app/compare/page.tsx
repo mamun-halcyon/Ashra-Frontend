@@ -32,7 +32,7 @@ function Compare() {
   return (
     <section className="compare">
       <div className="container">
-        <div className="mb-4 flex justify-between">
+        <div className="mb-4 flex justify-between mx-1 md:mx-0">
           <div className="flex">
             <h3 className=" font-gotham font-medium text-base mr-4">Compare</h3>
             <div className="flex items-center">
@@ -145,7 +145,7 @@ function Compare() {
                         </h3>
                         {item.regular_price > item.price && (
                           <span className="px-2 py-1 font-gotham font-light text-xs discount">
-                            Save ৳ {item.regular_price - item.price}
+                            Save ৳ {FormatPrice(item.regular_price - item.price)}
                           </span>
                         )}
                       </div>
@@ -225,7 +225,7 @@ function Compare() {
                           Buy Now
                         </Button>
                       ) : item.availability === 2 ? (
-                        <Button className="w-full py-1 font-gotham font-normal text-normal">
+                        <Button className="w-full py-1 font-gotham font-normal text-normal stock-out">
                           Out of Stock
                         </Button>
                       ) : (

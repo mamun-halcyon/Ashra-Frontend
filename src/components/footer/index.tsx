@@ -56,7 +56,7 @@ const Footer = async ({ globalData }: IProps) => {
                 {globalData?.setting?.contact_number}
               </p>
             </a>
-            <a className="flex items-start " href={"mailto: " + globalData?.setting?.address}>
+            <a className="flex items-start " href={"mailto: " + globalData?.setting?.contact_email}>
               <span className="mr-4">
                 <BsEnvelopeFill className=" w-5 h-5 black-text mt-1" />
               </span>
@@ -102,7 +102,6 @@ const Footer = async ({ globalData }: IProps) => {
                       key={index}
                     >
                       <Link className="link-item" href={item.slug}>
-                        {" "}
                         {item.name}
                       </Link>
                     </li>

@@ -61,15 +61,14 @@ const TopHeader = ({ homeData, menus }: IProps) => {
         </div>
         <div className=" hidden md:block">
           <div className="relative group inline-block">
-            <Link
-              className="sub-link  primary-text font-gotham font-medium hover:text-[#E30513] text-sm"
-              href={"/about"}
+            <p
+              className="sub-link cursor-pointer primary-text font-gotham font-medium hover:text-[#E30513] text-sm"
             >
               Help
               <span>
                 <BsChevronDown className="inline text-[9px] font-bold ml-1" />
               </span>
-            </Link>
+            </p>
             <div className="absolute  invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
               <ul className="   bg-[#fff] font-gotham font-medium hover:text-[#E30513] text-[13px] black-text">
                 {menus?.map((menu, index) => (

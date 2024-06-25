@@ -45,7 +45,7 @@ const Banner = ({ banners }: IProps) => {
                       height={500}
                       alt="banner"
                       priority={true}
-                      className='h-[170px] md:h-auto'
+                      className='h-[150px] md:h-auto'
                     />
                   </Link>
                 </div>
