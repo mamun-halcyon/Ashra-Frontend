@@ -6,12 +6,13 @@
   .compare-button {
     background: transparent;
     color: $quaternary-text-color;
-    border: 1px solid $quaternary-border-color;
+    border: 1px solid $hexary-border-color;
     transition: all linear 0.3s;
 
     &:hover {
       background: $primary-background-color;
       color: $tertiary-text-color;
+      border: 1px solid $primary-border-color;
     }
   }
 
@@ -63,5 +64,11 @@
   .discount {
     color: $tertiary-text-color;
     background: $hexary-background-color;
+  }
+}
+.stock-out {
+  background: #92989d;
+  &:hover {
+    background: #92989d;
   }
 }

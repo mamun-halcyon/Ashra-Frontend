@@ -87,14 +87,14 @@ const ListCard: FC<IProps> = ({ product }) => {
 
   return (
     <div className="list-card flex  py-5">
-      <div className="image md:w-[30%] w-[30%] relative flex items-center justify-center pt-10 box-border">
+      <div className="image md:w-[30%] w-[40%] relative flex items-center justify-center  box-border">
         <Link
           href={`/product/${product.slug}`}
           className="font-gotham font-medium text-sm inline-block black-text primary-hover w-full"
         >
-          <div className=" w-[70%]">
+          <div className="pr-1">
             <Image
-              className=" w-full object-cover"
+              className=" w-full h-auto object-cover"
               src={`${API_ROOT}/images/product/${product.image}`}
               width={400}
               height={400}
@@ -126,7 +126,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           )}
         </div>
       </div>
-      <div className="details md:w-[50%] w-[40%] relative">
+      <div className="details md:w-[50%] w-[35%] relative">
         <Link
           href={`/product/${product.slug}`}
           className="font-gotham font-medium text-sm  black-text primary-hover"
@@ -145,7 +145,7 @@ const ListCard: FC<IProps> = ({ product }) => {
           Brand: Gazi
         </h4> */}
         <h3
-          className="font-gotham font-medium text-xs primary-text cursor-pointer md:mt-10 mt-4"
+          className="font-gotham font-medium text-xs primary-text cursor-pointer md:mt-10 mt-4 hover-text-color"
           onClick={() => setIsEmi(true)}
         >
           Avail Bank EMI
@@ -216,8 +216,8 @@ const ListCard: FC<IProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="image w-[30%] relative">
-        <h3 className="font-gotham font-medium stock pb-1 mb-4">
+      <div className="image w-[25%] relative">
+        <h3 className="font-gotham font-medium stock pb-1 mb-4 pl-1 md:pl-0">
           {" "}
           {product.availability === 1
             ? "In Stock"
