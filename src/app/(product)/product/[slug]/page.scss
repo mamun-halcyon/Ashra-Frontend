@@ -176,9 +176,10 @@
   border-bottom: 1px solid $quinary-border-color;
 
   .select {
-    border: 1px solid $quaternary-border-color;
+    border: 1px solid $quaternary-text-color;
     transition: all linear 0.3s;
     &:hover {
+      border: 1px solid $hover-color;
       background: $primary-background-color;
       color: $tertiary-text-color;
     }
@@ -192,6 +193,7 @@
     }
   }
   .selected {
+    border: 1px solid $hover-color;
     background: $primary-background-color;
     color: $tertiary-text-color;
   }

@@ -636,7 +636,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                 item.attribute_id ===
                                                 findAttribute?.id
                                             )
-                                              ? "bg-primary white-text"
+                                              ? "selected white-text"
                                               : ""
                                               } ${(findAttribute?.attribute_quantity as number) <=
                                                 0
@@ -873,21 +873,15 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       ))}
                     </div>
 
+                    <Link href='/Return-Refund'>
                     <OutlineButton className="flex items-center font-gotham font-medium text-xs py-1 outline-hidden">
                       <span className="mr-2">
                         {/* <BsAwardFill /> */}
                         <FaAward className="award" />
-                        {/*   <Image
-                      src={
-                        '/assets/images/icon/7 Days Replacement & 12 Month Free Service Icon.svg'
-                      }
-                      width={20}
-                      height={20}
-                      alt="icon"
-                    /> */}
                       </span>
                       7 Days Replacement & 12 Month Free Service
                     </OutlineButton>
+                    </Link>
                   </div>
                 </div>
               </div>
