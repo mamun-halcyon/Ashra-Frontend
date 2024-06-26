@@ -109,9 +109,9 @@ const ProductCard: React.FC<IProps> = ({
   return (
     <div className="product-card group relative p-3  mt-2">
       <Link href={`/product/${url}`}>
-        <div className="flex justify-center items-center pt-10  image">
+        <div className="flex justify-center items-center pt-2  image">
           <Image
-            className="mb-5"
+            className="mb-1"
             src={`${API_ROOT}/images/product/${image}`}
             width={220}
             height={210}
@@ -122,15 +122,15 @@ const ProductCard: React.FC<IProps> = ({
       </Link>
 
       <div className="text ">
-        <div className=" h-10 leading-3 text-center mb-1">
+        <div className=" h-12 md:h-10 leading-3 text-center">
           <Link
             href={`/product/${url}`}
-            className=" font-gotham product-title font-medium text-center text-sm"
+            className=" font-gotham product-title font-medium text-center text-xs md:text-sm "
           >
             {title?.substring(0, 44)}
           </Link>
         </div>
-        <p className=" mb-6 text-center text-sm h-5">
+        <p className=" mb-6 text-center text-sm h-5 mt-1">
           {Number(regular_price) && (
             <span
               className={`mr-3 font-gotham ${

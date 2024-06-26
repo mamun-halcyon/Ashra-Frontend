@@ -14,20 +14,6 @@
   .icon-area {
     border: 1px solid $hexary-border-color;
     border-radius: 50%;
-    transition: all linear 0.3s;
-  
-    &:hover {
-    background: $hover-color;
-    border: 1px solid $hover-color;
-    color: $tertiary-text-color;
-    }
-  }
-  .icon {
-    transition: all linear 0.3s;
-    
-    &:hover {
-    color: white;
-    }
   }
 
   .details {
@@ -46,8 +32,12 @@
     .interaction {
       transition: all linear 0.3s;
       &:hover {
+        .icon-area{
+          border: 1px solid $hover-color;
+          border-radius: 50%;
+        }
         svg {
-          color: $primary-text-color;
+          color: $hover-color;
         }
         p {
           color: $primary-text-color;

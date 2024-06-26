@@ -67,7 +67,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             },
           }
         );
-        if (response.status == 201) {
+        if (response.status === 201) {
           dispatch(
             addToWishList({
               product_id: response.data.data.product_id,
@@ -75,7 +75,7 @@ const ListCard: FC<IProps> = ({ product }) => {
             })
           );
         } else {
-          console.log("Status : ", response.status);
+          toast.warning('Item already added in your wish list!');
         }
       } catch (error) {
         console.log(error);
