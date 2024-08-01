@@ -120,7 +120,7 @@ function Login() {
 
                 <div className="mt-3 flex justify-between items-center">
                   <div className="flex">
-                    <input type="checkbox" className="accent-[#E30513]" name="check" id="check" />
+                    <input type="checkbox" className="accent-[#524096]" name="check" id="check" />
                     <label
                       className="font-gotham font-normal text-sm black-text ml-1"
                       htmlFor="check"

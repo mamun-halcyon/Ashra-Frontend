@@ -1,11 +1,11 @@
 @import "../styles/index.scss";
 
 .primary-text {
-  color: $primary-text-color;
+  color: $text-color;
 }
 .primary-hover {
   &:hover {
-    color: $primary-text-color;
+    color: $hover-color;
   }
 }
 .primary-bg {

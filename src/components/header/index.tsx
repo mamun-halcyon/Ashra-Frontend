@@ -43,18 +43,18 @@ const TopHeader = ({ homeData, menus }: IProps) => {
       <div className="flex justify-between items-center flex-wrap py-2">
         <div className="flex justify-between md:justify-start w-[100%]  md:w-[auto] items-center">
           <div className="flex items-center">
-            <span className=" mr-2 primary-text font-gotham font-medium hover:text-[#E30513] text-sm">
+            <span className=" mr-2 primary-text font-gotham font-medium hover:text-[#524096] text-sm">
               <BiSolidPhone />
             </span>
-            <p className="primary-text font-gotham font-medium hover:text-[#E30513] text-[12px] sm:text-sm">
+            <p className="primary-text font-gotham font-medium hover:text-[#524096] text-[12px] sm:text-sm">
               {homeData?.mobile_number}
             </p>
           </div>
           <div className="flex  items-center ml-4">
-            <span className=" mr-2 primary-text font-gotham font-medium hover:text-[#E30513] text-sm">
+            <span className=" mr-2 primary-text font-gotham font-medium hover:text-[#524096] text-sm">
               <AiFillBell />
             </span>
-            <p className=" primary-text font-gotham font-medium hover:text-[#E30513] text-[12px] sm:text-sm">
+            <p className=" primary-text font-gotham font-medium hover:text-[#524096] text-[12px] sm:text-sm">
               {homeData?.office_time}
             </p>
           </div>
@@ -62,7 +62,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
         <div className=" hidden md:block">
           <div className="relative group inline-block">
             <p
-              className="sub-link cursor-pointer primary-text font-gotham font-medium hover:text-[#E30513] text-sm"
+              className="sub-link cursor-pointer primary-text font-gotham font-medium hover:text-[#524096] text-sm"
             >
               Help
               <span>
@@ -70,9 +70,9 @@ const TopHeader = ({ homeData, menus }: IProps) => {
               </span>
             </p>
             <div className="absolute  invisible  group-hover:visible help-item sibling w-[130px] py-2 top-[23px]  z-10 left-0">
-              <ul className="   bg-[#fff] font-gotham font-medium hover:text-[#E30513] text-[13px] black-text">
+              <ul className="   bg-[#fff] font-gotham font-medium hover:text-[#524096] text-[13px] black-text">
                 {menus?.map((menu, index) => (
-                  <li key={index} className="px-2 py-1 hover:text-[#E30513] ">
+                  <li key={index} className="px-2 py-1 hover:text-[#524096] ">
                     <Link href={menu.slug}>{menu.name}</Link>
                   </li>
                 ))}
@@ -81,7 +81,7 @@ const TopHeader = ({ homeData, menus }: IProps) => {
           </div>
           {isLoggedIn ? (
             <span
-              className="ml-6 sub-link primary-text font-gotham font-medium hover:text-[#E30513] text-sm logout-button"
+              className="ml-6 sub-link primary-text font-gotham font-medium hover:text-[#524096] text-sm logout-button"
               onClick={logoutHandler}
             >
               Logout
@@ -89,13 +89,13 @@ const TopHeader = ({ homeData, menus }: IProps) => {
           ) : (
             <>
               <Link
-                className="ml-6 sub-link primary-text font-gotham font-medium hover:text-[#E30513] text-sm"
+                className="ml-6 sub-link primary-text font-gotham font-medium hover:text-[#524096] text-sm"
                 href={"/login"}
               >
                 Login
               </Link>
               <Link
-                className="ml-6 sub-link primary-text font-gotham font-medium hover:text-[#E30513] text-sm"
+                className="ml-6 sub-link primary-text font-gotham font-medium hover:text-[#524096] text-sm"
                 href={"/register"}
               >
                 Registration

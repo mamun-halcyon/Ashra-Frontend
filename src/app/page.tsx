@@ -123,7 +123,7 @@ export default async function Home() {
               width={1800}
               height={500}
               quality={100}
-              className='h-[150px] md:h-auto'
+              className='h-auto'
             />
           </Link>
         </section>
@@ -151,6 +151,8 @@ export default async function Home() {
                       productAttribute={product["product-attributes"]}
                       camping_end_date={product.camping_end_date as string}
                       camping_start_date={product.camping_start_date as string}
+                      camping_id={product.camping_id as number}
+                      camping_name={product.camping_name as string}
                     />
                   )
                 )}
@@ -177,6 +179,8 @@ export default async function Home() {
                     productAttribute={product["product-attributes"]}
                     camping_end_date={product.camping_end_date as string}
                     camping_start_date={product.camping_start_date as string}
+                    camping_id={product.camping_id as number}
+                    camping_name={product.camping_name as string}
                   />
                 ))}
               </div>
@@ -203,6 +207,8 @@ export default async function Home() {
                     productAttribute={product["product-attributes"]}
                     camping_end_date={product.camping_end_date as string}
                     camping_start_date={product.camping_start_date as string}
+                    camping_id={product.camping_id as number}
+                    camping_name={product.camping_name as string}
                   />
                 ))}
               </div>
@@ -213,7 +219,7 @@ export default async function Home() {
           <div className="container ">
             <Link href={addBanner?.data[0]?.url ?? "/"}>
               <Image
-                className=" transition-all duration-100 hover:scale-[1.01] h-[150px] md:h-auto"
+                className=" transition-all duration-100 hover:scale-[1.01] h-auto"
                 src={`${API_ROOT}/images/banner/${addBanner?.data[0]?.image}`}
                 alt="ads"
                 width={1300}

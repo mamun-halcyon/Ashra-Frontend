@@ -33,7 +33,7 @@
   .product-title {
     transition: all linear 0.3s;
     &:hover {
-      color: #414141;
+      color: $hover-color;
     }
   }
   .discount {
@@ -62,10 +62,6 @@
       transform: translateX(0px);
       opacity: 1;
       visibility: visible;
-    }
-
-    .product-title {
-      color: $primary-text-color;
     }
   }
   .stock-out {

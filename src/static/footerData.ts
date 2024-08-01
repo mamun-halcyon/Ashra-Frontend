@@ -25,7 +25,7 @@ export const customerServiceData = {
 };
 
 export const applianceData = {
-  title: 'Gazi Home Appliancee',
+  title: 'Halcyon Digital',
   items: [
     {
       name: 'About Us',

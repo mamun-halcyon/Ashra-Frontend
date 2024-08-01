@@ -92,7 +92,7 @@ const Footer = async ({ globalData }: IProps) => {
           <div>
             <div className="w-[60%] md:mx-auto">
               <h3 className="font-gotham font-[600] text-base black-text mb-4">
-                Gazi Home Appliancee
+                Halcyon Digital
               </h3>
               <ul className="mx-auto">
                 {footerTwoData?.length > 0 ? (
@@ -205,7 +205,7 @@ const Footer = async ({ globalData }: IProps) => {
           <div className="flex justify-between items-center gap-1 md:gap-2">
             <div className="w-[50%] md-w-auto">
               <h4 className=" font-gotham font-light text-[10px] md:text-xs white-text">
-               {globalData?.setting?.footer_copywrite||'© 2022-2023 | Gazi Home Appliance - A Concern of Gazi Group'} 
+               {globalData?.setting?.footer_copywrite||'© 2022-2023 | Halcyon Digital'} 
               </h4>
             </div>
             <div className="w-[50%] md:w-auto">

@@ -336,7 +336,7 @@ function Category() {
                         <div className="flex mb-2">
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="stock"
                             id="stock"
                             value={1}
@@ -352,7 +352,7 @@ function Category() {
                         <div className="flex mb-2">
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="stock-out"
                             id="stockout"
                             value={2}
@@ -368,7 +368,7 @@ function Category() {
                         <div className="flex">
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="instock"
                             id="upcoming"
                             value={3}
@@ -424,7 +424,7 @@ function Category() {
                       <div className="">
                         <Link href={adsBanner.url}>
                           <Image
-                            className="w-full  transition-all duration-100 hover:scale-[1.01] h-[150px] md:h-full md:max-h-[500px]"
+                            className="w-full  transition-all duration-100 hover:scale-[1.01] h-auto"
                             src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                             width={1000}
                             height={300}
@@ -565,6 +565,8 @@ function Category() {
                                 camping_start_date={
                                   product.camping_start_date as string
                                 }
+                                camping_id={product.camping_id as number}
+                                camping_name={product.camping_name as string}
                               />
                             ))
                           ) : (

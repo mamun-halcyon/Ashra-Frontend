@@ -70,7 +70,7 @@ const EmiPopup: React.FC<IProps> = ({ handleEmi, price }) => {
           </div>
           <p className=" font-gotham font-medium text-sm mb-2">Credit Card</p>
           <div className="grid w-full grid-cols-7 gap-4">
-            <div className="md:col-span-2 col-span-7  md:h-[400px]  h-[150px] overflow-y-scroll border border-color">
+            <div className="md:col-span-2 col-span-7 h-auto overflow-y-scroll border border-color">
               <div className="px-1">
                 <FormGroup placeholder="Search Bank" onChange={handleSearch} />
               </div>
