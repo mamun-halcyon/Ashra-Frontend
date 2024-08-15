@@ -96,6 +96,11 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
 
+  /* const isCampaign =
+    product?.product?.camping_start_date &&
+    product?.product?.camping_end_date &&
+    new Date(product.product.camping_start_date).getTime() <= Date.now() &&
+    new Date(product.product.camping_end_date).getTime() >= Date.now(); */
   const handleEmi = () => setIsEmi(!isEmi);
   const productPrice = product?.product?.discount_price
     ? product?.product?.discount_price
@@ -105,8 +110,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
       (attr) =>
         attr.attribute_id === attribute.id ||
         attr.attribute_key === attribute.attribute_key ||
-        attr.attribute_name === attribute.attribute_value ||
-        attr.attribute_image === attribute.attribute_image
+        attr.attribute_name === attribute.attribute_value
     );
     if (isExists.length < 1) {
       setSelectedAttributes((prev) => [
@@ -116,7 +120,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
           attribute_name: attribute.attribute_value,
           attribute_quantity: quantity,
           attribute_key: attribute.attribute_key,
-          attribute_image:attribute.attribute_image,
         },
       ]);
     } else {
@@ -130,19 +133,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
           attribute_name: attribute.attribute_value,
           attribute_quantity: quantity,
           attribute_key: attribute.attribute_key,
-          attribute_image:attribute.attribute_image,
         },
       ]);
     }
-    handleViewImage(attribute.attribute_image);
   };
 
   const handleViewImage = (url: string) => {
     setViewImag(url);
   };
-
-  console.log(viewImage);
-  
 
   useEffect(() => {
     let tempSelAttr: any[] = [];
@@ -651,7 +649,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                 handleAttributeClick(
                                                   findAttribute
                                                 );
-                                              
+                                              handleViewImage(
+                                                product.productAttribute?.find(
+                                                  (att) =>
+                                                    att.attribute_key === key &&
+                                                    att.attribute_value ===
+                                                    value
+                                                )?.attrbute_image as string
+                                              );
                                             }}
                                           >
                                             {value}
@@ -778,7 +783,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           }}
                         >
                           {" "}
-                          <OutlineButton className="flex items-center font-gotham font-medium mr-2  outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium mr-2  outline-hidden text-sm md:text-base">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
@@ -820,7 +825,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             );
                           }}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm md:text-base mr-2 outline-hidden">
                             <span>
                               <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
@@ -829,7 +834,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </span>
 
                         <span className="mt-2 md:mt-0 share-item">
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm md:text-base mr-2 outline-hidden">
                             <span>
                               <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
@@ -955,7 +960,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                     render={({ field }) => (
                                       <StarRatings
                                         rating={field.value}
-                                        starRatedColor="#524096"
+                                        starRatedColor="#E30513"
                                         changeRating={(newRating) =>
                                           field.onChange(newRating)
                                         }
@@ -1172,7 +1177,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                       sort_description={product.sort_description}
                       availability={product.availability}
                       quantity={product.default_quantity}
-                      productAttribute={product["product-attributes"]}
+                      productAttribute={product.ProductAttribute}
                       camping_end_date={product.camping_end_date as string}
                       camping_start_date={product.camping_start_date as string}
                       camping_id={product.camping_id as number}

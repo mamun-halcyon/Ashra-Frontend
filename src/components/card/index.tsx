@@ -60,9 +60,9 @@ const ProductCard: React.FC<IProps> = ({
   const dispatch = useAppDispatch();
   const [isCampaign, setIsCampaign] = useState(false);
 
-  console.log('camping',camping_id);
-  
-  
+  console.log('camping', camping_id);
+
+
   useEffect(() => {
     const checkCampaign = async () => {
       if (camping_id) {
@@ -73,7 +73,7 @@ const ProductCard: React.FC<IProps> = ({
           const now = new Date();
           const startDate = new Date(campaign.start_date);
           const endDate = new Date(campaign.end_date);
-          
+
           // const date = startDate <= now && endDate >= now;
           // console.log(startDate, endDate);
           if (startDate <= now && endDate >= now) {
@@ -169,12 +169,11 @@ const ProductCard: React.FC<IProps> = ({
         <p className="mb-6 text-center text-sm h-5 mt-1">
           {Number(regular_price) && (
             <span
-              className={`mr-3 font-gotham ${
-                Number(discount_price) > 0 &&
+              className={`mr-3 font-gotham ${Number(discount_price) > 0 &&
                 Number(discount_price) != Number(regular_price)
-                  ? "line-through font-medium"
-                  : "font-bold"
-              } text-sm`}
+                ? "line-through font-medium opacity-60 text-xs md:text-sm"
+                : "font-bold"
+                } text-sm md:text-base`}
             >
               ৳ {FormatPrice(regular_price)}
             </span>
@@ -182,7 +181,7 @@ const ProductCard: React.FC<IProps> = ({
 
           {Number(discount_price) > 0 &&
             Number(discount_price) != Number(regular_price) && (
-              <span className="font-gotham font-bold text-sm">
+              <span className="font-gotham font-bold text-sm md:text-base">
                 ৳ {FormatPrice(discount_price)}
               </span>
             )}
