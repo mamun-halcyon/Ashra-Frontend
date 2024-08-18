@@ -51,13 +51,13 @@ const SearchArea = () => {
         {/* mobile search */}
         <input
           type="text"
-          className="block md:hidden px-1 w-full h-6 focus:outline-none border border-r-0 border-[#cccccc] font-gotham font-normal text-xs placeholder:font-gotham placeholder:text-xs"
+          className="block md:hidden px-1 w-full h-6 focus:outline-none border-[0.5px] border-r-0 border-[rgb(2,6,23)] font-gotham font-normal text-xs placeholder:font-gotham placeholder:text-xs"
           placeholder="Search for Products..."
           onChange={handleInputChange} // Handle input change
           value={searchValue} // Bind the input value to state
         />
         <button
-          className="block md:hidden border button h-6 md:h-9 px-2 md:px-6 font-gotham font-normal text-sm white-text"
+          className="block md:hidden border-[#97627d] border-[0.5px] button h-6 md:h-9 px-2 md:px-6 font-gotham font-normal text-sm white-text"
           onClick={handleClick}
         >
           <GoSearch className="w-4 h-4"/>

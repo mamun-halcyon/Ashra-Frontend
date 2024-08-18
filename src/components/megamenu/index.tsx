@@ -185,7 +185,7 @@ const MegaMenu = ({ menus }: IProps) => {
             <div className="relative main-button">
               <FaBars className="w-5 h-5" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
               {mobileMenuOpen && (
-                <div className="absolute white-bg mt-[12.5px] z-10 w-[180px] shadow">
+                <div className="absolute white-bg mt-[11px] -ml-[6px] pl-[6px] z-10 w-[180px] shadow">
                   {menus
                     ?.filter(
                       (parent) =>
