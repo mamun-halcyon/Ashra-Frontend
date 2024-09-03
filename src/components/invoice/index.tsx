@@ -55,7 +55,7 @@ const Invoice = ({
             {
               order?.order_form == "web" || order.order_prefix === "GCW" ?
                 <>
-                  <img src="/assets/invoice/web-header.png" alt="invoice" />
+                  <img src="/assets/invoice/web-header.jpg" alt="invoice" />
                 </> : <>
                   {order.order_prefix === "GHA" ? (
                     <img src="/assets/invoice/homeappliance.png" alt="invoice" />

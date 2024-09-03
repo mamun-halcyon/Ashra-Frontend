@@ -41,7 +41,7 @@ const Popup: React.FC<PopupProps> = ({ popup_url }) => {
     isVisible && (
       <div className="popup">
         <div className="popup-content">
-          <button onClick={handleClose} className="close-button">
+          <button onClick={handleClose} className="close-button" title="close" aria-label="close">
             <RxCross1 />
           </button>
           <Image
@@ -49,6 +49,7 @@ const Popup: React.FC<PopupProps> = ({ popup_url }) => {
             alt="popup"
             width={500}
             height={500}
+            // style={{ width: '500px', height: '500px' }}
           />
         </div>
       </div>
