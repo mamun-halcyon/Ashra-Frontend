@@ -60,9 +60,6 @@ const ProductCard: React.FC<IProps> = ({
   const dispatch = useAppDispatch();
   const [isCampaign, setIsCampaign] = useState(false);
 
-  console.log('camping', camping_id);
-
-
   useEffect(() => {
     const checkCampaign = async () => {
       if (camping_id) {
@@ -127,12 +124,13 @@ const ProductCard: React.FC<IProps> = ({
         if (response.status == 201) {
           dispatch(
             addToWishList({
-              product_id: response.data.data.product_id,
-              user_id: response.data.data.user_id,
+              product_id: response.data.wishlist.product_id,
+              user_id: response.data.wishlist.user_id,
             })
           );
         } else {
-          console.log("Status : ", response.status);
+          console.log("Status : ", response.data);
+          toast.warning(`${response.data.message}`);
         }
       } catch (error) {
         console.log(error);
@@ -152,6 +150,7 @@ const ProductCard: React.FC<IProps> = ({
             width={220}
             height={210}
             quality={100}
+
             alt="product"
           />
         </div>
@@ -161,7 +160,7 @@ const ProductCard: React.FC<IProps> = ({
         <div className="h-12 md:h-10 leading-3 text-center">
           <Link
             href={`/product/${url}`}
-            className="font-gotham product-title font-medium text-center text-xs md:text-sm"
+            className="font-gotham primary-text product-title font-medium text-center text-xs md:text-sm"
           >
             {title?.substring(0, 44)}
           </Link>
@@ -172,7 +171,7 @@ const ProductCard: React.FC<IProps> = ({
               className={`mr-3 font-gotham ${Number(discount_price) > 0 &&
                 Number(discount_price) != Number(regular_price)
                 ? "line-through font-medium opacity-60 text-xs md:text-sm"
-                : "font-bold"
+                : "font-bold primary-text"
                 } text-sm md:text-base`}
             >
               ৳ {FormatPrice(regular_price)}
@@ -181,7 +180,7 @@ const ProductCard: React.FC<IProps> = ({
 
           {Number(discount_price) > 0 &&
             Number(discount_price) != Number(regular_price) && (
-              <span className="font-gotham font-bold text-sm md:text-base">
+              <span className="font-gotham primary-text font-bold text-sm md:text-base">
                 ৳ {FormatPrice(discount_price)}
               </span>
             )}
@@ -189,17 +188,24 @@ const ProductCard: React.FC<IProps> = ({
         <div className="flex justify-center">
           {availability === 1 && (
             <>
-              {quantity > 0 ? (
+              {productAttribute && productAttribute.length > 0 ? (
+                // Check if all attribute quantities are 0
+                productAttribute.every(attr => attr.attribute_quantity === 0) ? (
+                  <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] btn__disable">
+                    Out of Stock
+                  </Button>
+                ) : (
+                  // At least one attribute has quantity > 0
+                  <Link href={`/product/${url}`}>
+                    <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px]">
+                      View
+                    </Button>
+                  </Link>
+                )
+              ) : (
+                // No attributes, check the main quantity
                 <>
-                  {productAttribute && productAttribute.length > 0 ? (
-                    <>
-                      <Link href={`/product/${url}`}>
-                        <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px]">
-                          View
-                        </Button>
-                      </Link>
-                    </>
-                  ) : (
+                  {quantity > 0 ? (
                     <>
                       <Button
                         onClick={() =>
@@ -242,41 +248,54 @@ const ProductCard: React.FC<IProps> = ({
                         Buy Now
                       </Button>
                     </>
+                  ) : (
+                    <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] btn__disable">
+                      Out of Stock
+                    </Button>
                   )}
                 </>
-              ) : (
-                <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] stock-out">
-                  Out of Stock
-                </Button>
               )}
             </>
           )}
-          {availability === 2 ? (
-            <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] stock-out">
+
+          {availability === 2 && (
+            <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] btn__disable">
               Out of Stock
             </Button>
-          ) : null}
+          )}
+
           {availability === 3 && (
             <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px]">
               Up Coming
             </Button>
           )}
         </div>
+
       </div>
       <div className="absolute top-2 left-2">
-        {((Number(regular_price) - Number(discount_price)) /
-          Number(regular_price)) *
-          100 !==
-          0 && discount_price !== 0 ? (
-          <span className="sudo inline-block discount font-gotham text-xs font-bold px-2 py-1 rounded primary-text">
-            {(
+        {Number(regular_price) > 0 && Number(discount_price) > 0 && (
+          (() => {
+            const discountPercent =
               ((Number(regular_price) - Number(discount_price)) /
                 Number(regular_price)) *
-              100
-            ).toFixed(2)}
-            %
-          </span>
-        ) : null}
+              100;
+
+            // Only show the discount percentage if it is greater than 0
+            if (discountPercent > 0) {
+              return (
+                <span className="sudo inline-block discount font-gotham text-xs font-bold px-2 py-1 rounded primary-text">
+                  - {discountPercent % 1 !== 0
+                    ? discountPercent.toFixed(2) // Show 2 decimal points if fractional
+                    : discountPercent.toString()}%
+                </span>
+              );
+            }
+            return null; // Do not render anything if the discount is 0%
+          })()
+        )}
+
+
+
         {isNew ? (
           <span className="sudo inline-block new font-gotham text-xs font-bold px-2 py-1 rounded primary-text">
             New
@@ -300,11 +319,13 @@ const ProductCard: React.FC<IProps> = ({
               description: sort_description ?? "",
               image,
               title,
+              slug: url,
               regular_price: Number(regular_price),
               price: Number(discount_price),
-              quantity: 1,
+              default_quantity: quantity,
               rating: 5,
               availability: availability,
+              productAttribute: productAttribute,
             })
           }
         >

@@ -47,7 +47,7 @@ const Navbar = ({ logo }: { logo: string }) => {
 
   return (
     <>
-      <nav className={`${stickyClass} navbar h-[64px] md:h-[100px]`}>
+      <nav className={`${stickyClass} navbar h-[64px] md:h-[100px] mt-0`}>
         <div className="container px-2 md:px-0">
           <div className="flex justify-between items-center md:py-5 py-3">
             <div className="w-[33%]">
@@ -62,15 +62,15 @@ const Navbar = ({ logo }: { logo: string }) => {
                 />
               </Link>
             </div>
-            <div className="hidden md:block">
+            <div className="">
               <Suspense>
                 <SearchArea />
               </Suspense>
             </div>
-            <div className="w-[33%]">
+            <div className="w-[33%] mr-3">
               <div className="flex flex-row-reverse">
                 <button
-                  className="link-item"
+                  className="link-item hidden md:block"
                   aria-label="profile"
                   onClick={toggleSidebar}
                 >

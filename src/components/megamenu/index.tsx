@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import { FaBars } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
 import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
+import { FaHome, FaBox, FaPhone, FaUser } from "react-icons/fa";
 import "./index.scss";
 import { useAppDispatch } from "@/redux/hooks";
 import { addCategory } from "@/redux/features/category/categorySlice";
 import { Suspense, useEffect, useState } from "react";
 import SearchArea from "../search";
+import ProfileSidebar from "../profile-sidebar";
 
 type IProps = {
   menus: ICategoryData[];
@@ -64,6 +66,16 @@ const MegaMenu = ({ menus }: IProps) => {
     };
   }, [mobileMenuOpen]);
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
+
   return (
     <section className={stickyClass}>
       {/* Desktop Menu */}
@@ -104,7 +116,7 @@ const MegaMenu = ({ menus }: IProps) => {
                           )}
                       </span>
                     </div>
-                    <div className="absolute z-10 sub-heading shadow">
+                    <div className="absolute z-10 sub-heading shadow rounded-xl">
                       {menus
                         .filter(
                           (category) => category.parent_category === menu.slug
@@ -135,7 +147,7 @@ const MegaMenu = ({ menus }: IProps) => {
                                     <RiArrowDropRightLine className="text-xl" />
                                   </span>
                                 )}
-                              <div className="absolute children-item shadow">
+                              <div className="absolute children-item shadow rounded-xl">
                                 <ul>
                                   {menus
                                     .filter(
@@ -197,9 +209,6 @@ const MegaMenu = ({ menus }: IProps) => {
 
       {/* Mobile Menu */}
       <div className="flex items-center justify-between md:hidden">
-        {/* FaBars Icon */}
-        <FaBars className="w-5 h-5 cursor-pointer m-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
-
         {/* Overlay */}
         {mobileMenuOpen && (
           <div
@@ -212,12 +221,15 @@ const MegaMenu = ({ menus }: IProps) => {
         <div
           className={`fixed top-0 left-0 h-full z-50 transition-transform duration-300 ${mobileMenuOpen ? 'open' : ''} shadow md:hidden mobile-menu bg-white`}
         >
-          <div className="container px-2 pt-4">
-            <div className="flex justify-between items-center">
+          <div className="container px-2 pt-5">
+            <div className="flex justify-between items-center mb-4">
               <div className="relative main-button">
                 <MdClose className="w-5 h-5 cursor-pointer" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
               </div>
             </div>
+            <Suspense>
+              <SearchArea />
+            </Suspense>
             <div className="mt-4">
               {menus
                 ?.filter(
@@ -317,28 +329,52 @@ const MegaMenu = ({ menus }: IProps) => {
                 ))}
             </div>
           </div>
-        </div>
 
-        <div className="flex">
-          <Suspense>
-            <SearchArea />
-          </Suspense>
-          <div>
+          <div className="flex flex-col pl-3">
             <Link
-              className="font-gotham font-medium text-sm black-text hover-text-color"
+              className="font-gotham font-medium text-sm black-text hover-text-color py-2"
               href={'/videos'}
             >
               Videos
             </Link>
             <Link
-              className="font-gotham font-medium text-sm black-text hover-text-color ml-4 mr-2 md:mr-0 md:ml-14"
+              className="font-gotham font-medium text-sm black-text hover-text-color py-2"
               href={'/blogs'}
             >
               Blogs
             </Link>
           </div>
+
+        </div>
+        {/* Bottom Navigation Bar */}
+        <div className="fixed bottom-0 w-full bg-white shadow-md py-2 z-[1002] md:hidden flex justify-around items-center">
+          <Link href="/" className="flex flex-col items-center text-gray-700">
+            <FaHome className="text-lg text-[#97627d]" />
+            <span className="text-xs font-gotham font-semibold text-[#97627d]">Home</span>
+          </Link>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex flex-col items-center text-gray-700"
+          >
+            <FaBars className="text-lg text-[#97627d]" />
+            <span className="text-xs font-gotham font-semibold text-[#97627d]">Category</span>
+          </button>
+          <Link href="/orders" className="flex flex-col items-center text-gray-700">
+            <FaBox className="text-lg text-[#97627d]" />
+            <span className="text-xs font-gotham font-semibold text-[#97627d]">Orders</span>
+          </Link>
+          <a href="tel:+1234567890" className="flex flex-col items-center text-gray-700">
+            <FaPhone className="text-lg text-[#97627d]" />
+            <span className="text-xs font-gotham font-semibold text-[#97627d]">Call</span>
+          </a>
+          <div className="flex flex-col items-center text-gray-700">
+            <FaUser className="text-lg text-[#97627d]" aria-label="profile"
+                  onClick={toggleSidebar}/>
+            <span className="text-xs font-gotham font-semibold text-[#97627d]">Profile</span>
+          </div>
         </div>
       </div>
+      <ProfileSidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
     </section>
   );
 };

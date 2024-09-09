@@ -44,9 +44,9 @@ const ProfileSidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
       className={`profile-sidebar w-[250px] md:w-[400px] ${isOpen ? "open" : ""}`}
     >
       <button className="close-btn" onClick={onClose}>
-        <MdClose className="w-8 h-8 cursor-pointer"/>
+      <MdClose className="w-5 h-5 cursor-pointer"/>
       </button>
-      <div className="md:col-span-3 shadow py-10 px-5 white-bg">
+      <div className="md:col-span-3 shadow py-10 white-bg">
         <div className="relative profile-top">
           <div className="primary-bg h-28">
             <div className="shadow absolute bottom-0 left-[50%] rounded-full p-4 w-24 h-24 white-bg flex justify-center items-center translate-y-[50%] translate-x-[-50%] overflow-hidden">
@@ -70,7 +70,7 @@ const ProfileSidebar = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
             </div>
           </div>
         </div>
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center  px-5 ">
           <div className="text-center">
             <h3 className="font-gotham font-medium text-base md:text-lg black-text text-center">
               {login?.user?.name}
