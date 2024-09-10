@@ -1056,7 +1056,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                     render={({ field }) => (
                                       <StarRatings
                                         rating={field.value}
-                                        starRatedColor="#E30513"
+                                        starRatedColor="#524096"
                                         changeRating={(newRating) =>
                                           field.onChange(newRating)
                                         }

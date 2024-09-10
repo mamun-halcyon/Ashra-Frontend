@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../../../utils/axiosInstance";
+import UserInfo from "@/components/user-info";
 
 const CreateTicket = () => {
   const route = useRouter();
@@ -62,19 +63,15 @@ const CreateTicket = () => {
     <>
       {isLoggedIn ? (
         <section className="py-10">
-          <div className="container">
+          <div className="container md:my-10 mb-10 mt-5">
+          <h2 className="md:text-2xl text-xl font-semibold font-gotham text-center mb-3 md:mb-8">
+            Create New Ticket
+          </h2>
             <div className="grid grid-cols-12 gap-6">
-              <div className="sidebar  md:col-span-3  px-1">
-                <span className="md:hidden">
-                  <FaBars />
-                </span>
-                <div className="items">
-                  <ProfileSidebar />
-                </div>
-              </div>
-              <div className=" col-span-9">
+              <UserInfo/>
+              <div className="md:col-span-9 col-span-12 px-2">
                 <form
-                  className="w-[480px] mx-auto shadow px-8 py-10"
+                  className=":w-[480px] md:w-full mx-auto shadow px-8 py-10"
                   onSubmit={handleSubmit}
                 >
                   <FormGroup

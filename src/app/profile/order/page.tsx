@@ -9,6 +9,9 @@ import SingleOrder from "@/components/single-order";
 import { FaBars } from "react-icons/fa6";
 import axiosInstance from "../../../../utils/axiosInstance";
 import ProfilePagination from "@/components/profile-pagination";
+import Image from "next/image";
+import { API_ROOT } from "@/constant";
+import UserInfo from "@/components/user-info";
 
 const OrderHistory = () => {
   const route = useRouter();
@@ -56,18 +59,14 @@ const OrderHistory = () => {
   return (
     <>
       {isLoggedIn ? (
-        <section className="profile">
-          <div className="container">
+        <section className="">
+          <div className="container md:my-10 mb-10 mt-5">
+          <h2 className="md:text-3xl text-xl font-semibold font-gotham text-center mb-3 md:mb-8">
+            Your Orders
+          </h2>
             <div className="grid grid-cols-12 gap-6">
-              <div className="sidebar  md:col-span-3  px-1">
-                <span className="md:hidden">
-                  <FaBars />
-                </span>
-                <div className="items">
-                  <ProfileSidebar />
-                </div>
-              </div>
-              <div className="overflow-x-scroll md:overflow-x-visible md:col-span-9 col-span-12 px-1">
+            <UserInfo/>
+              <div className="overflow-x-scroll md:overflow-x-visible md:col-span-9 col-span-12 px-2">
                 <div className="order-table">
                   <table className="w-full text-sm text-left ">
                     <thead>

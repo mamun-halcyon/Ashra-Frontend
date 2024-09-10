@@ -507,7 +507,7 @@ function Checkout() {
                       <div className="flex  items-center">
                         <input
                           type="checkbox"
-                          className="accent-[#E30513]"
+                          className="accent-[#524096]"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
                           checked={selectedPayment === "cashOnDelivery"}
@@ -523,7 +523,7 @@ function Checkout() {
                       <div className="flex items-center">
                         <input
                           type="checkbox"
-                          className="accent-[#E30513]"
+                          className="accent-[#524096]"
                           name="onlinePayment"
                           id="onlinePayment"
                           checked={selectedPayment === "onlinePayment"}
@@ -564,7 +564,7 @@ function Checkout() {
                         <div className="flex  items-center">
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
@@ -582,7 +582,7 @@ function Checkout() {
                         {/* <div>
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="pickup"
                             id="pickup"
                             checked={selectedPaymentDeliveryStatus === 'pickup'}
@@ -752,7 +752,7 @@ function Checkout() {
                   <div className="py-6">
                     <div className="flex items-start">
                       <input
-                        className="mr-2 accent-[#E30513]"
+                        className="mr-2 accent-[#524096]"
                         type="checkbox"
                         name="accept"
                         id="accept"

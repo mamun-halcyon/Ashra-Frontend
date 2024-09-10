@@ -10,6 +10,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { FaBars } from "react-icons/fa6";
 import { formatDate } from "@/components/dateformate";
 import axiosInstance from "../../../../utils/axiosInstance";
+import UserInfo from "@/components/user-info";
 
 const Ticket = () => {
   const route = useRouter();
@@ -48,18 +49,14 @@ const Ticket = () => {
   return (
     <>
       {isLoggedIn ? (
-        <section className="profile">
-          <div className="container">
+        <section className="">
+          <div className="container md:my-10 mb-10 mt-5">
+          <h2 className="md:text-3xl text-xl font-semibold font-gotham text-center mb-3 md:mb-8">
+            Your Support Ticket
+          </h2>
             <div className="grid grid-cols-12 gap-6">
-              <div className="sidebar  md:col-span-3  px-1">
-                <span className="md:hidden">
-                  <FaBars />
-                </span>
-                <div className="items">
-                  <ProfileSidebar />
-                </div>
-              </div>
-              <div className=" col-span-12 md:col-span-9 overflow-x-scroll md:overflow-x-visible">
+              <UserInfo/>
+              <div className=" col-span-12 md:col-span-9 overflow-x-scroll md:overflow-x-visible px-2">
                 <Link href={"/profile/ticket/create"}>
                   <Button className="px-2 py-1 font-gotham">New Ticket</Button>
                 </Link>
