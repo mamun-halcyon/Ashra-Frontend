@@ -57,10 +57,11 @@ const SearchArea = () => {
           value={searchValue} // Bind the input value to state
         />
         <button
+          aria-label="search button"
           className="block md:hidden border-[#97627d] border-[1px] button h-6 md:h-9 px-2 md:px-6 font-gotham font-normal text-sm white-text"
           onClick={handleClick}
         >
-          <GoSearch className="w-4 h-4"/>
+          <GoSearch className="w-4 h-4" />
         </button>
       </form>
     </div>

@@ -588,13 +588,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               <h2 className="font-gotham  text-2xl primary-text font-medium d-price">
                                 ৳{FormatPrice(product?.product?.discount_price)}
                               </h2>
-                              <div>
-                                <span className="discount font-medium">
-                                  Save ৳
-                                  {FormatPrice(product.product.regular_price -
-                                    product.product.discount_price)}
-                                </span>
-                              </div>
+
+                              <span className="discount font-medium">
+                                Save ৳
+                                {FormatPrice(
+                                  Number((Number(product.product.regular_price) - Number(product.product.discount_price)).toFixed(2))
+                                )}
+                              </span>
+
                             </div>
                           </div>
                         )}
@@ -650,7 +651,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                         return (
                                           <div
                                             key={j}
-                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${selectedAttributes.find(
+                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 my-1 ${selectedAttributes.find(
                                               (item) =>
                                                 item.attribute_id ===
                                                 findAttribute?.id
@@ -671,8 +672,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                               handleViewImage(
                                                 product.productAttribute?.find(
                                                   (att) =>
-                                                    att.attribute_key === key &&
-                                                    att.attribute_value ===
+                                                    att.attribute_key == key &&
+                                                    att.attribute_value ==
                                                     value
                                                 )?.attrbute_image as string
                                               );
