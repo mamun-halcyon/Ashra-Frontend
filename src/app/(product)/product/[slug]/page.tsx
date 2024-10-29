@@ -589,7 +589,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 ৳{FormatPrice(product?.product?.discount_price)}
                               </h2>
 
-                              <span className="discount font-medium">
+                              <span className="discount rounded-xl md:rounded-full font-medium font-gotham flex justify-center items-center">
                                 Save ৳
                                 {FormatPrice(
                                   Number((Number(product.product.regular_price) - Number(product.product.discount_price)).toFixed(2))

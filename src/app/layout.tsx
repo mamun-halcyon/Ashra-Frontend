@@ -100,22 +100,28 @@ export async function generateMetadata(): Promise<Metadata> {
   const homeData: HomeApiResponse = await getData();
   return {
     metadataBase: new URL('https://gazifrontend.vercel.app/'),
-    title: homeData.homePage.meta_title,
-    description: homeData.homePage.meta_description,
+    title: "Halcyon",
+    description: "Halcyon Digital",
+    // title: homeData.homePage.meta_title,
+    // description: homeData.homePage.meta_description,
     authors: [
       { name: "Halcyon Digital", url: "https://halcyonbd.com" },
-      { name: "Talha", url: "https://t-soft.netlify.app" },
+      { name: "Mamun", url: "https://mamunur-rashid-portfolio.netlify.app/" },
     ],
     openGraph: {
-			title:homeData.homePage.meta_title,
-			description:homeData.homePage.meta_description,
+			// title:homeData.homePage.meta_title,
+			// description:homeData.homePage.meta_description,
+      title: "Halcyon",
+      description: "Halcyon Digital",
 			images: [{
-        url:`${API_ROOT}/images/setting/${homeData?.setting?.favicon}`,
+        url:`/favicon.ico`,
+        // url:`${API_ROOT}/images/setting/${homeData?.setting?.favicon}`,
         width: 800,
         height: 600,
       },],
 		},
-    icons: [{ rel: 'icon', url: `${API_ROOT}/images/setting/${homeData?.setting?.favicon}` }],
+    icons: [{ rel: 'icon', url:`/favicon.ico` }],
+    // icons: [{ rel: 'icon', url: `${API_ROOT}/images/setting/${homeData?.setting?.favicon}` }],
   };
 }
 

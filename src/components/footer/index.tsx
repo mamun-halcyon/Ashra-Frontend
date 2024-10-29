@@ -35,7 +35,8 @@ const Footer = async ({ globalData }: IProps) => {
           <div className="basic-info">
             <Image
               className=" mb-5"
-              src={`${API_ROOT}/images/setting/${globalData?.setting?.logo}`}
+              // src={`${API_ROOT}/images/setting/${globalData?.setting?.logo}`}
+              src={`/assets/images/logo/Halcyon_Logo.webp`}
               width={154}
               height={80}
               alt="gazi group logo"
@@ -45,23 +46,29 @@ const Footer = async ({ globalData }: IProps) => {
                 <FaLocationDot className=" w-5 h-5 black-text mt-1" />
               </span>
               <p className=" font-gotham font-medium text-sm black-text ">
-                {globalData?.setting?.address}
+                {/* {globalData?.setting?.address} */}
+                Dhaka, Bangladesh
+
               </p>
             </div>
-            <a className="flex mb-3" href={"tel:" + globalData?.setting?.contact_number}>
+            {/* <a className="flex mb-3" href={"tel:" + globalData?.setting?.contact_number}> */}
+            <a className="flex mb-3" href={"tel:" + "+88017 23 456 789"}>
               <span className="mr-4">
                 <BsHeadphones className=" w-5 h-5 black-text mt-1" />
               </span>
               <p className=" font-gotham font-medium text-sm black-text">
-                {globalData?.setting?.contact_number}
+                {/* {globalData?.setting?.contact_number} */}
+                +880 1723 456789
               </p>
             </a>
-            <a className="flex items-start " href={"mailto: " + globalData?.setting?.contact_email}>
+            {/* <a className="flex items-start " href={"mailto: " + globalData?.setting?.contact_email}> */}
+            <a className="flex items-start " href={"mailto: " + "info@halcyon.com"}>
               <span className="mr-4">
                 <BsEnvelopeFill className=" w-5 h-5 black-text mt-1" />
               </span>
               <p className=" font-gotham font-medium text-sm black-text">
-                {globalData?.setting?.contact_email}
+                {/* {globalData?.setting?.contact_email} */}
+                info@halcyon.com
               </p>
             </a>
           </div>

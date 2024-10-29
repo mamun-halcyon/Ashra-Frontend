@@ -9,9 +9,9 @@ import "./index.scss";
 
 import { useAppSelector } from "@/redux/hooks";
 import SearchArea from "../search";
-import { API_ROOT } from "@/constant";
+// import { API_ROOT } from "@/constant";
 import { Suspense, useEffect, useState } from "react";
-import ProfileSidebar from "../profile-sidebar"; // Import the ProfileSidebar component
+import ProfileSidebar from "../profile-sidebar"; 
 
 const Navbar = ({ logo }: { logo: string }) => {
   const { cart } = useAppSelector((state) => state.cart);
@@ -54,7 +54,8 @@ const Navbar = ({ logo }: { logo: string }) => {
               <Link href={"/"} className="inline-block">
                 <Image
                   className="logo"
-                  src={`${API_ROOT}/images/setting/${logo}`}
+                  // src={`${API_ROOT}/images/setting/${logo}`}
+                  src={`/assets/images/logo/Halcyon_Logo.webp`}
                   width={200}
                   height={80}
                   quality={100}

@@ -111,7 +111,8 @@ const TopHeader = ({ homeData, menus }: IProps) => {
                 <BiSolidPhone />
               </span>
               <p className="primary-text font-gotham font-medium hover:text-[#524096] text-[12px] sm:text-sm">
-                {homeData?.mobile_number}
+                {/* {homeData?.mobile_number} */}
+                +880 1723 456789
               </p>
             </div>
             <div className="flex items-center ml-4">
