@@ -9,6 +9,7 @@ import { FaBars } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../../../utils/axiosInstance";
 import "../../page.scss";
+import UserInfo from "@/components/user-info";
 
 const ViewTicket = () => {
   const route = useRouter();
@@ -19,6 +20,8 @@ const ViewTicket = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [details, setDetails] = useState<string>("");
   const [image, setImage] = useState(undefined);
+  console.log(messages);
+  
 
   const getTicketDetails = async () => {
     try {
@@ -93,17 +96,14 @@ const ViewTicket = () => {
       {isLoggedIn ? (
         <section className="py-10">
           <div className="container">
+          <h2 className="md:text-2xl text-xl font-semibold font-gotham text-center mb-3 md:mb-8">
+            Ticket
+          </h2>          
             <div className="grid grid-cols-12 gap-6">
-              <div className="sidebar  md:col-span-3  px-1">
-                <span className="md:hidden">
-                  <FaBars />
-                </span>
-                <div className="items">
-                  <ProfileSidebar />
-                </div>
-              </div>
-              <div className=" col-span-9">
-                <div className="mb-12 h-[350px] overflow-y-scroll scrollbar">
+              <UserInfo/>
+              <div className="col-span-9">
+              <p className="font-gotham  text-base md:text-xl ml-2">Subject: {messages[0]?.subject}</p>
+                <div className="mb-12 h-[350px] overflow-y-scroll scrollbar shadow-md p-1">
                   {messages?.length > 0 ? (
                     messages?.map((message, index) =>
                       message.parent_text_id == 0 ||

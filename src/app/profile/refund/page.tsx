@@ -8,6 +8,7 @@ import axiosInstance from '../../../../utils/axiosInstance';
 import '../page.scss';
 import '../order/page.scss';
 import ProfilePagination from '@/components/profile-pagination';
+import UserInfo from '@/components/user-info';
 
 const Refund = () => {
   const { login } = useAppSelector((state) => state.login);
@@ -22,7 +23,7 @@ const Refund = () => {
       const getAllOrders = async () => {
         try {
           const response = await axiosInstance.get(
-            `/refunds?page=${page}&limit=10&customer_id=${login.user.id}`,
+            `customers/refunds?page=${page}&limit=10`,
             {
               headers: {
                 Authorization: `Bearer ${login?.accessToken}`,
@@ -41,18 +42,14 @@ const Refund = () => {
     }
   }, [login, page]);
   return (
-    <section className="profile">
-      <div className="container">
+    <section className="">
+      <div className="container md:my-10 mb-10 mt-5">
+      <h2 className="md:text-3xl text-xl font-semibold font-gotham text-center mb-3 md:mb-8">
+            Your Refund Requested
+          </h2>
         <div className="grid grid-cols-12 gap-6">
-          <div className="sidebar  md:col-span-3  px-1">
-            <span className="md:hidden">
-              <FaBars />
-            </span>
-            <div className="items">
-              <ProfileSidebar />
-            </div>
-          </div>
-          <div className=" md:col-span-9 col-span-12 overflow-x-scroll md:overflow-x-visible  ">
+          <UserInfo/>
+          <div className=" md:col-span-9 col-span-12 overflow-x-scroll md:overflow-x-visible  px-2">
             <div className="order-table">
               <table className="w-full text-sm text-left ">
                 <thead>

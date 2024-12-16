@@ -8,6 +8,7 @@ import axiosInstance from "../../../../utils/axiosInstance";
 import "../page.scss";
 import "./page.scss";
 import ProfilePagination from "@/components/profile-pagination";
+import UserInfo from "@/components/user-info";
 
 const Conversations = () => {
   const route = useRouter();
@@ -26,14 +27,14 @@ const Conversations = () => {
     } else {
       route.push("/login");
     }
-  }, [login]);
+  }, [login, route]);
 
   useEffect(() => {
     if (login?.accessToken) {
       const getAllConversations = async () => {
         try {
           const response = await axiosInstance.get(
-            `/customers/querys?page${page}&limit=10`,
+            `/customers/querys?page=${page}&limit=10`,
             {
               headers: {
                 Authorization: `Bearer ${login?.accessToken}`,
@@ -50,22 +51,18 @@ const Conversations = () => {
       };
       getAllConversations();
     }
-  }, [login, page, route]);
+  }, [login, page]);
 
   return (
     <>
       {isLoggedIn ? (
-        <section className="profile">
-          <div className="container">
+        <section className="">
+          <div className="container md:my-10 mb-10 mt-5">
+          <h2 className="md:text-3xl text-xl font-semibold font-gotham text-center mb-3 md:mb-8">
+            Your Questions
+          </h2>
             <div className="grid grid-cols-12 gap-6">
-              <div className="sidebar  md:col-span-3  px-1">
-                <span className="md:hidden">
-                  <FaBars />
-                </span>
-                <div className="items">
-                  <ProfileSidebar />
-                </div>
-              </div>
+              <UserInfo/>
               <div className=" col-span-9">
                 <table className="w-full text-sm text-left conversation-table ">
                   <thead>

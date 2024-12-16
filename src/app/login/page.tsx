@@ -146,7 +146,7 @@ function Login() {
                 {`Don't`} Have An Account?
               </h3>
               <Link
-                className="w-full inline-block text-center py-1 mt-3 register-outline  font-gotham font-normal text-base"
+                className="rounded-xl md:rounded-full hover-effect w-full inline-block text-center py-1 mt-3 register-outline  font-gotham font-normal text-base"
                 href={"/register"}
               >
                 Register Now

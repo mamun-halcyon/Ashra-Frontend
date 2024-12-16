@@ -22,6 +22,7 @@ const ReactSlider = dynamic(() => import("react-slider"));
 // import ReactSlider from "react-slider";
 import "./page.scss";
 import { useAppSelector } from "@/redux/hooks";
+import { useDebounce } from "use-debounce";
 const ProductCard = dynamic(() => import("@/components/card"));
 
 function Category() {
@@ -70,18 +71,8 @@ function Category() {
     }
   };
 
-  const handleMinPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPrice = parseFloat(e.target.value);
-    if (!isNaN(newPrice) && newPrice < priceRange[1]) {
-      setPriceRange([newPrice, priceRange[1]]);
-    }
-  };
-  const handleMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPrice = parseFloat(e.target.value);
-    if (!isNaN(newPrice)) {
-      setPriceRange([priceRange[0], newPrice]);
-    }
-  };
+  const [debouncedPriceRange] = useDebounce(priceRange, 300);
+
 
   async function categoryAdBanner() {
     try {
@@ -229,12 +220,12 @@ function Category() {
         `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
         `${category !== "" ? "&category=" + category : ""}` +
         `${search !== "" ? "&search=" + search : ""}` +
-        `${priceRange[0] > 0 || priceRange[1] < 200000
-          ? "&min_price=" + priceRange[0]
+        `${debouncedPriceRange[0] > 0 || debouncedPriceRange[1] < 200000
+          ? "&min_price=" + debouncedPriceRange[0]
           : ""
         }` +
-        `${priceRange[0] > 0 || priceRange[1] < 200000
-          ? "&max_price=" + priceRange[1]
+        `${debouncedPriceRange[0] > 0 || debouncedPriceRange[1] < 200000
+          ? "&max_price=" + debouncedPriceRange[1]
           : ""
         }` +
         `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
@@ -263,7 +254,7 @@ function Category() {
     page,
     çategories,
     searchParams,
-    priceRange,
+    debouncedPriceRange,
     sortBy,
     availabilities,
   ]);
@@ -390,12 +381,10 @@ function Category() {
                             trackClassName="example-track"
                             value={priceRange}
                             min={0}
-                            max={200000}
+                            max={60000}
                             step={10} // Adjust step size as needed
                             minDistance={500}
-                            onChange={(newValue) => {
-                              setPriceRange(newValue as [number, number]);
-                            }}
+                            onChange={(value) => setPriceRange(value as [number, number])}
                           />
                         </div>
                         <div className="flex w-full justify-between mt-2">
@@ -404,13 +393,13 @@ function Category() {
                             type="number"
                             min={0}
                             value={priceRange[0]}
-                            onChange={handleMinPrice}
+                            onChange={(e) => setPriceRange([parseFloat(e.target.value), priceRange[1]])}
                           />
                           <input
                             className="price-input font-gotham font-medium text-xs"
                             type="number"
                             value={priceRange[1]}
-                            onChange={handleMaxPrice}
+                            onChange={(e) => setPriceRange([priceRange[0], parseFloat(e.target.value)])}
                           />
                         </div>
                       </FilterBox>
@@ -424,10 +413,13 @@ function Category() {
                       <div className="">
                         <Link href={adsBanner.url}>
                           <Image
-                            className="w-full  transition-all duration-100 hover:scale-[1.01] h-auto"
+                  
+                            className="w-full  transition-all duration-100 hover:scale-[1.01] h-auto "
                             src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                             width={1000}
                             height={300}
+                            style={{ width: '100%', height: 'auto' }}
+                            loading="lazy"
                             alt="gazi category-banner"
                           />
                         </Link>
@@ -541,7 +533,7 @@ function Category() {
                   </div>
 
                   {!isLoading ? (
-                    <div className="filter-products px-2 md:px-0 mx-1 md:mx-0">
+                    <div className="filter-products mx-1 md:mx-0">
                       {isRow ? (
                         <div className="grid md:grid-cols-4 grid-cols-2 gap-1 mb-5">
                           {products?.length > 0 ? (
@@ -558,7 +550,7 @@ function Category() {
                                 sort_description={product.sort_description}
                                 availability={product.availability}
                                 quantity={product.default_quantity}
-                                productAttribute={product["product-attributes"]}
+                                productAttribute={product.ProductAttribute}
                                 camping_end_date={
                                   product.camping_end_date as string
                                 }

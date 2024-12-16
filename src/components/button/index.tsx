@@ -18,7 +18,7 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`${className} button`}
+      className={`${className} button rounded-xl md:rounded-full hover-effect `} // added "hover-effect" class
       onClick={onClick}
       disabled={disable}
     >

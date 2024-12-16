@@ -125,7 +125,7 @@ function Login() {
               </h3>
               <h3 className="font-gotham font-normal text-sm black-text">
                 If you already have an account with us, Please{" "}
-                <Link className="primary-text" href={"/login"}>
+                <Link className="primary-text-color primary-hover" href={"/login"}>
                   Login
                 </Link>
                 .

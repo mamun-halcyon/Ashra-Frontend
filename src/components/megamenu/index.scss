@@ -5,7 +5,7 @@
   top: 100px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 998;
   background: #fff;
 }
 
@@ -170,4 +170,50 @@
       }
     }
   }
+}
+
+/* Sidebar Styles */
+.mobile-menu {
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%); /* Initially hidden */
+
+  &.open {
+    transform: translateX(0); /* Show when open */
+  }
+
+  .menus {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .sub-categories,
+  .children-category {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+    max-height: 0;
+
+    &.open {
+      max-height: 500px; /* Adjust based on content size */
+    }
+  }
+}
+
+/* Overlay for darkening background */
+.fixed.inset-0.bg-black.opacity-50.z-40 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40; /* Just below the sidebar */
+  opacity: 0.5;
 }

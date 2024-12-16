@@ -5,15 +5,42 @@
   color: $tertiary-text-color;
   border: 0;
   transition: all linear 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); // Default box shadow
 
   &:hover {
     background: $hover-color;
+    color: $tertiary-text-color;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); // Box shadow on hover
+  }
+
+  // Add the flowing hover effect
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; // Start the effect off-screen on the left
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    transition: all 0.4s ease;
+    z-index: -1; // Behind the button content
+  }
+
+  &:hover:before {
+    left: 100%; // Move the gradient effect from left to right on hover
+    transition: all 0.4s ease;
+  }
+
+  &:active {
+    transform: scale(0.98); // Optional: a subtle click effect
   }
 }
 
-.btn__disable{
+.btn__disable {
   cursor: not-allowed;
   pointer-events: none;
   background: #92989d;
-
 }

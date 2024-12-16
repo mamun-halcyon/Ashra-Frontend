@@ -23,7 +23,7 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AiOutlineHeart,
   AiOutlineMinus,
@@ -96,6 +96,42 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
 
+  const [selectedOption, setSelectedOption] = useState<"hijab" | "niqab" | "">(""); // Tracks which dropdown to show
+  const [mandatoryHijab, setMandatoryHijab] = useState(false); // Mandatory hijab flag
+  // const [mandatoryHijab, setMandatoryHijab] = useState(true); // Mandatory hijab flag
+  const [selectedItem, setSelectedItem] = useState<any>(null); // Tracks the selected hijab/niqab
+
+  // Sample data for hijabs and niqabs
+  const hijabs = [
+    { id: 1, name: "Green Hijab", price: 500, image: "https://via.placeholder.com/50" },
+    { id: 2, name: "Pink Hijab", price: 600, image: "https://via.placeholder.com/50" },
+    { id: 3, name: "Black Hijab", price: 700, image: "https://via.placeholder.com/50" },
+  ];
+
+  const niqabs = [
+    { id: 1, name: "Simple Niqab", price: 400, image: "https://via.placeholder.com/50" },
+    { id: 2, name: "Embroidered Niqab", price: 800, image: "https://via.placeholder.com/50" },
+  ];
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setSelectedOption(""); // Close the dropdown
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (item: any) => {
+    setSelectedItem(item);
+    setSelectedOption(""); // Close the dropdown after selection
+  };
+  /* const isCampaign =
+    product?.product?.camping_start_date &&
+    product?.product?.camping_end_date &&
+    new Date(product.product.camping_start_date).getTime() <= Date.now() &&
+    new Date(product.product.camping_end_date).getTime() >= Date.now(); */
   const handleEmi = () => setIsEmi(!isEmi);
   const productPrice = product?.product?.discount_price
     ? product?.product?.discount_price
@@ -105,8 +141,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
       (attr) =>
         attr.attribute_id === attribute.id ||
         attr.attribute_key === attribute.attribute_key ||
-        attr.attribute_name === attribute.attribute_value ||
-        attr.attribute_image === attribute.attribute_image
+        attr.attribute_name === attribute.attribute_value
     );
     if (isExists.length < 1) {
       setSelectedAttributes((prev) => [
@@ -116,7 +151,6 @@ const PageDetails = ({ params: { slug } }: Props) => {
           attribute_name: attribute.attribute_value,
           attribute_quantity: quantity,
           attribute_key: attribute.attribute_key,
-          attribute_image:attribute.attribute_image,
         },
       ]);
     } else {
@@ -130,19 +164,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
           attribute_name: attribute.attribute_value,
           attribute_quantity: quantity,
           attribute_key: attribute.attribute_key,
-          attribute_image:attribute.attribute_image,
         },
       ]);
     }
-    handleViewImage(attribute.attribute_image);
   };
 
   const handleViewImage = (url: string) => {
     setViewImag(url);
   };
-
-  console.log(viewImage);
-  
 
   useEffect(() => {
     let tempSelAttr: any[] = [];
@@ -340,6 +369,23 @@ const PageDetails = ({ params: { slug } }: Props) => {
     ],
   };
 
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
+
+  // Extract video ID and generate thumbnail for YouTube videos
+  useEffect(() => {
+    if (product?.product?.video_url) {
+      const videoId = extractYouTubeId(product.product.video_url);
+      if (videoId) {
+        setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
+      }
+    }
+  }, [product?.product?.video_url]);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
+
   const handleSubmitQuestion = async (data: any) => {
     const { question, number } = data;
     const reviewData = {
@@ -381,12 +427,13 @@ const PageDetails = ({ params: { slug } }: Props) => {
         if (response.status == 201) {
           dispatch(
             addToWishList({
-              product_id: response.data.data.product_id,
-              user_id: response.data.data.user_id,
+              product_id: response.data.wishlist.product_id,
+              user_id: response.data.wishlist.user_id,
             })
           );
         } else {
           console.log("Status : ", response.status);
+          toast.warning(`${response.data.message}`);
         }
       } catch (error) {
         console.log(error);
@@ -482,7 +529,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
 
   if (!product) {
     return <CircleLoader />;
-  }
+  };
+
+
   return (
     <>
       {product && (
@@ -523,6 +572,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 width={80}
                                 height={80}
                                 quality={100}
+                                style={{ width: '100%', height: 'auto' }}
                               />
                             </div>
                           ))}
@@ -571,13 +621,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                               <h2 className="font-gotham  text-2xl primary-text font-medium d-price">
                                 ৳{FormatPrice(product?.product?.discount_price)}
                               </h2>
-                              <div>
-                                <span className="discount font-medium">
-                                  Save ৳
-                                  {FormatPrice(product.product.regular_price -
-                                    product.product.discount_price)}
-                                </span>
-                              </div>
+
+                              <span className="discount rounded-xl md:rounded-full font-medium font-gotham flex justify-center items-center">
+                                Save ৳
+                                {FormatPrice(
+                                  Number((Number(product.product.regular_price) - Number(product.product.discount_price)).toFixed(2))
+                                )}
+                              </span>
+
                             </div>
                           </div>
                         )}
@@ -616,9 +667,9 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 (key, i) => (
                                   <div
                                     key={i}
-                                    className="flex items-center mb-1"
+                                    className="flex items-center"
                                   >
-                                    <div className="font-gotham font-normal text-xs mr-2">
+                                    <div className="font-gotham font-bold primary-text text-xs mr-2">
                                       {key.replace("_", " ")} :{" "}
                                     </div>
                                     <div className="flex">
@@ -633,7 +684,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                         return (
                                           <div
                                             key={j}
-                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 ${selectedAttributes.find(
+                                            className={`pointer select font-gotham text-sm px-2 py-[2px] mr-1 my-1 ${selectedAttributes.find(
                                               (item) =>
                                                 item.attribute_id ===
                                                 findAttribute?.id
@@ -651,7 +702,14 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                                 handleAttributeClick(
                                                   findAttribute
                                                 );
-                                              
+                                              handleViewImage(
+                                                product.productAttribute?.find(
+                                                  (att) =>
+                                                    att.attribute_key == key &&
+                                                    att.attribute_value ==
+                                                    value
+                                                )?.attrbute_image as string
+                                              );
                                             }}
                                           >
                                             {value}
@@ -666,106 +724,277 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </>
                         </div>
                       )}
-                    {product?.product?.availability === 1 &&
-                      product?.product?.default_quantity > 0 && (
-                        <div className="action">
-                          <div className="flex pt-5 font-gotham font-medium ">
-                            <div className="mr-2 flex items-center primary-text border ">
-                              <div
-                                className="quantity cursor-pointer white-hover-text primary-hover-bg "
-                                onClick={decrement}
-                              >
-                                <button>
-                                  <AiOutlineMinus />
-                                </button>
-                              </div>
-                              <div className="quantity border-x-[1px] border-x-primary">
-                                {quantity}
-                              </div>
-                              <div
-                                className="quantity cursor-pointer  white-hover-text primary-hover-bg"
-                                onClick={increment}
-                              >
-                                <button>
-                                  <AiOutlinePlus />
-                                </button>
-                              </div>
-                            </div>
-                            <Button
-                              className=" px-5 py-1 mr-2"
-                              onClick={() => {
-                                if (
-                                  product?.productAttribute &&
-                                  product?.productAttribute.length > 0 &&
-                                  selectedAttributes.length < 1
-                                ) {
-                                  toast.error("Please Select Variant");
-                                  return;
-                                }
-                                handleBuyNow({
-                                  product_id: Number(product.product.id),
-                                  price:
-                                    product.product.discount_price > 0
-                                      ? product.product.discount_price
-                                      : product.product.regular_price,
-                                  title: product.product.title,
-                                  image: product.product.image,
-                                  quantity: quantity,
-                                  regular_price: product.product.regular_price,
-                                  attribute: selectedAttributes,
-                                });
-                              }}
+
+
+                    {/* Mandatory Hijab Section */}
+                    
+                      <div className="attribute my-2">
+                        <h2 className="text-lg font-bold text-gray-700">Hijab included with this design.</h2>
+                        <div className="flex items-center gap-4 my-2">
+                          <img
+                            src="https://mylittlejubba.com/cdn/shop/files/Forest_green_chiffon_hijab_scarf-optimized-1721685114-690684.jpg?v=1727018243"
+                            alt="Fixed Hijab"
+                            className="w-20 h-20 rounded-md"
+                          />
+                          <div>
+                            <p className="font-medium text-gray-700">Color: Green</p>
+                            <p className="text-sm text-gray-500">Price: ৳500</p>
+                          </div>
+                        </div>
+                      </div>
+                   
+                      {/*  Non-mandatory Section */}
+                      <>
+                        <div className="mt-2 font-gotham">
+                          <label className="block font-medium text-gray-700 font-gotham">Do you want Hijab or Niqab with it?</label>
+                          <div className="attribute flex items-center gap-4 pb-3 pt-2">
+                            <button
+                              onClick={() => setSelectedOption(selectedOption === "hijab" ? "" : "hijab")}
+                              className="select bg-indigo-600  py-1 px-2 rounded-md hover:bg-indigo-700 transition"
                             >
-                              Buy Now
-                            </Button>
-                            <Button
-                              className=" px-5 py-1"
-                              onClick={() => {
-                                if (
-                                  product?.productAttribute &&
-                                  product?.productAttribute.length > 0 &&
-                                  selectedAttributes.length < 1
-                                ) {
-                                  toast.error("Please Select Variant");
-                                  return;
-                                }
-                                dispatch(
-                                  addToCart({
+                              Choose Hijab
+                            </button>
+                            <button
+                              onClick={() => setSelectedOption(selectedOption === "niqab" ? "" : "niqab")}
+                              className="select bg-indigo-600  py-1 px-2 rounded-md hover:bg-indigo-700 transition"
+                            >
+                              Choose Niqab
+                            </button>
+                          </div>
+
+                          <div  ref={dropdownRef}>
+                            {/* Hijab Dropdown */}
+                            {selectedOption === "hijab" && (
+                              <div className="mt-2 bg-white border border-gray-300 shadow-lg rounded-md">
+                                {hijabs.map((hijab) => (
+                                  <div
+                                    key={hijab.id}
+                                    onClick={() => handleSelect(hijab)}
+                                    className="flex items-center gap-4 p-2 hover:bg-gray-100 cursor-pointer"
+                                  >
+                                    <img src={hijab.image} alt={hijab.name} className="w-10 h-10 rounded-md" />
+                                    <div>
+                                      <p className="font-medium text-gray-700">{hijab.name}</p>
+                                      <p className="text-sm text-gray-500">Price: ৳{hijab.price}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Niqab Dropdown */}
+                            {selectedOption === "niqab" && (
+                              <div className="mt-2 bg-white border border-gray-300 shadow-lg rounded-md">
+                                {niqabs.map((niqab) => (
+                                  <div
+                                    key={niqab.id}
+                                    onClick={() => handleSelect(niqab)}
+                                    className="flex items-center gap-4 p-2 hover:bg-gray-100 cursor-pointer"
+                                  >
+                                    <img src={niqab.image} alt={niqab.name} className="w-10 h-10 rounded-md" />
+                                    <div>
+                                      <p className="font-medium text-gray-700">{niqab.name}</p>
+                                      <p className="text-sm text-gray-500">Price: ৳{niqab.price}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    
+
+                    {/* Display Selected Item */}
+                    {selectedItem && (
+                      <div className="attribute">
+                        <div className="mt-2 mb-2 p-4 border border-gray-300 rounded-md flex items-center gap-4 bg-gray-50">
+                        <img src={selectedItem.image} alt={selectedItem.name} className="w-16 h-16 rounded-md" />
+                        <div>
+                          <p className="font-medium text-gray-700">{selectedItem.name}</p>
+                          <p className="text-sm text-gray-500">Price: ৳{selectedItem.price}</p>
+                        </div>
+                      </div>
+                      </div>                
+                    )}
+
+
+                    {product?.product?.availability === 1 && (
+                      <div className="action">
+                        {product?.productAttribute && product.productAttribute.length > 0 ? (
+                          // Product has attributes
+                          product.productAttribute.some(attr => attr.attribute_quantity > 0) ? (
+                            // At least one attribute has stock
+                            <div className="flex pt-5 font-gotham font-medium">
+                              <div className="mr-2 flex items-center primary-text border">
+                                <div
+                                  className="quantity cursor-pointer white-hover-text primary-hover-bg"
+                                  onClick={decrement}
+                                >
+                                  <button>
+                                    <AiOutlineMinus />
+                                  </button>
+                                </div>
+                                <div className="quantity border-x-[1px] border-x-primary">
+                                  {quantity}
+                                </div>
+                                <div
+                                  className="quantity cursor-pointer white-hover-text primary-hover-bg"
+                                  onClick={increment}
+                                >
+                                  <button>
+                                    <AiOutlinePlus />
+                                  </button>
+                                </div>
+                              </div>
+                              <Button
+                                className="px-5 py-1 mr-2"
+                                onClick={() => {
+                                  if (selectedAttributes.length < 1) {
+                                    toast.error("Please Select Variant");
+                                    return;
+                                  }
+                                  handleBuyNow({
                                     product_id: Number(product.product.id),
                                     price:
                                       product.product.discount_price > 0
                                         ? product.product.discount_price
-                                        : product?.product?.regular_price,
+                                        : product.product.regular_price,
                                     title: product.product.title,
                                     image: product.product.image,
                                     quantity: quantity,
-                                    regular_price:
-                                      product.product.regular_price,
+                                    regular_price: product.product.regular_price,
                                     attribute: selectedAttributes,
-                                  })
-                                );
-                              }}
-                            >
-                              Add to Cart
+                                  });
+                                }}
+                              >
+                                Buy Now
+                              </Button>
+                              <Button
+                                className="px-5 py-1"
+                                onClick={() => {
+                                  if (selectedAttributes.length < 1) {
+                                    toast.error("Please Select Variant");
+                                    return;
+                                  }
+                                  dispatch(
+                                    addToCart({
+                                      product_id: Number(product.product.id),
+                                      price:
+                                        product.product.discount_price > 0
+                                          ? product.product.discount_price
+                                          : product.product.regular_price,
+                                      title: product.product.title,
+                                      image: product.product.image,
+                                      quantity: quantity,
+                                      regular_price: product.product.regular_price,
+                                      attribute: selectedAttributes,
+                                    })
+                                  );
+                                }}
+                              >
+                                Add to Cart
+                              </Button>
+                            </div>
+                          ) : (
+                            // All attributes are out of stock
+                            <Button className="mt-5 px-5 py-1 font-gotham font-medium text-sm btn__disable">
+                              Out of Stock
                             </Button>
-                          </div>
-                        </div>
-                      )}
-                    {(product?.product?.availability === 2 || (product?.product?.availability === 1 && product?.product?.default_quantity === 0)) &&  (
-                        <div className="pt-5">
-                          <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] stock-out">
-                            Out of Stock
-                          </Button>
-                        </div>
-                      )}
+                          )
+                        ) : (
+                          // No product attributes, check default quantity
+                          <>
+                            {product?.product?.default_quantity > 0 ? (
+                              <div className="flex pt-5 font-gotham font-medium">
+                                <div className="mr-2 flex items-center primary-text border">
+                                  <div
+                                    className="quantity cursor-pointer white-hover-text primary-hover-bg"
+                                    onClick={decrement}
+                                  >
+                                    <button>
+                                      <AiOutlineMinus />
+                                    </button>
+                                  </div>
+                                  <div className="quantity border-x-[1px] border-x-primary">
+                                    {quantity}
+                                  </div>
+                                  <div
+                                    className="quantity cursor-pointer white-hover-text primary-hover-bg"
+                                    onClick={increment}
+                                  >
+                                    <button>
+                                      <AiOutlinePlus />
+                                    </button>
+                                  </div>
+                                </div>
+                                <Button
+                                  className="px-5 py-1 mr-2"
+                                  onClick={() => {
+                                    handleBuyNow({
+                                      product_id: Number(product.product.id),
+                                      price:
+                                        product.product.discount_price > 0
+                                          ? product.product.discount_price
+                                          : product.product.regular_price,
+                                      title: product.product.title,
+                                      image: product.product.image,
+                                      quantity: quantity,
+                                      regular_price: product.product.regular_price,
+                                    });
+                                  }}
+                                >
+                                  Buy Now
+                                </Button>
+                                <Button
+                                  className="px-5 py-1"
+                                  onClick={() => {
+                                    dispatch(
+                                      addToCart({
+                                        product_id: Number(product.product.id),
+                                        price:
+                                          product.product.discount_price > 0
+                                            ? product.product.discount_price
+                                            : product.product.regular_price,
+                                        title: product.product.title,
+                                        image: product.product.image,
+                                        quantity: quantity,
+                                        regular_price: product.product.regular_price,
+                                      })
+                                    );
+                                  }}
+                                >
+                                  Add to Cart
+                                </Button>
+                              </div>
+                            ) : (
+                              // Default product is out of stock
+                              <Button className="mt-5 px-5 py-1 font-gotham font-medium text-sm btn__disable">
+                                Out of Stock
+                              </Button>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    )}
+
+                    {product?.product?.availability === 2 && (
+
+                      <div className="pt-5">
+                        <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px] btn__disable">
+                          Out of Stock
+                        </Button>
+                      </div>
+                    )}
+
                     {product?.product?.availability === 3 && (
                       <div className="pt-5">
                         <Button className="font-gotham font-medium py-2 px-2 text-xs w-[102px]">
                           Up Coming
                         </Button>
                       </div>
-
                     )}
+
 
                     <div className="more-action pt-5">
                       <div className="flex flex-row items-center">
@@ -777,8 +1006,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                             );
                           }}
                         >
-                          {" "}
-                          <OutlineButton className="flex items-center font-gotham font-medium mr-2  outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium outline-hidden text-sm px-0 pl-0 md:text-base">
                             <span>
                               <AiOutlineHeart className="mr-1 text-2xl" />
                             </span>
@@ -786,7 +1014,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </OutlineButton>
                         </span>
                         <span
-                          className="mt-2 md:mt-0"
+
                           onClick={() => {
                             if (
                               product?.productAttribute &&
@@ -804,6 +1032,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   product?.product?.sort_description ?? "",
                                 image: product?.product?.image,
                                 title: product?.product?.title,
+                                slug: product?.product?.slug,
                                 regular_price: Number(
                                   product?.product?.regular_price
                                 ),
@@ -811,16 +1040,16 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   product.product.discount_price > 0
                                     ? Number(product?.product?.discount_price)
                                     : Number(product?.product?.regular_price),
-                                quantity: 1,
+                                default_quantity: Number(product?.product?.default_quantity),
                                 rating: product.averageReview,
                                 availability: product.product
                                   .availability as number,
-                                attribute: selectedAttributes,
+                                productAttribute: selectedAttributes,
                               })
                             );
                           }}
                         >
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm md:text-base mr-2 outline-hidden">
                             <span>
                               <BsArrowRepeat className="mr-1 text-2xl" />
                             </span>
@@ -828,8 +1057,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </OutlineButton>
                         </span>
 
-                        <span className="mt-2 md:mt-0 share-item">
-                          <OutlineButton className="flex items-center font-gotham font-medium text-sm  mr-2 outline-hidden">
+                        <span className="share-item">
+                          <OutlineButton className="flex items-center font-gotham font-medium text-sm md:text-base mr-2 outline-hidden">
                             <span>
                               <AiOutlineShareAlt className="mr-1 text-2xl" />
                             </span>
@@ -852,6 +1081,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                 src={`${API_ROOT}/images/key-point/${service.image}`}
                                 width={40}
                                 height={40}
+                                style={{ width: '100%', height: 'auto' }}
                                 alt="service"
                               />
                             </div>
@@ -869,13 +1099,13 @@ const PageDetails = ({ params: { slug } }: Props) => {
                     </div>
 
                     <Link href='/Return-Refund'>
-                    <OutlineButton className="flex items-center font-gotham font-medium text-xs py-1 outline-hidden">
-                      <span className="mr-2">
-                        {/* <BsAwardFill /> */}
-                        <FaAward className="award" />
-                      </span>
-                      7 Days Replacement & 12 Month Free Service
-                    </OutlineButton>
+                      <OutlineButton className="flex items-center font-gotham font-medium text-xs py-1 pl-0 outline-hidden">
+                        <span className="mr-2">
+                          {/* <BsAwardFill /> */}
+                          <FaAward className="award" />
+                        </span>
+                        7 Days Replacement & 12 Month Free Service
+                      </OutlineButton>
                     </Link>
                   </div>
                 </div>
@@ -1069,16 +1299,45 @@ const PageDetails = ({ params: { slug } }: Props) => {
                         </div>
                       </TabPanel>
                       <TabPanel>
-                        {product.product.video_url && (
-                          <iframe
-                            className="w-full h-[350px] md:h-[500px] lg:h-[700px]"
-                            height="700px"
-                            src={product.product.video_url}
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          ></iframe>
+                        {product?.product?.video_url && (
+                          <div className="video-wrapper">
+                            {!isPlaying ? (
+                              <div
+                                className="video-placeholder w-full h-[350px] md:h-[500px] lg:h-[700px]"
+                                onClick={handlePlay}
+                              >
+                                {thumbnailUrl ? (
+                                  <Image
+                                    src={thumbnailUrl}
+                                    alt="YouTube video thumbnail"
+                                    height={500}
+                                    width={500}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="no-thumbnail-placeholder w-full h-full flex items-center justify-center bg-gray-200">
+                                    {/* Show a simple placeholder if no thumbnail */}
+                                    <span>Loading thumbnail...</span>
+                                  </div>
+                                )}
+                                <div className="play-button-overlay absolute inset-0 flex justify-center items-center">
+                                  <button className="play-button  text-6xl">▶</button>
+                                </div>
+                              </div>
+                            ) : (
+                              <iframe
+                                className="w-full h-[350px] md:h-[500px] lg:h-[700px]"
+                                height="700px"
+                                src={`${product.product.video_url}?autoplay=1`}
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                loading="lazy"
+                              ></iframe>
+                            )}
+                          </div>
                         )}
+
                       </TabPanel>
                       <TabPanel>
                         <form onSubmit={handleSubmit(handleSubmitQuestion)}>
@@ -1156,40 +1415,67 @@ const PageDetails = ({ params: { slug } }: Props) => {
                 </div>
               </div>
 
-              <div className="related-products mt-12 pb-7">
+              <div className="related-products mt-5 md:mt-12 pb-3 md:pb-7 ml-2 md:ml-0">
                 <Title title="Related Products" />
                 <div className="grid md:grid-cols-5 grid-cols-2">
-                  {product.relatedProduct.map((product, i) => (
-                    <ProductCard
-                      key={i}
-                      url={product.slug}
-                      image={product.image}
-                      title={product.title}
-                      regular_price={product.regular_price}
-                      discount_price={product.discount_price}
-                      isNew={product.is_new}
-                      product_id={Number(product.id)}
-                      sort_description={product.sort_description}
-                      availability={product.availability}
-                      quantity={product.default_quantity}
-                      productAttribute={product["product-attributes"]}
-                      camping_end_date={product.camping_end_date as string}
-                      camping_start_date={product.camping_start_date as string}
-                      camping_id={product.camping_id as number}
-                      camping_name={product.camping_name as string}
-                    />
+                  {product.relatedProduct?.slice(0, 2).map((product, i) => (
+                    <div key={i} className="block md:hidden">
+                      <ProductCard
+                        url={product.slug}
+                        image={product.image}
+                        title={product.title}
+                        regular_price={product.regular_price}
+                        discount_price={product.discount_price}
+                        isNew={product.is_new}
+                        product_id={Number(product.id)}
+                        sort_description={product.sort_description}
+                        availability={product.availability}
+                        quantity={product.default_quantity}
+                        productAttribute={product.ProductAttribute}
+                        camping_end_date={product.camping_end_date as string}
+                        camping_start_date={product.camping_start_date as string}
+                        camping_id={product.camping_id as number}
+                        camping_name={product.camping_name as string}
+                      />
+                    </div>
                   ))}
+
+                  {/* Show up to 5 products on desktop */}
+                  {product.relatedProduct?.slice(0, 5).map((product, i) => (
+                    <div key={i} className="hidden md:block">
+                      <ProductCard
+                        url={product.slug}
+                        image={product.image}
+                        title={product.title}
+                        regular_price={product.regular_price}
+                        discount_price={product.discount_price}
+                        isNew={product.is_new}
+                        product_id={Number(product.id)}
+                        sort_description={product.sort_description}
+                        availability={product.availability}
+                        quantity={product.default_quantity}
+                        productAttribute={product.ProductAttribute}
+                        camping_end_date={product.camping_end_date as string}
+                        camping_start_date={product.camping_start_date as string}
+                        camping_id={product.camping_id as number}
+                        camping_name={product.camping_name as string}
+                      />
+                    </div>
+                  ))}
+
                 </div>
               </div>
 
               {adsBanner?.image && (
-                <div className=" pb-24">
+                <div className="md:pb-24 pb-8">
                   <Image
                     className="transition-all duration-100 hover:scale-[1.01]"
                     src={`${API_ROOT}/images/banner/${adsBanner?.image}`}
                     alt="ads"
                     width={1300}
                     height={500}
+                    loading="lazy"
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 </div>
               )}
@@ -1212,3 +1498,10 @@ const PageDetails = ({ params: { slug } }: Props) => {
 };
 
 export default PageDetails;
+
+// Helper function to extract YouTube video ID
+const extractYouTubeId = (url: string): string | null => {
+  const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=|watch\?vi=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? match[2] : null;
+};

@@ -41,7 +41,6 @@ function Checkout() {
   const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [thana, setThana] = useState("");
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [mobileError, setMobileError] = useState("");
@@ -49,6 +48,9 @@ function Checkout() {
   const [loading, setIsLoading] = useState(false);
   const [totalCostBeforeCoupon, setTotalCostBeforeCoupon] = useState<number>(0);
   const [totalCostAfterCoupon, setTotalCostAfterCoupon] = useState<number>(0);
+
+  const [selectedLocation, setSelectedLocation] = useState<string>('');
+  const [formError, setFormError] = useState<string>('');
 
   const [cashOnDeliveryMessage, setCashOnDeliveryMessage] = useState<
     string | null
@@ -94,7 +96,7 @@ function Checkout() {
     mobile: login?.user?.mobile ? login?.user?.mobile : mobile,
     address,
     city,
-    thana,
+    thana: selectedLocation,
     order_form: "web",
     delivery_fee: deliveryFee,
     coupon_id: couponId,
@@ -109,6 +111,11 @@ function Checkout() {
 
   const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!selectedLocation) {
+      setFormError('Location is required.');
+      return;
+    }
+    setFormError('');
     if (!selectedPayment) {
       return toast.error("Please Select payment method");
     }
@@ -147,7 +154,7 @@ function Checkout() {
           if (error instanceof AxiosError) {
             const errorMessage = error?.response?.data?.message;
             const firstErrorMessage = errorMessage?.errors?.[0]?.message;
-        
+
             if (firstErrorMessage) {
               toast.error(firstErrorMessage);
               setEmailError(firstErrorMessage);
@@ -168,15 +175,41 @@ function Checkout() {
   };
 
   const handleApplyPromo = async () => {
-    if (approvePromoCode?.trim() || approvePromoCode?.trim() !== "") {
+    if (approvePromoCode?.trim() && approvePromoCode?.trim() !== "") {
       try {
         const response = await axios.post(`${API_URL}/coupons/validation`, {
           coupon_code: approvePromoCode,
         });
-        if (response.status == 200) {
-          setApprovePromoData(response?.data?.coupon);
-          setCouponId(response?.data?.coupon?.id);
-          setApprovePromStatus(response.data.message);
+
+        if (response.status === 200) {
+          const couponData = response?.data?.coupon;
+
+          // Check if coupon applies to the entire order or specific products
+          if (couponData.product_id === null) {
+            // Coupon applies to the entire order
+            setApprovePromoData(couponData);
+            setCouponId(couponData?.id);
+            setApprovePromStatus("The promo code is applied to this order.");
+          } else {
+            const applicableProductIds = couponData.product_id.split(",").map((id: any) => id.trim());
+
+            // Check if there are applicable products in the cart
+            const cartContainsApplicableProduct = orderItem.some((item: any) =>
+              applicableProductIds.includes(item.product_id.toString())
+            );
+
+            if (cartContainsApplicableProduct) {
+              setApprovePromoData(couponData);
+              setCouponId(couponData?.id);
+              setApprovePromStatus("The promo code is applied to one or more products in this order.");
+            } else {
+              // Promo code is not applicable to any product in the cart
+              setApprovePromoData(null);
+              setApprovePromStatus("The promo code is not applicable to any product in in this order.");
+              setCouponId(null);
+              setDiscountCart(cart); // Reset the discount cart
+            }
+          }
         } else {
           setApprovePromoData(null);
           setApprovePromStatus(response.data.message);
@@ -195,6 +228,7 @@ function Checkout() {
       }
     }
   };
+
 
   useEffect(() => {
     if (approvePromoData) {
@@ -356,9 +390,8 @@ function Checkout() {
       setMobile(login?.user?.mobile);
     }
   }, []);
-
-  const handleChangeLocation = (e: any) => {
-    setLocation(e.target.value);
+  const handleChangeLocation = (value: string) => {
+    setSelectedLocation(value);
   };
 
   return (
@@ -436,41 +469,26 @@ function Checkout() {
                   <div className="grid grid-cols-2 gap-4">
                     <FormGroup
                       className="mb-1"
-                      title="Thana*"
+                      title="City*"
+                      required
                       onChange={(e) => setCity(e.target.value)}
-                      placeholder="Type your thana*"
+                      placeholder="Type your City*"
                     />
                     <div>
                       <label
                         htmlFor="location"
                         className=" font-gotham font-normal text-xs  black-text mb-2"
                       >
-                        Location
+                        District
                       </label>
-                      {/* <select
-                        id="location"
-                        className="bg-gray-50 border secondary-border mt-1 black-text text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:white-text dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
-                        onChange={handleChangeLocation}
-                      >
-                        <option value="">Select Location</option>
-                        {locations?.length > 0 ? (
-                          locations?.map((location, i) => (
-                            <option key={i} value={`${location?.location}`}>
-                              {location?.location}
-                            </option>
-                          ))
-                        ) : (
-                          <></>
-                        )}
-                      </select> */}
-                      <CustomDropdown locations={locations} handleChangeLocation={handleChangeLocation} />
+                      <CustomDropdown
+                        locations={locations}
+                        handleChangeLocation={handleChangeLocation}
+                        required={true}
+                      />
+                      {formError && <div className="form-error">{formError}</div>}
                     </div>
-                    {/* <FormGroup
-                      className="mb-1"
-                      title="Thana"
-                      onChange={(e) => setThana(e.target.value)}
-                      placeholder="Select your area"
-                    /> */}
+
                   </div>
                 </Box>
               </div>
@@ -484,11 +502,11 @@ function Checkout() {
                     <p className=" font-gotham font-normal text-xs black-text">
                       Select a payment methoddd
                     </p>
-                    <div className="py-2">
+                    <div className="py-2 flex flex-col gap-1">
                       <div className="flex  items-center">
                         <input
                           type="checkbox"
-                          className="accent-[#E30513]"
+                          className="accent-[#524096]"
                           name="cashOnDelivery"
                           id="cashOnDelivery"
                           checked={selectedPayment === "cashOnDelivery"}
@@ -501,10 +519,10 @@ function Checkout() {
                           Cash on Delivery
                         </label>
                       </div>
-                      <div>
+                      <div className="flex items-center">
                         <input
                           type="checkbox"
-                          className="accent-[#E30513]"
+                          className="accent-[#524096]"
                           name="onlinePayment"
                           id="onlinePayment"
                           checked={selectedPayment === "onlinePayment"}
@@ -522,10 +540,12 @@ function Checkout() {
                       We Accept
                     </p>
                     <Image
+
                       src={"/assets/images/service/payment_2.png"}
                       className="w-9/12 mt-2"
                       width={300}
                       height={100}
+                      style={{ width: '100%', height: 'auto' }}
                       alt="logo"
                     />
                   </Box>
@@ -543,7 +563,7 @@ function Checkout() {
                         <div className="flex  items-center">
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="homeDelivery"
                             id="homeDelivery"
                             checked={
@@ -561,7 +581,7 @@ function Checkout() {
                         {/* <div>
                           <input
                             type="checkbox"
-                            className="accent-[#E30513]"
+                            className="accent-[#524096]"
                             name="pickup"
                             id="pickup"
                             checked={selectedPaymentDeliveryStatus === 'pickup'}
@@ -593,7 +613,7 @@ function Checkout() {
                         </Button>
                       </div>
                       {approvePromoStatus ? (
-                        <div className="text font-gotham font-normal bold text-xs">
+                        <div className="text font-gotham font-bold text-xs mt-1">
                           {approvePromoStatus}
                         </div>
                       ) : (
@@ -729,26 +749,46 @@ function Checkout() {
                 </Box>
                 <div className="accepted">
                   <div className="py-6">
-                    <div className="flex">
-                      <input
-                        className="mr-2 accent-[#E30513]"
-                        type="checkbox"
-                        name="accept"
-                        id="accept"
-                        required
-                      />
-                      <label
-                        htmlFor="accept"
-                        className=" font-gotham font-normal text-xs"
-                      >
-                        I agree to the{" "}
-                        <span className="sudo">
+                    <div className="flex items-start">
+                      <div>
+                        <input
+                          className="mr-2 mt-[6px] accent-[#524096]"
+                          type="checkbox"
+                          name="accept"
+                          id="accept"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="accept"
+                          className=" font-gotham font-normal text-xs"
+                        >
+                          I agree to the {" "}
+                        </label>
+                        <Link href="/Terms-Conditions" className="sudo font-gotham font-normal text-xs">
+                          Terms and Conditions,
+                        </Link>
+                        <label
+                          htmlFor="accept"
+                          className=" font-gotham font-normal text-xs"
+                        >
                           {" "}
-                          Terms and Conditions, Privacy Policy
-                        </span>{" "}
-                        and{" "}
-                        <span className="sudo">Refund and Return Policy</span>
-                      </label>
+                        </label>
+                        <Link href="/Privacy-Policy" className="sudo font-gotham font-normal text-xs">
+                          Privacy Policy
+                        </Link>
+                        <label
+                          htmlFor="accept"
+                          className=" font-gotham font-normal text-xs"
+                        >
+                          {" "}  and
+                        </label>
+                        <Link href="/Return-Refund" className="sudo font-gotham font-normal text-xs">
+                          {" "} Refund and Return Policy
+                        </Link>
+                      </div>
+
                     </div>
                   </div>
                 </div>
