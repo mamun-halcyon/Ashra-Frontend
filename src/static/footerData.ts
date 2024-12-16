@@ -25,7 +25,7 @@ export const customerServiceData = {
 };
 
 export const applianceData = {
-  title: 'Halcyon Digital',
+  title: 'Ashra',
   items: [
     {
       name: 'About Us',

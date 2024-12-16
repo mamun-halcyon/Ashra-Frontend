@@ -100,8 +100,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const homeData: HomeApiResponse = await getData();
   return {
     metadataBase: new URL('https://gazifrontend.vercel.app/'),
-    title: "Halcyon",
-    description: "Halcyon Digital",
+    title: "Ashra",
+    description: "Embrace The Art of Modestry",
     // title: homeData.homePage.meta_title,
     // description: homeData.homePage.meta_description,
     authors: [
@@ -111,8 +111,8 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
 			// title:homeData.homePage.meta_title,
 			// description:homeData.homePage.meta_description,
-      title: "Halcyon",
-      description: "Halcyon Digital",
+      title: "Ashra",
+      description: "Embrace The Art of Modestry",
 			images: [{
         url:`/favicon.ico`,
         // url:`${API_ROOT}/images/setting/${homeData?.setting?.favicon}`,

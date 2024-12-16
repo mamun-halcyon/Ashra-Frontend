@@ -23,7 +23,7 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AiOutlineHeart,
   AiOutlineMinus,
@@ -96,6 +96,37 @@ const PageDetails = ({ params: { slug } }: Props) => {
   const [bankList, setBankList] = useState<IEmiResponse>({} as IEmiResponse);
   const [selectedAttributes, setSelectedAttributes] = useState<any[]>([]);
 
+  const [selectedOption, setSelectedOption] = useState<"hijab" | "niqab" | "">(""); // Tracks which dropdown to show
+  const [mandatoryHijab, setMandatoryHijab] = useState(false); // Mandatory hijab flag
+  // const [mandatoryHijab, setMandatoryHijab] = useState(true); // Mandatory hijab flag
+  const [selectedItem, setSelectedItem] = useState<any>(null); // Tracks the selected hijab/niqab
+
+  // Sample data for hijabs and niqabs
+  const hijabs = [
+    { id: 1, name: "Green Hijab", price: 500, image: "https://via.placeholder.com/50" },
+    { id: 2, name: "Pink Hijab", price: 600, image: "https://via.placeholder.com/50" },
+    { id: 3, name: "Black Hijab", price: 700, image: "https://via.placeholder.com/50" },
+  ];
+
+  const niqabs = [
+    { id: 1, name: "Simple Niqab", price: 400, image: "https://via.placeholder.com/50" },
+    { id: 2, name: "Embroidered Niqab", price: 800, image: "https://via.placeholder.com/50" },
+  ];
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setSelectedOption(""); // Close the dropdown
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (item: any) => {
+    setSelectedItem(item);
+    setSelectedOption(""); // Close the dropdown after selection
+  };
   /* const isCampaign =
     product?.product?.camping_start_date &&
     product?.product?.camping_end_date &&
@@ -499,6 +530,8 @@ const PageDetails = ({ params: { slug } }: Props) => {
   if (!product) {
     return <CircleLoader />;
   };
+
+
   return (
     <>
       {product && (
@@ -691,6 +724,101 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </>
                         </div>
                       )}
+
+
+                    {/* Mandatory Hijab Section */}
+                    
+                      <div className="attribute my-2">
+                        <h2 className="text-lg font-bold text-gray-700">Hijab included with this design.</h2>
+                        <div className="flex items-center gap-4 my-2">
+                          <img
+                            src="https://mylittlejubba.com/cdn/shop/files/Forest_green_chiffon_hijab_scarf-optimized-1721685114-690684.jpg?v=1727018243"
+                            alt="Fixed Hijab"
+                            className="w-20 h-20 rounded-md"
+                          />
+                          <div>
+                            <p className="font-medium text-gray-700">Color: Green</p>
+                            <p className="text-sm text-gray-500">Price: ৳500</p>
+                          </div>
+                        </div>
+                      </div>
+                   
+                      {/*  Non-mandatory Section */}
+                      <>
+                        <div className="mt-2 font-gotham">
+                          <label className="block font-medium text-gray-700 font-gotham">Do you want Hijab or Niqab with it?</label>
+                          <div className="attribute flex items-center gap-4 pb-3 pt-2">
+                            <button
+                              onClick={() => setSelectedOption(selectedOption === "hijab" ? "" : "hijab")}
+                              className="select bg-indigo-600  py-1 px-2 rounded-md hover:bg-indigo-700 transition"
+                            >
+                              Choose Hijab
+                            </button>
+                            <button
+                              onClick={() => setSelectedOption(selectedOption === "niqab" ? "" : "niqab")}
+                              className="select bg-indigo-600  py-1 px-2 rounded-md hover:bg-indigo-700 transition"
+                            >
+                              Choose Niqab
+                            </button>
+                          </div>
+
+                          <div  ref={dropdownRef}>
+                            {/* Hijab Dropdown */}
+                            {selectedOption === "hijab" && (
+                              <div className="mt-2 bg-white border border-gray-300 shadow-lg rounded-md">
+                                {hijabs.map((hijab) => (
+                                  <div
+                                    key={hijab.id}
+                                    onClick={() => handleSelect(hijab)}
+                                    className="flex items-center gap-4 p-2 hover:bg-gray-100 cursor-pointer"
+                                  >
+                                    <img src={hijab.image} alt={hijab.name} className="w-10 h-10 rounded-md" />
+                                    <div>
+                                      <p className="font-medium text-gray-700">{hijab.name}</p>
+                                      <p className="text-sm text-gray-500">Price: ৳{hijab.price}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Niqab Dropdown */}
+                            {selectedOption === "niqab" && (
+                              <div className="mt-2 bg-white border border-gray-300 shadow-lg rounded-md">
+                                {niqabs.map((niqab) => (
+                                  <div
+                                    key={niqab.id}
+                                    onClick={() => handleSelect(niqab)}
+                                    className="flex items-center gap-4 p-2 hover:bg-gray-100 cursor-pointer"
+                                  >
+                                    <img src={niqab.image} alt={niqab.name} className="w-10 h-10 rounded-md" />
+                                    <div>
+                                      <p className="font-medium text-gray-700">{niqab.name}</p>
+                                      <p className="text-sm text-gray-500">Price: ৳{niqab.price}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    
+
+                    {/* Display Selected Item */}
+                    {selectedItem && (
+                      <div className="attribute">
+                        <div className="mt-2 mb-2 p-4 border border-gray-300 rounded-md flex items-center gap-4 bg-gray-50">
+                        <img src={selectedItem.image} alt={selectedItem.name} className="w-16 h-16 rounded-md" />
+                        <div>
+                          <p className="font-medium text-gray-700">{selectedItem.name}</p>
+                          <p className="text-sm text-gray-500">Price: ৳{selectedItem.price}</p>
+                        </div>
+                      </div>
+                      </div>                
+                    )}
+
+
                     {product?.product?.availability === 1 && (
                       <div className="action">
                         {product?.productAttribute && product.productAttribute.length > 0 ? (
@@ -1193,7 +1321,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                                   </div>
                                 )}
                                 <div className="play-button-overlay absolute inset-0 flex justify-center items-center">
-                                  <button className="play-button text-white text-6xl">▶</button>
+                                  <button className="play-button  text-6xl">▶</button>
                                 </div>
                               </div>
                             ) : (

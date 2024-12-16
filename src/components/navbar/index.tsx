@@ -55,7 +55,7 @@ const Navbar = ({ logo }: { logo: string }) => {
                 <Image
                   className="logo"
                   // src={`${API_ROOT}/images/setting/${logo}`}
-                  src={`/assets/images/logo/Halcyon_Logo.webp`}
+                  src={`/assets/images/logo/ashra_logo.jpg`}
                   width={200}
                   height={80}
                   quality={100}

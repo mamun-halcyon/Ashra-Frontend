@@ -41,7 +41,6 @@ function Checkout() {
   const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [thana, setThana] = useState("");
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [mobileError, setMobileError] = useState("");
@@ -97,7 +96,7 @@ function Checkout() {
     mobile: login?.user?.mobile ? login?.user?.mobile : mobile,
     address,
     city,
-    thana,
+    thana: selectedLocation,
     order_form: "web",
     delivery_fee: deliveryFee,
     coupon_id: couponId,
@@ -470,17 +469,17 @@ function Checkout() {
                   <div className="grid grid-cols-2 gap-4">
                     <FormGroup
                       className="mb-1"
-                      title="Thana*"
+                      title="City*"
                       required
                       onChange={(e) => setCity(e.target.value)}
-                      placeholder="Type your thana*"
+                      placeholder="Type your City*"
                     />
                     <div>
                       <label
                         htmlFor="location"
                         className=" font-gotham font-normal text-xs  black-text mb-2"
                       >
-                        Location
+                        District
                       </label>
                       <CustomDropdown
                         locations={locations}

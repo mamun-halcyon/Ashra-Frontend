@@ -36,7 +36,7 @@ const Footer = async ({ globalData }: IProps) => {
             <Image
               className=" mb-5"
               // src={`${API_ROOT}/images/setting/${globalData?.setting?.logo}`}
-              src={`/assets/images/logo/Halcyon_Logo.webp`}
+              src={`/assets/images/logo/ashra_logo.jpg`}
               width={154}
               height={80}
               alt="gazi group logo"
@@ -99,7 +99,7 @@ const Footer = async ({ globalData }: IProps) => {
           <div>
             <div className="w-[60%] md:mx-auto">
               <h1 className="font-gotham font-[600] text-base black-text mb-4">
-                Halcyon Digital
+               ASHRA
               </h1>
               <ul className="mx-auto">
                 {footerTwoData?.length > 0 ? (
@@ -212,7 +212,7 @@ const Footer = async ({ globalData }: IProps) => {
           <div className="flex justify-between items-center gap-1 md:gap-2">
             <div className="w-[50%] md-w-auto">
               <h4 className=" font-gotham font-light text-[10px] md:text-xs white-text">
-               {globalData?.setting?.footer_copywrite||'© 2022-2023 | Halcyon Digital'} 
+               {globalData?.setting?.footer_copywrite||'© 2024-2025 | Ashra'} 
               </h4>
             </div>
             <div className="w-[50%] md:w-auto">
